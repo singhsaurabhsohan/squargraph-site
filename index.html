@@ -1,148 +1,215 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQUARGRAPH Studios | Clarity. Ideas. Execution.</title>
+  <meta name="description" content="SQUARGRAPH Studios is a Delhi-based creative studio delivering brand strategy, campaign thinking, content creation, and creative direction for modern growth brands." />
+  <meta name="keywords" content="SQUARGRAPH Studios, creative agency Delhi, brand strategy, campaign thinking, content creation, creative direction" />
+  <meta name="author" content="SQUARGRAPH Studios" />
 
-<title>SQUARGRAPH Studios — Saurabh Sohan Singh</title>
+  <meta property="og:title" content="SQUARGRAPH Studios | Clarity. Ideas. Execution." />
+  <meta property="og:description" content="A modern creative studio building campaigns, content, and brand systems that cut through noise." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1400&q=80" />
+  <meta property="og:url" content="https://squargraph.com/" />
+  <meta property="og:type" content="website" />
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SQUARGRAPH Studios" />
+  <meta name="twitter:description" content="Clarity-first creative strategy, campaign thinking, and execution." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1200&q=80" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
 
-<style>
-
-/* 🔧 FIX 1: REMOVE SCROLL CONFLICT */
-html {
-  scroll-behavior: auto;
-}
-
-body{
-  background:#0f0f0f;
-  color:#fff;
-  font-family:'DM Sans';
-}
-
-/* NAV */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:20px 60px;
-  background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(10px);
-  z-index:1000;
-}
-
-/* HERO */
-#hero{
-  height:100vh;
-  display:flex;
-  align-items:flex-end;
-  padding:60px;
-}
-
-/* 🔧 FIX 2: VIDEO PROPERLY VISIBLE */
-.project-video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:0.4s;
-}
-
-/* CARD */
-.project-card{
-  position:relative;
-  height:320px;
-  background:#1a1a1a;
-  overflow:hidden;
-}
-
-.project-card:hover .project-video{
-  opacity:1;
-}
-
-.project-info{
-  position:absolute;
-  bottom:20px;
-  left:20px;
-}
-
-/* SECTION */
-section{
-  padding:120px 60px;
-}
-
-/* BUTTON */
-.btn{
-  padding:14px 40px;
-  border:1px solid #fff;
-  text-decoration:none;
-  color:#fff;
-  transition:.3s;
-}
-.btn:hover{
-  background:#fff;
-  color:#000;
-}
-
-</style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SQUARGRAPH Studios",
+      "founder": "Saurabh Sohan Singh",
+      "location": "Delhi, India",
+      "url": "https://squargraph.com",
+      "sameAs": [
+        "https://www.instagram.com/squargraph",
+        "https://www.facebook.com/squargraphstudios",
+        "https://www.x.com/squargraph",
+        "https://www.linkedin.com/company/squargraph",
+        "https://www.youtube.com/channel/squargraph"
+      ]
+    }
+  </script>
 </head>
-
 <body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html">SQUARGRAPH STUDIOS</a>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+      <nav class="nav-links" data-nav-links>
+        <a class="active" href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="case-study.html">Case Study</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="insights.html">Insights</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a class="btn" href="contact.html">Start a Project</a>
+    </div>
+  </header>
 
-<nav>
-  SQUARGRAPH
-</nav>
+  <section class="hero">
+    <div class="container hero-content" data-reveal>
+      <p class="eyebrow">Delhi, India • Working globally</p>
+      <h1>Clarity.<br />Ideas.<br />Execution.</h1>
+      <p>A modern creative studio building campaigns, content, and brand systems that cut through noise.</p>
+      <a class="btn" href="contact.html">Start a Project</a>
+    </div>
+  </section>
 
-<section id="hero">
-  <h1>Clarity.<br>Ideas.<br>Execution.</h1>
-</section>
+  <section class="section">
+    <div class="container grid grid-2">
+      <div data-reveal>
+        <p class="eyebrow">Studio Intro</p>
+        <h2>We help ambitious brands replace volume with direction.</h2>
+        <p>SQUARGRAPH Studios operates at the intersection of strategy and execution. We design campaign systems, content pipelines, and creative direction frameworks that make brand communication sharper, faster, and more effective.</p>
+        <p>Our difference is clarity-led decision making: every brief, concept, and asset is built against a strategic objective instead of trend-driven noise.</p>
+        <p class="quote">Based in Delhi, working globally. <a href="https://www.google.com/search?q=SQUARGRAPH+Studios" target="_blank" rel="noopener">View Google profile</a>.</p>
+      </div>
+      <div class="card" data-reveal>
+        <img class="work-thumb" loading="lazy" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80" alt="Cinematic automotive setup" />
+      </div>
+    </div>
+  </section>
 
-<section>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Featured Work Style References</p>
+      <div class="grid grid-2">
+        <a class="card work-item" data-reveal href="https://www.behance.net/aryanrawat386" target="_blank" rel="noopener">
+          <img class="work-thumb" loading="lazy" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=80" alt="Automotive campaign film" />
+          <div class="card-content">
+            <span class="badge">Automotive Campaign Film</span>
+            <h3>Velocity Narrative</h3>
+            <p>Performance-focused launch storytelling designed for hero films, social cutdowns, and digital conversion assets.</p>
+          </div>
+        </a>
 
-<div class="project-card">
+        <a class="card work-item" data-reveal href="https://vimeo.com/prasenjitdas" target="_blank" rel="noopener">
+          <img class="work-thumb" loading="lazy" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80" alt="Brand storytelling film" />
+          <div class="card-content">
+            <span class="badge">Brand Storytelling Film</span>
+            <h3>Identity in Motion</h3>
+            <p>Long-form narrative structure connecting brand purpose, product truth, and emotional recall.</p>
+          </div>
+        </a>
 
-<video class="project-video" muted loop>
-<source src="hyundai.mp4">
-</video>
+        <a class="card work-item" data-reveal href="https://www.behance.net/aryanrawat386" target="_blank" rel="noopener">
+          <img class="work-thumb" loading="lazy" src="https://images.unsplash.com/photo-1516131206008-dd041a9764fd?auto=format&fit=crop&w=1400&q=80" alt="Motion design workflow" />
+          <div class="card-content">
+            <span class="badge">Motion Design Project</span>
+            <h3>Kinetic Product Frames</h3>
+            <p>Typography-led motion and UI-inspired transitions that simplify complex product stories.</p>
+          </div>
+        </a>
 
-<div class="project-info">
-Hyundai Campaign
-</div>
+        <a class="card work-item" data-reveal href="https://vimeo.com/prasenjitdas" target="_blank" rel="noopener">
+          <img class="work-thumb" loading="lazy" src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1400&q=80" alt="Product storytelling production" />
+          <div class="card-content">
+            <span class="badge">Product Storytelling</span>
+            <h3>Built for Use Cases</h3>
+            <p>Human-centered product communication built to improve comprehension, trust, and action rate.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 
-</div>
+  <section class="section">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Client Ecosystem</p>
+      <div class="logo-row">
+        <div class="logo-wrap"><img loading="lazy" src="https://logo.clearbit.com/hyundai.com" alt="Hyundai" /></div>
+        <div class="logo-wrap"><img loading="lazy" src="https://logo.clearbit.com/tatamotors.com" alt="Tata Motors" /></div>
+        <div class="logo-wrap"><img loading="lazy" src="https://logo.clearbit.com/kia.com" alt="Kia" /></div>
+        <div class="logo-wrap"><img loading="lazy" src="https://logo.clearbit.com/mgmotor.co.in" alt="MG Motor" /></div>
+        <div class="logo-wrap"><img loading="lazy" src="https://logo.clearbit.com/byd.com" alt="BYD" /></div>
+        <div class="logo-wrap"><img loading="lazy" src="https://logo.clearbit.com/mahindra.com" alt="Mahindra" /></div>
+      </div>
+    </div>
+  </section>
 
-</section>
+  <section class="section">
+    <div class="container grid grid-3">
+      <article class="card" data-reveal>
+        <div class="card-content">
+          <h3>Brand Strategy</h3>
+          <p>Positioning and messaging architecture that aligns leadership decisions with market-facing communication.</p>
+        </div>
+      </article>
+      <article class="card" data-reveal>
+        <div class="card-content">
+          <h3>Campaign Thinking</h3>
+          <p>Cross-platform campaign systems that connect awareness, engagement, and conversion objectives.</p>
+        </div>
+      </article>
+      <article class="card" data-reveal>
+        <div class="card-content">
+          <h3>Creative Direction</h3>
+          <p>Premium visual and narrative direction across film, social, and product storytelling environments.</p>
+        </div>
+      </article>
+    </div>
+  </section>
 
-<script>
+  <section class="section">
+    <div class="container grid grid-2">
+      <article class="card" data-reveal>
+        <div class="card-content">
+          <p class="quote">“Working with SQUARGRAPH brought clarity to our entire campaign approach. Messaging became sharper, execution became faster, and the results were measurable.”</p>
+        </div>
+      </article>
+      <article class="card" data-reveal>
+        <div class="card-content">
+          <p class="quote">“They converted scattered content requests into a unified communication system our internal team could scale confidently.”</p>
+        </div>
+      </article>
+    </div>
+  </section>
 
-/* 🔧 FIX 3: VIDEO HOVER */
-document.querySelectorAll('.project-card').forEach(card=>{
-  const video=card.querySelector('video');
-  if(!video) return;
+  <section class="section">
+    <div class="container cta-band" data-reveal>
+      <p class="eyebrow">Conversion Layer</p>
+      <h2>Need strategic clarity before your next launch window?</h2>
+      <p>Share your business objective and timeline. We will recommend the right campaign and content structure.</p>
+      <a class="btn" href="contact.html">Book a Strategy Call</a>
+    </div>
+  </section>
 
-  card.addEventListener('mouseenter',()=>video.play());
-  card.addEventListener('mouseleave',()=>{
-    video.pause();
-    video.currentTime=0;
-  });
-});
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>SQUARGRAPH Studios</strong>
+        <p>Clarity-first strategy, campaigns, content creation, and execution for growth-focused brands.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Follow us</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/squargraph" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/squargraphstudios" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.x.com/squargraph" target="_blank" rel="noopener">X</a>
+          <a href="https://www.linkedin.com/company/squargraph" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.youtube.com/channel/squargraph" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Contact</p>
+        <p><a href="mailto:hello@squargraph.com">hello@squargraph.com</a><br />Delhi, India</p>
+      </div>
+    </div>
+  </footer>
 
-/* 🔧 FIX 4: GSAP SAFE */
-gsap.registerPlugin(ScrollTrigger);
-
-gsap.from("h1",{
-  y:100,
-  opacity:0,
-  duration:1.2
-});
-
-</script>
-
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
