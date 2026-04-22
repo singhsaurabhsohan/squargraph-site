@@ -17,7 +17,7 @@
     --surface2: #1a1a1a;
     --border: rgba(255,255,255,0.07);
     --text: #f0ede8;
-    --muted: rgba(240,237,232,0.45);
+    --muted: rgba(255,255,255,0.75);
     --dim: rgba(240,237,232,0.2);
     --red: #e63030;
     --purple: #9b59b6;
@@ -32,7 +32,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    background: var(--black);
+  background: #0f0f0f;
     color: var(--text);
     font-family: var(--font-body);
     font-weight: 300;
@@ -49,7 +49,7 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.4;
+    opacity: 0.1;
   }
 
   /* ── CURSOR ── */
@@ -219,10 +219,8 @@
   transform: translateY(110%);
   filter: blur(8px);
   opacity: 0;
-
-  background: linear-gradient(90deg, #ffffff, #aaaaaa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    color: #ffffff;
+text-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
   .hero-line.italic { font-style: italic; color: var(--muted); }
   .hero-meta {
@@ -989,7 +987,7 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    opacity: 0.4;
+    opacity: 0.15;
     pointer-events: none;
   }
 
