@@ -271,3 +271,12 @@ footer {
   }
 
 }
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(149,172,255,0.15), transparent 60%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
