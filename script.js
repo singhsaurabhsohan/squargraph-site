@@ -8,9 +8,10 @@ gsap.utils.toArray(".section").forEach((section) => {
     duration: 0.8,
     ease: "power2.out",
     scrollTrigger: {
-      trigger: section,
-      start: "top 85%",
-    }
+  trigger: section,
+  start: "top 85%",
+  once: true
+}
   });
 });
 
@@ -24,6 +25,7 @@ gsap.utils.toArray(".card").forEach((card) => {
     scrollTrigger: {
       trigger: card,
       start: "top 90%",
+      once: true
     }
   });
 });
@@ -44,7 +46,7 @@ gsap.from(".hero p", {
   ease: "power2.out"
 });
 
-gsap.from(".btn", {
+gsap.from(".hero .btn", {
   opacity: 0,
   y: 20,
   delay: 0.5,
@@ -63,8 +65,8 @@ buttons.forEach((btn) => {
     gsap.to(btn, {
       x: x * 0.2,
       y: y * 0.2,
-      duration: 0.3,
-      ease: "power2.out"
+      duration: 0.4,
+      ease: "power3.out"
     });
   });
 
@@ -76,4 +78,28 @@ buttons.forEach((btn) => {
       ease: "power2.out"
     });
   });
+});
+// Cursor glow follow
+const glow = document.querySelector(".cursor-glow");
+
+if (glow) {
+  window.addEventListener("mousemove", (e) => {
+    gsap.to(glow, {
+      x: e.clientX,
+      y: e.clientY,
+      duration: 0.3,
+      ease: "power2.out"
+    });
+  });
+}
+// Hero parallax
+gsap.to(".hero", {
+  backgroundPosition: "50% 60%",
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "top top",
+    end: "bottom top",
+    scrub: true
+  }
 });
