@@ -61,7 +61,7 @@
 
     <h2>Send your project brief</h2>
 
-    <form action="https://formspree.io/f/xzdykrjl" method="POST" class="form">
+    <form action="https://formspree.io/f/YOUR_ID" method="POST" class="form">
 
   <div class="form-row">
     <input type="text" name="name" placeholder="Your Name" required />
@@ -70,7 +70,25 @@
 
   <input type="text" name="company" placeholder="Company / Brand" />
 
-  <textarea name="message" placeholder="Project brief, timeline, budget range..." required></textarea>
+  <!-- NEW -->
+  <select name="project-type" required>
+    <option value="">What do you need?</option>
+    <option>Campaign Strategy</option>
+    <option>Content Creation</option>
+    <option>Brand Film</option>
+    <option>Creative Direction</option>
+  </select>
+
+  <!-- NEW -->
+  <select name="budget" required>
+    <option value="">Budget Range</option>
+    <option>₹50K – ₹1L</option>
+    <option>₹1L – ₹3L</option>
+    <option>₹3L – ₹10L</option>
+    <option>₹10L+</option>
+  </select>
+
+  <textarea name="message" placeholder="Project brief, timeline, goals..." required></textarea>
 
   <button type="submit" class="btn">Send Brief</button>
 
