@@ -7,7 +7,34 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+/* ===== FOUNDER SOCIAL LINKS (PREMIUM) ===== */
 
+.f-socials {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.f-soc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--stone);
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 10px 16px;
+  transition: all 0.3s ease;
+}
+
+.f-soc:hover {
+  color: #fff;
+  background: #000;
+  border-color: #000;
+  transform: translateY(-2px);
+}
 <style>
 /* ═══════════════════════════════════════
    ROOT & RESET
@@ -785,7 +812,7 @@ iframe.yt-frame {
   border-left: 2px solid var(--gold);
   margin-bottom: 48px;
 }
-.f-socials {
+.f-soc {   display: flex;   align-items: center;   gap: 10px;   font-family: var(--mono);   font-size: 10px;   letter-spacing: 0.18em;   text-transform: uppercase;   color: var(--stone);   border: 1px solid var(--rule);   padding: 8px 14px;   transition: all 0.3s ease; }  .f-soc:hover {   color: var(--ink);   border-color: var(--gold);   background: rgba(184,168,130,0.08); }ials {
   display: flex; gap: 20px;
 }
 .f-soc {
@@ -1215,6 +1242,33 @@ footer {
   .modal-content { padding: 32px 28px; }
   .work-header { flex-direction: column; align-items: flex-start; gap: 20px; }
   #cursor, #c-ring { display: none; }
+}/* ===== FINAL OVERRIDE (FOR SOCIALS) ===== */
+
+.f-socials {
+  display: flex !important;
+  gap: 16px !important;
+  margin-top: 24px !important;
+}
+
+.f-soc {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-family: var(--mono) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: var(--stone) !important;
+  border: 1px solid rgba(0,0,0,0.12) !important;
+  padding: 10px 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+.f-soc:hover {
+  color: #fff !important;
+  background: #000 !important;
+  border-color: #000 !important;
+  transform: translateY(-2px) !important;
 }
 </style>
 </head>
@@ -1450,7 +1504,7 @@ footer {
   <div class="founder-grid">
     <div class="founder-img-col sr sr-left">
       <div class="founder-frame">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=85&auto=format&fit=crop&crop=faces,top" alt="Saurabh Sohan Singh, Founder of SQUARGRAPH Studios">
+        <img src="Founder.jpg" alt="Saurabh Sohan Singh">
       </div>
       <div class="founder-deco" aria-hidden="true"></div>
     </div>
@@ -1463,17 +1517,18 @@ footer {
       <h2 class="f-name">Saurabh<br>Sohan Singh</h2>
       <div class="f-role">Founder, SQUARGRAPH Studios</div>
       <p class="f-bio">
-        Saurabh works at the intersection of strategy, content, and creative direction. His approach focuses on clarity, strong ideas, and consistent execution — helping brands build meaningful and lasting presence in a world that moves too fast to be vague.
+        Saurabh works at the intersection of strategy, content, and creative direction — 
+building brands with clarity, strong ideas, and consistent execution.
       </p>
       <blockquote class="f-quote">
-        "Brands don't fail from lack of content — they fail from lack of clarity."
+        "Brands don’t fail from lack of content — they fail from lack of clarity."
       </blockquote>
       <div class="f-socials">
-        <a href="#" class="f-soc" aria-label="Instagram">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+<a href="https://instagram.com/squargraph" target="_blank" rel="noopener noreferrer" class="f-soc">
+   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
           Instagram
         </a>
-        <a href="#" class="f-soc" aria-label="LinkedIn">
+        <a href="https://linkedin.com/in/saurabhsohansingh" target="_blank" rel="noopener noreferrer" class="f-soc" aria-label="LinkedIn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
