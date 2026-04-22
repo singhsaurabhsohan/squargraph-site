@@ -57,9 +57,24 @@
 </section>
 
 <section class="section">
-  <div class="container cta">
+  <div class="container">
+
     <h2>Send your project brief</h2>
-    <a class="btn" href="mailto:hello@squargraph.com">Email Now</a>
+
+    <form action="https://formspree.io/f/xzdykrjl" method="POST" class="form">
+
+      <input type="text" name="name" placeholder="Your Name" required />
+
+      <input type="email" name="email" placeholder="Your Email" required />
+
+      <input type="text" name="company" placeholder="Company / Brand" />
+
+      <textarea name="message" placeholder="Project brief, timeline, budget range..." required></textarea>
+
+      <button type="submit" class="btn">Send Brief</button>
+
+    </form>
+
   </div>
 </section>
 
