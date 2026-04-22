@@ -7,7 +7,82 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+/* ===== PORTFOLIO PREMIUM ===== */
 
+.p-head {
+  margin-bottom: 60px;
+}
+
+.p-head h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.p-head p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* GRID */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* CARD */
+.p-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.p-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* OVERLAY */
+.p-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.p-overlay h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.p-overlay span {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* HOVER EFFECT */
+.p-card:hover img {
+  transform: scale(1.08);
+}
+
+.p-card:hover .p-overlay {
+  opacity: 1;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
 <style>
 /* ═══════════════════════════════════════
    ROOT & RESET
@@ -16,27 +91,19 @@
   margin: 0; padding: 0; box-sizing: border-box;
 }
 
-:root {
-  --ink:      #080807;
-  --ink-2:    #1a1916;
-  --ink-3:    #2c2b28;
-  --stone:    #6b6760;
-  --dust:     #9e9b96;
-  --warm:     #e8e4dc;
-  --paper:    #f4f1eb;
-  --cream:    #faf8f4;
-  --gold:     #b8a882;
-  --gold-lt:  #d4c9b0;
-  --rule:     rgba(8,8,7,0.09);
-  --rule-inv: rgba(250,248,244,0.1);
+:root{
+  --bg:#0b0b0c;
+  --text:#f5f5f5;
+  --muted:#9e9e9e;
 
-  --serif: 'Playfair Display', Georgia, serif;
-  --sans:  'DM Sans', sans-serif;
-  --mono:  'DM Mono', monospace;
+  /* BRAND COLORS */
+  --accent1:#ff4d4d;   /* red */
+  --accent2:#7c5cff;   /* purple */
+  --accent3:#00d4ff;   /* cyan */
+  --accent4:#ffb84d;   /* orange */
 
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-smooth:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* GRADIENT */
+  --gradient: linear-gradient(135deg, #ff4d4d, #7c5cff, #00d4ff);
 }
 
 html {
@@ -226,14 +293,15 @@ nav {
 /* layered background */
 .hero-bg-base {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 100% 80% at 65% 30%, #1c1a15 0%, var(--ink) 55%);
-}
-.hero-bg-glow {
+background: radial-gradient(ellipse 100% 80% at 65% 30%, #1c1a15 0%, var(--ink) 55%),
+            radial-gradient(circle at 20% 40%, rgba(255,77,77,0.12), transparent 40%),
+            radial-gradient(circle at 80% 70%, rgba(124,92,255,0.12), transparent 40%);}
+.hero-bg-glow {animation: floatGlow 8s ease-in-out infinite alternate;
   position: absolute;
   width: 700px; height: 700px;
   top: -10%; right: -5%;
-  background: radial-gradient(circle, rgba(184,168,130,0.06) 0%, transparent 70%);
-  pointer-events: none;
+background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, transparent 70%);
+   pointer-events: none;
 }
 .hero-bg-grid {
   position: absolute; inset: 0;
@@ -270,28 +338,40 @@ nav {
   color: var(--gold);
 }
 
-.hero-h1 {
+.hero-h1 {background: linear-gradient(135deg, #ffffff, #7c5cff, #00d4ff);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
   font-family: var(--serif);
   font-size: clamp(52px, 8.5vw, 110px);
   font-weight: 700;
   line-height: 0.97;
   letter-spacing: -0.025em;
-  color: var(--cream);
   margin-bottom: 0;
 }
 .hero-h1 .line {
   display: block; overflow: hidden;
 }
-.hero-h1 .line span {
+.hero-h1 .line span {filter: blur(10px);
   display: block;
   opacity: 0;
   transform: translateY(100%);
-  animation: lineReveal 1s var(--ease-out-expo) forwards;
+  animation: lineReveal 1s var(--ease-out-expo) forwards;@keyframes lineReveal {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
 }
 .hero-h1 .line:nth-child(1) span { animation-delay: 0.35s; }
 .hero-h1 .line:nth-child(2) span { animation-delay: 0.5s; }
 .hero-h1 .line:nth-child(3) span { animation-delay: 0.65s; }
-.hero-h1 em { font-style: italic; color: var(--gold); }
+.hero-h1 em { font-style: italic; color: #ff4d4d; }
 
 .hero-meta {
   display: flex; align-items: flex-end; justify-content: space-between;
@@ -314,7 +394,8 @@ nav {
 }
 .btn-main {
   display: inline-flex; align-items: center; gap: 14px;
-  background: var(--cream);
+  background: linear-gradient(135deg, #ff4d4d, #7c5cff);
+color: #fff;
   color: var(--ink);
   font-family: var(--mono);
   font-size: 12px;
@@ -327,11 +408,12 @@ nav {
 .btn-main::before {
   content: '';
   position: absolute; inset: 0;
-  background: var(--gold);
+  background: #00d4ff;
   transform: translateX(-101%);
   transition: transform 0.5s var(--ease-out-expo);
 }
-.btn-main:hover::before { transform: translateX(0); }
+.btn-main:hover:transform: translateY(-3px) scale(1.02);
+box-shadow: 0 15px 40px rgba(124,92,255,0.3);:before { transform: translateX(0); }
 .btn-main span, .btn-main svg { position: relative; z-index: 1; }
 .btn-main svg { transition: transform 0.4s; }
 .btn-main:hover svg { transform: translateX(5px); }
@@ -366,7 +448,7 @@ nav {
   font-size: clamp(100px, 16vw, 240px);
   font-weight: 900;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(250,248,244,0.03);
+ -webkit-text-stroke: 1px rgba(124,92,255,0.2);
   line-height: 1;
   pointer-events: none;
   user-select: none;
@@ -1247,33 +1329,57 @@ footer {
 </head>
 <body>
 
-<div class="grain" aria-hidden="true"></div>
-<div id="c-dot"  aria-hidden="true"></div>
-<div id="c-ring" aria-hidden="true"></div>
+<section id="portfolio" class="section">
 
-<!-- ═══ MOBILE MENU ═══ -->
-<div class="mob-menu" id="mobMenu" role="dialog" aria-label="Navigation">
-  <a class="mob-link" href="#work"     onclick="closeMenu()">Work</a>
-  <a class="mob-link" href="#services" onclick="closeMenu()">Services</a>
-  <a class="mob-link" href="#founder"  onclick="closeMenu()">About</a>
-  <a class="mob-link" href="#contact"  onclick="closeMenu()">Contact</a>
+  <div class="p-head">
+    <h2>Selected Work</h2>
+    <p>Brand. Content. Creative Direction.</p>
+  </div>
+
+  <div class="portfolio-grid">
+
+```
+<!-- PROJECT 1 -->
+<div class="p-card">
+  <img src="work1.jpg" alt="Project 1">
+  <div class="p-overlay">
+    <h3>Hyundai Campaign</h3>
+    <span>Strategy · Content · Direction</span>
+  </div>
 </div>
 
-<!-- ═══ HEADER ═══ -->
-<header id="hdr">
-  <a href="#" class="logo-mark" aria-label="SQUARGRAPH Studios home">
-    SQUAR<em>GRAPH</em>&thinsp;Studios
-  </a>
-  <nav aria-label="Primary">
-    <a href="#work"     class="nav-link">Work</a>
-    <a href="#services" class="nav-link">Services</a>
-    <a href="#founder"  class="nav-link">About</a>
-    <a href="#contact"  class="nav-cta">Let's Talk</a>
-  </nav>
-  <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</header>
+<!-- PROJECT 2 -->
+<div class="p-card">
+  <img src="work2.jpg" alt="Project 2">
+  <div class="p-overlay">
+    <h3>EV Launch Film</h3>
+    <span>Brand Film · Creative</span>
+  </div>
+</div>
+
+<!-- PROJECT 3 -->
+<div class="p-card">
+  <img src="work3.jpg" alt="Project 3">
+  <div class="p-overlay">
+    <h3>Master Board</h3>
+    <span>Campaign · Digital</span>
+  </div>
+</div>
+
+<!-- PROJECT 4 -->
+<div class="p-card">
+  <img src="work4.jpg" alt="Project 4">
+  <div class="p-overlay">
+    <h3>Venue Adventure</h3>
+    <span>Social · Launch</span>
+  </div>
+</div>
+```
+
+  </div>
+
+</section>
+
 
 <!-- ═══ HERO ═══ -->
 <section id="hero" aria-label="Hero">
@@ -1795,5 +1901,36 @@ document.querySelectorAll('.p-card').forEach((el, i) => {
   });
 });
 </script>
+<script>
+const hero = document.getElementById('hero');
+const glow = document.querySelector('.hero-bg-glow');
+
+hero.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 30;
+  const y = (e.clientY / window.innerHeight - 0.5) * 30;
+
+  glow.style.transform = `translate(${x}px, ${y}px)`;
+});
+</script>
+   <script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+});
+
+document.querySelectorAll('.section').forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = 'translateY(40px)';
+  observer.observe(el);
+});
+</script>
 </body>
 </html>
+@keyframes floatGlow {
+  0% { transform: translate(0px, 0px) scale(1); }
+  100% { transform: translate(-40px, 40px) scale(1.1); }
+}
