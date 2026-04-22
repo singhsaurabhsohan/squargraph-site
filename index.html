@@ -4,76 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SQUARGRAPH Studios</title>
+<title>SQUARGRAPH Studios — Saurabh Sohan Singh</title>
 
-<!-- FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 
-<!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-<!-- LENIS -->
-<script src="https://unpkg.com/lenis@1.0.35/dist/lenis.min.js"></script>
-
 <style>
 
-/* BASE */
-:root{
-  --bg:#0f0f0f;
-  --text:#f2f2f2;
-  --muted:#9a9a9a;
-  --accent:#00c8b4;
+/* 🔧 FIX 1: REMOVE SCROLL CONFLICT */
+html {
+  scroll-behavior: auto;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
 body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'DM Sans',sans-serif;
-  overflow-x:hidden;
-}
-
-/* LOADER */
-#loader{
-  position:fixed;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#000;
-  z-index:9999;
-  font-family:'DM Mono';
-  letter-spacing:3px;
-}
-
-/* CURSOR */
-#cursor{
-  position:fixed;
-  width:10px;height:10px;
-  background:#fff;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:10000;
-  transform:translate(-50%,-50%);
+  background:#0f0f0f;
+  color:#fff;
+  font-family:'DM Sans';
 }
 
 /* NAV */
 nav{
   position:fixed;
-  top:0;width:100%;
-  padding:24px 60px;
-  display:flex;
-  justify-content:space-between;
+  top:0;
+  width:100%;
+  padding:20px 60px;
+  background:rgba(0,0,0,0.6);
   backdrop-filter:blur(10px);
-  background:rgba(0,0,0,0.5);
   z-index:1000;
-}
-nav a{
-  color:var(--text);
-  text-decoration:none;
-  font-size:12px;
-  letter-spacing:2px;
 }
 
 /* HERO */
@@ -84,25 +43,44 @@ nav a{
   padding:60px;
 }
 
-.hero h1{
-  font-family:'Playfair Display';
-  font-size:90px;
-  line-height:1;
+/* 🔧 FIX 2: VIDEO PROPERLY VISIBLE */
+.project-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:0.4s;
 }
 
-.hero p{
-  margin-top:20px;
-  color:var(--muted);
+/* CARD */
+.project-card{
+  position:relative;
+  height:320px;
+  background:#1a1a1a;
+  overflow:hidden;
+}
+
+.project-card:hover .project-video{
+  opacity:1;
+}
+
+.project-info{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+}
+
+/* SECTION */
+section{
+  padding:120px 60px;
 }
 
 /* BUTTON */
 .btn{
-  margin-top:30px;
-  display:inline-block;
   padding:14px 40px;
   border:1px solid #fff;
-  font-size:12px;
-  letter-spacing:2px;
   text-decoration:none;
   color:#fff;
   transition:.3s;
@@ -112,161 +90,56 @@ nav a{
   color:#000;
 }
 
-/* SECTION */
-section{
-  padding:140px 60px;
-}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-/* CARD */
-.card{
-  height:320px;
-  background:#1a1a1a;
-  position:relative;
-  overflow:hidden;
-  transition:.4s;
-}
-.card video{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:.4s;
-}
-.card:hover video{opacity:1}
-
-.card .info{
-  position:absolute;
-  bottom:20px;
-  left:20px;
-  z-index:2;
-}
-
-/* FOOTER */
-footer{
-  padding:60px;
-  text-align:center;
-  border-top:1px solid #222;
-}
-
-/* REVEAL */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-}
-
 </style>
 </head>
 
 <body>
 
-<div id="loader">SQUARGRAPH</div>
-<div id="cursor"></div>
-
 <nav>
-  <a href="#">SQUARGRAPH</a>
-  <div>
-    <a href="#work">Work</a>
-    <a href="#contact">Contact</a>
-  </div>
+  SQUARGRAPH
 </nav>
 
-<!-- HERO -->
 <section id="hero">
-  <div class="hero">
-    <h1 class="reveal">Clarity.<br>Ideas.<br><em>Execution.</em></h1>
-    <p class="reveal">A modern creative studio building brand experiences.</p>
-    <a href="#contact" class="btn reveal">Start Project</a>
-  </div>
+  <h1>Clarity.<br>Ideas.<br>Execution.</h1>
 </section>
 
-<!-- WORK -->
-<section id="work">
-  <h2 class="reveal">Selected Work</h2>
+<section>
 
-  <div class="grid">
-    <div class="card reveal">
-      <video muted loop>
-        <source src="hyundai.mp4">
-      </video>
-      <div class="info">Hyundai Campaign</div>
-    </div>
+<div class="project-card">
 
-    <div class="card reveal">
-      <div class="info">EV Film</div>
-    </div>
+<video class="project-video" muted loop>
+<source src="hyundai.mp4">
+</video>
 
-    <div class="card reveal">
-      <div class="info">Master Board</div>
-    </div>
-  </div>
+<div class="project-info">
+Hyundai Campaign
+</div>
+
+</div>
+
 </section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <h2 class="reveal">Start a Project</h2>
-  <a href="mailto:hello@squargraph.com" class="btn reveal">Email</a>
-</section>
-
-<footer>
-  © 2026 SQUARGRAPH
-</footer>
 
 <script>
 
-/* LOADER */
-window.onload=()=>{
-  gsap.to("#loader",{opacity:0,duration:0.8,onComplete:()=>{
-    loader.style.display="none";
-  }})
-}
+/* 🔧 FIX 3: VIDEO HOVER */
+document.querySelectorAll('.project-card').forEach(card=>{
+  const video=card.querySelector('video');
+  if(!video) return;
 
-/* CURSOR */
-const cursor=document.getElementById("cursor");
-document.addEventListener("mousemove",(e)=>{
-  cursor.style.left=e.clientX+"px";
-  cursor.style.top=e.clientY+"px";
+  card.addEventListener('mouseenter',()=>video.play());
+  card.addEventListener('mouseleave',()=>{
+    video.pause();
+    video.currentTime=0;
+  });
 });
 
-/* LENIS */
-const lenis=new Lenis();
-function raf(t){
-  lenis.raf(t);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-
-/* GSAP REVEAL */
+/* 🔧 FIX 4: GSAP SAFE */
 gsap.registerPlugin(ScrollTrigger);
-gsap.utils.toArray(".reveal").forEach(el=>{
-  gsap.to(el,{
-    opacity:1,
-    y:0,
-    duration:1,
-    ease:"power3.out",
-    scrollTrigger:{
-      trigger:el,
-      start:"top 85%"
-    }
-  });
-});
 
-/* VIDEO HOVER */
-document.querySelectorAll(".card").forEach(card=>{
-  const v=card.querySelector("video");
-  if(!v) return;
-  card.addEventListener("mouseenter",()=>v.play());
-  card.addEventListener("mouseleave",()=>{
-    v.pause();
-    v.currentTime=0;
-  });
+gsap.from("h1",{
+  y:100,
+  opacity:0,
+  duration:1.2
 });
 
 </script>
