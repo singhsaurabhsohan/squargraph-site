@@ -37,9 +37,9 @@
     font-family: var(--font-body);
     font-weight: 300;
     overflow-x: hidden;
-    cursor: none;
   }
   ::selection { background: rgba(230,48,48,0.3); color: var(--text); }
+
 
   /* ── GRAIN OVERLAY ── */
   body::before {
@@ -215,11 +215,15 @@
     line-height: 1.1;
   }
   .hero-line-inner {
-    display: block;
-    transform: translateY(110%);
-    filter: blur(8px);
-    opacity: 0;
-  }
+  display: block;
+  transform: translateY(110%);
+  filter: blur(8px);
+  opacity: 0;
+
+  background: linear-gradient(90deg, #ffffff, #aaaaaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
   .hero-line.italic { font-style: italic; color: var(--muted); }
   .hero-meta {
     margin-top: 48px;
@@ -311,48 +315,49 @@
     gap: 2px;
   }
   .project-card {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 4/5;
-    background: var(--surface);
-    cursor: none;
-  }
-  .project-card:first-child {
-    grid-column: span 2;
-    aspect-ratio: 16/10;
-  }
-  .project-thumb {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-  .project-video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.5s;
-  }
-  .project-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(8,8,8,0.95) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity 0.4s;
-  }
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background: var(--surface);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+
+  /* ADD THESE 👇 */
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.project-card:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none; /* ADD THIS */
+}
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.95) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  z-index: 1; /* ADD THIS */
+}
   .project-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 32px;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: transform 0.4s, opacity 0.4s;
-  }
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px;
+  transform: translateY(20px) translateZ(30px); /* ADD translateZ */
+  opacity: 0;
+  transition: transform 0.4s, opacity 0.4s;
+}
   .project-category {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -413,30 +418,67 @@
     border-top: 1px solid var(--border);
   }
   .brand-item {
-    flex: 1;
-    min-width: 140px;
-    padding: 40px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    transition: background 0.3s;
-    cursor: none;
-  }
-  .brand-item:hover { background: rgba(255,255,255,0.03); }
-  .brand-item:last-child { border-right: none; }
-  .brand-name {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(240,237,232,0.25);
-    transition: color 0.3s;
-  }
-  .brand-item:hover .brand-name { color: rgba(240,237,232,0.7); }
+  position: relative;
+  flex: 1;
+  min-width: 140px;
+  padding: 40px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
 
-  /* ── SERVICES ── */
+/* glow layer (MUST ADD THIS — missing earlier) */
+.brand-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(0,200,180,0.08), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none; /* ← ADD THIS LINE HERE */
+}
+
+.brand-item:hover::after {
+  opacity: 1;
+}
+
+.brand-logo {
+  height: 24px;
+  opacity: 0.3;
+  filter: grayscale(1);
+  transition: all 0.3s ease;
+}
+
+.brand-item:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.brand-item:hover .brand-logo {
+  opacity: 0.9;
+  filter: grayscale(0);
+  transform: scale(1.05);
+}
+
+.brand-item:last-child {
+  border-right: none;
+}
+
+.brand-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  transition: color 0.3s;
+}
+
+.brand-item:hover .brand-name {
+  color: rgba(240,237,232,0.7);
+}
+   /* ── SERVICES ── */
   #services { background: var(--black); }
   .services-header {
     display: grid;
@@ -468,7 +510,6 @@
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     transition: background 0.3s;
-    cursor: none;
   }
   .service-item:last-child { border-right: none; }
   .service-item:hover { background: rgba(255,255,255,0.02); }
@@ -716,7 +757,6 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     text-decoration: none;
-    cursor: none;
     transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
     position: relative;
     overflow: hidden;
@@ -784,7 +824,6 @@
     border: 1px solid rgba(255,255,255,0.12);
     background: rgba(20,20,20,0.9);
     backdrop-filter: blur(20px);
-    cursor: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -892,7 +931,6 @@
     font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.1em;
-    cursor: none;
     text-align: left;
     transition: border-color 0.2s, color 0.2s, background 0.2s;
   }
@@ -925,7 +963,6 @@
     background: var(--surface2);
     border: 1px solid var(--border);
     color: var(--cyan);
-    cursor: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -986,6 +1023,30 @@
     #chat-btn { right: 24px; bottom: 24px; }
     .portfolio-header { flex-direction: column; align-items: flex-start; gap: 16px; }
   }
+  /* ── INTERACTIVE GLOW ── */
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(255,255,255,0.18),
+    rgba(255,255,255,0.08) 20%,
+    transparent 45%
+  );
+
+  opacity: 0;
+  transition: opacity 0.25s ease;
+
+  pointer-events: none;
+  z-index: 3;
+
+  mix-blend-mode: soft-light;
+}
+.project-card:hover::before {
+  opacity: 1;
+}
 
   /* ── TYPING ANIMATION for hero ── */
   .cursor-blink {
@@ -1065,59 +1126,56 @@
     <span class="portfolio-count">04 Projects</span>
   </div>
   <div class="portfolio-grid">
-    <div class="project-card reveal-up">
-      <div class="project-placeholder pc-1">
-        <div style="text-align:center">
-          <div style="font-family:var(--font-display);font-size:32px;color:rgba(240,237,232,0.08);margin-bottom:8px">Hyundai</div>
-          <div style="color:var(--dim);letter-spacing:0.2em;font-size:9px">CAMPAIGN FILM</div>
-        </div>
-      </div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-        <div class="project-category">Automotive / Campaign</div>
-        <div class="project-name">Hyundai Campaign</div>
-      </div>
-    </div>
-    <div class="project-card reveal-up">
-      <div class="project-placeholder pc-2">
-        <div style="text-align:center">
-          <div style="font-family:var(--font-display);font-size:28px;color:rgba(240,237,232,0.08);margin-bottom:8px">EV Launch</div>
-          <div style="color:var(--dim);letter-spacing:0.2em;font-size:9px">LAUNCH FILM</div>
-        </div>
-      </div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-        <div class="project-category">Automotive / Film</div>
-        <div class="project-name">EV Launch Film</div>
-      </div>
-    </div>
-    <div class="project-card reveal-up">
-      <div class="project-placeholder pc-3">
-        <div style="text-align:center">
-          <div style="font-family:var(--font-display);font-size:26px;color:rgba(240,237,232,0.08);margin-bottom:8px">Master Board</div>
-          <div style="color:var(--dim);letter-spacing:0.2em;font-size:9px">BRAND CAMPAIGN</div>
-        </div>
-      </div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-        <div class="project-category">Brand / Strategy</div>
-        <div class="project-name">Master Board Campaign</div>
-      </div>
-    </div>
-    <div class="project-card reveal-up">
-      <div class="project-placeholder pc-4">
-        <div style="text-align:center">
-          <div style="font-family:var(--font-display);font-size:24px;color:rgba(240,237,232,0.08);margin-bottom:8px">Venue</div>
-          <div style="color:var(--dim);letter-spacing:0.2em;font-size:9px">ADVENTURE EDITION</div>
-        </div>
-      </div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-        <div class="project-category">Automotive / Content</div>
-        <div class="project-name">Venue Adventure Edition</div>
-      </div>
-    </div>
+    <a href="https://www.youtube.com/watch?v=9isI9aj1M28" target="_blank" rel="noopener noreferrer" class="project-card reveal-up">
+
+  <video class="project-video" muted loop playsinline preload="none">
+    <source src="hyundai.mp4" type="video/mp4">
+  </video>
+
+  <div class="project-overlay"></div>
+
+  <div class="project-info">
+    <div class="project-category">Automotive / Campaign</div>
+    <div class="project-name">Hyundai Campaign</div>
   </div>
+
+</a>
+   <a href="https://www.youtube.com/watch?v=NCJU4nFZF8_0" target="_blank" rel="noopener noreferrer" class="project-card reveal-up">
+
+  <div class="project-placeholder pc-2"></div>
+
+  <div class="project-overlay"></div>
+
+  <div class="project-info">
+    <div class="project-category">Automotive / Film</div>
+    <div class="project-name">EV Launch Film</div>
+  </div>
+
+</a>
+    <a href="https://vimeo.com/381231306?fl=pl&fe=sh" target="_blank" rel="noopener noreferrer" class="project-card reveal-up">
+
+  <div class="project-placeholder pc-3"></div>
+
+  <div class="project-overlay"></div>
+
+  <div class="project-info">
+    <div class="project-category">Brand / Strategy</div>
+    <div class="project-name">Master Board Campaign</div>
+  </div>
+
+</a>
+    <a href="https://vimeo.com/109866430" target="_blank" rel="noopener noreferrer" class="project-card reveal-up">
+
+  <div class="project-placeholder pc-4"></div>
+
+  <div class="project-overlay"></div>
+
+  <div class="project-info">
+    <div class="project-category">Automotive / Content</div>
+    <div class="project-name">Venue Adventure Edition</div>
+  </div>
+
+</a>
 </section>
 
 <!-- BRANDS -->
@@ -1128,14 +1186,13 @@
     <p class="brands-sub">Worked across campaigns and content ecosystems for leading brands.</p>
   </div>
   <div class="brands-strip reveal-up">
-    <div class="brand-item"><span class="brand-name">Hyundai</span></div>
-    <div class="brand-item"><span class="brand-name">KIA</span></div>
-    <div class="brand-item"><span class="brand-name">BYD</span></div>
-    <div class="brand-item"><span class="brand-name">Mahindra Rise</span></div>
-    <div class="brand-item"><span class="brand-name">MG Motor</span></div>
-    <div class="brand-item"><span class="brand-name">ImagesBazaar</span></div>
-    <div class="brand-item"><span class="brand-name">TATA</span></div>
-  </div>
+    <div class="brand-item"><img src="logos/Hyundai.svg" class="brand-logo" alt="Hyundai"></div>
+    <div class="brand-item"><img src="logos/TATA.svg" class="brand-logo" alt="TATA"></div>
+    <div class="brand-item"><img src="logos/KIA.svg" class="brand-logo" alt="KIA"></div>
+    <div class="brand-item"><img src="logos/MG.svg" class="brand-logo" alt="MG"></div>
+    <div class="brand-item"><img src="logos/BYD.svg" class="brand-logo" alt="BYD"></div>
+    <div class="brand-item"><img src="logos/Mahindra.svg" class="brand-logo" alt="Mahindra"></div>
+  </div>    
 </section>
 
 <!-- SERVICES -->
@@ -1179,7 +1236,7 @@
   <div class="founder-grid">
     <div class="founder-visual reveal-up">
       <div class="founder-img-wrap">
-        <div class="founder-img-placeholder">Founder.jpg</div>
+    <img src="Founder.jpg" class="founder-img">
         <div class="founder-img-accent"></div>
       </div>
       <div class="founder-badge">
@@ -1227,7 +1284,7 @@
 <!-- FOOTER -->
 <footer>
   <a class="footer-logo" href="#">SQUARGRAPH Studios</a>
-  <span class="footer-copy">© 2025 Saurabh Sohan Singh. Delhi, India.</span>
+  <span class="footer-copy">© 2026 Saurabh Sohan Singh. Delhi, India.</span>
   <div class="footer-links">
     <a href="https://instagram.com/squargraph" target="_blank">Instagram</a>
     <a href="https://linkedin.com/in/saurabhsohansingh" target="_blank">LinkedIn</a>
@@ -1273,6 +1330,20 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
+  document.querySelectorAll('.project-card').forEach(card => {
+  const video = card.querySelector('video');
+
+  if (video) {
+    card.addEventListener('mouseenter', () => {
+      video.play();
+    });
+
+    card.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  }
+});
 // ── CURSOR ──
 const dot = document.getElementById('cursor-dot');
 const glow = document.getElementById('cursor-glow');
@@ -1285,7 +1356,7 @@ document.addEventListener('mousemove', e => {
 });
 
 function animateCursor() {
-  gx += (mx - gx) * 0.12;
+  gx += (mx - gx) * 0.18;
   gy += (my - gy) * 0.12;
   glow.style.left = gx + 'px';
   glow.style.top = gy + 'px';
@@ -1496,7 +1567,58 @@ chatBtn.addEventListener('click', () => {
   chatBtn.classList.toggle('open', open);
 });
 chatSend.addEventListener('click', sendChat);
-chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendChat(); });
+chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendChat(); });// ── 3D TILT EFFECT ──
+document.querySelectorAll('.project-card').forEach(card => {
+  let bounds;
+
+  function rotate(e) {
+    bounds = card.getBoundingClientRect();
+
+    const x = e.clientX - bounds.left;
+    const y = e.clientY - bounds.top;
+
+    const centerX = bounds.width / 2;
+    const centerY = bounds.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -6;
+    const rotateY = ((x - centerX) / centerX) * 6;
+
+    card.style.transform = `
+      perspective(800px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      scale(1.02)
+    `;
+  }
+
+  function reset() {
+    card.style.transform = `
+      perspective(800px)
+      rotateX(0deg)
+      rotateY(0deg)
+      scale(1)
+    `;
+  }
+
+  card.addEventListener('mousemove', rotate);
+card.addEventListener('mouseleave', reset);
+});
+
+
+// ── ADD THIS BELOW (GLOW FOLLOW CURSOR) ──
+document.querySelectorAll('.project-card').forEach(card => {
+
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    card.style.setProperty('--x', x + '%');
+    card.style.setProperty('--y', y + '%');
+  });
+
+});
 </script>
 </body>
 </html>
