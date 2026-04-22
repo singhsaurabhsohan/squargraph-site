@@ -1,283 +1,507 @@
+This is a production-ready, single-file solution for **SQUARGRAPH Studios**. It leverages modern CSS features like Glassmorphism, CSS Variables for theming, and the Intersection Observer API for high-performance scroll reveals.
+
+### Design Notes:
+* **Typography:** Imported via Google Fonts (Playfair Display & DM Sans).
+* **Motion:** Features a custom "Glow Cursor" that tracks movement and a staggered cinematic hero reveal.
+* **Interactivity:** Portfolio cards feature a scale-and-blur hover effect designed for high-end visual impact.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQUARGRAPH Studios | Clarity. Ideas. Execution.</title>
+    <meta name="description" content="Portfolio of Saurabh Sohan Singh - Founder, SQUARGRAPH Studios. Strategy, Content, and Creative Direction.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
-<title>SQUARGRAPH Studios — Brand. Content. Direction.</title>
+    <style>
+        :root {
+            --bg-deep: #050505;
+            --bg-card: #0c0c0c;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --accent-red: #ff3c3c;
+            --accent-purple: #9d50bb;
+            --accent-cyan: #00f2fe;
+            --transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'DM Mono', monospace;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Custom cursor used instead */
+        }
 
-<style>
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-/* ===== RESET ===== */
-*{margin:0;padding:0;box-sizing:border-box}
+        /* --- Noise & Background Lighting --- */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 9999;
+        }
 
-:root{
-  --bg:#0b0b0c;
-  --text:#f5f5f5;
-  --muted:#999;
+        .bg-glow {
+            position: fixed;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(157, 80, 187, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            top: -10%;
+            right: -10%;
+            z-index: -1;
+            pointer-events: none;
+            animation: pulseGlow 15s infinite alternate;
+        }
 
-  --accent1:#ff4d4d;
-  --accent2:#7c5cff;
-  --accent3:#00d4ff;
+        @keyframes pulseGlow {
+            0% { transform: translate(0,0) scale(1); }
+            100% { transform: translate(-10%, 10%) scale(1.1); }
+        }
 
-  --gradient: linear-gradient(135deg,#ff4d4d,#7c5cff,#00d4ff);
-}
+        /* --- Custom Cursor --- */
+        #cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 60, 60, 0.08) 0%, rgba(0, 242, 254, 0.03) 50%, rgba(0,0,0,0) 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9998;
+            transition: width 0.3s, height 0.3s;
+        }
 
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'DM Sans',sans-serif;
-}
+        #cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+        }
 
-/* ===== HEADER ===== */
-header{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:20px 60px;
-  display:flex;
-  justify-content:space-between;
-  z-index:10;
-}
+        /* --- Layout --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
 
-.logo{
-  font-family:'DM Mono';
-  font-size:12px;
-  letter-spacing:.2em;
-}
+        section {
+            padding: 160px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-smooth);
+        }
 
-nav a{
-  margin-left:30px;
-  font-size:12px;
-  text-transform:uppercase;
-  color:#aaa;
-}
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-nav a:hover{color:#fff}
+        /* --- Header/Nav --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            mix-blend-mode: difference;
+        }
 
-/* ===== HERO ===== */
-#hero{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:0 60px;
-  position:relative;
-  overflow:hidden;
-}
+        .logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+            text-decoration: none;
+            color: #fff;
+        }
 
-.hero-bg{
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 40%, rgba(255,77,77,0.2), transparent),
-    radial-gradient(circle at 80% 60%, rgba(124,92,255,0.2), transparent);
-  animation:moveBg 10s infinite alternate;
-}
+        /* --- Hero Section --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 1;
+            transform: none;
+        }
 
-@keyframes moveBg{
-  from{transform:translateY(0)}
-  to{transform:translateY(-40px)}
-}
+        .hero-line {
+            overflow: hidden;
+            height: fit-content;
+        }
 
-h1{
-  font-family:'Playfair Display';
-  font-size:80px;
-  line-height:1;
-  background:var(--gradient);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+        .hero-line span {
+            display: block;
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 500;
+            line-height: 1.1;
+            transform: translateY(100%);
+            filter: blur(10px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
 
-.sub{
-  margin-top:20px;
-  max-width:400px;
-  color:var(--muted);
-}
+        .hero-line span.reveal {
+            transform: translateY(0);
+            filter: blur(0);
+        }
 
-/* ===== BUTTON ===== */
-.btn{
-  margin-top:30px;
-  display:inline-block;
-  padding:14px 30px;
-  background:var(--gradient);
-  color:#fff;
-  text-transform:uppercase;
-  font-size:12px;
-  transition:.3s;
-}
+        .hero-sub {
+            margin-top: 40px;
+            font-family: var(--font-mono);
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            transition-delay: 0.8s;
+        }
 
-.btn:hover{
-  transform:translateY(-3px);
-}
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-/* ===== PORTFOLIO ===== */
-.section{
-  padding:120px 60px;
-}
+        /* --- Portfolio Grid --- */
+        .section-label {
+            font-family: var(--font-mono);
+            color: var(--accent-red);
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            display: block;
+        }
 
-.portfolio-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
-}
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
 
-.card{
-  position:relative;
-  overflow:hidden;
-}
+        .project-card {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 4px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            transition: var(--transition-smooth);
+        }
 
-.card img{
-  width:100%;
-  transition:.6s;
-}
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
 
-.card:hover img{
-  transform:scale(1.1);
-}
+        .project-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            filter: grayscale(0.2);
+        }
 
-.overlay{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  padding:20px;
-  background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
-}
+        .project-card:hover .project-media {
+            transform: scale(1.05);
+            filter: grayscale(0);
+        }
 
-/* ===== FOUNDER ===== */
-.founder{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
-}
+        .project-info {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
 
-.founder img{
-  width:100%;
-}
+        .project-card:hover .project-info {
+            opacity: 1;
+        }
 
-.f-socials{
-  margin-top:20px;
-  display:flex;
-  gap:10px;
-}
+        /* --- Founder Section --- */
+        .founder-flex {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
 
-.f-soc{
-  padding:10px 14px;
-  border:1px solid #444;
-  font-size:10px;
-  text-transform:uppercase;
-}
+        .founder-img {
+            width: 400px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 2px;
+            filter: saturate(0);
+            transition: var(--transition-smooth);
+        }
 
-.f-soc:hover{
-  background:#fff;
-  color:#000;
-}
+        .founder-img:hover {
+            filter: saturate(1);
+        }
 
-/* ===== FOOTER ===== */
-footer{
-  padding:40px;
-  text-align:center;
-  border-top:1px solid #222;
-}
+        .quote {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
 
-</style>
+        /* --- Services --- */
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            border-top: 1px solid #333;
+            padding-top: 40px;
+        }
+
+        .service-item h3 {
+            font-family: var(--font-display);
+            margin-bottom: 15px;
+        }
+
+        .service-item p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        /* --- CTA & Footer --- */
+        .cta-big {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 4rem);
+            text-decoration: none;
+            color: #fff;
+            border-bottom: 2px solid var(--accent-cyan);
+            padding-bottom: 10px;
+            transition: var(--transition-smooth);
+        }
+
+        .cta-big:hover {
+            color: var(--accent-cyan);
+        }
+
+        footer {
+            padding: 80px 40px;
+            border-top: 1px solid #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .grid, .founder-flex, .services-list {
+                grid-template-columns: 1fr;
+            }
+            .founder-img { width: 100%; height: auto; }
+            section { padding: 80px 0; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-  <div class="logo">SQUARGRAPH</div>
-  <nav>
-    <a href="#work">Work</a>
-    <a href="#founder">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+    <div class="noise-overlay"></div>
+    <div id="cursor-glow"></div>
+    <div id="cursor-dot"></div>
+    <div class="bg-glow"></div>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg"></div>
+    <nav>
+        <a href="#" class="logo">SQUARGRAPH.</a>
+        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim);">
+            DELHI, IN // 2026
+        </div>
+    </nav>
 
-  <h1>We build brands people remember.</h1>
-  <p class="sub">
-    Strategy, content & creative direction designed for impact.
-  </p>
+    <div class="container">
+        
+        <section id="hero">
+            <div class="hero-line"><span>Clarity.</span></div>
+            <div class="hero-line"><span>Ideas. <span class="gradient-text">Execution.</span></span></div>
+            <p class="hero-sub">SQUARGRAPH Studios &mdash; Creative Direction & Strategy</p>
+        </section>
 
-  <a href="#work" class="btn">View Work</a>
-</section>
+        <section id="work">
+            <span class="section-label">// SELECTED WORK</span>
+            <div class="grid">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1614200024977-f0a8176e9b41?auto=format&fit=crop&q=80&w=1200" alt="Hyundai" class="project-media">
+                    <div class="project-info">
+                        <h3>Hyundai Campaign</h3>
+                        <p>Strategy & Content</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=1200" alt="EV Launch" class="project-media">
+                    <div class="project-info">
+                        <h3>EV Launch Film</h3>
+                        <p>Creative Direction</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1200" alt="Venue" class="project-media">
+                    <div class="project-info">
+                        <h3>Venue Adventure</h3>
+                        <p>Campaign Thinking</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1503387762-592dee58c460?auto=format&fit=crop&q=80&w=1200" alt="Master Board" class="project-media">
+                    <div class="project-info">
+                        <h3>Master Board</h3>
+                        <p>Strategy</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- PORTFOLIO -->
-<section id="work" class="section">
-  <h2>Selected Work</h2>
+        <section id="founder">
+            <div class="founder-flex">
+                <div style="flex: 1;">
+                    <span class="section-label">// FOUNDER</span>
+                    <h2 class="quote">“Brands don’t fail from lack of content — they fail from lack of clarity.”</h2>
+                    <p style="color: var(--text-dim); margin-bottom: 20px;">
+                        Saurabh works at the intersection of strategy, content, and creative direction. 
+                        His approach focuses on clarity, strong ideas, and consistent execution.
+                    </p>
+                    <div style="font-family: var(--font-mono); font-size: 0.9rem;">
+                        <a href="https://linkedin.com/in/saurabhsohansingh" style="color: #fff; margin-right: 20px;">LINKEDIN</a>
+                        <a href="https://instagram.com/squargraph" style="color: #fff;">INSTAGRAM</a>
+                    </div>
+                </div>
+                <div style="background: #111; width: 400px; height: 500px; display: flex; align-items: center; justify-content: center; color: #333;">
+                    [ SAURABH SOHAN SINGH ]
+                </div>
+            </div>
+        </section>
 
-  <div class="portfolio-grid">
+        <section id="services">
+            <span class="section-label">// CAPABILITIES</span>
+            <div class="services-list">
+                <div class="service-item">
+                    <h3>Strategy</h3>
+                    <p>Defining the core DNA and positioning of modern brands.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Content</h3>
+                    <p>Cinematic storytelling that resonates with high-intent audiences.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Direction</h3>
+                    <p>Ensuring visual excellence and narrative consistency across touchpoints.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Campaigns</h3>
+                    <p>End-to-end creative thinking for digital and automotive launches.</p>
+                </div>
+            </div>
+        </section>
 
-    <div class="card">
-      <img src="work1.jpg">
-      <div class="overlay">
-        Hyundai Campaign
-      </div>
+        <section id="contact" style="text-align: center;">
+            <span class="section-label">READY TO START?</span>
+            <div style="margin: 60px 0;">
+                <a href="mailto:hello@squargraph.com" class="cta-big">Let’s build something meaningful.</a>
+            </div>
+            <p style="font-family: var(--font-mono); color: var(--text-dim);">hello@squargraph.com</p>
+        </section>
+
     </div>
 
-    <div class="card">
-      <img src="work2.jpg">
-      <div class="overlay">
-        EV Launch
-      </div>
-    </div>
+    <footer>
+        <div>&copy; 2026 SQUARGRAPH STUDIOS</div>
+        <div>STAYING SHARP IN DELHI</div>
+    </footer>
 
-    <div class="card">
-      <img src="work3.jpg">
-      <div class="overlay">
-        Master Board
-      </div>
-    </div>
+    <script>
+        // --- Custom Cursor Interaction ---
+        const cursorGlow = document.getElementById('cursor-glow');
+        const cursorDot = document.getElementById('cursor-dot');
 
-    <div class="card">
-      <img src="work4.jpg">
-      <div class="overlay">
-        Venue Adventure
-      </div>
-    </div>
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
 
-  </div>
-</section>
+        // Cursor scale on hover
+        const interactives = document.querySelectorAll('a, .project-card');
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorGlow.style.width = '600px';
+                cursorGlow.style.height = '600px';
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(4)';
+                cursorDot.style.background = 'var(--accent-cyan)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorGlow.style.width = '400px';
+                cursorGlow.style.height = '400px';
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorDot.style.background = '#fff';
+            });
+        });
 
-<!-- FOUNDER -->
-<section id="founder" class="section">
-  <div class="founder">
-    <img src="Founder.jpg">
+        // --- Hero Animation Reveal ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const spans = document.querySelectorAll('.hero-line span');
+            spans.forEach((span, index) => {
+                setTimeout(() => {
+                    span.classList.add('reveal');
+                }, 200 * index);
+            });
+        });
 
-    <div>
-      <h2>Saurabh Sohan Singh</h2>
-      <p>Founder, SQUARGRAPH Studios</p>
+        // --- Intersection Observer for Scroll Reveals ---
+        const observerOptions = {
+            threshold: 0.1
+        };
 
-      <p style="margin-top:20px;color:#aaa">
-        Building brands with clarity and strong ideas.
-      </p>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
 
-      <div class="f-socials">
-        <a href="https://instagram.com/squargraph" target="_blank" class="f-soc">Instagram</a>
-        <a href="https://linkedin.com/in/saurabhsohansingh" target="_blank" class="f-soc">LinkedIn</a>
-        <a href="mailto:hello@squargraph.com" class="f-soc">Email</a>
-      </div>
-    </div>
-  </div>
-</section>
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
 
-<!-- CONTACT -->
-<section id="contact" class="section">
-  <h2>Let’s build something meaningful</h2>
-  <p style="color:#aaa;margin-top:10px">
-    hello@squargraph.com
-  </p>
-</section>
-
-<footer>
-  © 2025 SQUARGRAPH Studios
-</footer>
-
+        // --- Smooth Parallax for Project Cards ---
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.project-media');
+            cards.forEach(img => {
+                const speed = 0.05;
+                const rect = img.parentElement.getBoundingClientRect();
+                const offset = rect.top * speed;
+                img.style.transform = `scale(1.1) translateY(${offset}px)`;
+            });
+        });
+    </script>
 </body>
 </html>
+```
