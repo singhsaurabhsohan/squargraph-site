@@ -376,3 +376,10 @@ function initFounderAnimation() {
     duration: 0.8
   }, "-=0.6");
 }
+const sendBtn = document.getElementById("sendBtn");
+
+if (sendBtn) {
+  sendBtn.addEventListener("click", function () {
+    window.open("https://wa.me/918588897488", "_blank");
+  });
+}
