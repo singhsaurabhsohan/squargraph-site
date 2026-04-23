@@ -354,3 +354,24 @@ sendBtn.onclick = async () => {
     chatBody.innerHTML += `<div>AI: Server error</div>`;
   }
 };
+function initFounderAnimation() {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.founder-spotlight',
+      start: 'top 80%',
+    }
+  });
+
+  tl.from('.founder-visual', {
+    opacity: 0,
+    x: -60,
+    duration: 1
+  });
+
+  tl.from('.founder-content > *', {
+    opacity: 0,
+    y: 30,
+    stagger: 0.15,
+    duration: 0.8
+  }, "-=0.6");
+}
