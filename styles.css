@@ -928,37 +928,47 @@ body::before {
 
   .social-links { flex-direction: column; align-items: center; }
 }
-.founder-card {
-  display: flex;
+.founder-spotlight {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 28px;
   align-items: center;
-  gap: 18px;
-  margin-top: 28px;
-  padding: 18px;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.02);
-  backdrop-filter: blur(10px);
+  margin-top: 40px;
 }
 
-.founder-img img {
-  width: 90px;
-  height: 90px;
+.founder-visual {
+  width: 140px;
+  height: 140px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.founder-visual img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.1);
 }
 
-.founder-info h4 {
-  margin: 0;
-  font-size: 18px;
+.founder-label {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #888;
 }
 
-.founder-info span {
-  font-size: 13px;
-  color: var(--muted);
+.founder-content h3 {
+  margin: 6px 0;
 }
 
-.founder-info p {
-  font-size: 14px;
-  margin-top: 6px;
+.founder-meta {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.founder-meta span {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
 }
