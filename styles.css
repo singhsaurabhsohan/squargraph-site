@@ -602,7 +602,10 @@ body::before {
   border-bottom: 1px solid var(--border);
   transition: background 0.3s;
 }
-.process-step:last-child { border-bottom: none; }
+.process-step:last-child {
+  border-bottom: none;
+  padding-bottom: 0; /* removes extra gap */
+}
 .process-step:hover .process-step-content h3 { color: var(--accent-1); }
 .process-step-marker {
   display: flex;
@@ -635,6 +638,27 @@ body::before {
 .process-step-content p { color: var(--muted); font-size: 0.92rem; max-width: 520px; }
 
 /* ─── ABOUT ───────────────────────────── */
+.about {
+  position: relative;
+  padding-top: 60px; /* reduced from 120 */
+}
+
+/* Smooth transition from previous section */
+.about::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(7,9,15,0.6),
+    var(--bg)
+  );
+  pointer-events: none;
+}
 .about-grid {
   display: grid;
   grid-template-columns: 1fr;
