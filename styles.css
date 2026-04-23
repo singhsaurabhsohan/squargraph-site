@@ -1230,3 +1230,81 @@ body {
   padding: 10px;
   cursor: pointer;
 }
+.founder-spotlight {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 48px;
+  align-items: center;
+
+  padding: 40px;
+  border-radius: 20px;
+
+  background: linear-gradient(
+    120deg,
+    rgba(149,172,255,0.06),
+    rgba(78,230,195,0.03)
+  );
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  position: relative;
+  overflow: hidden;
+
+  transition: 0.5s;
+}
+
+.founder-spotlight:hover {
+  transform: translateY(-6px);
+}
+
+.founder-visual {
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.founder-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.founder-name {
+  font-size: 1.6rem;
+  margin: 10px 0;
+}
+
+.founder-line {
+  color: #95acff;
+  font-family: monospace;
+  margin-bottom: 12px;
+}
+
+.founder-desc {
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.founder-proof {
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+.founder-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.founder-meta span {
+  font-size: 11px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+}
+
+.founder-cta {
+  margin-top: 20px;
+}
