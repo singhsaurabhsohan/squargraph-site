@@ -1129,3 +1129,10 @@ body {
   color: var(--muted);
   line-height: 1.7;
 }
+.case-line {
+  width: 60px;
+  height: 1px;
+  background: var(--accent-1);
+  margin: 20px auto;
+  opacity: 0.5;
+}
