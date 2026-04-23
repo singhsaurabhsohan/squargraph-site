@@ -282,19 +282,28 @@ window.addEventListener('load', () => {
 // ─── CUSTOM CURSOR ───
 const cursor = document.querySelector('.cursor');
 
-let mouseX = 0, mouseY = 0;
+if (cursor) {
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-
-  gsap.to(cursor, {
-    x: mouseX,
-    y: mouseY,
-    duration: 0.2
+    gsap.to(cursor, {
+      x: mouseX,
+      y: mouseY,
+      duration: 0.2
+    });
   });
-});
 
+  document.querySelectorAll('a, button, .work-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      gsap.to(cursor, { scale: 2 });
+    });
+
+    el.addEventListener('mouseleave', () => {
+      gsap.to(cursor, { scale: 1 });
+    });
+  });
+}
 // scale on hover
 document.querySelectorAll('a, button, .work-card').forEach(el => {
   el.addEventListener('mouseenter', () => {
@@ -322,39 +331,68 @@ chatBtn.onclick = () => {
 };
 
 // SEND MESSAGE
-sendBtn.onclick = async () => {
-  const message = chatInput.value.trim();
-  if (!message) return;
+// ─── CHAT UX FLOW ─────────────────────
+const chatBtn = document.getElementById("chatBtn");
+const chatBox = document.getElementById("chatBox");
+const chatBody = document.getElementById("chatBody");
 
-  chatBody.innerHTML += `<div>You: ${message}</div>`;
-  chatInput.value = "";
-
-  try {
-    const res = await fetch("http://localhost:3000/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message }),
-    });
-
-    // DEBUG (VERY IMPORTANT)
-    console.log("Response status:", res.status);
-
-    const data = await res.json();
-    console.log("Response data:", data);
-
-    if (data.reply) {
-      chatBody.innerHTML += `<div>AI: ${data.reply}</div>`;
-    } else {
-      chatBody.innerHTML += `<div>AI: No response</div>`;
-    }
-
-  } catch (error) {
-    console.error("Chat error:", error);
-    chatBody.innerHTML += `<div>AI: Server error</div>`;
-  }
+// OPEN / CLOSE
+chatBtn.onclick = () => {
+  chatBox.style.display = chatBox.style.display === "flex" ? "none" : "flex";
+  if (chatBody.innerHTML === "") startChatFlow();
 };
+
+// START FLOW
+function startChatFlow() {
+  chatBody.innerHTML = `
+    <div class="bot">Hey 👋 What are you looking for?</div>
+    <div class="options">
+      <button onclick="selectService('Brand Strategy')">Brand Strategy</button>
+      <button onclick="selectService('Campaign')">Campaign</button>
+      <button onclick="selectService('Creative Direction')">Creative Direction</button>
+      <button onclick="selectService('Content System')">Content System</button>
+    </div>
+  `;
+}
+
+// STEP 2
+function selectService(service) {
+  chatBody.innerHTML += `<div class="user">${service}</div>`;
+  chatBody.innerHTML += `
+    <div class="bot">Got it. What's your budget range?</div>
+    <div class="options">
+      <button onclick="selectBudget('${service}', 'Under ₹1L')">Under ₹1L</button>
+      <button onclick="selectBudget('${service}', '₹1L – ₹3L')">₹1L – ₹3L</button>
+      <button onclick="selectBudget('${service}', '₹3L – ₹10L')">₹3L – ₹10L</button>
+      <button onclick="selectBudget('${service}', '₹10L+')">₹10L+</button>
+    </div>
+  `;
+}
+
+// STEP 3
+function selectBudget(service, budget) {
+  chatBody.innerHTML += `<div class="user">${budget}</div>`;
+  chatBody.innerHTML += `
+    <div class="bot">Perfect. Want to continue on WhatsApp?</div>
+    <div class="options">
+      <button onclick="goToWhatsApp('${service}', '${budget}')">Yes, continue</button>
+    </div>
+  `;
+}
+
+// FINAL STEP → WHATSAPP
+function goToWhatsApp(service, budget) {
+  const text = `Hi, I came from SQUARGRAPH website.
+
+Service: ${service}
+Budget: ${budget}
+
+Let's discuss further.`;
+
+  const url = `https://wa.me/918588897488?text=${encodeURIComponent(text)}`;
+  window.open(url, "_blank");
+}
+
 function initFounderAnimation() {
   const tl = gsap.timeline({
     scrollTrigger: {
@@ -375,11 +413,4 @@ function initFounderAnimation() {
     stagger: 0.15,
     duration: 0.8
   }, "-=0.6");
-}
-const sendBtn = document.getElementById("sendBtn");
-
-if (sendBtn) {
-  sendBtn.addEventListener("click", function () {
-    window.open("https://wa.me/918588897488", "_blank");
-  });
 }
