@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQUARGRAPH Studios — Clarity. Ideas. Execution.</title>
+
+  <!-- SEO -->
+  <meta name="description" content="SQUARGRAPH Studios is a Delhi-based creative agency helping brands move from content noise to clear, structured communication that works." />
+  <meta name="keywords" content="creative agency, brand strategy, campaign thinking, creative direction, content systems, Delhi, India" />
+  <meta name="author" content="Saurabh Sohan Singh" />
+  <link rel="canonical" href="https://squargraph.com" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://squargraph.com" />
+  <meta property="og:title" content="SQUARGRAPH Studios — Clarity. Ideas. Execution." />
+  <meta property="og:description" content="We help brands move from content noise to clear, structured communication that actually works." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&q=80" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@squargraph" />
+  <meta name="twitter:title" content="SQUARGRAPH Studios — Clarity. Ideas. Execution." />
+  <meta name="twitter:description" content="We help brands move from content noise to clear, structured communication that actually works." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&q=80" />
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "SQUARGRAPH Studios",
+    "url": "https://squargraph.com",
+    "logo": "https://squargraph.com/logo.png",
+    "founder": { "@type": "Person", "name": "Saurabh Sohan Singh" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Delhi", "addressCountry": "IN" },
+    "email": "hello@squargraph.com",
+    "sameAs": [
+      "https://www.instagram.com/squargraph",
+      "https://www.linkedin.com/company/squargraph",
+      "https://www.youtube.com/channel/squargraph",
+      "https://www.x.com/squargraph"
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════ NAV ══ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">SQUARGRAPH<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#contact" class="nav-cta">Start a Project</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="#work" class="mobile-link">Work</a></li>
+      <li><a href="#services" class="mobile-link">Services</a></li>
+      <li><a href="#about" class="mobile-link">About</a></li>
+      <li><a href="#insights" class="mobile-link">Insights</a></li>
+      <li><a href="#contact" class="mobile-link">Start a Project</a></li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════ HERO ══ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-grain"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow reveal-up">Delhi, India · Creative Studio</div>
+      <h1 class="hero-headline reveal-up">
+        Clarity.<br/>
+        <em>Ideas.</em><br/>
+        Execution.
+      </h1>
+      <p class="hero-sub reveal-up">
+        We help brands move from content noise to clear,<br/>
+        structured communication that actually works.
+      </p>
+      <div class="hero-actions reveal-up">
+        <a href="#contact" class="btn-primary magnetic">Start a Project</a>
+        <a href="#work" class="btn-ghost magnetic">See Our Work</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ MARQUEE ══ -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Brand Strategy</span><span class="dot">·</span>
+      <span>Campaign Thinking</span><span class="dot">·</span>
+      <span>Creative Direction</span><span class="dot">·</span>
+      <span>Content Systems</span><span class="dot">·</span>
+      <span>Visual Identity</span><span class="dot">·</span>
+      <span>Storytelling</span><span class="dot">·</span>
+      <span>Brand Strategy</span><span class="dot">·</span>
+      <span>Campaign Thinking</span><span class="dot">·</span>
+      <span>Creative Direction</span><span class="dot">·</span>
+      <span>Content Systems</span><span class="dot">·</span>
+      <span>Visual Identity</span><span class="dot">·</span>
+      <span>Storytelling</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ INDUSTRY ══ -->
+  <section class="section industry" id="focus">
+    <div class="container">
+      <div class="section-label reveal-up">Where We Focus</div>
+      <h2 class="section-headline reveal-up">
+        We operate across automotive,<br/>
+        technology, and modern<br/>consumer brands.
+      </h2>
+      <div class="industry-logos reveal-up">
+        <div class="logo-item">
+          <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="30" font-family="DM Sans" font-size="22" font-weight="500" fill="currentColor">Hyundai</text></svg>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="30" font-family="DM Sans" font-size="22" font-weight="500" fill="currentColor">Tata</text></svg>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="30" font-family="DM Sans" font-size="22" font-weight="500" fill="currentColor">Kia</text></svg>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="30" font-family="DM Sans" font-size="22" font-weight="500" fill="currentColor">MG Motor</text></svg>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="30" font-family="DM Sans" font-size="22" font-weight="500" fill="currentColor">BYD</text></svg>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="30" font-family="DM Sans" font-size="22" font-weight="500" fill="currentColor">Mahindra</text></svg>
+        </div>
+      </div>
+      <p class="industry-note reveal-up">Industry exposure and category understanding. Not direct affiliations.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ WORK ══ -->
+  <section class="section work" id="work">
+    <div class="container">
+      <div class="work-header">
+        <div class="section-label reveal-up">Portfolio</div>
+        <h2 class="section-headline reveal-up">Selected Work<br/>&amp; Explorations</h2>
+        <p class="section-sub reveal-up">A showcase of thinking, creative direction, and execution capability.</p>
+      </div>
+
+      <div class="work-grid">
+
+        <!-- Card 1 -->
+        <div class="work-card work-card--large reveal-up">
+          <div class="work-card-img">
+            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=900&q=80" alt="Campaign — Silence Sells" loading="lazy" />
+            <div class="work-card-overlay">
+              <span class="work-card-tag">Campaign</span>
+            </div>
+          </div>
+          <div class="work-card-info">
+            <h3>Silence Sells</h3>
+            <p>An exploration of minimalist automotive campaign aesthetics — less noise, more presence.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="work-card reveal-up">
+          <div class="work-card-img">
+            <img src="https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=700&q=80" alt="Creative Direction — The City Loop" loading="lazy" />
+            <div class="work-card-overlay">
+              <span class="work-card-tag">Creative Direction</span>
+            </div>
+          </div>
+          <div class="work-card-info">
+            <h3>The City Loop</h3>
+            <p>Urban mobility meets cinematic framing — direction study for an EV brand.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="work-card reveal-up">
+          <div class="work-card-img">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=700&q=80" alt="Film — Made to Move" loading="lazy" />
+            <div class="work-card-overlay">
+              <span class="work-card-tag">Film</span>
+            </div>
+          </div>
+          <div class="work-card-info">
+            <h3>Made to Move</h3>
+            <p>A short-form brand film concept built around the emotion of the open road.</p>
+          </div>
+        </div>
+
+        <!-- Video placeholder 1 -->
+        <div class="work-card work-card--video work-card--large reveal-up">
+          <div class="video-placeholder">
+            <div class="video-play-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <div class="video-placeholder-text">
+              <span class="work-card-tag">Film Reel</span>
+              <h3>Brand Film — Exploration</h3>
+              <p>Direction & visual storytelling study. Embed your YouTube/Vimeo link here.</p>
+            </div>
+            <div class="video-placeholder-bg"></div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="work-card reveal-up">
+          <div class="work-card-img">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80" alt="Social — Digital Ecosystems" loading="lazy" />
+            <div class="work-card-overlay">
+              <span class="work-card-tag">Social</span>
+            </div>
+          </div>
+          <div class="work-card-info">
+            <h3>Digital Ecosystems</h3>
+            <p>A social content system built around consistent visual language, not just aesthetics.</p>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="work-card reveal-up">
+          <div class="work-card-img">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=700&q=80" alt="Campaign — On the Road" loading="lazy" />
+            <div class="work-card-overlay">
+              <span class="work-card-tag">Campaign</span>
+            </div>
+          </div>
+          <div class="work-card-info">
+            <h3>On the Road</h3>
+            <p>Lifestyle-meets-automobile — campaign concept that sells a feeling, not a feature.</p>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="work-card reveal-up">
+          <div class="work-card-img">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Creative Direction — Deep Blue" loading="lazy" />
+            <div class="work-card-overlay">
+              <span class="work-card-tag">Creative Direction</span>
+            </div>
+          </div>
+          <div class="work-card-info">
+            <h3>Deep Blue</h3>
+            <p>Color and shadow — a direction study on how tone shapes brand perception.</p>
+          </div>
+        </div>
+
+        <!-- Video placeholder 2 -->
+        <div class="work-card work-card--video reveal-up">
+          <div class="video-placeholder">
+            <div class="video-play-btn video-play-btn--sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <div class="video-placeholder-text">
+              <span class="work-card-tag">Campaign Film</span>
+              <h3>Product Spotlight</h3>
+              <p>Visual storytelling sample.</p>
+            </div>
+            <div class="video-placeholder-bg"></div>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="work-card reveal-up">
+          <div class="work-card-img">
+            <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=700&q=80" alt="Social — Stories Worth Telling" loading="lazy" />
+            <div class="work-card-overlay">
+              <span class="work-card-tag">Social</span>
+            </div>
+          </div>
+          <div class="work-card-info">
+            <h3>Stories Worth Telling</h3>
+            <p>An editorial approach to social media — longform thinking in a short-form world.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ SERVICES ══ -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="services-header">
+        <div class="section-label reveal-up">What We Do</div>
+        <h2 class="section-headline reveal-up">Built for brands<br/>that want to be<br/>understood.</h2>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-item reveal-up">
+          <div class="service-num">01</div>
+          <div class="service-body">
+            <h3>Brand Strategy</h3>
+            <p>We dig into why your brand exists and who it's really for. Then we help you say it clearly — without the fluff.</p>
+          </div>
+        </div>
+
+        <div class="service-item reveal-up">
+          <div class="service-num">02</div>
+          <div class="service-body">
+            <h3>Campaign Thinking</h3>
+            <p>Ideas that have a point. Campaigns built around a real message, not just beautiful visuals with nothing to say.</p>
+          </div>
+        </div>
+
+        <div class="service-item reveal-up">
+          <div class="service-num">03</div>
+          <div class="service-body">
+            <h3>Creative Direction</h3>
+            <p>Art direction, visual language, and storytelling — the kind that makes people stop scrolling and actually pay attention.</p>
+          </div>
+        </div>
+
+        <div class="service-item reveal-up">
+          <div class="service-num">04</div>
+          <div class="service-body">
+            <h3>Content Systems</h3>
+            <p>Not just content. A system — structured, repeatable, and built to grow with you across channels and formats.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ PROCESS ══ -->
+  <section class="section process" id="process">
+    <div class="container">
+      <div class="section-label reveal-up">How We Work</div>
+      <h2 class="section-headline reveal-up">A clear process<br/>for clearer outcomes.</h2>
+      <div class="process-steps">
+
+        <div class="process-step reveal-up">
+          <div class="process-step-marker">
+            <span class="process-num">01</span>
+            <div class="process-line"></div>
+          </div>
+          <div class="process-step-content">
+            <h3>Understand</h3>
+            <p>We start by understanding the business, the audience, and the real problem to solve. No assumptions.</p>
+          </div>
+        </div>
+
+        <div class="process-step reveal-up">
+          <div class="process-step-marker">
+            <span class="process-num">02</span>
+            <div class="process-line"></div>
+          </div>
+          <div class="process-step-content">
+            <h3>Structure</h3>
+            <p>We define direction and message clarity before touching a single asset. Strategy first, always.</p>
+          </div>
+        </div>
+
+        <div class="process-step reveal-up">
+          <div class="process-step-marker">
+            <span class="process-num">03</span>
+            <div class="process-line"></div>
+          </div>
+          <div class="process-step-content">
+            <h3>Create</h3>
+            <p>We build stories, campaigns, and content that have something to say — and say it well.</p>
+          </div>
+        </div>
+
+        <div class="process-step reveal-up">
+          <div class="process-step-marker">
+            <span class="process-num">04</span>
+          </div>
+          <div class="process-step-content">
+            <h3>Scale</h3>
+            <p>We optimize what works and build systems around it. Repeatable, expandable, sustainable.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ ABOUT ══ -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <div class="section-label reveal-up">About SQUARGRAPH</div>
+          <h2 class="section-headline reveal-up">Built to solve one<br/>problem.</h2>
+          <p class="about-text reveal-up">
+            Most brands aren't losing because they lack content. They're losing because they lack clarity. SQUARGRAPH Studios was built to solve exactly that — helping brands stop creating more and start communicating better.
+          </p>
+          <p class="about-text reveal-up">
+            We work at the intersection of strategy and craft. The thinking and the making. The why and the what.
+          </p>
+          <div class="founder-card reveal-up">
+            <div class="founder-img">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt="Saurabh Sohan Singh, Founder" loading="lazy" />
+            </div>
+            <div class="founder-info">
+              <h4>Saurabh Sohan Singh</h4>
+              <span>Founder</span>
+              <p>Focused on strategy, storytelling, and the kind of execution that actually moves people.</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual reveal-up">
+          <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=700&q=80" alt="Studio space" loading="lazy" />
+          <div class="about-visual-tag">Delhi, India</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ INSIGHTS ══ -->
+  <section class="section insights" id="insights">
+    <div class="container">
+      <div class="section-label reveal-up">Insights</div>
+      <h2 class="section-headline reveal-up">Thinking out loud.</h2>
+      <div class="insights-grid">
+
+        <article class="insight-card reveal-up">
+          <div class="insight-img">
+            <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=600&q=80" alt="Why most campaigns fail" loading="lazy" />
+          </div>
+          <div class="insight-body">
+            <span class="insight-category">Strategy</span>
+            <h3>Why most campaigns fail before they launch</h3>
+            <p>It's rarely a creative problem. It's almost always a clarity problem — a campaign without a clear point of view is just noise with a budget.</p>
+            <a href="#" class="insight-link">Read more →</a>
+          </div>
+        </article>
+
+        <article class="insight-card reveal-up">
+          <div class="insight-img">
+            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&q=80" alt="Clarity vs content overload" loading="lazy" />
+          </div>
+          <div class="insight-body">
+            <span class="insight-category">Content</span>
+            <h3>Clarity vs content overload — the brand paradox</h3>
+            <p>More content isn't the answer. In a world where everyone is posting, the brands that win are the ones that say less — and mean more of it.</p>
+            <a href="#" class="insight-link">Read more →</a>
+          </div>
+        </article>
+
+        <article class="insight-card reveal-up">
+          <div class="insight-img">
+            <img src="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=600&q=80" alt="Building brands in noisy markets" loading="lazy" />
+          </div>
+          <div class="insight-body">
+            <span class="insight-category">Brand Building</span>
+            <h3>Building brands in the noisiest markets of our time</h3>
+            <p>The playbook has changed. Loud doesn't win anymore. Consistent, clear, and human does. Here's what that actually looks like in practice.</p>
+            <a href="#" class="insight-link">Read more →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ SOCIAL ══ -->
+  <section class="section social-section">
+    <div class="container">
+      <div class="social-inner reveal-up">
+        <h2>Follow the process.</h2>
+        <p>See how we think, what we're building, and what we're working through — in real time.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/squargraph" target="_blank" rel="noopener" class="social-link magnetic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.linkedin.com/company/squargraph" target="_blank" rel="noopener" class="social-link magnetic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://www.youtube.com/channel/squargraph" target="_blank" rel="noopener" class="social-link magnetic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            YouTube
+          </a>
+          <a href="https://www.x.com/squargraph" target="_blank" rel="noopener" class="social-link magnetic">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X (Twitter)
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ CONTACT ══ -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <div class="section-label reveal-up">Get In Touch</div>
+          <h2 class="section-headline reveal-up">Let's build something<br/>clear and effective.</h2>
+          <p class="reveal-up">Tell us what you're working on. We'll tell you if we're the right fit — honestly.</p>
+          <div class="contact-info reveal-up">
+            <a href="mailto:hello@squargraph.com" class="contact-detail">
+              <span>hello@squargraph.com</span>
+            </a>
+            <a href="https://wa.me/918588897488" target="_blank" rel="noopener" class="contact-detail">
+              <span>WhatsApp Us</span>
+            </a>
+            <span class="contact-detail contact-detail--loc">Delhi, India</span>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap reveal-up">
+          <form
+            class="contact-form"
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST"
+            id="contactForm"
+          >
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="project">Project Type</label>
+                <select id="project" name="project" required>
+                  <option value="" disabled selected>Select a type</option>
+                  <option>Brand Strategy</option>
+                  <option>Campaign</option>
+                  <option>Creative Direction</option>
+                  <option>Content System</option>
+                  <option>Something Else</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="budget">Budget Range</label>
+                <select id="budget" name="budget">
+                  <option value="" disabled selected>Select a range</option>
+                  <option>Under ₹1L</option>
+                  <option>₹1L – ₹3L</option>
+                  <option>₹3L – ₹10L</option>
+                  <option>₹10L+</option>
+                  <option>Let's discuss</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group form-group--full">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell us about your project, goals, or challenges…" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-submit magnetic">Send Enquiry →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ FOOTER ══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-logo">SQUARGRAPH<span>.</span></div>
+        <div class="footer-links">
+          <a href="#work">Work</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#insights">Insights</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 SQUARGRAPH Studios. Delhi, India.</p>
+        <p>Built with clarity in mind.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════ WHATSAPP ══ -->
+  <a href="https://wa.me/918588897488" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.553 4.107 1.522 5.83L0 24l6.34-1.503A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.896 0-3.685-.52-5.221-1.427l-.374-.222-3.872.918.976-3.773-.243-.389A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+    </svg>
+    <span>Chat on WhatsApp</span>
+  </a>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
