@@ -982,3 +982,8 @@ body::before {
     rgba(7,9,15,0.4)
   );
 }
+.founder-proof {
+  font-size: 0.85rem;
+  color: var(--muted-2);
+  margin-top: 10px;
+}
