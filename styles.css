@@ -609,45 +609,6 @@ body::before {
   align-items: start;
 }
 .about-text { color: var(--muted); font-size: 1rem; margin-bottom: 20px; max-width: 480px; }
-.founder-card {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  margin-top: 40px;
-  padding: 28px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-}
-.founder-img {
-  width: 64px; height: 64px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-  border: 2px solid var(--border);
-}
-.founder-img img { width: 100%; height: 100%; object-fit: cover; }
-.founder-info h4 {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 400;
-  margin-bottom: 2px;
-}
-.founder-info span {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: var(--accent-1);
-  text-transform: uppercase;
-}
-.founder-info p { margin-top: 8px; font-size: 0.85rem; color: var(--muted); }
-.about-visual {
-  position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-  aspect-ratio: 4/5;
-  border: 1px solid var(--border);
-}
 .about-visual img { width: 100%; height: 100%; object-fit: cover; }
 .about-visual-tag {
   position: absolute;
