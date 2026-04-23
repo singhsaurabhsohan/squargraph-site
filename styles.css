@@ -162,10 +162,10 @@ body::before {
   justify-content: space-between;
 }
 .nav-logo {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-family: var(--font-display); /* premium feel */
+  font-size: 1.4rem; /* bigger */
+  font-weight: 400;
+  letter-spacing: 0.04em;
   color: var(--text);
 }
 .nav-logo span { color: var(--accent-1); }
@@ -173,6 +173,15 @@ body::before {
   display: flex;
   align-items: center;
   gap: 36px;
+}
+.nav-logo em {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.65em;
+  color: var(--muted);
+  margin-left: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 .nav-links a {
   font-size: 0.85rem;
@@ -875,7 +884,9 @@ body::before {
 @media (max-width: 640px) {
   .container { padding: 0 20px; }
   .section { padding: 80px 0; }
-
+.nav-logo {
+  font-size: 1.1rem;
+}
   .work-grid { grid-template-columns: 1fr; }
   .work-card--large { grid-column: auto; }
 
