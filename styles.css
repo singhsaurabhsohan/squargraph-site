@@ -163,7 +163,7 @@ body::before {
 }
 .nav-logo {
    .nav-logo img {
-  height: 28px;
+  height: 26px;
   width: auto;
   display: block;
   transition: transform 0.3s var(--ease-out), opacity 0.3s ease;
@@ -831,7 +831,7 @@ body::before {
 }
 .footer-logo {
    .footer-logo img {
-  height: 22px;
+  height: 20px;
   width: auto;
   display: block;
   opacity: 0.9;
