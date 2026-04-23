@@ -1061,3 +1061,12 @@ body::before {
   color: var(--muted-2);
   margin-top: 10px;
 }
+.page-transition {
+  position: fixed;
+  inset: 0;
+  background: #07090f;
+  z-index: 9999;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  pointer-events: none;
+}
