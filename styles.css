@@ -1308,3 +1308,29 @@ body {
 .founder-cta {
   margin-top: 20px;
 }
+.founder-proof-strip {
+  display: flex;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.founder-proof-strip div {
+  display: flex;
+  flex-direction: column;
+}
+
+.founder-proof-strip strong {
+  font-size: 1.4rem;
+  color: #95acff;
+}
+
+.founder-proof-strip span {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.founder-cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
