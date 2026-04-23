@@ -813,13 +813,38 @@ body::before {
   margin-bottom: 32px;
 }
 .footer-logo {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
   color: var(--text);
+
+  display: flex;
+  align-items: baseline;
+
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
 }
-.footer-logo span { color: var(--accent-1); }
+
+.footer-logo:hover {
+  opacity: 1;
+}
+
+.footer-logo span {
+  color: var(--accent-1);
+  margin-right: 2px;
+}
+
+.footer-logo em {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.65em;
+  color: var(--muted);
+  margin-left: 6px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
 .footer-links { display: flex; gap: 28px; }
 .footer-links a {
   font-size: 0.82rem;
