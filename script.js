@@ -247,3 +247,31 @@ document.querySelectorAll('.work-card, .insight-card').forEach(card => {
     card.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.3s';
   });
 });
+// ─── PAGE TRANSITION ───
+const transitionEl = document.querySelector('.page-transition');
+
+document.querySelectorAll('a[href]').forEach(link => {
+  const url = link.getAttribute('href');
+
+  if (url.startsWith('#') || url.startsWith('http') === false) return;
+
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    gsap.to(transitionEl, {
+      scaleY: 1,
+      duration: 0.6,
+      ease: "power3.inOut",
+      onComplete: () => {
+        window.location.href = url;
+      }
+    });
+  });
+});
+window.addEventListener('load', () => {
+  gsap.to('.page-transition', {
+    scaleY: 0,
+    duration: 0.8,
+    ease: "power3.out"
+  });
+});
