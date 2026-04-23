@@ -1085,3 +1085,47 @@ body::before {
 body {
   cursor: none;
 }
+/* ─── CASE STUDY PAGE ───────────────── */
+
+.case-hero {
+  padding: 140px 0 60px;
+  text-align: center;
+}
+
+.case-tag {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--accent-1);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.case-hero h1 {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.case-sub {
+  color: var(--muted);
+}
+
+.case-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px 100px;
+}
+
+.case-content h3 {
+  margin-top: 40px;
+  font-size: 1.1rem;
+  color: var(--accent-1);
+  font-family: var(--font-mono);
+}
+
+.case-content p {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.7;
+}
