@@ -253,7 +253,8 @@ const transitionEl = document.querySelector('.page-transition');
 document.querySelectorAll('a[href]').forEach(link => {
   const url = link.getAttribute('href');
 
-  if (url.startsWith('#') || url.startsWith('http') === false) return;
+  // ignore anchors (#) and same page links
+  if (!url || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('tel')) return;
 
   link.addEventListener('click', (e) => {
     e.preventDefault();
@@ -268,6 +269,8 @@ document.querySelectorAll('a[href]').forEach(link => {
     });
   });
 });
+
+// reveal on load
 window.addEventListener('load', () => {
   gsap.to('.page-transition', {
     scaleY: 0,
