@@ -185,10 +185,16 @@ body::before {
   font-family: var(--font-mono);
   font-size: 0.7em;
   color: var(--muted);
-  margin-left: 6px;
+  margin-left: 8px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.85;
+}
+.nav-logo:hover em,
+.footer-logo:hover em {
+  opacity: 1;
+  letter-spacing: 0.12em;
+  transition: letter-spacing 0.3s ease, opacity 0.3s ease;
 }
 .nav-links a {
   font-size: 0.85rem;
@@ -840,7 +846,7 @@ body::before {
   font-family: var(--font-mono);
   font-size: 0.65em;
   color: var(--muted);
-  margin-left: 6px;
+  margin-left: 8px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.8;
