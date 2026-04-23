@@ -162,6 +162,17 @@ body::before {
   justify-content: space-between;
 }
 .nav-logo {
+   .nav-logo img {
+  height: 28px;
+  width: auto;
+  display: block;
+  transition: transform 0.3s var(--ease-out), opacity 0.3s ease;
+}
+
+.nav-logo:hover img {
+  transform: translateY(-1px) scale(1.03);
+  opacity: 0.9;
+}
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 400;
@@ -819,6 +830,17 @@ body::before {
   margin-bottom: 32px;
 }
 .footer-logo {
+   .footer-logo img {
+  height: 22px;
+  width: auto;
+  display: block;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.footer-logo:hover img {
+  opacity: 1;
+}
   font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 400;
