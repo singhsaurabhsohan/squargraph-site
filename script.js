@@ -322,21 +322,35 @@ chatBtn.onclick = () => {
 
 // SEND MESSAGE
 sendBtn.onclick = async () => {
-  const message = chatInput.value;
+  const message = chatInput.value.trim();
   if (!message) return;
 
-  chatBody.innerHTML += "<div>You: " + message + "</div>";
+  chatBody.innerHTML += `<div>You: ${message}</div>`;
   chatInput.value = "";
 
-  const res = await fetch("http://localhost:3000/chat", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ message }),
-  });
+  try {
+    const res = await fetch("http://localhost:3000/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message }),
+    });
 
-  const data = await res.json();
+    // DEBUG (VERY IMPORTANT)
+    console.log("Response status:", res.status);
 
-  chatBody.innerHTML += "<div>AI: " + data.reply + "</div>";
+    const data = await res.json();
+    console.log("Response data:", data);
+
+    if (data.reply) {
+      chatBody.innerHTML += `<div>AI: ${data.reply}</div>`;
+    } else {
+      chatBody.innerHTML += `<div>AI: No response</div>`;
+    }
+
+  } catch (error) {
+    console.error("Chat error:", error);
+    chatBody.innerHTML += `<div>AI: Server error</div>`;
+  }
 };
