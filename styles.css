@@ -1070,3 +1070,18 @@ body::before {
   transform-origin: bottom;
   pointer-events: none;
 }
+.cursor {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(149,172,255,0.5);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+body {
+  cursor: none;
+}
