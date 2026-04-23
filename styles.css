@@ -928,3 +928,37 @@ body::before {
 
   .social-links { flex-direction: column; align-items: center; }
 }
+.founder-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 28px;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(10px);
+}
+
+.founder-img img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.founder-info h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.founder-info span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.founder-info p {
+  font-size: 14px;
+  margin-top: 6px;
+}
