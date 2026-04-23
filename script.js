@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.registerPlugin(ScrollTrigger);
       initHeroAnimation();
       initParallax();
+       initFounderAnimation();
     }
   }, 100);
 });
