@@ -278,3 +278,29 @@ window.addEventListener('load', () => {
     ease: "power3.out"
   });
 });
+// ─── CUSTOM CURSOR ───
+const cursor = document.querySelector('.cursor');
+
+let mouseX = 0, mouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+
+  gsap.to(cursor, {
+    x: mouseX,
+    y: mouseY,
+    duration: 0.2
+  });
+});
+
+// scale on hover
+document.querySelectorAll('a, button, .work-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    gsap.to(cursor, { scale: 2 });
+  });
+
+  el.addEventListener('mouseleave', () => {
+    gsap.to(cursor, { scale: 1 });
+  });
+});
