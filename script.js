@@ -304,3 +304,39 @@ document.querySelectorAll('a, button, .work-card').forEach(el => {
     gsap.to(cursor, { scale: 1 });
   });
 });
+// CHAT ELEMENTS
+const chatBtn = document.getElementById("chatBtn");
+const chatBox = document.getElementById("chatBox");
+const sendBtn = document.getElementById("sendBtn");
+const chatInput = document.getElementById("chatInput");
+const chatBody = document.getElementById("chatBody");
+
+// OPEN / CLOSE CHAT
+chatBtn.onclick = () => {
+  if (chatBox.style.display === "flex") {
+    chatBox.style.display = "none";
+  } else {
+    chatBox.style.display = "flex";
+  }
+};
+
+// SEND MESSAGE
+sendBtn.onclick = async () => {
+  const message = chatInput.value;
+  if (!message) return;
+
+  chatBody.innerHTML += "<div>You: " + message + "</div>";
+  chatInput.value = "";
+
+  const res = await fetch("http://localhost:3000/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ message }),
+  });
+
+  const data = await res.json();
+
+  chatBody.innerHTML += "<div>AI: " + data.reply + "</div>";
+};
