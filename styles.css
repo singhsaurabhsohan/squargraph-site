@@ -162,13 +162,19 @@ body::before {
   justify-content: space-between;
 }
 .nav-logo {
-  font-family: var(--font-display); /* premium feel */
-  font-size: 1.4rem; /* bigger */
+  font-family: var(--font-display);
+  font-size: 1.5rem;
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: var(--text);
+
+  display: flex;           /* ADD */
+  align-items: baseline;   /* ADD */
 }
-.nav-logo span { color: var(--accent-1); }
+.nav-logo span {
+  color: var(--accent-1);
+  margin-right: 2px;
+}
 .nav-links {
   display: flex;
   align-items: center;
@@ -177,11 +183,12 @@ body::before {
 .nav-logo em {
   font-style: normal;
   font-family: var(--font-mono);
-  font-size: 0.65em;
+  font-size: 0.7em;
   color: var(--muted);
-  margin-left: 8px;
-  letter-spacing: 0.12em;
+  margin-left: 6px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  opacity: 0.85;
 }
 .nav-links a {
   font-size: 0.85rem;
