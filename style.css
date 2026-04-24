@@ -253,6 +253,8 @@ body::before {
   margin-bottom: 2rem;
 }
 .hero-headline {
+   transition: transform 0.2s ease-out;
+will-change: transform;
   font-family: var(--font-serif);
   font-size: clamp(3rem, 8vw, 7rem);
   font-weight: 400;
@@ -274,6 +276,7 @@ body::before {
   font-weight: 300;
 }
 .hero-cta {
+   transition: transform 0.25s var(--ease-out), color 0.3s, border-color 0.3s;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -318,18 +321,23 @@ body::before {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
 }
 
 .layer-back {
-  background: radial-gradient(circle at 30% 40%, rgba(149,172,255,0.08), transparent 60%);
+  background: radial-gradient(circle at 30% 40%, rgba(149,172,255,0.12), transparent 60%);
+  filter: blur(40px);
 }
 
 .layer-mid {
-  background: radial-gradient(circle at 70% 60%, rgba(78,230,195,0.06), transparent 60%);
+  background: radial-gradient(circle at 70% 60%, rgba(78,230,195,0.08), transparent 60%);
+  filter: blur(30px);
 }
 
 .layer-front {
-  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02), transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03), transparent 70%);
+  filter: blur(20px);
 }
 /* ═══════════════════════════════════════
    WORK
@@ -340,6 +348,21 @@ body::before {
   grid-template-columns: repeat(2, 1fr);
   gap: 1px;
 }
+.work-item.featured {
+  grid-column: span 2;
+}
+
+.work-item.featured .work-visual {
+  height: 420px;
+}
+
+.work-item.featured .work-meta h3 {
+  font-size: 1.6rem;
+}
+
+.work-item.featured .work-meta p {
+  font-size: 0.9rem;
+}
 .work-item {
   position: relative;
   border: 1px solid var(--border);
@@ -347,7 +370,10 @@ body::before {
   overflow: hidden;
   transition: border-color 0.4s;
 }
-.work-item:hover { border-color: var(--border-hover); }
+.work-item:hover {
+  border-color: var(--border-hover);
+  background: rgba(149, 172, 255, 0.02);
+}
 .work-visual {
   position: relative;
   height: 280px;
