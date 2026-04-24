@@ -1,216 +1,698 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQUARGRAPH STUDIOS | High-Impact Creative Experiences</title>
-    <meta name="description" content="A creative & social-first studio delivering high-impact campaigns, content, and digital experiences.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>SQUARGRAPH STUDIOS — creative & social-first studio</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Font Awesome (minimal icons, clean svg fallback) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #07090f;
+      color: #f4f7ff;
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.4;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* custom scroll */
+    ::-webkit-scrollbar {
+      width: 5px;
+      background: #0e121c;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #4ee6c3;
+      border-radius: 12px;
+    }
+
+    /* typography */
+    h1, h2, h3, .serif-heading {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .mono-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #95acff;
+    }
+
+    /* smooth reveal */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .fade-up.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* glass navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease;
+      background: transparent;
+    }
+    .navbar.scrolled {
+      background: rgba(7, 9, 15, 0.75);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(149, 172, 255, 0.1);
+      padding: 1rem 5%;
+    }
+    .logo a {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      color: #f4f7ff;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #f4f7ff;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: #95acff;
+    }
+    .nav-cta {
+      background: rgba(149, 172, 255, 0.18);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      border: 0.5px solid rgba(78, 230, 195, 0.3);
+      transition: all 0.25s;
+    }
+    .nav-cta:hover {
+      background: rgba(78, 230, 195, 0.2);
+      border-color: #4ee6c3;
+      color: #4ee6c3;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    /* container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+
+    section {
+      padding: 7rem 0 6rem;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    /* hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: radial-gradient(circle at 30% 50%, rgba(149,172,255,0.06) 0%, rgba(7,9,15,0) 70%);
+    }
+    .hero-content {
+      max-width: 800px;
+    }
+    .hero h1 {
+      font-size: 4.8rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #f4f7ff 70%, #95acff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #bdc4e0;
+      margin-bottom: 2.2rem;
+      max-width: 560px;
+    }
+    .btn-group {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      text-decoration: none;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary {
+      background: #95acff;
+      color: #07090f;
+    }
+    .btn-primary:hover {
+      background: #4ee6c3;
+      transform: scale(0.98);
+    }
+    .btn-outline {
+      border: 1px solid rgba(149,172,255,0.5);
+      color: #f4f7ff;
+    }
+    .btn-outline:hover {
+      border-color: #4ee6c3;
+      background: rgba(78,230,195,0.05);
+    }
+
+    /* work grid (asymmetric) */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.8rem;
+      margin-top: 3rem;
+    }
+    .work-card {
+      background: rgba(255,255,255,0.02);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      backdrop-filter: blur(2px);
+      border: 0.5px solid rgba(149,172,255,0.1);
+    }
+    .work-card:hover {
+      transform: scale(1.01);
+      background: rgba(149,172,255,0.05);
+      border-color: rgba(78,230,195,0.3);
+    }
+    .card-media {
+      height: 260px;
+      background: #0f131f;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .work-card:hover .card-media img {
+      transform: scale(1.03);
+    }
+    .card-content {
+      padding: 1.4rem;
+    }
+    .card-content .category {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: #95acff;
+      margin-bottom: 0.5rem;
+    }
+    .card-content h4 {
+      font-size: 1.3rem;
+      font-family: 'DM Serif Display', serif;
+      margin-bottom: 0.4rem;
+    }
+    .card-content p {
+      font-size: 0.85rem;
+      color: #b0b8d4;
+    }
+    /* asymmetry */
+    .work-card:nth-child(1) { grid-column: span 2; }
+    .work-card:nth-child(2) { grid-column: span 1; }
+    .work-card:nth-child(3) { grid-column: span 1; }
+    .work-card:nth-child(4) { grid-column: span 2; }
+    .work-card:nth-child(5) { grid-column: span 1; }
+    .work-card:nth-child(6) { grid-column: span 1; }
+    @media (max-width: 1000px) {
+      .work-grid { grid-template-columns: repeat(2,1fr); }
+      .work-card:nth-child(n) { grid-column: span 1; }
+    }
+    @media (max-width: 700px) {
+      .work-grid { grid-template-columns: 1fr; }
+    }
+
+    /* showreel */
+    .showreel {
+      background: #03050a;
+      border-radius: 48px;
+      margin: 1rem 0;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      border: 0.5px solid rgba(149,172,255,0.2);
+    }
+    .reel-placeholder {
+      aspect-ratio: 16 / 9;
+      background: #0b0f18;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 24px;
+      font-size: 1.5rem;
+      gap: 10px;
+    }
+
+    /* services structured */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+    .service-item {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid rgba(78,230,195,0.2);
+      font-size: 1rem;
+      font-weight: 450;
+    }
+
+    /* process */
+    .process-steps {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+    .step {
+      flex: 1;
+      border-left: 2px solid #4ee6c3;
+      padding-left: 1.5rem;
+    }
+
+    /* team strength */
+    .strength-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      background: rgba(149,172,255,0.03);
+      padding: 2rem;
+      border-radius: 3rem;
+    }
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .pill {
+      background: rgba(149,172,255,0.1);
+      border-radius: 30px;
+      padding: 0.3rem 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+    }
+
+    /* founder */
+    .founder-card {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      flex-wrap: wrap;
+      background: linear-gradient(115deg, rgba(149,172,255,0.02) 0%, rgba(7,9,15,1) 80%);
+      border-radius: 3rem;
+      padding: 2rem;
+    }
+    .founder-img {
+      width: 160px;
+      height: 160px;
+      background: #1f2538;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    /* chatbot */
+    .chatbot-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+    }
+    .chat-toggle {
+      background: #4ee6c3;
+      width: 56px;
+      height: 56px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      transition: 0.2s;
+    }
+    .chat-window {
+      position: absolute;
+      bottom: 80px;
+      right: 0;
+      width: 300px;
+      background: #0e121c;
+      backdrop-filter: blur(16px);
+      border-radius: 28px;
+      border: 1px solid rgba(149,172,255,0.3);
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.4);
+    }
+    .chat-header {
+      padding: 1rem;
+      background: #07090f;
+      border-bottom: 0.5px solid #2a2f40;
+    }
+    .chat-msgs {
+      padding: 1rem;
+      background: #0b0f17;
+    }
+    .chat-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 0.8rem 0;
+    }
+    .chat-btn {
+      background: rgba(149,172,255,0.15);
+      border-radius: 30px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    /* WhatsApp button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      background: #25D366;
+      padding: 12px 18px;
+      border-radius: 40px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+      z-index: 99;
+    }
+
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .navbar.responsive .nav-links { display: flex; flex-direction: column; position: absolute; top: 70px; right: 5%; background: #07090fcc; backdrop-filter: blur(20px); padding: 1rem; border-radius: 28px; gap: 1rem; width: 200px; }
+      .hero h1 { font-size: 3rem; }
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #6c738b;
+    }
+    .icon-social {
+      display: inline-flex;
+      margin: 0 0.6rem;
+      color: #cbd5ff;
+      font-size: 1.2rem;
+    }
+    a { text-decoration: none; color: inherit; }
+    input, textarea, select {
+      background: #10141f;
+      border: 1px solid #2c3145;
+      padding: 0.8rem;
+      border-radius: 20px;
+      color: white;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    form button {
+      background: #95acff;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 40px;
+      font-weight: bold;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="grain"></div>
+<nav class="navbar" id="navbar">
+  <div class="logo"><a href="#">SQUARGRAPH</a></div>
+  <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+  <div class="nav-links" id="navLinks">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Let’s Talk</a>
+  </div>
+</nav>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">SQUARGRAPH</a>
-            <div class="nav-links">
-                <a href="#work">Work</a>
-                <a href="#services">Services</a>
-                <a href="#studio">Studio</a>
-                <a href="#contact" class="cta-nav">Let's Talk</a>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-content">
-            <span class="label animate">ESTABLISHED IN IMPACT</span>
-            <h1 class="animate">We build high-impact<br>creative experiences.</h1>
-            <p class="animate">Strategic storytelling. Precision execution. No fluff.</p>
-            <div class="hero-btns animate">
-                <a href="#work" class="btn btn-primary">View Work</a>
-                <a href="https://wa.me/918588897488" class="btn btn-secondary">WhatsApp</a>
-            </div>
-        </div>
-        <div class="orb"></div>
-    </section>
-
-    <section id="work" class="work-section">
-        <div class="container">
-            <span class="label">SELECTED PROJECTS</span>
-            <div class="work-grid">
-                <div class="work-card large">
-                    <div class="work-img" style="background-image: url('https://images.unsplash.com/photo-1549239120-2f52bbdf9e38?q=80&w=2070&auto=format&fit=crop')"></div>
-                    <div class="work-info">
-                        <span class="tag">AUTOMOTIVE</span>
-                        <h3>Hyundai Mainstream Campaigns</h3>
-                    </div>
-                </div>
-                <div class="work-card">
-                    <div class="work-img" style="background-image: url('https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2072&auto=format&fit=crop')"></div>
-                    <div class="work-info">
-                        <span class="tag">EV MOBILITY</span>
-                        <h3>EV Launch Strategy</h3>
-                    </div>
-                </div>
-                <div class="work-card">
-                    <div class="work-img" style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop')"></div>
-                    <div class="work-info">
-                        <span class="tag">SOCIAL</span>
-                        <h3>Integrated Content Ecosystems</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="showreel">
-        <div class="reel-container">
-            <div class="reel-overlay">
-                <button class="play-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                </button>
-                <p>THE STUDIO REEL</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-split">
-                <div class="sticky-title">
-                    <span class="label">CAPABILITIES</span>
-                    <h2>A complete system for the modern brand.</h2>
-                </div>
-                <div class="services-list">
-                    <div class="service-item">
-                        <span>01</span>
-                        <div>
-                            <h3>Creative Strategy & Copywriting</h3>
-                            <p>Architecting narratives that bridge the gap between business objectives and human interest.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <span>02</span>
-                        <div>
-                            <h3>Social Media Management</h3>
-                            <p>Full-spectrum management including content calendars, community engagement, and master creatives.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <span>03</span>
-                        <div>
-                            <h3>Production & Video</h3>
-                            <p>High-fidelity video editing and digital asset creation optimized for cross-platform resonance.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <span>04</span>
-                        <div>
-                            <h3>Web & Performance</h3>
-                            <p>Website banners, adaptations, and real-time reporting with actionable analytics.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="studio" class="studio-strength">
-        <div class="container">
-            <div class="strength-content">
-                <span class="label">THE STUDIO</span>
-                <p class="big-text">Built by people who have executed real campaigns for global automotive brands and content ecosystems. We don’t just ideate—we deliver.</p>
-                <div class="capability-tags">
-                    <span>CAMPAIGNS</span><span>SOCIAL</span><span>CONTENT</span><span>DIGITAL</span><span>STRATEGY</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="founder">
-        <div class="container">
-            <div class="founder-card">
-                <div class="founder-img">
-                    </div>
-                <div class="founder-text">
-                    <span class="label">STRATEGY & CAMPAIGNS</span>
-                    <h3>Saurabh Sohan Singh</h3>
-                    <p>8+ years of navigating the intersection of PR, influencer ecosystems, and automotive strategy. Focused on the art of execution.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="collaborate">
-        <div class="container text-center">
-            <span class="label">CONTRIBUTE</span>
-            <h2>Good work doesn’t come from one place.</h2>
-            <p>We’re always open to collaborating with creators who care about craft.</p>
-            <a href="mailto:singhsaurabhsohan@gmail.com" class="btn btn-secondary">Become a contributor</a>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>Initiate a project.</h2>
-                    <p>Tell us about your objectives. Let’s build something intentional.</p>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/squargraph">IG</a>
-                        <a href="https://www.linkedin.com/company/squargraph">LI</a>
-                        <a href="https://www.x.com/squargraph">X</a>
-                    </div>
-                </div>
-                <form action="https://formspree.io/forms/xzdykrjl/" method="POST" class="contact-form">
-                    <input type="text" name="name" placeholder="Name" required>
-                    <input type="email" name="_replyto" placeholder="Email" required>
-                    <select name="type">
-                        <option value="" disabled selected>Project Type</option>
-                        <option value="campaign">Campaign</option>
-                        <option value="social">Social Management</option>
-                        <option value="content">Content Creation</option>
-                    </select>
-                    <textarea name="message" rows="4" placeholder="Message"></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container footer-bottom">
-            <p>&copy; 2026 SQUARGRAPH STUDIOS. All rights reserved.</p>
-            <p>Built with intent.</p>
-        </div>
-    </footer>
-
-    <div id="chatbot" class="chatbot-container">
-        <div class="chat-toggle">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-        </div>
-        <div class="chat-window hidden">
-            <div class="chat-header">SQUARGRAPH BOT</div>
-            <div class="chat-body">
-                <p>Hi, what are you looking for?</p>
-                <div class="chat-options">
-                    <button onclick="chatAction('work')">See Work</button>
-                    <button onclick="chatAction('wa')">WhatsApp</button>
-                    <button onclick="chatAction('contact')">Start Project</button>
-                </div>
-            </div>
-        </div>
+<main>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container hero-content fade-up">
+      <h1>We build high-impact<br>creative experiences.</h1>
+      <p>Strategy, social, content — delivered with precision, crafted for premium brands.</p>
+      <div class="btn-group">
+        <a href="#work" class="btn btn-primary">View Work <i class="fas fa-arrow-right"></i></a>
+        <a href="https://wa.me/918588897488" target="_blank" class="btn btn-outline">WhatsApp <i class="fab fa-whatsapp"></i></a>
+      </div>
     </div>
+  </section>
 
-    <a href="https://wa.me/918588897488" class="wa-float" target="_blank">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.143c1.589.943 3.197 1.441 5.016 1.442 5.346 0 9.697-4.35 9.699-9.696.002-5.346-4.347-9.695-9.695-9.695-2.608 0-5.06 1.017-6.904 2.861-1.844 1.844-2.86 4.296-2.862 6.904-.001 1.739.469 3.426 1.356 4.905l-1.03 3.764 3.86-1.015-.44-.26z"/></svg>
-    </a>
+  <!-- WORK SECTION -->
+  <section id="work">
+    <div class="container">
+      <div class="mono-label fade-up">Selected work</div>
+      <h2 class="serif-heading" style="font-size: 2.8rem; margin: 1rem 0 2rem 0; fade-up">Campaigns & content</h2>
+      <div class="work-grid fade-up">
+        <div class="work-card"><div class="card-media"><img src="https://placehold.co/600x400/111a2a/95acff?text=Hyundai+Campaigns" alt="hyundai"></div><div class="card-content"><div class="category">AUTOMOTIVE · INFLUENCER</div><h4>Hyundai Campaigns</h4><p>Auto Expo, influencer ecosystems & integrated launches.</p></div></div>
+        <div class="work-card"><div class="card-media"><img src="https://placehold.co/400x500/111a2a/4ee6c3?text=EV+Launch" alt="ev"></div><div class="card-content"><div class="category">EV · STRATEGY</div><h4>EV Launch Campaign</h4><p>360-degree digital & on-ground.</p></div></div>
+        <div class="work-card"><div class="card-media"><img src="https://placehold.co/400x400/111a2a/95acff?text=Social+Creative" alt="social"></div><div class="card-content"><div class="category">SOCIAL FIRST</div><h4>Social Media Campaigns</h4><p>Viral storytelling & community.</p></div></div>
+        <div class="work-card"><div class="card-media"><img src="https://placehold.co/600x350/111a2a/4ee6c3?text=Branding+Content" alt="branding"></div><div class="card-content"><div class="category">BRAND IDENTITY</div><h4>Branding & Content</h4><p>Visual systems, websites, master creatives.</p></div></div>
+        <div class="work-card"><div class="card-media"><img src="https://placehold.co/400x300/111a2a/95acff?text=Creatives" alt="creatives"></div><div class="card-content"><div class="category">CREATIVE PRODUCTION</div><h4>Master Creatives</h4><p>adaptations & banners.</p></div></div>
+        <div class="work-card"><div class="card-media"><img src="https://placehold.co/400x300/111a2a/4ee6c3?text=Video+Editing" alt="video"></div><div class="card-content"><div class="category">POST PRODUCTION</div><h4>Video Editing</h4><p>High-impact storytelling cuts.</p></div></div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- SHOWREEL -->
+  <section style="padding: 2rem 0 4rem;">
+    <div class="container">
+      <div class="showreel fade-up" id="showreelTrigger">
+        <div class="mono-label" style="margin-bottom: 0.5rem;">Showreel</div>
+        <div class="reel-placeholder"><i class="fas fa-play-circle" style="font-size: 2.5rem; color:#95acff"></i> <span style="font-family: monospace;">watch our cinematic edit</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="mono-label fade-up">Capabilities</div>
+      <h2 class="serif-heading" style="font-size: 2.4rem; margin: 1rem 0 1rem;">What we deliver</h2>
+      <div class="services-grid fade-up">
+        <div class="service-item">Creative Strategy</div><div class="service-item">Content Creation</div><div class="service-item">Social Media Management</div><div class="service-item">Social Media Creatives</div>
+        <div class="service-item">Website Creatives</div><div class="service-item">Master Creatives</div><div class="service-item">Video Editing</div><div class="service-item">Reports & Analytics</div>
+        <div class="service-item">Copywriting</div><div class="service-item">Logo Design</div><div class="service-item">Website Banners</div><div class="service-item">Adaptations</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section>
+    <div class="container">
+      <div class="mono-label fade-up">Method</div>
+      <div class="process-steps fade-up">
+        <div class="step"><h3>Discover</h3><p>Audit, insights & scope</p></div>
+        <div class="step"><h3>Strategy</h3><p>Creative & channel blueprint</p></div>
+        <div class="step"><h3>Execute</h3><p>Production, campaigns, iterative</p></div>
+        <div class="step"><h3>Scale</h3><p>Optimize & expand impact</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM / STUDIO STRENGTH -->
+  <section>
+    <div class="container">
+      <div class="mono-label fade-up">Collective intelligence</div>
+      <div class="strength-grid fade-up">
+        <div><h3 style="font-family: 'DM Serif Display'">A collective of experienced creators</h3><p style="margin-top: 1rem;">Built by people who have worked across campaigns, brands, and content ecosystems. Strategy, content, and execution under one system.</p>
+        <div class="pill-group"><span class="pill">Campaigns</span><span class="pill">Social</span><span class="pill">Content</span><span class="pill">Digital</span><span class="pill">Strategy</span></div></div>
+        <div style="min-width: 200px;"><i class="fas fa-users" style="font-size: 2.8rem; color:#95acff;"></i><p style="margin-top: 0.8rem;">No freelancer chaos — studio rigor with creator soul.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER SPOTLIGHT -->
+  <section>
+    <div class="container">
+      <div class="founder-card fade-up">
+        <img src="https://placehold.co/200x200/1f2538/95acff?text=SB" alt="Saurabh" class="founder-img" style="object-fit: cover;">
+        <div><div class="mono-label">Founder — Strategy & Campaigns</div><h2 style="font-family: 'DM Serif Display'; font-size: 2rem;">Saurabh Sohan Singh</h2><p style="margin-top: 0.8rem; max-width: 500px;">8+ years shaping campaigns, social ecosystems, influencer strategies, and automotive launches (Hyundai, Auto Expo). Focused on execution, reporting, and high-impact storytelling.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT (execution focused) -->
+  <section id="about">
+    <div class="container">
+      <div class="mono-label fade-up">Studio ethos</div>
+      <h2 class="serif-heading" style="font-size: 2.2rem; margin: 1rem 0 1rem;">Execution. Thinking. Output.</h2>
+      <p style="max-width: 720px; line-height: 1.5;" class="fade-up">We don’t decorate — we deliver. Every campaign, creative asset, and digital touchpoint is engineered to move culture and drive measurable results. No fluff, just precision and craft.</p>
+    </div>
+  </section>
+
+  <!-- CAREERS / CONTRIBUTORS -->
+  <section>
+    <div class="container">
+      <div class="mono-label fade-up">Open network</div>
+      <div style="background: rgba(149,172,255,0.02); border-radius: 2rem; padding: 2rem;" class="fade-up">
+        <h3 style="font-size: 1.8rem;">Work With Us</h3>
+        <p style="margin: 0.8rem 0 1.4rem;">Good work doesn't come from one place. We’re always open to collaborating with people who care about craft — creators, editors, designers, strategists.</p>
+        <a href="#" style="border-bottom: 1px solid #95acff;">Become a contributor →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL ICONS -->
+  <section style="padding: 2rem 0;">
+    <div class="container" style="text-align: center;">
+      <div class="fade-up">
+        <a href="#" class="icon-social"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="icon-social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="icon-social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="icon-social"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="icon-social"><i class="fab fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT + FORM -->
+  <section id="contact">
+    <div class="container">
+      <div class="mono-label">Connect</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 3rem; margin-top: 2rem;">
+        <div style="flex:1"><h3>Let’s build together</h3><p><i class="far fa-envelope"></i> <a href="mailto:singhsaurabhsohan@gmail.com">singhsaurabhsohan@gmail.com</a></p><p style="margin-top: 1rem;">We respond within 24h.</p></div>
+        <div style="flex:2">
+          <form action="https://formspree.io/f/xzdykrjl" method="POST">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="project type" placeholder="Project Type">
+            <input type="text" name="requirement" placeholder="Requirement">
+            <input type="text" name="budget" placeholder="Budget (optional)">
+            <textarea rows="3" name="message" placeholder="Message"></textarea>
+            <button type="submit">Send inquiry →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>© SQUARGRAPH STUDIOS — creative and social-first studio</footer>
+</main>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/918588897488" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i> Let's Talk</a>
+
+<!-- CHATBOT FRONTEND -->
+<div class="chatbot-container">
+  <div class="chat-toggle" id="chatToggle"><i class="fas fa-comment-dots" style="color:#07090f; font-size: 1.5rem;"></i></div>
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header"><strong>SQUARGRAPH</strong> <span style="font-size:0.7rem;">assistant</span></div>
+    <div class="chat-msgs">
+      <div>Hi, what are you looking for?</div>
+      <div class="chat-options">
+        <div class="chat-btn" data-action="project">Start a project</div>
+        <div class="chat-btn" data-action="work">See work</div>
+        <div class="chat-btn" data-action="pricing">Pricing</div>
+        <div class="chat-btn" data-action="whatsapp">Talk on WhatsApp</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // navbar scroll effect
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('navbar');
+    if(window.scrollY > 40) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+  // mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    document.querySelector('.navbar').classList.toggle('responsive');
+  });
+  // reveal on scroll (intersection)
+  const faders = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+  faders.forEach(el => observer.observe(el));
+
+  // showreel placeholder alert (cinematic behavior)
+  const reel = document.getElementById('showreelTrigger');
+  if(reel) reel.addEventListener('click', () => alert("🎬 Full showreel available on request. Contact us for the private link."));
+
+  // chatbot logic
+  const toggle = document.getElementById('chatToggle');
+  const chatWin = document.getElementById('chatWindow');
+  toggle.addEventListener('click', () => {
+    if(chatWin.style.display === 'flex') chatWin.style.display = 'none';
+    else chatWin.style.display = 'flex';
+  });
+  const chatBtns = document.querySelectorAll('.chat-btn');
+  chatBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const action = btn.getAttribute('data-action');
+      if(action === 'project') window.location.href = '#contact';
+      else if(action === 'work') window.location.href = '#work';
+      else if(action === 'pricing') alert("Our pricing is project-based. Let’s connect for a tailored estimate.");
+      else if(action === 'whatsapp') window.open('https://wa.me/918588897488', '_blank');
+      chatWin.style.display = 'none';
+    });
+  });
+  // close chat if click outside?
+  document.addEventListener('click', function(event) {
+    if(!chatWin.contains(event.target) && !toggle.contains(event.target) && chatWin.style.display === 'flex') {
+      chatWin.style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>
