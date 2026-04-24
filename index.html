@@ -1,135 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQUARGRAPH STUDIOS | High-Impact Creative Experiences</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display&family=Space+Mono&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Squargraph Studios — Creative & Social-First Studio</title>
+  <meta name="description" content="We build high-impact creative experiences. Campaigns, content, and digital — from strategy to execution." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <div class="grain-overlay"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">SQUARGRAPH</a>
-            <div class="nav-links">
-                <a href="#work">Work</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="https://wa.me/918588897488" class="btn-cta">Let’s Talk</a>
-            </div>
-        </div>
-    </nav>
-
-    <main>
-        <section class="hero reveal">
-            <div class="hero-content">
-                <p class="label">EST. 2016</p>
-                <h1 class="hero-title">We build high-impact<br>creative experiences.</h1>
-                <p class="hero-subtext">A cinematic approach to strategy, content, and digital storytelling.</p>
-                <div class="hero-actions">
-                    <a href="#work" class="btn-primary">View Work</a>
-                    <a href="https://wa.me/918588897488" class="btn-secondary">WhatsApp</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="work" class="work-section reveal">
-            <div class="section-header">
-                <h2 class="section-title">Selected Archive</h2>
-            </div>
-            <div class="work-grid">
-                <div class="work-card large">
-                    <div class="card-img" style="background: #1a1c22;"></div>
-                    <div class="card-meta">
-                        <span class="label">AUTOMOTIVE / CONTENT</span>
-                        <h3>Hyundai Campaigns</h3>
-                    </div>
-                </div>
-                <div class="work-card small">
-                    <div class="card-img" style="background: #12141a;"></div>
-                    <div class="card-meta">
-                        <span class="label">STRATEGY / DIGITAL</span>
-                        <h3>EV Launch</h3>
-                    </div>
-                </div>
-                <div class="work-card small">
-                    <div class="card-img" style="background: #16181e;"></div>
-                    <div class="card-meta">
-                        <span class="label">BRANDING</span>
-                        <h3>Master Creatives</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="services reveal">
-            <div class="services-grid">
-                <div class="service-category">
-                    <span class="label">01 / CREATIVE</span>
-                    <p>Strategy, Logo Design, Website Banners, Master Creatives.</p>
-                </div>
-                <div class="service-category">
-                    <span class="label">02 / CONTENT</span>
-                    <p>Content Creation, Video Editing, Copywriting, Adaptations.</p>
-                </div>
-                <div class="service-category">
-                    <span class="label">03 / SOCIAL</span>
-                    <p>Social Media Management, Influencer Ecosystems, Reports & Analytics.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="founder-section reveal">
-            <div class="founder-container">
-                <div class="founder-text">
-                    <span class="label">LEADERSHIP</span>
-                    <h2>Saurabh Sohan Singh</h2>
-                    <p class="role">Founder & Strategy Lead</p>
-                    <p class="bio">With 8+ years navigating the intersection of automotive PR, digital strategy, and high-impact content ecosystems, Saurabh leads a collective focused on execution over fluff.</p>
-                </div>
-                <div class="founder-image-placeholder"></div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact-section reveal">
-            <div class="form-wrapper">
-                <h2 class="section-title">Initiate a Project</h2>
-                <form action="https://formspree.io/forms/xzdykrjl/" method="POST" class="premium-form">
-                    <div class="form-row">
-                        <input type="text" name="name" placeholder="Name" required>
-                        <input type="email" name="email" placeholder="Email" required>
-                    </div>
-                    <select name="requirement">
-                        <option value="" disabled selected>Nature of Inquiry</option>
-                        <option value="social">Social Media Management</option>
-                        <option value="creative">Creative Strategy</option>
-                        <option value="video">Video & Content</option>
-                    </select>
-                    <textarea name="message" placeholder="Message" rows="4"></textarea>
-                    <button type="submit" class="btn-primary">Submit Transmission</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <div class="chat-container" id="chatbot">
-        <div class="chat-header" onclick="toggleChat()">
-            <span>Inquiry Bot</span>
-        </div>
-        <div class="chat-body" id="chat-body">
-            <p>Welcome to the Studio. How can we assist?</p>
-            <div class="chat-options">
-                <button onclick="window.location.href='#contact'">Start Project</button>
-                <button onclick="window.location.href='https://wa.me/918588897488'">WhatsApp</button>
-            </div>
-        </div>
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">SQUARGRAPH</a>
+      <button class="nav-toggle" aria-label="Menu" id="navToggle">
+        <span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#founder">Studio</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
+  </nav>
 
-    <script src="script.js"></script>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg">
+      <div class="star-field" id="starField"></div>
+      <div class="hero-glow"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-label reveal">Creative & Social-First Studio</p>
+      <h1 class="hero-headline reveal">We build<br /><em>high-impact</em><br />creative experiences.</h1>
+      <p class="hero-sub reveal">Campaigns. Content. Digital.<br />From strategy to execution.</p>
+      <a href="#work" class="hero-cta reveal">View Our Work <span class="cta-arrow">↓</span></a>
+    </div>
+    <div class="hero-scroll-hint">
+      <span class="scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-inner">
+      <div class="section-label reveal">Selected Work</div>
+      <h2 class="section-title reveal">Stories that move.<br />Brands that matter.</h2>
+      <div class="work-grid">
+        <div class="work-item reveal" data-index="01">
+          <div class="work-visual w1">
+            <div class="work-overlay">
+              <span class="work-tag">Social Campaign</span>
+            </div>
+          </div>
+          <div class="work-meta">
+            <h3>Hyundai India</h3>
+            <p>360° social campaign driving cultural relevance across platforms.</p>
+          </div>
+        </div>
+        <div class="work-item reveal" data-index="02">
+          <div class="work-visual w2">
+            <div class="work-overlay">
+              <span class="work-tag">EV Launch</span>
+            </div>
+          </div>
+          <div class="work-meta">
+            <h3>Electric Futures</h3>
+            <p>Launch strategy and content for a new-generation EV brand.</p>
+          </div>
+        </div>
+        <div class="work-item reveal" data-index="03">
+          <div class="work-visual w3">
+            <div class="work-overlay">
+              <span class="work-tag">Branding</span>
+            </div>
+          </div>
+          <div class="work-meta">
+            <h3>Identity Systems</h3>
+            <p>Visual language built to scale — digital-first, globally sharp.</p>
+          </div>
+        </div>
+        <div class="work-item reveal" data-index="04">
+          <div class="work-visual w4">
+            <div class="work-overlay">
+              <span class="work-tag">Content Strategy</span>
+            </div>
+          </div>
+          <div class="work-meta">
+            <h3>Social Ecosystems</h3>
+            <p>Always-on content architectures that build audiences over time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWREEL -->
+  <section id="showreel">
+    <div class="reel-inner">
+      <div class="reel-text reveal">
+        <div class="section-label">Showreel</div>
+        <h2>Watch what<br /><em>we make.</em></h2>
+      </div>
+      <div class="reel-frame reveal">
+        <div class="reel-placeholder">
+          <div class="play-btn" id="playBtn">
+            <div class="play-icon">▶</div>
+          </div>
+          <p class="reel-caption">Squargraph Studios — 2024</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="section-label reveal">What We Do</div>
+      <h2 class="section-title reveal">Every discipline.<br />One perspective.</h2>
+      <div class="services-grid">
+        <div class="service-item reveal">
+          <div class="service-num">01</div>
+          <h3>Strategy</h3>
+          <p>Brand architecture, audience insights, and campaign roadmaps that give your creative a spine.</p>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-num">02</div>
+          <h3>Content</h3>
+          <p>Long-form, short-form, episodic — we build content systems, not one-offs.</p>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-num">03</div>
+          <h3>Social</h3>
+          <p>Platform-native thinking. Culture-first execution. Every channel, its own language.</p>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-num">04</div>
+          <h3>Creatives</h3>
+          <p>Visual identity, art direction, and campaign design that earns attention without asking for it.</p>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-num">05</div>
+          <h3>Video</h3>
+          <p>From concept to post — cinematic production for campaigns, brand films, and social content.</p>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-num">06</div>
+          <h3>Copy</h3>
+          <p>Words with weight. Headlines that stop thumbs. Copy built to convert.</p>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-num">07</div>
+          <h3>Analytics</h3>
+          <p>Data that informs, not overwhelms. We track what actually moves the needle.</p>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-num">08</div>
+          <h3>Branding</h3>
+          <p>Complete brand ecosystems — from naming and positioning to full visual systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="section-inner">
+      <div class="section-label reveal">How We Work</div>
+      <h2 class="section-title reveal">A method built<br />for momentum.</h2>
+      <div class="process-track">
+        <div class="process-step reveal">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h3>Discover</h3>
+            <p>We go deep before we go wide. Understanding your brand, audience, and goals before a single idea is touched.</p>
+          </div>
+        </div>
+        <div class="process-connector"></div>
+        <div class="process-step reveal">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h3>Strategy</h3>
+            <p>Insight becomes direction. We define the platform, the message, and the architecture that holds everything together.</p>
+          </div>
+        </div>
+        <div class="process-connector"></div>
+        <div class="process-step reveal">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h3>Execute</h3>
+            <p>Creation at pace. No bloat, no delay — sharp work delivered with intention and craft.</p>
+          </div>
+        </div>
+        <div class="process-connector"></div>
+        <div class="process-step reveal">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h3>Scale</h3>
+            <p>What works gets amplified. We build systems that grow — not campaigns that expire.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDIO STRENGTH -->
+  <section id="studio-strength">
+    <div class="strength-inner">
+      <div class="section-label reveal">Why Squargraph</div>
+      <div class="strength-grid">
+        <div class="strength-stat reveal">
+          <h2>8+</h2>
+          <p>Years of shaping brands in culture, not around it.</p>
+        </div>
+        <div class="strength-stat reveal">
+          <h2>40+</h2>
+          <p>Campaigns across consumer, lifestyle, and tech verticals.</p>
+        </div>
+        <div class="strength-stat reveal">
+          <h2>3×</h2>
+          <p>Average engagement lift on social-first brand activations.</p>
+        </div>
+        <div class="strength-stat reveal">
+          <h2>Full</h2>
+          <p>Stack studio — strategy, creative, and distribution under one roof.</p>
+        </div>
+      </div>
+      <div class="strength-quote reveal">
+        <blockquote>"We don't make content for the algorithm. We make it for the human on the other side."</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section id="founder">
+    <div class="section-inner founder-inner">
+      <div class="founder-text reveal">
+        <div class="section-label">The Mind Behind It</div>
+        <h2>Saurabh<br /><em>Sohan Singh</em></h2>
+        <p class="founder-bio">8+ years navigating the intersection of culture, brand, and digital. Built campaigns for some of India's most recognised names. Led strategy, PR, and creative — not in silos, but together, the way it should be.</p>
+        <p class="founder-bio">Squargraph is the studio he wished existed. Sharp thinking. No hand-holding. Real results.</p>
+        <div class="founder-tags">
+          <span>Campaigns</span>
+          <span>Social Strategy</span>
+          <span>PR</span>
+          <span>Brand Direction</span>
+          <span>Execution</span>
+        </div>
+      </div>
+      <div class="founder-visual reveal">
+        <div class="founder-frame">
+          <div class="founder-placeholder">
+            <span>SSS</span>
+          </div>
+          <div class="founder-accent-line"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="section-label reveal">About the Studio</div>
+      <div class="about-text reveal">
+        <h2>We are Squargraph.<br /><em>A creative studio</em><br />built without compromise.</h2>
+      </div>
+      <div class="about-body reveal">
+        <p>Squargraph Studios is a Delhi-based creative and social-first studio building high-impact brand experiences. We work across campaigns, content, PR, and digital — treating each touchpoint as an opportunity to say something real.</p>
+        <p>We don't outsource thinking. We don't deliver decks no one acts on. We build, ship, and scale — with the clarity of a boutique and the output of a full-service team.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTRIBUTORS -->
+  <section id="contributors">
+    <div class="section-inner">
+      <div class="section-label reveal">The Network</div>
+      <h2 class="section-title reveal">Built by many.<br />Directed by one.</h2>
+      <div class="contributors-grid">
+        <div class="contributor reveal">
+          <div class="c-avatar"></div>
+          <div class="c-info">
+            <h4>Art Direction</h4>
+            <p>Visual leads who understand culture and craft in equal measure.</p>
+          </div>
+        </div>
+        <div class="contributor reveal">
+          <div class="c-avatar"></div>
+          <div class="c-info">
+            <h4>Motion & Video</h4>
+            <p>Cinematographers and editors fluent in social formats and brand storytelling.</p>
+          </div>
+        </div>
+        <div class="contributor reveal">
+          <div class="c-avatar"></div>
+          <div class="c-info">
+            <h4>Copywriting</h4>
+            <p>Writers who've unlearned the template and found the voice.</p>
+          </div>
+        </div>
+        <div class="contributor reveal">
+          <div class="c-avatar"></div>
+          <div class="c-info">
+            <h4>Strategy & Analytics</h4>
+            <p>Data thinkers who translate numbers into decisions worth making.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section id="social">
+    <div class="social-inner">
+      <div class="section-label reveal">Find Us</div>
+      <h2 class="reveal">We live where<br /><em>culture moves.</em></h2>
+      <div class="social-links reveal">
+        <a href="https://www.instagram.com/squargraph" target="_blank" rel="noopener" class="social-link">
+          <span class="s-platform">Instagram</span>
+          <span class="s-handle">@squargraph</span>
+          <span class="s-arrow">↗</span>
+        </a>
+        <a href="https://www.facebook.com/squargraphstudios" target="_blank" rel="noopener" class="social-link">
+          <span class="s-platform">Facebook</span>
+          <span class="s-handle">squargraphstudios</span>
+          <span class="s-arrow">↗</span>
+        </a>
+        <a href="https://www.linkedin.com/company/squargraph" target="_blank" rel="noopener" class="social-link">
+          <span class="s-platform">LinkedIn</span>
+          <span class="s-handle">squargraph</span>
+          <span class="s-arrow">↗</span>
+        </a>
+        <a href="https://www.youtube.com/channel/squargraph" target="_blank" rel="noopener" class="social-link">
+          <span class="s-platform">YouTube</span>
+          <span class="s-handle">squargraph</span>
+          <span class="s-arrow">↗</span>
+        </a>
+        <a href="https://www.x.com/squargraph" target="_blank" rel="noopener" class="social-link">
+          <span class="s-platform">X (Twitter)</span>
+          <span class="s-handle">@squargraph</span>
+          <span class="s-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="section-label reveal">Start a Conversation</div>
+      <h2 class="reveal">Have a brief?<br /><em>Let's talk.</em></h2>
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Full name" autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="hello@brand.com" autocomplete="off" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="project">Tell us about your project</label>
+          <textarea id="project" name="project" rows="5" placeholder="What are you building? Who's the audience? What do you need?"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Brief <span>→</span></button>
+        <p class="form-note">We typically respond within 24 hours.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">SQUARGRAPH STUDIOS</div>
+          <p>Creative & Social-First Studio<br />New Delhi, India</p>
+        </div>
+        <div class="footer-nav">
+          <a href="#work">Work</a>
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#founder">Studio</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/squargraph" target="_blank" rel="noopener">IG</a>
+          <a href="https://www.facebook.com/squargraphstudios" target="_blank" rel="noopener">FB</a>
+          <a href="https://www.linkedin.com/company/squargraph" target="_blank" rel="noopener">LI</a>
+          <a href="https://www.youtube.com/channel/squargraph" target="_blank" rel="noopener">YT</a>
+          <a href="https://www.x.com/squargraph" target="_blank" rel="noopener">X</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2024 Squargraph Studios. All rights reserved.</p>
+        <p class="footer-tagline">Built without compromise.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP -->
+  <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Squargraph%2C%20I%27d%20love%20to%20discuss%20a%20project." target="_blank" rel="noopener" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- CHATBOT -->
+  <div class="chatbot-trigger" id="chatbotTrigger" aria-label="Chat with us">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+
+  <div class="chatbot-panel" id="chatbotPanel">
+    <div class="chatbot-header">
+      <div class="chatbot-brand">
+        <span class="chatbot-dot"></span>
+        <strong>Squargraph</strong>
+        <span class="chatbot-status">Online</span>
+      </div>
+      <button class="chatbot-close" id="chatbotClose">✕</button>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="chat-msg bot">
+        <p>Hey — welcome to Squargraph Studios.</p>
+        <p>Tell me what you're working on and I'll point you in the right direction.</p>
+      </div>
+    </div>
+    <div class="chatbot-input-area">
+      <input type="text" id="chatInput" placeholder="Ask anything..." autocomplete="off" />
+      <button id="chatSend">→</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
