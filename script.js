@@ -6,31 +6,17 @@
 // NAVBAR — GLASS TRANSITION
 // -----------------------------
 const navbar = document.getElementById("navbar");
+const layers = document.querySelectorAll(".hero-layer");
 
 let lastScroll = 0;
 
-window.addEventListener("scroll", () => {
-  const current = window.scrollY;
-
-  if (current > 60) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
+  // GLOW PARALLAX
+  const glow = document.querySelector(".hero-glow");
+  if (glow) {
+    glow.style.transform = `translate(-50%, calc(-50% + ${scroll * 0.08}px))`;
   }
-
-  lastScroll = current;
 });
 const layers = document.querySelectorAll(".hero-layer");
-
-window.addEventListener("scroll", () => {
-  const scroll = window.scrollY;
-
-  layers.forEach((layer, i) => {
-    const depth = (i + 1) * 0.05;
-    layer.style.transform = `translateY(${scroll * depth}px)`;
-  });
-});
-
 // -----------------------------
 // REVEAL ENGINE (SMOOTH + STAGGER)
 // -----------------------------
@@ -90,7 +76,40 @@ function animateAccent() {
 }
 
 animateAccent();
+// -----------------------------
+// SMOOTH SCROLL ENGINE (CINEMATIC)
+// -----------------------------
+let smoothScroll = 0;
+let targetScroll = 0;
 
+function smoothScrollLoop() {
+  targetScroll = window.scrollY;
+  smoothScroll += (targetScroll - smoothScroll) * 0.08;
+
+  // NAVBAR
+  if (smoothScroll > 60) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+
+  // HERO DEPTH
+  layers.forEach((layer, i) => {
+    const depth = (i + 1) * 0.05;
+    const offset = smoothScroll * depth * 0.8;
+    layer.style.transform = `translateY(${offset}px)`;
+  });
+
+  // GLOW
+  const glow = document.querySelector(".hero-glow");
+  if (glow) {
+    glow.style.transform = `translate(-50%, calc(-50% + ${smoothScroll * 0.08}px))`;
+  }
+
+  requestAnimationFrame(smoothScrollLoop);
+}
+
+smoothScrollLoop();
 
 // -----------------------------
 // CUSTOM CURSOR (MAGNETIC)
@@ -113,6 +132,51 @@ document.addEventListener("mousemove", (e) => {
 
   cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 });
+// -----------------------------
+// HERO HEADLINE INTERACTION (WOW)
+// -----------------------------
+const headline = document.querySelector(".interactive-headline");
+
+if (headline) {
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+
+  document.addEventListener("mousemove", (e) => {
+    targetX = (e.clientX / window.innerWidth - 0.5) * 12;
+    targetY = (e.clientY / window.innerHeight - 0.5) * 12;
+  });
+
+  function animateHeadline() {
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+
+    headline.style.transform = `translate(${currentX}px, ${currentY}px)`;
+
+    requestAnimationFrame(animateHeadline);
+  }
+
+  animateHeadline();
+}
+// -----------------------------
+// MAGNETIC CTA
+// -----------------------------
+const magnetic = document.querySelector(".magnetic");
+
+if (magnetic) {
+  magnetic.addEventListener("mousemove", (e) => {
+    const rect = magnetic.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    magnetic.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+  });
+
+  magnetic.addEventListener("mouseleave", () => {
+    magnetic.style.transform = `translate(0,0)`;
+  });
+}
 
 // smooth lag
 function animateCursor() {
@@ -144,6 +208,10 @@ document.querySelectorAll("a, button").forEach((el) => {
 // -----------------------------
 const starField = document.getElementById("starField");
 
+if (starField) {
+  createStars();
+}
+
 function createStars(count = 80) {
   for (let i = 0; i < count; i++) {
     const star = document.createElement("div");
@@ -163,22 +231,6 @@ function createStars(count = 80) {
     starField.appendChild(star);
   }
 }
-
-createStars();
-
-
-// -----------------------------
-// PARALLAX (SUBTLE DEPTH)
-// -----------------------------
-window.addEventListener("scroll", () => {
-  const scrolled = window.scrollY;
-
-  const glow = document.querySelector(".hero-glow");
-  if (glow) {
-    glow.style.transform = `translate(-50%, calc(-50% + ${scrolled * 0.08}px))`;
-  }
-});
-
 
 // -----------------------------
 // MOBILE NAV
