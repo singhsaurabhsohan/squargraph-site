@@ -1,0 +1,197 @@
+:root {
+    --bg: #07090f;
+    --text: #f4f7ff;
+    --accent: #95acff;
+    --dim: rgba(244, 247, 255, 0.4);
+    --glass: rgba(255, 255, 255, 0.03);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Cinematic Background Elements */
+.grain-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.orb {
+    position: fixed;
+    width: 60vw;
+    height: 60vw;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    opacity: 0.1;
+    transition: transform 0.5s ease-out;
+}
+.orb-1 { background: var(--accent); top: -20%; left: -10%; }
+.orb-2 { background: #4ee6c3; bottom: -20%; right: -10%; }
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0; width: 100%;
+    padding: 2rem;
+    z-index: 100;
+    transition: background 0.4s ease;
+}
+.navbar.scrolled {
+    background: rgba(7, 9, 15, 0.8);
+    backdrop-filter: blur(20px);
+    padding: 1.2rem 2rem;
+}
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--text);
+    letter-spacing: 2px;
+}
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    margin-left: 2.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-cta {
+    background: var(--text);
+    color: var(--bg) !important;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2px;
+}
+
+/* Sections */
+section {
+    padding: 10rem 10% 5rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.label {
+    font-family: 'Space Mono', monospace;
+    color: var(--accent);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+/* Hero */
+.hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+.hero-subtext {
+    max-width: 500px;
+    color: var(--dim);
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+}
+.hero-actions .btn-primary {
+    background: var(--text);
+    color: var(--bg);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    margin-right: 1.5rem;
+    display: inline-block;
+}
+.hero-actions .btn-secondary {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+}
+
+/* Work Grid */
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+.work-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+}
+.work-card.large { grid-column: span 2; aspect-ratio: 21/9; }
+.card-img {
+    width: 100%; height: 100%;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.work-card:hover .card-img { transform: scale(1.03); }
+.card-meta { margin-top: 1.5rem; }
+.card-meta h3 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 1.5rem; }
+
+/* Contact Form */
+.premium-form {
+    display: grid;
+    gap: 2rem;
+    max-width: 700px;
+}
+input, select, textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--glass);
+    color: var(--text);
+    padding: 1rem 0;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+}
+input:focus { border-color: var(--accent); }
+
+/* Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Chatbot */
+.chat-container {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    width: 250px;
+    z-index: 1000;
+}
+.chat-header { padding: 1rem; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.chat-body { padding: 1rem; display: none; }
+.chat-options button {
+    display: block; width: 100%; margin-top: 0.5rem;
+    background: transparent; border: 1px solid var(--accent);
+    color: var(--text); padding: 0.5rem; cursor: pointer;
+}
