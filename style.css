@@ -83,7 +83,7 @@ body::before {
 
 /* ─── REVEAL ANIMATION ─── */
 .reveal {
-  opacity: 0;
+  opacity: 1;
   transform: translateY(28px);
   transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
 }
