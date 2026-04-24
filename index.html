@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQUARGRAPH STUDIOS | High-Impact Creative Experiences</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display&family=Space+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="grain-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">SQUARGRAPH</a>
+            <div class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="https://wa.me/918588897488" class="btn-cta">Let’s Talk</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero reveal">
+            <div class="hero-content">
+                <p class="label">EST. 2016</p>
+                <h1 class="hero-title">We build high-impact<br>creative experiences.</h1>
+                <p class="hero-subtext">A cinematic approach to strategy, content, and digital storytelling.</p>
+                <div class="hero-actions">
+                    <a href="#work" class="btn-primary">View Work</a>
+                    <a href="https://wa.me/918588897488" class="btn-secondary">WhatsApp</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="work-section reveal">
+            <div class="section-header">
+                <h2 class="section-title">Selected Archive</h2>
+            </div>
+            <div class="work-grid">
+                <div class="work-card large">
+                    <div class="card-img" style="background: #1a1c22;"></div>
+                    <div class="card-meta">
+                        <span class="label">AUTOMOTIVE / CONTENT</span>
+                        <h3>Hyundai Campaigns</h3>
+                    </div>
+                </div>
+                <div class="work-card small">
+                    <div class="card-img" style="background: #12141a;"></div>
+                    <div class="card-meta">
+                        <span class="label">STRATEGY / DIGITAL</span>
+                        <h3>EV Launch</h3>
+                    </div>
+                </div>
+                <div class="work-card small">
+                    <div class="card-img" style="background: #16181e;"></div>
+                    <div class="card-meta">
+                        <span class="label">BRANDING</span>
+                        <h3>Master Creatives</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services reveal">
+            <div class="services-grid">
+                <div class="service-category">
+                    <span class="label">01 / CREATIVE</span>
+                    <p>Strategy, Logo Design, Website Banners, Master Creatives.</p>
+                </div>
+                <div class="service-category">
+                    <span class="label">02 / CONTENT</span>
+                    <p>Content Creation, Video Editing, Copywriting, Adaptations.</p>
+                </div>
+                <div class="service-category">
+                    <span class="label">03 / SOCIAL</span>
+                    <p>Social Media Management, Influencer Ecosystems, Reports & Analytics.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="founder-section reveal">
+            <div class="founder-container">
+                <div class="founder-text">
+                    <span class="label">LEADERSHIP</span>
+                    <h2>Saurabh Sohan Singh</h2>
+                    <p class="role">Founder & Strategy Lead</p>
+                    <p class="bio">With 8+ years navigating the intersection of automotive PR, digital strategy, and high-impact content ecosystems, Saurabh leads a collective focused on execution over fluff.</p>
+                </div>
+                <div class="founder-image-placeholder"></div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section reveal">
+            <div class="form-wrapper">
+                <h2 class="section-title">Initiate a Project</h2>
+                <form action="https://formspree.io/forms/xzdykrjl/" method="POST" class="premium-form">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <select name="requirement">
+                        <option value="" disabled selected>Nature of Inquiry</option>
+                        <option value="social">Social Media Management</option>
+                        <option value="creative">Creative Strategy</option>
+                        <option value="video">Video & Content</option>
+                    </select>
+                    <textarea name="message" placeholder="Message" rows="4"></textarea>
+                    <button type="submit" class="btn-primary">Submit Transmission</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <div class="chat-container" id="chatbot">
+        <div class="chat-header" onclick="toggleChat()">
+            <span>Inquiry Bot</span>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <p>Welcome to the Studio. How can we assist?</p>
+            <div class="chat-options">
+                <button onclick="window.location.href='#contact'">Start Project</button>
+                <button onclick="window.location.href='https://wa.me/918588897488'">WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
