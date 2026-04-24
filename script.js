@@ -20,7 +20,16 @@ window.addEventListener("scroll", () => {
 
   lastScroll = current;
 });
+const layers = document.querySelectorAll(".hero-layer");
 
+window.addEventListener("scroll", () => {
+  const scroll = window.scrollY;
+
+  layers.forEach((layer, i) => {
+    const depth = (i + 1) * 0.05;
+    layer.style.transform = `translateY(${scroll * depth}px)`;
+  });
+});
 
 // -----------------------------
 // REVEAL ENGINE (SMOOTH + STAGGER)
