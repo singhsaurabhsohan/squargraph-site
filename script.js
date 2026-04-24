@@ -83,23 +83,37 @@ let smoothScroll = 0;
 let targetScroll = 0;
 
 function smoothScrollLoop() {
-  targetScroll = window.scrollY;
-  smoothScroll += (targetScroll - smoothScroll) * 0.08;
+  try {
+    targetScroll = window.scrollY;
+    smoothScroll += (targetScroll - smoothScroll) * 0.08;
 
-  // NAVBAR
-  if (smoothScroll > 60) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
+    if (navbar && smoothScroll > 60) {
+      navbar.classList.add("scrolled");
+    } else if (navbar) {
+      navbar.classList.remove("scrolled");
+    }
+
+    if (layers.length) {
+      layers.forEach((layer, i) => {
+        const depth = (i + 1) * 0.05;
+        const offset = smoothScroll * depth * 0.8;
+        layer.style.transform = `translateY(${offset}px)`;
+      });
+    }
+
+    const glow = document.querySelector(".hero-glow");
+    if (glow) {
+      glow.style.transform = `translate(-50%, calc(-50% + ${smoothScroll * 0.08}px))`;
+    }
+
+  } catch (e) {
+    console.log("Scroll error:", e);
   }
 
-  // HERO DEPTH
-  layers.forEach((layer, i) => {
-    const depth = (i + 1) * 0.05;
-    const offset = smoothScroll * depth * 0.8;
-    layer.style.transform = `translateY(${offset}px)`;
-  });
+  requestAnimationFrame(smoothScrollLoop);
+}
 
+smoothScrollLoop();
   // GLOW
   const glow = document.querySelector(".hero-glow");
   if (glow) {
@@ -235,12 +249,11 @@ function createStars(count = 80) {
 // -----------------------------
 // MOBILE NAV
 // -----------------------------
-const navToggle = document.getElementById("navToggle");
-const navLinks = document.getElementById("navLinks");
-
-navToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-});
+if (navToggle && navLinks) {
+  navToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+  });
+}
 
 
 // -----------------------------
@@ -250,13 +263,15 @@ const trigger = document.getElementById("chatbotTrigger");
 const panel = document.getElementById("chatbotPanel");
 const closeBtn = document.getElementById("chatbotClose");
 
-trigger.addEventListener("click", () => {
-  panel.classList.toggle("open");
-});
+if (trigger && panel && closeBtn) {
+  trigger.addEventListener("click", () => {
+    panel.classList.toggle("open");
+  });
 
-closeBtn.addEventListener("click", () => {
-  panel.classList.remove("open");
-});
+  closeBtn.addEventListener("click", () => {
+    panel.classList.remove("open");
+  });
+}
 
 const input = document.getElementById("chatInput");
 const send = document.getElementById("chatSend");
