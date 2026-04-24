@@ -114,7 +114,19 @@ body::before {
   margin-bottom: 4rem;
   color: var(--text);
 }
-
+.section-intro {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-top: -2rem;
+  margin-bottom: 2.5rem;
+  max-width: 420px;
+}
+.work-note {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 30px;
+  max-width: 420px;
+}
 .section-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -253,6 +265,7 @@ body::before {
   margin-bottom: 2rem;
 }
 .hero-headline {
+   text-shadow: 0 10px 40px rgba(0,0,0,0.6);
    transition: transform 0.2s ease-out;
 will-change: transform;
   font-family: var(--font-serif);
@@ -276,7 +289,6 @@ will-change: transform;
   font-weight: 300;
 }
 .hero-cta {
-   transition: transform 0.25s var(--ease-out), color 0.3s, border-color 0.3s;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -287,8 +299,10 @@ will-change: transform;
   color: var(--text);
   border-bottom: 1px solid var(--border-hover);
   padding-bottom: 0.5rem;
-  transition: color 0.3s, border-color 0.3s;
+
+  transition: transform 0.25s var(--ease-out), color 0.3s, border-color 0.3s;
 }
+   
 .hero-cta:hover { color: var(--accent); border-color: var(--accent); }
 .cta-arrow {
   display: inline-block;
@@ -379,15 +393,33 @@ will-change: transform;
   height: 280px;
   overflow: hidden;
 }
+
+/* subtle depth */
+
+/* intentional label */
+.work-visual::after {
+  content: "Work Preview";
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-size: 0.7rem;
+  opacity: 0.35;
+  font-family: var(--font-mono);
+  z-index: 3;
+}
 .w1 { background: linear-gradient(135deg, #0f1528 0%, #1a2040 60%, #0d1520 100%); }
 .w2 { background: linear-gradient(135deg, #081510 0%, #0e2a20 60%, #061612 100%); }
 .w3 { background: linear-gradient(135deg, #12100a 0%, #2a1e08 60%, #1a130a 100%); }
 .w4 { background: linear-gradient(135deg, #100815 0%, #1e0c28 60%, #100a1a 100%); }
-.work-visual::after {
+.work-visual::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 40%, rgba(7, 9, 15, 0.85) 100%);
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(7, 9, 15, 0.85) 100%
+  );
 }
 .work-overlay {
   position: absolute;
@@ -397,22 +429,7 @@ will-change: transform;
   align-items: flex-end;
   padding: 1.5rem;
 }
-.work-tag {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 0.3rem 0.7rem;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.4s, transform 0.4s var(--ease-out);
-}
-.work-item:hover .work-tag { opacity: 1; transform: translateY(0); }
-.work-meta {
-  padding: 1.5rem 1.8rem 2rem;
-}
+
 .work-meta h3 {
   font-family: var(--font-serif);
   font-size: 1.25rem;
