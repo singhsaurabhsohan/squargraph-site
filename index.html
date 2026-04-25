@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
+    .cap-grid {
+  margin-top: 3.5rem;
+}
 /* =========================================
    SQUARGRAPH STUDIOS — Full Site
    Interstellar Edition 2.0
@@ -33,7 +36,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
-body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-weight:300;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-weight:300;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor: pointer;}
 a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
 input,textarea,button,select{font-family:inherit}
@@ -81,7 +84,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--accent);transition:width .35s var(--ease-out)}
 .nav-links a:hover{color:var(--text)}
 .nav-links a:hover::after{width:100%}
-.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:4px}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor: pointer;;padding:4px}
 .nav-toggle span{display:block;width:22px;height:1px;background:var(--text);transition:transform .35s var(--ease-out),opacity .3s}
 
 /* ═══ HERO ═══ */
@@ -102,29 +105,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.6rem}
 .scroll-line{display:block;width:1px;height:50px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollAnim 2.2s ease-in-out infinite}
 @keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-
-/* ═══ WHAT WE HAVE DONE ═══ */
-#done{position:relative;overflow:hidden}
-#done::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 80% 20%,rgba(139,164,255,.04) 0%,transparent 70%);pointer-events:none}
-.done-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:1rem}
-.done-item{position:relative;padding:3rem 2.5rem;border:1px solid var(--border);background:rgba(255,255,255,.01);transition:border-color .4s,background .4s;overflow:hidden}
-.done-item::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 0% 0%,rgba(139,164,255,.06),transparent 60%);opacity:0;transition:opacity .5s}
-.done-item:hover{border-color:var(--border-hover);background:rgba(139,164,255,.02)}
-.done-item:hover::before{opacity:1}
-.done-num{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;color:var(--accent);margin-bottom:1.2rem;display:block}
-.done-item h3{font-family:var(--font-serif);font-size:1.35rem;font-weight:400;margin-bottom:.8rem;line-height:1.3}
-.done-item p{font-size:.86rem;color:var(--text-dim);line-height:1.75}
-.done-tag{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.2rem;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;color:var(--accent-b);text-transform:uppercase}
-
-/* ═══ WHAT WE CAN DO ═══ */
-#cando{position:relative}
-#cando::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 20% 80%,rgba(61,218,184,.04) 0%,transparent 70%);pointer-events:none}
-.cando-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:1rem}
-.cando-item{padding:2.5rem 1.8rem;border:1px solid var(--border);position:relative;transition:border-color .4s,transform .4s var(--ease-out)}
-.cando-item:hover{border-color:rgba(139,164,255,.3);transform:translateY(-4px)}
-.cando-num{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.12em;color:var(--text-muted);margin-bottom:1.2rem}
-.cando-item h3{font-family:var(--font-serif);font-size:1.1rem;font-weight:400;margin-bottom:.7rem}
-.cando-item p{font-size:.82rem;color:var(--text-dim);line-height:1.7}
 
 /* ═══ CAPABILITIES ═══ */
 #capabilities{position:relative}
@@ -148,7 +128,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .reel-text h2 em{font-style:italic;color:var(--text-dim)}
 .reel-frame{position:relative;aspect-ratio:16/9;border:1px solid var(--border);overflow:hidden;background:#060810}
 .reel-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
-.play-btn{width:70px;height:70px;border:1px solid var(--border-hover);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;transition:border-color .3s,transform .3s var(--ease-out),background .3s}
+.play-btn{width:70px;height:70px;border:1px solid var(--border-hover);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor: pointer;;transition:border-color .3s,transform .3s var(--ease-out),background .3s}
 .play-btn:hover{border-color:var(--accent);transform:scale(1.08);background:rgba(139,164,255,.06)}
 .play-icon{color:var(--accent);font-size:1.2rem;margin-left:4px}
 .reel-cap{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase}
@@ -177,7 +157,26 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .founder-vis{position:relative}
 .founder-frame{width:100%;aspect-ratio:3/4;border:1px solid var(--border);background:linear-gradient(135deg,rgba(139,164,255,.06),rgba(61,218,184,.04));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .founder-monogram{font-family:var(--font-serif);font-size:8rem;color:rgba(139,164,255,.08);font-weight:400;font-style:italic;user-select:none}
-.founder-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,7,14,.8),transparent 50%)}
+background: linear-gradient(
+  to top,
+  rgba(5,7,14,0.85),
+  rgba(5,7,14,0.2) 40%,
+  transparent 70%
+);{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,7,14,.8),transparent 50%)}
+    .founder-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.1) brightness(0.9);
+  transition: transform 1s ease, filter 0.6s ease;
+}
+
+.founder-frame:hover .founder-img {
+  transform: scale(1.05);
+  filter: grayscale(0%) contrast(1.05) brightness(1);
+}
 .founder-tag{position:absolute;bottom:2rem;left:2rem;z-index:2;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;color:var(--text-dim);text-transform:uppercase}
 .founder-text .lbl{margin-bottom:1.5rem}
 .founder-text h2{font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;line-height:1.2;margin-bottom:2rem}
@@ -207,14 +206,14 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .fg select option{background:var(--bg);color:var(--text)}
 .fg input::placeholder,.fg textarea::placeholder{color:var(--text-muted);font-size:.88rem}
 .fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--accent)}
-.file-upload{position:relative;border:1px dashed var(--border);padding:1.5rem;text-align:center;transition:border-color .3s;cursor:none}
+.file-upload{position:relative;border:1px dashed var(--border);padding:1.5rem;text-align:center;transition:border-color .3s;cursor: pointer;}
 .file-upload:hover{border-color:var(--border-hover)}
-.file-upload input[type="file"]{position:absolute;inset:0;opacity:0;cursor:none;width:100%}
+.file-upload input[type="file"]{position:absolute;inset:0;opacity:0;cursor: pointer;;width:100%}
 .file-upload-inner{display:flex;flex-direction:column;align-items:center;gap:.6rem;pointer-events:none}
 .file-icon{color:var(--accent);opacity:.5}
 .file-upload-txt{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase}
 #fileNameDisplay{font-family:var(--font-mono);font-size:.62rem;color:var(--accent-b);margin-top:.4rem;letter-spacing:.06em}
-.submit-btn{display:inline-flex;align-items:center;gap:.8rem;background:transparent;border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2rem;cursor:none;transition:background .3s,border-color .3s,color .3s;margin-top:1rem}
+.submit-btn{display:inline-flex;align-items:center;gap:.8rem;background:transparent;border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2rem;cursor: pointer;;transition:background .3s,border-color .3s,color .3s;margin-top:1rem}
 .submit-btn:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}
 .form-note{margin-top:1.2rem;font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted);letter-spacing:.1em}
 
@@ -268,7 +267,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .wa-btn svg{width:20px;height:20px}
 
 /* ═══ CHATBOT — Real AI ═══ */
-.chat-trigger{position:fixed;bottom:1.8rem;right:1.8rem;width:48px;height:48px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--text-dim);z-index:400;cursor:none;transition:border-color .3s,color .3s,transform .3s var(--ease-out)}
+.chat-trigger{position:fixed;bottom:1.8rem;right:1.8rem;width:48px;height:48px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--text-dim);z-index:400;cursor: pointer;;transition:border-color .3s,color .3s,transform .3s var(--ease-out)}
 .chat-trigger:hover{border-color:var(--accent);color:var(--accent);transform:scale(1.08)}
 .chat-trigger svg{width:20px;height:20px}
 .chat-panel{position:fixed;bottom:5.5rem;right:1.8rem;width:340px;max-height:500px;border:1px solid var(--border);background:rgba(8,10,18,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:4px;display:flex;flex-direction:column;z-index:450;opacity:0;transform:translateY(10px) scale(.97);pointer-events:none;transition:opacity .35s var(--ease-out),transform .35s var(--ease-out)}
@@ -279,7 +278,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 @keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.4}}
 .chat-brand strong{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;color:var(--text)}
 .chat-status{font-family:var(--font-mono);font-size:.56rem;color:var(--accent-b);letter-spacing:.1em}
-.chat-close{background:none;border:none;color:var(--text-muted);font-size:.8rem;cursor:none;transition:color .3s}
+.chat-close{background:none;border:none;color:var(--text-muted);font-size:.8rem;cursor: pointer;;transition:color .3s}
 .chat-close:hover{color:var(--text)}
 .chat-msgs{flex:1;overflow-y:auto;padding:1.2rem;display:flex;flex-direction:column;gap:.8rem;scroll-behavior:smooth}
 .chat-msgs::-webkit-scrollbar{width:1px}
@@ -296,7 +295,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .chat-input-area{display:flex;border-top:1px solid var(--border);padding:.8rem 1rem;gap:.6rem}
 #chatIn{flex:1;background:none;border:none;color:var(--text);font-size:.8rem;outline:none}
 #chatIn::placeholder{color:var(--text-muted);font-size:.78rem}
-#chatSend{background:none;border:none;color:var(--accent);font-size:1rem;cursor:none;transition:transform .3s var(--ease-out)}
+#chatSend{background:none;border:none;color:var(--accent);font-size:1rem;cursor: pointer;;transition:transform .3s var(--ease-out)}
 #chatSend:hover{transform:translateX(3px)}
 .ai-badge{font-family:var(--font-mono);font-size:.5rem;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase;padding:.2rem .5rem;border:1px solid var(--border);margin-left:auto}
 
@@ -374,12 +373,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <span></span><span></span>
     </button>
     <div class="nav-links" id="navLinks">
-      <a href="#done">Work</a>
-      <a href="#cando">Services</a>
       <a href="#capabilities">Capabilities</a>
-      <a href="#founder">Studio</a>
-      <a href="#careers">Careers</a>
-      <a href="#contact">Contact</a>
+<a href="#services">Services</a>
+<a href="#founder">Studio</a>
+<a href="#careers">Careers</a>
+<a href="#contact">Contact</a>
     </div>
   </div>
 </nav>
@@ -394,7 +392,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <p class="hero-lbl reveal">Creative & Social-First Studio — New Delhi</p>
     <h1 class="hero-h1 reveal">We build<br /><em>high-impact</em><br />brand universes.</h1>
     <p class="hero-sub reveal">Integrated campaigns. Content. Social. PR. Influencer.<br />From strategy to execution — no shortcuts.</p>
-    <a href="#services" class="hero-cta reveal">What we do <span class="cta-arr">↓</span></a>
+    <a href="#capabilities" class="hero-cta reveal">Explore Capabilities <span class="cta-arr">↓</span></a>
   </div>
   <div class="scroll-hint">
     <span class="scroll-line"></span>
@@ -402,14 +400,14 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </section>
 
 <!-- SERVICES -->
-<section id="services">
+<section id="capabilities">
   <div class="inner">
-    <div class="lbl reveal">What We Do</div>
+    <div class="lbl reveal">Capabilities</div>
     <h2 class="sec-title reveal">Every discipline.<br /><em>One perspective.</em></h2>
     <div class="cap-intro reveal">
       <p>Squargraph Studios brings boutique focus with full-service output — each capability grounded in real campaign experience across brands, not theory.</p>
     </div>
-    <div class="cap-grid" style="margin-top:3.5rem">
+    <div class="cap-grid">
 
       <div class="cap-card reveal">
         <svg class="cap-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
@@ -488,7 +486,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <!-- SERVICES -->
 <section id="services">
   <div class="inner">
-    <div class="lbl reveal">Services</div>
+    <div class="lbl reveal">Execution</div>
     <h2 class="sec-title reveal">The full stack.<br /><em>No gaps.</em></h2>
     <div class="services-grid">
       <div class="svc reveal"><div class="svc-num">01</div><h3>Strategy</h3><p>Brand architecture, audience mapping, campaign roadmaps. The spine before the creative.</p></div>
@@ -509,9 +507,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="founder-in">
       <div class="founder-vis reveal">
         <div class="founder-frame">
-          <div class="founder-monogram">SS</div>
-          <div class="founder-tag">Founder & Creative Director</div>
-        </div>
+  <img src="images/founder.jpg" alt="Saurabh Sohan Singh" class="founder-img" />
+  <div class="founder-tag">Founder & Creative Director</div>
+</div>
       </div>
       <div class="founder-text">
         <div class="lbl reveal">The Studio</div>
@@ -533,7 +531,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <!-- ABOUT -->
 <section id="about">
   <div class="about-in">
-    <div class="lbl reveal" style="text-align:center">About the Studio</div>
+    <div class="lbl reveal lbl-center">About the Studio</div>
     <h2 class="reveal">We are Squargraph.<br /><em>A creative studio</em><br />built without compromise.</h2>
     <div class="about-body reveal">
       <p>Squargraph Studios is a Delhi-based creative and social-first studio. Born from 8+ years of experience inside India's top marketing environments — including 3+ years leading Hyundai India's integrated campaigns at INNOCEAN Worldwide — we exist to deliver what agency structures rarely allow: true ownership of ideas, from brief to execution.</p>
@@ -642,8 +640,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <p>Creative & Social-First Studio<br />New Delhi, India</p>
       </div>
       <div class="footer-nav">
-        <a href="#done">Work</a>
-        <a href="#cando">Services</a>
+        <a href="#services">Services</a>
         <a href="#capabilities">Capabilities</a>
         <a href="#founder">Studio</a>
         <a href="#careers">Careers</a>
@@ -655,7 +652,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <a href="https://www.linkedin.com/company/squargraph" target="_blank" rel="noopener"><span class="s-icon">LI</span>squargraph</a>
         <a href="https://www.facebook.com/squargraphstudios" target="_blank" rel="noopener"><span class="s-icon">FB</span>squargraphstudios</a>
         <a href="https://www.youtube.com/channel/squargraph" target="_blank" rel="noopener"><span class="s-icon">YT</span>squargraph</a>
-        <a href="https://www.x.com/squargraph" target="_blank" rel="noopener"><span class="s-icon">X</span>@squargraph</a>
+        <a href="https://www.x.com/squargraph" target="_blank" rel="noopener"><span class="s-icon">X</span>squargraph</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -690,7 +687,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="chat-msgs" id="chatMsgs">
     <div class="msg bot">
       <p>Hey — welcome to Squargraph Studios.</p>
-      <p>I'm the studio's AI assistant. Ask me anything about what we do, our experience, or how to work with us.</p>
+      <p>I'm the studio's AI assistant. Ask me anything about Explore Capabilities, our experience, or how to work with us.</p>
     </div>
   </div>
   <div class="chat-input-area">
@@ -713,7 +710,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   const BH = { x: W * 0.65, y: H * 0.46, r: Math.min(W, H) * 0.085 };
 
   // Stars
-  const STARS = 380;
+  const STARS = 220;
   const stars = Array.from({length: STARS}, () => {
     const ang = Math.random() * Math.PI * 2;
     const d = BH.r * 2.4 + Math.random() * Math.max(W, H);
@@ -725,7 +722,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   });
 
   // Disk
-  const DISK = 320;
+  const DISK = 180;
   const disk = Array.from({length: DISK}, () => {
     const lane = Math.random();
     return {
@@ -908,12 +905,40 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 })();
 
 /* ═══ SMOOTH SCROLL ═══ */
-(function() {
+(function () {
+  const nav = document.getElementById('nav');
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+
+      e.preventDefault();
+
+      const offset = nav.offsetHeight;
+
+      window.scrollTo({
+        top: target.getBoundingClientRect().top + window.scrollY - offset,
+        behavior: 'smooth'
+      });
+    });
+  });
+})();
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click',function(e){
       const t=document.querySelector(this.getAttribute('href'));
-      if(!t) return; e.preventDefault();
-      window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'});
+      if(!t) return;
+      e.preventDefault();
+
+      const offset = document.getElementById('nav').offsetHeight;
+
+      window.scrollTo({
+        top: t.getBoundingClientRect().top + window.scrollY - offset,
+        behavior: 'smooth'
+      });
+    });
+  });
+})();
     });
   });
 })();
@@ -922,8 +947,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 (function() {
   const root=document.documentElement;
   const map=[
-    {id:'hero',a:'#8ba4ff'},{id:'done',a:'#a0b8ff'},{id:'cando',a:'#4ee6c3'},
-    {id:'capabilities',a:'#8ba4ff'},{id:'reel',a:'#4ee6c3'},{id:'services',a:'#8ba4ff'},
+    {id:'hero',a:'#8ba4ff'},{id:'capabilities',a:'#8ba4ff'},{id:'reel',a:'#4ee6c3'},{id:'services',a:'#8ba4ff'},
     {id:'founder',a:'#80d8c0'},{id:'about',a:'#8ba4ff'},{id:'contact',a:'#4ee6c3'},
     {id:'careers',a:'#c89dff'}
   ];
@@ -988,7 +1012,7 @@ About Squargraph Studios:
 - Services: Integrated Campaigns, Social Media Strategy, Content, PR, Influencer Marketing, Client Servicing, Analytics, Branding, Video Production, Copywriting
 - Notable work: Hyundai India 360° social campaigns, ICC partnership campaigns, Auto Expo 2025, Art Trail PR, influencer ecosystem management
 - Location: New Delhi, India
-- Contact: singhsaurabhsohan@gmail.com | +91-8588897488
+- Contact: hello@squargraph.com | +91-8588897488
 
 Be helpful, concise, and professional. Keep responses to 2-4 sentences unless more detail is genuinely needed. Match the studio's tone: creative, direct, no-fluff. If asked to book or start a project, direct them to the contact form on the page.`;
 
@@ -1030,11 +1054,11 @@ Be helpful, concise, and professional. Keep responses to 2-4 sentences unless mo
         })
       });
       const data=await res.json();
-      const reply=data.content?.[0]?.text||"I'm having trouble connecting right now. Please try again or reach us at singhsaurabhsohan@gmail.com.";
+      const reply=data.content?.[0]?.text||"I'm having trouble connecting right now. Please try again or reach us at hello@squargraph.com.";
       hideTyping(); addMsg(reply,'bot');
       history.push({role:'assistant',content:reply});
     } catch(err) {
-      hideTyping(); addMsg("Connection issue. Please email us at singhsaurabhsohan@gmail.com or use the contact form.",'bot');
+      hideTyping(); addMsg("Connection issue. Please email us at hello@squargraph.com or use the contact form.",'bot');
     }
     isThinking=false;
   }
