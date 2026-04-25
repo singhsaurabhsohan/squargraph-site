@@ -4,445 +4,1218 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Squargraph Studios — Creative & Social-First Studio</title>
-  <meta name="description" content="We build high-impact creative experiences. Campaigns, content, and digital — from strategy to execution." />
+  <meta name="description" content="A Delhi-based creative studio built on 8+ years of integrated campaigns, social media, content, PR and influencer strategy." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+/* =========================================
+   SQUARGRAPH STUDIOS — Full Site
+   Interstellar Edition 2.0
+   ========================================= */
+:root {
+  --bg: #05070e;
+  --text: #f0f4ff;
+  --text-dim: rgba(240,244,255,0.45);
+  --text-muted: rgba(240,244,255,0.22);
+  --accent: #8ba4ff;
+  --accent-b: #3ddab8;
+  --accent-c: #c89dff;
+  --border: rgba(240,244,255,0.07);
+  --border-hover: rgba(240,244,255,0.18);
+  --radius: 2px;
+  --font-serif: 'DM Serif Display', serif;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --ease-out: cubic-bezier(0.16,1,0.3,1);
+  --ease-io: cubic-bezier(0.4,0,0.2,1);
+  --pad: 10rem 0;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-weight:300;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+input,textarea,button,select{font-family:inherit}
+
+/* NOISE */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");background-size:256px;pointer-events:none;z-index:2000;opacity:0.4}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+
+/* CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,background .4s,width .3s var(--ease-out),height .3s var(--ease-out);mix-blend-mode:screen}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(139,164,255,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s var(--ease-out),width .3s var(--ease-out),height .3s var(--ease-out),border-color .4s}
+.cursor.hov{width:14px;height:14px}
+.cursor-ring.hov{width:50px;height:50px;border-color:rgba(61,218,184,.5)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal:nth-child(2){transition-delay:.1s}
+.reveal:nth-child(3){transition-delay:.2s}
+.reveal:nth-child(4){transition-delay:.3s}
+.reveal:nth-child(5){transition-delay:.4s}
+
+/* LABELS */
+.lbl{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;display:block}
+.sec-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.15;margin-bottom:4rem}
+.inner{max-width:1200px;margin:0 auto;padding:var(--pad);padding-left:2rem;padding-right:2rem}
+
+/* ═══ NAVBAR ═══ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.6rem 2.5rem;display:flex;align-items:center;transition:background .5s,padding .4s}
+#nav.scrolled{background:rgba(5,7,14,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:1.2rem 2.5rem;border-bottom:1px solid var(--border)}
+.nav-in{max-width:1200px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+
+/* SVG LOGO */
+.nav-logo{display:flex;align-items:center;gap:.7rem;transition:opacity .3s}
+.nav-logo:hover{opacity:.75}
+.logo-svg{width:36px;height:36px;flex-shrink:0}
+.logo-wordmark{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;color:var(--text)}
+
+.nav-links{display:flex;gap:2.8rem;align-items:center}
+.nav-links a{font-size:.82rem;font-weight:400;color:var(--text-dim);letter-spacing:.03em;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--accent);transition:width .35s var(--ease-out)}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:4px}
+.nav-toggle span{display:block;width:22px;height:1px;background:var(--text);transition:transform .35s var(--ease-out),opacity .3s}
+
+/* ═══ HERO ═══ */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+#starCanvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-glow{position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:60vw;height:60vw;background:radial-gradient(ellipse at center,rgba(139,164,255,.06) 0%,rgba(61,218,184,.02) 40%,transparent 70%);pointer-events:none;animation:glowPulse 8s ease-in-out infinite}
+@keyframes glowPulse{0%,100%{opacity:.7;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}}
+.hero-content{position:relative;z-index:10;max-width:1200px;margin:0 auto;padding:0 2rem;width:100%;padding-top:6rem}
+.hero-lbl{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem}
+.hero-h1{font-family:var(--font-serif);font-size:clamp(3rem,8vw,7rem);font-weight:400;line-height:1.06;letter-spacing:-.01em;margin-bottom:2.5rem;max-width:14ch}
+.hero-h1 em{font-style:italic;color:var(--text-dim)}
+.hero-sub{font-size:clamp(.9rem,1.5vw,1.1rem);color:var(--text-dim);line-height:1.8;margin-bottom:3.5rem;font-weight:300}
+.hero-cta{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text);border-bottom:1px solid var(--border-hover);padding-bottom:.5rem;transition:color .3s,border-color .3s}
+.hero-cta:hover{color:var(--accent);border-color:var(--accent)}
+.cta-arr{display:inline-block;animation:bounce 2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.6rem}
+.scroll-line{display:block;width:1px;height:50px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollAnim 2.2s ease-in-out infinite}
+@keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ═══ WHAT WE HAVE DONE ═══ */
+#done{position:relative;overflow:hidden}
+#done::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 80% 20%,rgba(139,164,255,.04) 0%,transparent 70%);pointer-events:none}
+.done-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:1rem}
+.done-item{position:relative;padding:3rem 2.5rem;border:1px solid var(--border);background:rgba(255,255,255,.01);transition:border-color .4s,background .4s;overflow:hidden}
+.done-item::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 0% 0%,rgba(139,164,255,.06),transparent 60%);opacity:0;transition:opacity .5s}
+.done-item:hover{border-color:var(--border-hover);background:rgba(139,164,255,.02)}
+.done-item:hover::before{opacity:1}
+.done-num{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;color:var(--accent);margin-bottom:1.2rem;display:block}
+.done-item h3{font-family:var(--font-serif);font-size:1.35rem;font-weight:400;margin-bottom:.8rem;line-height:1.3}
+.done-item p{font-size:.86rem;color:var(--text-dim);line-height:1.75}
+.done-tag{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.2rem;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;color:var(--accent-b);text-transform:uppercase}
+
+/* ═══ WHAT WE CAN DO ═══ */
+#cando{position:relative}
+#cando::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 20% 80%,rgba(61,218,184,.04) 0%,transparent 70%);pointer-events:none}
+.cando-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:1rem}
+.cando-item{padding:2.5rem 1.8rem;border:1px solid var(--border);position:relative;transition:border-color .4s,transform .4s var(--ease-out)}
+.cando-item:hover{border-color:rgba(139,164,255,.3);transform:translateY(-4px)}
+.cando-num{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.12em;color:var(--text-muted);margin-bottom:1.2rem}
+.cando-item h3{font-family:var(--font-serif);font-size:1.1rem;font-weight:400;margin-bottom:.7rem}
+.cando-item p{font-size:.82rem;color:var(--text-dim);line-height:1.7}
+
+/* ═══ CAPABILITIES ═══ */
+#capabilities{position:relative}
+.cap-intro{max-width:650px;margin-bottom:5rem}
+.cap-intro p{color:var(--text-dim);font-size:1rem;line-height:1.85}
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.cap-card{padding:2.8rem 2.2rem;border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color .4s}
+.cap-card::after{content:'';position:absolute;bottom:0;left:0;height:2px;width:0;background:linear-gradient(to right,var(--accent),var(--accent-b));transition:width .5s var(--ease-out)}
+.cap-card:hover{border-color:rgba(139,164,255,.25)}
+.cap-card:hover::after{width:100%}
+.cap-icon{width:40px;height:40px;margin-bottom:1.5rem;color:var(--accent)}
+.cap-card h3{font-family:var(--font-serif);font-size:1.15rem;font-weight:400;margin-bottom:.7rem}
+.cap-card p{font-size:.82rem;color:var(--text-dim);line-height:1.75}
+.cap-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.2rem}
+.cap-tag{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.08em;padding:.25rem .6rem;border:1px solid var(--border);color:var(--text-muted);text-transform:uppercase}
+
+/* ═══ SHOWREEL ═══ */
+#reel{background:rgba(5,7,14,1)}
+.reel-in{max-width:1200px;margin:0 auto;padding:var(--pad);padding-left:2rem;padding-right:2rem;display:grid;grid-template-columns:1fr 1.6fr;gap:6rem;align-items:center}
+.reel-text h2{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.15}
+.reel-text h2 em{font-style:italic;color:var(--text-dim)}
+.reel-frame{position:relative;aspect-ratio:16/9;border:1px solid var(--border);overflow:hidden;background:#060810}
+.reel-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.play-btn{width:70px;height:70px;border:1px solid var(--border-hover);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;transition:border-color .3s,transform .3s var(--ease-out),background .3s}
+.play-btn:hover{border-color:var(--accent);transform:scale(1.08);background:rgba(139,164,255,.06)}
+.play-icon{color:var(--accent);font-size:1.2rem;margin-left:4px}
+.reel-cap{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase}
+
+/* ═══ SERVICES ═══ */
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.svc{padding:2.5rem 1.8rem;border:1px solid var(--border);transition:border-color .4s,background .4s}
+.svc:hover{border-color:var(--border-hover);background:rgba(139,164,255,.02)}
+.svc-num{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.12em;color:var(--text-muted);margin-bottom:1.2rem}
+.svc h3{font-family:var(--font-serif);font-size:1.1rem;font-weight:400;margin-bottom:.7rem}
+.svc p{font-size:.8rem;color:var(--text-dim);line-height:1.7}
+
+/* ═══ PROCESS ═══ */
+.process-track{display:flex;align-items:flex-start;gap:0}
+.proc-step{flex:1;padding:2.5rem 2rem;position:relative}
+.proc-step::before{content:attr(data-num);position:absolute;top:2.5rem;right:2rem;font-family:var(--font-mono);font-size:3rem;font-weight:700;color:rgba(139,164,255,.04);line-height:1}
+.proc-step:not(:last-child)::after{content:'';position:absolute;top:3.8rem;right:-1px;width:2px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);opacity:.3}
+.proc-step{border:1px solid var(--border);margin-right:2px}
+.step-num{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.14em;color:var(--accent);margin-bottom:1rem}
+.proc-step h3{font-family:var(--font-serif);font-size:1.1rem;font-weight:400;margin-bottom:.6rem}
+.proc-step p{font-size:.8rem;color:var(--text-dim);line-height:1.7}
+
+/* ═══ FOUNDER ═══ */
+#founder{position:relative}
+.founder-in{display:grid;grid-template-columns:1fr 1.1fr;gap:8rem;align-items:center}
+.founder-vis{position:relative}
+.founder-frame{width:100%;aspect-ratio:3/4;border:1px solid var(--border);background:linear-gradient(135deg,rgba(139,164,255,.06),rgba(61,218,184,.04));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.founder-monogram{font-family:var(--font-serif);font-size:8rem;color:rgba(139,164,255,.08);font-weight:400;font-style:italic;user-select:none}
+.founder-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,7,14,.8),transparent 50%)}
+.founder-tag{position:absolute;bottom:2rem;left:2rem;z-index:2;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;color:var(--text-dim);text-transform:uppercase}
+.founder-text .lbl{margin-bottom:1.5rem}
+.founder-text h2{font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;line-height:1.2;margin-bottom:2rem}
+.founder-text h2 em{font-style:italic;color:var(--text-dim)}
+.founder-bio p{font-size:.9rem;color:var(--text-dim);line-height:1.85;margin-bottom:1.2rem}
+.founder-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:2.5rem}
+.f-stat{padding:1.5rem 1.2rem;border:1px solid var(--border);text-align:center}
+.f-stat-num{font-family:var(--font-serif);font-size:2rem;color:var(--accent);display:block;line-height:1}
+.f-stat-lbl{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase;margin-top:.4rem;display:block}
+
+/* ═══ ABOUT ═══ */
+#about{background:rgba(8,11,20,1)}
+.about-in{max-width:900px;margin:0 auto;padding:var(--pad);padding-left:2rem;padding-right:2rem;text-align:center}
+.about-in h2{font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,4rem);font-weight:400;line-height:1.15;margin-bottom:2.5rem}
+.about-in h2 em{font-style:italic;color:var(--text-dim)}
+.about-body{display:grid;grid-template-columns:1fr 1fr;gap:3rem;text-align:left;margin-top:3rem}
+.about-body p{font-size:.9rem;color:var(--text-dim);line-height:1.85}
+
+/* ═══ CONTACT ═══ */
+.contact-in{max-width:800px;margin:0 auto;padding:var(--pad);padding-left:2rem;padding-right:2rem}
+.contact-in h2{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.15;margin-bottom:3.5rem}
+.contact-in h2 em{font-style:italic;color:var(--text-dim)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.fg{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.8rem}
+.fg label{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted)}
+.fg input,.fg textarea,.fg select{background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--text);font-size:.92rem;padding:.8rem 0;outline:none;transition:border-color .3s;resize:none;-webkit-appearance:none}
+.fg select option{background:var(--bg);color:var(--text)}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--text-muted);font-size:.88rem}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--accent)}
+.file-upload{position:relative;border:1px dashed var(--border);padding:1.5rem;text-align:center;transition:border-color .3s;cursor:none}
+.file-upload:hover{border-color:var(--border-hover)}
+.file-upload input[type="file"]{position:absolute;inset:0;opacity:0;cursor:none;width:100%}
+.file-upload-inner{display:flex;flex-direction:column;align-items:center;gap:.6rem;pointer-events:none}
+.file-icon{color:var(--accent);opacity:.5}
+.file-upload-txt{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase}
+#fileNameDisplay{font-family:var(--font-mono);font-size:.62rem;color:var(--accent-b);margin-top:.4rem;letter-spacing:.06em}
+.submit-btn{display:inline-flex;align-items:center;gap:.8rem;background:transparent;border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2rem;cursor:none;transition:background .3s,border-color .3s,color .3s;margin-top:1rem}
+.submit-btn:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.form-note{margin-top:1.2rem;font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted);letter-spacing:.1em}
+
+/* ═══ CAREERS ═══ */
+#careers{position:relative;overflow:hidden}
+#careers::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 70% 40%,rgba(200,157,255,.04) 0%,transparent 70%);pointer-events:none}
+.careers-in{max-width:900px;margin:0 auto;padding:var(--pad);padding-left:2rem;padding-right:2rem}
+.careers-in h2{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.15;margin-bottom:1rem}
+.careers-in h2 em{font-style:italic;color:var(--text-dim)}
+.careers-sub{font-size:.95rem;color:var(--text-dim);line-height:1.8;margin-bottom:3rem;max-width:600px}
+.openings{display:grid;gap:2px;margin-bottom:3.5rem}
+.opening{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem;border:1px solid var(--border);transition:border-color .4s,background .4s}
+.opening:hover{border-color:var(--border-hover);background:rgba(139,164,255,.02)}
+.opening-info h4{font-family:var(--font-serif);font-size:1rem;font-weight:400;margin-bottom:.3rem}
+.opening-info span{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;color:var(--accent);text-transform:uppercase}
+.opening-type{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase;border:1px solid var(--border);padding:.3rem .7rem}
+.career-divider{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase;margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border)}
+
+/* ═══ FOOTER ═══ */
+#footer{border-top:1px solid var(--border);padding:4rem 0 2.5rem}
+.footer-in{max-width:1200px;margin:0 auto;padding:0 2rem}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:4rem;padding-bottom:4rem;border-bottom:1px solid var(--border);margin-bottom:2rem}
+
+/* FOOTER LOGO SVG */
+.footer-logo-wrap{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.footer-logo-svg{width:32px;height:32px}
+.footer-logo-txt{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.2em;color:var(--text)}
+.footer-brand p{font-size:.82rem;color:var(--text-muted);line-height:1.7}
+.footer-nav{display:flex;flex-direction:column;gap:.8rem}
+.footer-nav a{font-size:.84rem;color:var(--text-dim);transition:color .3s}
+.footer-nav a:hover{color:var(--text)}
+
+/* FOOTER SOCIAL — bottom-left only */
+.footer-social-col{display:flex;flex-direction:column;gap:.5rem}
+.footer-social-col a{display:flex;align-items:center;gap:.8rem;font-size:.82rem;color:var(--text-dim);transition:color .3s;padding:.4rem 0;border-bottom:1px solid var(--border);transition:color .3s,border-color .3s}
+.footer-social-col a:last-child{border-bottom:none}
+.footer-social-col a:hover{color:var(--accent);border-color:rgba(139,164,255,.2)}
+.s-icon{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;color:var(--text-muted);width:20px;flex-shrink:0}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between}
+.footer-copy,.footer-tag{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;color:var(--text-muted)}
+
+/* SOCIAL FIXED BOTTOM-LEFT */
+.social-fixed{position:fixed;bottom:2rem;left:2rem;z-index:400;display:flex;flex-direction:column;gap:.6rem;align-items:flex-start}
+.social-fixed a{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase;transition:color .3s,transform .3s;display:block;writing-mode:horizontal-tb}
+.social-fixed a:hover{color:var(--accent);transform:translateX(3px)}
+.social-fixed-line{width:1px;height:40px;background:var(--border);display:block;margin-left:4px}
+
+/* ═══ WHATSAPP ═══ */
+.wa-btn{position:fixed;bottom:6rem;right:1.8rem;width:48px;height:48px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);color:#25d366;z-index:400;transition:border-color .3s,transform .3s var(--ease-out),background .3s}
+.wa-btn:hover{border-color:#25d366;transform:scale(1.08);background:rgba(37,211,102,.06)}
+.wa-btn svg{width:20px;height:20px}
+
+/* ═══ CHATBOT — Real AI ═══ */
+.chat-trigger{position:fixed;bottom:1.8rem;right:1.8rem;width:48px;height:48px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--text-dim);z-index:400;cursor:none;transition:border-color .3s,color .3s,transform .3s var(--ease-out)}
+.chat-trigger:hover{border-color:var(--accent);color:var(--accent);transform:scale(1.08)}
+.chat-trigger svg{width:20px;height:20px}
+.chat-panel{position:fixed;bottom:5.5rem;right:1.8rem;width:340px;max-height:500px;border:1px solid var(--border);background:rgba(8,10,18,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:4px;display:flex;flex-direction:column;z-index:450;opacity:0;transform:translateY(10px) scale(.97);pointer-events:none;transition:opacity .35s var(--ease-out),transform .35s var(--ease-out)}
+.chat-panel.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all}
+.chat-hdr{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;border-bottom:1px solid var(--border)}
+.chat-brand{display:flex;align-items:center;gap:.6rem}
+.chat-dot{width:6px;height:6px;border-radius:50%;background:#3ddab8;animation:pulseDot 2s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.4}}
+.chat-brand strong{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;color:var(--text)}
+.chat-status{font-family:var(--font-mono);font-size:.56rem;color:var(--accent-b);letter-spacing:.1em}
+.chat-close{background:none;border:none;color:var(--text-muted);font-size:.8rem;cursor:none;transition:color .3s}
+.chat-close:hover{color:var(--text)}
+.chat-msgs{flex:1;overflow-y:auto;padding:1.2rem;display:flex;flex-direction:column;gap:.8rem;scroll-behavior:smooth}
+.chat-msgs::-webkit-scrollbar{width:1px}
+.chat-msgs::-webkit-scrollbar-thumb{background:var(--border)}
+.msg{max-width:88%}
+.msg.bot p{font-size:.8rem;color:var(--text-dim);line-height:1.65;margin-bottom:.2rem}
+.msg.user{align-self:flex-end}
+.msg.user p{font-size:.8rem;color:var(--accent);text-align:right;line-height:1.65}
+.msg-typing{display:flex;gap:4px;padding:.6rem 0;align-items:center}
+.msg-typing span{width:5px;height:5px;border-radius:50%;background:var(--text-muted);animation:typingDot 1.2s ease-in-out infinite}
+.msg-typing span:nth-child(2){animation-delay:.2s}
+.msg-typing span:nth-child(3){animation-delay:.4s}
+@keyframes typingDot{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
+.chat-input-area{display:flex;border-top:1px solid var(--border);padding:.8rem 1rem;gap:.6rem}
+#chatIn{flex:1;background:none;border:none;color:var(--text);font-size:.8rem;outline:none}
+#chatIn::placeholder{color:var(--text-muted);font-size:.78rem}
+#chatSend{background:none;border:none;color:var(--accent);font-size:1rem;cursor:none;transition:transform .3s var(--ease-out)}
+#chatSend:hover{transform:translateX(3px)}
+.ai-badge{font-family:var(--font-mono);font-size:.5rem;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase;padding:.2rem .5rem;border:1px solid var(--border);margin-left:auto}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){
+  .cando-grid{grid-template-columns:repeat(2,1fr)}
+  .cap-grid{grid-template-columns:repeat(2,1fr)}
+  .done-grid{grid-template-columns:1fr}
+  .founder-in{grid-template-columns:1fr;gap:3rem}
+  .founder-vis{display:none}
+  .process-track{flex-direction:column}
+  .reel-in{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  :root{--pad:6rem 0}
+  .nav-links{display:none;flex-direction:column;position:fixed;top:0;right:0;bottom:0;width:72vw;background:rgba(5,7,14,.97);backdrop-filter:blur(20px);padding:6rem 2.5rem 3rem;border-left:1px solid var(--border);gap:2rem;z-index:490}
+  .nav-links.open{display:flex}
+  .nav-links a{font-size:1.1rem}
+  .nav-toggle{display:flex;z-index:495}
+  .cando-grid{grid-template-columns:1fr}
+  .cap-grid{grid-template-columns:1fr}
+  .done-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .about-body{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr;gap:2.5rem}
+  .form-row{grid-template-columns:1fr}
+  .founder-stats{grid-template-columns:1fr 1fr}
+  body{cursor:auto}
+  .cursor,.cursor-ring{display:none}
+  .social-fixed{display:none}
+  .chat-panel{width:calc(100vw - 3rem);right:1.5rem}
+}
+@media(max-width:480px){
+  .founder-stats{grid-template-columns:1fr}
+}
+  </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-logo" aria-label="Squargraph Studios">
-        <svg class="logo-svg" viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- S mark: two stacked squares offset -->
-          <rect x="1" y="1" width="14" height="14" stroke="#95acff" stroke-width="1.2" fill="none"/>
-          <rect x="6" y="6" width="14" height="14" stroke="#4ee6c3" stroke-width="1.2" fill="none"/>
-          <!-- wordmark -->
-          <text x="26" y="21" font-family="Space Mono, monospace" font-size="13" font-weight="700" letter-spacing="2.5" fill="#f4f7ff">SQUARGRAPH</text>
-          <text x="26" y="33" font-family="Space Mono, monospace" font-size="6.5" font-weight="400" letter-spacing="5.2" fill="rgba(244,247,255,0.4)">STUDIOS</text>
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curRing"></div>
+
+<!-- FIXED SOCIAL — BOTTOM LEFT ONLY -->
+<div class="social-fixed" id="socialFixed">
+  <span class="social-fixed-line"></span>
+  <a href="https://www.instagram.com/squargraph" target="_blank" rel="noopener">IG</a>
+  <a href="https://www.linkedin.com/company/squargraph" target="_blank" rel="noopener">LI</a>
+  <a href="https://www.facebook.com/squargraphstudios" target="_blank" rel="noopener">FB</a>
+  <a href="https://www.youtube.com/channel/squargraph" target="_blank" rel="noopener">YT</a>
+  <a href="https://www.x.com/squargraph" target="_blank" rel="noopener">X</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#hero" class="nav-logo">
+      <!-- SVG LOGO: Squargraph Studios mark — geometric square+graph motif -->
+      <svg class="logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Squargraph Studios">
+        <rect x="4" y="4" width="18" height="18" stroke="#8ba4ff" stroke-width="1.5"/>
+        <rect x="26" y="4" width="18" height="18" stroke="#8ba4ff" stroke-width="1.5" opacity=".4"/>
+        <rect x="4" y="26" width="18" height="18" stroke="#8ba4ff" stroke-width="1.5" opacity=".4"/>
+        <rect x="26" y="26" width="18" height="18" stroke="#3ddab8" stroke-width="1.5"/>
+        <!-- graph line crossing all quadrants -->
+        <polyline points="8,36 16,22 24,28 32,12 40,18" stroke="#8ba4ff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+        <!-- node dots -->
+        <circle cx="8" cy="36" r="1.5" fill="#3ddab8"/>
+        <circle cx="24" cy="28" r="1.5" fill="#8ba4ff"/>
+        <circle cx="40" cy="18" r="1.5" fill="#3ddab8"/>
+      </svg>
+      <span class="logo-wordmark">SQUARGRAPH</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu" id="navToggle">
+      <span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#done">Work</a>
+      <a href="#cando">Services</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#founder">Studio</a>
+      <a href="#careers">Careers</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <canvas id="starCanvas"></canvas>
+    <div class="hero-glow"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-lbl reveal">Creative & Social-First Studio — New Delhi</p>
+    <h1 class="hero-h1 reveal">We build<br /><em>high-impact</em><br />brand universes.</h1>
+    <p class="hero-sub reveal">Integrated campaigns. Content. Social. PR. Influencer.<br />From strategy to execution — no shortcuts.</p>
+    <a href="#done" class="hero-cta reveal">Explore our work <span class="cta-arr">↓</span></a>
+  </div>
+  <div class="scroll-hint">
+    <span class="scroll-line"></span>
+  </div>
+</section>
+
+<!-- WHAT WE HAVE DONE -->
+<section id="done">
+  <div class="inner">
+    <div class="lbl reveal">What We Have Done</div>
+    <h2 class="sec-title reveal">Built from inside<br /><em>India's biggest campaigns.</em></h2>
+    <div class="done-grid">
+
+      <div class="done-item reveal" style="grid-row:span 2">
+        <span class="done-num">01 — Flagship</span>
+        <h3>Hyundai India — Integrated Campaigns</h3>
+        <p>Led end-to-end integrated campaign execution for Hyundai Motors India across social media, PR, influencer ecosystems, and digital. Managed always-on content calendars, topical campaigns, ICC partnerships, media drives, and Auto Expo 2025 — coordinating between creative, ORM, PR, CX and media teams simultaneously.</p>
+        <p style="margin-top:1rem">Received appreciation from Hyundai leadership for delivery standards and cross-team coordination. Managed production shoots, digital film execution, and real-time content under live event conditions.</p>
+        <div class="done-tag">
+          <span>●</span> Social · PR · Influencer · Production · ORM
+        </div>
+      </div>
+
+      <div class="done-item reveal">
+        <span class="done-num">02 — Event</span>
+        <h3>Auto Expo 2025 — On-Ground Content & Amplification</h3>
+        <p>Managed real-time content capture and digital amplification during one of India's biggest automotive events. Coordinated with experiential teams, influencers, and production houses for live coverage and post-event rollout.</p>
+        <div class="done-tag"><span>●</span> Live Content · Experiential · Amplification</div>
+      </div>
+
+      <div class="done-item reveal">
+        <span class="done-num">03 — Initiative</span>
+        <h3>Art Trail PR Campaign</h3>
+        <p>Executed the Hyundai Art Trail PR initiative — a culturally anchored campaign bridging automotive identity with art and creativity. Managed PR outreach, influencer touchpoints, and content narrative across channels.</p>
+        <div class="done-tag"><span>●</span> PR · Influencer · Brand Narrative</div>
+      </div>
+
+      <div class="done-item reveal">
+        <span class="done-num">04 — Reputation</span>
+        <h3>FabHotels — CX & Online Reputation Management</h3>
+        <p>Managed brand reputation across OTA platforms and social channels for one of India's fast-growing hospitality brands. Improved customer sentiment metrics, response timelines, and escalation management processes — building a CX operation that scaled with the brand.</p>
+        <div class="done-tag"><span>●</span> ORM · CX · Reputation · Escalation</div>
+      </div>
+
+      <div class="done-item reveal">
+        <span class="done-num">05 — Strategy</span>
+        <h3>ICC Campaign Partnerships & Influencer Ecosystem</h3>
+        <p>Managed influencer collaborations at scale — from brief to execution, content review to performance reporting. Curated creator partnerships aligned to brand tone, audience affinity, and campaign objectives across automotive and lifestyle verticals.</p>
+        <div class="done-tag"><span>●</span> Influencer · Creator Strategy · Reporting</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE CAN DO -->
+<section id="cando">
+  <div class="inner">
+    <div class="lbl reveal">What We Can Do</div>
+    <h2 class="sec-title reveal">Every discipline.<br /><em>One perspective.</em></h2>
+    <div class="cando-grid">
+      <div class="cando-item reveal">
+        <div class="cando-num">01</div>
+        <h3>Integrated Campaigns</h3>
+        <p>End-to-end campaign management across social, PR, influencer, content, and digital — strategy to execution, all under one roof.</p>
+      </div>
+      <div class="cando-item reveal">
+        <div class="cando-num">02</div>
+        <h3>Social Media & Content</h3>
+        <p>Platform-native thinking, always-on calendars, topical execution, and content systems built to build audiences over time.</p>
+      </div>
+      <div class="cando-item reveal">
+        <div class="cando-num">03</div>
+        <h3>PR & Influencer</h3>
+        <p>Culturally anchored PR narratives and influencer ecosystems — from creator sourcing to brief, execution, and performance tracking.</p>
+      </div>
+      <div class="cando-item reveal">
+        <div class="cando-num">04</div>
+        <h3>Client Servicing</h3>
+        <p>Structured account management, stakeholder communication, and cross-team coordination — the backbone of campaign health.</p>
+      </div>
+      <div class="cando-item reveal">
+        <div class="cando-num">05</div>
+        <h3>Production & Film</h3>
+        <p>Production shoot management, digital film execution, vendor coordination — from concept to final deliverable.</p>
+      </div>
+      <div class="cando-item reveal">
+        <div class="cando-num">06</div>
+        <h3>Brand Strategy</h3>
+        <p>Brand architecture, positioning, audience insights, and campaign roadmaps that give creative a clear spine and direction.</p>
+      </div>
+      <div class="cando-item reveal">
+        <div class="cando-num">07</div>
+        <h3>Analytics & Reporting</h3>
+        <p>Monthly performance decks, social listening, ORM dashboards — data that informs decisions, not just fills slides.</p>
+      </div>
+      <div class="cando-item reveal">
+        <div class="cando-num">08</div>
+        <h3>Experiential & On-Ground</h3>
+        <p>Live event content, on-ground amplification, and real-time execution built for brand moments that matter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="inner">
+    <div class="lbl reveal">Our Capabilities</div>
+    <h2 class="sec-title reveal">Built from<br /><em>8+ years in the field.</em></h2>
+    <div class="cap-intro reveal">
+      <p>Squargraph Studios is founded on real campaign experience — not theory. Every capability here has been tested in live environments, with real budgets, real clients, and real pressure. We bring boutique focus with full-service output.</p>
+    </div>
+    <div class="cap-grid">
+
+      <div class="cap-card reveal">
+        <svg class="cap-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="4" y="4" width="14" height="14"/><rect x="22" y="4" width="14" height="14"/><rect x="4" y="22" width="14" height="14"/><rect x="22" y="22" width="14" height="14"/><line x1="4" y1="20" x2="36" y2="20" stroke-opacity=".3"/><line x1="20" y1="4" x2="20" y2="36" stroke-opacity=".3"/>
         </svg>
-      </a>
-      <button class="nav-toggle" aria-label="Menu" id="navToggle">
-        <span></span><span></span>
-      </button>
-      <div class="nav-links" id="navLinks">
-        <a href="#work">Work</a>
-        <a href="#services">Services</a>
+        <h3>Integrated Campaign Management</h3>
+        <p>Orchestrating campaigns across every touchpoint — social, PR, influencer, digital, ORM, and CX — with clarity, speed, and cross-team cohesion.</p>
+        <div class="cap-tags">
+          <span class="cap-tag">Multi-platform</span>
+          <span class="cap-tag">Cross-team</span>
+          <span class="cap-tag">Automotive</span>
+          <span class="cap-tag">Hospitality</span>
+        </div>
+      </div>
+
+      <div class="cap-card reveal">
+        <svg class="cap-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="20" cy="20" r="14"/><path d="M20 8 Q28 20 20 32 Q12 20 20 8"/><line x1="6" y1="20" x2="34" y2="20"/>
+        </svg>
+        <h3>Social Media Strategy & Execution</h3>
+        <p>Content calendars, topical campaigns, platform-specific creative direction, and always-on social management — with data-informed iteration built in.</p>
+        <div class="cap-tags">
+          <span class="cap-tag">Instagram</span>
+          <span class="cap-tag">LinkedIn</span>
+          <span class="cap-tag">YouTube</span>
+          <span class="cap-tag">X/Twitter</span>
+        </div>
+      </div>
+
+      <div class="cap-card reveal">
+        <svg class="cap-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M8 30 L16 18 L24 24 L32 10"/><circle cx="8" cy="30" r="2" fill="currentColor"/><circle cx="24" cy="24" r="2" fill="currentColor"/><circle cx="32" cy="10" r="2" fill="currentColor"/>
+        </svg>
+        <h3>PR & Influencer Ecosystem</h3>
+        <p>Culturally relevant PR narratives, creator partnerships across categories, and influence measurement — from campaign ideation to post-analysis reporting.</p>
+        <div class="cap-tags">
+          <span class="cap-tag">Macro Influencers</span>
+          <span class="cap-tag">Micro Creators</span>
+          <span class="cap-tag">PR Outreach</span>
+        </div>
+      </div>
+
+      <div class="cap-card reveal">
+        <svg class="cap-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="6" y="10" width="28" height="20" rx="1"/><path d="M14 10 V6 M26 10 V6"/><line x1="6" y1="16" x2="34" y2="16"/>
+        </svg>
+        <h3>Client Servicing & Account Management</h3>
+        <p>Structured stakeholder management, briefing frameworks, vendor coordination, and billing oversight — keeping complex campaigns organised and on-track.</p>
+        <div class="cap-tags">
+          <span class="cap-tag">Stakeholders</span>
+          <span class="cap-tag">Vendor Mgmt</span>
+          <span class="cap-tag">Billing</span>
+        </div>
+      </div>
+
+      <div class="cap-card reveal">
+        <svg class="cap-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M10 30 L10 20 L18 14 L26 22 L34 10"/><rect x="6" y="6" width="28" height="28"/>
+        </svg>
+        <h3>Performance Analytics & Reporting</h3>
+        <p>Monthly decks, social listening dashboards, advanced social analytics using Sprinklr, and ORM metrics — turning data into strategic decisions.</p>
+        <div class="cap-tags">
+          <span class="cap-tag">Sprinklr</span>
+          <span class="cap-tag">Social Listening</span>
+          <span class="cap-tag">ORM</span>
+        </div>
+      </div>
+
+      <div class="cap-card reveal">
+        <svg class="cap-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+          <polygon points="20,4 36,34 4,34"/><line x1="20" y1="14" x2="20" y2="24"/><circle cx="20" cy="28" r="1.5" fill="currentColor"/>
+        </svg>
+        <h3>AI-Augmented Workflows</h3>
+        <p>Practical use of AI tools — ChatGPT, Claude, and workflow automation — for content structuring, research, and operational efficiency without losing creative quality.</p>
+        <div class="cap-tags">
+          <span class="cap-tag">ChatGPT</span>
+          <span class="cap-tag">Claude</span>
+          <span class="cap-tag">Workflow AI</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SHOWREEL -->
+<section id="reel">
+  <div class="reel-in">
+    <div class="reel-text reveal">
+      <div class="lbl">Showreel</div>
+      <h2>Watch what<br /><em>we make.</em></h2>
+    </div>
+    <div class="reel-frame reveal">
+      <div class="reel-placeholder">
+        <div class="play-btn" id="playBtn">
+          <div class="play-icon">▶</div>
+        </div>
+        <p class="reel-cap" id="reelCap">Squargraph Studios — 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="inner">
+    <div class="lbl reveal">Services</div>
+    <h2 class="sec-title reveal">The full stack.<br /><em>No gaps.</em></h2>
+    <div class="services-grid">
+      <div class="svc reveal"><div class="svc-num">01</div><h3>Strategy</h3><p>Brand architecture, audience mapping, campaign roadmaps. The spine before the creative.</p></div>
+      <div class="svc reveal"><div class="svc-num">02</div><h3>Content</h3><p>Long-form, short-form, episodic. Content systems, not one-offs.</p></div>
+      <div class="svc reveal"><div class="svc-num">03</div><h3>Social</h3><p>Platform-native execution. Culture-first creative. Every channel its own language.</p></div>
+      <div class="svc reveal"><div class="svc-num">04</div><h3>PR</h3><p>Story-led PR campaigns that earn coverage — not just press releases.</p></div>
+      <div class="svc reveal"><div class="svc-num">05</div><h3>Influencer</h3><p>Creator strategy, sourcing, brief, execution and measurement. End-to-end.</p></div>
+      <div class="svc reveal"><div class="svc-num">06</div><h3>Video</h3><p>Concept to post. Production management for campaigns, brand films, social content.</p></div>
+      <div class="svc reveal"><div class="svc-num">07</div><h3>Analytics</h3><p>Data that informs decisions. Advanced listening, ORM, monthly performance decks.</p></div>
+      <div class="svc reveal"><div class="svc-num">08</div><h3>Branding</h3><p>Full brand systems — naming, positioning, visual identity built for scale.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="inner">
+    <div class="founder-in">
+      <div class="founder-vis reveal">
+        <div class="founder-frame">
+          <div class="founder-monogram">SS</div>
+          <div class="founder-tag">Founder & Creative Director</div>
+        </div>
+      </div>
+      <div class="founder-text">
+        <div class="lbl reveal">The Studio</div>
+        <h2 class="reveal">Led by<br /><em>Saurabh Sohan Singh.</em></h2>
+        <div class="founder-bio reveal">
+          <p>Saurabh spent 8+ years inside India's most competitive marketing environments — most recently as Manager, Social Media & Content (Integrated Campaigns) at INNOCEAN Worldwide India, leading the Hyundai Motors India account.</p>
+          <p>Across automotive, hospitality, and brand verticals, he has managed campaigns that touch every discipline: social, PR, influencer, content, production, ORM, and client servicing. Squargraph Studios is the next chapter — built without the constraints of agency hierarchy, and without compromise on creative quality.</p>
+        </div>
+        <div class="founder-stats reveal">
+          <div class="f-stat"><span class="f-stat-num">8+</span><span class="f-stat-lbl">Years Experience</span></div>
+          <div class="f-stat"><span class="f-stat-num">360°</span><span class="f-stat-lbl">Campaign Scope</span></div>
+          <div class="f-stat"><span class="f-stat-num">∞</span><span class="f-stat-lbl">Built to Scale</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-in">
+    <div class="lbl reveal" style="text-align:center">About the Studio</div>
+    <h2 class="reveal">We are Squargraph.<br /><em>A creative studio</em><br />built without compromise.</h2>
+    <div class="about-body reveal">
+      <p>Squargraph Studios is a Delhi-based creative and social-first studio. Born from 8+ years of experience inside India's top marketing environments — including 3+ years leading Hyundai India's integrated campaigns at INNOCEAN Worldwide — we exist to deliver what agency structures rarely allow: true ownership of ideas, from brief to execution.</p>
+      <p>We don't outsource thinking. We don't deliver decks no one acts on. We build, ship, and scale — with the clarity of a boutique studio and the capability of a full-service team. Every campaign we touch gets the attention it deserves, not the attention the billing allows.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-in">
+    <div class="lbl reveal">Start a Conversation</div>
+    <h2 class="reveal">Have a brief?<br /><em>Let's talk.</em></h2>
+    <form id="contactForm" novalidate class="reveal">
+      <div class="form-row">
+        <div class="fg">
+          <label for="c-name">Your Name</label>
+          <input type="text" id="c-name" name="name" placeholder="Full name" autocomplete="off" />
+        </div>
+        <div class="fg">
+          <label for="c-email">Email Address</label>
+          <input type="email" id="c-email" name="email" placeholder="hello@brand.com" autocomplete="off" />
+        </div>
+      </div>
+      <div class="fg">
+        <label for="c-project">Tell us about your project</label>
+        <textarea id="c-project" name="project" rows="4" placeholder="What are you building? Who's the audience? What do you need?"></textarea>
+      </div>
+      <button type="submit" class="submit-btn" id="contactSubmit">Send Brief <span>→</span></button>
+      <p class="form-note">We typically respond within 24 hours.</p>
+    </form>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section id="careers">
+  <div class="careers-in">
+    <div class="lbl reveal">Careers & Collaboration</div>
+    <h2 class="reveal">Want to join<br /><em>or contribute?</em></h2>
+    <p class="careers-sub reveal">We're building a network of sharp thinkers, cultural strategists, content creators, and storytellers. Whether you want to join the team full-time or collaborate on specific projects — we'd love to hear from you.</p>
+
+    <div class="openings reveal">
+      <div class="opening">
+        <div class="opening-info">
+          <h4>Social Media Strategist</h4>
+          <span>Social · Content · Strategy</span>
+        </div>
+        <span class="opening-type">Open</span>
+      </div>
+      <div class="opening">
+        <div class="opening-info">
+          <h4>PR & Communications Lead</h4>
+          <span>PR · Influencer · Brand Narrative</span>
+        </div>
+        <span class="opening-type">Open</span>
+      </div>
+      <div class="opening">
+        <div class="opening-info">
+          <h4>Content Creator / Writer</h4>
+          <span>Copywriting · Long-form · Social Copy</span>
+        </div>
+        <span class="opening-type">Open</span>
+      </div>
+      <div class="opening">
+        <div class="opening-info">
+          <h4>Freelance Collaborators</h4>
+          <span>Video · Design · Motion · Photography</span>
+        </div>
+        <span class="opening-type">Always Open</span>
+      </div>
+    </div>
+
+    <div class="career-divider reveal">Submit your application below</div>
+
+    <form id="careerForm" novalidate class="reveal">
+      <div class="form-row">
+        <div class="fg">
+          <label for="k-name">Your Name</label>
+          <input type="text" id="k-name" name="name" placeholder="Full name" autocomplete="off" />
+        </div>
+        <div class="fg">
+          <label for="k-email">Email Address</label>
+          <input type="email" id="k-email" name="email" placeholder="you@example.com" autocomplete="off" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="fg">
+          <label for="k-role">Role You're Applying For</label>
+          <select id="k-role" name="role">
+            <option value="" disabled selected>Select a role</option>
+            <option>Social Media Strategist</option>
+            <option>PR & Communications Lead</option>
+            <option>Content Creator / Writer</option>
+            <option>Freelance Collaborator</option>
+            <option>Other / Open Pitch</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label for="k-type">Engagement Type</label>
+          <select id="k-type" name="type">
+            <option value="" disabled selected>Full-time / Freelance</option>
+            <option>Full-time</option>
+            <option>Part-time</option>
+            <option>Freelance / Project-based</option>
+            <option>Internship</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg">
+        <label for="k-msg">Why do you want to work with us?</label>
+        <textarea id="k-msg" name="message" rows="4" placeholder="Tell us about yourself, your work, and what you bring to the table..."></textarea>
+      </div>
+      <div class="fg">
+        <label>Attach your portfolio or CV</label>
+        <div class="file-upload" id="fileUploadArea">
+          <input type="file" id="careerFile" name="attachment" accept=".pdf,.doc,.docx,.zip,.png,.jpg" />
+          <div class="file-upload-inner">
+            <svg class="file-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span class="file-upload-txt">Click to upload — PDF, DOC, ZIP accepted</span>
+            <span id="fileNameDisplay"></span>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="submit-btn" id="careerSubmit">Send Application <span>→</span></button>
+      <p class="form-note">We review every application personally. You'll hear from us within 5–7 days.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-in">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <svg class="footer-logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="4" width="18" height="18" stroke="#8ba4ff" stroke-width="1.5"/>
+            <rect x="26" y="4" width="18" height="18" stroke="#8ba4ff" stroke-width="1.5" opacity=".4"/>
+            <rect x="4" y="26" width="18" height="18" stroke="#8ba4ff" stroke-width="1.5" opacity=".4"/>
+            <rect x="26" y="26" width="18" height="18" stroke="#3ddab8" stroke-width="1.5"/>
+            <polyline points="8,36 16,22 24,28 32,12 40,18" stroke="#8ba4ff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+            <circle cx="8" cy="36" r="1.5" fill="#3ddab8"/>
+            <circle cx="24" cy="28" r="1.5" fill="#8ba4ff"/>
+            <circle cx="40" cy="18" r="1.5" fill="#3ddab8"/>
+          </svg>
+          <span class="footer-logo-txt">SQUARGRAPH STUDIOS</span>
+        </div>
+        <p>Creative & Social-First Studio<br />New Delhi, India</p>
+      </div>
+      <div class="footer-nav">
+        <a href="#done">Work</a>
+        <a href="#cando">Services</a>
+        <a href="#capabilities">Capabilities</a>
         <a href="#founder">Studio</a>
+        <a href="#careers">Careers</a>
         <a href="#contact">Contact</a>
       </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-bg">
-      <div class="star-field" id="starField"></div>
-      <div class="hero-glow"></div>
-    </div>
-    <div class="hero-content">
-      <p class="hero-label reveal">Creative & Social-First Studio</p>
-      <h1 class="hero-headline reveal">We build<br /><em>high-impact</em><br />creative experiences.</h1>
-      <p class="hero-sub reveal">Campaigns. Content. Digital.<br />From strategy to execution.</p>
-      <a href="#work" class="hero-cta reveal">View Our Work <span class="cta-arrow">↓</span></a>
-    </div>
-    <div class="hero-scroll-hint">
-      <span class="scroll-line"></span>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  <section id="work">
-    <div class="section-inner">
-      <div class="section-label reveal">Selected Work</div>
-      <h2 class="section-title reveal">Stories that move.<br />Brands that matter.</h2>
-      <div class="work-grid">
-        <div class="work-item reveal" data-index="01">
-          <div class="work-visual w1">
-            <div class="work-overlay">
-              <span class="work-tag">Social Campaign</span>
-            </div>
-          </div>
-          <div class="work-meta">
-            <h3>Hyundai India</h3>
-            <p>360° social campaign driving cultural relevance across platforms.</p>
-          </div>
-        </div>
-        <div class="work-item reveal" data-index="02">
-          <div class="work-visual w2">
-            <div class="work-overlay">
-              <span class="work-tag">EV Launch</span>
-            </div>
-          </div>
-          <div class="work-meta">
-            <h3>Electric Futures</h3>
-            <p>Launch strategy and content for a new-generation EV brand.</p>
-          </div>
-        </div>
-        <div class="work-item reveal" data-index="03">
-          <div class="work-visual w3">
-            <div class="work-overlay">
-              <span class="work-tag">Branding</span>
-            </div>
-          </div>
-          <div class="work-meta">
-            <h3>Identity Systems</h3>
-            <p>Visual language built to scale — digital-first, globally sharp.</p>
-          </div>
-        </div>
-        <div class="work-item reveal" data-index="04">
-          <div class="work-visual w4">
-            <div class="work-overlay">
-              <span class="work-tag">Content Strategy</span>
-            </div>
-          </div>
-          <div class="work-meta">
-            <h3>Social Ecosystems</h3>
-            <p>Always-on content architectures that build audiences over time.</p>
-          </div>
-        </div>
+      <!-- SOCIAL ONLY IN FOOTER — bottom left -->
+      <div class="footer-social-col">
+        <a href="https://www.instagram.com/squargraph" target="_blank" rel="noopener"><span class="s-icon">IG</span>@squargraph</a>
+        <a href="https://www.linkedin.com/company/squargraph" target="_blank" rel="noopener"><span class="s-icon">LI</span>squargraph</a>
+        <a href="https://www.facebook.com/squargraphstudios" target="_blank" rel="noopener"><span class="s-icon">FB</span>squargraphstudios</a>
+        <a href="https://www.youtube.com/channel/squargraph" target="_blank" rel="noopener"><span class="s-icon">YT</span>squargraph</a>
+        <a href="https://www.x.com/squargraph" target="_blank" rel="noopener"><span class="s-icon">X</span>@squargraph</a>
       </div>
     </div>
-  </section>
-
-  <!-- SHOWREEL -->
-  <section id="showreel">
-    <div class="reel-inner">
-      <div class="reel-text reveal">
-        <div class="section-label">Showreel</div>
-        <h2>Watch what<br /><em>we make.</em></h2>
-      </div>
-      <div class="reel-frame reveal">
-        <div class="reel-placeholder">
-          <div class="play-btn" id="playBtn">
-            <div class="play-icon">▶</div>
-          </div>
-          <p class="reel-caption">Squargraph Studios — 2024</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="section-inner">
-      <div class="section-label reveal">What We Do</div>
-      <h2 class="section-title reveal">Every discipline.<br />One perspective.</h2>
-      <div class="services-grid">
-        <div class="service-item reveal">
-          <div class="service-num">01</div>
-          <h3>Strategy</h3>
-          <p>Brand architecture, audience insights, and campaign roadmaps that give your creative a spine.</p>
-        </div>
-        <div class="service-item reveal">
-          <div class="service-num">02</div>
-          <h3>Content</h3>
-          <p>Long-form, short-form, episodic — we build content systems, not one-offs.</p>
-        </div>
-        <div class="service-item reveal">
-          <div class="service-num">03</div>
-          <h3>Social</h3>
-          <p>Platform-native thinking. Culture-first execution. Every channel, its own language.</p>
-        </div>
-        <div class="service-item reveal">
-          <div class="service-num">04</div>
-          <h3>Creatives</h3>
-          <p>Visual identity, art direction, and campaign design that earns attention without asking for it.</p>
-        </div>
-        <div class="service-item reveal">
-          <div class="service-num">05</div>
-          <h3>Video</h3>
-          <p>From concept to post — cinematic production for campaigns, brand films, and social content.</p>
-        </div>
-        <div class="service-item reveal">
-          <div class="service-num">06</div>
-          <h3>Copy</h3>
-          <p>Words with weight. Headlines that stop thumbs. Copy built to convert.</p>
-        </div>
-        <div class="service-item reveal">
-          <div class="service-num">07</div>
-          <h3>Analytics</h3>
-          <p>Data that informs, not overwhelms. We track what actually moves the needle.</p>
-        </div>
-        <div class="service-item reveal">
-          <div class="service-num">08</div>
-          <h3>Branding</h3>
-          <p>Complete brand ecosystems — from naming and positioning to full visual systems.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section id="process">
-    <div class="section-inner">
-      <div class="section-label reveal">How We Work</div>
-      <h2 class="section-title reveal">A method built<br />for momentum.</h2>
-      <div class="process-track">
-        <div class="process-step reveal">
-          <div class="step-num">01</div>
-          <div class="step-content">
-            <h3>Discover</h3>
-            <p>We go deep before we go wide. Understanding your brand, audience, and goals before a single idea is touched.</p>
-          </div>
-        </div>
-        <div class="process-connector"></div>
-        <div class="process-step reveal">
-          <div class="step-num">02</div>
-          <div class="step-content">
-            <h3>Strategy</h3>
-            <p>Insight becomes direction. We define the platform, the message, and the architecture that holds everything together.</p>
-          </div>
-        </div>
-        <div class="process-connector"></div>
-        <div class="process-step reveal">
-          <div class="step-num">03</div>
-          <div class="step-content">
-            <h3>Execute</h3>
-            <p>Creation at pace. No bloat, no delay — sharp work delivered with intention and craft.</p>
-          </div>
-        </div>
-        <div class="process-connector"></div>
-        <div class="process-step reveal">
-          <div class="step-num">04</div>
-          <div class="step-content">
-            <h3>Scale</h3>
-            <p>What works gets amplified. We build systems that grow — not campaigns that expire.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STUDIO STRENGTH -->
-  <section id="studio-strength">
-    <div class="strength-inner">
-      <div class="section-label reveal">Why Squargraph</div>
-      <div class="strength-grid">
-        <div class="strength-stat reveal">
-          <h2>8+</h2>
-          <p>Years of shaping brands in culture, not around it.</p>
-        </div>
-        <div class="strength-stat reveal">
-          <h2>40+</h2>
-          <p>Campaigns across consumer, lifestyle, and tech verticals.</p>
-        </div>
-        <div class="strength-stat reveal">
-          <h2>3×</h2>
-          <p>Average engagement lift on social-first brand activations.</p>
-        </div>
-        <div class="strength-stat reveal">
-          <h2>Full</h2>
-          <p>Stack studio — strategy, creative, and distribution under one roof.</p>
-        </div>
-      </div>
-      <div class="strength-quote reveal">
-        <blockquote>"We don't make content for the algorithm. We make it for the human on the other side."</blockquote>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOUNDER -->
-  <section id="founder">
-    <div class="section-inner founder-inner">
-      <div class="founder-text reveal">
-        <div class="section-label">The Mind Behind It</div>
-        <h2>Saurabh<br /><em>Sohan Singh</em></h2>
-        <p class="founder-bio">8+ years navigating the intersection of culture, brand, and digital. Built campaigns for some of India's most recognised names. Led strategy, PR, and creative — not in silos, but together, the way it should be.</p>
-        <p class="founder-bio">Squargraph is the studio he wished existed. Sharp thinking. No hand-holding. Real results.</p>
-        <div class="founder-tags">
-          <span>Campaigns</span>
-          <span>Social Strategy</span>
-          <span>PR</span>
-          <span>Brand Direction</span>
-          <span>Execution</span>
-        </div>
-      </div>
-      <div class="founder-visual reveal">
-        <div class="founder-frame">
-          <div class="founder-placeholder">
-            <span>SSS</span>
-          </div>
-          <div class="founder-accent-line"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-inner">
-      <div class="section-label reveal">About the Studio</div>
-      <div class="about-text reveal">
-        <h2>We are Squargraph.<br /><em>A creative studio</em><br />built without compromise.</h2>
-      </div>
-      <div class="about-body reveal">
-        <p>Squargraph Studios is a Delhi-based creative and social-first studio building high-impact brand experiences. We work across campaigns, content, PR, and digital — treating each touchpoint as an opportunity to say something real.</p>
-        <p>We don't outsource thinking. We don't deliver decks no one acts on. We build, ship, and scale — with the clarity of a boutique and the output of a full-service team.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTRIBUTORS -->
-  <section id="contributors">
-    <div class="section-inner">
-      <div class="section-label reveal">The Network</div>
-      <h2 class="section-title reveal">Built by many.<br />Directed by one.</h2>
-      <div class="contributors-grid">
-        <div class="contributor reveal">
-          <div class="c-avatar"></div>
-          <div class="c-info">
-            <h4>Art Direction</h4>
-            <p>Visual leads who understand culture and craft in equal measure.</p>
-          </div>
-        </div>
-        <div class="contributor reveal">
-          <div class="c-avatar"></div>
-          <div class="c-info">
-            <h4>Motion & Video</h4>
-            <p>Cinematographers and editors fluent in social formats and brand storytelling.</p>
-          </div>
-        </div>
-        <div class="contributor reveal">
-          <div class="c-avatar"></div>
-          <div class="c-info">
-            <h4>Copywriting</h4>
-            <p>Writers who've unlearned the template and found the voice.</p>
-          </div>
-        </div>
-        <div class="contributor reveal">
-          <div class="c-avatar"></div>
-          <div class="c-info">
-            <h4>Strategy & Analytics</h4>
-            <p>Data thinkers who translate numbers into decisions worth making.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-inner">
-      <div class="section-label reveal">Start a Conversation</div>
-      <h2 class="reveal">Have a brief?<br /><em>Let's talk.</em></h2>
-      <form class="contact-form reveal" id="contactForm" novalidate>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Full name" autocomplete="off" />
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="hello@brand.com" autocomplete="off" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="project">Tell us about your project</label>
-          <textarea id="project" name="project" rows="5" placeholder="What are you building? Who's the audience? What do you need?"></textarea>
-        </div>
-        <button type="submit" class="submit-btn">Send Brief <span>→</span></button>
-        <p class="form-note">We typically respond within 24 hours.</p>
-      </form>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer id="footer">
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <svg viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:160px;height:auto;">
-              <rect x="1" y="1" width="14" height="14" stroke="#95acff" stroke-width="1.2" fill="none"/>
-              <rect x="6" y="6" width="14" height="14" stroke="#4ee6c3" stroke-width="1.2" fill="none"/>
-              <text x="26" y="21" font-family="Space Mono, monospace" font-size="13" font-weight="700" letter-spacing="2.5" fill="#f4f7ff">SQUARGRAPH</text>
-              <text x="26" y="33" font-family="Space Mono, monospace" font-size="6.5" font-weight="400" letter-spacing="5.2" fill="rgba(244,247,255,0.4)">STUDIOS</text>
-            </svg>
-          </div>
-          <p>Creative & Social-First Studio<br />New Delhi, India</p>
-        </div>
-        <div class="footer-nav">
-          <a href="#work">Work</a>
-          <a href="#services">Services</a>
-          <a href="#process">Process</a>
-          <a href="#founder">Studio</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div class="footer-contact-info">
-          <p class="footer-contact-label">Get in touch</p>
-          <a href="#contact" class="footer-contact-link">Start a project →</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p class="footer-copy">© 2026 SQUARGRAPH Studios. All rights reserved.</p>
-        <p class="footer-tagline">Built without compromise.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- WHATSAPP -->
-  <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Squargraph%2C%20I%27d%20love%20to%20discuss%20a%20project." target="_blank" rel="noopener" class="whatsapp-btn" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
-
-  <!-- CHATBOT (Claude AI powered) -->
-  <div class="chatbot-trigger" id="chatbotTrigger" aria-label="Chat with us">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span class="chatbot-badge">AI</span>
-  </div>
-
-  <div class="chatbot-panel" id="chatbotPanel">
-    <div class="chatbot-header">
-      <div class="chatbot-brand">
-        <span class="chatbot-dot"></span>
-        <strong>Squargraph AI</strong>
-        <span class="chatbot-status">Powered by Claude</span>
-      </div>
-      <button class="chatbot-close" id="chatbotClose">✕</button>
-    </div>
-    <div class="chatbot-messages" id="chatMessages">
-      <div class="chat-msg bot">
-        <p>Hey — I'm Squargraph's AI assistant.</p>
-        <p>Ask me anything about the studio, our services, or how we can help your brand.</p>
-      </div>
-    </div>
-    <div class="chatbot-typing" id="chatTyping" style="display:none;">
-      <span></span><span></span><span></span>
-    </div>
-    <div class="chatbot-input-area">
-      <input type="text" id="chatInput" placeholder="Ask anything..." autocomplete="off" />
-      <button id="chatSend">→</button>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Squargraph Studios. All rights reserved.</p>
+      <p class="footer-tag">Built without compromise.</p>
     </div>
   </div>
+</footer>
 
-  <!-- FIXED SOCIAL DOCK -->
-  <div class="social-dock" id="socialDock">
-    <a href="https://www.instagram.com/squargraph" target="_blank" rel="noopener" aria-label="Instagram" class="dock-link">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
-      <span class="dock-label">Instagram</span>
-    </a>
-    <a href="https://www.facebook.com/squargraphstudios" target="_blank" rel="noopener" aria-label="Facebook" class="dock-link">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="dock-label">Facebook</span>
-    </a>
-    <a href="https://www.linkedin.com/company/squargraph" target="_blank" rel="noopener" aria-label="LinkedIn" class="dock-link">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      <span class="dock-label">LinkedIn</span>
-    </a>
-    <a href="https://www.youtube.com/channel/squargraph" target="_blank" rel="noopener" aria-label="YouTube" class="dock-link dock-link--yt">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58a2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" stroke="none" fill="currentColor"/></svg>
-      <span class="dock-label">YouTube</span>
-    </a>
-    <a href="https://www.x.com/squargraph" target="_blank" rel="noopener" aria-label="X / Twitter" class="dock-link">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      <span class="dock-label">X</span>
-    </a>
+<!-- WHATSAPP -->
+<a href="https://wa.me/918588897488?text=Hi%20Squargraph%2C%20I%27d%20love%20to%20discuss%20a%20project." target="_blank" rel="noopener" class="wa-btn" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- AI CHATBOT -->
+<div class="chat-trigger" id="chatTrigger" aria-label="Chat with us">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-hdr">
+    <div class="chat-brand">
+      <span class="chat-dot"></span>
+      <strong>Squargraph</strong>
+      <span class="chat-status">AI Studio Bot</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <span class="ai-badge">Powered by Claude</span>
+      <button class="chat-close" id="chatClose">✕</button>
+    </div>
   </div>
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="msg bot">
+      <p>Hey — welcome to Squargraph Studios.</p>
+      <p>I'm the studio's AI assistant. Ask me anything about what we do, our experience, or how to work with us.</p>
+    </div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatIn" placeholder="Ask anything..." autocomplete="off" />
+    <button id="chatSend">→</button>
+  </div>
+</div>
 
-  <script src="script.js"></script>
+<script>
+'use strict';
+
+/* ═══ INTERSTELLAR CANVAS ═══ */
+(function() {
+  const canvas = document.getElementById('starCanvas');
+  if (!canvas) return;
+  let W = window.innerWidth, H = window.innerHeight;
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  const BH = { x: W * 0.65, y: H * 0.46, r: Math.min(W, H) * 0.085 };
+
+  // Stars
+  const STARS = 380;
+  const stars = Array.from({length: STARS}, () => {
+    const ang = Math.random() * Math.PI * 2;
+    const d = BH.r * 2.4 + Math.random() * Math.max(W, H);
+    const bx = BH.x + Math.cos(ang) * d;
+    const by = BH.y + Math.sin(ang) * d;
+    const rc = Math.random();
+    const col = rc < 0.58 ? [200,215,255] : rc < 0.78 ? [255,240,200] : rc < 0.92 ? [180,200,255] : [255,210,180];
+    return { bx, by, r: Math.random()*1.5+0.2, a: Math.random()*.8+.2, ts: Math.random()*.013+.003, tp: Math.random()*Math.PI*2, col };
+  });
+
+  // Disk
+  const DISK = 320;
+  const disk = Array.from({length: DISK}, () => {
+    const lane = Math.random();
+    return {
+      ang: Math.random()*Math.PI*2,
+      dist: BH.r * 1.15 + Math.pow(lane, 0.55) * BH.r * 2.9,
+      spd: (0.0004 + (1-lane)*0.0014) * (Math.random()>.5?1:-1) * (Math.random()*.4+.8),
+      r: Math.random()*1.7+.3, a: Math.random()*.7+.2,
+      hue: 190+Math.random()*70, ph: Math.random()*Math.PI*2, decay: Math.random()*.003+.001
+    };
+  });
+
+  // Jets (infalling particles)
+  const JETS = 22;
+  const jets = Array.from({length: JETS}, () => spawnJet());
+  function spawnJet() {
+    return { ang: Math.random()*Math.PI*2, dist: BH.r*3.2+Math.random()*BH.r*3.5, spd: .005+Math.random()*.009, r: Math.random()*1.2+.3, a: Math.random()*.6+.2, hue: 175+Math.random()*70, trail: [] };
+  }
+
+  // Dust
+  const dust = Array.from({length:5}, () => {
+    const ang = Math.random()*Math.PI*2, d = BH.r*2.5+Math.random()*BH.r*4.5;
+    return { x: BH.x+Math.cos(ang)*d, y: BH.y+Math.sin(ang)*d, rx:80+Math.random()*180, ry:40+Math.random()*110, rot:Math.random()*Math.PI*2, hue:195+Math.random()*80, a:Math.random()*.04+.01 };
+  });
+
+  let mx = W/2, my = H/2, frame = 0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; }, {passive:true});
+
+  function draw() {
+    frame++;
+    ctx.clearRect(0,0,W,H);
+    const px = (mx-W/2)*.01, py = (my-H/2)*.01;
+
+    // Space bg
+    const bg = ctx.createRadialGradient(BH.x,BH.y,0,BH.x,BH.y,Math.max(W,H)*.85);
+    bg.addColorStop(0,'rgba(2,4,10,0)'); bg.addColorStop(.5,'rgba(6,10,22,.35)'); bg.addColorStop(1,'rgba(3,5,10,.75)');
+    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+
+    // Nebula dust
+    dust.forEach(d => {
+      ctx.save(); ctx.translate(d.x+px*.25, d.y+py*.25); ctx.rotate(d.rot);
+      const g = ctx.createRadialGradient(0,0,0,0,0,Math.max(d.rx,d.ry));
+      g.addColorStop(0,`hsla(${d.hue},55%,65%,${d.a*1.6})`); g.addColorStop(1,'hsla(0,0%,0%,0)');
+      ctx.scale(d.rx/Math.max(d.rx,d.ry), d.ry/Math.max(d.rx,d.ry));
+      ctx.beginPath(); ctx.arc(0,0,Math.max(d.rx,d.ry),0,Math.PI*2);
+      ctx.fillStyle=g; ctx.fill(); ctx.restore();
+    });
+
+    // Stars with gravitational lensing effect
+    stars.forEach(s => {
+      const dx=s.bx-BH.x, dy=s.by-BH.y, dist=Math.sqrt(dx*dx+dy*dy);
+      const lf = Math.max(0,1-(BH.r*3.8)/dist);
+      const la = Math.atan2(dy,dx)+(BH.r*.55)/Math.max(dist,1);
+      const lx = BH.x+Math.cos(la)*dist*lf + px*(1-dist/Math.max(W,H));
+      const ly = BH.y+Math.sin(la)*dist*lf + py*(1-dist/Math.max(W,H));
+      const tw = .4+.6*Math.sin(frame*s.ts+s.tp);
+      const [r,g,b]=s.col;
+      ctx.beginPath(); ctx.arc(lx,ly,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${r},${g},${b},${s.a*tw*lf})`; ctx.fill();
+      if (s.r>.9 && tw>.65 && lf>.4) {
+        const glow = ctx.createRadialGradient(lx,ly,0,lx,ly,s.r*7);
+        glow.addColorStop(0,`rgba(${r},${g},${b},${.12*tw*lf})`); glow.addColorStop(1,'rgba(0,0,0,0)');
+        ctx.beginPath(); ctx.arc(lx,ly,s.r*7,0,Math.PI*2); ctx.fillStyle=glow; ctx.fill();
+      }
+    });
+
+    // Accretion disk particles
+    disk.forEach(p => {
+      p.ang += p.spd;
+      const wobble = Math.sin(frame*p.decay+p.ph)*.07;
+      const tilt = .26+wobble;
+      const bpx = BH.x+Math.cos(p.ang)*p.dist;
+      const bpy = BH.y+Math.sin(p.ang)*p.dist*tilt;
+      const dfb = p.dist/BH.r;
+      const bright = Math.max(0, 1-(dfb-1.15)/3);
+      const tw = .6+.4*Math.sin(frame*.04+p.ph);
+      const alpha = p.a*bright*tw; if(alpha<.01) return;
+      const dop = Math.cos(p.ang)*28;
+      const h = p.hue+dop;
+      ctx.beginPath(); ctx.arc(bpx,bpy,p.r*bright,0,Math.PI*2);
+      ctx.fillStyle=`hsla(${h},80%,${58+bright*32}%,${alpha})`; ctx.fill();
+      if (p.dist<BH.r*1.9) {
+        const g=ctx.createRadialGradient(bpx,bpy,0,bpx,bpy,p.r*5);
+        g.addColorStop(0,`hsla(${h},90%,88%,${alpha*.45})`); g.addColorStop(1,'rgba(0,0,0,0)');
+        ctx.beginPath(); ctx.arc(bpx,bpy,p.r*5,0,Math.PI*2); ctx.fillStyle=g; ctx.fill();
+      }
+    });
+
+    // Disk haze
+    const dh = ctx.createRadialGradient(BH.x,BH.y,BH.r*1.1,BH.x,BH.y,BH.r*4.2);
+    dh.addColorStop(0,'rgba(100,160,255,.05)'); dh.addColorStop(.5,'rgba(60,200,180,.025)'); dh.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.save(); ctx.scale(1,.3); ctx.beginPath(); ctx.arc(BH.x,BH.y/0.3,BH.r*4.2,0,Math.PI*2); ctx.fillStyle=dh; ctx.fill(); ctx.restore();
+
+    // Jets infalling
+    jets.forEach((j,i) => {
+      j.trail.push({x: BH.x+Math.cos(j.ang)*j.dist, y: BH.y+Math.sin(j.ang)*j.dist*.3, a:j.a});
+      if(j.trail.length>12) j.trail.shift();
+      j.trail.forEach((pt,ti) => {
+        const ta = pt.a*(ti/j.trail.length)*.5;
+        ctx.beginPath(); ctx.arc(pt.x,pt.y,j.r*.7,0,Math.PI*2);
+        ctx.fillStyle=`hsla(${j.hue},75%,70%,${ta})`; ctx.fill();
+      });
+      j.ang += j.spd*.004; j.dist -= j.spd;
+      if(j.dist < BH.r*1.05) { jets[i]=spawnJet(); }
+    });
+
+    // Photon ring
+    for(let i=0;i<80;i++) {
+      const a=(i/80)*Math.PI*2 + frame*.0003;
+      const wobble = .98+.02*Math.sin(frame*.05+i*.2);
+      const rr = BH.r*1.02*wobble;
+      const px2=BH.x+Math.cos(a)*rr, py2=BH.y+Math.sin(a)*rr*.29;
+      const ta = .2+.3*Math.abs(Math.sin(a*2+frame*.002));
+      ctx.beginPath(); ctx.arc(px2,py2,1.1,0,Math.PI*2);
+      ctx.fillStyle=`rgba(200,230,255,${ta})`; ctx.fill();
+    }
+
+    // Black hole — event horizon
+    const bhs = ctx.createRadialGradient(BH.x,BH.y,0,BH.x,BH.y,BH.r*1.08);
+    bhs.addColorStop(0,'rgba(2,3,8,1)'); bhs.addColorStop(.6,'rgba(3,5,12,1)'); bhs.addColorStop(1,'rgba(8,12,25,.92)');
+    ctx.beginPath(); ctx.arc(BH.x,BH.y,BH.r,0,Math.PI*2);
+    ctx.fillStyle=bhs; ctx.fill();
+
+    // Lens glow rim
+    const rim = ctx.createRadialGradient(BH.x,BH.y,BH.r*.95,BH.x,BH.y,BH.r*1.35);
+    rim.addColorStop(0,'rgba(0,0,0,0)'); rim.addColorStop(.5,'rgba(120,170,255,.08)'); rim.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.beginPath(); ctx.arc(BH.x,BH.y,BH.r*1.35,0,Math.PI*2); ctx.fillStyle=rim; ctx.fill();
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  window.addEventListener('resize', () => {
+    W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight;
+    BH.x=W*.65; BH.y=H*.46; BH.r=Math.min(W,H)*.085;
+  });
+})();
+
+/* ═══ CURSOR ═══ */
+(function() {
+  const dot=document.getElementById('cur'), ring=document.getElementById('curRing');
+  if(!dot||!ring) return;
+  let tx=0,ty=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; dot.style.left=tx+'px'; dot.style.top=ty+'px'; },{passive:true});
+  function animRing() { rx+=(tx-rx)*.12; ry+=(ty-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); }
+  animRing();
+  document.querySelectorAll('a,button,.done-item,.cando-item,.cap-card,.svc,.opening,.play-btn,.submit-btn').forEach(el => {
+    el.addEventListener('mouseenter',()=>{dot.classList.add('hov');ring.classList.add('hov')});
+    el.addEventListener('mouseleave',()=>{dot.classList.remove('hov');ring.classList.remove('hov')});
+  });
+})();
+
+/* ═══ NAVBAR ═══ */
+(function() {
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60),{passive:true});
+  const toggle=document.getElementById('navToggle'), links=document.getElementById('navLinks');
+  if(!toggle||!links) return;
+  toggle.addEventListener('click',()=>{
+    const open=links.classList.toggle('open');
+    const s=toggle.querySelectorAll('span');
+    s[0].style.transform=open?'translateY(6px) rotate(45deg)':'';
+    s[1].style.transform=open?'translateY(-6px) rotate(-45deg)':'';
+  });
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');toggle.querySelectorAll('span').forEach(s=>s.style.transform='')}));
+})();
+
+/* ═══ SCROLL REVEAL ═══ */
+(function() {
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const sibs=[...e.target.parentElement.querySelectorAll('.reveal')];
+      const idx=sibs.indexOf(e.target);
+      setTimeout(()=>e.target.classList.add('vis'),idx*80);
+      obs.unobserve(e.target);
+    });
+  },{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  document.querySelectorAll('#hero .reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('vis'),600+i*260));
+})();
+
+/* ═══ SMOOTH SCROLL ═══ */
+(function() {
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const t=document.querySelector(this.getAttribute('href'));
+      if(!t) return; e.preventDefault();
+      window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'});
+    });
+  });
+})();
+
+/* ═══ ACCENT SHIFT ═══ */
+(function() {
+  const root=document.documentElement;
+  const map=[
+    {id:'hero',a:'#8ba4ff'},{id:'done',a:'#a0b8ff'},{id:'cando',a:'#4ee6c3'},
+    {id:'capabilities',a:'#8ba4ff'},{id:'reel',a:'#4ee6c3'},{id:'services',a:'#8ba4ff'},
+    {id:'founder',a:'#80d8c0'},{id:'about',a:'#8ba4ff'},{id:'contact',a:'#4ee6c3'},
+    {id:'careers',a:'#c89dff'}
+  ];
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){const m=map.find(s=>s.id===e.target.id);if(m) root.style.setProperty('--accent',m.a);}});
+  },{threshold:.3});
+  map.forEach(s=>{const el=document.getElementById(s.id);if(el) obs.observe(el);});
+})();
+
+/* ═══ PLAY BUTTON ═══ */
+document.getElementById('playBtn')?.addEventListener('click',()=>{
+  const cap=document.getElementById('reelCap');
+  if(cap){cap.textContent='Reel coming soon — stay tuned.';cap.style.color='rgba(139,164,255,.8)';}
+});
+
+/* ═══ FILE UPLOAD ═══ */
+document.getElementById('careerFile')?.addEventListener('change',function(){
+  const disp=document.getElementById('fileNameDisplay');
+  if(disp) disp.textContent=this.files[0]?this.files[0].name:'';
+});
+
+/* ═══ CONTACT FORM ═══ */
+document.getElementById('contactForm')?.addEventListener('submit',function(e){
+  e.preventDefault();
+  const btn=this.querySelector('#contactSubmit');
+  const name=this.querySelector('#c-name').value.trim();
+  const email=this.querySelector('#c-email').value.trim();
+  const proj=this.querySelector('#c-project').value.trim();
+  if(!name||!email||!proj){btn.textContent='Please fill all fields.';setTimeout(()=>{btn.innerHTML='Send Brief <span>→</span>';},2500);return;}
+  btn.textContent='Sending...'; btn.disabled=true;
+  setTimeout(()=>{btn.textContent='Brief received. ✓'; this.reset(); setTimeout(()=>{btn.innerHTML='Send Brief <span>→</span>';btn.disabled=false;},3500);},1200);
+});
+
+/* ═══ CAREER FORM ═══ */
+document.getElementById('careerForm')?.addEventListener('submit',function(e){
+  e.preventDefault();
+  const btn=this.querySelector('#careerSubmit');
+  const name=this.querySelector('#k-name').value.trim();
+  const email=this.querySelector('#k-email').value.trim();
+  const msg=this.querySelector('#k-msg').value.trim();
+  if(!name||!email||!msg){btn.textContent='Please fill required fields.';setTimeout(()=>{btn.innerHTML='Send Application <span>→</span>';},2500);return;}
+  btn.textContent='Sending...'; btn.disabled=true;
+  setTimeout(()=>{btn.textContent='Application received. ✓'; this.reset(); document.getElementById('fileNameDisplay').textContent=''; setTimeout(()=>{btn.innerHTML='Send Application <span>→</span>';btn.disabled=false;},4000);},1400);
+});
+
+/* ═══ AI CHATBOT (Claude-powered) ═══ */
+(function() {
+  const trigger=document.getElementById('chatTrigger');
+  const panel=document.getElementById('chatPanel');
+  const closeBtn=document.getElementById('chatClose');
+  const input=document.getElementById('chatIn');
+  const sendBtn=document.getElementById('chatSend');
+  const msgs=document.getElementById('chatMsgs');
+  if(!trigger||!panel) return;
+
+  const SYSTEM = `You are the AI assistant for Squargraph Studios, a Delhi-based creative and social-first studio founded by Saurabh Sohan Singh. 
+
+About Squargraph Studios:
+- Founded by Saurabh Sohan Singh, a marketing professional with 8+ years of experience
+- Previously worked at INNOCEAN Worldwide India (Hyundai Motors India account) as Manager – Social Media & Content (Integrated Campaigns), Dec 2022 – Mar 2026
+- Also worked at FabHotels as CX & Online Reputation Manager (Apr 2019 – Oct 2022)
+- Services: Integrated Campaigns, Social Media Strategy, Content, PR, Influencer Marketing, Client Servicing, Analytics, Branding, Video Production, Copywriting
+- Notable work: Hyundai India 360° social campaigns, ICC partnership campaigns, Auto Expo 2025, Art Trail PR, influencer ecosystem management
+- Location: New Delhi, India
+- Contact: singhsaurabhsohan@gmail.com | +91-8588897488
+
+Be helpful, concise, and professional. Keep responses to 2-4 sentences unless more detail is genuinely needed. Match the studio's tone: creative, direct, no-fluff. If asked to book or start a project, direct them to the contact form on the page.`;
+
+  let history = [];
+  let isThinking = false;
+
+  function addMsg(text, role) {
+    const div=document.createElement('div'); div.className=`msg ${role}`;
+    const p=document.createElement('p'); p.textContent=text;
+    div.appendChild(p); msgs.appendChild(div); msgs.scrollTop=msgs.scrollHeight;
+    return div;
+  }
+
+  function showTyping() {
+    const div=document.createElement('div'); div.className='msg bot'; div.id='typingInd';
+    div.innerHTML='<div class="msg-typing"><span></span><span></span><span></span></div>';
+    msgs.appendChild(div); msgs.scrollTop=msgs.scrollHeight;
+  }
+
+  function hideTyping() {
+    const t=document.getElementById('typingInd'); if(t) t.remove();
+  }
+
+  async function sendMessage() {
+    const val=input.value.trim(); if(!val||isThinking) return;
+    addMsg(val,'user'); input.value='';
+    history.push({role:'user',content:val});
+    isThinking=true; showTyping();
+
+    try {
+      const res=await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          model:'claude-sonnet-4-20250514',
+          max_tokens:1000,
+          system:SYSTEM,
+          messages:history
+        })
+      });
+      const data=await res.json();
+      const reply=data.content?.[0]?.text||"I'm having trouble connecting right now. Please try again or reach us at singhsaurabhsohan@gmail.com.";
+      hideTyping(); addMsg(reply,'bot');
+      history.push({role:'assistant',content:reply});
+    } catch(err) {
+      hideTyping(); addMsg("Connection issue. Please email us at singhsaurabhsohan@gmail.com or use the contact form.",'bot');
+    }
+    isThinking=false;
+  }
+
+  trigger.addEventListener('click',()=>{
+    panel.classList.toggle('open');
+    if(panel.classList.contains('open')) setTimeout(()=>input.focus(),300);
+  });
+  closeBtn.addEventListener('click',()=>panel.classList.remove('open'));
+  sendBtn.addEventListener('click',sendMessage);
+  input.addEventListener('keydown',e=>{if(e.key==='Enter') sendMessage();});
+})();
+</script>
 </body>
 </html>
