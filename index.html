@@ -157,12 +157,17 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .founder-vis{position:relative}
 .founder-frame{width:100%;aspect-ratio:3/4;border:1px solid var(--border);background:linear-gradient(135deg,rgba(139,164,255,.06),rgba(61,218,184,.04));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .founder-monogram{font-family:var(--font-serif);font-size:8rem;color:rgba(139,164,255,.08);font-weight:400;font-style:italic;user-select:none}
-background: linear-gradient(
-  to top,
-  rgba(5,7,14,0.85),
-  rgba(5,7,14,0.2) 40%,
-  transparent 70%
-);{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,7,14,.8),transparent 50%)}
+.founder-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(5,7,14,0.85),
+    rgba(5,7,14,0.2) 40%,
+    transparent 70%
+  );
+}
     .founder-img {
   position: absolute;
   inset: 0;
@@ -868,7 +873,7 @@ background: linear-gradient(
   document.addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; dot.style.left=tx+'px'; dot.style.top=ty+'px'; },{passive:true});
   function animRing() { rx+=(tx-rx)*.12; ry+=(ty-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); }
   animRing();
-  document.querySelectorAll('a,button,.done-item,.cando-item,.cap-card,.svc,.opening,.play-btn,.submit-btn').forEach(el => {
+  document.querySelectorAll('a,button,.cap-card,.svc,.opening,.play-btn,.submit-btn').forEach(el => {
     el.addEventListener('mouseenter',()=>{dot.classList.add('hov');ring.classList.add('hov')});
     el.addEventListener('mouseleave',()=>{dot.classList.remove('hov');ring.classList.remove('hov')});
   });
@@ -915,7 +920,7 @@ background: linear-gradient(
 
       e.preventDefault();
 
-      const offset = nav.offsetHeight;
+      const offset = nav ? nav.offsetHeight : 0;
 
       window.scrollTo({
         top: target.getBoundingClientRect().top + window.scrollY - offset,
@@ -924,25 +929,6 @@ background: linear-gradient(
     });
   });
 })();
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click',function(e){
-      const t=document.querySelector(this.getAttribute('href'));
-      if(!t) return;
-      e.preventDefault();
-
-      const offset = document.getElementById('nav').offsetHeight;
-
-      window.scrollTo({
-        top: t.getBoundingClientRect().top + window.scrollY - offset,
-        behavior: 'smooth'
-      });
-    });
-  });
-})();
-    });
-  });
-})();
-
 /* ═══ ACCENT SHIFT ═══ */
 (function() {
   const root=document.documentElement;
@@ -992,84 +978,94 @@ document.getElementById('careerForm')?.addEventListener('submit',function(e){
   btn.textContent='Sending...'; btn.disabled=true;
   setTimeout(()=>{btn.textContent='Application received. ✓'; this.reset(); document.getElementById('fileNameDisplay').textContent=''; setTimeout(()=>{btn.innerHTML='Send Application <span>→</span>';btn.disabled=false;},4000);},1400);
 });
+/* ═══ CHATBOT — SINGLE SOURCE OF TRUTH ═══ */
+(function () {
 
-/* ═══ AI CHATBOT (Claude-powered) ═══ */
-(function() {
-  const trigger=document.getElementById('chatTrigger');
-  const panel=document.getElementById('chatPanel');
-  const closeBtn=document.getElementById('chatClose');
-  const input=document.getElementById('chatIn');
-  const sendBtn=document.getElementById('chatSend');
-  const msgs=document.getElementById('chatMsgs');
-  if(!trigger||!panel) return;
+  const chatSend = document.getElementById('chatSend');
+  const chatIn = document.getElementById('chatIn');
+  const chatMsgs = document.getElementById('chatMsgs');
 
-  const SYSTEM = `You are the AI assistant for Squargraph Studios, a Delhi-based creative and social-first studio founded by Saurabh Sohan Singh. 
+  if (!chatSend || !chatIn || !chatMsgs) return;
 
-About Squargraph Studios:
-- Founded by Saurabh Sohan Singh, a marketing professional with 8+ years of experience
-- Previously worked at INNOCEAN Worldwide India (Hyundai Motors India account) as Manager – Social Media & Content (Integrated Campaigns), Dec 2022 – Mar 2026
-- Also worked at FabHotels as CX & Online Reputation Manager (Apr 2019 – Oct 2022)
-- Services: Integrated Campaigns, Social Media Strategy, Content, PR, Influencer Marketing, Client Servicing, Analytics, Branding, Video Production, Copywriting
-- Notable work: Hyundai India 360° social campaigns, ICC partnership campaigns, Auto Expo 2025, Art Trail PR, influencer ecosystem management
-- Location: New Delhi, India
-- Contact: hello@squargraph.com | +91-8588897488
+  let isSending = false;
 
-Be helpful, concise, and professional. Keep responses to 2-4 sentences unless more detail is genuinely needed. Match the studio's tone: creative, direct, no-fluff. If asked to book or start a project, direct them to the contact form on the page.`;
-
-  let history = [];
-  let isThinking = false;
-
-  function addMsg(text, role) {
-    const div=document.createElement('div'); div.className=`msg ${role}`;
-    const p=document.createElement('p'); p.textContent=text;
-    div.appendChild(p); msgs.appendChild(div); msgs.scrollTop=msgs.scrollHeight;
-    return div;
+  // ADD MESSAGE
+  function addMessage(text, type) {
+    const div = document.createElement('div');
+    div.className = `msg ${type}`;
+    div.innerHTML = `<p>${text}</p>`;
+    chatMsgs.appendChild(div);
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
   }
 
+  // SHOW TYPING
   function showTyping() {
-    const div=document.createElement('div'); div.className='msg bot'; div.id='typingInd';
-    div.innerHTML='<div class="msg-typing"><span></span><span></span><span></span></div>';
-    msgs.appendChild(div); msgs.scrollTop=msgs.scrollHeight;
+    const div = document.createElement('div');
+    div.className = 'msg bot';
+    div.id = 'typing';
+    div.innerHTML = `
+      <div class="msg-typing">
+        <span></span><span></span><span></span>
+      </div>
+    `;
+    chatMsgs.appendChild(div);
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
   }
 
-  function hideTyping() {
-    const t=document.getElementById('typingInd'); if(t) t.remove();
+  // REMOVE TYPING
+  function removeTyping() {
+    const t = document.getElementById('typing');
+    if (t) t.remove();
   }
 
+  // SEND MESSAGE
   async function sendMessage() {
-    const val=input.value.trim(); if(!val||isThinking) return;
-    addMsg(val,'user'); input.value='';
-    history.push({role:'user',content:val});
-    isThinking=true; showTyping();
+    const val = chatIn.value.trim();
+    if (!val || isSending) return;
+
+    isSending = true;
+
+    addMessage(val, 'user');
+    chatIn.value = '';
+
+    showTyping();
 
     try {
-      const res=await fetch('https://api.anthropic.com/v1/messages',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          model:'claude-sonnet-4-20250514',
-          max_tokens:1000,
-          system:SYSTEM,
-          messages:history
-        })
+      const res = await fetch('http://localhost:3000/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: val })
       });
-      const data=await res.json();
-      const reply=data.content?.[0]?.text||"I'm having trouble connecting right now. Please try again or reach us at hello@squargraph.com.";
-      hideTyping(); addMsg(reply,'bot');
-      history.push({role:'assistant',content:reply});
-    } catch(err) {
-      hideTyping(); addMsg("Connection issue. Please email us at hello@squargraph.com or use the contact form.",'bot');
+
+      const data = await res.json();
+
+      removeTyping();
+
+      if (data.reply) {
+        addMessage(data.reply, 'bot');
+      } else {
+        addMessage("No response from server", 'bot');
+      }
+
+    } catch (err) {
+      removeTyping();
+      addMessage("⚠️ Server error. Check backend.", 'bot');
+      console.error(err);
     }
-    isThinking=false;
+
+    isSending = false;
   }
 
-  trigger.addEventListener('click',()=>{
-    panel.classList.toggle('open');
-    if(panel.classList.contains('open')) setTimeout(()=>input.focus(),300);
+  // EVENTS
+  chatSend.addEventListener('click', sendMessage);
+
+  chatIn.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      sendMessage();
+    }
   });
-  closeBtn.addEventListener('click',()=>panel.classList.remove('open'));
-  sendBtn.addEventListener('click',sendMessage);
-  input.addEventListener('keydown',e=>{if(e.key==='Enter') sendMessage();});
+
 })();
 </script>
 </body>
