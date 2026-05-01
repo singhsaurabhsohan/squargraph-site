@@ -1,12 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>SQUARGRAPH Studios</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQUARGRAPH Studios</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+/* HEADER */
+.header {
+  position: fixed;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: 18px;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 60px;
+}
+
+.hero h1 {
+  font-size: 60px;
+  line-height: 1.1;
+}
+
+.hero span {
+  color: #c8ff00;
+}
+
+.hero p {
+  color: #aaa;
+  max-width: 500px;
+}
+
+.btn {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 12px 25px;
+  background: #c8ff00;
+  color: #000;
+  text-decoration: none;
+}
+
+/* SECTION */
+.section {
+  padding: 100px 60px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.card {
+  background: #111;
+  padding: 30px;
+  border: 1px solid #222;
+}
+
+/* FOOTER */
+.footer {
+  padding: 40px;
+  text-align: center;
+  border-top: 1px solid #222;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+  <div class="brand">SQUARGRAPH Studios</div>
+  <a href="#contact" style="color:white;text-decoration:none;">Contact</a>
+</div>
+
+<section class="hero">
+  <h1>
+    We don’t just create content.<br>
+    <span>We build ideas</span><br>
+    that scale brands.
+  </h1>
+  <p>Strategy-led creative for brands that want more than just posts.</p>
+  <a class="btn" href="#contact">Start a Project</a>
+</section>
+
+<section class="section">
+  <h2>Services</h2>
+  <div class="grid">
+    <div class="card">Creative Strategy</div>
+    <div class="card">Content Creation</div>
+    <div class="card">Social Media</div>
+    <div class="card">Branding</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Our Approach</h2>
+  <p>Decode → Narrative → Create → Distribute → Scale</p>
+</section>
+
+<section class="section">
+  <h2>Founder</h2>
+  <p>Saurabh Sohan Singh — Strategy & Campaigns</p>
+</section>
+
+<section class="section" id="contact">
+  <h2>Let’s build something meaningful</h2>
+  <p>Email: hello@squargraph.com</p>
+</section>
+
+<div class="footer">
+  © SQUARGRAPH Studios
+</div>
+
+</body>
 </html>
