@@ -7,16 +7,16 @@
   <meta name="description" content="SQUARGRAPH Studios. Brief in. Campaign live. Creative strategy, content, and execution for brands that can't afford to get it wrong." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-  display: ['Space Grotesk', 'sans-serif'],
+  display: ['Inter', 'sans-serif'],
   body: ['Inter', 'sans-serif'],
-},
+}
           colors: {
   black: '#0B0B0F',
   card: '#111218',
@@ -37,9 +37,9 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: #080808;
+      background: #0B0B0F;
       color: #F5F5F0;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 16px;
       line-height: 1.65;
       overflow-x: hidden;
@@ -60,46 +60,49 @@
 
     /* ── Custom cursor ───────────────────────────────────────────── */
     #cursor {
-      width: 9px; height: 9px;
-      background: #6366F1;
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform .12s ease, opacity .15s;
-    }
+  width: 6px;
+  height: 6px;
+  background: #6366F1;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
     #cursor-ring {
-      width: 34px; height: 34px;
-      border: 1px solid rgba(200,169,110,.38);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform .35s cubic-bezier(.23,1,.32,1), opacity .3s, width .25s, height .25s;
-    }
-    body:has(a:hover) #cursor-ring,
-    body:has(button:hover) #cursor-ring { width: 56px; height: 56px; opacity: .6; }
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(99,102,241,0.3);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease-out;
+}
 
     /* ── Scrollbar ───────────────────────────────────────────────── */
     ::-webkit-scrollbar { width: 2px; }
-    ::-webkit-scrollbar-track { background: #080808; }
+    ::-webkit-scrollbar-track { background: #0B0B0F; }
     ::-webkit-scrollbar-thumb { background: #6366F1; border-radius: 2px; }
 
     /* ── Grid background (hero) ──────────────────────────────────── */
     .grid-bg {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(200,169,110,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(200,169,110,.035) 1px, transparent 1px);
+        linear-gradient(rgba(99,102,241,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,.035) 1px, transparent 1px);
       background-size: 72px 72px;
       mask-image: radial-gradient(ellipse 85% 65% at 50% 100%, black 30%, transparent 100%);
       pointer-events: none;
     }
 
     /* ── Typography ──────────────────────────────────────────────── */
-    .font-display { font-family: 'Syne', sans-serif; }
+    .font-display { font-family: 'Inter', sans-serif; }
 
     /* ── Scroll reveal ───────────────────────────────────────────── */
     .reveal {
@@ -149,7 +152,7 @@
     /* ── Section label ───────────────────────────────────────────── */
     .s-label {
       font-size: 10px;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       letter-spacing: .22em;
       text-transform: uppercase;
       color: #6366F1;
@@ -169,7 +172,7 @@
       position: absolute;
       top: 22px; left: 22px; right: 22px;
       height: 1px;
-      background: linear-gradient(90deg, #6366F1 0%, rgba(200,169,110,.08) 100%);
+      background: linear-gradient(90deg, #6366F1 0%, rgba(99,102,241,.08) 100%);
     }
 
     /* ── Service card hover ──────────────────────────────────────── */
@@ -181,8 +184,8 @@
       transition: border-color .25s, transform .25s, background .25s;
     }
     .svc-card:hover {
-      border-color: rgba(200,169,110,.35);
-      background: rgba(200,169,110,.04);
+      border-color: rgba(99,102,241,.35);
+      background: rgba(99,102,241,.04);
       transform: translateY(-3px);
     }
 
@@ -247,13 +250,13 @@
     .founder-photo::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(200,169,110,.06) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(99,102,241,.06) 0%, transparent 60%);
     }
     .founder-photo-initials {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 64px;
       font-weight: 800;
-      color: rgba(200,169,110,.18);
+      color: rgba(99,102,241,.18);
       letter-spacing: -.04em;
       z-index: 1;
     }
@@ -262,7 +265,7 @@
     .cta-glow {
       position: absolute;
       width: 560px; height: 560px;
-      background: radial-gradient(circle, rgba(200,169,110,.07) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(99,102,241,.07) 0%, transparent 70%);
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
@@ -275,14 +278,14 @@
       border: 1px solid rgba(255,255,255,.1);
       color: #F5F5F0;
       padding: 14px 18px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 14px;
       border-radius: 2px;
       outline: none;
       transition: border-color .25s;
     }
     .form-input::placeholder { color: rgba(245,245,240,.3); }
-    .form-input:focus { border-color: rgba(200,169,110,.5); }
+    .form-input:focus { border-color: rgba(99,102,241,.5); }
     textarea.form-input { resize: vertical; min-height: 120px; }
 
     /* ── Marquee ─────────────────────────────────────────────────── */
@@ -295,11 +298,11 @@
     }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .marquee-item {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(48px, 7vw, 96px);
       font-weight: 800;
       color: transparent;
-      -webkit-text-stroke: 1px rgba(200,169,110,.18);
+      -webkit-text-stroke: 1px rgba(99,102,241,.18);
       letter-spacing: -.03em;
       padding: 0 40px;
       text-transform: uppercase;
@@ -329,18 +332,22 @@
 <!--  NAV                                                                    -->
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <nav id="nav">
-  <a href="#" class="font-display font-extrabold text-snow no-underline" style="font-size:17px;letter-spacing:-.02em;">
-    SQUARGRAPH <span style="font-size:12px;opacity:0.6;">Studios</span>
-  </a>
+  <a href="#" class="no-underline" style="font-family:Inter, sans-serif;font-weight:600;font-size:20px;letter-spacing:0.08em;color:#E5E7EB;">
+  SQUARGRAPH <span style="font-size:12px;opacity:0.5;font-weight:400;letter-spacing:0.12em;">STUDIOS</span>
+</a>
 
   <!-- Desktop links -->
   <div class="mobile-hide" style="display:flex;gap:36px;align-items:center;">
-    <a href="#philosophy" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Philosophy</a>
-    <a href="#process" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Process</a>
-    <a href="#services" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
-    <a href="#founder" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Founder</a>
+    <a href="#philosophy" class="no-underline"
+style="color:#9CA3AF;font-size:11px;letter-spacing:.1em;text-transform:uppercase;" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Philosophy</a>
+    <a href="#process" class="no-underline"
+style="color:#9CA3AF;font-size:11px;letter-spacing:.1em;text-transform:uppercase;" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Process</a>
+    <a href="#services" class="no-underline"
+style="color:#9CA3AF;font-size:11px;letter-spacing:.1em;text-transform:uppercase;" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
+    <a href="#founder" class="no-underline"
+style="color:#9CA3AF;font-size:11px;letter-spacing:.1em;text-transform:uppercase;" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Founder</a>
     <a href="https://wa.me/918588897488" target="_blank" rel="noopener"
-       style="background:#6366F1;color:#080808;padding:10px 22px;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
+       style="background:#6366F1;color:#080808;padding:10px 22px;font-family:'Inter',sans-serif;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
        onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
       Start a Project
     </a>
@@ -358,7 +365,7 @@
   <a href="#services" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
   <a href="#founder" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
   <a href="https://wa.me/918588897488" target="_blank" rel="noopener"
-     style="background:#6366F1;color:#080808;padding:16px 40px;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
+     style="background:#6366F1;color:#080808;padding:16px 40px;font-family:'Inter',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
     Start a Project
   </a>
 </div>
@@ -370,7 +377,7 @@
   <div class="grid-bg"></div>
 
   <!-- radial glow top-right -->
-  <div style="position:absolute;width:550px;height:550px;background:radial-gradient(circle,rgba(200,169,110,.07) 0%,transparent 70%);top:-80px;right:-80px;pointer-events:none;"></div>
+  <div style="position:absolute;width:550px;height:550px;background:radial-gradient(circle,rgba(99,102,241,.07) 0%,transparent 70%);top:-80px;right:-80px;pointer-events:none;"></div>
 
   <!-- Eyebrow -->
   <div class="hero-fade s-label" style="margin-bottom:32px;">
@@ -392,14 +399,14 @@
   <!-- CTAs -->
   <div class="hero-fade" style="display:flex;gap:22px;align-items:center;flex-wrap:wrap;animation-delay:.7s;">
     <a href="https://wa.me/918588897488" target="_blank" rel="noopener"
-       style="display:inline-flex;align-items:center;gap:10px;background:#6366F1;color:#080808;padding:16px 34px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s,transform .2s;"
+       style="display:inline-flex;align-items:center;gap:10px;background:#6366F1;color:#080808;padding:16px 34px;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s,transform .2s;"
        onmouseover="this.style.opacity='.82';this.style.transform='translateY(-2px)'" onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
       <!-- WhatsApp icon -->
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Start a Project
     </a>
     <a href="#process"
-       style="display:inline-flex;align-items:center;gap:8px;color:rgba(245,245,240,.6);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;font-family:'Syne',sans-serif;font-weight:600;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:4px;transition:color .2s,border-color .2s;"
+       style="display:inline-flex;align-items:center;gap:8px;color:rgba(245,245,240,.6);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;font-family:'Inter',sans-serif;font-weight:600;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:4px;transition:color .2s,border-color .2s;"
        onmouseover="this.style.color='#F5F5F0';this.style.borderColor='rgba(255,255,255,.4)'" onmouseout="this.style.color='rgba(245,245,240,.6)';this.style.borderColor='rgba(255,255,255,.12)'">
       See how we work ↓
     </a>
@@ -416,26 +423,26 @@
   <div class="marquee-wrap">
     <div class="marquee-inner">
       <span class="marquee-item">Strategy</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
+      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(99,102,241,.28);">·</span>
       <span class="marquee-item">Execution</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
+      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(99,102,241,.28);">·</span>
       <span class="marquee-item">Campaigns</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
+      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(99,102,241,.28);">·</span>
       <span class="marquee-item">Content</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
+      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(99,102,241,.28);">·</span>
       <span class="marquee-item">Growth</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
+      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(99,102,241,.28);">·</span>
       <!-- duplicate for seamless loop -->
       <span class="marquee-item">Strategy</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
+      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(99,102,241,.28);">·</span>
       <span class="marquee-item">Execution</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
+      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(99,102,241,.28);">·</span>
       <span class="marquee-item">Campaigns</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
+      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(99,102,241,.28);">·</span>
       <span class="marquee-item">Content</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
+      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(99,102,241,.28);">·</span>
       <span class="marquee-item">Growth</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
+      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(99,102,241,.28);">·</span>
     </div>
   </div>
 </div>
@@ -566,10 +573,10 @@
     </div>
 
     <!-- Bottom strip -->
-    <div class="reveal" style="margin-top:72px;padding:28px 32px;border:1px solid rgba(200,169,110,.15);background:rgba(200,169,110,.04);border-radius:2px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
+    <div class="reveal" style="margin-top:72px;padding:28px 32px;border:1px solid rgba(99,102,241,.15);background:rgba(99,102,241,.04);border-radius:2px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
       <p class="font-display font-bold" style="font-size:16px;letter-spacing:-.01em;">Brief in. Campaign live. No chaos in between.</p>
       <a href="https://wa.me/918588897488" target="_blank" rel="noopener"
-         style="color:#6366F1;font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;"
+         style="color:#6366F1;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;"
          onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
         Start the conversation →
       </a>
@@ -596,9 +603,9 @@
           <span class="font-display font-semibold" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6366F1;">Strategy</span>
         </div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Creative Strategy</li>
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Campaign Planning</li>
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Brand Positioning</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Creative Strategy</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Campaign Planning</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Brand Positioning</li>
         </ul>
       </div>
 
@@ -609,13 +616,13 @@
           <span class="font-display font-semibold" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6366F1;">Execution</span>
         </div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Content Creation</li>
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Video Editing</li>
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Copywriting</li>
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Social Media Creatives</li>
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Website Creatives</li>
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Master Creatives</li>
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Adaptations</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Content Creation</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Video Editing</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Copywriting</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Social Media Creatives</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Website Creatives</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Master Creatives</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Adaptations</li>
         </ul>
       </div>
 
@@ -626,8 +633,8 @@
           <span class="font-display font-semibold" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6366F1;">Growth</span>
         </div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Social Media Management</li>
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Reports & Analytics</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Social Media Management</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Reports & Analytics</li>
         </ul>
       </div>
 
@@ -638,8 +645,8 @@
           <span class="font-display font-semibold" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6366F1;">Branding</span>
         </div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Logo Design</li>
-          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Website Banners</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Logo Design</li>
+          <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(99,102,241,.4);">—</span> Website Banners</li>
         </ul>
       </div>
 
@@ -664,40 +671,40 @@
     <div class="stat-strip reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:64px;">
       <div class="stat-item" style="padding:36px 28px;">
         <div class="font-display font-extrabold" style="font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;color:#6366F1;line-height:1;">8+</div>
-        <p style="color:rgba(245,245,240,.4);font-size:12px;letter-spacing:.06em;margin-top:8px;text-transform:uppercase;font-family:'Syne',sans-serif;">Years Experience</p>
+        <p style="color:rgba(245,245,240,.4);font-size:12px;letter-spacing:.06em;margin-top:8px;text-transform:uppercase;font-family:'Inter',sans-serif;">Years Experience</p>
       </div>
       <div class="stat-item" style="padding:36px 28px;">
         <div class="font-display font-extrabold" style="font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;color:#6366F1;line-height:1;">360°</div>
-        <p style="color:rgba(245,245,240,.4);font-size:12px;letter-spacing:.06em;margin-top:8px;text-transform:uppercase;font-family:'Syne',sans-serif;">Campaign Ownership</p>
+        <p style="color:rgba(245,245,240,.4);font-size:12px;letter-spacing:.06em;margin-top:8px;text-transform:uppercase;font-family:'Inter',sans-serif;">Campaign Ownership</p>
       </div>
       <div class="stat-item" style="padding:36px 28px;">
         <div class="font-display font-extrabold" style="font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;color:#6366F1;line-height:1;">2+</div>
-        <p style="color:rgba(245,245,240,.4);font-size:12px;letter-spacing:.06em;margin-top:8px;text-transform:uppercase;font-family:'Syne',sans-serif;">Industry Verticals</p>
+        <p style="color:rgba(245,245,240,.4);font-size:12px;letter-spacing:.06em;margin-top:8px;text-transform:uppercase;font-family:'Inter',sans-serif;">Industry Verticals</p>
       </div>
       <div class="stat-item" style="padding:36px 28px;">
         <div class="font-display font-extrabold" style="font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;color:#6366F1;line-height:1;">∞</div>
-        <p style="color:rgba(245,245,240,.4);font-size:12px;letter-spacing:.06em;margin-top:8px;text-transform:uppercase;font-family:'Syne',sans-serif;">Tight Deadlines Met</p>
+        <p style="color:rgba(245,245,240,.4);font-size:12px;letter-spacing:.06em;margin-top:8px;text-transform:uppercase;font-family:'Inter',sans-serif;">Tight Deadlines Met</p>
       </div>
     </div>
 
     <!-- Experience bullets -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
-      <div class="reveal reveal-d1" style="padding:28px;border:1px solid rgba(255,255,255,.07);border-radius:2px;background:rgba(200,169,110,.02);transition:border-color .25s;"
-           onmouseover="this.style.borderColor='rgba(200,169,110,.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+      <div class="reveal reveal-d1" style="padding:28px;border:1px solid rgba(255,255,255,.07);border-radius:2px;background:rgba(99,102,241,.02);transition:border-color .25s;"
+           onmouseover="this.style.borderColor='rgba(99,102,241,.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
         <div style="width:32px;height:1px;background:#6366F1;margin-bottom:20px;"></div>
         <p style="font-size:15px;line-height:1.75;color:rgba(245,245,240,.7);font-weight:300;">
           Managed integrated campaigns across automotive and hospitality — from launch brief to live asset, end to end.
         </p>
       </div>
-      <div class="reveal reveal-d2" style="padding:28px;border:1px solid rgba(255,255,255,.07);border-radius:2px;background:rgba(200,169,110,.02);transition:border-color .25s;"
-           onmouseover="this.style.borderColor='rgba(200,169,110,.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+      <div class="reveal reveal-d2" style="padding:28px;border:1px solid rgba(255,255,255,.07);border-radius:2px;background:rgba(99,102,241,.02);transition:border-color .25s;"
+           onmouseover="this.style.borderColor='rgba(99,102,241,.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
         <div style="width:32px;height:1px;background:#6366F1;margin-bottom:20px;"></div>
         <p style="font-size:15px;line-height:1.75;color:rgba(245,245,240,.7);font-weight:300;">
           Handled always-on content, ORM, influencer coordination, and cross-team production simultaneously.
         </p>
       </div>
-      <div class="reveal reveal-d3" style="padding:28px;border:1px solid rgba(255,255,255,.07);border-radius:2px;background:rgba(200,169,110,.02);transition:border-color .25s;"
-           onmouseover="this.style.borderColor='rgba(200,169,110,.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+      <div class="reveal reveal-d3" style="padding:28px;border:1px solid rgba(255,255,255,.07);border-radius:2px;background:rgba(99,102,241,.02);transition:border-color .25s;"
+           onmouseover="this.style.borderColor='rgba(99,102,241,.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
         <div style="width:32px;height:1px;background:#6366F1;margin-bottom:20px;"></div>
         <p style="font-size:15px;line-height:1.75;color:rgba(245,245,240,.7);font-weight:300;">
           Comfortable operating in high-pressure, multi-team environments where timelines don't move and quality can't drop.
@@ -706,7 +713,7 @@
     </div>
 
     <p class="reveal" style="margin-top:48px;color:rgba(245,245,240,.3);font-size:13px;font-style:italic;font-weight:300;">
-      Detailed work available on request · Experience across automotive, hospitality, and digital-first brands
+      Built on real campaigns, real timelines, and real delivery pressure.
     </p>
   </div>
 </section>
@@ -731,7 +738,7 @@
             <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">We take the brief and run with it. You won't spend your time chasing updates or explaining the same thing twice.</p>
           </div>
         </div>
-        <div class="mobile-hide" style="color:rgba(200,169,110,.2);font-size:32px;font-family:'Syne',sans-serif;font-weight:800;">→</div>
+        <div class="mobile-hide" style="color:rgba(99,102,241,.2);font-size:32px;font-family:'Inter',sans-serif;font-weight:800;">→</div>
       </div>
       <!-- Row 2 -->
       <div class="expect-card reveal reveal-d1">
@@ -742,7 +749,7 @@
             <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">Deadlines are commitments, not suggestions. If we say it ships on Tuesday, it ships on Tuesday.</p>
           </div>
         </div>
-        <div class="mobile-hide" style="color:rgba(200,169,110,.2);font-size:32px;font-family:'Syne',sans-serif;font-weight:800;">→</div>
+        <div class="mobile-hide" style="color:rgba(99,102,241,.2);font-size:32px;font-family:'Inter',sans-serif;font-weight:800;">→</div>
       </div>
       <!-- Row 3 -->
       <div class="expect-card reveal reveal-d2">
@@ -753,7 +760,7 @@
             <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">On-brand, on-brief, production-ready. Every deliverable reviewed and signed off before it reaches you.</p>
           </div>
         </div>
-        <div class="mobile-hide" style="color:rgba(200,169,110,.2);font-size:32px;font-family:'Syne',sans-serif;font-weight:800;">→</div>
+        <div class="mobile-hide" style="color:rgba(99,102,241,.2);font-size:32px;font-family:'Inter',sans-serif;font-weight:800;">→</div>
       </div>
       <!-- Row 4 -->
       <div class="expect-card reveal reveal-d3">
@@ -764,7 +771,7 @@
             <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">We manage the moving parts. Designers, writers, editors — briefed, aligned, and accountable on your behalf.</p>
           </div>
         </div>
-        <div class="mobile-hide" style="color:rgba(200,169,110,.2);font-size:32px;font-family:'Syne',sans-serif;font-weight:800;">→</div>
+        <div class="mobile-hide" style="color:rgba(99,102,241,.2);font-size:32px;font-family:'Inter',sans-serif;font-weight:800;">→</div>
       </div>
       <!-- Row 5 -->
       <div class="expect-card reveal reveal-d4" style="border-bottom:1px solid rgba(255,255,255,.07);">
@@ -775,7 +782,7 @@
             <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">Clear communication, structured feedback loops, and zero drama. Working with us should feel easy.</p>
           </div>
         </div>
-        <div class="mobile-hide" style="color:rgba(200,169,110,.2);font-size:32px;font-family:'Syne',sans-serif;font-weight:800;">→</div>
+        <div class="mobile-hide" style="color:rgba(99,102,241,.2);font-size:32px;font-family:'Inter',sans-serif;font-weight:800;">→</div>
       </div>
     </div>
   </div>
@@ -792,10 +799,9 @@
       <!-- Photo -->
       <div class="reveal">
         <div class="founder-photo">
-          <span class="founder-photo-initials">SS</span>
-        </div>
-        <p style="color:rgba(245,245,240,.25);font-size:11px;letter-spacing:.08em;margin-top:12px;font-family:'Syne',sans-serif;">
-          Replace with your photo — /assets/founder.jpg
+  <img src="founder.jpg" alt="Saurabh Sohan Singh" style="width:100%;height:100%;object-fit:cover;">
+</div>
+        <p style="color:rgba(245,245,240,.25);font-size:11px;letter-spacing:.08em;margin-top:12px;font-family:'Inter',sans-serif;">
         </p>
       </div>
 
@@ -804,7 +810,7 @@
         <h2 class="reveal font-display font-extrabold" style="font-size:clamp(28px,3.5vw,48px);line-height:1.05;letter-spacing:-.028em;margin-bottom:6px;">
           Saurabh Sohan Singh
         </h2>
-        <p class="reveal" style="color:#6366F1;font-family:'Syne',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:36px;">Founder, SQUARGRAPH Studios</p>
+        <p class="reveal" style="color:#6366F1;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:36px;">Founder, SQUARGRAPH Studios</p>
 
         <p class="reveal reveal-d1" style="color:rgba(245,245,240,.65);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:20px;max-width:52ch;">
           Over 8 years of experience handling campaigns end-to-end — across strategy, content, social media, PR, and execution. Both agency and brand side.
@@ -859,7 +865,7 @@
 
         <div class="reveal reveal-d2" style="display:flex;flex-direction:column;gap:16px;">
           <a href="https://wa.me/918588897488" target="_blank" rel="noopener"
-             style="display:inline-flex;align-items:center;gap:12px;background:#6366F1;color:#080808;padding:18px 36px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;width:fit-content;transition:opacity .2s,transform .2s;"
+             style="display:inline-flex;align-items:center;gap:12px;background:#6366F1;color:#080808;padding:18px 36px;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;width:fit-content;transition:opacity .2s,transform .2s;"
              onmouseover="this.style.opacity='.82';this.style.transform='translateY(-2px)'" onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Message on WhatsApp
@@ -872,20 +878,20 @@
       <div class="reveal reveal-d2">
         <form action="https://formspree.io/f/xzdykrjl" method="POST" style="display:flex;flex-direction:column;gap:16px;">
           <div>
-            <label style="display:block;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,245,240,.35);margin-bottom:8px;">Your Name</label>
+            <label style="display:block;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,245,240,.35);margin-bottom:8px;">Your Name</label>
             <input type="text" name="name" required placeholder="Rahul Sharma" class="form-input" />
           </div>
           <div>
-            <label style="display:block;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,245,240,.35);margin-bottom:8px;">Email</label>
+            <label style="display:block;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,245,240,.35);margin-bottom:8px;">Email</label>
             <input type="email" name="email" required placeholder="rahul@brand.com" class="form-input" />
           </div>
           <div>
-            <label style="display:block;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,245,240,.35);margin-bottom:8px;">Tell us about your project</label>
+            <label style="display:block;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,245,240,.35);margin-bottom:8px;">Tell us about your project</label>
             <textarea name="message" required placeholder="Brief summary of what you need..." class="form-input"></textarea>
           </div>
           <button type="submit"
-            style="background:transparent;border:1px solid rgba(200,169,110,.4);color:#6366F1;padding:16px 32px;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:background .2s,color .2s,border-color .2s;width:100%;"
-            onmouseover="this.style.background='rgba(200,169,110,.1)';this.style.borderColor='#6366F1'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(200,169,110,.4)'">
+            style="background:transparent;border:1px solid rgba(99,102,241,.4);color:#6366F1;padding:16px 32px;font-family:'Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:background .2s,color .2s,border-color .2s;width:100%;"
+            onmouseover="this.style.background='rgba(99,102,241,.1)';this.style.borderColor='#6366F1'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(99,102,241,.4)'">
             Send the Brief →
           </button>
         </form>
@@ -940,6 +946,7 @@
   const cursor = document.getElementById('cursor');
   const ring   = document.getElementById('cursor-ring');
   let mx = 0, my = 0, rx = 0, ry = 0;
+let scale = 1;
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
@@ -949,10 +956,19 @@
   function animateRing() {
     rx += (mx - rx) * 0.12;
     ry += (my - ry) * 0.12;
-    ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+    ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%) scale(${scale})`;
     requestAnimationFrame(animateRing);
   }
   animateRing();
+
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    scale = 1.6;
+  });
+  el.addEventListener('mouseleave', () => {
+    scale = 1;
+  });
+});
 
   // ── Nav scroll ────────────────────────────────────────────────────────
   const nav = document.getElementById('nav');
@@ -997,7 +1013,7 @@
         });
         if (res.ok) {
           btn.textContent = '✓ Brief received — we\'ll be in touch';
-          btn.style.borderColor = 'rgba(200,169,110,.8)';
+          btn.style.borderColor = 'rgba(99,102,241,.8)';
           form.reset();
         } else {
           btn.textContent = 'Something went wrong — try WhatsApp';
@@ -1011,7 +1027,7 @@
       setTimeout(() => {
         btn.textContent = original;
         btn.disabled = false;
-        btn.style.borderColor = 'rgba(200,169,110,.4)';
+        btn.style.borderColor = 'rgba(99,102,241,.4)';
       }, 5000);
     });
   }
