@@ -7,26 +7,23 @@
   <meta name="description" content="SQUARGRAPH Studios. Brief in. Campaign live. Creative strategy, content, and execution for brands that can't afford to get it wrong." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            display: ['Syne', 'sans-serif'],
-            body: ['DM Sans', 'sans-serif'],
-          },
+  display: ['Space Grotesk', 'sans-serif'],
+  body: ['Inter', 'sans-serif'],
+},
           colors: {
-            black: '#080808',
-            charcoal: '#111111',
-            card: '#141414',
-            accent: '#C8A96E',
-            'accent-dim': 'rgba(200,169,110,0.10)',
-            'accent-glow': 'rgba(200,169,110,0.22)',
-            snow: '#F5F5F0',
-            muted: 'rgba(245,245,240,0.45)',
-          },
+  black: '#0B0B0F',
+  card: '#111218',
+  accent: '#4F46E5',
+  text: '#E5E7EB',
+  muted: '#9CA3AF'
+},
           letterSpacing: {
             widest2: '0.18em',
             widest3: '0.22em',
@@ -64,7 +61,7 @@
     /* ── Custom cursor ───────────────────────────────────────────── */
     #cursor {
       width: 9px; height: 9px;
-      background: #C8A96E;
+      background: #6366F1;
       border-radius: 50%;
       position: fixed; top: 0; left: 0;
       pointer-events: none;
@@ -88,7 +85,7 @@
     /* ── Scrollbar ───────────────────────────────────────────────── */
     ::-webkit-scrollbar { width: 2px; }
     ::-webkit-scrollbar-track { background: #080808; }
-    ::-webkit-scrollbar-thumb { background: #C8A96E; border-radius: 2px; }
+    ::-webkit-scrollbar-thumb { background: #6366F1; border-radius: 2px; }
 
     /* ── Grid background (hero) ──────────────────────────────────── */
     .grid-bg {
@@ -155,7 +152,7 @@
       font-family: 'Syne', sans-serif;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: #C8A96E;
+      color: #6366F1;
       display: flex; align-items: center; gap: 12px;
       margin-bottom: 20px;
     }
@@ -163,7 +160,7 @@
       content: '';
       display: block;
       width: 26px; height: 1px;
-      background: #C8A96E;
+      background: #6366F1;
     }
 
     /* ── Process connector line ──────────────────────────────────── */
@@ -172,7 +169,7 @@
       position: absolute;
       top: 22px; left: 22px; right: 22px;
       height: 1px;
-      background: linear-gradient(90deg, #C8A96E 0%, rgba(200,169,110,.08) 100%);
+      background: linear-gradient(90deg, #6366F1 0%, rgba(200,169,110,.08) 100%);
     }
 
     /* ── Service card hover ──────────────────────────────────────── */
@@ -196,7 +193,7 @@
       transition: border-color .25s;
       display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
     }
-    .expect-card:hover { border-color: #C8A96E; }
+    .expect-card:hover { border-color: #6366F1; }
 
     /* ── Stat strip ──────────────────────────────────────────────── */
     .stat-strip {
@@ -319,7 +316,7 @@
       font-size: 13px;
       transition: border-color .2s, color .2s;
     }
-    .social-link:hover { border-color: #C8A96E; color: #C8A96E; }
+    .social-link:hover { border-color: #6366F1; color: #6366F1; }
   </style>
 </head>
 <body>
@@ -333,7 +330,7 @@
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <nav id="nav">
   <a href="#" class="font-display font-extrabold text-snow no-underline" style="font-size:17px;letter-spacing:-.02em;">
-    SQUAR<span style="color:#C8A96E;">GRAPH</span>
+    SQUARGRAPH <span style="font-size:12px;opacity:0.6;">Studios</span>
   </a>
 
   <!-- Desktop links -->
@@ -343,7 +340,7 @@
     <a href="#services" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
     <a href="#founder" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Founder</a>
     <a href="https://wa.me/918588897488" target="_blank" rel="noopener"
-       style="background:#C8A96E;color:#080808;padding:10px 22px;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
+       style="background:#6366F1;color:#080808;padding:10px 22px;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
        onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
       Start a Project
     </a>
@@ -361,7 +358,7 @@
   <a href="#services" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
   <a href="#founder" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
   <a href="https://wa.me/918588897488" target="_blank" rel="noopener"
-     style="background:#C8A96E;color:#080808;padding:16px 40px;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
+     style="background:#6366F1;color:#080808;padding:16px 40px;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
     Start a Project
   </a>
 </div>
@@ -383,19 +380,19 @@
   <!-- Headline -->
   <h1 class="font-display font-extrabold" style="font-size:clamp(48px,8vw,112px);line-height:.93;letter-spacing:-.035em;max-width:13ch;margin-bottom:36px;">
     <span class="line-wrap"><span class="line-inner">Ideas are easy.</span></span>
-    <span class="line-wrap delay-1"><span class="line-inner" style="color:#C8A96E;">Execution</span></span>
+    <span class="line-wrap delay-1"><span class="line-inner" style="color:#6366F1;">Execution</span></span>
     <span class="line-wrap delay-2"><span class="line-inner">is rare.</span></span>
   </h1>
 
   <!-- Supporting line -->
   <p class="hero-fade" style="color:rgba(245,245,240,.5);font-size:clamp(14px,1.5vw,19px);max-width:44ch;margin-bottom:52px;font-weight:300;line-height:1.75;animation-delay:.55s;">
-    We don't just make things look good. We make them go live — on time, on brief, with no chaos in between.
+    Strategy, content, and execution for brands that need things to actually ship.
   </p>
 
   <!-- CTAs -->
   <div class="hero-fade" style="display:flex;gap:22px;align-items:center;flex-wrap:wrap;animation-delay:.7s;">
     <a href="https://wa.me/918588897488" target="_blank" rel="noopener"
-       style="display:inline-flex;align-items:center;gap:10px;background:#C8A96E;color:#080808;padding:16px 34px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s,transform .2s;"
+       style="display:inline-flex;align-items:center;gap:10px;background:#6366F1;color:#080808;padding:16px 34px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s,transform .2s;"
        onmouseover="this.style.opacity='.82';this.style.transform='translateY(-2px)'" onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
       <!-- WhatsApp icon -->
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -455,7 +452,7 @@
       <div>
         <h2 class="reveal font-display font-extrabold" style="font-size:clamp(34px,4vw,58px);line-height:1.02;letter-spacing:-.028em;margin-bottom:32px;">
           Most brands don't have an ideas problem.<br/>
-          <span style="color:#C8A96E;">They have an execution problem.</span>
+          <span style="color:#6366F1;">They have an execution problem.</span>
         </h2>
         <p class="reveal reveal-d1" style="color:rgba(245,245,240,.5);font-size:16px;line-height:1.82;font-weight:300;max-width:46ch;margin-bottom:20px;">
           Decks don't move products. Plans don't build audiences. Output does.
@@ -470,9 +467,9 @@
       <div>
         <!-- Pillar 1 -->
         <div class="reveal reveal-d1" style="border-top:1px solid rgba(255,255,255,.07);padding:28px 0;transition:border-color .25s;"
-             onmouseover="this.style.borderColor='#C8A96E'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+             onmouseover="this.style.borderColor='#6366F1'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
           <div style="display:flex;gap:20px;align-items:flex-start;">
-            <span class="font-display" style="font-size:11px;color:#C8A96E;letter-spacing:.1em;min-width:32px;padding-top:3px;">01</span>
+            <span class="font-display" style="font-size:11px;color:#6366F1;letter-spacing:.1em;min-width:32px;padding-top:3px;">01</span>
             <div>
               <h4 class="font-display font-bold" style="font-size:19px;margin-bottom:10px;">Execution over ideas</h4>
               <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.75;font-weight:300;">A good brief executed well beats a brilliant idea that never ships. We close the gap between thinking and doing.</p>
@@ -481,9 +478,9 @@
         </div>
         <!-- Pillar 2 -->
         <div class="reveal reveal-d2" style="border-top:1px solid rgba(255,255,255,.07);padding:28px 0;transition:border-color .25s;"
-             onmouseover="this.style.borderColor='#C8A96E'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+             onmouseover="this.style.borderColor='#6366F1'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
           <div style="display:flex;gap:20px;align-items:flex-start;">
-            <span class="font-display" style="font-size:11px;color:#C8A96E;letter-spacing:.1em;min-width:32px;padding-top:3px;">02</span>
+            <span class="font-display" style="font-size:11px;color:#6366F1;letter-spacing:.1em;min-width:32px;padding-top:3px;">02</span>
             <div>
               <h4 class="font-display font-bold" style="font-size:19px;margin-bottom:10px;">Systems over random output</h4>
               <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.75;font-weight:300;">One great post doesn't build a brand. Repeatable, consistent output does. We build content systems, not one-offs.</p>
@@ -492,9 +489,9 @@
         </div>
         <!-- Pillar 3 -->
         <div class="reveal reveal-d3" style="border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:28px 0;transition:border-color .25s;"
-             onmouseover="this.style.borderColor='#C8A96E'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+             onmouseover="this.style.borderColor='#6366F1'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
           <div style="display:flex;gap:20px;align-items:flex-start;">
-            <span class="font-display" style="font-size:11px;color:#C8A96E;letter-spacing:.1em;min-width:32px;padding-top:3px;">03</span>
+            <span class="font-display" style="font-size:11px;color:#6366F1;letter-spacing:.1em;min-width:32px;padding-top:3px;">03</span>
             <div>
               <h4 class="font-display font-bold" style="font-size:19px;margin-bottom:10px;">Clarity over chaos</h4>
               <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.75;font-weight:300;">Ambiguity kills timelines. We align early, brief clearly, and coordinate across teams so nothing falls through.</p>
@@ -515,7 +512,7 @@
       <div>
         <div class="reveal s-label">Process</div>
         <h2 class="reveal font-display font-extrabold" style="font-size:clamp(32px,3.8vw,54px);line-height:1.03;letter-spacing:-.028em;">
-          Not a workflow.<br/>A <span style="color:#C8A96E;">system</span>.
+          Not a workflow.<br/>A <span style="color:#6366F1;">system</span>.
         </h2>
       </div>
       <p class="reveal mobile-hide" style="color:rgba(245,245,240,.4);font-size:13px;max-width:30ch;text-align:right;line-height:1.8;font-weight:300;">
@@ -528,41 +525,41 @@
 
       <!-- Step 1 -->
       <div class="reveal reveal-d1" style="padding-right:28px;padding-bottom:16px;transition:transform .3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #C8A96E;background:#111111;margin-bottom:28px;position:relative;z-index:1;transition:background .3s;" id="dot1"
-             onmouseover="this.style.background='#C8A96E'" onmouseout="this.style.background='#111111'"></div>
-        <div class="font-display" style="font-size:10px;color:#C8A96E;letter-spacing:.12em;margin-bottom:14px;">01</div>
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #6366F1;background:#111111;margin-bottom:28px;position:relative;z-index:1;transition:background .3s;" id="dot1"
+             onmouseover="this.style.background='#6366F1'" onmouseout="this.style.background='#111111'"></div>
+        <div class="font-display" style="font-size:10px;color:#6366F1;letter-spacing:.12em;margin-bottom:14px;">01</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Understand</h3>
         <p style="color:rgba(245,245,240,.4);font-size:13px;line-height:1.75;font-weight:300;">We dig into the brand, brief, audience, and objectives before anything else. No assumptions.</p>
       </div>
 
       <!-- Step 2 -->
       <div class="reveal reveal-d2" style="padding-right:28px;padding-bottom:16px;transition:transform .3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #C8A96E;background:#111111;margin-bottom:28px;position:relative;z-index:1;"></div>
-        <div class="font-display" style="font-size:10px;color:#C8A96E;letter-spacing:.12em;margin-bottom:14px;">02</div>
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #6366F1;background:#111111;margin-bottom:28px;position:relative;z-index:1;"></div>
+        <div class="font-display" style="font-size:10px;color:#6366F1;letter-spacing:.12em;margin-bottom:14px;">02</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Plan</h3>
         <p style="color:rgba(245,245,240,.4);font-size:13px;line-height:1.75;font-weight:300;">Campaign architecture, content calendar, delivery milestones. Everything mapped before production begins.</p>
       </div>
 
       <!-- Step 3 -->
       <div class="reveal reveal-d3" style="padding-right:28px;padding-bottom:16px;transition:transform .3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #C8A96E;background:#111111;margin-bottom:28px;position:relative;z-index:1;"></div>
-        <div class="font-display" style="font-size:10px;color:#C8A96E;letter-spacing:.12em;margin-bottom:14px;">03</div>
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #6366F1;background:#111111;margin-bottom:28px;position:relative;z-index:1;"></div>
+        <div class="font-display" style="font-size:10px;color:#6366F1;letter-spacing:.12em;margin-bottom:14px;">03</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Brief & Coordinate</h3>
         <p style="color:rgba(245,245,240,.4);font-size:13px;line-height:1.75;font-weight:300;">Clear briefs to every contributor. No ambiguity. No 11th-hour surprises. Everyone aligned from day one.</p>
       </div>
 
       <!-- Step 4 -->
       <div class="reveal reveal-d4" style="padding-right:28px;padding-bottom:16px;transition:transform .3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #C8A96E;background:#111111;margin-bottom:28px;position:relative;z-index:1;"></div>
-        <div class="font-display" style="font-size:10px;color:#C8A96E;letter-spacing:.12em;margin-bottom:14px;">04</div>
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #6366F1;background:#111111;margin-bottom:28px;position:relative;z-index:1;"></div>
+        <div class="font-display" style="font-size:10px;color:#6366F1;letter-spacing:.12em;margin-bottom:14px;">04</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Execute</h3>
         <p style="color:rgba(245,245,240,.4);font-size:13px;line-height:1.75;font-weight:300;">Content produced, approved, and live. High-quality, on-brand, on-deadline. Every single time.</p>
       </div>
 
       <!-- Step 5 -->
       <div class="reveal reveal-d5" style="padding-bottom:16px;transition:transform .3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #C8A96E;background:#111111;margin-bottom:28px;position:relative;z-index:1;"></div>
-        <div class="font-display" style="font-size:10px;color:#C8A96E;letter-spacing:.12em;margin-bottom:14px;">05</div>
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #6366F1;background:#111111;margin-bottom:28px;position:relative;z-index:1;"></div>
+        <div class="font-display" style="font-size:10px;color:#6366F1;letter-spacing:.12em;margin-bottom:14px;">05</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Review</h3>
         <p style="color:rgba(245,245,240,.4);font-size:13px;line-height:1.75;font-weight:300;">Performance measured. Learnings documented. The next cycle starts sharper than the last.</p>
       </div>
@@ -572,7 +569,7 @@
     <div class="reveal" style="margin-top:72px;padding:28px 32px;border:1px solid rgba(200,169,110,.15);background:rgba(200,169,110,.04);border-radius:2px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
       <p class="font-display font-bold" style="font-size:16px;letter-spacing:-.01em;">Brief in. Campaign live. No chaos in between.</p>
       <a href="https://wa.me/918588897488" target="_blank" rel="noopener"
-         style="color:#C8A96E;font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;"
+         style="color:#6366F1;font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;"
          onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
         Start the conversation →
       </a>
@@ -587,7 +584,7 @@
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">Services</div>
     <h2 class="reveal font-display font-extrabold" style="font-size:clamp(32px,3.8vw,54px);line-height:1.03;letter-spacing:-.028em;margin-bottom:64px;">
-      What we <span style="color:#C8A96E;">deliver</span>
+      What we <span style="color:#6366F1;">deliver</span>
     </h2>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;">
@@ -595,8 +592,8 @@
       <!-- Strategy -->
       <div class="svc-card reveal reveal-d1">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
-          <div style="width:6px;height:6px;border-radius:50%;background:#C8A96E;"></div>
-          <span class="font-display font-semibold" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#C8A96E;">Strategy</span>
+          <div style="width:6px;height:6px;border-radius:50%;background:#6366F1;"></div>
+          <span class="font-display font-semibold" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6366F1;">Strategy</span>
         </div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
           <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Creative Strategy</li>
@@ -608,8 +605,8 @@
       <!-- Execution -->
       <div class="svc-card reveal reveal-d2" style="grid-row:span 2;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
-          <div style="width:6px;height:6px;border-radius:50%;background:#C8A96E;"></div>
-          <span class="font-display font-semibold" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#C8A96E;">Execution</span>
+          <div style="width:6px;height:6px;border-radius:50%;background:#6366F1;"></div>
+          <span class="font-display font-semibold" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6366F1;">Execution</span>
         </div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
           <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Content Creation</li>
@@ -625,8 +622,8 @@
       <!-- Growth -->
       <div class="svc-card reveal reveal-d3">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
-          <div style="width:6px;height:6px;border-radius:50%;background:#C8A96E;"></div>
-          <span class="font-display font-semibold" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#C8A96E;">Growth</span>
+          <div style="width:6px;height:6px;border-radius:50%;background:#6366F1;"></div>
+          <span class="font-display font-semibold" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6366F1;">Growth</span>
         </div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
           <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Social Media Management</li>
@@ -637,8 +634,8 @@
       <!-- Branding -->
       <div class="svc-card reveal reveal-d4">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
-          <div style="width:6px;height:6px;border-radius:50%;background:#C8A96E;"></div>
-          <span class="font-display font-semibold" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#C8A96E;">Branding</span>
+          <div style="width:6px;height:6px;border-radius:50%;background:#6366F1;"></div>
+          <span class="font-display font-semibold" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6366F1;">Branding</span>
         </div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
           <li style="font-size:14px;color:rgba(245,245,240,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(200,169,110,.4);">—</span> Logo Design</li>
@@ -657,7 +654,7 @@
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">Track Record</div>
     <h2 class="reveal font-display font-extrabold" style="font-size:clamp(32px,3.8vw,54px);line-height:1.03;letter-spacing:-.028em;margin-bottom:20px;">
-      Not theory.<br/><span style="color:#C8A96E;">Execution.</span>
+      Not theory.<br/><span style="color:#6366F1;">Execution.</span>
     </h2>
     <p class="reveal" style="color:rgba(245,245,240,.45);font-size:16px;line-height:1.8;max-width:52ch;margin-bottom:72px;font-weight:300;">
       Built on campaigns that had to go live — not just look good in a deck.
@@ -666,19 +663,19 @@
     <!-- Stat strip -->
     <div class="stat-strip reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:64px;">
       <div class="stat-item" style="padding:36px 28px;">
-        <div class="font-display font-extrabold" style="font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;color:#C8A96E;line-height:1;">8+</div>
+        <div class="font-display font-extrabold" style="font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;color:#6366F1;line-height:1;">8+</div>
         <p style="color:rgba(245,245,240,.4);font-size:12px;letter-spacing:.06em;margin-top:8px;text-transform:uppercase;font-family:'Syne',sans-serif;">Years Experience</p>
       </div>
       <div class="stat-item" style="padding:36px 28px;">
-        <div class="font-display font-extrabold" style="font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;color:#C8A96E;line-height:1;">360°</div>
+        <div class="font-display font-extrabold" style="font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;color:#6366F1;line-height:1;">360°</div>
         <p style="color:rgba(245,245,240,.4);font-size:12px;letter-spacing:.06em;margin-top:8px;text-transform:uppercase;font-family:'Syne',sans-serif;">Campaign Ownership</p>
       </div>
       <div class="stat-item" style="padding:36px 28px;">
-        <div class="font-display font-extrabold" style="font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;color:#C8A96E;line-height:1;">2+</div>
+        <div class="font-display font-extrabold" style="font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;color:#6366F1;line-height:1;">2+</div>
         <p style="color:rgba(245,245,240,.4);font-size:12px;letter-spacing:.06em;margin-top:8px;text-transform:uppercase;font-family:'Syne',sans-serif;">Industry Verticals</p>
       </div>
       <div class="stat-item" style="padding:36px 28px;">
-        <div class="font-display font-extrabold" style="font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;color:#C8A96E;line-height:1;">∞</div>
+        <div class="font-display font-extrabold" style="font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;color:#6366F1;line-height:1;">∞</div>
         <p style="color:rgba(245,245,240,.4);font-size:12px;letter-spacing:.06em;margin-top:8px;text-transform:uppercase;font-family:'Syne',sans-serif;">Tight Deadlines Met</p>
       </div>
     </div>
@@ -687,21 +684,21 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
       <div class="reveal reveal-d1" style="padding:28px;border:1px solid rgba(255,255,255,.07);border-radius:2px;background:rgba(200,169,110,.02);transition:border-color .25s;"
            onmouseover="this.style.borderColor='rgba(200,169,110,.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
-        <div style="width:32px;height:1px;background:#C8A96E;margin-bottom:20px;"></div>
+        <div style="width:32px;height:1px;background:#6366F1;margin-bottom:20px;"></div>
         <p style="font-size:15px;line-height:1.75;color:rgba(245,245,240,.7);font-weight:300;">
           Managed integrated campaigns across automotive and hospitality — from launch brief to live asset, end to end.
         </p>
       </div>
       <div class="reveal reveal-d2" style="padding:28px;border:1px solid rgba(255,255,255,.07);border-radius:2px;background:rgba(200,169,110,.02);transition:border-color .25s;"
            onmouseover="this.style.borderColor='rgba(200,169,110,.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
-        <div style="width:32px;height:1px;background:#C8A96E;margin-bottom:20px;"></div>
+        <div style="width:32px;height:1px;background:#6366F1;margin-bottom:20px;"></div>
         <p style="font-size:15px;line-height:1.75;color:rgba(245,245,240,.7);font-weight:300;">
           Handled always-on content, ORM, influencer coordination, and cross-team production simultaneously.
         </p>
       </div>
       <div class="reveal reveal-d3" style="padding:28px;border:1px solid rgba(255,255,255,.07);border-radius:2px;background:rgba(200,169,110,.02);transition:border-color .25s;"
            onmouseover="this.style.borderColor='rgba(200,169,110,.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
-        <div style="width:32px;height:1px;background:#C8A96E;margin-bottom:20px;"></div>
+        <div style="width:32px;height:1px;background:#6366F1;margin-bottom:20px;"></div>
         <p style="font-size:15px;line-height:1.75;color:rgba(245,245,240,.7);font-weight:300;">
           Comfortable operating in high-pressure, multi-team environments where timelines don't move and quality can't drop.
         </p>
@@ -721,14 +718,14 @@
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">Working with us</div>
     <h2 class="reveal font-display font-extrabold" style="font-size:clamp(32px,3.8vw,54px);line-height:1.03;letter-spacing:-.028em;margin-bottom:64px;">
-      What you <span style="color:#C8A96E;">can expect</span>
+      What you <span style="color:#6366F1;">can expect</span>
     </h2>
 
     <div>
       <!-- Row 1 -->
       <div class="expect-card reveal">
         <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
-          <span class="font-display" style="font-size:10px;color:#C8A96E;letter-spacing:.1em;min-width:28px;padding-top:4px;">01</span>
+          <span class="font-display" style="font-size:10px;color:#6366F1;letter-spacing:.1em;min-width:28px;padding-top:4px;">01</span>
           <div>
             <h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Ownership</h4>
             <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">We take the brief and run with it. You won't spend your time chasing updates or explaining the same thing twice.</p>
@@ -739,7 +736,7 @@
       <!-- Row 2 -->
       <div class="expect-card reveal reveal-d1">
         <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
-          <span class="font-display" style="font-size:10px;color:#C8A96E;letter-spacing:.1em;min-width:28px;padding-top:4px;">02</span>
+          <span class="font-display" style="font-size:10px;color:#6366F1;letter-spacing:.1em;min-width:28px;padding-top:4px;">02</span>
           <div>
             <h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Reliability</h4>
             <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">Deadlines are commitments, not suggestions. If we say it ships on Tuesday, it ships on Tuesday.</p>
@@ -750,7 +747,7 @@
       <!-- Row 3 -->
       <div class="expect-card reveal reveal-d2">
         <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
-          <span class="font-display" style="font-size:10px;color:#C8A96E;letter-spacing:.1em;min-width:28px;padding-top:4px;">03</span>
+          <span class="font-display" style="font-size:10px;color:#6366F1;letter-spacing:.1em;min-width:28px;padding-top:4px;">03</span>
           <div>
             <h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Clean Execution</h4>
             <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">On-brand, on-brief, production-ready. Every deliverable reviewed and signed off before it reaches you.</p>
@@ -761,7 +758,7 @@
       <!-- Row 4 -->
       <div class="expect-card reveal reveal-d3">
         <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
-          <span class="font-display" style="font-size:10px;color:#C8A96E;letter-spacing:.1em;min-width:28px;padding-top:4px;">04</span>
+          <span class="font-display" style="font-size:10px;color:#6366F1;letter-spacing:.1em;min-width:28px;padding-top:4px;">04</span>
           <div>
             <h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Team Coordination</h4>
             <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">We manage the moving parts. Designers, writers, editors — briefed, aligned, and accountable on your behalf.</p>
@@ -772,7 +769,7 @@
       <!-- Row 5 -->
       <div class="expect-card reveal reveal-d4" style="border-bottom:1px solid rgba(255,255,255,.07);">
         <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
-          <span class="font-display" style="font-size:10px;color:#C8A96E;letter-spacing:.1em;min-width:28px;padding-top:4px;">05</span>
+          <span class="font-display" style="font-size:10px;color:#6366F1;letter-spacing:.1em;min-width:28px;padding-top:4px;">05</span>
           <div>
             <h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Client Handling</h4>
             <p style="color:rgba(245,245,240,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">Clear communication, structured feedback loops, and zero drama. Working with us should feel easy.</p>
@@ -807,7 +804,7 @@
         <h2 class="reveal font-display font-extrabold" style="font-size:clamp(28px,3.5vw,48px);line-height:1.05;letter-spacing:-.028em;margin-bottom:6px;">
           Saurabh Sohan Singh
         </h2>
-        <p class="reveal" style="color:#C8A96E;font-family:'Syne',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:36px;">Founder, SQUARGRAPH Studios</p>
+        <p class="reveal" style="color:#6366F1;font-family:'Syne',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:36px;">Founder, SQUARGRAPH Studios</p>
 
         <p class="reveal reveal-d1" style="color:rgba(245,245,240,.65);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:20px;max-width:52ch;">
           Over 8 years of experience handling campaigns end-to-end — across strategy, content, social media, PR, and execution. Both agency and brand side.
@@ -854,7 +851,7 @@
       <!-- Left -->
       <div>
         <h2 class="reveal font-display font-extrabold" style="font-size:clamp(36px,5vw,72px);line-height:.97;letter-spacing:-.035em;margin-bottom:32px;">
-          Ready to stop<br/><span style="color:#C8A96E;">talking</span> and<br/>start shipping?
+          Ready to stop<br/><span style="color:#6366F1;">talking</span> and<br/>start shipping?
         </h2>
         <p class="reveal reveal-d1" style="color:rgba(245,245,240,.45);font-size:15px;line-height:1.82;font-weight:300;max-width:40ch;margin-bottom:44px;">
           Drop us a brief. We'll tell you how we'd approach it — no pitch decks, no sales calls.
@@ -862,7 +859,7 @@
 
         <div class="reveal reveal-d2" style="display:flex;flex-direction:column;gap:16px;">
           <a href="https://wa.me/918588897488" target="_blank" rel="noopener"
-             style="display:inline-flex;align-items:center;gap:12px;background:#C8A96E;color:#080808;padding:18px 36px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;width:fit-content;transition:opacity .2s,transform .2s;"
+             style="display:inline-flex;align-items:center;gap:12px;background:#6366F1;color:#080808;padding:18px 36px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;width:fit-content;transition:opacity .2s,transform .2s;"
              onmouseover="this.style.opacity='.82';this.style.transform='translateY(-2px)'" onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Message on WhatsApp
@@ -887,8 +884,8 @@
             <textarea name="message" required placeholder="Brief summary of what you need..." class="form-input"></textarea>
           </div>
           <button type="submit"
-            style="background:transparent;border:1px solid rgba(200,169,110,.4);color:#C8A96E;padding:16px 32px;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:background .2s,color .2s,border-color .2s;width:100%;"
-            onmouseover="this.style.background='rgba(200,169,110,.1)';this.style.borderColor='#C8A96E'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(200,169,110,.4)'">
+            style="background:transparent;border:1px solid rgba(200,169,110,.4);color:#6366F1;padding:16px 32px;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:background .2s,color .2s,border-color .2s;width:100%;"
+            onmouseover="this.style.background='rgba(200,169,110,.1)';this.style.borderColor='#6366F1'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(200,169,110,.4)'">
             Send the Brief →
           </button>
         </form>
@@ -905,7 +902,7 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:36px;flex-wrap:wrap;margin-bottom:40px;">
       <div>
         <div class="font-display font-extrabold" style="font-size:20px;letter-spacing:-.02em;margin-bottom:6px;">
-          SQUAR<span style="color:#C8A96E;">GRAPH</span>
+          SQUARGRAPH <span style="font-size:12px;opacity:0.6;">Studios</span>
         </div>
         <p style="color:rgba(245,245,240,.3);font-size:12px;font-weight:300;">Delhi, India</p>
       </div>
