@@ -1709,31 +1709,44 @@
   }
 
   // Handle brief submission
-  function submitBrief() {
-    const text = chatTextInput.value.trim();
-    if (!text) return;
-    chatTextInput.value = '';
-    briefInput.classList.remove('visible');
-    addMsg(text, 'user');
-    setTimeout(async () => {
-      await botReply("Thanks — we've got your brief. We'll review and get back to you shortly.", 1100);
-      await botReply("You can also reach us directly on WhatsApp for a faster reply.", 900);
+  async function submitBrief() {
+  const text = chatTextInput.value.trim();
+  if (!text) return;
 
-      // Show WA button
-      setTimeout(() => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'chat-options';
-        const btn = document.createElement('button');
-        btn.className = 'chat-option-btn';
-        btn.textContent = '→ Open WhatsApp';
-        btn.addEventListener('click', () => window.open('https://wa.me/918588897488', '_blank'));
-        wrapper.appendChild(btn);
-        chatMessages.appendChild(wrapper);
-        scrollChat();
-      }, 200);
-    }, 300);
+  chatTextInput.value = '';
+  briefInput.classList.remove('visible');
+
+  addMsg(text, 'user');
+
+  // typing animation
+  const typing = document.createElement('div');
+  typing.className = 'msg bot';
+  typing.innerHTML = `<div class="typing-bubble">
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+  </div>`;
+  chatMessages.appendChild(typing);
+
+  try {
+    const res = await fetch("http://localhost:3000/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: text })
+    });
+
+    const data = await res.json();
+
+    chatMessages.removeChild(typing);
+    addMsg(data.reply, 'bot');
+
+  } catch (err) {
+    chatMessages.removeChild(typing);
+    addMsg("Something broke. Try WhatsApp instead.", 'bot');
   }
-
+}
   chatSendBtn.addEventListener('click', submitBrief);
   chatTextInput.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) {
