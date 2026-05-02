@@ -253,7 +253,6 @@
     border-top: 1px solid rgba(255,255,255,.07);
   }
 }
-</style>
 
     /* ── Founder photo placeholder ───────────────────────────────── */
     .founder-photo {
@@ -307,23 +306,32 @@
 
     /* ── Marquee ─────────────────────────────────────────────────── */
     .marquee-wrap { overflow: hidden; }
-    .marquee-inner {
-      display: flex; gap: 0;
-      animation: marquee 28s linear infinite;
-      white-space: nowrap;
-      width: max-content;
-    }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .marquee-item {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(48px, 7vw, 96px);
-      font-weight: 800;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(200,169,110,.18);
-      letter-spacing: -.03em;
-      padding: 0 40px;
-      text-transform: uppercase;
-    }
+    .marquee-wrap {
+  overflow: hidden;
+}
+
+.marquee-inner {
+  display: flex;
+  width: max-content;
+  animation: marquee 18s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-item {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(200,169,110,.18);
+  letter-spacing: -.03em;
+  padding: 0 60px;
+  text-transform: uppercase;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 
     /* ── Footer social icons ─────────────────────────────────────── */
     .social-link {
@@ -435,28 +443,19 @@
 <div style="padding:40px 0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden;">
   <div class="marquee-wrap">
     <div class="marquee-inner">
-      <span class="marquee-item">Strategy</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
-      <span class="marquee-item">Execution</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
-      <span class="marquee-item">Campaigns</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
-      <span class="marquee-item">Content</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
-      <span class="marquee-item">Growth</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
-      <!-- duplicate for seamless loop -->
-      <span class="marquee-item">Strategy</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
-      <span class="marquee-item">Execution</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
-      <span class="marquee-item">Campaigns</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
-      <span class="marquee-item">Content</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
-      <span class="marquee-item">Growth</span>
-      <span class="marquee-item" style="-webkit-text-stroke-color:rgba(200,169,110,.28);">·</span>
-    </div>
+  <span class="marquee-item">Strategy</span>
+  <span class="marquee-item">Execution</span>
+  <span class="marquee-item">Campaigns</span>
+  <span class="marquee-item">Content</span>
+  <span class="marquee-item">Growth</span>
+
+  <!-- duplicate -->
+  <span class="marquee-item">Strategy</span>
+  <span class="marquee-item">Execution</span>
+  <span class="marquee-item">Campaigns</span>
+  <span class="marquee-item">Content</span>
+  <span class="marquee-item">Growth</span>
+</div>
   </div>
 </div>
 
