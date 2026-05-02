@@ -288,7 +288,11 @@
     .reveal-d5 { transition-delay: .44s; }
 
     /* ── Hero headline clip animation ────────────────────────────── */
-    .line-wrap { overflow: hidden; display: block; }
+    .line-wrap { 
+  overflow: hidden; 
+  display: block;
+  padding-bottom: 4px;
+}
     .line-inner {
       display: block;
       animation: lineUp .9s cubic-bezier(.23,1,.32,1) both;
@@ -930,9 +934,13 @@
   </div>
 
   <!-- Headline -->
-  <h1 class="font-display font-extrabold" style="font-size:clamp(48px,8vw,112px);line-height:.93;letter-spacing:-.035em;max-width:14ch;margin-bottom:36px;">
+  <h1 class="font-display font-extrabold" style="font-size:clamp(48px,8vw,112px);line-height:1.05;letter-spacing:-.035em;max-width:14ch;margin-bottom:36px;">
   <span class="line-wrap"><span class="line-inner">We handle what needs to get done.</span></span>
-<span class="line-wrap delay-1"><span class="line-inner" style="color:#A855F7;">From thinking to getting things done..</span></span>
+<span class="line-wrap delay-1">
+  <span class="line-inner" style="color:#A855F7;">
+    From thinking to execution.
+  </span>
+</span>
 </h1>
 
   <!-- Supporting line -->
