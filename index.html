@@ -23,7 +23,7 @@
   <meta name="application-name" content="SQUARGRAPH Studios">
   <meta property="og:title" content="SQUARGRAPH Studios — Execution-First Creative Studio">
   <meta property="og:description" content="Brief in. Campaign live. Creative strategy, content, and execution.">
-  <meta property="og:image" content="/preview.jpg">
+  <meta property="og:image" content="https://squargraph.com/preview.jpg">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -113,7 +113,7 @@
       transition: transform .35s cubic-bezier(.23,1,.32,1), opacity .3s, width .25s, height .25s;
     }
     body:has(a:hover) #cursor-ring,
-    body:has(button:hover) #cursor-ring { width: 56px; height: 56px; opacity: .6; }
+body:has(button:hover) #cursor-ring { width: 56px; height: 56px; opacity: .6; }
 
     /* ── Scrollbar ───────────────────────────────────────────────── */
     ::-webkit-scrollbar { width: 2px; }
@@ -1355,10 +1355,8 @@
       <!-- Photo -->
       <div class="reveal">
         <div class="founder-photo">
-          <img src="founder.jpg"
-     alt="Saurabh Sohan Singh"
-     style="width:100%;height:100%;object-fit:cover;"
-     onerror="this.style.display='none'">
+          <img src="founder.jpg" alt="Founder"
+onerror="this.outerHTML='<div class=founder-photo-initials>SS</div>'">
         </div>
       </div>
       <!-- Bio -->
@@ -1853,10 +1851,7 @@ async function submitBrief() {
     chatMessages.removeChild(typing);
 
     // OPEN WHATSAPP WITH USER TEXT
-    window.open(
-      `https://wa.me/918588897488?text=${encodeURIComponent(text)}`,
-      '_blank'
-    );
+    window.location.href = `https://wa.me/918588897488?text=${encodeURIComponent(text)}`;
   }, 1000);
 }
 
