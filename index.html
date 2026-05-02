@@ -13,8 +13,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SQUARGRAPH Studios — Execution-First Creative Studio</title>
   <meta name="description" content="SQUARGRAPH Studios. Brief in. Campaign live. Creative strategy, content, and execution for brands that can't afford to get it wrong." />
+  <meta property="og:title" content="SQUARGRAPH Studios — Execution-First Creative Studio">
+  <meta property="og:description" content="Brief in. Campaign live. Creative strategy, content, and execution.">
+  <meta property="og:image" content="/preview.jpg">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;400;500&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -247,7 +253,9 @@
   .stat-strip {
     grid-template-columns: 1fr !important;
   }
-
+body { cursor: auto; }
+  #cursor, #cursor-ring { display: none; }
+}
   .stat-item {
     border-left: none !important;
     border-top: 1px solid rgba(255,255,255,.07);
