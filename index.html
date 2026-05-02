@@ -220,6 +220,10 @@
     /* ── Typography ──────────────────────────────────────────────── */
     .font-display { font-family: 'Outfit', sans-serif; }
 
+    #hero {
+  padding-top: 120px;
+}
+    
     /* ── Motion graphics — animated SVG elements ─────────────────── */
     /* Orbiting ring */
     @keyframes orbitRing {
@@ -426,31 +430,36 @@
 
     /* ── Responsive helpers ──────────────────────────────────────── */
     @media (max-width: 768px) {
-      .process-track::before { display: none; }
-      .mobile-stack { flex-direction: column !important; }
-      .mobile-hide { display: none !important; }
-      .stat-strip { grid-template-columns: 1fr !important; }
-      body { cursor: auto; }
-      #cursor, #cursor-ring { display: none; }
-      .stat-item {
-  border-left: none !important;
-  border-top: 1px solid rgba(255,255,255,.065);
-}
+  .process-track::before { display: none; }
+  .mobile-stack { flex-direction: column !important; }
+  .mobile-hide { display: none !important; }
+  .stat-strip { grid-template-columns: 1fr !important; }
+  body { cursor: auto; }
+  #cursor, #cursor-ring { display: none; }
 
-.hero-glow-1,
-.hero-glow-2,
-.hero-glow-3,
-.hero-glow-4 {
-  display: none;
-}
-      /* Chatbot mobile */
-      #chat-panel {
-        width: calc(100vw - 32px) !important;
-        right: 16px !important;
-        bottom: 80px !important;
-      }
-    }
+  .stat-item {
+    border-left: none !important;
+    border-top: 1px solid rgba(255,255,255,.065);
+  }
 
+  .hero-glow-1,
+  .hero-glow-2,
+  .hero-glow-3,
+  .hero-glow-4 {
+    display: none;
+  }
+
+  #hero {
+    padding-top: 100px !important;
+  }
+
+  /* Chatbot mobile */
+  #chat-panel {
+    width: calc(100vw - 32px) !important;
+    right: 16px !important;
+    bottom: 80px !important;
+  }
+}
     /* ── Founder photo placeholder ───────────────────────────────── */
     .founder-photo {
       width: 100%;
@@ -797,7 +806,7 @@
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <!--  HERO                                                                   -->
 <!-- ══════════════════════════════════════════════════════════════════════ -->
-<section id="hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5vw 10vh;position:relative;overflow:hidden;">
+<section id="hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 5vw 10vh;position:relative;overflow:hidden;">
   <div class="grid-bg"></div>
 
   <!-- Animated floating glows -->
@@ -935,7 +944,7 @@
 
   <!-- Headline -->
   <h1 class="font-display font-extrabold" style="font-size:clamp(48px,8vw,112px);line-height:1.1;letter-spacing:-.035em;max-width:14ch;margin-bottom:36px;">
-  <span class="line-wrap"><span class="line-inner">We handle what needs to get done.</span></span>
+  <span class="line-wrap"><span class="line-inner">We get the work done.</span></span>
 <span class="line-wrap delay-1">
   <span class="line-inner" style="color:#A855F7;">
     From thinking to execution.
