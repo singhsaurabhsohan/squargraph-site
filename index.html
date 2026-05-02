@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://squargraph.com">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
-  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="shortcut icon" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SQUARGRAPH Studios — Execution-First Creative Studio</title>
   <meta name="description" content="SQUARGRAPH Studios. Brief in. Campaign live. Creative strategy, content, and execution for brands that can't afford to get it wrong." />
@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Modern premium fonts: Space Grotesk (display) + Outfit (body) -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
@@ -112,8 +112,7 @@
       transform: translate(-50%, -50%);
       transition: transform .35s cubic-bezier(.23,1,.32,1), opacity .3s, width .25s, height .25s;
     }
-    body:has(a:hover) #cursor-ring,
-body:has(button:hover) #cursor-ring { width: 56px; height: 56px; opacity: .6; }
+    { width: 56px; height: 56px; opacity: .6; }
 
     /* ── Scrollbar ───────────────────────────────────────────────── */
     ::-webkit-scrollbar { width: 2px; }
@@ -779,8 +778,18 @@ body:has(button:hover) #cursor-ring { width: 56px; height: 56px; opacity: .6; }
 <body>
 
 <!-- ── Custom Cursor ────────────────────────────────────────────────────── -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+<script>
+const cursor = document.getElementById("cursor");
+const ring = document.getElementById("cursor-ring");
+
+document.addEventListener("mousemove", (e) => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+
+  ring.style.left = e.clientX + "px";
+  ring.style.top = e.clientY + "px";
+});
+</script>
 
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <!--  NAV                                                                    -->
@@ -1863,6 +1872,18 @@ chatTextInput.addEventListener('keydown', e => {
     submitBrief();
   }
 });
+</script>
+  <script>
+const toggle = document.getElementById('mob-toggle');
+const menu = document.getElementById('mob-menu');
+
+toggle.addEventListener('click', () => {
+  menu.style.display = 'flex';
+});
+
+function closeMob() {
+  menu.style.display = 'none';
+}
 </script>
 </body>
 </html>
