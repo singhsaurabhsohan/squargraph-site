@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://squargraph.com">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
@@ -63,14 +65,19 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: #03020A;
-      color: #EEEEF5;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      overflow-x: hidden;
-      cursor: none;
-    }
+  background: #03020A;
+  color: #EEEEF5;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+  body {
+    cursor: none;
+  }
+}
     a, button, [role="button"] { cursor: none; }
 
     /* ── Grain overlay ───────────────────────────────────────────── */
@@ -80,7 +87,7 @@
       inset: 0;
       pointer-events: none;
       z-index: 1000;
-      opacity: 0.01;
+      opacity: 0.005;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
     }
 
@@ -126,24 +133,27 @@
 
     /* ── Animated hero glows ─────────────────────────────────────── */
     .hero-glow-1 {
+      will-change: transform;
       position: absolute;
-      width: 800px; height: 800px;
+      width: 500px; height: 500px;
       background: radial-gradient(circle, rgba(124,58,237,.09) 0%, rgba(168,85,247,.04) 40%, transparent 70%);
       top: -120px; right: -180px;
       pointer-events: none;
       animation: floatGlow1 12s ease-in-out infinite;
     }
     .hero-glow-2 {
+      will-change: transform;
       position: absolute;
-      width: 550px; height: 550px;
+      width: 350px; height: 350px;
       background: radial-gradient(circle, rgba(6,182,212,.05) 0%, rgba(124,58,237,.03) 50%, transparent 70%);
       bottom: 0px; left: -120px;
       pointer-events: none;
       animation: floatGlow2 16s ease-in-out infinite;
     }
     .hero-glow-3 {
+      will-change: transform;
       position: absolute;
-      width: 320px; height: 320px;
+      width: 250px; height: 250px;
       background: radial-gradient(circle, rgba(232,184,109,.04) 0%, transparent 70%);
       top: 40%; left: 35%;
       pointer-events: none;
@@ -151,8 +161,9 @@
     }
     /* Deep aurora glow bottom-center */
     .hero-glow-4 {
+      will-change: transform;
       position: absolute;
-      width: 1000px; height: 400px;
+      width: 600px; height: 250px;
       background: radial-gradient(ellipse, rgba(124,58,237,.06) 0%, rgba(6,182,212,.02) 50%, transparent 75%);
       bottom: -100px; left: 50%;
       transform: translateX(-50%);
@@ -418,9 +429,16 @@
       body { cursor: auto; }
       #cursor, #cursor-ring { display: none; }
       .stat-item {
-        border-left: none !important;
-        border-top: 1px solid rgba(255,255,255,.065);
-      }
+  border-left: none !important;
+  border-top: 1px solid rgba(255,255,255,.065);
+}
+
+.hero-glow-1,
+.hero-glow-2,
+.hero-glow-3,
+.hero-glow-4 {
+  display: none;
+}
       /* Chatbot mobile */
       #chat-panel {
         width: calc(100vw - 32px) !important;
@@ -463,6 +481,15 @@
     }
 
     /* ── Form input ──────────────────────────────────────────────── */
+    .form-label {
+  display:block;
+  font-family:'Outfit',sans-serif;
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(238,238,245,.35);
+  margin-bottom:8px;
+}
     .form-input {
       width: 100%;
       background: #0D0A1E;
@@ -904,13 +931,13 @@
 
   <!-- Headline -->
   <h1 class="font-display font-extrabold" style="font-size:clamp(48px,8vw,112px);line-height:.93;letter-spacing:-.035em;max-width:14ch;margin-bottom:36px;">
-  <span class="line-wrap"><span class="line-inner">Making things happen.</span></span>
-  <span class="line-wrap delay-1"><span class="line-inner" style="color:#A855F7;">Step by step.</span></span>
+  <span class="line-wrap"><span class="line-inner">We handle what needs to get done.</span></span>
+<span class="line-wrap delay-1"><span class="line-inner" style="color:#A855F7;">From idea to execution.</span></span>
 </h1>
 
   <!-- Supporting line -->
   <p class="hero-fade" style="color:rgba(238,238,245,.7);font-size:clamp(14px,1.5vw,19px);max-width:44ch;margin-bottom:52px;font-weight:300;line-height:1.75;animation-delay:.55s;">
-  From brief to live, without the usual chaos.
+  From strategy and planning to content and execution — we handle the full process so things actually move forward.
 </p>
 
   <!-- CTAs -->
@@ -1299,7 +1326,10 @@
       <!-- Photo -->
       <div class="reveal">
         <div class="founder-photo">
-          <img src="founder.jpg" alt="Saurabh Sohan Singh" style="width:100%;height:100%;object-fit:cover;">
+          <img src="founder.jpg"
+     alt="Saurabh Sohan Singh"
+     style="width:100%;height:100%;object-fit:cover;"
+     onerror="this.style.display='none'">
         </div>
       </div>
       <!-- Bio -->
@@ -1379,25 +1409,84 @@
 
       <!-- Right: Form -->
       <div class="reveal reveal-d2">
-        <form action="https://formspree.io/f/xzdykrjl" method="POST" style="display:flex;flex-direction:column;gap:16px;">
-          <div>
-            <label style="display:block;font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,238,245,.35);margin-bottom:8px;">Your Name</label>
-            <input type="text" name="name" required placeholder="Enter your name" class="form-input" />
-          </div>
-          <div>
-            <label style="display:block;font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,238,245,.35);margin-bottom:8px;">Email</label>
-            <input type="email" name="email" required placeholder="Enter your email id" class="form-input" />
-          </div>
-          <div>
-            <label style="display:block;font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,238,245,.35);margin-bottom:8px;">Tell us about your project</label>
-            <textarea name="message" required placeholder="Brief summary of what you need..." class="form-input"></textarea>
-          </div>
-          <button type="submit"
-            style="background:transparent;border:1px solid rgba(124,58,237,.4);color:#A855F7;padding:16px 32px;font-family:'Outfit',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:background .25s,color .2s,border-color .2s,transform .25s cubic-bezier(.23,1,.32,1);width:100%;"
-            onmouseover="this.style.background='rgba(124,58,237,.1)';this.style.borderColor='#A855F7';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(124,58,237,.4)';this.style.transform='translateY(0)'">
-            Send the Brief →
-          </button>
-        </form>
+        <form action="https://formspree.io/f/xzdykrjl" method="POST" style="display:flex;flex-direction:column;gap:18px;">
+
+  <!-- Name -->
+  <div>
+    <label class="form-label">Your Name</label>
+    <input type="text" name="name" required placeholder="Full name" class="form-input" />
+  </div>
+
+  <!-- Email -->
+  <div>
+    <label class="form-label">Work Email</label>
+    <input type="email" name="email" required placeholder="name@company.com" class="form-input" />
+  </div>
+
+  <!-- Brand / Company -->
+  <div>
+    <label class="form-label">Brand / Company</label>
+    <input type="text" name="company" placeholder="Your brand or company name" class="form-input" />
+  </div>
+
+  <!-- What do you need -->
+  <div>
+    <label class="form-label">What are you looking for?</label>
+    <select name="service" required class="form-input">
+      <option value="">Select</option>
+      <option>Full campaign (strategy + execution)</option>
+      <option>Content & social media</option>
+      <option>Branding / identity</option>
+      <option>Performance creatives</option>
+      <option>Something else</option>
+    </select>
+  </div>
+
+  <!-- Budget -->
+  <div>
+    <label class="form-label">Estimated budget</label>
+    <select name="budget" required class="form-input">
+      <option value="">Select range</option>
+      <option>₹50K – ₹1L</option>
+      <option>₹1L – ₹3L</option>
+      <option>₹3L – ₹7L</option>
+      <option>₹7L+</option>
+    </select>
+  </div>
+
+  <!-- Timeline -->
+  <div>
+    <label class="form-label">Timeline</label>
+    <select name="timeline" required class="form-input">
+      <option value="">Select</option>
+      <option>ASAP</option>
+      <option>2–4 weeks</option>
+      <option>1–2 months</option>
+      <option>Just exploring</option>
+    </select>
+  </div>
+
+  <!-- Project brief -->
+  <div>
+    <label class="form-label">Project brief</label>
+    <textarea name="message" required placeholder="What are you trying to achieve? What’s the current situation?" class="form-input"></textarea>
+  </div>
+
+  <!-- Reference -->
+  <div>
+    <label class="form-label">Reference links (optional)</label>
+    <input type="url" name="reference" placeholder="Drive / Notion / examples" class="form-input" />
+  </div>
+
+  <!-- Submit -->
+  <button type="submit"
+    style="background:#A855F7;border:none;color:#03020A;padding:18px 32px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:transform .25s;"
+    onmouseover="this.style.transform='translateY(-2px)'" 
+    onmouseout="this.style.transform='translateY(0)'">
+    Send Brief →
+  </button>
+
+</form>
       </div>
     </div>
   </div>
@@ -1708,7 +1797,8 @@
   }
 
   // Handle brief submission
-  async function submitBrief() {
+  // Handle brief submission
+async function submitBrief() {
   const text = chatTextInput.value.trim();
   if (!text) return;
 
@@ -1726,32 +1816,27 @@
     <div class="typing-dot"></div>
   </div>`;
   chatMessages.appendChild(typing);
+  scrollChat();
 
-  try {
-    const res = await fetch("http://localhost:3000/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ message: text })
-    });
-
-    const data = await res.json();
-
+  setTimeout(() => {
     chatMessages.removeChild(typing);
-    addMsg(data.reply, 'bot');
 
-  } catch (err) {
-    chatMessages.removeChild(typing);
-    addMsg("Something broke. Try WhatsApp instead.", 'bot');
+    // OPEN WHATSAPP WITH USER TEXT
+    window.open(
+      `https://wa.me/918588897488?text=${encodeURIComponent(text)}`,
+      '_blank'
+    );
+  }, 1000);
+}
+
+// Event listeners
+chatSendBtn.addEventListener('click', submitBrief);
+chatTextInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    submitBrief();
   }
-}
-  chatSendBtn.addEventListener('click', submitBrief);
-  chatTextInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-  e.preventDefault();
-  submitBrief();
-}
+});
   });
 </script>
 </body>
