@@ -515,15 +515,15 @@
       white-space: nowrap;
     }
     .marquee-item {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(48px, 7vw, 96px);
-      font-weight: 800;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(124,58,237,.2);
-      letter-spacing: -.03em;
-      padding: 0 60px;
-      text-transform: uppercase;
-    }
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 800;
+  color: rgba(124,58,237,0.08);
+  -webkit-text-stroke: 1px rgba(124,58,237,.4);
+  letter-spacing: -.03em;
+  padding: 0 60px;
+  text-transform: uppercase;
+}
     @keyframes marquee {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
