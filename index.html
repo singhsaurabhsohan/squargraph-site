@@ -191,6 +191,14 @@
       pointer-events: none;
       overflow: hidden;
     }
+    .hero-lines,
+.hero-glow-1,
+.hero-glow-2,
+.hero-glow-3,
+.hero-glow-4,
+.grid-bg {
+  pointer-events: none;
+}
     .hero-lines svg { width: 100%; height: 100%; }
 
     /* ── Floating geo shapes ─────────────────────────────────────── */
@@ -314,7 +322,7 @@
     /* ── Nav ─────────────────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
-      z-index: 500;
+      z-index: 9999;
       padding: 22px 5vw;
       display: flex; align-items: center; justify-content: space-between;
       transition: background .4s, backdrop-filter .4s, border-color .4s;
@@ -787,11 +795,15 @@
     <a href="#services" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
     <a href="#founder" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Founder</a>
   </div>
-  <button class="md:hidden" style="background:none;border:none;color:#EEEEF5;font-size:22px;line-height:1;" id="mob-toggle" aria-label="Menu">☰</button>
-</nav>
+  <button class="md:hidden"
+  style="background:none;border:none;color:#EEEEF5;font-size:22px;line-height:1;padding:12px;cursor:pointer;"
+  id="mob-toggle"
+  aria-label="Menu">
+  ☰
+</button>
 
 <!-- Mobile menu -->
-<div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:400;flex-direction:column;align-items:center;justify-content:center;gap:36px;">
+<div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:10000;flex-direction:column;align-items:center;justify-content:center;gap:36px;">
   <button onclick="closeMob()" style="position:absolute;top:24px;right:5vw;background:none;border:none;color:#EEEEF5;font-size:26px;">✕</button>
   <a href="#philosophy" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Philosophy</a>
   <a href="#process" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Process</a>
