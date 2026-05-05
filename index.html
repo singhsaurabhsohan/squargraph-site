@@ -560,10 +560,11 @@
       overflow: hidden;
       position: relative;
     }
-    .founder-photo::after {
+        .founder-photo::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(124,58,237,.08) 0%, rgba(6,182,212,.03) 50%, transparent 70%);
+      background: linear-gradient(135deg, rgba(124,58,237,0.28) 0%, rgba(168,85,247,0.12) 40%, transparent 70%);
+      mix-blend-mode: multiply;
     }
 
     .cta-glow {
@@ -1370,32 +1371,27 @@
       <div class="work-img-card reveal reveal-d1" style="grid-column:span 7;cursor:pointer;" onclick="openLightbox('https://picsum.photos/800/600?random=1')">
         <svg class="work-img-svg" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="600" rx="2" fill="#0D0A1E"/>
-  <!-- concentric target rings -->
   <circle cx="380" cy="280" r="160" stroke="#EEEEF5" stroke-opacity="0.12" stroke-width="1" fill="none"/>
   <circle cx="380" cy="280" r="110" stroke="#A855F7" stroke-opacity="0.3" stroke-width="1.5" fill="none"/>
   <circle cx="380" cy="280" r="60" stroke="#A855F7" stroke-opacity="0.5" stroke-width="1.5" fill="none"/>
-  <!-- crosshairs -->
   <path d="M380 120 L380 170 M380 390 L380 460 M220 280 L270 280 M490 280 L560 280" stroke="#EEEEF5" stroke-opacity="0.25" stroke-width="1" stroke-linecap="round"/>
-  <!-- dashed orbits -->
   <circle cx="380" cy="280" r="230" stroke="#06B6D4" stroke-opacity="0.2" stroke-width="0.8" stroke-dasharray="6 8" fill="none"/>
   <circle cx="380" cy="280" r="200" stroke="#EEEEF5" stroke-opacity="0.08" stroke-width="0.8" stroke-dasharray="3 7" fill="none"/>
-  <!-- glowing nodes -->
   <circle cx="380" cy="50" r="22" fill="#A855F7" fill-opacity="0.08" filter="url(#blur-glow)"/>
   <circle cx="380" cy="50" r="5" fill="#A855F7"/>
   <circle cx="610" cy="280" r="18" fill="#A855F7" fill-opacity="0.06" filter="url(#blur-glow)"/>
   <circle cx="610" cy="280" r="4" fill="#06B6D4"/>
   <circle cx="380" cy="510" r="16" fill="#A855F7" fill-opacity="0.06" filter="url(#blur-glow)"/>
   <circle cx="380" cy="510" r="3.5" fill="#A855F7"/>
-  <!-- connecting dotted lines -->
   <path d="M380 72 L380 120 M610 262 L610 200 M380 488 L380 460" stroke="#06B6D4" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="3 4"/>
 </svg>
-                <div class="work-img-overlay">
+        <div class="work-img-overlay">
           <div class="work-img-tag">Campaign Execution</div>
           <div class="work-img-title">Launch campaigns that ship on time, every time.</div>
         </div>
       </div>
 
-            <!-- Card 2 – Creative Strategy (now span 5) -->
+      <!-- Card 2 – Creative Strategy -->
       <div class="work-img-card reveal reveal-d2" style="grid-column:span 5;">
         <svg class="work-img-svg" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="600" rx="2" fill="#0D0A1E"/>
@@ -1420,35 +1416,8 @@
           <div class="work-img-title">Strategy that actually becomes output.</div>
         </div>
       </div>
-  <rect width="800" height="600" rx="2" fill="#0D0A1E"/>
-  <!-- wireframe sphere -->
-  <ellipse cx="400" cy="300" rx="180" ry="200" stroke="#EEEEF5" stroke-opacity="0.1" stroke-width="1" fill="none"/>
-  <ellipse cx="400" cy="300" rx="150" ry="170" stroke="#A855F7" stroke-opacity="0.25" stroke-width="1.2" fill="none"/>
-  <ellipse cx="400" cy="300" rx="100" ry="120" stroke="#A855F7" stroke-opacity="0.12" stroke-width="0.8" fill="none"/>
-  <!-- horizontal and vertical latitude lines -->
-  <path d="M250 300 L550 300" stroke="#EEEEF5" stroke-opacity="0.15" stroke-width="1"/>
-  <path d="M400 100 L400 500" stroke="#EEEEF5" stroke-opacity="0.15" stroke-width="1"/>
-  <path d="M300 140 L500 460" stroke="#EEEEF5" stroke-opacity="0.07" stroke-width="0.7"/>
-  <path d="M500 140 L300 460" stroke="#EEEEF5" stroke-opacity="0.07" stroke-width="0.7"/>
-  <!-- core hexagon -->
-  <polygon points="400,230 460,265 460,335 400,370 340,335 340,265" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1.5"/>
-  <circle cx="400" cy="300" r="10" fill="#A855F7" filter="url(#blur-glow)"/>
-  <circle cx="400" cy="300" r="4" fill="#FFF"/>
-  <!-- radiating nodes -->
-  <circle cx="230" cy="300" r="3" fill="#06B6D4"/>
-  <circle cx="570" cy="300" r="3" fill="#06B6D4"/>
-  <circle cx="400" cy="80" r="3" fill="#06B6D4"/>
-  <circle cx="400" cy="520" r="3" fill="#06B6D4"/>
-  <!-- connecting dotted lines to nodes -->
-  <path d="M400 90 L400 130 M400 470 L400 510 M240 300 L290 300 M510 300 L560 300" stroke="#06B6D4" stroke-opacity="0.3" stroke-width="0.8" stroke-dasharray="3 4"/>
-</svg>
-        <div class="work-img-overlay" style="pointer-events:none;">
-          <div class="work-img-tag">Creative Strategy</div>
-          <div class="work-img-title">Strategy that actually becomes output.</div>
-        </div>
-      </div>
 
-            <!-- Card 3 – Brand Content (span 4) -->
+      <!-- Card 3 – Brand Content -->
       <div class="work-img-card reveal reveal-d3" style="grid-column:span 4;">
         <svg class="work-img-svg" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="600" rx="2" fill="#0D0A1E"/>
@@ -1477,39 +1446,8 @@
           <div class="work-img-title">Multi-format assets, one unified voice.</div>
         </div>
       </div>
-  <rect width="800" height="600" rx="2" fill="#0D0A1E"/>
-  <!-- blueprint frames -->
-  <g stroke="#EEEEF5" stroke-opacity="0.18" stroke-width="1" fill="none">
-    <rect x="90" y="100" width="260" height="180" rx="4"/>
-    <path d="M90 116 L110 116 M90 132 L100 132" stroke="#A855F7" stroke-opacity="0.4" stroke-width="1.5"/>
-    <path d="M350 100 L350 116 M350 280 L350 296" stroke="#A855F7" stroke-opacity="0.3" stroke-width="1.5"/>
-    <rect x="450" y="140" width="260" height="220" rx="4"/>
-    <path d="M450 156 L470 156 M450 172 L460 172" stroke="#A855F7" stroke-opacity="0.4" stroke-width="1.5"/>
-    <!-- corner brackets -->
-    <path d="M90 280 L90 270 L100 270" stroke="#A855F7" stroke-opacity="0.6" stroke-width="1.5"/>
-    <path d="M350 280 L350 270 L340 270" stroke="#A855F7" stroke-opacity="0.6" stroke-width="1.5"/>
-  </g>
-  <!-- media shapes inside frame 1 -->
-  <polygon points="180,160 220,200 180,240 140,200" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1"/>
-  <rect x="130" y="260" width="100" height="6" rx="3" fill="#06B6D4" fill-opacity="0.3"/>
-  <rect x="130" y="275" width="80" height="5" rx="2.5" fill="#EEEEF5" fill-opacity="0.1"/>
-  <!-- inside frame 2 -->
-  <rect x="480" y="190" width="200" height="8" rx="4" fill="#EEEEF5" fill-opacity="0.07"/>
-  <rect x="480" y="210" width="150" height="5" rx="2.5" fill="#06B6D4" fill-opacity="0.25"/>
-  <circle cx="620" cy="270" r="16" stroke="#A855F7" stroke-width="1.2" fill="#A855F7" fill-opacity="0.08"/>
-  <path d="M620 254 L620 258 M604 270 L608 270 M620 270 L632 270 M620 282 L620 286" stroke="#A855F7" stroke-width="1" stroke-linecap="round"/>
-  <!-- interconnecting dashed lines -->
-  <path d="M350 200 L450 210 M350 250 L450 280" stroke="#06B6D4" stroke-opacity="0.25" stroke-width="0.8" stroke-dasharray="3 5"/>
-  <circle cx="400" cy="205" r="2" fill="#A855F7"/>
-  <circle cx="400" cy="265" r="2" fill="#06B6D4"/>
-</svg>
-        <div class="work-img-overlay" style="pointer-events:none;">
-          <div class="work-img-tag">Brand Content</div>
-          <div class="work-img-title">Multi-format assets, one unified voice.</div>
-        </div>
-      </div>
 
-            <!-- Card 4 – Digital Production (span 4) -->
+      <!-- Card 4 – Digital Production -->
       <div class="work-img-card reveal reveal-d4" style="grid-column:span 4;">
         <svg class="work-img-svg" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="600" rx="2" fill="#0D0A1E"/>
@@ -1535,37 +1473,9 @@
           <div class="work-img-title">Video, stills, and digital films — end to end.</div>
         </div>
       </div>
-  <rect width="800" height="600" rx="2" fill="#0D0A1E"/>
-  <!-- camera lens assembly -->
-  <circle cx="320" cy="300" r="120" stroke="#EEEEF5" stroke-opacity="0.12" stroke-width="1" fill="none"/>
-  <circle cx="320" cy="300" r="90" stroke="#A855F7" stroke-opacity="0.3" stroke-width="1.5" fill="none"/>
-  <circle cx="320" cy="300" r="55" stroke="#A855F7" stroke-opacity="0.5" stroke-width="1.2" fill="none"/>
-  <circle cx="320" cy="300" r="25" fill="#A855F7" fill-opacity="0.1" stroke="#A855F7" stroke-width="1"/>
-  <circle cx="320" cy="300" r="12" fill="#06B6D4" fill-opacity="0.2" stroke="#EEEEF5" stroke-width="0.8"/>
-  <!-- aperture blades -->
-  <path d="M320 188 L290 230 L320 272 L350 230 Z" fill="none" stroke="#EEEEF5" stroke-opacity="0.2" stroke-width="0.8"/>
-  <path d="M290 230 L240 280 L280 330" fill="none" stroke="#EEEEF5" stroke-opacity="0.18" stroke-width="0.8"/>
-  <path d="M320 272 L360 330 L400 280" fill="none" stroke="#EEEEF5" stroke-opacity="0.18" stroke-width="0.8"/>
-  <!-- waveform ribbon -->
-  <path d="M500 200 L530 180 L550 220 L570 160 L590 200 L610 140 L630 180 L650 150" stroke="#A855F7" stroke-opacity="0.6" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
-  <path d="M500 210 L530 190 L550 230 L570 170 L590 210 L610 150 L630 190 L650 160" stroke="#06B6D4" stroke-opacity="0.3" stroke-width="1" fill="none" stroke-linejoin="round"/>
-  <!-- production gear icons -->
-  <rect x="540" y="340" width="60" height="40" rx="6" stroke="#EEEEF5" stroke-opacity="0.15" stroke-width="1" fill="none"/>
-  <rect x="550" y="350" width="40" height="8" rx="4" fill="#A855F7" fill-opacity="0.25"/>
-  <rect x="550" y="365" width="25" height="4" rx="2" fill="#06B6D4" fill-opacity="0.3"/>
-  <circle cx="660" cy="360" r="14" stroke="#A855F7" stroke-width="1" fill="none"/>
-  <path d="M654 360 L666 360 M660 354 L660 366" stroke="#A855F7" stroke-width="1.5"/>
-  <!-- glow behind lens -->
-  <circle cx="320" cy="300" r="80" fill="#A855F7" fill-opacity="0.06" filter="url(#blur-glow)"/>
-</svg>
-        <div class="work-img-overlay" style="pointer-events:none;">
-          <div class="work-img-tag">Digital Production</div>
-          <div class="work-img-title">Video, stills, and digital films — end to end.</div>
-        </div>
-      </div>
 
     </div>
-        <!-- Additional experience note -->
+    <!-- Additional experience note -->
     <div class="reveal" style="margin-top:40px;text-align:center;">
       <p style="color:rgba(238,238,245,.3);font-size:13px;line-height:1.8;margin:0;">
         …and many more projects like media drives, drive events, and always‑on content for multiple brands.
@@ -1697,7 +1607,7 @@
     <div class="reveal s-label">The Person Behind It</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:64px;align-items:start;margin-top:20px;">
       <div class="reveal">
-        <div class="founder-photo" style="overflow:hidden;background:linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.05));">
+        <div class="founder-photo" style="overflow:hidden;">
   <img src="founder.jpg" loading="lazy" alt="Saurabh Sohan Singh" 
        style="width:100%;height:100%;object-fit:cover;"
        onerror="this.style.display='none';this.parentNode.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;\'><span style=\'font-family:Outfit,sans-serif;font-size:72px;font-weight:800;color:rgba(168,85,247,0.25);\'>SS</span></div>';">
