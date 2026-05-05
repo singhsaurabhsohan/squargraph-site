@@ -741,12 +741,12 @@
 }
     /* ── Chatbot ─────────────────────────────────────────────── */
     #chat-toggle {
-      position: fixed; bottom: 28px; right: 28px;
+      position: fixed; bottom: 100px; right: 28px;
       width: 54px; height: 54px;
       background: linear-gradient(135deg, #7C3AED, #A855F7);
       border: none; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      z-index: 9000;
+      z-index: 10000;
       box-shadow: 0 8px 30px rgba(124,58,237,.45);
       transition: transform .3s cubic-bezier(.23,1,.32,1), box-shadow .3s ease;
       overflow: hidden;
@@ -757,11 +757,11 @@
     #chat-toggle.open #chat-toggle-icon { opacity: 0; transform: rotate(90deg) scale(.7); }
     #chat-toggle.open #chat-close-icon  { opacity: 1; transform: rotate(0deg) scale(1); }
     #chat-panel {
-      position: fixed; bottom: 96px; right: 28px; width: 360px;
+      position: fixed; bottom: 168px; right: 28px; width: 360px;
       background: #080616;
       border: 1px solid rgba(124,58,237,.22);
       border-radius: 12px;
-      z-index: 8999;
+      z-index: 9999;
       display: flex; flex-direction: column;
       box-shadow: 0 24px 64px rgba(0,0,0,.7), 0 0 0 1px rgba(124,58,237,.08);
       transform: translateY(16px) scale(.97);
@@ -2497,7 +2497,7 @@
   <img id="lightbox-img" src="" alt="" />
 </div>
   <!-- Sticky CTA -->
-<div id="sticky-cta" style="position:fixed;bottom:130px;right:20px;z-index:9000;transform:translateY(100px);opacity:0;transition:transform .3s,opacity .3s;">
+<div id="sticky-cta" style="position:fixed;bottom:200px;right:20px;z-index:10001;transform:translateY(100px);opacity:0;transition:transform .3s,opacity .3s;">
   <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20let's%20talk" target="_blank" style="background:#A855F7;color:#03020A;padding:12px 20px;border-radius:30px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;text-decoration:none;display:flex;align-items:center;gap:8px;box-shadow:0 8px 20px rgba(124,58,237,.4);">💬 Let's talk</a>
 </div>
 </body>
