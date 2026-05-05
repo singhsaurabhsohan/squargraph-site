@@ -5,29 +5,16 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://squargraph.com">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
-  <link rel="shortcut icon" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SQUARGRAPH Studios — Content-First Creative Studio</title>
   <meta name="description" content="SQUARGRAPH Studios. Brief in. Campaign live. Creative strategy, content, and execution for brands that can't afford to get it wrong." />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "SQUARGRAPH Studios",
-    "url": "https://squargraph.com",
-    "logo": "https://squargraph.com/favicon.png"
-  }
-  </script>
-  <meta name="application-name" content="SQUARGRAPH Studios">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SQUARGRAPH Studios","url":"https://squargraph.com","logo":"https://squargraph.com/favicon.png"}</script>
   <meta property="og:title" content="SQUARGRAPH Studios — Content-First Creative Studio">
   <meta property="og:description" content="Brief in. Campaign live. Creative strategy, content, and execution.">
-  <meta property="og:image" content="https://squargraph.com/preview.jpg">
   <meta property="og:type" content="website">
   <meta name="keywords" content="creative agency delhi, social media agency india, content production, brand strategy, squargraph studios">
   <meta property="og:url" content="https://squargraph.com">
-  <meta property="og:site_name" content="SQUARGRAPH Studios">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -36,580 +23,195 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            display: ['Outfit', 'sans-serif'],
-            body: ['Space Grotesk', 'sans-serif'],
-          },
+          fontFamily: { display: ['Outfit','sans-serif'], body: ['Space Grotesk','sans-serif'] },
           colors: {
-            black:        '#03020A',
-            charcoal:     '#080616',
-            card:         '#0D0A1E',
-            accent:       '#7C3AED',
-            'accent-hi':  '#A855F7',
-            'accent-dim': 'rgba(124,58,237,0.10)',
-            'accent-glow':'rgba(124,58,237,0.22)',
-            gold:         '#E8B86D',
-            'gold-dim':   'rgba(232,184,109,0.12)',
-            cyan:         '#06B6D4',
-            snow:         '#EEEEF5',
-            muted:        'rgba(238,238,245,0.45)',
-          },
-          letterSpacing: {
-            widest2: '0.18em',
-            widest3: '0.22em',
-          },
+            black:'#03020A', charcoal:'#080616', card:'#0D0A1E',
+            accent:'#7C3AED', 'accent-hi':'#A855F7', 'accent-dim':'rgba(124,58,237,0.10)',
+            'accent-glow':'rgba(124,58,237,0.22)', gold:'#E8B86D', cyan:'#06B6D4',
+            snow:'#EEEEF5', muted:'rgba(238,238,245,0.45)'
+          }
         }
       }
     }
   </script>
-
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: #03020A;
-      color: #EEEEF5;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      overflow-x: hidden;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#03020A;color:#EEEEF5;font-family:'Space Grotesk',sans-serif;font-size:16px;line-height:1.65;overflow-x:hidden}
+
+    @media(min-width:1024px){body{cursor:none}a,button,[role=button]{cursor:none}}
+
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.018;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
+
+    #particle-canvas{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.55}
+
+    .aurora-wrap{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+    .aurora-blob{position:absolute;border-radius:50%;filter:blur(80px);mix-blend-mode:screen;will-change:transform}
+    .aurora-blob-1{width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,.28) 0%,transparent 70%);top:-200px;right:-150px;animation:auroraFloat1 14s ease-in-out infinite}
+    .aurora-blob-2{width:500px;height:500px;background:radial-gradient(circle,rgba(6,182,212,.18) 0%,transparent 70%);bottom:10%;left:-200px;animation:auroraFloat2 18s ease-in-out infinite}
+    .aurora-blob-3{width:400px;height:400px;background:radial-gradient(circle,rgba(168,85,247,.20) 0%,transparent 70%);top:40%;left:40%;animation:auroraFloat3 22s ease-in-out infinite}
+    .aurora-blob-4{width:700px;height:300px;background:radial-gradient(ellipse,rgba(124,58,237,.14) 0%,rgba(6,182,212,.06) 50%,transparent 75%);bottom:0;left:20%;animation:auroraFloat1 25s ease-in-out infinite reverse}
+    @keyframes auroraFloat1{0%,100%{transform:translate(0,0) scale(1) rotate(0deg)}33%{transform:translate(-60px,80px) scale(1.12) rotate(5deg)}66%{transform:translate(40px,-40px) scale(.92) rotate(-3deg)}}
+    @keyframes auroraFloat2{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(80px,-60px) scale(1.15)}70%{transform:translate(-40px,40px) scale(.90)}}
+    @keyframes auroraFloat3{0%,100%{transform:translate(0,0) scale(1);opacity:.7}50%{transform:translate(-60px,60px) scale(1.2);opacity:1}}
+
+    .flow-lines-section{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .flow-path{stroke-dasharray:1000;stroke-dashoffset:1000;animation:flowDraw 3s cubic-bezier(.23,1,.32,1) forwards}
+    .flow-path-pulse{stroke-dasharray:20 40;animation:flowPulse 4s linear infinite}
+    @keyframes flowDraw{to{stroke-dashoffset:0}}
+    @keyframes flowPulse{from{stroke-dashoffset:0}to{stroke-dashoffset:-200}}
+
+    #cursor,#cursor-ring{opacity:0;transition:opacity .3s}
+    #cursor.active,#cursor-ring.active{opacity:1}
+    #cursor{width:9px;height:9px;background:#A855F7;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+    #cursor-ring{width:34px;height:34px;border:1px solid rgba(168,85,247,.42);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:opacity .3s,width .25s,height .25s}
+
+    ::-webkit-scrollbar{width:2px}
+    ::-webkit-scrollbar-track{background:#03020A}
+    ::-webkit-scrollbar-thumb{background:linear-gradient(to bottom,#7C3AED,#A855F7);border-radius:2px}
+
+    .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.06) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 85% 65% at 50% 100%,black 30%,transparent 100%);pointer-events:none}
+    .font-display{font-family:'Outfit',sans-serif}
+
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .75s cubic-bezier(.23,1,.32,1),transform .75s cubic-bezier(.23,1,.32,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.17s}.reveal-d3{transition-delay:.26s}.reveal-d4{transition-delay:.35s}.reveal-d5{transition-delay:.44s}
+
+    .line-wrap{overflow:hidden;display:block;padding-bottom:8px}
+    .line-inner{display:block;animation:lineUp .9s cubic-bezier(.23,1,.32,1) both}
+    .delay-1 .line-inner{animation-delay:.12s}.delay-2 .line-inner{animation-delay:.22s}
+    @keyframes lineUp{from{transform:translateY(110%);opacity:0}to{transform:translateY(0);opacity:1}}
+    .hero-fade{animation:fadeIn 1.1s .5s both}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:22px 5vw;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent}
+    nav.scrolled{background:rgba(6,6,8,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-color:rgba(255,255,255,.065)}
+
+    .s-label{font-size:10px;font-family:'Outfit',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#A855F7;display:flex;align-items:center;gap:12px;margin-bottom:20px}
+    .s-label::before{content:'';display:block;width:26px;height:1px;background:linear-gradient(90deg,#7C3AED,#A855F7)}
+
+    .process-track::before{content:'';position:absolute;top:22px;left:22px;right:22px;height:1px;background:linear-gradient(90deg,#7C3AED 0%,rgba(124,58,237,.08) 100%)}
+
+    .svc-card{border:1px solid rgba(255,255,255,.065);background:#0D0A1E;border-radius:2px;padding:28px 24px;transition:border-color .3s,transform .3s cubic-bezier(.23,1,.32,1),background .3s,box-shadow .3s}
+    .svc-card:hover{border-color:rgba(124,58,237,.4);background:rgba(124,58,237,.05);transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.5),0 0 24px rgba(124,58,237,.06)}
+
+    .expect-card{border-top:1px solid rgba(255,255,255,.065);padding:28px 0;transition:border-color .25s;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+    .expect-card:hover{border-color:#7C3AED}
+
+    .stat-strip{border-top:1px solid rgba(255,255,255,.065);border-bottom:1px solid rgba(255,255,255,.065)}
+    .stat-item+.stat-item{border-left:1px solid rgba(255,255,255,.065)}
+
+    .scroll-hint{writing-mode:vertical-rl;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(238,238,245,.35);display:flex;align-items:center;gap:14px;animation:fadeIn 2s 1.2s both}
+    .scroll-hint::after{content:'';display:block;width:1px;height:48px;background:linear-gradient(to bottom,rgba(238,238,245,.35),transparent);animation:scrollAnim 2.2s 1.5s ease-in-out infinite}
+    @keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.1%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+    .btn-primary{transition:opacity .25s,transform .25s cubic-bezier(.23,1,.32,1),box-shadow .25s!important}
+    .btn-primary:hover{opacity:.88!important;transform:translateY(-3px)!important;box-shadow:0 12px 32px rgba(124,58,237,.30)!important}
+
+    .marquee-wrap{overflow:hidden}
+    .marquee-inner{display:flex;width:max-content;animation:marquee 18s linear infinite;white-space:nowrap}
+    .marquee-item{font-family:'Outfit',sans-serif;font-size:clamp(48px,7vw,96px);font-weight:800;color:rgba(124,58,237,.08);-webkit-text-stroke:1px rgba(124,58,237,.4);letter-spacing:-.03em;padding:0 60px;text-transform:uppercase}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* ── Work SVG cards ── */
+    .work-card{border:1px solid rgba(255,255,255,.065);border-radius:2px;overflow:hidden;transition:transform .4s cubic-bezier(.23,1,.32,1),box-shadow .4s,border-color .4s;position:relative;background:#0D0A1E}
+    .work-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 24px 56px rgba(0,0,0,.7),0 0 32px rgba(124,58,237,.15);border-color:rgba(124,58,237,.35)}
+    .work-card-tag{font-family:'Outfit',sans-serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#A855F7;margin-bottom:8px}
+    .work-card-title{font-family:'Outfit',sans-serif;font-weight:700;font-size:16px;color:#EEEEF5;line-height:1.3}
+
+    /* ── Forms ── */
+    .form-label{display:block;font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,238,245,.35);margin-bottom:8px}
+    .form-input{width:100%;background:#0D0A1E;border:1px solid rgba(255,255,255,.09);color:#EEEEF5;padding:14px 18px;font-family:'Space Grotesk',sans-serif;font-size:14px;border-radius:2px;outline:none;transition:border-color .25s;-webkit-appearance:none;appearance:none}
+    .form-input::placeholder{color:rgba(238,238,245,.3)}
+    .form-input:focus{border-color:rgba(124,58,237,.55)}
+    textarea.form-input{resize:vertical;min-height:120px}
+    select.form-input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(168,85,247,0.6)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;background-color:#0D0A1E}
+    select.form-input option{background:#0D0A1E}
+
+    .social-link{width:38px;height:38px;border:1px solid rgba(255,255,255,.09);border-radius:2px;display:inline-flex;align-items:center;justify-content:center;color:rgba(238,238,245,.5);text-decoration:none;font-size:13px;transition:border-color .2s,color .2s,background .2s}
+    .social-link:hover{border-color:#7C3AED;color:#A855F7;background:rgba(124,58,237,.08)}
+
+    .spin-ring{animation:spinRing 20s linear infinite;transform-origin:center}
+    .spin-ring-rev{animation:spinRing 14s linear infinite reverse;transform-origin:center}
+    @keyframes spinRing{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+    .pulse-dot{animation:pulseDot 2s ease-in-out infinite}
+    @keyframes pulseDot{0%,100%{opacity:.6}50%{opacity:1}}
+
+    .cta-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(124,58,237,.08) 0%,rgba(6,182,212,.03) 40%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+
+    .animated-border{position:relative;border:1px solid transparent;background:linear-gradient(#0D0A1E,#0D0A1E) padding-box,linear-gradient(135deg,#7C3AED,#06B6D4,#A855F7,#7C3AED) border-box;background-size:300% 300%;animation:gradBorder 4s ease infinite}
+    @keyframes gradBorder{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+    .shimmer-text{background:linear-gradient(90deg,#A855F7 0%,#fff 40%,#06B6D4 60%,#A855F7 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 5s linear infinite}
+
+    .founder-photo{width:100%;aspect-ratio:3/4;border:1px solid rgba(255,255,255,.065);border-radius:2px;overflow:hidden;position:relative}
+    .founder-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,.08) 0%,rgba(6,182,212,.03) 50%,transparent 70%)}
+
+    /* ── Chatbot ── */
+    #chat-toggle{position:fixed;bottom:28px;right:28px;width:54px;height:54px;background:linear-gradient(135deg,#7C3AED,#A855F7);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:9000;box-shadow:0 8px 30px rgba(124,58,237,.45);transition:transform .3s cubic-bezier(.23,1,.32,1),box-shadow .3s;overflow:hidden}
+    #chat-toggle:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 14px 40px rgba(124,58,237,.6)}
+    #chat-toggle-icon,#chat-close-icon{position:absolute;transition:opacity .2s,transform .2s}
+    #chat-close-icon{opacity:0;transform:rotate(-90deg) scale(.7)}
+    #chat-toggle.open #chat-toggle-icon{opacity:0;transform:rotate(90deg) scale(.7)}
+    #chat-toggle.open #chat-close-icon{opacity:1;transform:rotate(0deg) scale(1)}
+    #chat-panel{position:fixed;bottom:96px;right:28px;width:360px;background:#080616;border:1px solid rgba(124,58,237,.22);border-radius:12px;z-index:8999;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.7),0 0 0 1px rgba(124,58,237,.08);transform:translateY(16px) scale(.97);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.23,1,.32,1),opacity .3s;overflow:hidden;max-height:520px}
+    #chat-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+    .chat-header{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.065);display:flex;align-items:center;gap:12px;background:rgba(124,58,237,.06);flex-shrink:0}
+    .chat-avatar{width:32px;height:32px;background:linear-gradient(135deg,#7C3AED,#A855F7);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+    .chat-status-dot{width:7px;height:7px;background:#06B6D4;border-radius:50%;position:absolute;bottom:0;right:0;border:1.5px solid #080616}
+    .chat-messages{flex:1;overflow-y:auto;padding:20px 16px;display:flex;flex-direction:column;gap:14px;scrollbar-width:thin;scrollbar-color:rgba(124,58,237,.2) transparent;min-height:240px;max-height:300px}
+    .chat-messages::-webkit-scrollbar{width:2px}
+    .chat-messages::-webkit-scrollbar-thumb{background:rgba(124,58,237,.25)}
+    .msg{display:flex;align-items:flex-end;gap:8px;animation:msgSlideUp .35s cubic-bezier(.23,1,.32,1) both}
+    @keyframes msgSlideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .msg.bot{flex-direction:row}.msg.user{flex-direction:row-reverse}
+    .msg-bubble{max-width:80%;padding:11px 14px;border-radius:12px;font-size:13px;line-height:1.6;font-family:'Space Grotesk',sans-serif}
+    .msg.bot .msg-bubble{background:#0D0A1E;border:1px solid rgba(255,255,255,.065);color:rgba(238,238,245,.85);border-bottom-left-radius:4px}
+    .msg.user .msg-bubble{background:rgba(124,58,237,.18);border:1px solid rgba(124,58,237,.28);color:#EEEEF5;border-bottom-right-radius:4px}
+    .typing-bubble{background:#0D0A1E;border:1px solid rgba(255,255,255,.065);border-radius:12px;border-bottom-left-radius:4px;padding:13px 16px;display:flex;gap:5px;align-items:center}
+    .typing-dot{width:6px;height:6px;background:rgba(124,58,237,.7);border-radius:50%;animation:typingBounce 1.2s ease-in-out infinite}
+    .typing-dot:nth-child(2){animation-delay:.2s}.typing-dot:nth-child(3){animation-delay:.4s}
+    @keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-6px);opacity:1}}
+    .chat-options{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;animation:msgSlideUp .4s .1s cubic-bezier(.23,1,.32,1) both}
+    .chat-option-btn{background:transparent;border:1px solid rgba(124,58,237,.35);color:#A855F7;padding:7px 14px;font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;letter-spacing:.06em;border-radius:20px;transition:background .2s,border-color .2s,transform .2s;white-space:nowrap}
+    .chat-option-btn:hover:not(:disabled){background:rgba(124,58,237,.14);border-color:#7C3AED;transform:translateY(-2px)}
+    .chat-option-btn:disabled{opacity:.4;cursor:default}
+    .chat-input-area{padding:12px 16px;border-top:1px solid rgba(255,255,255,.065);display:flex;gap:10px;align-items:center;flex-shrink:0}
+    .chat-input{flex:1;background:#0D0A1E;border:1px solid rgba(255,255,255,.09);color:#EEEEF5;padding:10px 14px;font-family:'Space Grotesk',sans-serif;font-size:13px;border-radius:8px;outline:none;transition:border-color .2s}
+    .chat-input::placeholder{color:rgba(238,238,245,.28)}
+    .chat-input:focus{border-color:rgba(124,58,237,.5)}
+    .chat-send-btn{width:36px;height:36px;background:linear-gradient(135deg,#7C3AED,#A855F7);border:none;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;transition:transform .2s,opacity .2s}
+    .chat-send-btn:hover{transform:scale(1.08);opacity:.88}
+    #chat-brief-input{display:none}
+    #chat-brief-input.visible{display:flex}
+
+    /* ── Mobile ── */
+    @media(max-width:768px){
+      #cursor,#cursor-ring{display:none!important}
+      body{cursor:auto}a,button,[role=button]{cursor:pointer}
+      #hero{padding-top:100px!important;padding-bottom:60px!important;justify-content:flex-start!important}
+      .process-track::before{display:none}
+      .mobile-stack{flex-direction:column!important}
+      .mobile-hide{display:none!important}
+      .stat-strip{display:flex!important;flex-direction:column!important}
+      .stat-item+.stat-item{border-left:none!important;border-top:1px solid rgba(255,255,255,.065)!important}
+      #chat-panel{width:calc(100vw - 32px)!important;right:16px!important;bottom:80px!important;max-height:80vh!important}
+      .aurora-blob{filter:blur(60px)}
+      .work-grid{grid-template-columns:1fr!important}
+      .work-card-wide{grid-column:span 1!important}
+      .nav-links{display:none!important}
+    }
+    @media(max-width:480px){
+      .hero-headline{font-size:clamp(36px,10vw,56px)!important}
+      .section-headline{font-size:clamp(28px,8vw,42px)!important}
     }
 
-    @media (min-width: 1024px) {
-      body { cursor: none; }
-      a, button, [role="button"] { cursor: none; }
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.018;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    }
-
-    #particle-canvas {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.55;
-    }
-
-    .aurora-wrap {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .aurora-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      mix-blend-mode: screen;
-      will-change: transform;
-    }
-    .aurora-blob-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(124,58,237,0.28) 0%, transparent 70%);
-      top: -200px; right: -150px;
-      animation: auroraFloat1 14s ease-in-out infinite;
-    }
-    .aurora-blob-2 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(6,182,212,0.18) 0%, transparent 70%);
-      bottom: 10%; left: -200px;
-      animation: auroraFloat2 18s ease-in-out infinite;
-    }
-    .aurora-blob-3 {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(168,85,247,0.20) 0%, transparent 70%);
-      top: 40%; left: 40%;
-      animation: auroraFloat3 22s ease-in-out infinite;
-    }
-    .aurora-blob-4 {
-      width: 700px; height: 300px;
-      background: radial-gradient(ellipse, rgba(124,58,237,0.14) 0%, rgba(6,182,212,0.06) 50%, transparent 75%);
-      bottom: 0; left: 20%;
-      animation: auroraFloat1 25s ease-in-out infinite reverse;
-    }
-
-    @keyframes auroraFloat1 {
-      0%,100% { transform: translate(0,0) scale(1) rotate(0deg); }
-      33%      { transform: translate(-60px, 80px) scale(1.12) rotate(5deg); }
-      66%      { transform: translate(40px, -40px) scale(0.92) rotate(-3deg); }
-    }
-    @keyframes auroraFloat2 {
-      0%,100% { transform: translate(0,0) scale(1); }
-      40%      { transform: translate(80px, -60px) scale(1.15); }
-      70%      { transform: translate(-40px, 40px) scale(0.90); }
-    }
-    @keyframes auroraFloat3 {
-      0%,100% { transform: translate(0,0) scale(1); opacity: 0.7; }
-      50%      { transform: translate(-60px, 60px) scale(1.2); opacity: 1; }
-    }
-
-    .flow-lines-section {
-      position: absolute; inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .flow-path {
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      animation: flowDraw 3s cubic-bezier(.23,1,.32,1) forwards;
-    }
-    .flow-path-pulse {
-      stroke-dasharray: 20 40;
-      animation: flowPulse 4s linear infinite;
-    }
-    @keyframes flowDraw {
-      to { stroke-dashoffset: 0; }
-    }
-    @keyframes flowPulse {
-      from { stroke-dashoffset: 0; }
-      to   { stroke-dashoffset: -200; }
-    }
-
-    #cursor, #cursor-ring { opacity: 0; transition: opacity .3s; }
-    #cursor.active, #cursor-ring.active { opacity: 1; }
-    #cursor {
-      width: 9px; height: 9px;
-      background: #A855F7;
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-    }
-    #cursor-ring {
-      width: 34px; height: 34px;
-      border: 1px solid rgba(168,85,247,.42);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: opacity .3s, width .25s, height .25s;
-    }
-
-    ::-webkit-scrollbar { width: 2px; }
-    ::-webkit-scrollbar-track { background: #03020A; }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #7C3AED, #A855F7); border-radius: 2px; }
-
-    .grid-bg {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(124,58,237,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124,58,237,.06) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: radial-gradient(ellipse 85% 65% at 50% 100%, black 30%, transparent 100%);
-      pointer-events: none;
-    }
-
-    .font-display { font-family: 'Outfit', sans-serif; }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity .75s cubic-bezier(.23,1,.32,1), transform .75s cubic-bezier(.23,1,.32,1);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-d1 { transition-delay: .08s; }
-    .reveal-d2 { transition-delay: .17s; }
-    .reveal-d3 { transition-delay: .26s; }
-    .reveal-d4 { transition-delay: .35s; }
-    .reveal-d5 { transition-delay: .44s; }
-
-    .line-wrap {
-      overflow: hidden;
-      display: block;
-      padding-bottom: 8px;
-    }
-    .line-inner {
-      display: block;
-      animation: lineUp .9s cubic-bezier(.23,1,.32,1) both;
-    }
-    .delay-1 .line-inner { animation-delay: .12s; }
-    .delay-2 .line-inner { animation-delay: .22s; }
-    @keyframes lineUp {
-      from { transform: translateY(110%); opacity: 0; }
-      to   { transform: translateY(0);    opacity: 1; }
-    }
-    .hero-fade { animation: fadeIn 1.1s .5s both; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 500;
-      padding: 22px 5vw;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background .4s, backdrop-filter .4s, border-color .4s;
-      border-bottom: 1px solid transparent;
-    }
-    nav.scrolled {
-      background: rgba(6,6,8,.88);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-color: rgba(255,255,255,.065);
-    }
-
-    .s-label {
-      font-size: 10px;
-      font-family: 'Outfit', sans-serif;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: #A855F7;
-      display: flex; align-items: center; gap: 12px;
-      margin-bottom: 20px;
-    }
-    .s-label::before {
-      content: '';
-      display: block;
-      width: 26px; height: 1px;
-      background: linear-gradient(90deg, #7C3AED, #A855F7);
-    }
-
-    .process-track::before {
-      content: '';
-      position: absolute;
-      top: 22px; left: 22px; right: 22px;
-      height: 1px;
-      background: linear-gradient(90deg, #7C3AED 0%, rgba(124,58,237,.08) 100%);
-    }
-
-    .svc-card {
-      border: 1px solid rgba(255,255,255,.065);
-      background: #0D0A1E;
-      border-radius: 2px;
-      padding: 28px 24px;
-      transition: border-color .3s ease, transform .3s cubic-bezier(.23,1,.32,1), background .3s ease, box-shadow .3s ease;
-    }
-    .svc-card:hover {
-      border-color: rgba(124,58,237,.4);
-      background: rgba(124,58,237,.05);
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0,0,0,.5), 0 0 24px rgba(124,58,237,.06);
-    }
-
-    .expect-card {
-      border-top: 1px solid rgba(255,255,255,.065);
-      padding: 28px 0;
-      transition: border-color .25s;
-      display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
-    }
-    .expect-card:hover { border-color: #7C3AED; }
-
-    .stat-strip {
-      border-top: 1px solid rgba(255,255,255,.065);
-      border-bottom: 1px solid rgba(255,255,255,.065);
-    }
-    .stat-item + .stat-item {
-      border-left: 1px solid rgba(255,255,255,.065);
-    }
-
-    .scroll-hint {
-      writing-mode: vertical-rl;
-      font-size: 10px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(238,238,245,.35);
-      display: flex; align-items: center; gap: 14px;
-      animation: fadeIn 2s 1.2s both;
-    }
-    .scroll-hint::after {
-      content: '';
-      display: block; width: 1px; height: 48px;
-      background: linear-gradient(to bottom, rgba(238,238,245,.35), transparent);
-      animation: scrollAnim 2.2s 1.5s ease-in-out infinite;
-    }
-    @keyframes scrollAnim {
-      0%    { transform: scaleY(0); transform-origin: top; }
-      50%   { transform: scaleY(1); transform-origin: top; }
-      50.1% { transform: scaleY(1); transform-origin: bottom; }
-      100%  { transform: scaleY(0); transform-origin: bottom; }
-    }
-
-    .btn-primary {
-      transition: opacity .25s ease, transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease !important;
-    }
-    .btn-primary:hover {
-      opacity: .88 !important;
-      transform: translateY(-3px) !important;
-      box-shadow: 0 12px 32px rgba(124,58,237,.30) !important;
-    }
-
-    .marquee-wrap { overflow: hidden; }
-    .marquee-inner {
-      display: flex;
-      width: max-content;
-      animation: marquee 18s linear infinite;
-      white-space: nowrap;
-    }
-    .marquee-item {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(48px, 7vw, 96px);
-      font-weight: 800;
-      color: rgba(124,58,237,0.08);
-      -webkit-text-stroke: 1px rgba(124,58,237,.4);
-      letter-spacing: -.03em;
-      padding: 0 60px;
-      text-transform: uppercase;
-    }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ── Work graphic cards ───────────────────────────────────── */
-    .work-graphic-card {
-      position: relative;
-      border-radius: 2px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.065);
-      transition: transform .4s cubic-bezier(.23,1,.32,1), box-shadow .4s ease, border-color .4s;
-      background: #0D0A1E;
-    }
-    .work-graphic-card:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 24px 56px rgba(0,0,0,.7), 0 0 32px rgba(124,58,237,.15);
-      border-color: rgba(124,58,237,.35);
-    }
-    .work-graphic-card svg { display: block; width: 100%; }
-    .work-img-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(3,2,10,.92) 0%, rgba(3,2,10,.2) 60%, transparent 100%);
-      padding: 24px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      pointer-events: none;
-    }
-    .work-img-tag {
-      font-family: 'Outfit', sans-serif;
-      font-size: 9px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: #A855F7;
-      margin-bottom: 8px;
-    }
-    .work-img-title {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-      color: #EEEEF5;
-      line-height: 1.3;
-    }
-
-    .founder-graphic {
-      width: 100%;
-      aspect-ratio: 3/4;
-      border: 1px solid rgba(255,255,255,.065);
-      border-radius: 2px;
-      overflow: hidden;
-      position: relative;
-      background: #0D0A1E;
-    }
-
-    .cta-glow {
-      position: absolute;
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(124,58,237,.08) 0%, rgba(6,182,212,.03) 40%, transparent 70%);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
-    .form-label {
-      display: block;
-      font-family: 'Outfit', sans-serif;
-      font-size: 10px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: rgba(238,238,245,.35);
-      margin-bottom: 8px;
-    }
-    .form-input {
-      width: 100%;
-      background: #0D0A1E;
-      border: 1px solid rgba(255,255,255,.09);
-      color: #EEEEF5;
-      padding: 14px 18px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 14px;
-      border-radius: 2px;
-      outline: none;
-      transition: border-color .25s;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    .form-input::placeholder { color: rgba(238,238,245,.3); }
-    .form-input:focus { border-color: rgba(124,58,237,.55); }
-    textarea.form-input { resize: vertical; min-height: 120px; }
-    select.form-input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(168,85,247,0.6)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; background-color: #0D0A1E; }
-    select.form-input option { background: #0D0A1E; }
-
-    .social-link {
-      width: 38px; height: 38px;
-      border: 1px solid rgba(255,255,255,.09);
-      border-radius: 2px;
-      display: inline-flex; align-items: center; justify-content: center;
-      color: rgba(238,238,245,.5);
-      text-decoration: none;
-      font-size: 13px;
-      transition: border-color .2s, color .2s, background .2s;
-    }
-    .social-link:hover { border-color: #7C3AED; color: #A855F7; background: rgba(124,58,237,.08); }
-
-    .spin-ring {
-      animation: spinRing 20s linear infinite;
-      transform-origin: center;
-    }
-    .spin-ring-rev {
-      animation: spinRing 14s linear infinite reverse;
-      transform-origin: center;
-    }
-    @keyframes spinRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-    .pulse-dot {
-      animation: pulseDot 2s ease-in-out infinite;
-    }
-    @keyframes pulseDot {
-      0%,100% { r: 3; opacity: 0.6; }
-      50% { r: 5; opacity: 1; }
-    }
-
-    @media (max-width: 768px) {
-      #cursor, #cursor-ring { display: none !important; }
-      body { cursor: auto; }
-      a, button, [role="button"] { cursor: pointer; }
-      #hero { padding-top: 110px !important; padding-bottom: 60px !important; justify-content: flex-start !important; }
-      .process-track::before { display: none; }
-      .mobile-stack { flex-direction: column !important; }
-      .mobile-hide { display: none !important; }
-      .stat-strip { display: flex !important; flex-direction: column !important; }
-      .stat-item + .stat-item { border-left: none !important; border-top: 1px solid rgba(255,255,255,.065) !important; }
-      #chat-panel { width: calc(100vw - 32px) !important; right: 16px !important; bottom: 80px !important; max-height: 80vh !important; }
-      .aurora-blob { filter: blur(60px); }
-    }
-
-    /* ── Chatbot ─────────────────────────────────────────────── */
-    #chat-toggle {
-      position: fixed; bottom: 28px; right: 28px;
-      width: 54px; height: 54px;
-      background: linear-gradient(135deg, #7C3AED, #A855F7);
-      border: none; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      z-index: 9000;
-      box-shadow: 0 8px 30px rgba(124,58,237,.45);
-      transition: transform .3s cubic-bezier(.23,1,.32,1), box-shadow .3s ease;
-      overflow: hidden;
-    }
-    #chat-toggle:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 14px 40px rgba(124,58,237,.6); }
-    #chat-toggle-icon, #chat-close-icon { position: absolute; transition: opacity .2s ease, transform .2s ease; }
-    #chat-close-icon { opacity: 0; transform: rotate(-90deg) scale(.7); }
-    #chat-toggle.open #chat-toggle-icon { opacity: 0; transform: rotate(90deg) scale(.7); }
-    #chat-toggle.open #chat-close-icon  { opacity: 1; transform: rotate(0deg) scale(1); }
-    #chat-panel {
-      position: fixed; bottom: 96px; right: 28px; width: 360px;
-      background: #080616;
-      border: 1px solid rgba(124,58,237,.22);
-      border-radius: 12px;
-      z-index: 8999;
-      display: flex; flex-direction: column;
-      box-shadow: 0 24px 64px rgba(0,0,0,.7), 0 0 0 1px rgba(124,58,237,.08);
-      transform: translateY(16px) scale(.97);
-      opacity: 0; pointer-events: none;
-      transition: transform .35s cubic-bezier(.23,1,.32,1), opacity .3s ease;
-      overflow: hidden; max-height: 520px;
-    }
-    #chat-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
-    .chat-header {
-      padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,.065);
-      display: flex; align-items: center; gap: 12px;
-      background: rgba(124,58,237,.06); flex-shrink: 0;
-    }
-    .chat-avatar {
-      width: 32px; height: 32px;
-      background: linear-gradient(135deg, #7C3AED, #A855F7);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; position: relative;
-    }
-    .chat-status-dot {
-      width: 7px; height: 7px; background: #06B6D4; border-radius: 50%;
-      position: absolute; bottom: 0; right: 0; border: 1.5px solid #080616;
-    }
-    .chat-messages {
-      flex: 1; overflow-y: auto; padding: 20px 16px;
-      display: flex; flex-direction: column; gap: 14px;
-      scrollbar-width: thin; scrollbar-color: rgba(124,58,237,.2) transparent;
-      min-height: 240px; max-height: 300px;
-    }
-    .chat-messages::-webkit-scrollbar { width: 2px; }
-    .chat-messages::-webkit-scrollbar-thumb { background: rgba(124,58,237,.25); }
-    .msg { display: flex; align-items: flex-end; gap: 8px; animation: msgSlideUp .35s cubic-bezier(.23,1,.32,1) both; }
-    @keyframes msgSlideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    .msg.bot  { flex-direction: row; }
-    .msg.user { flex-direction: row-reverse; }
-    .msg-bubble { max-width: 80%; padding: 11px 14px; border-radius: 12px; font-size: 13px; line-height: 1.6; font-family: 'Space Grotesk', sans-serif; }
-    .msg.bot  .msg-bubble { background: #0D0A1E; border: 1px solid rgba(255,255,255,.065); color: rgba(238,238,245,.85); border-bottom-left-radius: 4px; }
-    .msg.user .msg-bubble { background: rgba(124,58,237,.18); border: 1px solid rgba(124,58,237,.28); color: #EEEEF5; border-bottom-right-radius: 4px; }
-    .typing-bubble { background: #0D0A1E; border: 1px solid rgba(255,255,255,.065); border-radius: 12px; border-bottom-left-radius: 4px; padding: 13px 16px; display: flex; gap: 5px; align-items: center; }
-    .typing-dot { width: 6px; height: 6px; background: rgba(124,58,237,.7); border-radius: 50%; animation: typingBounce 1.2s ease-in-out infinite; }
-    .typing-dot:nth-child(2) { animation-delay: .2s; }
-    .typing-dot:nth-child(3) { animation-delay: .4s; }
-    @keyframes typingBounce { 0%,60%,100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-6px); opacity: 1; } }
-    .chat-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; animation: msgSlideUp .4s .1s cubic-bezier(.23,1,.32,1) both; }
-    .chat-option-btn { background: transparent; border: 1px solid rgba(124,58,237,.35); color: #A855F7; padding: 7px 14px; font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .06em; border-radius: 20px; transition: background .2s ease, border-color .2s ease, transform .2s ease; white-space: nowrap; }
-    .chat-option-btn:hover:not(:disabled) { background: rgba(124,58,237,.14); border-color: #7C3AED; transform: translateY(-2px); }
-    .chat-option-btn:disabled { opacity: .4; cursor: default; }
-    .chat-input-area { padding: 12px 16px; border-top: 1px solid rgba(255,255,255,.065); display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
-    .chat-input { flex: 1; background: #0D0A1E; border: 1px solid rgba(255,255,255,.09); color: #EEEEF5; padding: 10px 14px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; border-radius: 8px; outline: none; transition: border-color .2s; }
-    .chat-input::placeholder { color: rgba(238,238,245,.28); }
-    .chat-input:focus { border-color: rgba(124,58,237,.5); }
-    .chat-send-btn { width: 36px; height: 36px; background: linear-gradient(135deg, #7C3AED, #A855F7); border: none; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; transition: transform .2s ease, opacity .2s; }
-    .chat-send-btn:hover { transform: scale(1.08); opacity: .88; }
-    #chat-brief-input { display: none; }
-    #chat-brief-input.visible { display: flex; }
-
-    .animated-border {
-      position: relative;
-      border: 1px solid transparent;
-      background: linear-gradient(#0D0A1E, #0D0A1E) padding-box,
-                  linear-gradient(135deg, #7C3AED, #06B6D4, #A855F7, #7C3AED) border-box;
-      background-size: 300% 300%;
-      animation: gradBorder 4s ease infinite;
-    }
-    @keyframes gradBorder {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes shimmer {
-      0%   { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-    .shimmer-text {
-      background: linear-gradient(90deg, #A855F7 0%, #fff 40%, #06B6D4 60%, #A855F7 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 5s linear infinite;
-    }
-
-    /* Form success/error states */
-    .form-success {
-      padding: 20px;
-      border: 1px solid rgba(6,182,212,.3);
-      background: rgba(6,182,212,.05);
-      border-radius: 2px;
-      text-align: center;
-      display: none;
-    }
-    .form-success.visible { display: block; }
+    /* Form success state */
+    .form-success{display:none;text-align:center;padding:40px 20px}
+    .form-success.visible{display:block}
+    .form-body.hidden{display:none}
   </style>
 </head>
 <body>
@@ -625,13 +227,13 @@
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 
-<!-- NAV -->
+<!-- ══ NAV ══ -->
 <nav id="nav">
   <a href="#" class="font-display font-extrabold text-snow no-underline" style="font-size:17px;letter-spacing:-.02em;">
     SQUAR<span style="color:#A855F7;">GRAPH</span>
-    <span style="font-weight:400;color:rgba(238,238,245,.7);font-size:13px;">Studios</span>
+    <span style="font-weight:400;color:rgba(238,238,245,.7);font-size:13px;"> Studios</span>
   </a>
-  <div class="mobile-hide" style="display:flex;gap:28px;align-items:center;">
+  <div class="nav-links" style="display:flex;gap:28px;align-items:center;">
     <a href="#philosophy" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Philosophy</a>
     <a href="#process"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Process</a>
     <a href="#services"   class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
@@ -642,7 +244,7 @@
       Start a project
     </a>
   </div>
-  <button class="md:hidden" id="mob-toggle" style="background:none;border:none;color:#EEEEF5;font-size:22px;line-height:1;padding:4px;" aria-label="Open menu">☰</button>
+  <button id="mob-toggle" style="display:none;background:none;border:none;color:#EEEEF5;font-size:22px;line-height:1;padding:4px;" aria-label="Open menu">☰</button>
 </nav>
 
 <!-- Mobile menu -->
@@ -652,13 +254,14 @@
   <a href="#process"    onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Process</a>
   <a href="#services"   onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
   <a href="#work"       onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
+  <a href="#contact"    onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Contact</a>
   <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener"
      style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
     Start a project →
   </a>
 </div>
 
-<!-- HERO -->
+<!-- ══ HERO ══ -->
 <section id="hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(80px,10vw,120px) 5vw 10vh;position:relative;overflow:hidden;">
   <div class="grid-bg"></div>
 
@@ -666,125 +269,85 @@
     <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
       <defs>
         <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"   stop-color="#7C3AED" stop-opacity="0.5"/>
-          <stop offset="50%"  stop-color="#06B6D4" stop-opacity="0.28"/>
+          <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.5"/>
+          <stop offset="50%" stop-color="#06B6D4" stop-opacity="0.28"/>
           <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.05"/>
         </linearGradient>
-        <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%"   stop-color="#A855F7" stop-opacity="0.4"/>
-          <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.1"/>
-        </linearGradient>
-        <filter id="glow2">
-          <feGaussianBlur stdDeviation="3" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
+        <filter id="glow2"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
       </defs>
-      <line x1="1200" y1="0" x2="600" y2="900" stroke="url(#lineGrad)" stroke-width="1.5"
-            stroke-dasharray="1200" style="stroke-dashoffset:1200;animation:flowDraw 2.5s 0.2s cubic-bezier(.23,1,.32,1) forwards;"/>
-      <line x1="1330" y1="0" x2="730" y2="900" stroke="rgba(124,58,237,0.12)" stroke-width="1"
-            stroke-dasharray="1200" style="stroke-dashoffset:1200;animation:flowDraw 2.5s 0.5s cubic-bezier(.23,1,.32,1) forwards;"/>
-      <line x1="1440" y1="120" x2="880" y2="900" stroke="rgba(6,182,212,0.08)" stroke-width="1"
-            stroke-dasharray="1200" style="stroke-dashoffset:1200;animation:flowDraw 2.5s 0.8s cubic-bezier(.23,1,.32,1) forwards;"/>
-      <path d="M1360,0 L1440,0 L1440,80" stroke="#A855F7" stroke-width="1.5" fill="none" opacity="0.5"
-            stroke-dasharray="120" style="stroke-dashoffset:120;animation:flowDraw 1.8s 0.3s cubic-bezier(.23,1,.32,1) forwards;"/>
-      <path d="M0,820 L0,900 L80,900" stroke="#06B6D4" stroke-width="1" fill="none" opacity="0.35"
-            stroke-dasharray="120" style="stroke-dashoffset:120;animation:flowDraw 1.8s 0.6s cubic-bezier(.23,1,.32,1) forwards;"/>
-      <path d="M1280,0 A340,340 0 0,1 1440,260" stroke="url(#arcGrad)" stroke-width="2" fill="none"
-            stroke-dasharray="600" style="stroke-dashoffset:600;animation:flowDraw 2s 0.5s ease forwards;"/>
-      <line x1="1440" y1="400" x2="900" y2="900" stroke="rgba(124,58,237,0.2)" stroke-width="1.5"
-            stroke-dasharray="10 18" style="animation:flowPulse 3s 2s linear infinite;"/>
-      <line x1="0" y1="300" x2="400" y2="0" stroke="rgba(6,182,212,0.14)" stroke-width="1"
-            stroke-dasharray="6 20" style="animation:flowPulse 5s 3s linear infinite;"/>
-      <g transform="translate(1180,300)" style="opacity:0;animation:fadeIn 1.5s 0.9s ease forwards;">
-        <circle cx="0" cy="0" r="40" stroke="rgba(124,58,237,0.25)" stroke-width="1" fill="none"
-                stroke-dasharray="8 12" class="spin-ring"/>
-        <circle cx="0" cy="0" r="24" stroke="rgba(168,85,247,0.12)" stroke-width="1" fill="none"
-                stroke-dasharray="4 8" class="spin-ring-rev"/>
-        <circle cx="0" cy="-40" r="4" fill="rgba(168,85,247,0.7)" filter="url(#glow2)" class="spin-ring"/>
-        <circle cx="0" cy="0" r="3" fill="rgba(168,85,247,0.3)"/>
+      <line x1="1200" y1="0" x2="600" y2="900" stroke="url(#lineGrad)" stroke-width="1.5" stroke-dasharray="1200" style="stroke-dashoffset:1200;animation:flowDraw 2.5s .2s cubic-bezier(.23,1,.32,1) forwards"/>
+      <line x1="1330" y1="0" x2="730" y2="900" stroke="rgba(124,58,237,.12)" stroke-width="1" stroke-dasharray="1200" style="stroke-dashoffset:1200;animation:flowDraw 2.5s .5s cubic-bezier(.23,1,.32,1) forwards"/>
+      <path d="M1360,0 L1440,0 L1440,80" stroke="#A855F7" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="120" style="stroke-dashoffset:120;animation:flowDraw 1.8s .3s cubic-bezier(.23,1,.32,1) forwards"/>
+      <path d="M0,820 L0,900 L80,900" stroke="#06B6D4" stroke-width="1" fill="none" opacity="0.35" stroke-dasharray="120" style="stroke-dashoffset:120;animation:flowDraw 1.8s .6s cubic-bezier(.23,1,.32,1) forwards"/>
+      <path d="M1280,0 A340,340 0 0,1 1440,260" stroke="url(#lineGrad)" stroke-width="2" fill="none" stroke-dasharray="600" style="stroke-dashoffset:600;animation:flowDraw 2s .5s ease forwards"/>
+      <line x1="1440" y1="400" x2="900" y2="900" stroke="rgba(124,58,237,.2)" stroke-width="1.5" stroke-dasharray="10 18" style="animation:flowPulse 3s 2s linear infinite"/>
+      <g transform="translate(1180,300)" style="opacity:0;animation:fadeIn 1.5s .9s ease forwards">
+        <circle cx="0" cy="0" r="40" stroke="rgba(124,58,237,.25)" stroke-width="1" fill="none" stroke-dasharray="8 12" class="spin-ring"/>
+        <circle cx="0" cy="0" r="24" stroke="rgba(168,85,247,.12)" stroke-width="1" fill="none" stroke-dasharray="4 8" class="spin-ring-rev"/>
+        <circle cx="0" cy="0" r="3" fill="rgba(168,85,247,.3)"/>
       </g>
-      <g style="opacity:0;animation:fadeIn 2s 1.2s ease forwards;">
-        <circle cx="60"  cy="60"  r="2" fill="rgba(124,58,237,0.5)" class="pulse-dot"/>
-        <circle cx="84"  cy="60"  r="1.5" fill="rgba(124,58,237,0.3)"/>
-        <circle cx="108" cy="60"  r="1.5" fill="rgba(124,58,237,0.2)"/>
-        <circle cx="60"  cy="84"  r="1.5" fill="rgba(124,58,237,0.3)"/>
-        <circle cx="84"  cy="84"  r="2" fill="rgba(124,58,237,0.5)" class="pulse-dot" style="animation-delay:.4s"/>
-        <circle cx="108" cy="84"  r="1.5" fill="rgba(124,58,237,0.2)"/>
-        <circle cx="60"  cy="108" r="1.5" fill="rgba(124,58,237,0.2)"/>
-        <circle cx="84"  cy="108" r="1.5" fill="rgba(124,58,237,0.3)"/>
-        <circle cx="108" cy="108" r="2" fill="rgba(124,58,237,0.5)" class="pulse-dot" style="animation-delay:.8s"/>
-      </g>
-      <g filter="url(#glow2)" style="opacity:0;animation:fadeIn 1.2s 1s ease forwards;">
-        <line x1="1095" y1="196" x2="1121" y2="196" stroke="#A855F7" stroke-width="1.5" opacity="0.6"/>
-        <line x1="1108" y1="183" x2="1108" y2="209" stroke="#A855F7" stroke-width="1.5" opacity="0.6"/>
-        <circle cx="1108" cy="196" r="3" fill="#A855F7" opacity="0.8" class="pulse-dot"/>
+      <g style="opacity:0;animation:fadeIn 2s 1.2s ease forwards">
+        <circle cx="60" cy="60" r="2" fill="rgba(124,58,237,.5)" class="pulse-dot"/>
+        <circle cx="84" cy="60" r="1.5" fill="rgba(124,58,237,.3)"/>
+        <circle cx="108" cy="60" r="1.5" fill="rgba(124,58,237,.2)"/>
+        <circle cx="60" cy="84" r="1.5" fill="rgba(124,58,237,.3)"/>
+        <circle cx="84" cy="84" r="2" fill="rgba(124,58,237,.5)" class="pulse-dot" style="animation-delay:.4s"/>
+        <circle cx="108" cy="84" r="1.5" fill="rgba(124,58,237,.2)"/>
+        <circle cx="60" cy="108" r="1.5" fill="rgba(124,58,237,.2)"/>
+        <circle cx="108" cy="108" r="2" fill="rgba(124,58,237,.5)" class="pulse-dot" style="animation-delay:.8s"/>
       </g>
     </svg>
   </div>
 
-  <!-- Floating geo shapes -->
-  <div style="position:absolute;top:18%;right:11%;opacity:0;animation:fadeIn 1.8s 0.8s ease forwards;">
-    <svg width="72" height="72" viewBox="0 0 72 72" class="spin-ring" style="animation-duration:30s;">
-      <rect x="1" y="1" width="70" height="70" stroke="rgba(124,58,237,0.28)" stroke-width="1" fill="none"/>
-      <rect x="12" y="12" width="48" height="48" stroke="rgba(124,58,237,0.14)" stroke-width="1" fill="none" transform="rotate(20 36 36)"/>
-      <circle cx="36" cy="36" r="4" fill="rgba(124,58,237,0.2)" class="pulse-dot"/>
+  <!-- Floating geo -->
+  <div style="position:absolute;top:18%;right:11%;opacity:0;animation:fadeIn 1.8s .8s ease forwards;">
+    <svg width="72" height="72" viewBox="0 0 72 72" class="spin-ring" style="animation-duration:30s">
+      <rect x="1" y="1" width="70" height="70" stroke="rgba(124,58,237,.28)" stroke-width="1" fill="none"/>
+      <rect x="12" y="12" width="48" height="48" stroke="rgba(124,58,237,.14)" stroke-width="1" fill="none" transform="rotate(20 36 36)"/>
+      <circle cx="36" cy="36" r="4" fill="rgba(124,58,237,.2)" class="pulse-dot"/>
     </svg>
   </div>
   <div style="position:absolute;top:28%;right:21%;opacity:0;animation:fadeIn 1.8s 1.1s ease forwards;">
     <svg width="22" height="22" viewBox="0 0 22 22">
-      <circle cx="11" cy="11" r="10" stroke="rgba(168,85,247,0.4)" stroke-width="1.5" fill="none" class="pulse-dot" style="animation:pulseDot 2s ease-in-out infinite;r:10;"/>
-      <circle cx="11" cy="11" r="4"  stroke="rgba(168,85,247,0.25)" stroke-width="1" fill="none"/>
-      <circle cx="11" cy="11" r="2"  fill="rgba(168,85,247,0.5)"/>
-    </svg>
-  </div>
-  <div style="position:absolute;top:52%;right:7%;opacity:0;animation:fadeIn 1.8s 1.5s ease forwards;">
-    <svg width="44" height="44" viewBox="0 0 44 44" class="spin-ring-rev" style="animation-duration:25s;">
-      <polygon points="22,2 42,42 2,42"  stroke="rgba(6,182,212,0.28)" stroke-width="1.5" fill="none"/>
-      <polygon points="22,14 34,38 10,38" stroke="rgba(6,182,212,0.14)" stroke-width="1" fill="none"/>
+      <circle cx="11" cy="11" r="10" stroke="rgba(168,85,247,.4)" stroke-width="1.5" fill="none" class="pulse-dot"/>
+      <circle cx="11" cy="11" r="4" stroke="rgba(168,85,247,.25)" stroke-width="1" fill="none"/>
+      <circle cx="11" cy="11" r="2" fill="rgba(168,85,247,.5)"/>
     </svg>
   </div>
 
   <div class="hero-fade s-label" style="margin-bottom:32px;position:relative;z-index:2;">Creative Studio — Delhi, India</div>
-
-  <h1 class="font-display font-extrabold" style="font-size:clamp(42px,8vw,112px);line-height:1.1;letter-spacing:-.035em;max-width:14ch;margin-bottom:36px;position:relative;z-index:2;">
+  <h1 class="font-display font-extrabold hero-headline" style="font-size:clamp(42px,8vw,112px);line-height:1.1;letter-spacing:-.035em;max-width:14ch;margin-bottom:36px;position:relative;z-index:2;">
     <span class="line-wrap"><span class="line-inner">Content that actually ships.</span></span>
     <span class="line-wrap delay-1"><span class="line-inner shimmer-text">Not just ideas that sit in decks.</span></span>
   </h1>
-
   <p class="hero-fade" style="color:rgba(238,238,245,.7);font-size:clamp(14px,1.5vw,19px);max-width:44ch;margin-bottom:16px;font-weight:300;line-height:1.75;animation-delay:.55s;position:relative;z-index:2;">
     Strategy, content, and execution — handled end to end.
   </p>
   <p style="color:#A855F7;font-size:14px;margin-bottom:40px;position:relative;z-index:2;">
     Built on real campaign experience, now delivered independently.
   </p>
-
   <div style="color:rgba(238,238,245,.5);font-size:13px;margin-bottom:28px;position:relative;z-index:2;">
     Experience across automotive, hospitality &amp; brand campaigns — now applied through SQUARGRAPH.
   </div>
-
   <div class="hero-fade" style="display:flex;gap:22px;align-items:center;flex-wrap:wrap;animation-delay:.7s;margin-bottom:32px;position:relative;z-index:2;">
-    <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project"
-       target="_blank" rel="noopener" class="btn-primary"
+    <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener" class="btn-primary"
        style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 34px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Start a project →
     </a>
-    <a href="#process"
-       style="display:inline-flex;align-items:center;gap:8px;color:rgba(238,238,245,.6);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;font-family:'Outfit',sans-serif;font-weight:600;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:4px;transition:color .25s,border-color .25s;"
+    <a href="#process" style="display:inline-flex;align-items:center;gap:8px;color:rgba(238,238,245,.6);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;font-family:'Outfit',sans-serif;font-weight:600;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:4px;transition:color .25s,border-color .25s;"
        onmouseover="this.style.color='#EEEEF5';this.style.borderColor='rgba(255,255,255,.4)'"
        onmouseout="this.style.color='rgba(238,238,245,.6)';this.style.borderColor='rgba(255,255,255,.12)'">
       See how we work ↓
     </a>
   </div>
-
   <div style="color:rgba(238,238,245,.6);font-size:13px;letter-spacing:.08em;margin-bottom:10px;position:relative;z-index:2;">
     Strategy • Content • Design • Production • Digital Films • AI • Execution
   </div>
-
   <div class="scroll-hint mobile-hide" style="position:absolute;bottom:40px;right:5vw;">Scroll</div>
 </section>
 
-<!-- MARQUEE -->
+<!-- ══ MARQUEE ══ -->
 <div style="padding:40px 0;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);overflow:hidden;position:relative;z-index:2;">
   <div class="marquee-wrap">
     <div class="marquee-inner">
@@ -802,25 +365,24 @@
   </div>
 </div>
 
-<!-- PHILOSOPHY -->
+<!-- ══ PHILOSOPHY ══ -->
 <section id="philosophy" style="padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
   <div style="position:absolute;top:0;right:0;pointer-events:none;opacity:1;">
     <svg width="400" height="400" viewBox="0 0 400 400">
-      <circle cx="380" cy="60" r="180" stroke="rgba(124,58,237,0.07)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:40s;"/>
-      <circle cx="380" cy="60" r="120" stroke="rgba(124,58,237,0.05)" stroke-width="1" fill="none" class="spin-ring-rev" style="animation-duration:28s;"/>
+      <circle cx="380" cy="60" r="180" stroke="rgba(124,58,237,.07)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:40s"/>
+      <circle cx="380" cy="60" r="120" stroke="rgba(124,58,237,.05)" stroke-width="1" fill="none" class="spin-ring-rev" style="animation-duration:28s"/>
     </svg>
   </div>
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">How We Think</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:72px;align-items:start;">
       <div>
-        <h2 class="reveal font-display font-extrabold" style="font-size:clamp(32px,4vw,58px);line-height:1.02;letter-spacing:-.028em;margin-bottom:32px;">
+        <h2 class="reveal font-display font-extrabold section-headline" style="font-size:clamp(32px,4vw,58px);line-height:1.02;letter-spacing:-.028em;margin-bottom:32px;">
           Most brands don't have an ideas problem.<br/>
           <span style="color:#A855F7;">They have an execution problem.</span>
         </h2>
         <p class="reveal reveal-d1" style="color:rgba(238,238,245,.7);font-size:16px;line-height:1.82;font-weight:300;max-width:46ch;margin-bottom:20px;">
-          Decks don't move products. Plans don't build audiences. Output does.
-          We focus on what actually goes live — not what looks good in a review.
+          Decks don't move products. Plans don't build audiences. Output does. We focus on what actually goes live — not what looks good in a review.
         </p>
         <p class="reveal reveal-d2" style="color:rgba(238,238,245,.7);font-size:16px;line-height:1.82;font-weight:300;max-width:46ch;margin-bottom:20px;">
           Everything starts with one question: <em>what needs to get done, and when?</em>
@@ -833,33 +395,30 @@
         </p>
       </div>
       <div>
-        <div class="reveal reveal-d1" style="border-top:1px solid rgba(255,255,255,.065);padding:28px 0;transition:border-color .25s;"
-             onmouseover="this.style.borderColor='#A855F7'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)'">
+        <div class="reveal reveal-d1" style="border-top:1px solid rgba(255,255,255,.065);padding:28px 0;transition:border-color .25s" onmouseover="this.style.borderColor='#A855F7'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)'">
           <div style="display:flex;gap:20px;align-items:flex-start;">
             <span class="font-display" style="font-size:11px;color:#A855F7;letter-spacing:.1em;min-width:32px;padding-top:3px;">01</span>
             <div>
               <h4 class="font-display font-bold" style="font-size:19px;margin-bottom:10px;">Execution over ideas</h4>
-              <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.75;font-weight:300;">A clear brief executed well beats a brilliant idea that never ships. We close the gap between thinking and doing.</p>
+              <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.75;font-weight:300;">A clear brief executed well beats a brilliant idea that never ships.</p>
             </div>
           </div>
         </div>
-        <div class="reveal reveal-d2" style="border-top:1px solid rgba(255,255,255,.065);padding:28px 0;transition:border-color .25s;"
-             onmouseover="this.style.borderColor='#A855F7'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)'">
+        <div class="reveal reveal-d2" style="border-top:1px solid rgba(255,255,255,.065);padding:28px 0;transition:border-color .25s" onmouseover="this.style.borderColor='#A855F7'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)'">
           <div style="display:flex;gap:20px;align-items:flex-start;">
             <span class="font-display" style="font-size:11px;color:#A855F7;letter-spacing:.1em;min-width:32px;padding-top:3px;">02</span>
             <div>
               <h4 class="font-display font-bold" style="font-size:19px;margin-bottom:10px;">Systems over random output</h4>
-              <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.75;font-weight:300;">One great post doesn't build a brand. Consistent, repeatable output does. We build content systems, not one-offs.</p>
+              <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.75;font-weight:300;">One great post doesn't build a brand. Consistent, repeatable output does.</p>
             </div>
           </div>
         </div>
-        <div class="reveal reveal-d3" style="border-top:1px solid rgba(255,255,255,.065);border-bottom:1px solid rgba(255,255,255,.065);padding:28px 0;transition:border-color .25s;"
-             onmouseover="this.style.borderColor='#A855F7'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)'">
+        <div class="reveal reveal-d3" style="border-top:1px solid rgba(255,255,255,.065);border-bottom:1px solid rgba(255,255,255,.065);padding:28px 0;transition:border-color .25s" onmouseover="this.style.borderColor='#A855F7'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)'">
           <div style="display:flex;gap:20px;align-items:flex-start;">
             <span class="font-display" style="font-size:11px;color:#A855F7;letter-spacing:.1em;min-width:32px;padding-top:3px;">03</span>
             <div>
               <h4 class="font-display font-bold" style="font-size:19px;margin-bottom:10px;">Clarity over chaos</h4>
-              <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.75;font-weight:300;">Ambiguity kills timelines. We align early, brief clearly, and coordinate across teams so nothing falls through.</p>
+              <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.75;font-weight:300;">Ambiguity kills timelines. We align early, brief clearly, and coordinate across teams.</p>
             </div>
           </div>
         </div>
@@ -883,7 +442,7 @@
   </div>
 </section>
 
-<!-- PROCESS -->
+<!-- ══ PROCESS ══ -->
 <section id="process" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:80px;flex-wrap:wrap;">
@@ -898,37 +457,32 @@
       </p>
     </div>
     <div class="process-track" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;">
-      <div class="reveal reveal-d1" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;"></div>
+      <div class="reveal reveal-d1" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1)" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s" onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'" onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
         <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">01</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Understand</h3>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">We dig into the brand, brief, audience, and objectives before anything else. No guesswork.</p>
+        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">We dig into the brand, brief, audience, and objectives before anything else.</p>
       </div>
-      <div class="reveal reveal-d2" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;"></div>
+      <div class="reveal reveal-d2" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1)" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s" onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'" onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
         <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">02</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Plan</h3>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Campaign architecture, content calendar, delivery milestones. Everything mapped before anything starts.</p>
+        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Campaign architecture, content calendar, delivery milestones. All mapped upfront.</p>
       </div>
-      <div class="reveal reveal-d3" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;"></div>
+      <div class="reveal reveal-d3" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1)" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s" onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'" onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
         <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">03</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Brief &amp; Coordinate</h3>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Clear briefs to every contributor. No ambiguity. No 11th-hour surprises. Everyone aligned from day one.</p>
+        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Clear briefs to every contributor. No ambiguity. Everyone aligned from day one.</p>
       </div>
-      <div class="reveal reveal-d4" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;"></div>
+      <div class="reveal reveal-d4" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1)" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s" onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'" onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
         <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">04</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Execute</h3>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Work done, checked, and delivered. High-quality, on-brand, on-deadline. Without compromise.</p>
+        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Work done, checked, and delivered. On-brand, on-deadline. Without compromise.</p>
       </div>
-      <div class="reveal reveal-d5" style="padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;"></div>
+      <div class="reveal reveal-d5" style="padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1)" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s" onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'" onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
         <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">05</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Review</h3>
         <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Performance reviewed. Learnings applied. Every cycle improves the next.</p>
@@ -936,9 +490,8 @@
     </div>
     <div class="reveal" style="margin-top:72px;padding:28px 32px;border:1px solid rgba(124,58,237,.15);background:rgba(124,58,237,.04);border-radius:2px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
       <p class="font-display font-bold" style="font-size:16px;letter-spacing:-.01em;">Clarity in. Execution out. No chaos in between.</p>
-      <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project"
-         target="_blank" rel="noopener"
-         style="color:#A855F7;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;transition:opacity .2s;white-space:nowrap;"
+      <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener"
+         style="color:#A855F7;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;transition:opacity .2s;white-space:nowrap"
          onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
         Start the conversation →
       </a>
@@ -946,7 +499,7 @@
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- ══ SERVICES ══ -->
 <section id="services" style="padding:120px 5vw;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">Services</div>
@@ -1007,15 +560,13 @@
   </div>
 </section>
 
-<!-- WORK SHOWCASE — SVG Graphics -->
+<!-- ══ WORK — SVG GRAPHICS ══ -->
 <section id="work" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
-  <div style="position:absolute;top:-80px;right:-80px;pointer-events:none;opacity:0.4;">
+  <div style="position:absolute;top:-80px;right:-80px;pointer-events:none;opacity:.4;">
     <svg width="500" height="500" viewBox="0 0 500 500">
-      <circle cx="400" cy="100" r="300" stroke="rgba(124,58,237,0.06)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:60s;"/>
-      <circle cx="400" cy="100" r="200" stroke="rgba(6,182,212,0.04)" stroke-width="1" fill="none" class="spin-ring-rev" style="animation-duration:40s;"/>
+      <circle cx="400" cy="100" r="300" stroke="rgba(124,58,237,.06)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:60s"/>
     </svg>
   </div>
-
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">Work &amp; Capabilities</div>
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px;flex-wrap:wrap;">
@@ -1023,219 +574,184 @@
         The kind of work<br/>we <span style="color:#A855F7;">actually make</span>
       </h2>
       <p class="reveal mobile-hide" style="color:rgba(238,238,245,.4);font-size:13px;max-width:32ch;line-height:1.8;">
-        Visual, digital, and strategic work built to perform — not just to look good in a deck.
+        Visual, digital, and strategic work built to perform — not just look good in a deck.
       </p>
     </div>
 
-    <!-- SVG graphic grid -->
-    <div style="display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:20px;">
+    <!-- SVG work cards grid -->
+    <div class="work-grid" style="display:grid;grid-template-columns:repeat(12,1fr);gap:20px;">
 
-      <!-- Card 1 — Campaign Execution — wide -->
-      <div class="work-graphic-card reveal reveal-d1" style="grid-column:span 7;aspect-ratio:4/3;">
-        <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" style="height:100%;min-height:220px;">
+      <!-- Card 1 — Campaign Execution (wide) -->
+      <div class="work-card reveal reveal-d1 work-card-wide" style="grid-column:span 7;padding:0;min-height:260px;">
+        <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
           <defs>
-            <linearGradient id="wg1a" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#1a0f3a"/>
-              <stop offset="100%" stop-color="#0D0A1E"/>
-            </linearGradient>
-            <linearGradient id="wg1b" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.9"/>
-              <stop offset="100%" stop-color="#A855F7" stop-opacity="0.6"/>
-            </linearGradient>
-            <filter id="gw1"><feGaussianBlur stdDeviation="8"/></filter>
+            <linearGradient id="g1a" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED" stop-opacity=".25"/><stop offset="100%" stop-color="#06B6D4" stop-opacity=".08"/></linearGradient>
+            <linearGradient id="g1b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#03020A" stop-opacity="0"/><stop offset="100%" stop-color="#03020A" stop-opacity=".92"/></linearGradient>
           </defs>
-          <rect width="560" height="420" fill="url(#wg1a)"/>
-          <!-- glow blobs -->
-          <circle cx="420" cy="100" r="120" fill="rgba(124,58,237,0.12)" filter="url(#gw1)"/>
-          <circle cx="100" cy="320" r="80" fill="rgba(6,182,212,0.08)" filter="url(#gw1)"/>
-          <!-- grid lines -->
-          <line x1="0" y1="70" x2="560" y2="70" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <line x1="0" y1="140" x2="560" y2="140" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <line x1="0" y1="210" x2="560" y2="210" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <line x1="0" y1="280" x2="560" y2="280" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <line x1="0" y1="350" x2="560" y2="350" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <line x1="80" y1="0" x2="80" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <line x1="160" y1="0" x2="160" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <line x1="240" y1="0" x2="240" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <line x1="320" y1="0" x2="320" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <line x1="400" y1="0" x2="400" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <line x1="480" y1="0" x2="480" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <!-- Campaign timeline bars -->
-          <rect x="60" y="160" width="100" height="18" rx="2" fill="url(#wg1b)" opacity="0.9"/>
-          <rect x="60" y="190" width="160" height="18" rx="2" fill="rgba(6,182,212,0.5)"/>
-          <rect x="60" y="220" width="120" height="18" rx="2" fill="url(#wg1b)" opacity="0.6"/>
-          <rect x="60" y="250" width="200" height="18" rx="2" fill="rgba(168,85,247,0.4)"/>
-          <rect x="60" y="280" width="80" height="18" rx="2" fill="rgba(6,182,212,0.35)"/>
-          <!-- Step labels -->
-          <text x="60" y="150" font-family="Outfit,sans-serif" font-size="9" fill="rgba(168,85,247,0.7)" letter-spacing="2">CAMPAIGN FLOW</text>
-          <text x="170" y="175" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.6)">BRIEF</text>
-          <text x="228" y="205" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.6)">STRATEGY</text>
-          <text x="188" y="235" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.6)">CONTENT</text>
-          <text x="268" y="265" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.6)">PRODUCTION</text>
-          <text x="148" y="295" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.6)">LIVE</text>
-          <!-- Large decorative text -->
-          <text x="300" y="360" font-family="Outfit,sans-serif" font-size="88" font-weight="800" fill="rgba(124,58,237,0.07)" letter-spacing="-4">GO</text>
-          <!-- Crosshair -->
-          <line x1="460" y1="180" x2="490" y2="180" stroke="#A855F7" stroke-width="1.5" opacity="0.6"/>
-          <line x1="475" y1="165" x2="475" y2="195" stroke="#A855F7" stroke-width="1.5" opacity="0.6"/>
-          <circle cx="475" cy="180" r="3" fill="#A855F7" opacity="0.8"/>
+          <rect width="560" height="260" fill="#0a0818"/>
+          <rect width="560" height="260" fill="url(#g1a)"/>
+          <!-- Grid lines -->
+          <line x1="0" y1="65" x2="560" y2="65" stroke="rgba(124,58,237,.1)" stroke-width="1"/>
+          <line x1="0" y1="130" x2="560" y2="130" stroke="rgba(124,58,237,.1)" stroke-width="1"/>
+          <line x1="0" y1="195" x2="560" y2="195" stroke="rgba(124,58,237,.1)" stroke-width="1"/>
+          <line x1="112" y1="0" x2="112" y2="260" stroke="rgba(124,58,237,.06)" stroke-width="1"/>
+          <line x1="224" y1="0" x2="224" y2="260" stroke="rgba(124,58,237,.06)" stroke-width="1"/>
+          <line x1="336" y1="0" x2="336" y2="260" stroke="rgba(124,58,237,.06)" stroke-width="1"/>
+          <line x1="448" y1="0" x2="448" y2="260" stroke="rgba(124,58,237,.06)" stroke-width="1"/>
+          <!-- Bar chart -->
+          <rect x="40" y="140" width="40" height="90" rx="2" fill="rgba(124,58,237,.4)"/>
+          <rect x="100" y="100" width="40" height="130" rx="2" fill="rgba(124,58,237,.6)"/>
+          <rect x="160" y="70" width="40" height="160" rx="2" fill="rgba(124,58,237,.75)"/>
+          <rect x="220" y="50" width="40" height="180" rx="2" fill="#A855F7"/>
+          <rect x="280" y="80" width="40" height="150" rx="2" fill="rgba(124,58,237,.6)"/>
+          <rect x="340" y="40" width="40" height="190" rx="2" fill="#7C3AED"/>
+          <rect x="400" y="30" width="40" height="200" rx="2" fill="rgba(168,85,247,.9)"/>
+          <rect x="460" y="20" width="40" height="210" rx="2" fill="#A855F7"/>
+          <!-- Trend line -->
+          <polyline points="60,150 120,110 180,80 240,60 300,90 360,50 420,40 480,28" fill="none" stroke="#06B6D4" stroke-width="2" stroke-dasharray="4 2" opacity=".7"/>
+          <!-- Dots on line -->
+          <circle cx="60" cy="150" r="4" fill="#06B6D4" opacity=".8"/>
+          <circle cx="480" cy="28" r="4" fill="#06B6D4" opacity=".8"/>
+          <!-- Overlay gradient -->
+          <rect width="560" height="260" fill="url(#g1b)"/>
+          <!-- Label -->
+          <text x="24" y="220" font-family="Outfit,sans-serif" font-size="9" letter-spacing="2" fill="#A855F7" opacity=".9" text-transform="uppercase">CAMPAIGN EXECUTION</text>
+          <text x="24" y="242" font-family="Outfit,sans-serif" font-size="15" font-weight="700" fill="#EEEEF5">Launch campaigns that ship on time, every time.</text>
         </svg>
-        <div class="work-img-overlay">
-          <div class="work-img-tag">Campaign Execution</div>
-          <div class="work-img-title">Launch campaigns that ship on time, every time.</div>
-        </div>
       </div>
 
       <!-- Card 2 — Social Media -->
-      <div class="work-graphic-card reveal reveal-d2" style="grid-column:span 5;aspect-ratio:4/3;">
-        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="height:100%;min-height:220px;">
+      <div class="work-card reveal reveal-d2" style="grid-column:span 5;padding:0;min-height:260px;">
+        <svg viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
           <defs>
-            <linearGradient id="wg2a" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#0a0520"/>
-              <stop offset="100%" stop-color="#0D0A1E"/>
-            </linearGradient>
-            <filter id="gw2"><feGaussianBlur stdDeviation="12"/></filter>
+            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#06B6D4" stop-opacity=".2"/><stop offset="100%" stop-color="#7C3AED" stop-opacity=".15"/></linearGradient>
+            <linearGradient id="g2b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#03020A" stop-opacity="0"/><stop offset="100%" stop-color="#03020A" stop-opacity=".9"/></linearGradient>
           </defs>
-          <rect width="400" height="300" fill="url(#wg2a)"/>
-          <circle cx="350" cy="50" r="100" fill="rgba(168,85,247,0.1)" filter="url(#gw2)"/>
-          <!-- Social grid mock -->
-          <rect x="40" y="50" width="90" height="90" rx="4" fill="rgba(124,58,237,0.15)" stroke="rgba(124,58,237,0.25)" stroke-width="1"/>
-          <rect x="145" y="50" width="90" height="90" rx="4" fill="rgba(6,182,212,0.1)" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
-          <rect x="250" y="50" width="90" height="90" rx="4" fill="rgba(168,85,247,0.12)" stroke="rgba(168,85,247,0.22)" stroke-width="1"/>
-          <rect x="40" y="155" width="90" height="90" rx="4" fill="rgba(6,182,212,0.12)" stroke="rgba(6,182,212,0.22)" stroke-width="1"/>
-          <rect x="145" y="155" width="90" height="90" rx="4" fill="rgba(124,58,237,0.18)" stroke="rgba(124,58,237,0.28)" stroke-width="1"/>
-          <rect x="250" y="155" width="90" height="90" rx="4" fill="rgba(232,184,109,0.08)" stroke="rgba(232,184,109,0.18)" stroke-width="1"/>
-          <!-- Inner icons -->
-          <circle cx="85" cy="82" r="12" fill="rgba(168,85,247,0.4)"/>
-          <circle cx="190" cy="82" r="12" fill="rgba(6,182,212,0.3)"/>
-          <rect x="265" y="70" width="60" height="60" rx="12" fill="none" stroke="rgba(168,85,247,0.4)" stroke-width="1.5"/>
-          <circle cx="295" cy="100" r="14" fill="none" stroke="rgba(168,85,247,0.5)" stroke-width="1.5"/>
-          <!-- Engagement dots -->
-          <circle cx="52" cy="188" r="3" fill="#A855F7" opacity="0.7"/>
-          <circle cx="64" cy="188" r="3" fill="#A855F7" opacity="0.4"/>
-          <circle cx="76" cy="188" r="3" fill="#A855F7" opacity="0.2"/>
-          <text x="40" y="260" font-family="Outfit,sans-serif" font-size="8" fill="rgba(168,85,247,0.6)" letter-spacing="2">ALWAYS-ON CONTENT</text>
+          <rect width="320" height="260" fill="#080A1E"/>
+          <rect width="320" height="260" fill="url(#g2)"/>
+          <!-- Phone mockup -->
+          <rect x="110" y="20" width="100" height="160" rx="10" stroke="rgba(168,85,247,.4)" stroke-width="1.5" fill="rgba(13,10,30,.8)"/>
+          <rect x="120" y="35" width="80" height="50" rx="4" fill="rgba(124,58,237,.2)"/>
+          <rect x="120" y="92" width="80" height="8" rx="2" fill="rgba(238,238,245,.15)"/>
+          <rect x="120" y="105" width="55" height="6" rx="2" fill="rgba(238,238,245,.08)"/>
+          <!-- Like/share icons -->
+          <circle cx="125" cy="125" r="6" fill="rgba(168,85,247,.4)"/>
+          <circle cx="142" cy="125" r="6" fill="rgba(6,182,212,.3)"/>
+          <circle cx="159" cy="125" r="6" fill="rgba(124,58,237,.3)"/>
+          <!-- Follower ring -->
+          <circle cx="160" cy="30" r="26" stroke="rgba(168,85,247,.25)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:8s"/>
+          <circle cx="160" cy="30" r="18" stroke="rgba(6,182,212,.2)" stroke-width="1" fill="none" class="spin-ring-rev" style="animation-duration:6s"/>
+          <!-- Notification dots -->
+          <circle cx="70" cy="60" r="5" fill="rgba(168,85,247,.6)" class="pulse-dot"/>
+          <circle cx="250" cy="100" r="5" fill="rgba(6,182,212,.6)" class="pulse-dot" style="animation-delay:.5s"/>
+          <circle cx="80" cy="140" r="4" fill="rgba(124,58,237,.5)" class="pulse-dot" style="animation-delay:1s"/>
+          <!-- Gradient overlay -->
+          <rect width="320" height="260" fill="url(#g2b)"/>
+          <text x="20" y="220" font-family="Outfit,sans-serif" font-size="9" letter-spacing="2" fill="#A855F7" opacity=".9">SOCIAL MEDIA</text>
+          <text x="20" y="244" font-family="Outfit,sans-serif" font-size="14" font-weight="700" fill="#EEEEF5">Always-on content systems.</text>
         </svg>
-        <div class="work-img-overlay">
-          <div class="work-img-tag">Social Media</div>
-          <div class="work-img-title">Always-on content systems built for consistency.</div>
-        </div>
       </div>
 
       <!-- Card 3 — Creative Strategy -->
-      <div class="work-graphic-card reveal reveal-d3" style="grid-column:span 4;aspect-ratio:4/3;">
-        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" style="height:100%;min-height:180px;">
+      <div class="work-card reveal reveal-d3" style="grid-column:span 4;padding:0;min-height:220px;">
+        <svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
           <defs>
-            <linearGradient id="wg3a" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#0c0820"/>
-              <stop offset="100%" stop-color="#080616"/>
-            </linearGradient>
-            <filter id="gw3"><feGaussianBlur stdDeviation="10"/></filter>
+            <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED" stop-opacity=".2"/><stop offset="100%" stop-color="#03020A" stop-opacity=".8"/></linearGradient>
           </defs>
-          <rect width="320" height="240" fill="url(#wg3a)"/>
-          <circle cx="260" cy="60" r="80" fill="rgba(124,58,237,0.09)" filter="url(#gw3)"/>
-          <!-- Venn-like strategy circles -->
-          <circle cx="130" cy="110" r="60" fill="none" stroke="rgba(124,58,237,0.3)" stroke-width="1.5"/>
-          <circle cx="175" cy="110" r="60" fill="none" stroke="rgba(6,182,212,0.25)" stroke-width="1.5"/>
-          <circle cx="152" cy="75" r="60" fill="none" stroke="rgba(168,85,247,0.2)" stroke-width="1"/>
-          <!-- Center dot -->
-          <circle cx="152" cy="100" r="5" fill="#A855F7" opacity="0.8"/>
-          <circle cx="152" cy="100" r="10" fill="none" stroke="#A855F7" stroke-width="1" opacity="0.4"/>
-          <!-- Labels -->
-          <text x="96" y="135" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.5)">Brand</text>
-          <text x="178" y="135" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.5)">Audience</text>
-          <text x="135" y="58" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.5)">Content</text>
-          <text x="130" y="104" font-family="Outfit,sans-serif" font-size="7" fill="#A855F7" letter-spacing="1">STRATEGY</text>
-          <text x="40" y="210" font-family="Outfit,sans-serif" font-size="8" fill="rgba(168,85,247,0.5)" letter-spacing="2">CREATIVE STRATEGY</text>
+          <rect width="240" height="220" fill="#0D0A1E"/>
+          <rect width="240" height="220" fill="url(#g3)"/>
+          <!-- Mind map nodes -->
+          <circle cx="120" cy="100" r="18" fill="rgba(124,58,237,.4)" stroke="#A855F7" stroke-width="1.5"/>
+          <text x="120" y="104" font-family="Outfit,sans-serif" font-size="8" fill="#EEEEF5" text-anchor="middle" font-weight="600">BRIEF</text>
+          <line x1="120" y1="82" x2="75" y2="55" stroke="rgba(168,85,247,.4)" stroke-width="1"/>
+          <line x1="120" y1="82" x2="165" y2="55" stroke="rgba(168,85,247,.4)" stroke-width="1"/>
+          <line x1="102" y1="110" x2="60" y2="130" stroke="rgba(6,182,212,.3)" stroke-width="1"/>
+          <line x1="138" y1="110" x2="180" y2="130" stroke="rgba(6,182,212,.3)" stroke-width="1"/>
+          <line x1="120" y1="118" x2="120" y2="150" stroke="rgba(168,85,247,.3)" stroke-width="1"/>
+          <circle cx="75" cy="48" r="12" fill="rgba(6,182,212,.2)" stroke="rgba(6,182,212,.5)" stroke-width="1"/>
+          <text x="75" y="52" font-family="Outfit,sans-serif" font-size="7" fill="#EEEEF5" text-anchor="middle">STRAT</text>
+          <circle cx="165" cy="48" r="12" fill="rgba(168,85,247,.2)" stroke="rgba(168,85,247,.5)" stroke-width="1"/>
+          <text x="165" y="52" font-family="Outfit,sans-serif" font-size="7" fill="#EEEEF5" text-anchor="middle">PLAN</text>
+          <circle cx="55" cy="135" r="10" fill="rgba(124,58,237,.25)" stroke="rgba(124,58,237,.5)" stroke-width="1"/>
+          <text x="55" y="139" font-family="Outfit,sans-serif" font-size="6.5" fill="#EEEEF5" text-anchor="middle">EXEC</text>
+          <circle cx="185" cy="135" r="10" fill="rgba(124,58,237,.25)" stroke="rgba(124,58,237,.5)" stroke-width="1"/>
+          <text x="185" y="139" font-family="Outfit,sans-serif" font-size="6.5" fill="#EEEEF5" text-anchor="middle">LIVE</text>
+          <circle cx="120" cy="158" r="10" fill="rgba(6,182,212,.2)" stroke="rgba(6,182,212,.4)" stroke-width="1"/>
+          <text x="120" y="162" font-family="Outfit,sans-serif" font-size="6.5" fill="#EEEEF5" text-anchor="middle">REV</text>
+          <text x="20" y="192" font-family="Outfit,sans-serif" font-size="8" letter-spacing="2" fill="#A855F7" opacity=".9">CREATIVE STRATEGY</text>
+          <text x="20" y="210" font-family="Outfit,sans-serif" font-size="12" font-weight="700" fill="#EEEEF5">Strategy that becomes output.</text>
         </svg>
-        <div class="work-img-overlay">
-          <div class="work-img-tag">Creative Strategy</div>
-          <div class="work-img-title">Strategy that actually becomes output.</div>
-        </div>
       </div>
 
       <!-- Card 4 — Brand Content -->
-      <div class="work-graphic-card reveal reveal-d4" style="grid-column:span 4;aspect-ratio:4/3;">
-        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" style="height:100%;min-height:180px;">
+      <div class="work-card reveal reveal-d4" style="grid-column:span 4;padding:0;min-height:220px;">
+        <svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
           <defs>
-            <linearGradient id="wg4a" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#0e0818"/>
-              <stop offset="100%" stop-color="#0D0A1E"/>
-            </linearGradient>
-            <linearGradient id="wg4b" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.6"/>
-              <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.4"/>
-            </linearGradient>
-            <filter id="gw4"><feGaussianBlur stdDeviation="8"/></filter>
+            <linearGradient id="g4" x1="1" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#A855F7" stop-opacity=".18"/><stop offset="100%" stop-color="#06B6D4" stop-opacity=".06"/></linearGradient>
           </defs>
-          <rect width="320" height="240" fill="url(#wg4a)"/>
-          <circle cx="60" cy="200" r="90" fill="rgba(6,182,212,0.07)" filter="url(#gw4)"/>
-          <!-- Brand wordmark concept -->
-          <rect x="50" y="60" width="220" height="80" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-          <text x="80" y="108" font-family="Outfit,sans-serif" font-size="36" font-weight="800" fill="url(#wg4b)" letter-spacing="-2">BRAND</text>
-          <!-- Colour swatches -->
-          <rect x="50" y="160" width="32" height="32" rx="2" fill="rgba(124,58,237,0.8)"/>
-          <rect x="90" y="160" width="32" height="32" rx="2" fill="rgba(168,85,247,0.6)"/>
-          <rect x="130" y="160" width="32" height="32" rx="2" fill="rgba(6,182,212,0.5)"/>
-          <rect x="170" y="160" width="32" height="32" rx="2" fill="rgba(232,184,109,0.4)"/>
-          <rect x="210" y="160" width="32" height="32" rx="2" fill="rgba(238,238,245,0.1)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <text x="50" y="215" font-family="Outfit,sans-serif" font-size="8" fill="rgba(168,85,247,0.5)" letter-spacing="2">MULTI-FORMAT ASSETS</text>
+          <rect width="240" height="220" fill="#070514"/>
+          <rect width="240" height="220" fill="url(#g4)"/>
+          <!-- Format grid -->
+          <rect x="20" y="20" width="90" height="65" rx="3" fill="rgba(124,58,237,.15)" stroke="rgba(124,58,237,.3)" stroke-width="1"/>
+          <text x="65" y="52" font-family="Outfit,sans-serif" font-size="8" fill="#A855F7" text-anchor="middle" letter-spacing="1">1:1</text>
+          <text x="65" y="65" font-family="Outfit,sans-serif" font-size="7" fill="rgba(238,238,245,.4)" text-anchor="middle">Square</text>
+          <rect x="130" y="20" width="90" height="45" rx="3" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.25)" stroke-width="1"/>
+          <text x="175" y="41" font-family="Outfit,sans-serif" font-size="8" fill="#06B6D4" text-anchor="middle" letter-spacing="1">16:9</text>
+          <text x="175" y="54" font-family="Outfit,sans-serif" font-size="7" fill="rgba(238,238,245,.4)" text-anchor="middle">Landscape</text>
+          <rect x="130" y="75" width="45" height="90" rx="3" fill="rgba(168,85,247,.12)" stroke="rgba(168,85,247,.25)" stroke-width="1"/>
+          <text x="152" y="118" font-family="Outfit,sans-serif" font-size="7" fill="#A855F7" text-anchor="middle" letter-spacing="1">9:16</text>
+          <text x="152" y="130" font-family="Outfit,sans-serif" font-size="6.5" fill="rgba(238,238,245,.4)" text-anchor="middle">Story</text>
+          <rect x="185" y="75" width="35" height="90" rx="3" fill="rgba(124,58,237,.08)" stroke="rgba(124,58,237,.2)" stroke-width="1"/>
+          <text x="202" y="130" font-family="Outfit,sans-serif" font-size="6" fill="rgba(238,238,245,.3)" text-anchor="middle">4:5</text>
+          <!-- Arrow connecting them -->
+          <path d="M115 52 Q122 52 122 42 Q122 30 130 30" fill="none" stroke="rgba(124,58,237,.3)" stroke-width="1" stroke-dasharray="3 2"/>
+          <text x="20" y="192" font-family="Outfit,sans-serif" font-size="8" letter-spacing="2" fill="#A855F7" opacity=".9">BRAND CONTENT</text>
+          <text x="20" y="210" font-family="Outfit,sans-serif" font-size="12" font-weight="700" fill="#EEEEF5">Multi-format, one unified voice.</text>
         </svg>
-        <div class="work-img-overlay">
-          <div class="work-img-tag">Brand Content</div>
-          <div class="work-img-title">Multi-format assets, one unified voice.</div>
-        </div>
       </div>
 
       <!-- Card 5 — Digital Production -->
-      <div class="work-graphic-card reveal reveal-d5" style="grid-column:span 4;aspect-ratio:4/3;">
-        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" style="height:100%;min-height:180px;">
+      <div class="work-card reveal reveal-d5" style="grid-column:span 4;padding:0;min-height:220px;">
+        <svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
           <defs>
-            <linearGradient id="wg5a" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#080418"/>
-              <stop offset="100%" stop-color="#0D0A1E"/>
-            </linearGradient>
-            <filter id="gw5"><feGaussianBlur stdDeviation="10"/></filter>
+            <linearGradient id="g5" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#06B6D4" stop-opacity=".15"/><stop offset="100%" stop-color="#7C3AED" stop-opacity=".1"/></linearGradient>
           </defs>
-          <rect width="320" height="240" fill="url(#wg5a)"/>
-          <circle cx="280" cy="180" r="100" fill="rgba(124,58,237,0.08)" filter="url(#gw5)"/>
-          <!-- Film frame -->
-          <rect x="50" y="50" width="220" height="130" rx="3" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
-          <!-- Film perforations -->
-          <rect x="50" y="50" width="18" height="130" rx="0" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-          <rect x="252" y="50" width="18" height="130" rx="0" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-          <rect x="53" y="60" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
-          <rect x="53" y="80" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
-          <rect x="53" y="100" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
-          <rect x="53" y="120" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
-          <rect x="53" y="140" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
-          <rect x="255" y="60" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
-          <rect x="255" y="80" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
-          <rect x="255" y="100" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
-          <rect x="255" y="120" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
-          <rect x="255" y="140" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
-          <!-- Play triangle -->
-          <polygon points="145,95 145,155 195,125" fill="rgba(168,85,247,0.5)"/>
-          <polygon points="145,95 145,155 195,125" fill="none" stroke="#A855F7" stroke-width="1.5" opacity="0.7"/>
-          <!-- Waveform below -->
-          <polyline points="70,205 85,195 95,210 110,190 125,215 140,198 155,208 170,192 185,212 200,196 215,205 230,193 245,207" fill="none" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
-          <text x="50" y="230" font-family="Outfit,sans-serif" font-size="8" fill="rgba(168,85,247,0.5)" letter-spacing="2">DIGITAL PRODUCTION</text>
+          <rect width="240" height="220" fill="#050A14"/>
+          <rect width="240" height="220" fill="url(#g5)"/>
+          <!-- Film timeline -->
+          <rect x="20" y="60" width="200" height="80" rx="4" fill="rgba(0,0,0,.4)" stroke="rgba(124,58,237,.2)" stroke-width="1"/>
+          <!-- Timeline track strips -->
+          <rect x="28" y="68" width="184" height="18" rx="2" fill="rgba(124,58,237,.15)" stroke="rgba(124,58,237,.2)" stroke-width=".5"/>
+          <rect x="28" y="92" width="184" height="18" rx="2" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.2)" stroke-width=".5"/>
+          <rect x="28" y="116" width="184" height="18" rx="2" fill="rgba(168,85,247,.1)" stroke="rgba(168,85,247,.2)" stroke-width=".5"/>
+          <!-- Clips on tracks -->
+          <rect x="32" y="70" width="40" height="14" rx="1" fill="rgba(124,58,237,.5)"/>
+          <rect x="80" y="70" width="60" height="14" rx="1" fill="rgba(124,58,237,.35)"/>
+          <rect x="148" y="70" width="30" height="14" rx="1" fill="rgba(124,58,237,.5)"/>
+          <rect x="32" y="94" width="70" height="14" rx="1" fill="rgba(6,182,212,.4)"/>
+          <rect x="110" y="94" width="45" height="14" rx="1" fill="rgba(6,182,212,.3)"/>
+          <rect x="163" y="94" width="42" height="14" rx="1" fill="rgba(6,182,212,.4)"/>
+          <rect x="32" y="118" width="50" height="14" rx="1" fill="rgba(168,85,247,.4)"/>
+          <rect x="90" y="118" width="80" height="14" rx="1" fill="rgba(168,85,247,.3)"/>
+          <!-- Playhead -->
+          <line x1="110" y1="56" x2="110" y2="148" stroke="#A855F7" stroke-width="1.5"/>
+          <polygon points="106,56 114,56 110,62" fill="#A855F7"/>
+          <!-- Play btn -->
+          <circle cx="120" cy="30" r="16" fill="rgba(124,58,237,.2)" stroke="rgba(168,85,247,.5)" stroke-width="1.5"/>
+          <polygon points="115,23 115,37 129,30" fill="#A855F7" opacity=".8"/>
+          <text x="20" y="175" font-family="Outfit,sans-serif" font-size="8" letter-spacing="2" fill="#A855F7" opacity=".9">DIGITAL PRODUCTION</text>
+          <text x="20" y="195" font-family="Outfit,sans-serif" font-size="12" font-weight="700" fill="#EEEEF5">Video, stills &amp; digital films.</text>
         </svg>
-        <div class="work-img-overlay">
-          <div class="work-img-tag">Digital Production</div>
-          <div class="work-img-title">Video, stills, and digital films — end to end.</div>
-        </div>
       </div>
 
     </div>
 
     <div class="reveal" style="margin-top:48px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
       <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.8;max-width:50ch;">
-        We don't have a public portfolio yet — but if you'd like to see work examples relevant to your brief, just reach out.
+        We don't have a public portfolio yet — if you'd like to see work examples relevant to your brief, just reach out.
       </p>
-      <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20can%20I%20see%20some%20work%20examples%3F"
-         target="_blank" rel="noopener"
-         style="color:#A855F7;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:opacity .2s;"
+      <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20can%20I%20see%20some%20work%20examples%3F" target="_blank" rel="noopener"
+         style="color:#A855F7;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:opacity .2s"
          onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
         Request examples →
       </a>
@@ -1243,7 +759,7 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+<!-- ══ EXPERIENCE ══ -->
 <section id="experience" style="padding:120px 5vw;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">Track Record</div>
@@ -1272,21 +788,15 @@
       </div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
-      <div class="reveal reveal-d1" style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;background:rgba(124,58,237,.02);transition:border-color .3s,transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.borderColor='rgba(124,58,237,.3)';this.style.transform='translateY(-4px)'"
-           onmouseout="this.style.borderColor='rgba(255,255,255,.065)';this.style.transform='translateY(0)'">
+      <div class="reveal reveal-d1" style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;background:rgba(124,58,237,.02);transition:border-color .3s,transform .3s cubic-bezier(.23,1,.32,1)" onmouseover="this.style.borderColor='rgba(124,58,237,.3)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)';this.style.transform='translateY(0)'">
         <div style="width:32px;height:1px;background:#A855F7;margin-bottom:20px;"></div>
         <p style="font-size:15px;line-height:1.75;color:rgba(238,238,245,.7);font-weight:300;">Managed integrated campaigns across automotive and hospitality — from launch brief to live asset, end to end.</p>
       </div>
-      <div class="reveal reveal-d2" style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;background:rgba(124,58,237,.02);transition:border-color .3s,transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.borderColor='rgba(124,58,237,.3)';this.style.transform='translateY(-4px)'"
-           onmouseout="this.style.borderColor='rgba(255,255,255,.065)';this.style.transform='translateY(0)'">
+      <div class="reveal reveal-d2" style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;background:rgba(124,58,237,.02);transition:border-color .3s,transform .3s cubic-bezier(.23,1,.32,1)" onmouseover="this.style.borderColor='rgba(124,58,237,.3)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)';this.style.transform='translateY(0)'">
         <div style="width:32px;height:1px;background:#A855F7;margin-bottom:20px;"></div>
         <p style="font-size:15px;line-height:1.75;color:rgba(238,238,245,.7);font-weight:300;">Handled always-on content, ORM, influencer coordination, and cross-team production simultaneously.</p>
       </div>
-      <div class="reveal reveal-d3" style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;background:rgba(124,58,237,.02);transition:border-color .3s,transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.borderColor='rgba(124,58,237,.3)';this.style.transform='translateY(-4px)'"
-           onmouseout="this.style.borderColor='rgba(255,255,255,.065)';this.style.transform='translateY(0)'">
+      <div class="reveal reveal-d3" style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;background:rgba(124,58,237,.02);transition:border-color .3s,transform .3s cubic-bezier(.23,1,.32,1)" onmouseover="this.style.borderColor='rgba(124,58,237,.3)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)';this.style.transform='translateY(0)'">
         <div style="width:32px;height:1px;background:#A855F7;margin-bottom:20px;"></div>
         <p style="font-size:15px;line-height:1.75;color:rgba(238,238,245,.7);font-weight:300;">Comfortable operating in high-pressure, multi-team environments where timelines don't move and quality can't drop.</p>
       </div>
@@ -1294,7 +804,7 @@
   </div>
 </section>
 
-<!-- WHAT YOU CAN EXPECT -->
+<!-- ══ WHAT YOU CAN EXPECT ══ -->
 <section id="expect" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">Working with us</div>
@@ -1305,50 +815,35 @@
       <div class="expect-card reveal">
         <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
           <span class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.1em;min-width:28px;padding-top:4px;">01</span>
-          <div>
-            <h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Ownership</h4>
-            <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">We take full ownership of the brief. No chasing, no repetition.</p>
-          </div>
+          <div><h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Ownership</h4><p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">We take full ownership of the brief. No chasing, no repetition.</p></div>
         </div>
         <div class="mobile-hide" style="color:rgba(124,58,237,.2);font-size:32px;font-family:'Outfit',sans-serif;font-weight:800;">→</div>
       </div>
       <div class="expect-card reveal reveal-d1">
         <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
           <span class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.1em;min-width:28px;padding-top:4px;">02</span>
-          <div>
-            <h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Reliability</h4>
-            <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">If we commit to a timeline, it holds.</p>
-          </div>
+          <div><h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Reliability</h4><p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">If we commit to a timeline, it holds.</p></div>
         </div>
         <div class="mobile-hide" style="color:rgba(124,58,237,.2);font-size:32px;font-family:'Outfit',sans-serif;font-weight:800;">→</div>
       </div>
       <div class="expect-card reveal reveal-d2">
         <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
           <span class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.1em;min-width:28px;padding-top:4px;">03</span>
-          <div>
-            <h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Clean Execution</h4>
-            <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">Work that's on-brief, on-brand, and ready to go live.</p>
-          </div>
+          <div><h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Clean Execution</h4><p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">Work that's on-brief, on-brand, and ready to go live.</p></div>
         </div>
         <div class="mobile-hide" style="color:rgba(124,58,237,.2);font-size:32px;font-family:'Outfit',sans-serif;font-weight:800;">→</div>
       </div>
       <div class="expect-card reveal reveal-d3">
         <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
           <span class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.1em;min-width:28px;padding-top:4px;">04</span>
-          <div>
-            <h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Team Coordination</h4>
-            <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">All moving parts managed and aligned — without you stepping in.</p>
-          </div>
+          <div><h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Team Coordination</h4><p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">All moving parts managed and aligned — without you stepping in.</p></div>
         </div>
         <div class="mobile-hide" style="color:rgba(124,58,237,.2);font-size:32px;font-family:'Outfit',sans-serif;font-weight:800;">→</div>
       </div>
       <div class="expect-card reveal reveal-d4" style="border-bottom:1px solid rgba(255,255,255,.065);">
         <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
           <span class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.1em;min-width:28px;padding-top:4px;">05</span>
-          <div>
-            <h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Client Handling</h4>
-            <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">Clear communication. Structured feedback. No friction.</p>
-          </div>
+          <div><h4 class="font-display font-bold" style="font-size:20px;margin-bottom:8px;">Client Handling</h4><p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.78;font-weight:300;max-width:46ch;">Clear communication. Structured feedback. No friction.</p></div>
         </div>
         <div class="mobile-hide" style="color:rgba(124,58,237,.2);font-size:32px;font-family:'Outfit',sans-serif;font-weight:800;">→</div>
       </div>
@@ -1356,58 +851,45 @@
   </div>
 </section>
 
-<!-- FOUNDER -->
+<!-- ══ FOUNDER ══ -->
 <section id="founder" style="padding:120px 5vw;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">The Person Behind It</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:64px;align-items:start;margin-top:20px;">
-      <!-- SVG Founder Graphic -->
+      <!-- SVG portrait illustration -->
       <div class="reveal">
-        <div class="founder-graphic">
-          <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <div class="founder-photo" style="display:flex;align-items:center;justify-content:center;background:#0D0A1E;">
+          <svg viewBox="0 0 280 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
             <defs>
-              <linearGradient id="fg1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#12082a"/>
-                <stop offset="100%" stop-color="#0D0A1E"/>
+              <linearGradient id="pgrd" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#7C3AED" stop-opacity=".3"/>
+                <stop offset="100%" stop-color="#06B6D4" stop-opacity=".1"/>
               </linearGradient>
-              <linearGradient id="fg2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.8"/>
-                <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.5"/>
-              </linearGradient>
-              <filter id="fglow"><feGaussianBlur stdDeviation="10"/></filter>
-              <clipPath id="circleClip"><circle cx="150" cy="150" r="90"/></clipPath>
+              <radialGradient id="pcirc" cx="50%" cy="40%" r="50%">
+                <stop offset="0%" stop-color="rgba(168,85,247,.15)"/>
+                <stop offset="100%" stop-color="transparent"/>
+              </radialGradient>
             </defs>
-            <rect width="300" height="400" fill="url(#fg1)"/>
-            <!-- Background rings -->
-            <circle cx="150" cy="150" r="130" fill="none" stroke="rgba(124,58,237,0.08)" stroke-width="1" class="spin-ring" style="animation-duration:40s;"/>
-            <circle cx="150" cy="150" r="108" fill="none" stroke="rgba(6,182,212,0.06)" stroke-width="1" class="spin-ring-rev" style="animation-duration:28s;"/>
-            <!-- Glow -->
-            <circle cx="150" cy="130" r="80" fill="rgba(124,58,237,0.15)" filter="url(#fglow)"/>
-            <!-- Avatar silhouette -->
-            <circle cx="150" cy="125" r="90" fill="rgba(124,58,237,0.07)" stroke="rgba(124,58,237,0.2)" stroke-width="1"/>
-            <!-- Head -->
-            <circle cx="150" cy="105" r="32" fill="rgba(124,58,237,0.2)" stroke="rgba(168,85,247,0.4)" stroke-width="1.5"/>
-            <!-- Shoulders/body -->
-            <path d="M90,175 Q90,145 150,145 Q210,145 210,175 L220,200 L80,200 Z" fill="rgba(124,58,237,0.15)" stroke="rgba(168,85,247,0.3)" stroke-width="1"/>
-            <!-- Initials -->
-            <text x="135" y="115" font-family="Outfit,sans-serif" font-size="22" font-weight="800" fill="rgba(168,85,247,0.7)" letter-spacing="-1">SS</text>
-            <!-- Decorative data lines below -->
-            <line x1="60" y1="230" x2="240" y2="230" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-            <rect x="60" y="248" width="80" height="6" rx="3" fill="rgba(124,58,237,0.35)"/>
-            <rect x="148" y="248" width="50" height="6" rx="3" fill="rgba(6,182,212,0.25)"/>
-            <rect x="206" y="248" width="34" height="6" rx="3" fill="rgba(168,85,247,0.2)"/>
-            <rect x="60" y="265" width="55" height="4" rx="2" fill="rgba(124,58,237,0.2)"/>
-            <rect x="122" y="265" width="90" height="4" rx="2" fill="rgba(6,182,212,0.18)"/>
-            <rect x="219" y="265" width="21" height="4" rx="2" fill="rgba(168,85,247,0.15)"/>
-            <!-- Name label area -->
-            <rect x="40" y="295" width="220" height="60" rx="2" fill="rgba(124,58,237,0.06)" stroke="rgba(124,58,237,0.15)" stroke-width="1"/>
-            <text x="60" y="320" font-family="Outfit,sans-serif" font-size="14" font-weight="700" fill="rgba(238,238,245,0.85)">Saurabh Sohan Singh</text>
-            <text x="60" y="338" font-family="Outfit,sans-serif" font-size="9" fill="rgba(168,85,247,0.7)" letter-spacing="1.5">FOUNDER, SQUARGRAPH</text>
-            <!-- Corner ornaments -->
-            <path d="M40,40 L40,20 L60,20" stroke="rgba(124,58,237,0.4)" stroke-width="1.5" fill="none"/>
-            <path d="M260,40 L260,20 L240,20" stroke="rgba(124,58,237,0.4)" stroke-width="1.5" fill="none"/>
-            <path d="M40,360 L40,380 L60,380" stroke="rgba(6,182,212,0.3)" stroke-width="1" fill="none"/>
-            <path d="M260,360 L260,380 L240,380" stroke="rgba(6,182,212,0.3)" stroke-width="1" fill="none"/>
+            <rect width="280" height="380" fill="#0D0A1E"/>
+            <rect width="280" height="380" fill="url(#pgrd)"/>
+            <circle cx="140" cy="152" r="120" fill="url(#pcirc)"/>
+            <!-- Decorative rings -->
+            <circle cx="140" cy="152" r="100" stroke="rgba(124,58,237,.12)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:30s;transform-origin:140px 152px"/>
+            <circle cx="140" cy="152" r="70" stroke="rgba(168,85,247,.1)" stroke-width="1" fill="none" class="spin-ring-rev" style="animation-duration:20s;transform-origin:140px 152px"/>
+            <!-- Silhouette placeholder -->
+            <circle cx="140" cy="118" r="40" fill="rgba(124,58,237,.25)" stroke="rgba(168,85,247,.4)" stroke-width="1.5"/>
+            <ellipse cx="140" cy="195" rx="55" ry="40" fill="rgba(124,58,237,.2)" stroke="rgba(168,85,247,.3)" stroke-width="1"/>
+            <!-- Name initial -->
+            <text x="140" y="128" font-family="Outfit,sans-serif" font-size="32" font-weight="800" fill="rgba(168,85,247,.7)" text-anchor="middle">S</text>
+            <!-- Bottom gradient fade -->
+            <rect x="0" y="260" width="280" height="120" fill="url(#pgrd)"/>
+            <!-- Label bar -->
+            <rect x="0" y="320" width="280" height="60" fill="rgba(3,2,10,.85)"/>
+            <text x="24" y="346" font-family="Outfit,sans-serif" font-size="15" font-weight="700" fill="#EEEEF5">Saurabh Sohan Singh</text>
+            <text x="24" y="365" font-family="Outfit,sans-serif" font-size="10" letter-spacing="1.5" fill="#A855F7">FOUNDER, SQUARGRAPH STUDIOS</text>
+            <!-- Corner accent -->
+            <line x1="260" y1="0" x2="280" y2="0" stroke="#A855F7" stroke-width="1.5"/>
+            <line x1="280" y1="0" x2="280" y2="20" stroke="#A855F7" stroke-width="1.5"/>
           </svg>
         </div>
       </div>
@@ -1416,7 +898,7 @@
           Saurabh Sohan Singh
         </h2>
         <p style="color:rgba(238,238,245,.5);font-size:14px;margin-bottom:20px;">Social Media • Content • Campaign Execution</p>
-        <p class="reveal" style="color:#A855F7;font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:36px;">Founder, SQUARGRAPH Studios</p>
+        <p class="reveal font-display" style="color:#A855F7;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:36px;">Founder, SQUARGRAPH Studios</p>
         <p class="reveal reveal-d1" style="color:rgba(238,238,245,.65);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:20px;max-width:52ch;">End-to-end campaign handling — from strategy to execution, across teams and formats.</p>
         <p class="reveal reveal-d2" style="color:rgba(238,238,245,.65);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:20px;max-width:52ch;">Structured workflows across creative, production, and client teams — so work moves forward, on time and on brief.</p>
         <p class="reveal reveal-d3" style="color:rgba(238,238,245,.65);font-size:15px;line-height:1.85;font-weight:300;max-width:52ch;">SQUARGRAPH Studios exists to get work out — clearly, efficiently, and without the usual chaos.</p>
@@ -1430,7 +912,7 @@
           <a href="https://x.com/imsssingh" target="_blank" rel="noopener" class="social-link" title="X / Twitter">
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
-          <!-- Saurabh personal Facebook -->
+          <!-- Facebook personal -->
           <a href="https://www.facebook.com/saurabhsohansingh/" target="_blank" rel="noopener" class="social-link" title="Facebook">
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
@@ -1440,14 +922,14 @@
   </div>
 </section>
 
-<!-- WHY DIFFERENT -->
+<!-- ══ WHY DIFFERENT ══ -->
 <section style="background:#080616;border-top:1px solid rgba(255,255,255,.055);padding:100px 5vw;position:relative;z-index:2;">
   <div style="max-width:900px;margin:0 auto;">
     <div class="reveal s-label">Why Different</div>
     <h2 class="reveal font-display font-extrabold" style="font-size:clamp(26px,3vw,36px);margin-bottom:32px;letter-spacing:-.02em;">
       Why SQUARGRAPH works differently
     </h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:700px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:700px;">
       <div style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;">
         <p style="color:rgba(238,238,245,.4);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-bottom:14px;">Most setups</p>
         <p style="color:rgba(238,238,245,.6);line-height:2;font-size:14px;">Strategy → delay → freelancers → misalignment → chaos</p>
@@ -1460,19 +942,18 @@
   </div>
 </section>
 
-<!-- CTA + CONTACT -->
-<section id="contact" style="background:#03020A;border-top:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
+<!-- ══ CTA + CONTACT ══ -->
+<section id="contact" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
   <div class="cta-glow"></div>
   <div style="position:absolute;top:0;left:0;pointer-events:none;">
     <svg width="200" height="200" viewBox="0 0 200 200">
-      <path d="M0,60 L0,0 L60,0" stroke="rgba(124,58,237,0.15)" stroke-width="1" fill="none"/>
-      <path d="M0,80 L0,0 L80,0" stroke="rgba(124,58,237,0.08)" stroke-width="1" fill="none"/>
+      <path d="M0,60 L0,0 L60,0" stroke="rgba(124,58,237,.15)" stroke-width="1" fill="none"/>
+      <path d="M0,80 L0,0 L80,0" stroke="rgba(124,58,237,.08)" stroke-width="1" fill="none"/>
     </svg>
   </div>
   <div style="position:absolute;bottom:0;right:0;pointer-events:none;">
     <svg width="200" height="200" viewBox="0 0 200 200">
-      <path d="M200,140 L200,200 L140,200" stroke="rgba(124,58,237,0.15)" stroke-width="1" fill="none"/>
-      <path d="M200,120 L200,200 L120,200" stroke="rgba(124,58,237,0.08)" stroke-width="1" fill="none"/>
+      <path d="M200,140 L200,200 L140,200" stroke="rgba(124,58,237,.15)" stroke-width="1" fill="none"/>
     </svg>
   </div>
   <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1;">
@@ -1488,94 +969,101 @@
           No decks. No long processes.<br>Just clarity, execution, and delivery.
         </p>
         <div class="reveal reveal-d2">
-          <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project"
-             target="_blank" rel="noopener" class="btn-primary"
+          <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener" class="btn-primary"
              style="display:inline-flex;align-items:center;gap:12px;background:#A855F7;color:#03020A;padding:18px 36px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;width:fit-content;">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Message on WhatsApp
           </a>
         </div>
       </div>
-      <div class="reveal reveal-d2">
-        <!-- Success message -->
-        <div id="form-success-msg" class="form-success">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin:0 auto 16px;display:block;">
-            <circle cx="20" cy="20" r="19" stroke="rgba(6,182,212,0.5)" stroke-width="1"/>
-            <polyline points="12,20 17,25 28,14" stroke="#06B6D4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <p class="font-display font-bold" style="font-size:18px;margin-bottom:8px;color:#EEEEF5;">Brief received.</p>
-          <p style="color:rgba(238,238,245,.55);font-size:14px;">We'll be in touch shortly. You can also message us on WhatsApp for a faster reply.</p>
-        </div>
 
-        <form id="contact-form" style="display:flex;flex-direction:column;gap:18px;">
-          <div>
-            <label class="form-label">Your Name *</label>
-            <input type="text" name="name" required placeholder="Full name" class="form-input" />
-          </div>
-          <div>
-            <label class="form-label">Work Email *</label>
-            <input type="email" name="email" required placeholder="name@company.com" class="form-input" />
-          </div>
-          <div>
-            <label class="form-label">Brand / Company</label>
-            <input type="text" name="company" placeholder="Your brand or company name" class="form-input" />
-          </div>
-          <div>
-            <label class="form-label">What are you looking for? *</label>
-            <select name="service" required class="form-input">
-              <option value="">Select</option>
-              <option>Full campaign (strategy + execution)</option>
-              <option>Content &amp; social media</option>
-              <option>Branding / identity</option>
-              <option>Performance creatives</option>
-              <option>Something else</option>
-            </select>
-          </div>
-          <div>
-            <label class="form-label">Estimated budget *</label>
-            <select name="budget" required class="form-input">
-              <option value="">Select range</option>
-              <option>₹50K – ₹1L</option>
-              <option>₹1L – ₹3L</option>
-              <option>₹3L – ₹7L</option>
-              <option>₹7L+</option>
-            </select>
-          </div>
-          <div>
-            <label class="form-label">Timeline *</label>
-            <select name="timeline" required class="form-input">
-              <option value="">Select</option>
-              <option>ASAP</option>
-              <option>2–4 weeks</option>
-              <option>1–2 months</option>
-              <option>Just exploring</option>
-            </select>
-          </div>
-          <div>
-            <label class="form-label">Project brief *</label>
-            <textarea name="message" required placeholder="What are you trying to achieve? What's the current situation?" class="form-input"></textarea>
-          </div>
-          <div>
-            <label class="form-label">Reference links (optional)</label>
-            <input type="url" name="reference" placeholder="Drive / Notion / examples" class="form-input" />
-          </div>
-          <button type="submit" id="form-submit-btn"
-                  style="background:#A855F7;border:none;color:#03020A;padding:18px 32px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:transform .25s,opacity .25s;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;"
-                  onmouseover="if(!this.disabled)this.style.transform='translateY(-2px)'"
-                  onmouseout="this.style.transform='translateY(0)'">
-            <span id="btn-text">Send Brief →</span>
-            <svg id="btn-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="display:none;animation:spinRing 0.8s linear infinite;">
-              <path d="M12 2a10 10 0 0 1 10 10"/>
+      <!-- Contact Form -->
+      <div class="reveal reveal-d2">
+        <div id="contact-form-body" class="form-body">
+          <form id="contact-form" style="display:flex;flex-direction:column;gap:18px;">
+            <div>
+              <label class="form-label">Your Name *</label>
+              <input type="text" name="name" required placeholder="Full name" class="form-input" />
+            </div>
+            <div>
+              <label class="form-label">Work Email *</label>
+              <input type="email" name="email" required placeholder="name@company.com" class="form-input" />
+            </div>
+            <div>
+              <label class="form-label">Brand / Company</label>
+              <input type="text" name="company" placeholder="Your brand or company name" class="form-input" />
+            </div>
+            <div>
+              <label class="form-label">What are you looking for? *</label>
+              <select name="service" required class="form-input">
+                <option value="">Select</option>
+                <option>Full campaign (strategy + execution)</option>
+                <option>Content &amp; social media</option>
+                <option>Branding / identity</option>
+                <option>Performance creatives</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">Estimated budget *</label>
+              <select name="budget" required class="form-input">
+                <option value="">Select range</option>
+                <option>₹50K – ₹1L</option>
+                <option>₹1L – ₹3L</option>
+                <option>₹3L – ₹7L</option>
+                <option>₹7L+</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">Timeline *</label>
+              <select name="timeline" required class="form-input">
+                <option value="">Select</option>
+                <option>ASAP</option>
+                <option>2–4 weeks</option>
+                <option>1–2 months</option>
+                <option>Just exploring</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">Project brief *</label>
+              <textarea name="message" required placeholder="What are you trying to achieve? What's the current situation?" class="form-input"></textarea>
+            </div>
+            <div>
+              <label class="form-label">Reference links (optional)</label>
+              <input type="url" name="reference" placeholder="Drive / Notion / examples" class="form-input" />
+            </div>
+            <div id="form-error" style="display:none;color:#f87171;font-size:13px;padding:10px 14px;border:1px solid rgba(248,113,113,.3);border-radius:2px;background:rgba(248,113,113,.05);"></div>
+            <button type="submit" id="form-submit-btn"
+                    style="background:#A855F7;border:none;color:#03020A;padding:18px 32px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:transform .25s,opacity .25s;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;"
+                    onmouseover="if(!this.disabled)this.style.transform='translateY(-2px)'"
+                    onmouseout="this.style.transform='translateY(0)'">
+              <span id="submit-text">Send Brief →</span>
+              <span id="submit-spinner" style="display:none;width:16px;height:16px;border:2px solid rgba(3,2,10,.3);border-top-color:#03020A;border-radius:50%;animation:spin .7s linear infinite;"></span>
+            </button>
+          </form>
+        </div>
+        <!-- Success state -->
+        <div id="contact-success" class="form-success">
+          <div style="margin-bottom:20px;">
+            <svg width="56" height="56" viewBox="0 0 56 56" style="margin:0 auto;display:block;">
+              <circle cx="28" cy="28" r="27" stroke="#A855F7" stroke-width="1.5" fill="rgba(168,85,247,.1)"/>
+              <polyline points="17,28 24,35 39,20" stroke="#A855F7" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </button>
-          <p id="form-error-msg" style="color:#f87171;font-size:13px;display:none;text-align:center;">Something went wrong. Please try again or message us on WhatsApp.</p>
-        </form>
+          </div>
+          <h3 class="font-display font-bold" style="font-size:22px;margin-bottom:12px;color:#EEEEF5;">Brief received!</h3>
+          <p style="color:rgba(238,238,245,.55);font-size:14px;line-height:1.8;max-width:36ch;margin:0 auto 24px;">We'll review your brief and get back to you within 24 hours.</p>
+          <a href="https://wa.me/918588897488" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:8px;color:#A855F7;font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(168,85,247,.35);padding:12px 24px;border-radius:2px;transition:background .2s"
+             onmouseover="this.style.background='rgba(124,58,237,.1)'" onmouseout="this.style.background='transparent'">
+            Also message on WhatsApp →
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══ FOOTER ══ -->
 <footer style="background:#09070F;border-top:1px solid rgba(255,255,255,.07);padding:48px 5vw 36px;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:36px;flex-wrap:wrap;margin-bottom:40px;">
@@ -1586,55 +1074,68 @@
         </div>
         <p style="color:rgba(238,238,245,.6);font-size:12px;font-weight:300;">Delhi, India</p>
       </div>
-      <!-- Social links — Studio accounts -->
-      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-        <a href="https://instagram.com/squargraph" target="_blank" rel="noopener" class="social-link" title="Instagram">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-        <a href="https://linkedin.com/company/squargraph" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="https://x.com/squargraph" target="_blank" rel="noopener" class="social-link" title="X">
-          <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <a href="https://youtube.com/channel/squargraph" target="_blank" rel="noopener" class="social-link" title="YouTube">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </a>
-        <!-- SQUARGRAPH Studios Facebook -->
-        <a href="https://www.facebook.com/squargraphstudios/" target="_blank" rel="noopener" class="social-link" title="Facebook">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
+
+      <!-- Footer social links — Studio FB + all others -->
+      <div>
+        <p style="color:rgba(238,238,245,.25);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-bottom:10px;">Studio</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px;">
+          <a href="https://instagram.com/squargraph" target="_blank" rel="noopener" class="social-link" title="Instagram @squargraph">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://linkedin.com/company/squargraph" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://x.com/squargraph" target="_blank" rel="noopener" class="social-link" title="X">
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- SQUARGRAPH Studios Facebook -->
+          <a href="https://www.facebook.com/squargraphstudios/" target="_blank" rel="noopener" class="social-link" title="Facebook">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://youtube.com/channel/squargraph" target="_blank" rel="noopener" class="social-link" title="YouTube">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+        <p style="color:rgba(238,238,245,.25);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-bottom:10px;">Founder</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <a href="https://instagram.com/saurabhsohansingh" target="_blank" rel="noopener" class="social-link" title="Saurabh on Instagram">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/saurabhsohansingh" target="_blank" rel="noopener" class="social-link" title="Saurabh on LinkedIn">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://x.com/imsssingh" target="_blank" rel="noopener" class="social-link" title="Saurabh on X">
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- Saurabh FB -->
+          <a href="https://www.facebook.com/saurabhsohansingh/" target="_blank" rel="noopener" class="social-link" title="Saurabh on Facebook">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
+
     <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.09);padding-top:28px;">
       <p style="color:rgba(238,238,245,.7);font-size:12px;font-weight:300;">© 2026 SQUARGRAPH Studios. All rights reserved.</p>
       <p style="color:rgba(238,238,245,.4);font-size:11px;">Built for brands that need execution, not just ideas.</p>
-      <p style="color:rgba(238,238,245,.7);font-size:12px;font-weight:300;">You don't find your path — you build it, one decision at a time.</p>
     </div>
   </div>
 </footer>
 
-<!-- CHATBOT -->
+<!-- ══ CHATBOT ══ -->
 <button id="chat-toggle" aria-label="Open chat">
   <span id="chat-toggle-icon">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#03020A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#03020A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
   </span>
   <span id="chat-close-icon">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#03020A" stroke-width="2.5" stroke-linecap="round">
-      <line x1="18" y1="6" x2="6" y2="18"/>
-      <line x1="6" y1="6" x2="18" y2="18"/>
-    </svg>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#03020A" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </span>
 </button>
 
 <div id="chat-panel">
   <div class="chat-header">
     <div class="chat-avatar">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="#03020A">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
-      </svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#03020A"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
       <div class="chat-status-dot"></div>
     </div>
     <div>
@@ -1651,281 +1152,118 @@
   </div>
 </div>
 
+<style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+
 <script>
-(function () {
-  'use strict';
+(function(){
+'use strict';
 
-  /* ── Particle System ─────────────────────────────────────────── */
-  var canvas = document.getElementById('particle-canvas');
-  var ctx    = canvas.getContext('2d');
-  var W, H, particles = [], mouse = { x: -9999, y: -9999 };
+/* ── Particle System ── */
+var canvas=document.getElementById('particle-canvas');
+var ctx=canvas.getContext('2d');
+var W,H,particles=[],mouse={x:-9999,y:-9999};
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize();
+window.addEventListener('resize',resize,{passive:true});
+function Particle(){this.reset();}
+Particle.prototype.reset=function(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*1.8+.3;this.vx=(Math.random()-.5)*.4;this.vy=(Math.random()-.5)*.4-.15;this.life=Math.random()*200+100;this.age=0;this.hue=Math.random()>.7?195:271;this.sat=Math.random()*30+70;};
+Particle.prototype.update=function(){var dx=this.x-mouse.x,dy=this.y-mouse.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<100){var f=(100-dist)/100*.8;this.vx+=(dx/dist)*f;this.vy+=(dy/dist)*f;}this.vx*=.98;this.vy*=.98;this.x+=this.vx;this.y+=this.vy;this.age++;if(this.age>this.life||this.x<0||this.x>W||this.y<0||this.y>H)this.reset();};
+Particle.prototype.draw=function(){var alpha=Math.sin((this.age/this.life)*Math.PI)*.6;ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle='hsla('+this.hue+','+this.sat+'%,70%,'+alpha+')';ctx.fill();};
+var COUNT=Math.min(120,Math.floor(window.innerWidth*window.innerHeight/12000));
+for(var i=0;i<COUNT;i++){var p=new Particle();p.age=Math.random()*p.life;particles.push(p);}
+function drawConnections(){for(var a=0;a<particles.length;a++){for(var b=a+1;b<particles.length;b++){var dx=particles[a].x-particles[b].x,dy=particles[a].y-particles[b].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<90){ctx.strokeStyle='rgba(124,58,237,'+(1-dist/90)*.12+')';ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(particles[a].x,particles[a].y);ctx.lineTo(particles[b].x,particles[b].y);ctx.stroke();}}}}
+function animate(){ctx.clearRect(0,0,W,H);drawConnections();for(var i=0;i<particles.length;i++){particles[i].update();particles[i].draw();}requestAnimationFrame(animate);}
+animate();
+document.addEventListener('mousemove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;});
 
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize, { passive: true });
+/* ── Custom cursor ── */
+var cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+var mx=-200,my=-200,rx=-200,ry=-200,cursorActive=false;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cursor.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)';if(!cursorActive){cursorActive=true;cursor.classList.add('active');ring.classList.add('active');}});
+(function animateRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)';requestAnimationFrame(animateRing);})();
 
-  function Particle() { this.reset(); }
-  Particle.prototype.reset = function() {
-    this.x    = Math.random() * W;
-    this.y    = Math.random() * H;
-    this.r    = Math.random() * 1.8 + 0.3;
-    this.vx   = (Math.random() - 0.5) * 0.4;
-    this.vy   = (Math.random() - 0.5) * 0.4 - 0.15;
-    this.life = Math.random() * 200 + 100;
-    this.age  = 0;
-    this.hue  = Math.random() > 0.7 ? 195 : 271;
-    this.sat  = Math.random() * 30 + 70;
-  };
-  Particle.prototype.update = function() {
-    var dx = this.x - mouse.x, dy = this.y - mouse.y;
-    var dist = Math.sqrt(dx*dx + dy*dy);
-    if (dist < 100) {
-      var force = (100 - dist) / 100 * 0.8;
-      this.vx += (dx / dist) * force;
-      this.vy += (dy / dist) * force;
-    }
-    this.vx *= 0.98; this.vy *= 0.98;
-    this.x  += this.vx; this.y  += this.vy;
-    this.age++;
-    if (this.age > this.life || this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
-  };
-  Particle.prototype.draw = function() {
-    var alpha = Math.sin((this.age / this.life) * Math.PI) * 0.6;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    ctx.fillStyle = 'hsla(' + this.hue + ',' + this.sat + '%,70%,' + alpha + ')';
-    ctx.fill();
-  };
+/* ── Nav scroll ── */
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
 
-  var COUNT = Math.min(120, Math.floor(W * H / 12000));
-  for (var i = 0; i < COUNT; i++) {
-    var p = new Particle(); p.age = Math.random() * p.life; particles.push(p);
-  }
+/* ── Mobile nav toggle ── */
+var mobMenu=document.getElementById('mob-menu');
+var mobToggle=document.getElementById('mob-toggle');
+function isMobile(){return window.innerWidth<=768;}
+function updateNav(){if(isMobile()){mobToggle.style.display='block';}else{mobToggle.style.display='none';}}
+updateNav();
+window.addEventListener('resize',updateNav,{passive:true});
+mobToggle.addEventListener('click',function(){mobMenu.style.display='flex';document.body.style.overflow='hidden';});
+window.closeMob=function(){mobMenu.style.display='none';document.body.style.overflow='';};
 
-  function drawConnections() {
-    for (var a = 0; a < particles.length; a++) {
-      for (var b = a + 1; b < particles.length; b++) {
-        var dx = particles[a].x - particles[b].x, dy = particles[a].y - particles[b].y;
-        var dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 90) {
-          ctx.strokeStyle = 'rgba(124,58,237,' + ((1 - dist / 90) * 0.12) + ')';
-          ctx.lineWidth = 0.5;
-          ctx.beginPath(); ctx.moveTo(particles[a].x, particles[a].y); ctx.lineTo(particles[b].x, particles[b].y); ctx.stroke();
-        }
-      }
-    }
-  }
+/* ── Scroll reveal ── */
+var revealObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target);}});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){revealObserver.observe(el);});
 
-  function animate() {
-    ctx.clearRect(0, 0, W, H);
-    drawConnections();
-    for (var i = 0; i < particles.length; i++) { particles[i].update(); particles[i].draw(); }
-    requestAnimationFrame(animate);
-  }
-  animate();
-  document.addEventListener('mousemove', function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
+/* ── Contact Form (Formspree) ── */
+var contactForm=document.getElementById('contact-form');
+var submitBtn=document.getElementById('form-submit-btn');
+var submitText=document.getElementById('submit-text');
+var submitSpinner=document.getElementById('submit-spinner');
+var formBody=document.getElementById('contact-form-body');
+var formSuccess=document.getElementById('contact-success');
+var formError=document.getElementById('form-error');
 
-  /* ── Custom cursor ───────────────────────────────────────────── */
-  var cursor = document.getElementById('cursor');
-  var ring   = document.getElementById('cursor-ring');
-  var mx = -200, my = -200, rx = -200, ry = -200, cursorActive = false;
-  document.addEventListener('mousemove', function(e) {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
-    if (!cursorActive) { cursorActive = true; cursor.classList.add('active'); ring.classList.add('active'); }
-  });
-  (function animateRing() {
-    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-    ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
-    requestAnimationFrame(animateRing);
-  })();
-
-  /* ── Nav scroll ──────────────────────────────────────────────── */
-  var nav = document.getElementById('nav');
-  window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
-
-  /* ── Mobile menu ─────────────────────────────────────────────── */
-  var mobMenu = document.getElementById('mob-menu');
-  document.getElementById('mob-toggle').addEventListener('click', function() {
-    mobMenu.style.display = 'flex'; document.body.style.overflow = 'hidden';
-  });
-  window.closeMob = function() { mobMenu.style.display = 'none'; document.body.style.overflow = ''; };
-
-  /* ── Scroll reveal ───────────────────────────────────────────── */
-  var revealObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
-
-  /* ── Contact form — Formspree xzdykrjl ──────────────────────── */
-  var contactForm  = document.getElementById('contact-form');
-  var submitBtn    = document.getElementById('form-submit-btn');
-  var btnText      = document.getElementById('btn-text');
-  var btnSpinner   = document.getElementById('btn-spinner');
-  var successMsg   = document.getElementById('form-success-msg');
-  var errorMsg     = document.getElementById('form-error-msg');
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      // UI loading state
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '0.75';
-      btnText.textContent = 'Sending…';
-      btnSpinner.style.display = 'block';
-      errorMsg.style.display = 'none';
-
-      var formData = new FormData(contactForm);
-
-      try {
-        var res = await fetch('https://formspree.io/f/xzdykrjl', {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (res.ok) {
-          // Hide form, show success
-          contactForm.style.display = 'none';
-          successMsg.classList.add('visible');
-        } else {
-          var data = await res.json();
-          throw new Error(data.error || 'Form submission failed');
-        }
-      } catch (err) {
-        errorMsg.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-        btnText.textContent = 'Try Again →';
-        btnSpinner.style.display = 'none';
-      }
-    });
-  }
-
-  /* ── Chatbot ─────────────────────────────────────────────────── */
-  var chatToggleBtn = document.getElementById('chat-toggle');
-  var chatPanel     = document.getElementById('chat-panel');
-  var chatMessages  = document.getElementById('chat-messages');
-  var briefInputEl  = document.getElementById('chat-brief-input');
-  var chatTextInput = document.getElementById('chat-text-input');
-  var chatSendBtn   = document.getElementById('chat-send-btn');
-  var chatOpen = false, chatStarted = false;
-
-  chatToggleBtn.addEventListener('click', function() {
-    chatOpen = !chatOpen;
-    chatToggleBtn.classList.toggle('open', chatOpen);
-    chatPanel.classList.toggle('open', chatOpen);
-    if (chatOpen && !chatStarted) { chatStarted = true; setTimeout(startChat, 350); }
-  });
-
-  function scrollChat() { chatMessages.scrollTop = chatMessages.scrollHeight; }
-
-  function addMsg(text, type) {
-    var msg = document.createElement('div');
-    msg.className = 'msg ' + (type || 'bot');
-    var bubble = document.createElement('div');
-    bubble.className = 'msg-bubble';
-    bubble.textContent = text;
-    msg.appendChild(bubble);
-    chatMessages.appendChild(msg);
-    scrollChat();
-  }
-
-  function botReply(text, delay) {
-    return new Promise(function(resolve) {
-      var typingRow = document.createElement('div');
-      typingRow.className = 'msg bot';
-      typingRow.innerHTML = '<div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
-      chatMessages.appendChild(typingRow);
-      scrollChat();
-      setTimeout(function() {
-        if (typingRow.parentNode) chatMessages.removeChild(typingRow);
-        addMsg(text, 'bot'); resolve();
-      }, delay || 1000);
-    });
-  }
-
-  function showOptions(options) {
-    return new Promise(function(resolve) {
-      var wrapper = document.createElement('div');
-      wrapper.className = 'chat-options';
-      options.forEach(function(opt) {
-        var btn = document.createElement('button');
-        btn.className = 'chat-option-btn';
-        btn.textContent = opt.label;
-        btn.addEventListener('click', function() {
-          wrapper.querySelectorAll('.chat-option-btn').forEach(function(b) { b.disabled = true; });
-          addMsg(opt.label, 'user');
-          resolve(opt.value);
-        });
-        wrapper.appendChild(btn);
+if(contactForm){
+  contactForm.addEventListener('submit',async function(e){
+    e.preventDefault();
+    formError.style.display='none';
+    submitText.textContent='Sending…';
+    submitSpinner.style.display='block';
+    submitBtn.disabled=true;
+    submitBtn.style.opacity='.7';
+    try{
+      var res=await fetch('https://formspree.io/f/xzdykrjl',{
+        method:'POST',
+        body:new FormData(contactForm),
+        headers:{'Accept':'application/json'}
       });
-      chatMessages.appendChild(wrapper);
-      scrollChat();
-    });
-  }
-
-  async function startChat() {
-    await botReply("Hey — what are you trying to build?", 800);
-    var service = await showOptions([
-      { label: "Launch campaign",  value: "campaign" },
-      { label: "Social media",     value: "social"   },
-      { label: "Branding",         value: "branding" },
-      { label: "Something else",   value: "other"    }
-    ]);
-    var replies = { campaign: "Got it — campaign launches are our bread and butter.", social: "Consistent social output requires a system. We can build that.", branding: "Brand identity done right sets everything else up.", other: "No problem — tell us what's on your mind." };
-    await botReply(replies[service], 900);
-    await botReply("What's your rough budget range?", 700);
-    var budget = await showOptions([
-      { label: "₹50K – ₹1L",  value: "low"     },
-      { label: "₹1L – ₹3L",   value: "mid"     },
-      { label: "₹3L – ₹5L",   value: "high"    },
-      { label: "₹5L+",        value: "premium" }
-    ]);
-    var budReplies = { low: "Good to know. Let's find a scope that works.", mid: "Solid range to build a meaningful campaign.", high: "Great — we can do a lot with that.", premium: "Excellent. Full-service execution, no compromises." };
-    await botReply(budReplies[budget], 900);
-    await botReply("How would you like to take this forward?", 700);
-    var next = await showOptions([
-      { label: "Continue on WhatsApp", value: "wa"    },
-      { label: "Type a quick brief",   value: "brief" }
-    ]);
-    if (next === 'wa') {
-      await botReply("Perfect — see you on WhatsApp!", 700);
-      setTimeout(function() { window.open('https://wa.me/918588897488', '_blank'); }, 600);
-    } else {
-      await botReply("Go ahead — describe your project in a few lines.", 700);
-      briefInputEl.classList.add('visible');
-      chatTextInput.focus();
+      if(res.ok){
+        formBody.classList.add('hidden');
+        formSuccess.classList.add('visible');
+      } else {
+        var data=await res.json().catch(function(){return{};});
+        var msg=(data&&data.errors&&data.errors.length)?data.errors.map(function(e){return e.message;}).join(', '):'Something went wrong. Please try again or message us on WhatsApp.';
+        formError.textContent=msg;
+        formError.style.display='block';
+        submitText.textContent='Send Brief →';
+        submitSpinner.style.display='none';
+        submitBtn.disabled=false;
+        submitBtn.style.opacity='1';
+      }
+    } catch(err){
+      formError.textContent='Network error. Please check your connection or message us on WhatsApp.';
+      formError.style.display='block';
+      submitText.textContent='Send Brief →';
+      submitSpinner.style.display='none';
+      submitBtn.disabled=false;
+      submitBtn.style.opacity='1';
     }
-  }
-
-  async function submitBrief() {
-    var text = chatTextInput.value.trim();
-    if (!text) return;
-    chatTextInput.value = '';
-    briefInputEl.classList.remove('visible');
-    addMsg(text, 'user');
-    var typingRow = document.createElement('div');
-    typingRow.className = 'msg bot';
-    typingRow.innerHTML = '<div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
-    chatMessages.appendChild(typingRow);
-    scrollChat();
-    setTimeout(function() {
-      if (typingRow.parentNode) chatMessages.removeChild(typingRow);
-      addMsg("Got it — let's take this forward on WhatsApp.", 'bot');
-      setTimeout(function() { window.open('https://wa.me/918588897488?text=' + encodeURIComponent(text), '_blank'); }, 800);
-    }, 1200);
-  }
-
-  chatSendBtn.addEventListener('click', submitBrief);
-  chatTextInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitBrief(); }
   });
+}
+
+/* ── Chatbot ── */
+var chatToggleBtn=document.getElementById('chat-toggle');
+var chatPanel=document.getElementById('chat-panel');
+var chatMessages=document.getElementById('chat-messages');
+var briefInputEl=document.getElementById('chat-brief-input');
+var chatTextInput=document.getElementById('chat-text-input');
+var chatSendBtn=document.getElementById('chat-send-btn');
+var chatOpen=false,chatStarted=false;
+chatToggleBtn.addEventListener('click',function(){chatOpen=!chatOpen;chatToggleBtn.classList.toggle('open',chatOpen);chatPanel.classList.toggle('open',chatOpen);if(chatOpen&&!chatStarted){chatStarted=true;setTimeout(startChat,350);}});
+function scrollChat(){chatMessages.scrollTop=chatMessages.scrollHeight;}
+function addMsg(text,type){var msg=document.createElement('div');msg.className='msg '+(type||'bot');var bubble=document.createElement('div');bubble.className='msg-bubble';bubble.textContent=text;msg.appendChild(bubble);chatMessages.appendChild(msg);scrollChat();}
+function botReply(text,delay){return new Promise(function(resolve){var tr=document.createElement('div');tr.className='msg bot';tr.innerHTML='<div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';chatMessages.appendChild(tr);scrollChat();setTimeout(function(){if(tr.parentNode)chatMessages.removeChild(tr);addMsg(text,'bot');resolve();},delay||1000);});}
+function showOptions(options){return new Promise(function(resolve){var wrapper=document.createElement('div');wrapper.className='chat-options';options.forEach(function(opt){var btn=document.createElement('button');btn.className='chat-option-btn';btn.textContent=opt.label;btn.addEventListener('click',function(){wrapper.querySelectorAll('.chat-option-btn').forEach(function(b){b.disabled=true;});addMsg(opt.label,'user');resolve(opt.value);});wrapper.appendChild(btn);});chatMessages.appendChild(wrapper);scrollChat();});}
+async function startChat(){await botReply("Hey — what are you trying to build?",800);var service=await showOptions([{label:"Launch campaign",value:"campaign"},{label:"Social media",value:"social"},{label:"Branding",value:"branding"},{label:"Something else",value:"other"}]);var replies={campaign:"Got it — campaign launches are our bread and butter.",social:"Consistent social output requires a system. We can build that.",branding:"Brand identity done right sets everything else up.",other:"No problem — tell us what's on your mind."};await botReply(replies[service],900);await botReply("What's your rough budget range?",700);var budget=await showOptions([{label:"₹50K – ₹1L",value:"low"},{label:"₹1L – ₹3L",value:"mid"},{label:"₹3L – ₹5L",value:"high"},{label:"₹5L+",value:"premium"}]);var budReplies={low:"Good to know. Let's find a scope that works.",mid:"Solid range to build a meaningful campaign.",high:"Great — we can do a lot with that.",premium:"Excellent. Full-service execution, no compromises."};await botReply(budReplies[budget],900);await botReply("How would you like to take this forward?",700);var next=await showOptions([{label:"Continue on WhatsApp",value:"wa"},{label:"Type a quick brief",value:"brief"}]);if(next==='wa'){await botReply("Perfect — see you on WhatsApp!",700);setTimeout(function(){window.open('https://wa.me/918588897488','_blank');},600);}else{await botReply("Go ahead — describe your project in a few lines.",700);briefInputEl.classList.add('visible');chatTextInput.focus();}}
+async function submitBrief(){var text=chatTextInput.value.trim();if(!text)return;chatTextInput.value='';briefInputEl.classList.remove('visible');addMsg(text,'user');var tr=document.createElement('div');tr.className='msg bot';tr.innerHTML='<div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';chatMessages.appendChild(tr);scrollChat();setTimeout(function(){if(tr.parentNode)chatMessages.removeChild(tr);addMsg("Got it — let's take this forward on WhatsApp.",'bot');setTimeout(function(){window.open('https://wa.me/918588897488?text='+encodeURIComponent(text),'_blank');},800);},1200);}
+chatSendBtn.addEventListener('click',submitBrief);
+chatTextInput.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();submitBrief();}});
 
 })();
 </script>
