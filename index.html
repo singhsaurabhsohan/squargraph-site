@@ -740,7 +740,7 @@
   transform: translateY(-7px) rotate(-45deg);
 }
     /* ── Chatbot ─────────────────────────────────────────────── */
-    #chat-toggle {
+        #chat-toggle {
       position: fixed; bottom: 100px; right: 28px;
       width: 54px; height: 54px;
       background: linear-gradient(135deg, #7C3AED, #A855F7);
@@ -750,6 +750,7 @@
       box-shadow: 0 8px 30px rgba(124,58,237,.45);
       transition: transform .3s cubic-bezier(.23,1,.32,1), box-shadow .3s ease;
       overflow: hidden;
+      animation: float 3s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
     }
     #chat-toggle:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 14px 40px rgba(124,58,237,.6); }
     #chat-toggle-icon, #chat-close-icon { position: absolute; transition: opacity .2s ease, transform .2s ease; }
@@ -874,6 +875,14 @@
         @keyframes pageFade {
       from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
+    }
+        @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 8px 30px rgba(124,58,237,.45); }
+      50%      { box-shadow: 0 8px 40px rgba(124,58,237,.7); }
     }
   </style>
 </head>
