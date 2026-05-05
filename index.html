@@ -584,7 +584,42 @@
       .work-img-overlay { padding: 16px; }
       .work-img-title { font-size: 14px; }
     }
-
+/* ── Animated Hamburger ───────────────────────────────────── */
+.hamburger {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  position: relative;
+  z-index: 600;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #EEEEF5;
+  border-radius: 1px;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+              opacity 0.3s ease;
+  transform-origin: center;
+}
+.hamburger span:nth-child(2) {
+  margin: 5px 0;
+}
+/* Open state – transform to X */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
     /* ── Chatbot ─────────────────────────────────────────────── */
     #chat-toggle {
       position: fixed; bottom: 28px; right: 28px;
@@ -737,8 +772,11 @@
       Start a project
     </a>
   </div>
-  <button class="md:hidden" id="mob-toggle" style="background:none;border:none;color:#EEEEF5;font-size:22px;line-height:1;padding:4px;" aria-label="Open menu">☰</button>
-</nav>
+  <button class="md:hidden hamburger" id="mob-toggle" aria-label="Toggle menu" style="background:none;border:none;padding:4px;">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
 
 <!-- Mobile menu -->
 <div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:400;flex-direction:column;align-items:center;justify-content:center;gap:36px;">
@@ -1817,20 +1855,20 @@
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
-  /* ── Mobile menu ─────────────────────────────────────────────── */
+    /* ── Mobile menu ─────────────────────────────────────────────── */
   var mobMenu = document.getElementById('mob-menu');
   var mobToggle = document.getElementById('mob-toggle');
   var isMenuOpen = false;
 
   mobToggle.addEventListener('click', function() {
     if (isMenuOpen) {
-      // close
       mobMenu.style.display = 'none';
       document.body.style.overflow = '';
+      mobToggle.classList.remove('open');
     } else {
-      // open
       mobMenu.style.display = 'flex';
       document.body.style.overflow = 'hidden';
+      mobToggle.classList.add('open');
     }
     isMenuOpen = !isMenuOpen;
   });
@@ -1839,8 +1877,8 @@
     mobMenu.style.display = 'none';
     document.body.style.overflow = '';
     isMenuOpen = false;
+    mobToggle.classList.remove('open');
   };
-
   /* ── Scroll reveal ───────────────────────────────────────────── */
   var revealObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
