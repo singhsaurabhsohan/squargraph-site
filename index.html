@@ -1819,13 +1819,26 @@
 
   /* ── Mobile menu ─────────────────────────────────────────────── */
   var mobMenu = document.getElementById('mob-menu');
-  document.getElementById('mob-toggle').addEventListener('click', function() {
-    mobMenu.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+  var mobToggle = document.getElementById('mob-toggle');
+  var isMenuOpen = false;
+
+  mobToggle.addEventListener('click', function() {
+    if (isMenuOpen) {
+      // close
+      mobMenu.style.display = 'none';
+      document.body.style.overflow = '';
+    } else {
+      // open
+      mobMenu.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    isMenuOpen = !isMenuOpen;
   });
+
   window.closeMob = function() {
     mobMenu.style.display = 'none';
     document.body.style.overflow = '';
+    isMenuOpen = false;
   };
 
   /* ── Scroll reveal ───────────────────────────────────────────── */
