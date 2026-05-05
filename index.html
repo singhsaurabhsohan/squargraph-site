@@ -255,21 +255,22 @@
     #cursor, #cursor-ring { opacity: 0; transition: opacity .3s; }
     #cursor.active, #cursor-ring.active { opacity: 1; }
     #cursor {
-      width: 9px; height: 9px;
+      width: 10px; height: 10px;
       background: #A855F7;
       border-radius: 50%;
       position: fixed; top: 0; left: 0;
       pointer-events: none;
-      z-index: 10002;
+      z-index: 99999;
       transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px rgba(168,85,247,.6);
     }
     #cursor-ring {
-      width: 34px; height: 34px;
-      border: 1px solid rgba(168,85,247,.42);
+      width: 36px; height: 36px;
+      border: 1.5px solid rgba(168,85,247,.55);
       border-radius: 50%;
       position: fixed; top: 0; left: 0;
       pointer-events: none;
-      z-index: 10001;
+      z-index: 99998;
       transform: translate(-50%, -50%);
       transition: opacity .3s, width .25s, height .25s;
     }
