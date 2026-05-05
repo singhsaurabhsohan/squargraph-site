@@ -1134,7 +1134,34 @@
     </div>
   </div>
 </section>
+<section id="work" style="padding:120px 5vw;">
+  <div style="max-width:1200px;margin:0 auto;">
 
+    <h2 style="font-size:32px;margin-bottom:40px;">
+      Selected Work
+    </h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
+
+      <div>
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" style="width:100%;border-radius:4px;">
+        <p style="margin-top:10px;color:#A855F7;">Automotive Campaign</p>
+      </div>
+
+      <div>
+        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d" style="width:100%;border-radius:4px;">
+        <p style="margin-top:10px;color:#A855F7;">Social Media Content</p>
+      </div>
+
+      <div>
+        <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7" style="width:100%;border-radius:4px;">
+        <p style="margin-top:10px;color:#A855F7;">Ad Film Production</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 <!-- ══════════════════════════════════════════════════════════════════
      WORK SHOWCASE (Images)
 ══════════════════════════════════════════════════════════════════════ -->
@@ -1409,154 +1436,77 @@
 <!-- ══════════════════════════════════════════════════════════════════
      CAREERS
 ══════════════════════════════════════════════════════════════════════ -->
-<section id="careers" style="padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
+<form id="careerForm" style="max-width:500px;display:flex;flex-direction:column;gap:16px;">
 
-  <!-- Background ornament -->
-  <div style="position:absolute;bottom:-100px;right:-100px;pointer-events:none;opacity:0.3;">
-    <svg width="600" height="600" viewBox="0 0 600 600">
-      <circle cx="500" cy="500" r="400" stroke="rgba(6,182,212,0.07)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:50s;"/>
-      <circle cx="500" cy="500" r="280" stroke="rgba(124,58,237,0.05)" stroke-width="1" fill="none" class="spin-ring-rev" style="animation-duration:35s;"/>
-    </svg>
+  <input type="text" id="name" placeholder="Your Name" required style="padding:12px;background:#0D0A1E;border:1px solid #333;color:#fff;">
+
+  <input type="email" id="email" placeholder="Your Email" required style="padding:12px;background:#0D0A1E;border:1px solid #333;color:#fff;">
+
+  <select id="role" required style="padding:12px;background:#0D0A1E;border:1px solid #333;color:#fff;">
+    <option value="">Select Role</option>
+    <option>Designer</option>
+    <option>Video Editor</option>
+    <option>Social Media Manager</option>
+  </select>
+
+  <!-- FILE UPLOAD -->
+  <div id="uploadBox" style="padding:20px;border:1px dashed #7C3AED;text-align:center;cursor:pointer;">
+    Click to upload resume
+    <input type="file" id="fileInput" style="display:none;">
   </div>
 
-  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1;">
-    <div class="reveal s-label">Collaborate with Us</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:80px;align-items:start;">
+  <button type="submit" style="background:#7C3AED;padding:14px;color:#fff;border:none;">
+    Submit Application
+  </button>
 
-      <!-- Left: Context -->
-      <div>
-        <h2 class="reveal font-display font-extrabold" style="font-size:clamp(32px,4vw,60px);line-height:1.0;letter-spacing:-.035em;margin-bottom:28px;">
-          Want to work<br/>
-          <span style="color:#A855F7;">with us?</span>
-        </h2>
-        <p class="reveal reveal-d1" style="color:rgba(238,238,245,.6);font-size:15px;line-height:1.85;font-weight:300;max-width:44ch;margin-bottom:24px;">
-          We're always looking for sharp collaborators — designers, strategists, editors, copywriters, and production folks who care about doing real work well.
-        </p>
-        <p class="reveal reveal-d2" style="color:rgba(238,238,245,.5);font-size:14px;line-height:1.82;max-width:44ch;margin-bottom:36px;">
-          We don't post job openings. We build a network of trusted collaborators who we bring in as projects demand. If your work speaks for itself, that's enough.
-        </p>
-
-        <!-- Role chips -->
-        <div class="reveal reveal-d3" style="margin-bottom:40px;">
-          <p style="color:rgba(238,238,245,.35);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-bottom:16px;">We work with</p>
-          <div style="display:flex;flex-wrap:wrap;gap:10px;">
-            <span style="padding:8px 16px;border:1px solid rgba(124,58,237,.25);border-radius:20px;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.06em;color:rgba(238,238,245,.55);">Designers</span>
-            <span style="padding:8px 16px;border:1px solid rgba(124,58,237,.25);border-radius:20px;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.06em;color:rgba(238,238,245,.55);">Copywriters</span>
-            <span style="padding:8px 16px;border:1px solid rgba(124,58,237,.25);border-radius:20px;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.06em;color:rgba(238,238,245,.55);">Video Editors</span>
-            <span style="padding:8px 16px;border:1px solid rgba(124,58,237,.25);border-radius:20px;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.06em;color:rgba(238,238,245,.55);">Strategists</span>
-            <span style="padding:8px 16px;border:1px solid rgba(124,58,237,.25);border-radius:20px;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.06em;color:rgba(238,238,245,.55);">Photographers</span>
-            <span style="padding:8px 16px;border:1px solid rgba(124,58,237,.25);border-radius:20px;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.06em;color:rgba(238,238,245,.55);">Motion Artists</span>
-            <span style="padding:8px 16px;border:1px solid rgba(6,182,212,.25);border-radius:20px;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.06em;color:rgba(6,182,212,.6);">+ more</span>
-          </div>
-        </div>
-
-        <!-- What to expect note -->
-        <div class="reveal reveal-d4" style="padding:20px 24px;border-left:2px solid #A855F7;background:rgba(124,58,237,.05);">
-          <p style="color:rgba(238,238,245,.55);font-size:13px;line-height:1.8;">
-            We review every submission. If there's a match — now or down the line — we'll reach out directly. No ghosting, no fluff.
-          </p>
-        </div>
-      </div>
-
-      <!-- Right: Form -->
-      <div class="reveal reveal-d2">
-        <form id="careers-form" action="https://formspree.io/f/xzdykrjl" method="POST" enctype="multipart/form-data"
-              style="display:flex;flex-direction:column;gap:18px;">
-          <input type="hidden" name="_subject" value="New Collaborator Application — SQUARGRAPH Studios"/>
-
-          <div>
-            <label class="form-label-career">Your Name *</label>
-            <input type="text" name="name" required placeholder="Full name" class="career-form-input"/>
-          </div>
-
-          <div>
-            <label class="form-label-career">Email *</label>
-            <input type="email" name="email" required placeholder="you@domain.com" class="career-form-input"/>
-          </div>
-
-          <div>
-            <label class="form-label-career">Phone (optional)</label>
-            <input type="tel" name="phone" placeholder="+91 98765 43210" class="career-form-input"/>
-          </div>
-
-          <div>
-            <label class="form-label-career">What do you do? *</label>
-            <select name="role" required class="career-form-input">
-              <option value="">Select your craft</option>
-              <option>Graphic / Visual Design</option>
-              <option>Motion Design / Animation</option>
-              <option>Video Editing</option>
-              <option>Photography</option>
-              <option>Copywriting / Content Writing</option>
-              <option>Social Media Strategy</option>
-              <option>Brand Strategy</option>
-              <option>Campaign Management</option>
-              <option>Web / UI Design</option>
-              <option>Something else</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="form-label-career">Years of experience *</label>
-            <select name="experience" required class="career-form-input">
-              <option value="">Select range</option>
-              <option>0–1 year (fresher / intern level)</option>
-              <option>1–3 years</option>
-              <option>3–5 years</option>
-              <option>5+ years</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="form-label-career">Portfolio / Work Samples *</label>
-            <input type="url" name="portfolio" required placeholder="https://your-portfolio.com or Behance / Dribbble" class="career-form-input"/>
-          </div>
-
-          <div>
-            <label class="form-label-career">Resume / CV (PDF or DOC)</label>
-            <div class="file-upload-area" id="file-upload-area">
-              <input type="file" name="resume" accept=".pdf,.doc,.docx" id="resume-input"/>
-              <div id="file-upload-label">
-                <div style="margin-bottom:8px;">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(168,85,247,0.5)" stroke-width="1.5" style="margin:0 auto 8px;display:block;">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
-                  </svg>
-                </div>
-                <p style="color:rgba(238,238,245,.4);font-size:13px;font-family:'Space Grotesk',sans-serif;">Drop your resume here or <span style="color:#A855F7;text-decoration:underline;">browse</span></p>
-                <p style="color:rgba(238,238,245,.25);font-size:11px;margin-top:6px;font-family:'Space Grotesk',sans-serif;">PDF, DOC, DOCX — max 5MB</p>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <label class="form-label-career">Tell us about yourself *</label>
-            <textarea name="message" required placeholder="What kind of work do you love doing? What have you worked on that you're proud of? Why reach out to SQUARGRAPH?" class="career-form-input"></textarea>
-          </div>
-
-          <div>
-            <label class="form-label-career">Available for</label>
-            <select name="availability" class="career-form-input">
-              <option value="">Select</option>
-              <option>Project-based / Freelance</option>
-              <option>Part-time collaboration</option>
-              <option>Full-time (if the right opportunity)</option>
-              <option>Open to anything</option>
-            </select>
-          </div>
-
-          <button type="submit" id="careers-submit-btn"
-                  style="background:linear-gradient(135deg,#7C3AED,#A855F7);border:none;color:#fff;padding:18px 32px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:transform .25s,opacity .25s,box-shadow .25s;cursor:pointer;"
-                  onmouseover="if(!this.disabled){this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(124,58,237,.35)'}"
-                  onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-            Submit Application →
-          </button>
-        </form>
+</form>
       </div>
 
     </div>
   </div>
 </section>
+</section>  <!-- END OF PREVIOUS SECTION -->
 
+<!-- ADD THIS BELOW -->
+<section id="careers" style="padding:120px 5vw;">
+  <div style="max-width:800px;margin:0 auto;">
+
+    <h2 style="font-size:32px;margin-bottom:20px;">
+      Work with SQUARGRAPH
+    </h2>
+
+    <p style="color:rgba(238,238,245,.6);margin-bottom:40px;">
+      We're always looking for designers, editors & creators.
+    </p>
+
+    <form id="careerForm" style="display:flex;flex-direction:column;gap:16px;">
+
+      <input type="text" id="name" placeholder="Your Name" required class="form-input">
+
+      <input type="email" id="email" placeholder="Your Email" required class="form-input">
+
+      <select id="role" required class="form-input">
+        <option value="">Select Role</option>
+        <option>Designer</option>
+        <option>Video Editor</option>
+        <option>Social Media Manager</option>
+      </select>
+
+      <!-- FILE UPLOAD -->
+      <div id="uploadBox" style="padding:20px;border:1px dashed #7C3AED;text-align:center;cursor:pointer;">
+        Click to upload resume
+        <input type="file" id="fileInput" style="display:none;">
+      </div>
+
+      <button type="submit"
+        style="background:#7C3AED;color:#fff;padding:16px;border:none;">
+        Submit Application
+      </button>
+
+    </form>
+
+  </div>
+</section>
 <!-- ══════════════════════════════════════════════════════════════════
      CTA + CONTACT
 ══════════════════════════════════════════════════════════════════════ -->
@@ -1659,7 +1609,56 @@
     </div>
   </div>
 </section>
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!--  CAREERS SECTION                                               -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<section id="careers" style="padding:120px 5vw;background:#03020A;">
+  <div style="max-width:900px;margin:0 auto;">
 
+    <h2 style="font-size:32px;margin-bottom:20px;">
+      Join SQUARGRAPH
+    </h2>
+
+    <p style="color:rgba(238,238,245,.6);margin-bottom:40px;">
+      We work with people who care about execution, not just ideas.
+    </p>
+
+    <!-- FORM START -->
+    <form action="https://formspree.io/f/xzdykrjl" method="POST" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:18px;">
+
+      <!-- Name -->
+      <input type="text" name="name" placeholder="Your Name" required class="form-input">
+
+      <!-- Email -->
+      <input type="email" name="email" placeholder="Your Email" required class="form-input">
+
+      <!-- Role -->
+      <select name="role" required class="form-input">
+        <option value="">Select Role</option>
+        <option>Designer</option>
+        <option>Video Editor</option>
+        <option>Social Media Manager</option>
+      </select>
+
+      <!-- Resume Upload -->
+      <div style="border:1px dashed rgba(255,255,255,.2);padding:20px;text-align:center;">
+        <input type="file" name="resume" required>
+        <p style="font-size:13px;color:rgba(238,238,245,.5);margin-top:10px;">
+          Upload your resume (PDF/DOC)
+        </p>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit"
+        style="background:#A855F7;color:#03020A;padding:16px;font-weight:700;text-transform:uppercase;">
+        Apply Now
+      </button>
+
+    </form>
+    <!-- FORM END -->
+
+  </div>
+</section>
 <!-- ══════════════════════════════════════════════════════════════════
      FOOTER
 ══════════════════════════════════════════════════════════════════════ -->
@@ -2094,6 +2093,36 @@
   });
 
 })();
+</script>
+  <script>
+
+// CAREER FORM FUNCTIONALITY
+
+const uploadBox = document.getElementById("uploadBox");
+const fileInput = document.getElementById("fileInput");
+
+if (uploadBox && fileInput) {
+  uploadBox.addEventListener("click", () => {
+    fileInput.click();
+  });
+
+  fileInput.addEventListener("change", () => {
+    if (fileInput.files.length > 0) {
+      uploadBox.innerText = fileInput.files[0].name;
+    }
+  });
+}
+
+const careerForm = document.getElementById("careerForm");
+
+if (careerForm) {
+  careerForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Application submitted ✅");
+    careerForm.reset();
+    uploadBox.innerText = "Click to upload resume";
+  });
+}
 </script>
 </body>
 </html>
