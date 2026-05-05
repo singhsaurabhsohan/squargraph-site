@@ -90,7 +90,6 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
     }
 
-    /* ── Particle canvas ─────────────────────────────────────── */
     #particle-canvas {
       position: fixed;
       inset: 0;
@@ -99,7 +98,6 @@
       opacity: 0.55;
     }
 
-    /* ── Aurora blobs ─────────────────────────────────────────── */
     .aurora-wrap {
       position: fixed;
       inset: 0;
@@ -154,7 +152,6 @@
       50%      { transform: translate(-60px, 60px) scale(1.2); opacity: 1; }
     }
 
-    /* ── Flowing SVG lines ────────────────────────────────────── */
     .flow-lines-section {
       position: absolute; inset: 0;
       pointer-events: none;
@@ -177,12 +174,6 @@
       to   { stroke-dashoffset: -200; }
     }
 
-    /* ── Animated counter ─────────────────────────────────────── */
-    .count-val {
-      transition: all 0.1s;
-    }
-
-    /* ── Custom cursor ─────────────────────────────────────────── */
     #cursor, #cursor-ring { opacity: 0; transition: opacity .3s; }
     #cursor.active, #cursor-ring.active { opacity: 1; }
     #cursor {
@@ -373,35 +364,27 @@
       to   { transform: translateX(-50%); }
     }
 
-    /* ── Work showcase images ─────────────────────────────────── */
-    .work-img-card {
+    /* ── Work graphic cards ───────────────────────────────────── */
+    .work-graphic-card {
       position: relative;
       border-radius: 2px;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,.065);
-      aspect-ratio: 4/3;
       transition: transform .4s cubic-bezier(.23,1,.32,1), box-shadow .4s ease, border-color .4s;
+      background: #0D0A1E;
     }
-    .work-img-card:hover {
+    .work-graphic-card:hover {
       transform: translateY(-8px) scale(1.01);
       box-shadow: 0 24px 56px rgba(0,0,0,.7), 0 0 32px rgba(124,58,237,.15);
       border-color: rgba(124,58,237,.35);
     }
-    .work-img-card img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: brightness(0.7) saturate(0.85);
-      transition: filter .5s ease, transform .5s ease;
-    }
-    .work-img-card:hover img {
-      filter: brightness(0.55) saturate(1.1);
-      transform: scale(1.05);
-    }
+    .work-graphic-card svg { display: block; width: 100%; }
     .work-img-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(3,2,10,.9) 0%, rgba(3,2,10,.2) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(3,2,10,.92) 0%, rgba(3,2,10,.2) 60%, transparent 100%);
       padding: 24px;
       display: flex; flex-direction: column; justify-content: flex-end;
+      pointer-events: none;
     }
     .work-img-tag {
       font-family: 'Outfit', sans-serif;
@@ -419,76 +402,14 @@
       line-height: 1.3;
     }
 
-    /* ── Careers section ──────────────────────────────────────── */
-    .career-form-input {
-      width: 100%;
-      background: rgba(13,10,30,0.8);
-      border: 1px solid rgba(255,255,255,.09);
-      color: #EEEEF5;
-      padding: 14px 18px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 14px;
-      border-radius: 2px;
-      outline: none;
-      transition: border-color .25s, box-shadow .25s;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    .career-form-input::placeholder { color: rgba(238,238,245,.28); }
-    .career-form-input:focus {
-      border-color: rgba(124,58,237,.55);
-      box-shadow: 0 0 0 3px rgba(124,58,237,.08);
-    }
-    textarea.career-form-input { resize: vertical; min-height: 110px; }
-    select.career-form-input {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(168,85,247,0.6)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      padding-right: 40px;
-      background-color: rgba(13,10,30,0.8);
-    }
-    select.career-form-input option { background: #0D0A1E; }
-
-    .file-upload-area {
-      border: 1px dashed rgba(124,58,237,.35);
-      border-radius: 2px;
-      padding: 28px;
-      text-align: center;
-      cursor: pointer;
-      transition: border-color .25s, background .25s;
-      position: relative;
-      background: rgba(124,58,237,.02);
-    }
-    .file-upload-area:hover, .file-upload-area.drag-over {
-      border-color: #A855F7;
-      background: rgba(124,58,237,.06);
-    }
-    .file-upload-area input[type="file"] {
-      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
-    }
-
-    .form-label-career {
-      display: block;
-      font-family: 'Outfit', sans-serif;
-      font-size: 10px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: rgba(238,238,245,.35);
-      margin-bottom: 8px;
-    }
-
-    .founder-photo {
+    .founder-graphic {
       width: 100%;
       aspect-ratio: 3/4;
       border: 1px solid rgba(255,255,255,.065);
       border-radius: 2px;
       overflow: hidden;
       position: relative;
-    }
-    .founder-photo::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(124,58,237,.08) 0%, rgba(6,182,212,.03) 50%, transparent 70%);
+      background: #0D0A1E;
     }
 
     .cta-glow {
@@ -526,7 +447,7 @@
     .form-input::placeholder { color: rgba(238,238,245,.3); }
     .form-input:focus { border-color: rgba(124,58,237,.55); }
     textarea.form-input { resize: vertical; min-height: 120px; }
-    select.form-input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(168,85,247,0.6)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+    select.form-input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(168,85,247,0.6)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; background-color: #0D0A1E; }
     select.form-input option { background: #0D0A1E; }
 
     .social-link {
@@ -541,7 +462,6 @@
     }
     .social-link:hover { border-color: #7C3AED; color: #A855F7; background: rgba(124,58,237,.08); }
 
-    /* ── Animated ring ornament ──────────────────────────────── */
     .spin-ring {
       animation: spinRing 20s linear infinite;
       transform-origin: center;
@@ -552,7 +472,6 @@
     }
     @keyframes spinRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-    /* ── Glowing dot pulse ───────────────────────────────────── */
     .pulse-dot {
       animation: pulseDot 2s ease-in-out infinite;
     }
@@ -561,7 +480,6 @@
       50% { r: 5; opacity: 1; }
     }
 
-    /* ── Mobile ───────────────────────────────────────────────── */
     @media (max-width: 768px) {
       #cursor, #cursor-ring { display: none !important; }
       body { cursor: auto; }
@@ -655,7 +573,6 @@
     #chat-brief-input { display: none; }
     #chat-brief-input.visible { display: flex; }
 
-    /* ── Animated gradient border ────────────────────────────── */
     .animated-border {
       position: relative;
       border: 1px solid transparent;
@@ -670,7 +587,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* ── Flowing highlight on hero text ──────────────────────── */
     @keyframes shimmer {
       0%   { background-position: -200% center; }
       100% { background-position: 200% center; }
@@ -683,11 +599,21 @@
       background-clip: text;
       animation: shimmer 5s linear infinite;
     }
+
+    /* Form success/error states */
+    .form-success {
+      padding: 20px;
+      border: 1px solid rgba(6,182,212,.3);
+      background: rgba(6,182,212,.05);
+      border-radius: 2px;
+      text-align: center;
+      display: none;
+    }
+    .form-success.visible { display: block; }
   </style>
 </head>
 <body>
 
-<!-- ── Aurora background blobs ─────────────────────────────────── -->
 <div class="aurora-wrap">
   <div class="aurora-blob aurora-blob-1"></div>
   <div class="aurora-blob aurora-blob-2"></div>
@@ -695,16 +621,11 @@
   <div class="aurora-blob aurora-blob-4"></div>
 </div>
 
-<!-- ── Particle canvas ──────────────────────────────────────────── -->
 <canvas id="particle-canvas"></canvas>
-
-<!-- Custom Cursor -->
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     NAV
-══════════════════════════════════════════════════════════════════════ -->
+<!-- NAV -->
 <nav id="nav">
   <a href="#" class="font-display font-extrabold text-snow no-underline" style="font-size:17px;letter-spacing:-.02em;">
     SQUAR<span style="color:#A855F7;">GRAPH</span>
@@ -715,7 +636,6 @@
     <a href="#process"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Process</a>
     <a href="#services"   class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
     <a href="#work"       class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Work</a>
-    <a href="#careers"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Careers</a>
     <a href="#contact"
        style="display:inline-flex;align-items:center;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:10px 22px;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
        onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
@@ -732,20 +652,16 @@
   <a href="#process"    onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Process</a>
   <a href="#services"   onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
   <a href="#work"       onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
-  <a href="#careers"    onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Careers</a>
   <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener"
      style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
     Start a project →
   </a>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     HERO
-══════════════════════════════════════════════════════════════════════ -->
+<!-- HERO -->
 <section id="hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(80px,10vw,120px) 5vw 10vh;position:relative;overflow:hidden;">
   <div class="grid-bg"></div>
 
-  <!-- Animated SVG flow lines -->
   <div class="flow-lines-section">
     <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
       <defs>
@@ -763,32 +679,22 @@
           <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
       </defs>
-
-      <!-- Main diagonal lines -->
       <line x1="1200" y1="0" x2="600" y2="900" stroke="url(#lineGrad)" stroke-width="1.5"
             stroke-dasharray="1200" style="stroke-dashoffset:1200;animation:flowDraw 2.5s 0.2s cubic-bezier(.23,1,.32,1) forwards;"/>
       <line x1="1330" y1="0" x2="730" y2="900" stroke="rgba(124,58,237,0.12)" stroke-width="1"
             stroke-dasharray="1200" style="stroke-dashoffset:1200;animation:flowDraw 2.5s 0.5s cubic-bezier(.23,1,.32,1) forwards;"/>
       <line x1="1440" y1="120" x2="880" y2="900" stroke="rgba(6,182,212,0.08)" stroke-width="1"
             stroke-dasharray="1200" style="stroke-dashoffset:1200;animation:flowDraw 2.5s 0.8s cubic-bezier(.23,1,.32,1) forwards;"/>
-
-      <!-- Corner brackets with glow -->
       <path d="M1360,0 L1440,0 L1440,80" stroke="#A855F7" stroke-width="1.5" fill="none" opacity="0.5"
             stroke-dasharray="120" style="stroke-dashoffset:120;animation:flowDraw 1.8s 0.3s cubic-bezier(.23,1,.32,1) forwards;"/>
       <path d="M0,820 L0,900 L80,900" stroke="#06B6D4" stroke-width="1" fill="none" opacity="0.35"
             stroke-dasharray="120" style="stroke-dashoffset:120;animation:flowDraw 1.8s 0.6s cubic-bezier(.23,1,.32,1) forwards;"/>
-
-      <!-- Arc -->
       <path d="M1280,0 A340,340 0 0,1 1440,260" stroke="url(#arcGrad)" stroke-width="2" fill="none"
             stroke-dasharray="600" style="stroke-dashoffset:600;animation:flowDraw 2s 0.5s ease forwards;"/>
-
-      <!-- Pulsing flow lines -->
       <line x1="1440" y1="400" x2="900" y2="900" stroke="rgba(124,58,237,0.2)" stroke-width="1.5"
             stroke-dasharray="10 18" style="animation:flowPulse 3s 2s linear infinite;"/>
       <line x1="0" y1="300" x2="400" y2="0" stroke="rgba(6,182,212,0.14)" stroke-width="1"
             stroke-dasharray="6 20" style="animation:flowPulse 5s 3s linear infinite;"/>
-
-      <!-- Spinning orbit ring -->
       <g transform="translate(1180,300)" style="opacity:0;animation:fadeIn 1.5s 0.9s ease forwards;">
         <circle cx="0" cy="0" r="40" stroke="rgba(124,58,237,0.25)" stroke-width="1" fill="none"
                 stroke-dasharray="8 12" class="spin-ring"/>
@@ -797,8 +703,6 @@
         <circle cx="0" cy="-40" r="4" fill="rgba(168,85,247,0.7)" filter="url(#glow2)" class="spin-ring"/>
         <circle cx="0" cy="0" r="3" fill="rgba(168,85,247,0.3)"/>
       </g>
-
-      <!-- Dot grid -->
       <g style="opacity:0;animation:fadeIn 2s 1.2s ease forwards;">
         <circle cx="60"  cy="60"  r="2" fill="rgba(124,58,237,0.5)" class="pulse-dot"/>
         <circle cx="84"  cy="60"  r="1.5" fill="rgba(124,58,237,0.3)"/>
@@ -810,17 +714,10 @@
         <circle cx="84"  cy="108" r="1.5" fill="rgba(124,58,237,0.3)"/>
         <circle cx="108" cy="108" r="2" fill="rgba(124,58,237,0.5)" class="pulse-dot" style="animation-delay:.8s"/>
       </g>
-
-      <!-- Crosshair markers -->
       <g filter="url(#glow2)" style="opacity:0;animation:fadeIn 1.2s 1s ease forwards;">
         <line x1="1095" y1="196" x2="1121" y2="196" stroke="#A855F7" stroke-width="1.5" opacity="0.6"/>
         <line x1="1108" y1="183" x2="1108" y2="209" stroke="#A855F7" stroke-width="1.5" opacity="0.6"/>
         <circle cx="1108" cy="196" r="3" fill="#A855F7" opacity="0.8" class="pulse-dot"/>
-      </g>
-      <g style="opacity:0;animation:fadeIn 1.2s 1.3s ease forwards;">
-        <line x1="76" y1="618" x2="100" y2="618" stroke="#06B6D4" stroke-width="1" opacity="0.5"/>
-        <line x1="88" y1="606" x2="88"  y2="630" stroke="#06B6D4" stroke-width="1" opacity="0.5"/>
-        <circle cx="88" cy="618" r="2.5" fill="#06B6D4" opacity="0.7" class="pulse-dot" style="animation-delay:.6s"/>
       </g>
     </svg>
   </div>
@@ -847,16 +744,13 @@
     </svg>
   </div>
 
-  <!-- Eyebrow -->
   <div class="hero-fade s-label" style="margin-bottom:32px;position:relative;z-index:2;">Creative Studio — Delhi, India</div>
 
-  <!-- Headline -->
   <h1 class="font-display font-extrabold" style="font-size:clamp(42px,8vw,112px);line-height:1.1;letter-spacing:-.035em;max-width:14ch;margin-bottom:36px;position:relative;z-index:2;">
     <span class="line-wrap"><span class="line-inner">Content that actually ships.</span></span>
     <span class="line-wrap delay-1"><span class="line-inner shimmer-text">Not just ideas that sit in decks.</span></span>
   </h1>
 
-  <!-- Subline -->
   <p class="hero-fade" style="color:rgba(238,238,245,.7);font-size:clamp(14px,1.5vw,19px);max-width:44ch;margin-bottom:16px;font-weight:300;line-height:1.75;animation-delay:.55s;position:relative;z-index:2;">
     Strategy, content, and execution — handled end to end.
   </p>
@@ -864,12 +758,10 @@
     Built on real campaign experience, now delivered independently.
   </p>
 
-  <!-- Experience line -->
   <div style="color:rgba(238,238,245,.5);font-size:13px;margin-bottom:28px;position:relative;z-index:2;">
     Experience across automotive, hospitality &amp; brand campaigns — now applied through SQUARGRAPH.
   </div>
 
-  <!-- CTAs -->
   <div class="hero-fade" style="display:flex;gap:22px;align-items:center;flex-wrap:wrap;animation-delay:.7s;margin-bottom:32px;position:relative;z-index:2;">
     <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project"
        target="_blank" rel="noopener" class="btn-primary"
@@ -885,18 +777,14 @@
     </a>
   </div>
 
-  <!-- Capabilities -->
   <div style="color:rgba(238,238,245,.6);font-size:13px;letter-spacing:.08em;margin-bottom:10px;position:relative;z-index:2;">
     Strategy • Content • Design • Production • Digital Films • AI • Execution
   </div>
 
-  <!-- Scroll hint -->
   <div class="scroll-hint mobile-hide" style="position:absolute;bottom:40px;right:5vw;">Scroll</div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     MARQUEE
-══════════════════════════════════════════════════════════════════════ -->
+<!-- MARQUEE -->
 <div style="padding:40px 0;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);overflow:hidden;position:relative;z-index:2;">
   <div class="marquee-wrap">
     <div class="marquee-inner">
@@ -914,9 +802,7 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     PHILOSOPHY
-══════════════════════════════════════════════════════════════════════ -->
+<!-- PHILOSOPHY -->
 <section id="philosophy" style="padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
   <div style="position:absolute;top:0;right:0;pointer-events:none;opacity:1;">
     <svg width="400" height="400" viewBox="0 0 400 400">
@@ -997,9 +883,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     PROCESS
-══════════════════════════════════════════════════════════════════════ -->
+<!-- PROCESS -->
 <section id="process" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:80px;flex-wrap:wrap;">
@@ -1016,45 +900,35 @@
     <div class="process-track" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;">
       <div class="reveal reveal-d1" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
-             onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'"
-             onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;"></div>
         <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">01</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Understand</h3>
         <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">We dig into the brand, brief, audience, and objectives before anything else. No guesswork.</p>
       </div>
       <div class="reveal reveal-d2" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
-             onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'"
-             onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;"></div>
         <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">02</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Plan</h3>
         <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Campaign architecture, content calendar, delivery milestones. Everything mapped before anything starts.</p>
       </div>
       <div class="reveal reveal-d3" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
-             onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'"
-             onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;"></div>
         <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">03</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Brief &amp; Coordinate</h3>
         <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Clear briefs to every contributor. No ambiguity. No 11th-hour surprises. Everyone aligned from day one.</p>
       </div>
       <div class="reveal reveal-d4" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
-             onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'"
-             onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;"></div>
         <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">04</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Execute</h3>
         <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Work done, checked, and delivered. High-quality, on-brand, on-deadline. Without compromise.</p>
       </div>
       <div class="reveal reveal-d5" style="padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
-             onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'"
-             onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
+        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;"></div>
         <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">05</div>
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Review</h3>
         <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Performance reviewed. Learnings applied. Every cycle improves the next.</p>
@@ -1072,9 +946,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     SERVICES
-══════════════════════════════════════════════════════════════════════ -->
+<!-- SERVICES -->
 <section id="services" style="padding:120px 5vw;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">Services</div>
@@ -1134,39 +1006,9 @@
     </div>
   </div>
 </section>
-<section id="work" style="padding:120px 5vw;">
-  <div style="max-width:1200px;margin:0 auto;">
 
-    <h2 style="font-size:32px;margin-bottom:40px;">
-      Selected Work
-    </h2>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
-
-      <div>
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" style="width:100%;border-radius:4px;">
-        <p style="margin-top:10px;color:#A855F7;">Automotive Campaign</p>
-      </div>
-
-      <div>
-        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d" style="width:100%;border-radius:4px;">
-        <p style="margin-top:10px;color:#A855F7;">Social Media Content</p>
-      </div>
-
-      <div>
-        <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7" style="width:100%;border-radius:4px;">
-        <p style="margin-top:10px;color:#A855F7;">Ad Film Production</p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-<!-- ══════════════════════════════════════════════════════════════════
-     WORK SHOWCASE (Images)
-══════════════════════════════════════════════════════════════════════ -->
+<!-- WORK SHOWCASE — SVG Graphics -->
 <section id="work" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
-  <!-- Animated background ornament -->
   <div style="position:absolute;top:-80px;right:-80px;pointer-events:none;opacity:0.4;">
     <svg width="500" height="500" viewBox="0 0 500 500">
       <circle cx="400" cy="100" r="300" stroke="rgba(124,58,237,0.06)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:60s;"/>
@@ -1185,53 +1027,200 @@
       </p>
     </div>
 
-    <!-- Image grid -->
+    <!-- SVG graphic grid -->
     <div style="display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:20px;">
 
-      <!-- Card 1 — wide -->
-      <div class="work-img-card reveal reveal-d1" style="grid-column:span 7;">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&auto=format&fit=crop"
-             alt="Campaign execution" loading="lazy"/>
+      <!-- Card 1 — Campaign Execution — wide -->
+      <div class="work-graphic-card reveal reveal-d1" style="grid-column:span 7;aspect-ratio:4/3;">
+        <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" style="height:100%;min-height:220px;">
+          <defs>
+            <linearGradient id="wg1a" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1a0f3a"/>
+              <stop offset="100%" stop-color="#0D0A1E"/>
+            </linearGradient>
+            <linearGradient id="wg1b" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#A855F7" stop-opacity="0.6"/>
+            </linearGradient>
+            <filter id="gw1"><feGaussianBlur stdDeviation="8"/></filter>
+          </defs>
+          <rect width="560" height="420" fill="url(#wg1a)"/>
+          <!-- glow blobs -->
+          <circle cx="420" cy="100" r="120" fill="rgba(124,58,237,0.12)" filter="url(#gw1)"/>
+          <circle cx="100" cy="320" r="80" fill="rgba(6,182,212,0.08)" filter="url(#gw1)"/>
+          <!-- grid lines -->
+          <line x1="0" y1="70" x2="560" y2="70" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="0" y1="140" x2="560" y2="140" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="0" y1="210" x2="560" y2="210" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="0" y1="280" x2="560" y2="280" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="0" y1="350" x2="560" y2="350" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="80" y1="0" x2="80" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="160" y1="0" x2="160" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="240" y1="0" x2="240" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="320" y1="0" x2="320" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="400" y1="0" x2="400" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="480" y1="0" x2="480" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <!-- Campaign timeline bars -->
+          <rect x="60" y="160" width="100" height="18" rx="2" fill="url(#wg1b)" opacity="0.9"/>
+          <rect x="60" y="190" width="160" height="18" rx="2" fill="rgba(6,182,212,0.5)"/>
+          <rect x="60" y="220" width="120" height="18" rx="2" fill="url(#wg1b)" opacity="0.6"/>
+          <rect x="60" y="250" width="200" height="18" rx="2" fill="rgba(168,85,247,0.4)"/>
+          <rect x="60" y="280" width="80" height="18" rx="2" fill="rgba(6,182,212,0.35)"/>
+          <!-- Step labels -->
+          <text x="60" y="150" font-family="Outfit,sans-serif" font-size="9" fill="rgba(168,85,247,0.7)" letter-spacing="2">CAMPAIGN FLOW</text>
+          <text x="170" y="175" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.6)">BRIEF</text>
+          <text x="228" y="205" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.6)">STRATEGY</text>
+          <text x="188" y="235" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.6)">CONTENT</text>
+          <text x="268" y="265" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.6)">PRODUCTION</text>
+          <text x="148" y="295" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.6)">LIVE</text>
+          <!-- Large decorative text -->
+          <text x="300" y="360" font-family="Outfit,sans-serif" font-size="88" font-weight="800" fill="rgba(124,58,237,0.07)" letter-spacing="-4">GO</text>
+          <!-- Crosshair -->
+          <line x1="460" y1="180" x2="490" y2="180" stroke="#A855F7" stroke-width="1.5" opacity="0.6"/>
+          <line x1="475" y1="165" x2="475" y2="195" stroke="#A855F7" stroke-width="1.5" opacity="0.6"/>
+          <circle cx="475" cy="180" r="3" fill="#A855F7" opacity="0.8"/>
+        </svg>
         <div class="work-img-overlay">
           <div class="work-img-tag">Campaign Execution</div>
           <div class="work-img-title">Launch campaigns that ship on time, every time.</div>
         </div>
       </div>
 
-      <!-- Card 2 -->
-      <div class="work-img-card reveal reveal-d2" style="grid-column:span 5;">
-        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=700&q=80&auto=format&fit=crop"
-             alt="Social media content" loading="lazy"/>
+      <!-- Card 2 — Social Media -->
+      <div class="work-graphic-card reveal reveal-d2" style="grid-column:span 5;aspect-ratio:4/3;">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="height:100%;min-height:220px;">
+          <defs>
+            <linearGradient id="wg2a" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0a0520"/>
+              <stop offset="100%" stop-color="#0D0A1E"/>
+            </linearGradient>
+            <filter id="gw2"><feGaussianBlur stdDeviation="12"/></filter>
+          </defs>
+          <rect width="400" height="300" fill="url(#wg2a)"/>
+          <circle cx="350" cy="50" r="100" fill="rgba(168,85,247,0.1)" filter="url(#gw2)"/>
+          <!-- Social grid mock -->
+          <rect x="40" y="50" width="90" height="90" rx="4" fill="rgba(124,58,237,0.15)" stroke="rgba(124,58,237,0.25)" stroke-width="1"/>
+          <rect x="145" y="50" width="90" height="90" rx="4" fill="rgba(6,182,212,0.1)" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
+          <rect x="250" y="50" width="90" height="90" rx="4" fill="rgba(168,85,247,0.12)" stroke="rgba(168,85,247,0.22)" stroke-width="1"/>
+          <rect x="40" y="155" width="90" height="90" rx="4" fill="rgba(6,182,212,0.12)" stroke="rgba(6,182,212,0.22)" stroke-width="1"/>
+          <rect x="145" y="155" width="90" height="90" rx="4" fill="rgba(124,58,237,0.18)" stroke="rgba(124,58,237,0.28)" stroke-width="1"/>
+          <rect x="250" y="155" width="90" height="90" rx="4" fill="rgba(232,184,109,0.08)" stroke="rgba(232,184,109,0.18)" stroke-width="1"/>
+          <!-- Inner icons -->
+          <circle cx="85" cy="82" r="12" fill="rgba(168,85,247,0.4)"/>
+          <circle cx="190" cy="82" r="12" fill="rgba(6,182,212,0.3)"/>
+          <rect x="265" y="70" width="60" height="60" rx="12" fill="none" stroke="rgba(168,85,247,0.4)" stroke-width="1.5"/>
+          <circle cx="295" cy="100" r="14" fill="none" stroke="rgba(168,85,247,0.5)" stroke-width="1.5"/>
+          <!-- Engagement dots -->
+          <circle cx="52" cy="188" r="3" fill="#A855F7" opacity="0.7"/>
+          <circle cx="64" cy="188" r="3" fill="#A855F7" opacity="0.4"/>
+          <circle cx="76" cy="188" r="3" fill="#A855F7" opacity="0.2"/>
+          <text x="40" y="260" font-family="Outfit,sans-serif" font-size="8" fill="rgba(168,85,247,0.6)" letter-spacing="2">ALWAYS-ON CONTENT</text>
+        </svg>
         <div class="work-img-overlay">
           <div class="work-img-tag">Social Media</div>
           <div class="work-img-title">Always-on content systems built for consistency.</div>
         </div>
       </div>
 
-      <!-- Card 3 -->
-      <div class="work-img-card reveal reveal-d3" style="grid-column:span 4;">
-        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80&auto=format&fit=crop"
-             alt="Creative strategy" loading="lazy"/>
+      <!-- Card 3 — Creative Strategy -->
+      <div class="work-graphic-card reveal reveal-d3" style="grid-column:span 4;aspect-ratio:4/3;">
+        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" style="height:100%;min-height:180px;">
+          <defs>
+            <linearGradient id="wg3a" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0c0820"/>
+              <stop offset="100%" stop-color="#080616"/>
+            </linearGradient>
+            <filter id="gw3"><feGaussianBlur stdDeviation="10"/></filter>
+          </defs>
+          <rect width="320" height="240" fill="url(#wg3a)"/>
+          <circle cx="260" cy="60" r="80" fill="rgba(124,58,237,0.09)" filter="url(#gw3)"/>
+          <!-- Venn-like strategy circles -->
+          <circle cx="130" cy="110" r="60" fill="none" stroke="rgba(124,58,237,0.3)" stroke-width="1.5"/>
+          <circle cx="175" cy="110" r="60" fill="none" stroke="rgba(6,182,212,0.25)" stroke-width="1.5"/>
+          <circle cx="152" cy="75" r="60" fill="none" stroke="rgba(168,85,247,0.2)" stroke-width="1"/>
+          <!-- Center dot -->
+          <circle cx="152" cy="100" r="5" fill="#A855F7" opacity="0.8"/>
+          <circle cx="152" cy="100" r="10" fill="none" stroke="#A855F7" stroke-width="1" opacity="0.4"/>
+          <!-- Labels -->
+          <text x="96" y="135" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.5)">Brand</text>
+          <text x="178" y="135" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.5)">Audience</text>
+          <text x="135" y="58" font-family="Outfit,sans-serif" font-size="9" fill="rgba(238,238,245,0.5)">Content</text>
+          <text x="130" y="104" font-family="Outfit,sans-serif" font-size="7" fill="#A855F7" letter-spacing="1">STRATEGY</text>
+          <text x="40" y="210" font-family="Outfit,sans-serif" font-size="8" fill="rgba(168,85,247,0.5)" letter-spacing="2">CREATIVE STRATEGY</text>
+        </svg>
         <div class="work-img-overlay">
           <div class="work-img-tag">Creative Strategy</div>
           <div class="work-img-title">Strategy that actually becomes output.</div>
         </div>
       </div>
 
-      <!-- Card 4 -->
-      <div class="work-img-card reveal reveal-d4" style="grid-column:span 4;">
-        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80&auto=format&fit=crop"
-             alt="Brand content" loading="lazy"/>
+      <!-- Card 4 — Brand Content -->
+      <div class="work-graphic-card reveal reveal-d4" style="grid-column:span 4;aspect-ratio:4/3;">
+        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" style="height:100%;min-height:180px;">
+          <defs>
+            <linearGradient id="wg4a" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0e0818"/>
+              <stop offset="100%" stop-color="#0D0A1E"/>
+            </linearGradient>
+            <linearGradient id="wg4b" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.4"/>
+            </linearGradient>
+            <filter id="gw4"><feGaussianBlur stdDeviation="8"/></filter>
+          </defs>
+          <rect width="320" height="240" fill="url(#wg4a)"/>
+          <circle cx="60" cy="200" r="90" fill="rgba(6,182,212,0.07)" filter="url(#gw4)"/>
+          <!-- Brand wordmark concept -->
+          <rect x="50" y="60" width="220" height="80" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+          <text x="80" y="108" font-family="Outfit,sans-serif" font-size="36" font-weight="800" fill="url(#wg4b)" letter-spacing="-2">BRAND</text>
+          <!-- Colour swatches -->
+          <rect x="50" y="160" width="32" height="32" rx="2" fill="rgba(124,58,237,0.8)"/>
+          <rect x="90" y="160" width="32" height="32" rx="2" fill="rgba(168,85,247,0.6)"/>
+          <rect x="130" y="160" width="32" height="32" rx="2" fill="rgba(6,182,212,0.5)"/>
+          <rect x="170" y="160" width="32" height="32" rx="2" fill="rgba(232,184,109,0.4)"/>
+          <rect x="210" y="160" width="32" height="32" rx="2" fill="rgba(238,238,245,0.1)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <text x="50" y="215" font-family="Outfit,sans-serif" font-size="8" fill="rgba(168,85,247,0.5)" letter-spacing="2">MULTI-FORMAT ASSETS</text>
+        </svg>
         <div class="work-img-overlay">
           <div class="work-img-tag">Brand Content</div>
           <div class="work-img-title">Multi-format assets, one unified voice.</div>
         </div>
       </div>
 
-      <!-- Card 5 -->
-      <div class="work-img-card reveal reveal-d5" style="grid-column:span 4;">
-        <img src="https://images.unsplash.com/photo-1576267423048-15c0040fec78?w=600&q=80&auto=format&fit=crop"
-             alt="Digital production" loading="lazy"/>
+      <!-- Card 5 — Digital Production -->
+      <div class="work-graphic-card reveal reveal-d5" style="grid-column:span 4;aspect-ratio:4/3;">
+        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" style="height:100%;min-height:180px;">
+          <defs>
+            <linearGradient id="wg5a" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#080418"/>
+              <stop offset="100%" stop-color="#0D0A1E"/>
+            </linearGradient>
+            <filter id="gw5"><feGaussianBlur stdDeviation="10"/></filter>
+          </defs>
+          <rect width="320" height="240" fill="url(#wg5a)"/>
+          <circle cx="280" cy="180" r="100" fill="rgba(124,58,237,0.08)" filter="url(#gw5)"/>
+          <!-- Film frame -->
+          <rect x="50" y="50" width="220" height="130" rx="3" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <!-- Film perforations -->
+          <rect x="50" y="50" width="18" height="130" rx="0" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <rect x="252" y="50" width="18" height="130" rx="0" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <rect x="53" y="60" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
+          <rect x="53" y="80" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
+          <rect x="53" y="100" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
+          <rect x="53" y="120" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
+          <rect x="53" y="140" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
+          <rect x="255" y="60" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
+          <rect x="255" y="80" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
+          <rect x="255" y="100" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
+          <rect x="255" y="120" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
+          <rect x="255" y="140" width="12" height="10" rx="1" fill="rgba(255,255,255,0.12)"/>
+          <!-- Play triangle -->
+          <polygon points="145,95 145,155 195,125" fill="rgba(168,85,247,0.5)"/>
+          <polygon points="145,95 145,155 195,125" fill="none" stroke="#A855F7" stroke-width="1.5" opacity="0.7"/>
+          <!-- Waveform below -->
+          <polyline points="70,205 85,195 95,210 110,190 125,215 140,198 155,208 170,192 185,212 200,196 215,205 230,193 245,207" fill="none" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+          <text x="50" y="230" font-family="Outfit,sans-serif" font-size="8" fill="rgba(168,85,247,0.5)" letter-spacing="2">DIGITAL PRODUCTION</text>
+        </svg>
         <div class="work-img-overlay">
           <div class="work-img-tag">Digital Production</div>
           <div class="work-img-title">Video, stills, and digital films — end to end.</div>
@@ -1240,7 +1229,6 @@
 
     </div>
 
-    <!-- Bottom note -->
     <div class="reveal" style="margin-top:48px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
       <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.8;max-width:50ch;">
         We don't have a public portfolio yet — but if you'd like to see work examples relevant to your brief, just reach out.
@@ -1255,9 +1243,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     EXPERIENCE
-══════════════════════════════════════════════════════════════════════ -->
+<!-- EXPERIENCE -->
 <section id="experience" style="padding:120px 5vw;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">Track Record</div>
@@ -1308,9 +1294,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     WHAT YOU CAN EXPECT
-══════════════════════════════════════════════════════════════════════ -->
+<!-- WHAT YOU CAN EXPECT -->
 <section id="expect" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">Working with us</div>
@@ -1372,18 +1356,59 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     FOUNDER
-══════════════════════════════════════════════════════════════════════ -->
+<!-- FOUNDER -->
 <section id="founder" style="padding:120px 5vw;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">The Person Behind It</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:64px;align-items:start;margin-top:20px;">
+      <!-- SVG Founder Graphic -->
       <div class="reveal">
-        <div class="founder-photo">
-          <img src="founder.jpg" loading="lazy" alt="Saurabh Sohan Singh"
-               style="width:100%;height:100%;object-fit:cover;"
-               onerror="this.style.display='none'">
+        <div class="founder-graphic">
+          <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+            <defs>
+              <linearGradient id="fg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#12082a"/>
+                <stop offset="100%" stop-color="#0D0A1E"/>
+              </linearGradient>
+              <linearGradient id="fg2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.5"/>
+              </linearGradient>
+              <filter id="fglow"><feGaussianBlur stdDeviation="10"/></filter>
+              <clipPath id="circleClip"><circle cx="150" cy="150" r="90"/></clipPath>
+            </defs>
+            <rect width="300" height="400" fill="url(#fg1)"/>
+            <!-- Background rings -->
+            <circle cx="150" cy="150" r="130" fill="none" stroke="rgba(124,58,237,0.08)" stroke-width="1" class="spin-ring" style="animation-duration:40s;"/>
+            <circle cx="150" cy="150" r="108" fill="none" stroke="rgba(6,182,212,0.06)" stroke-width="1" class="spin-ring-rev" style="animation-duration:28s;"/>
+            <!-- Glow -->
+            <circle cx="150" cy="130" r="80" fill="rgba(124,58,237,0.15)" filter="url(#fglow)"/>
+            <!-- Avatar silhouette -->
+            <circle cx="150" cy="125" r="90" fill="rgba(124,58,237,0.07)" stroke="rgba(124,58,237,0.2)" stroke-width="1"/>
+            <!-- Head -->
+            <circle cx="150" cy="105" r="32" fill="rgba(124,58,237,0.2)" stroke="rgba(168,85,247,0.4)" stroke-width="1.5"/>
+            <!-- Shoulders/body -->
+            <path d="M90,175 Q90,145 150,145 Q210,145 210,175 L220,200 L80,200 Z" fill="rgba(124,58,237,0.15)" stroke="rgba(168,85,247,0.3)" stroke-width="1"/>
+            <!-- Initials -->
+            <text x="135" y="115" font-family="Outfit,sans-serif" font-size="22" font-weight="800" fill="rgba(168,85,247,0.7)" letter-spacing="-1">SS</text>
+            <!-- Decorative data lines below -->
+            <line x1="60" y1="230" x2="240" y2="230" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <rect x="60" y="248" width="80" height="6" rx="3" fill="rgba(124,58,237,0.35)"/>
+            <rect x="148" y="248" width="50" height="6" rx="3" fill="rgba(6,182,212,0.25)"/>
+            <rect x="206" y="248" width="34" height="6" rx="3" fill="rgba(168,85,247,0.2)"/>
+            <rect x="60" y="265" width="55" height="4" rx="2" fill="rgba(124,58,237,0.2)"/>
+            <rect x="122" y="265" width="90" height="4" rx="2" fill="rgba(6,182,212,0.18)"/>
+            <rect x="219" y="265" width="21" height="4" rx="2" fill="rgba(168,85,247,0.15)"/>
+            <!-- Name label area -->
+            <rect x="40" y="295" width="220" height="60" rx="2" fill="rgba(124,58,237,0.06)" stroke="rgba(124,58,237,0.15)" stroke-width="1"/>
+            <text x="60" y="320" font-family="Outfit,sans-serif" font-size="14" font-weight="700" fill="rgba(238,238,245,0.85)">Saurabh Sohan Singh</text>
+            <text x="60" y="338" font-family="Outfit,sans-serif" font-size="9" fill="rgba(168,85,247,0.7)" letter-spacing="1.5">FOUNDER, SQUARGRAPH</text>
+            <!-- Corner ornaments -->
+            <path d="M40,40 L40,20 L60,20" stroke="rgba(124,58,237,0.4)" stroke-width="1.5" fill="none"/>
+            <path d="M260,40 L260,20 L240,20" stroke="rgba(124,58,237,0.4)" stroke-width="1.5" fill="none"/>
+            <path d="M40,360 L40,380 L60,380" stroke="rgba(6,182,212,0.3)" stroke-width="1" fill="none"/>
+            <path d="M260,360 L260,380 L240,380" stroke="rgba(6,182,212,0.3)" stroke-width="1" fill="none"/>
+          </svg>
         </div>
       </div>
       <div>
@@ -1405,15 +1430,17 @@
           <a href="https://x.com/imsssingh" target="_blank" rel="noopener" class="social-link" title="X / Twitter">
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
+          <!-- Saurabh personal Facebook -->
+          <a href="https://www.facebook.com/saurabhsohansingh/" target="_blank" rel="noopener" class="social-link" title="Facebook">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     WHY DIFFERENT
-══════════════════════════════════════════════════════════════════════ -->
+<!-- WHY DIFFERENT -->
 <section style="background:#080616;border-top:1px solid rgba(255,255,255,.055);padding:100px 5vw;position:relative;z-index:2;">
   <div style="max-width:900px;margin:0 auto;">
     <div class="reveal s-label">Why Different</div>
@@ -1433,84 +1460,8 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     CAREERS
-══════════════════════════════════════════════════════════════════════ -->
-<form id="careerForm" style="max-width:500px;display:flex;flex-direction:column;gap:16px;">
-
-  <input type="text" id="name" placeholder="Your Name" required style="padding:12px;background:#0D0A1E;border:1px solid #333;color:#fff;">
-
-  <input type="email" id="email" placeholder="Your Email" required style="padding:12px;background:#0D0A1E;border:1px solid #333;color:#fff;">
-
-  <select id="role" required style="padding:12px;background:#0D0A1E;border:1px solid #333;color:#fff;">
-    <option value="">Select Role</option>
-    <option>Designer</option>
-    <option>Video Editor</option>
-    <option>Social Media Manager</option>
-  </select>
-
-  <!-- FILE UPLOAD -->
-  <div id="uploadBox" style="padding:20px;border:1px dashed #7C3AED;text-align:center;cursor:pointer;">
-    Click to upload resume
-    <input type="file" id="fileInput" style="display:none;">
-  </div>
-
-  <button type="submit" style="background:#7C3AED;padding:14px;color:#fff;border:none;">
-    Submit Application
-  </button>
-
-</form>
-      </div>
-
-    </div>
-  </div>
-</section>
-</section>  <!-- END OF PREVIOUS SECTION -->
-
-<!-- ADD THIS BELOW -->
-<section id="careers" style="padding:120px 5vw;">
-  <div style="max-width:800px;margin:0 auto;">
-
-    <h2 style="font-size:32px;margin-bottom:20px;">
-      Work with SQUARGRAPH
-    </h2>
-
-    <p style="color:rgba(238,238,245,.6);margin-bottom:40px;">
-      We're always looking for designers, editors & creators.
-    </p>
-
-    <form id="careerForm" style="display:flex;flex-direction:column;gap:16px;">
-
-      <input type="text" id="name" placeholder="Your Name" required class="form-input">
-
-      <input type="email" id="email" placeholder="Your Email" required class="form-input">
-
-      <select id="role" required class="form-input">
-        <option value="">Select Role</option>
-        <option>Designer</option>
-        <option>Video Editor</option>
-        <option>Social Media Manager</option>
-      </select>
-
-      <!-- FILE UPLOAD -->
-      <div id="uploadBox" style="padding:20px;border:1px dashed #7C3AED;text-align:center;cursor:pointer;">
-        Click to upload resume
-        <input type="file" id="fileInput" style="display:none;">
-      </div>
-
-      <button type="submit"
-        style="background:#7C3AED;color:#fff;padding:16px;border:none;">
-        Submit Application
-      </button>
-
-    </form>
-
-  </div>
-</section>
-<!-- ══════════════════════════════════════════════════════════════════
-     CTA + CONTACT
-══════════════════════════════════════════════════════════════════════ -->
-<section id="contact" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
+<!-- CTA + CONTACT -->
+<section id="contact" style="background:#03020A;border-top:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
   <div class="cta-glow"></div>
   <div style="position:absolute;top:0;left:0;pointer-events:none;">
     <svg width="200" height="200" viewBox="0 0 200 200">
@@ -1546,13 +1497,23 @@
         </div>
       </div>
       <div class="reveal reveal-d2">
-        <form id="contact-form" action="https://formspree.io/f/xzdykrjl" method="POST" style="display:flex;flex-direction:column;gap:18px;">
+        <!-- Success message -->
+        <div id="form-success-msg" class="form-success">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin:0 auto 16px;display:block;">
+            <circle cx="20" cy="20" r="19" stroke="rgba(6,182,212,0.5)" stroke-width="1"/>
+            <polyline points="12,20 17,25 28,14" stroke="#06B6D4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p class="font-display font-bold" style="font-size:18px;margin-bottom:8px;color:#EEEEF5;">Brief received.</p>
+          <p style="color:rgba(238,238,245,.55);font-size:14px;">We'll be in touch shortly. You can also message us on WhatsApp for a faster reply.</p>
+        </div>
+
+        <form id="contact-form" style="display:flex;flex-direction:column;gap:18px;">
           <div>
-            <label class="form-label">Your Name</label>
+            <label class="form-label">Your Name *</label>
             <input type="text" name="name" required placeholder="Full name" class="form-input" />
           </div>
           <div>
-            <label class="form-label">Work Email</label>
+            <label class="form-label">Work Email *</label>
             <input type="email" name="email" required placeholder="name@company.com" class="form-input" />
           </div>
           <div>
@@ -1560,7 +1521,7 @@
             <input type="text" name="company" placeholder="Your brand or company name" class="form-input" />
           </div>
           <div>
-            <label class="form-label">What are you looking for?</label>
+            <label class="form-label">What are you looking for? *</label>
             <select name="service" required class="form-input">
               <option value="">Select</option>
               <option>Full campaign (strategy + execution)</option>
@@ -1571,7 +1532,7 @@
             </select>
           </div>
           <div>
-            <label class="form-label">Estimated budget</label>
+            <label class="form-label">Estimated budget *</label>
             <select name="budget" required class="form-input">
               <option value="">Select range</option>
               <option>₹50K – ₹1L</option>
@@ -1581,7 +1542,7 @@
             </select>
           </div>
           <div>
-            <label class="form-label">Timeline</label>
+            <label class="form-label">Timeline *</label>
             <select name="timeline" required class="form-input">
               <option value="">Select</option>
               <option>ASAP</option>
@@ -1591,7 +1552,7 @@
             </select>
           </div>
           <div>
-            <label class="form-label">Project brief</label>
+            <label class="form-label">Project brief *</label>
             <textarea name="message" required placeholder="What are you trying to achieve? What's the current situation?" class="form-input"></textarea>
           </div>
           <div>
@@ -1599,69 +1560,22 @@
             <input type="url" name="reference" placeholder="Drive / Notion / examples" class="form-input" />
           </div>
           <button type="submit" id="form-submit-btn"
-                  style="background:#A855F7;border:none;color:#03020A;padding:18px 32px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:transform .25s,opacity .25s;cursor:pointer;"
+                  style="background:#A855F7;border:none;color:#03020A;padding:18px 32px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:transform .25s,opacity .25s;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;"
                   onmouseover="if(!this.disabled)this.style.transform='translateY(-2px)'"
                   onmouseout="this.style.transform='translateY(0)'">
-            Send Brief →
+            <span id="btn-text">Send Brief →</span>
+            <svg id="btn-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="display:none;animation:spinRing 0.8s linear infinite;">
+              <path d="M12 2a10 10 0 0 1 10 10"/>
+            </svg>
           </button>
+          <p id="form-error-msg" style="color:#f87171;font-size:13px;display:none;text-align:center;">Something went wrong. Please try again or message us on WhatsApp.</p>
         </form>
       </div>
     </div>
   </div>
 </section>
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!--  CAREERS SECTION                                               -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<section id="careers" style="padding:120px 5vw;background:#03020A;">
-  <div style="max-width:900px;margin:0 auto;">
 
-    <h2 style="font-size:32px;margin-bottom:20px;">
-      Join SQUARGRAPH
-    </h2>
-
-    <p style="color:rgba(238,238,245,.6);margin-bottom:40px;">
-      We work with people who care about execution, not just ideas.
-    </p>
-
-    <!-- FORM START -->
-    <form action="https://formspree.io/f/xzdykrjl" method="POST" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:18px;">
-
-      <!-- Name -->
-      <input type="text" name="name" placeholder="Your Name" required class="form-input">
-
-      <!-- Email -->
-      <input type="email" name="email" placeholder="Your Email" required class="form-input">
-
-      <!-- Role -->
-      <select name="role" required class="form-input">
-        <option value="">Select Role</option>
-        <option>Designer</option>
-        <option>Video Editor</option>
-        <option>Social Media Manager</option>
-      </select>
-
-      <!-- Resume Upload -->
-      <div style="border:1px dashed rgba(255,255,255,.2);padding:20px;text-align:center;">
-        <input type="file" name="resume" required>
-        <p style="font-size:13px;color:rgba(238,238,245,.5);margin-top:10px;">
-          Upload your resume (PDF/DOC)
-        </p>
-      </div>
-
-      <!-- Submit -->
-      <button type="submit"
-        style="background:#A855F7;color:#03020A;padding:16px;font-weight:700;text-transform:uppercase;">
-        Apply Now
-      </button>
-
-    </form>
-    <!-- FORM END -->
-
-  </div>
-</section>
-<!-- ══════════════════════════════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer style="background:#09070F;border-top:1px solid rgba(255,255,255,.07);padding:48px 5vw 36px;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:36px;flex-wrap:wrap;margin-bottom:40px;">
@@ -1672,6 +1586,7 @@
         </div>
         <p style="color:rgba(238,238,245,.6);font-size:12px;font-weight:300;">Delhi, India</p>
       </div>
+      <!-- Social links — Studio accounts -->
       <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
         <a href="https://instagram.com/squargraph" target="_blank" rel="noopener" class="social-link" title="Instagram">
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -1685,6 +1600,10 @@
         <a href="https://youtube.com/channel/squargraph" target="_blank" rel="noopener" class="social-link" title="YouTube">
           <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         </a>
+        <!-- SQUARGRAPH Studios Facebook -->
+        <a href="https://www.facebook.com/squargraphstudios/" target="_blank" rel="noopener" class="social-link" title="Facebook">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
       </div>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.09);padding-top:28px;">
@@ -1695,9 +1614,7 @@
   </div>
 </footer>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     CHATBOT
-══════════════════════════════════════════════════════════════════════ -->
+<!-- CHATBOT -->
 <button id="chat-toggle" aria-label="Open chat">
   <span id="chat-toggle-icon">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#03020A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1734,9 +1651,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════════════════════════════════════ -->
 <script>
 (function () {
   'use strict';
@@ -1753,9 +1667,7 @@
   resize();
   window.addEventListener('resize', resize, { passive: true });
 
-  function Particle() {
-    this.reset();
-  }
+  function Particle() { this.reset(); }
   Particle.prototype.reset = function() {
     this.x    = Math.random() * W;
     this.y    = Math.random() * H;
@@ -1764,27 +1676,21 @@
     this.vy   = (Math.random() - 0.5) * 0.4 - 0.15;
     this.life = Math.random() * 200 + 100;
     this.age  = 0;
-    this.hue  = Math.random() > 0.7 ? 195 : 271; // cyan or purple
+    this.hue  = Math.random() > 0.7 ? 195 : 271;
     this.sat  = Math.random() * 30 + 70;
   };
   Particle.prototype.update = function() {
-    // Mouse repulsion
-    var dx = this.x - mouse.x;
-    var dy = this.y - mouse.y;
+    var dx = this.x - mouse.x, dy = this.y - mouse.y;
     var dist = Math.sqrt(dx*dx + dy*dy);
     if (dist < 100) {
       var force = (100 - dist) / 100 * 0.8;
       this.vx += (dx / dist) * force;
       this.vy += (dy / dist) * force;
     }
-    this.vx *= 0.98;
-    this.vy *= 0.98;
-    this.x  += this.vx;
-    this.y  += this.vy;
+    this.vx *= 0.98; this.vy *= 0.98;
+    this.x  += this.vx; this.y  += this.vy;
     this.age++;
-    if (this.age > this.life || this.x < 0 || this.x > W || this.y < 0 || this.y > H) {
-      this.reset();
-    }
+    if (this.age > this.life || this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
   };
   Particle.prototype.draw = function() {
     var alpha = Math.sin((this.age / this.life) * Math.PI) * 0.6;
@@ -1794,29 +1700,20 @@
     ctx.fill();
   };
 
-  // Create particles
   var COUNT = Math.min(120, Math.floor(W * H / 12000));
   for (var i = 0; i < COUNT; i++) {
-    var p = new Particle();
-    p.age = Math.random() * p.life; // stagger start
-    particles.push(p);
+    var p = new Particle(); p.age = Math.random() * p.life; particles.push(p);
   }
 
-  // Draw connections
   function drawConnections() {
     for (var a = 0; a < particles.length; a++) {
       for (var b = a + 1; b < particles.length; b++) {
-        var dx = particles[a].x - particles[b].x;
-        var dy = particles[a].y - particles[b].y;
+        var dx = particles[a].x - particles[b].x, dy = particles[a].y - particles[b].y;
         var dist = Math.sqrt(dx*dx + dy*dy);
         if (dist < 90) {
-          var alpha = (1 - dist / 90) * 0.12;
-          ctx.strokeStyle = 'rgba(124,58,237,' + alpha + ')';
+          ctx.strokeStyle = 'rgba(124,58,237,' + ((1 - dist / 90) * 0.12) + ')';
           ctx.lineWidth = 0.5;
-          ctx.beginPath();
-          ctx.moveTo(particles[a].x, particles[a].y);
-          ctx.lineTo(particles[b].x, particles[b].y);
-          ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(particles[a].x, particles[a].y); ctx.lineTo(particles[b].x, particles[b].y); ctx.stroke();
         }
       }
     }
@@ -1825,150 +1722,88 @@
   function animate() {
     ctx.clearRect(0, 0, W, H);
     drawConnections();
-    for (var i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
-    }
+    for (var i = 0; i < particles.length; i++) { particles[i].update(); particles[i].draw(); }
     requestAnimationFrame(animate);
   }
   animate();
-
-  document.addEventListener('mousemove', function(e) {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
+  document.addEventListener('mousemove', function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
 
   /* ── Custom cursor ───────────────────────────────────────────── */
   var cursor = document.getElementById('cursor');
   var ring   = document.getElementById('cursor-ring');
-  var mx = -200, my = -200, rx = -200, ry = -200;
-  var cursorActive = false;
-
+  var mx = -200, my = -200, rx = -200, ry = -200, cursorActive = false;
   document.addEventListener('mousemove', function(e) {
     mx = e.clientX; my = e.clientY;
     cursor.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
     if (!cursorActive) { cursorActive = true; cursor.classList.add('active'); ring.classList.add('active'); }
   });
   (function animateRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
     ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
     requestAnimationFrame(animateRing);
   })();
 
   /* ── Nav scroll ──────────────────────────────────────────────── */
   var nav = document.getElementById('nav');
-  window.addEventListener('scroll', function() {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
+  window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
 
   /* ── Mobile menu ─────────────────────────────────────────────── */
   var mobMenu = document.getElementById('mob-menu');
   document.getElementById('mob-toggle').addEventListener('click', function() {
-    mobMenu.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    mobMenu.style.display = 'flex'; document.body.style.overflow = 'hidden';
   });
-  window.closeMob = function() {
-    mobMenu.style.display = 'none';
-    document.body.style.overflow = '';
-  };
+  window.closeMob = function() { mobMenu.style.display = 'none'; document.body.style.overflow = ''; };
 
   /* ── Scroll reveal ───────────────────────────────────────────── */
   var revealObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
 
-  /* ── File upload ─────────────────────────────────────────────── */
-  var fileInput   = document.getElementById('resume-input');
-  var fileLabel   = document.getElementById('file-upload-label');
-  var fileArea    = document.getElementById('file-upload-area');
+  /* ── Contact form — Formspree xzdykrjl ──────────────────────── */
+  var contactForm  = document.getElementById('contact-form');
+  var submitBtn    = document.getElementById('form-submit-btn');
+  var btnText      = document.getElementById('btn-text');
+  var btnSpinner   = document.getElementById('btn-spinner');
+  var successMsg   = document.getElementById('form-success-msg');
+  var errorMsg     = document.getElementById('form-error-msg');
 
-  if (fileInput) {
-    fileInput.addEventListener('change', function() {
-      if (this.files && this.files[0]) {
-        fileLabel.innerHTML = '<p style="color:#A855F7;font-size:13px;font-family:\'Space Grotesk\',sans-serif;">✓ ' + this.files[0].name + '</p>';
-      }
-    });
-    fileArea.addEventListener('dragover', function(e) {
-      e.preventDefault();
-      fileArea.classList.add('drag-over');
-    });
-    fileArea.addEventListener('dragleave', function() {
-      fileArea.classList.remove('drag-over');
-    });
-    fileArea.addEventListener('drop', function(e) {
-      e.preventDefault();
-      fileArea.classList.remove('drag-over');
-      if (e.dataTransfer.files[0]) {
-        fileInput.files = e.dataTransfer.files;
-        fileLabel.innerHTML = '<p style="color:#A855F7;font-size:13px;font-family:\'Space Grotesk\',sans-serif;">✓ ' + e.dataTransfer.files[0].name + '</p>';
-      }
-    });
-  }
-
-  /* ── Contact form ────────────────────────────────────────────── */
-  var contactForm = document.getElementById('contact-form');
-  var submitBtn   = document.getElementById('form-submit-btn');
   if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
-      var orig = submitBtn.textContent;
-      submitBtn.textContent = 'Sending…'; submitBtn.disabled = true; submitBtn.style.opacity = '.7';
-      try {
-        var res = await fetch(contactForm.action, { method: 'POST', body: new FormData(contactForm), headers: { 'Accept': 'application/json' } });
-        if (res.ok) {
-          submitBtn.textContent = '✓ Brief received — we\'ll be in touch';
-          submitBtn.style.background = 'rgba(124,58,237,.5)';
-          contactForm.reset();
-        } else {
-          submitBtn.textContent = 'Something went wrong — try WhatsApp';
-          submitBtn.disabled = false; submitBtn.style.opacity = '1';
-        }
-      } catch(_) {
-        submitBtn.textContent = 'Network error — try WhatsApp';
-        submitBtn.disabled = false; submitBtn.style.opacity = '1';
-      }
-      setTimeout(function() {
-        submitBtn.textContent = orig; submitBtn.disabled = false;
-        submitBtn.style.opacity = '1'; submitBtn.style.background = '#A855F7';
-      }, 6000);
-    });
-  }
+      // UI loading state
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.75';
+      btnText.textContent = 'Sending…';
+      btnSpinner.style.display = 'block';
+      errorMsg.style.display = 'none';
 
-  /* ── Careers form ────────────────────────────────────────────── */
-  var careersForm  = document.getElementById('careers-form');
-  var careersBtn   = document.getElementById('careers-submit-btn');
-  if (careersForm) {
-    careersForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      var orig = careersBtn.textContent;
-      careersBtn.textContent = 'Submitting…'; careersBtn.disabled = true; careersBtn.style.opacity = '.7';
+      var formData = new FormData(contactForm);
+
       try {
-        var res = await fetch(careersForm.action, { method: 'POST', body: new FormData(careersForm), headers: { 'Accept': 'application/json' } });
+        var res = await fetch('https://formspree.io/f/xzdykrjl', {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
         if (res.ok) {
-          careersBtn.textContent = '✓ Application received — we\'ll review it';
-          careersBtn.style.background = 'rgba(124,58,237,.5)';
-          careersForm.reset();
-          if (fileLabel) fileLabel.innerHTML = '<div style="margin-bottom:8px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(168,85,247,0.5)" stroke-width="1.5" style="margin:0 auto 8px;display:block;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><p style="color:rgba(238,238,245,.4);font-size:13px;font-family:\'Space Grotesk\',sans-serif;">Drop your resume here or <span style="color:#A855F7;text-decoration:underline;">browse</span></p><p style="color:rgba(238,238,245,.25);font-size:11px;margin-top:6px;font-family:\'Space Grotesk\',sans-serif;">PDF, DOC, DOCX — max 5MB</p>';
+          // Hide form, show success
+          contactForm.style.display = 'none';
+          successMsg.classList.add('visible');
         } else {
-          careersBtn.textContent = 'Something went wrong — email us directly';
-          careersBtn.disabled = false; careersBtn.style.opacity = '1';
+          var data = await res.json();
+          throw new Error(data.error || 'Form submission failed');
         }
-      } catch(_) {
-        careersBtn.textContent = 'Network error — try again';
-        careersBtn.disabled = false; careersBtn.style.opacity = '1';
+      } catch (err) {
+        errorMsg.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        btnText.textContent = 'Try Again →';
+        btnSpinner.style.display = 'none';
       }
-      setTimeout(function() {
-        careersBtn.textContent = orig; careersBtn.disabled = false;
-        careersBtn.style.opacity = '1';
-        careersBtn.style.background = '';
-      }, 7000);
     });
   }
 
@@ -2093,36 +1928,6 @@
   });
 
 })();
-</script>
-  <script>
-
-// CAREER FORM FUNCTIONALITY
-
-const uploadBox = document.getElementById("uploadBox");
-const fileInput = document.getElementById("fileInput");
-
-if (uploadBox && fileInput) {
-  uploadBox.addEventListener("click", () => {
-    fileInput.click();
-  });
-
-  fileInput.addEventListener("change", () => {
-    if (fileInput.files.length > 0) {
-      uploadBox.innerText = fileInput.files[0].name;
-    }
-  });
-}
-
-const careerForm = document.getElementById("careerForm");
-
-if (careerForm) {
-  careerForm.addEventListener("submit", function(e) {
-    e.preventDefault();
-    alert("Application submitted ✅");
-    careerForm.reset();
-    uploadBox.innerText = "Click to upload resume";
-  });
-}
 </script>
 </body>
 </html>
