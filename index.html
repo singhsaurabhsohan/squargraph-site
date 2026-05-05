@@ -76,7 +76,6 @@
       overflow-x: hidden;
     }
 
-    /* Custom cursor — desktop only */
     @media (min-width: 1024px) {
       body { cursor: none; }
       a, button, [role="button"] { cursor: none; }
@@ -89,11 +88,11 @@
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.005;
+      opacity: 0.018;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
     }
 
-    /* ── Custom cursor — hidden until first mousemove ────────────────── */
+    /* ── Custom cursor ───────────────────────────────────────────────── */
     #cursor, #cursor-ring { opacity: 0; transition: opacity .3s; }
     #cursor.active, #cursor-ring.active { opacity: 1; }
     #cursor {
@@ -125,19 +124,30 @@
     .grid-bg {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(124,58,237,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124,58,237,.04) 1px, transparent 1px);
+        linear-gradient(rgba(124,58,237,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,58,237,.045) 1px, transparent 1px);
       background-size: 72px 72px;
       mask-image: radial-gradient(ellipse 85% 65% at 50% 100%, black 30%, transparent 100%);
       pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       PARTICLE CANVAS — actual flowing animation
+    ══════════════════════════════════════════════════════════════════ */
+    #particle-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.55;
     }
 
     /* ── Hero glows ──────────────────────────────────────────────────── */
     .hero-glow-1 {
       will-change: transform;
       position: absolute;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(124,58,237,.09) 0%, rgba(168,85,247,.04) 40%, transparent 70%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(124,58,237,.11) 0%, rgba(168,85,247,.05) 40%, transparent 70%);
       top: -120px; right: -180px;
       pointer-events: none;
       animation: floatGlow1 12s ease-in-out infinite;
@@ -145,8 +155,8 @@
     .hero-glow-2 {
       will-change: transform;
       position: absolute;
-      width: 350px; height: 350px;
-      background: radial-gradient(circle, rgba(6,182,212,.05) 0%, rgba(124,58,237,.03) 50%, transparent 70%);
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(6,182,212,.06) 0%, rgba(124,58,237,.04) 50%, transparent 70%);
       bottom: 0; left: -120px;
       pointer-events: none;
       animation: floatGlow2 16s ease-in-out infinite;
@@ -155,7 +165,7 @@
       will-change: transform;
       position: absolute;
       width: 250px; height: 250px;
-      background: radial-gradient(circle, rgba(232,184,109,.04) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(232,184,109,.05) 0%, transparent 70%);
       top: 40%; left: 35%;
       pointer-events: none;
       animation: floatGlow3 20s ease-in-out infinite;
@@ -163,8 +173,8 @@
     .hero-glow-4 {
       will-change: transform;
       position: absolute;
-      width: 600px; height: 250px;
-      background: radial-gradient(ellipse, rgba(124,58,237,.06) 0%, rgba(6,182,212,.02) 50%, transparent 75%);
+      width: 700px; height: 300px;
+      background: radial-gradient(ellipse, rgba(124,58,237,.07) 0%, rgba(6,182,212,.03) 50%, transparent 75%);
       bottom: -100px; left: 50%;
       transform: translateX(-50%);
       pointer-events: none;
@@ -234,6 +244,25 @@
       90%  { opacity: 1; }
       100% { stroke-dashoffset: 0;   opacity: 0; }
     }
+
+    /* ── Flowing lines animation ─────────────────────────────────────── */
+    .flow-line {
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      animation: flowDraw 3s ease-out forwards;
+    }
+    .flow-line-2 { animation-delay: 0.5s; }
+    .flow-line-3 { animation-delay: 1s; }
+    @keyframes flowDraw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Pulsing node */
+    @keyframes nodePulse {
+      0%,100% { r: 3px; opacity: 0.6; }
+      50% { r: 6px; opacity: 1; }
+    }
+    .node-pulse { animation: nodePulse 2s ease-in-out infinite; }
 
     /* ── Typography ──────────────────────────────────────────────────── */
     .font-display { font-family: 'Outfit', sans-serif; }
@@ -469,6 +498,129 @@
     }
     .social-link:hover { border-color: #7C3AED; color: #A855F7; background: rgba(124,58,237,.08); }
 
+    /* ══════════════════════════════════════════════════════════════════
+       IMAGE SHOWCASE — brand imagery blocks
+    ══════════════════════════════════════════════════════════════════ */
+    .img-card {
+      border: 1px solid rgba(255,255,255,.065);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+      background: #0D0A1E;
+    }
+    .img-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(.23,1,.32,1), opacity 0.4s;
+      opacity: 0.85;
+    }
+    .img-card:hover img { transform: scale(1.04); opacity: 1; }
+    .img-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(3,2,10,.7) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .img-card-label {
+      position: absolute;
+      bottom: 16px; left: 16px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(238,238,245,.65);
+    }
+
+    /* SVG placeholder art for image slots */
+    .img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── Animated network graph (visual section) ─────────────────────── */
+    #network-canvas {
+      display: block;
+      width: 100%;
+      height: 260px;
+      border: 1px solid rgba(124,58,237,.1);
+      border-radius: 2px;
+      background: #080616;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       CAREERS SECTION
+    ══════════════════════════════════════════════════════════════════ */
+    #careers {
+      background: #080616;
+      border-top: 1px solid rgba(255,255,255,.055);
+      border-bottom: 1px solid rgba(255,255,255,.055);
+      padding: 120px 5vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .career-glow {
+      position: absolute;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(6,182,212,.05) 0%, rgba(124,58,237,.04) 40%, transparent 70%);
+      top: -100px; left: -100px;
+      pointer-events: none;
+    }
+
+    .role-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(124,58,237,.08);
+      border: 1px solid rgba(124,58,237,.2);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      letter-spacing: .06em;
+      color: rgba(238,238,245,.6);
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .role-tag:hover {
+      border-color: rgba(124,58,237,.5);
+      color: #A855F7;
+      background: rgba(124,58,237,.12);
+    }
+    .role-tag-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #A855F7;
+      flex-shrink: 0;
+    }
+
+    .careers-form-wrap {
+      background: #0D0A1E;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 2px;
+      padding: 40px;
+    }
+
+    /* File upload area */
+    .file-upload-area {
+      border: 1px dashed rgba(124,58,237,.3);
+      border-radius: 2px;
+      padding: 32px 20px;
+      text-align: center;
+      transition: border-color .25s, background .25s;
+      cursor: pointer;
+      position: relative;
+    }
+    .file-upload-area:hover {
+      border-color: rgba(124,58,237,.6);
+      background: rgba(124,58,237,.04);
+    }
+    .file-upload-area input[type="file"] {
+      position: absolute; inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%; height: 100%;
+    }
+
     /* ── Mobile ──────────────────────────────────────────────────────── */
     @media (max-width: 768px) {
       #cursor, #cursor-ring { display: none !important; }
@@ -495,13 +647,14 @@
 
       .hero-glow-1, .hero-glow-2, .hero-glow-3, .hero-glow-4 { display: none; }
 
-      /* chat panel full-width on mobile */
       #chat-panel {
         width: calc(100vw - 32px) !important;
         right: 16px !important;
         bottom: 80px !important;
         max-height: 80vh !important;
       }
+
+      .careers-form-wrap { padding: 24px; }
     }
 
     /* ══════════════════════════════════════════════════════════════════
@@ -706,12 +859,21 @@
     }
     .chat-send-btn:hover { transform: scale(1.08); opacity: .88; }
 
-    /* Brief input hidden by default */
     #chat-brief-input { display: none; }
     #chat-brief-input.visible { display: flex; }
+
+    /* ── Flowing SVG animation overlay ──────────────────────────────── */
+    .flow-overlay {
+      position: absolute; inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
+
+<!-- Global Particle Canvas -->
+<canvas id="particle-canvas"></canvas>
 
 <!-- Custom Cursor -->
 <div id="cursor"></div>
@@ -730,6 +892,7 @@
     <a href="#process"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Process</a>
     <a href="#services"   class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
     <a href="#founder"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Founder</a>
+    <a href="#careers"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Careers</a>
     <a href="#contact"
        style="display:inline-flex;align-items:center;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:10px 22px;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
        onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
@@ -746,6 +909,7 @@
   <a href="#process"    onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Process</a>
   <a href="#services"   onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
   <a href="#founder"    onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
+  <a href="#careers"    onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Careers</a>
   <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener"
      style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
     Start a project →
@@ -879,7 +1043,6 @@
     Built on real campaign experience, now delivered independently.
   </p>
 
-  <!-- Experience line -->
   <div style="color:rgba(238,238,245,.5);font-size:13px;margin-bottom:28px;">
     Experience across automotive, hospitality &amp; brand campaigns — now applied through SQUARGRAPH.
   </div>
@@ -900,7 +1063,6 @@
     </a>
   </div>
 
-  <!-- Capabilities -->
   <div style="color:rgba(238,238,245,.6);font-size:13px;letter-spacing:.08em;margin-bottom:10px;">
     Strategy • Content • Design • Production • Digital Films • AI • Execution
   </div>
@@ -908,7 +1070,6 @@
     From strategy to content to digital films — we handle everything required to move work forward, including AI-assisted production and execution.
   </p>
 
-  <!-- Scroll hint -->
   <div class="scroll-hint mobile-hide" style="position:absolute;bottom:40px;right:5vw;">Scroll</div>
 </section>
 
@@ -933,6 +1094,88 @@
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════════════
+     VISUAL SHOWCASE — image grid
+══════════════════════════════════════════════════════════════════════ -->
+<section style="padding:80px 5vw 0;position:relative;overflow:hidden;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal s-label">Work In Motion</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:280px 200px;gap:12px;">
+
+      <!-- Card 1 — large left -->
+      <div class="img-card reveal reveal-d1" style="grid-row:span 2;">
+        <img src="https://images.unsplash.com/photo-1558403194-611308249627?w=900&q=80&auto=format&fit=crop"
+             alt="Campaign execution — creative team at work"
+             loading="lazy"
+             onerror="this.parentNode.querySelector('.img-placeholder').style.display='flex';this.style.display='none'">
+        <div class="img-placeholder" style="display:none;background:#0D0A1E;height:100%;">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" stroke="rgba(124,58,237,0.2)" stroke-width="1"/><path d="M25 45 L35 32 L45 40 L55 28" stroke="#A855F7" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-label">Campaign Work</div>
+      </div>
+
+      <!-- Card 2 — top middle -->
+      <div class="img-card reveal reveal-d2">
+        <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&q=80&auto=format&fit=crop"
+             alt="Content strategy and social media"
+             loading="lazy"
+             onerror="this.parentNode.querySelector('.img-placeholder').style.display='flex';this.style.display='none'">
+        <div class="img-placeholder" style="display:none;background:#0D0A1E;height:100%;align-items:center;justify-content:center;">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect x="1" y="1" width="58" height="58" rx="2" stroke="rgba(124,58,237,0.2)" stroke-width="1"/><circle cx="20" cy="30" r="8" stroke="#A855F7" stroke-width="1" fill="none"/><circle cx="40" cy="30" r="8" stroke="#06B6D4" stroke-width="1" fill="none"/></svg>
+        </div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-label">Social Content</div>
+      </div>
+
+      <!-- Card 3 — top right -->
+      <div class="img-card reveal reveal-d3">
+        <img src="https://images.unsplash.com/photo-1542744095-291d1f67b221?w=700&q=80&auto=format&fit=crop"
+             alt="Brand strategy and creative direction"
+             loading="lazy"
+             onerror="this.parentNode.querySelector('.img-placeholder').style.display='flex';this.style.display='none'">
+        <div class="img-placeholder" style="display:none;background:#0D0A1E;height:100%;align-items:center;justify-content:center;">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><polygon points="30,4 56,46 4,46" stroke="#A855F7" stroke-width="1" fill="none"/></svg>
+        </div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-label">Brand Direction</div>
+      </div>
+
+      <!-- Card 4 — bottom middle -->
+      <div class="img-card reveal reveal-d2">
+        <img src="https://images.unsplash.com/photo-1628348070889-cb656235b4eb?w=700&q=80&auto=format&fit=crop"
+             alt="Digital film and video production"
+             loading="lazy"
+             onerror="this.parentNode.querySelector('.img-placeholder').style.display='flex';this.style.display='none'">
+        <div class="img-placeholder" style="display:none;background:#0D0A1E;height:100%;align-items:center;justify-content:center;">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" stroke="rgba(6,182,212,0.3)" stroke-width="1" fill="none"/><polygon points="25,20 45,30 25,40" fill="#06B6D4" opacity="0.5"/></svg>
+        </div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-label">Digital Films</div>
+      </div>
+
+      <!-- Card 5 — bottom right -->
+      <div class="img-card reveal reveal-d3">
+        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=700&q=80&auto=format&fit=crop"
+             alt="Design and execution"
+             loading="lazy"
+             onerror="this.parentNode.querySelector('.img-placeholder').style.display='flex';this.style.display='none'">
+        <div class="img-placeholder" style="display:none;background:#0D0A1E;height:100%;align-items:center;justify-content:center;">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect x="10" y="10" width="40" height="40" stroke="#E8B86D" stroke-width="1" fill="none" transform="rotate(15 30 30)"/><circle cx="30" cy="30" r="6" fill="rgba(232,184,109,0.2)" stroke="#E8B86D" stroke-width="1"/></svg>
+        </div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-label">Design & Execution</div>
+      </div>
+
+    </div>
+
+    <!-- Animated network/flow canvas -->
+    <div class="reveal" style="margin-top:12px;">
+      <canvas id="network-canvas"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
      PHILOSOPHY
 ══════════════════════════════════════════════════════════════════════ -->
 <section id="philosophy" style="padding:120px 5vw;position:relative;overflow:hidden;">
@@ -945,7 +1188,6 @@
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">How We Think</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:72px;align-items:start;">
-      <!-- Left -->
       <div>
         <h2 class="reveal font-display font-extrabold" style="font-size:clamp(32px,4vw,58px);line-height:1.02;letter-spacing:-.028em;margin-bottom:32px;">
           Most brands don't have an ideas problem.<br/>
@@ -968,7 +1210,6 @@
           Not a one-person setup. Not a bloated agency. The right people for the right work.
         </p>
       </div>
-      <!-- Right: pillars -->
       <div>
         <div class="reveal reveal-d1" style="border-top:1px solid rgba(255,255,255,.065);padding:28px 0;transition:border-color .25s;"
              onmouseover="this.style.borderColor='#A855F7'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)'">
@@ -1055,9 +1296,7 @@
       </p>
     </div>
 
-    <!-- Steps -->
     <div class="process-track" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;">
-      <!-- Step 1 -->
       <div class="reveal reveal-d1" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
         <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
@@ -1067,7 +1306,6 @@
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Understand</h3>
         <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">We dig into the brand, brief, audience, and objectives before anything else. No guesswork.</p>
       </div>
-      <!-- Step 2 -->
       <div class="reveal reveal-d2" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
         <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
@@ -1077,7 +1315,6 @@
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Plan</h3>
         <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Campaign architecture, content calendar, delivery milestones. Everything mapped before anything starts.</p>
       </div>
-      <!-- Step 3 -->
       <div class="reveal reveal-d3" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
         <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
@@ -1087,7 +1324,6 @@
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Brief &amp; Coordinate</h3>
         <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Clear briefs to every contributor. No ambiguity. No 11th-hour surprises. Everyone aligned from day one.</p>
       </div>
-      <!-- Step 4 -->
       <div class="reveal reveal-d4" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
         <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
@@ -1097,7 +1333,6 @@
         <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Execute</h3>
         <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Work done, checked, and delivered. High-quality, on-brand, on-deadline. Without compromise.</p>
       </div>
-      <!-- Step 5 -->
       <div class="reveal reveal-d5" style="padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
         <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
@@ -1109,7 +1344,6 @@
       </div>
     </div>
 
-    <!-- Bottom strip -->
     <div class="reveal" style="margin-top:72px;padding:28px 32px;border:1px solid rgba(124,58,237,.15);background:rgba(124,58,237,.04);border-radius:2px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
       <p class="font-display font-bold" style="font-size:16px;letter-spacing:-.01em;">Clarity in. Execution out. No chaos in between.</p>
       <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project"
@@ -1135,7 +1369,6 @@
       Not separate services — one system designed to move work from brief to live.
     </p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
-      <!-- Strategy -->
       <div class="svc-card reveal reveal-d1">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
           <div style="width:6px;height:6px;border-radius:50%;background:#A855F7;"></div>
@@ -1147,7 +1380,6 @@
           <li style="font-size:14px;color:rgba(238,238,245,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(124,58,237,.4);">—</span>Brand Positioning</li>
         </ul>
       </div>
-      <!-- Execution (tall card) -->
       <div class="svc-card reveal reveal-d2" style="grid-row:span 2;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
           <div style="width:6px;height:6px;border-radius:50%;background:#A855F7;"></div>
@@ -1163,7 +1395,6 @@
           <li style="font-size:14px;color:rgba(238,238,245,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(124,58,237,.4);">—</span>Adaptations</li>
         </ul>
       </div>
-      <!-- Growth -->
       <div class="svc-card reveal reveal-d3">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
           <div style="width:6px;height:6px;border-radius:50%;background:#A855F7;"></div>
@@ -1174,7 +1405,6 @@
           <li style="font-size:14px;color:rgba(238,238,245,.75);display:flex;align-items:center;gap:10px;"><span style="color:rgba(124,58,237,.4);">—</span>Reports &amp; Analytics</li>
         </ul>
       </div>
-      <!-- Branding -->
       <div class="svc-card reveal reveal-d4">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
           <div style="width:6px;height:6px;border-radius:50%;background:#A855F7;"></div>
@@ -1201,8 +1431,6 @@
     <p class="reveal" style="color:rgba(238,238,245,.45);font-size:16px;line-height:1.8;max-width:52ch;margin-bottom:72px;font-weight:300;">
       Built on work that had to be executed properly — not just sit in decks.
     </p>
-
-    <!-- Stat strip -->
     <div class="stat-strip reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:64px;">
       <div class="stat-item" style="padding:28px 20px;">
         <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;">Clear Briefs</div>
@@ -1221,8 +1449,6 @@
         <p style="color:rgba(238,238,245,.4);font-size:13px;margin-top:8px;line-height:1.7;">Everything delivered ready to go live, no rework.</p>
       </div>
     </div>
-
-    <!-- Experience cards -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
       <div class="reveal reveal-d1" style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;background:rgba(124,58,237,.02);transition:border-color .3s,transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.borderColor='rgba(124,58,237,.3)';this.style.transform='translateY(-4px)'"
@@ -1323,7 +1549,6 @@
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">The Person Behind It</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:64px;align-items:start;margin-top:20px;">
-      <!-- Photo -->
       <div class="reveal">
         <div class="founder-photo">
           <img src="founder.jpg" loading="lazy" alt="Saurabh Sohan Singh"
@@ -1331,7 +1556,6 @@
                onerror="this.style.display='none'">
         </div>
       </div>
-      <!-- Bio -->
       <div>
         <h2 class="reveal font-display font-extrabold" style="font-size:clamp(28px,3.5vw,48px);line-height:1.05;letter-spacing:-.028em;margin-bottom:6px;">
           Saurabh Sohan Singh
@@ -1351,7 +1575,6 @@
         <p class="reveal reveal-d3" style="color:rgba(238,238,245,.65);font-size:15px;line-height:1.85;font-weight:300;max-width:52ch;">
           SQUARGRAPH Studios exists to get work out — clearly, efficiently, and without the usual chaos.
         </p>
-        <!-- Social links -->
         <div class="reveal reveal-d4" style="display:flex;gap:10px;margin-top:40px;flex-wrap:wrap;">
           <a href="https://instagram.com/saurabhsohansingh" target="_blank" rel="noopener" class="social-link" title="Instagram">
             <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -1392,6 +1615,190 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════════════
+     CAREERS SECTION ← NEW
+══════════════════════════════════════════════════════════════════════ -->
+<section id="careers">
+  <div class="career-glow"></div>
+
+  <!-- Ambient animated SVG background for careers -->
+  <div class="flow-overlay">
+    <svg width="100%" height="100%" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="careerLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.08"/>
+          <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.03"/>
+        </linearGradient>
+      </defs>
+      <line x1="0" y1="0" x2="1200" y2="600" stroke="url(#careerLineGrad)" stroke-width="1"/>
+      <line x1="200" y1="0" x2="1200" y2="400" stroke="rgba(124,58,237,0.04)" stroke-width="1"/>
+      <circle cx="1100" cy="80" r="120" stroke="rgba(6,182,212,0.04)" stroke-width="1" fill="none"/>
+      <circle cx="1100" cy="80" r="60"  stroke="rgba(6,182,212,0.03)" stroke-width="1" fill="none"/>
+    </svg>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1;">
+
+    <!-- Header -->
+    <div class="reveal s-label">Work With Us</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:80px;align-items:start;">
+
+      <!-- Left: Messaging -->
+      <div>
+        <h2 class="reveal font-display font-extrabold" style="font-size:clamp(32px,4vw,58px);line-height:1.02;letter-spacing:-.03em;margin-bottom:24px;">
+          We don't post job openings.<br/>
+          <span style="color:#A855F7;">We find the right people.</span>
+        </h2>
+        <p class="reveal reveal-d1" style="color:rgba(238,238,245,.6);font-size:15px;line-height:1.85;font-weight:300;max-width:46ch;margin-bottom:20px;">
+          SQUARGRAPH runs lean, and every person who works with us matters. If you're good at what you do and want to work on real brand output — not filler — introduce yourself.
+        </p>
+        <p class="reveal reveal-d2" style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.8;max-width:44ch;margin-bottom:40px;">
+          We're always open to connecting with sharp strategists, designers, video editors, copywriters, and content creators. No formal openings needed.
+        </p>
+
+        <!-- Role tags -->
+        <div class="reveal reveal-d3" style="margin-bottom:32px;">
+          <p style="font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,238,245,.3);margin-bottom:16px;">Disciplines we look for</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <span class="role-tag"><span class="role-tag-dot"></span>Content Strategy</span>
+            <span class="role-tag"><span class="role-tag-dot"></span>Copywriting</span>
+            <span class="role-tag"><span class="role-tag-dot"></span>Video Editing</span>
+            <span class="role-tag"><span class="role-tag-dot"></span>Graphic Design</span>
+            <span class="role-tag"><span class="role-tag-dot"></span>Motion Graphics</span>
+            <span class="role-tag"><span class="role-tag-dot"></span>Social Media</span>
+            <span class="role-tag"><span class="role-tag-dot"></span>Brand Strategy</span>
+            <span class="role-tag"><span class="role-tag-dot"></span>Photography</span>
+          </div>
+        </div>
+
+        <!-- What we value -->
+        <div class="reveal reveal-d4">
+          <p style="font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,238,245,.3);margin-bottom:16px;">What matters to us</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;align-items:baseline;gap:10px;">
+              <span style="color:#A855F7;font-size:16px;flex-shrink:0;">—</span>
+              <p style="color:rgba(238,238,245,.6);font-size:14px;line-height:1.7;">You care about quality output, not just clocking hours</p>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:10px;">
+              <span style="color:#A855F7;font-size:16px;flex-shrink:0;">—</span>
+              <p style="color:rgba(238,238,245,.6);font-size:14px;line-height:1.7;">You can take a brief and run with it</p>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:10px;">
+              <span style="color:#A855F7;font-size:16px;flex-shrink:0;">—</span>
+              <p style="color:rgba(238,238,245,.6);font-size:14px;line-height:1.7;">You communicate clearly and meet deadlines</p>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:10px;">
+              <span style="color:#A855F7;font-size:16px;flex-shrink:0;">—</span>
+              <p style="color:rgba(238,238,245,.6);font-size:14px;line-height:1.7;">You have a portfolio — projects you're actually proud of</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="reveal reveal-d2">
+        <div class="careers-form-wrap">
+          <p class="font-display font-bold" style="font-size:18px;margin-bottom:6px;">Introduce yourself</p>
+          <p style="color:rgba(238,238,245,.4);font-size:13px;margin-bottom:28px;">Share your details and we'll be in touch when the right project comes up.</p>
+
+          <form id="careers-form" action="https://formspree.io/f/xzdykrjl" method="POST"
+                style="display:flex;flex-direction:column;gap:18px;">
+            <input type="hidden" name="_subject" value="New Talent Introduction — SQUARGRAPH Studios">
+
+            <div>
+              <label class="form-label">Your Name *</label>
+              <input type="text" name="name" required placeholder="Full name" class="form-input"/>
+            </div>
+
+            <div>
+              <label class="form-label">Email *</label>
+              <input type="email" name="email" required placeholder="name@example.com" class="form-input"/>
+            </div>
+
+            <div>
+              <label class="form-label">Phone (optional)</label>
+              <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX" class="form-input"/>
+            </div>
+
+            <div>
+              <label class="form-label">What do you do? *</label>
+              <select name="discipline" required class="form-input">
+                <option value="">Select your discipline</option>
+                <option>Content Strategy</option>
+                <option>Copywriting</option>
+                <option>Video Editing</option>
+                <option>Graphic / Visual Design</option>
+                <option>Motion Graphics</option>
+                <option>Social Media Management</option>
+                <option>Brand Strategy</option>
+                <option>Photography</option>
+                <option>Something else</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label">Years of experience *</label>
+              <select name="experience" required class="form-input">
+                <option value="">Select range</option>
+                <option>0–1 years (just starting)</option>
+                <option>1–3 years</option>
+                <option>3–5 years</option>
+                <option>5+ years</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label">Portfolio / Work link *</label>
+              <input type="url" name="portfolio" required placeholder="behance.net / drive.google.com / your site" class="form-input"/>
+            </div>
+
+            <div>
+              <label class="form-label">LinkedIn (optional)</label>
+              <input type="url" name="linkedin" placeholder="linkedin.com/in/yourname" class="form-input"/>
+            </div>
+
+            <div>
+              <label class="form-label">Tell us about yourself *</label>
+              <textarea name="intro" required placeholder="What kind of work do you do? What have you worked on? What are you best at?" class="form-input" style="min-height:110px;"></textarea>
+            </div>
+
+            <!-- File upload area (visual only — file upload needs server-side handling) -->
+            <div>
+              <label class="form-label">Resume / CV (optional — paste a Drive link above or describe here)</label>
+              <div class="file-upload-area" id="file-drop-zone">
+                <input type="file" name="resume" accept=".pdf,.doc,.docx" id="resume-file" onchange="updateFileLabel(this)">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(124,58,237,0.4)" stroke-width="1.5" stroke-linecap="round" style="margin:0 auto 10px;display:block;">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <p id="file-label" style="font-size:13px;color:rgba(238,238,245,.35);">Drop your resume here or click to browse</p>
+                <p style="font-size:11px;color:rgba(238,238,245,.2);margin-top:6px;">PDF, DOC, DOCX · Max 5MB</p>
+              </div>
+            </div>
+
+            <div>
+              <label class="form-label">Available for</label>
+              <select name="availability" class="form-input">
+                <option value="">Select preference</option>
+                <option>Project-based / Freelance</option>
+                <option>Part-time collaboration</option>
+                <option>Full-time (when available)</option>
+                <option>Open to anything</option>
+              </select>
+            </div>
+
+            <button type="submit" id="careers-submit-btn"
+                    style="background:linear-gradient(135deg,#7C3AED,#A855F7);border:none;color:#fff;padding:18px 32px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:transform .25s,opacity .25s,box-shadow .25s;cursor:pointer;margin-top:4px;"
+                    onmouseover="if(!this.disabled){this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 28px rgba(124,58,237,.35)'}"
+                    onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+              Submit Introduction →
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
      CTA + CONTACT
 ══════════════════════════════════════════════════════════════════════ -->
 <section id="contact" style="padding:120px 5vw;position:relative;overflow:hidden;">
@@ -1408,11 +1815,9 @@
       <path d="M200,120 L200,200 L120,200" stroke="rgba(124,58,237,0.05)" stroke-width="1" fill="none"/>
     </svg>
   </div>
-
   <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1;">
     <div class="reveal s-label">Let's Work</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:80px;align-items:start;">
-      <!-- Left -->
       <div>
         <h2 class="reveal font-display font-extrabold" style="font-size:clamp(36px,5vw,72px);line-height:.97;letter-spacing:-.035em;margin-bottom:32px;">
           Ready to move from<br/>
@@ -1431,8 +1836,6 @@
           </a>
         </div>
       </div>
-
-      <!-- Right: Form -->
       <div class="reveal reveal-d2">
         <form id="contact-form" action="https://formspree.io/f/xzdykrjl" method="POST"
               style="display:flex;flex-direction:column;gap:18px;">
@@ -1593,282 +1996,404 @@
   let cursorActive = false;
 
   document.addEventListener('mousemove', function (e) {
-    mx = e.clientX;
-    my = e.clientY;
+    mx = e.clientX; my = e.clientY;
     cursor.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
-    if (!cursorActive) {
-      cursorActive = true;
-      cursor.classList.add('active');
-      ring.classList.add('active');
-    }
+    if (!cursorActive) { cursorActive = true; cursor.classList.add('active'); ring.classList.add('active'); }
   });
-
   (function animateRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
     ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
     requestAnimationFrame(animateRing);
   })();
 
-  /* ── Nav scroll ────────────────────────────────────────────────── */
+  /* ── Nav scroll ─────────────────────────────────────────────────── */
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function () {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
-  /* ── Mobile menu ───────────────────────────────────────────────── */
+  /* ── Mobile menu ─────────────────────────────────────────────────── */
   var mobMenu = document.getElementById('mob-menu');
   document.getElementById('mob-toggle').addEventListener('click', function () {
-    mobMenu.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    mobMenu.style.display = 'flex'; document.body.style.overflow = 'hidden';
   });
-  window.closeMob = function () {
-    mobMenu.style.display = 'none';
-    document.body.style.overflow = '';
-  };
+  window.closeMob = function () { mobMenu.style.display = 'none'; document.body.style.overflow = ''; };
 
-  /* ── Scroll reveal ─────────────────────────────────────────────── */
+  /* ── Scroll reveal ───────────────────────────────────────────────── */
   var revealObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
 
-  document.querySelectorAll('.reveal').forEach(function (el) {
-    revealObserver.observe(el);
-  });
+  /* ══════════════════════════════════════════════════════════════════
+     GLOBAL PARTICLE SYSTEM — the real flowing animation
+  ══════════════════════════════════════════════════════════════════ */
+  (function initParticles() {
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [], connections = [];
+    const PARTICLE_COUNT = 55;
+    const CONNECTION_DIST = 160;
+    const COLORS = ['rgba(124,58,237,', 'rgba(168,85,247,', 'rgba(6,182,212,'];
 
-  /* ── Contact form ──────────────────────────────────────────────── */
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function Particle() {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.vx = (Math.random() - 0.5) * 0.35;
+      this.vy = (Math.random() - 0.5) * 0.35;
+      this.r  = Math.random() * 1.8 + 0.6;
+      this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      this.alpha = Math.random() * 0.5 + 0.15;
+      this.pulse = Math.random() * Math.PI * 2;
+      this.pulseSpeed = 0.008 + Math.random() * 0.012;
+    }
+    Particle.prototype.update = function() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.pulse += this.pulseSpeed;
+      if (this.x < 0) this.x = W;
+      if (this.x > W) this.x = 0;
+      if (this.y < 0) this.y = H;
+      if (this.y > H) this.y = 0;
+    };
+
+    for (var i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+    // Flowing signal dots that travel along connection lines
+    var signals = [];
+    function Signal(p1, p2) {
+      this.p1 = p1; this.p2 = p2;
+      this.t = 0;
+      this.speed = 0.003 + Math.random() * 0.004;
+      this.color = p1.color;
+      this.size = 1.5 + Math.random() * 1.5;
+    }
+    Signal.prototype.update = function() { this.t += this.speed; };
+    Signal.prototype.isDone  = function() { return this.t >= 1; };
+    Signal.prototype.draw = function() {
+      var x = this.p1.x + (this.p2.x - this.p1.x) * this.t;
+      var y = this.p1.y + (this.p2.y - this.p1.y) * this.t;
+      ctx.beginPath();
+      ctx.arc(x, y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color + '0.9)';
+      ctx.fill();
+      // trail
+      ctx.beginPath();
+      var tx = this.p1.x + (this.p2.x - this.p1.x) * Math.max(0, this.t - 0.08);
+      var ty = this.p1.y + (this.p2.y - this.p1.y) * Math.max(0, this.t - 0.08);
+      ctx.moveTo(tx, ty);
+      ctx.lineTo(x, y);
+      ctx.strokeStyle = this.color + '0.25)';
+      ctx.lineWidth = this.size * 0.8;
+      ctx.stroke();
+    };
+
+    var signalTimer = 0;
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      // Update & draw particles
+      particles.forEach(function(p) { p.update(); });
+
+      // Draw connections
+      var connectedPairs = [];
+      for (var i = 0; i < particles.length; i++) {
+        for (var j = i + 1; j < particles.length; j++) {
+          var dx = particles[i].x - particles[j].x;
+          var dy = particles[i].y - particles[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONNECTION_DIST) {
+            var opacity = (1 - dist / CONNECTION_DIST) * 0.12;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = 'rgba(124,58,237,' + opacity + ')';
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+            if (dist < CONNECTION_DIST * 0.6) connectedPairs.push([i, j]);
+          }
+        }
+      }
+
+      // Draw particles
+      particles.forEach(function(p) {
+        var a = p.alpha + Math.sin(p.pulse) * 0.1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + a + ')';
+        ctx.fill();
+      });
+
+      // Emit signals
+      signalTimer++;
+      if (signalTimer % 28 === 0 && connectedPairs.length > 0) {
+        var pair = connectedPairs[Math.floor(Math.random() * connectedPairs.length)];
+        signals.push(new Signal(particles[pair[0]], particles[pair[1]]));
+      }
+
+      // Update & draw signals
+      signals = signals.filter(function(s) { return !s.isDone(); });
+      signals.forEach(function(s) { s.update(); s.draw(); });
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  /* ══════════════════════════════════════════════════════════════════
+     NETWORK CANVAS — workflow visualization in the showcase section
+  ══════════════════════════════════════════════════════════════════ */
+  (function initNetwork() {
+    var canvas = document.getElementById('network-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var steps = ['Brief', 'Strategy', 'Content', 'Review', 'Live'];
+    var t = 0;
+    var signalT = 0;
+
+    function draw() {
+      var W = canvas.width, H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      var nodeCount = steps.length;
+      var nodeY = H / 2;
+      var padding = W * 0.1;
+      var spacing = (W - padding * 2) / (nodeCount - 1);
+
+      // Draw connecting lines first
+      for (var i = 0; i < nodeCount - 1; i++) {
+        var x1 = padding + i * spacing;
+        var x2 = padding + (i + 1) * spacing;
+        ctx.beginPath();
+        ctx.moveTo(x1, nodeY);
+        ctx.lineTo(x2, nodeY);
+        ctx.strokeStyle = 'rgba(124,58,237,0.15)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      // Animated signal ball traveling across the full path
+      var totalPath = (nodeCount - 1) * spacing;
+      var sigX = padding + (signalT % 1) * totalPath;
+      // glow trail
+      var grad = ctx.createRadialGradient(sigX, nodeY, 0, sigX, nodeY, 20);
+      grad.addColorStop(0, 'rgba(168,85,247,0.3)');
+      grad.addColorStop(1, 'rgba(168,85,247,0)');
+      ctx.beginPath();
+      ctx.arc(sigX, nodeY, 20, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+      // signal dot
+      ctx.beginPath();
+      ctx.arc(sigX, nodeY, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#A855F7';
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = '#A855F7';
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Draw nodes
+      for (var i = 0; i < nodeCount; i++) {
+        var x = padding + i * spacing;
+        var active = (signalT % 1) >= (i / (nodeCount - 1));
+
+        // Outer ring
+        ctx.beginPath();
+        ctx.arc(x, nodeY, 18, 0, Math.PI * 2);
+        ctx.strokeStyle = active ? 'rgba(168,85,247,0.4)' : 'rgba(124,58,237,0.12)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Inner circle
+        ctx.beginPath();
+        ctx.arc(x, nodeY, 10, 0, Math.PI * 2);
+        ctx.fillStyle = active ? 'rgba(124,58,237,0.2)' : 'rgba(124,58,237,0.05)';
+        ctx.fill();
+        ctx.strokeStyle = active ? 'rgba(168,85,247,0.5)' : 'rgba(124,58,237,0.15)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Pulsing center dot
+        var pulse = 0.5 + 0.5 * Math.sin(t * 2 + i);
+        ctx.beginPath();
+        ctx.arc(x, nodeY, 3 + (active ? pulse * 2 : 0), 0, Math.PI * 2);
+        ctx.fillStyle = active ? 'rgba(168,85,247,' + (0.6 + pulse * 0.4) + ')' : 'rgba(124,58,237,0.2)';
+        ctx.fill();
+
+        // Label
+        ctx.font = '500 11px Outfit, sans-serif';
+        ctx.fillStyle = active ? 'rgba(238,238,245,0.7)' : 'rgba(238,238,245,0.25)';
+        ctx.textAlign = 'center';
+        ctx.fillText(steps[i], x, nodeY + 32);
+      }
+
+      t += 0.018;
+      signalT += 0.0045;
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  /* ── File upload label ───────────────────────────────────────────── */
+  window.updateFileLabel = function(input) {
+    var label = document.getElementById('file-label');
+    if (input.files && input.files[0]) {
+      label.textContent = '✓ ' + input.files[0].name;
+      label.style.color = '#A855F7';
+    }
+  };
+
+  /* ── Contact form ─────────────────────────────────────────────────── */
   var contactForm = document.getElementById('contact-form');
   var submitBtn   = document.getElementById('form-submit-btn');
   if (contactForm) {
     contactForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       var originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Sending…';
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '.7';
-
+      submitBtn.textContent = 'Sending…'; submitBtn.disabled = true; submitBtn.style.opacity = '.7';
       try {
-        var res = await fetch(contactForm.action, {
-          method: 'POST',
-          body: new FormData(contactForm),
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          submitBtn.textContent = '✓ Brief received — we\'ll be in touch';
-          submitBtn.style.background = 'rgba(124,58,237,.5)';
-          contactForm.reset();
-        } else {
-          submitBtn.textContent = 'Something went wrong — try WhatsApp';
-          submitBtn.disabled = false;
-          submitBtn.style.opacity = '1';
-        }
-      } catch (_) {
-        submitBtn.textContent = 'Network error — try WhatsApp';
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-      }
-
-      setTimeout(function () {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-        submitBtn.style.background = '#A855F7';
-      }, 6000);
+        var res = await fetch(contactForm.action, { method: 'POST', body: new FormData(contactForm), headers: { 'Accept': 'application/json' } });
+        if (res.ok) { submitBtn.textContent = '✓ Brief received — we\'ll be in touch'; submitBtn.style.background = 'rgba(124,58,237,.5)'; contactForm.reset(); }
+        else { submitBtn.textContent = 'Something went wrong — try WhatsApp'; submitBtn.disabled = false; submitBtn.style.opacity = '1'; }
+      } catch (_) { submitBtn.textContent = 'Network error — try WhatsApp'; submitBtn.disabled = false; submitBtn.style.opacity = '1'; }
+      setTimeout(function () { submitBtn.textContent = originalText; submitBtn.disabled = false; submitBtn.style.opacity = '1'; submitBtn.style.background = '#A855F7'; }, 6000);
     });
   }
 
-  /* ════════════════════════════════════════════════════════════════
-     CHATBOT — fully self-contained, clean async flow
-  ════════════════════════════════════════════════════════════════ */
+  /* ── Careers form ─────────────────────────────────────────────────── */
+  var careersForm = document.getElementById('careers-form');
+  var careersBtn  = document.getElementById('careers-submit-btn');
+  if (careersForm) {
+    careersForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var originalText = careersBtn.textContent;
+      careersBtn.textContent = 'Sending…'; careersBtn.disabled = true; careersBtn.style.opacity = '.7';
+      try {
+        var res = await fetch(careersForm.action, { method: 'POST', body: new FormData(careersForm), headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          careersBtn.textContent = '✓ Introduction received — we\'ll reach out when there\'s a fit';
+          careersBtn.style.background = 'rgba(6,182,212,.4)';
+          careersForm.reset();
+          document.getElementById('file-label').textContent = 'Drop your resume here or click to browse';
+          document.getElementById('file-label').style.color = 'rgba(238,238,245,.35)';
+        } else { careersBtn.textContent = 'Something went wrong — try emailing us'; careersBtn.disabled = false; careersBtn.style.opacity = '1'; }
+      } catch (_) { careersBtn.textContent = 'Network error'; careersBtn.disabled = false; careersBtn.style.opacity = '1'; }
+      setTimeout(function () { careersBtn.textContent = originalText; careersBtn.disabled = false; careersBtn.style.opacity = '1'; careersBtn.style.background = ''; }, 8000);
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════════════
+     CHATBOT
+  ══════════════════════════════════════════════════════════════════ */
   var chatToggleBtn = document.getElementById('chat-toggle');
   var chatPanel     = document.getElementById('chat-panel');
   var chatMessages  = document.getElementById('chat-messages');
   var briefInputEl  = document.getElementById('chat-brief-input');
   var chatTextInput = document.getElementById('chat-text-input');
   var chatSendBtn   = document.getElementById('chat-send-btn');
+  var chatOpen = false, chatStarted = false;
 
-  var chatOpen    = false;
-  var chatStarted = false;
-
-  /* Toggle open/close */
   chatToggleBtn.addEventListener('click', function () {
     chatOpen = !chatOpen;
     chatToggleBtn.classList.toggle('open', chatOpen);
     chatPanel.classList.toggle('open', chatOpen);
-    if (chatOpen && !chatStarted) {
-      chatStarted = true;
-      setTimeout(startChat, 350);
-    }
+    if (chatOpen && !chatStarted) { chatStarted = true; setTimeout(startChat, 350); }
   });
 
-  /* Scroll messages to bottom */
-  function scrollChat() {
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
-
-  /* Add a single message bubble */
+  function scrollChat() { chatMessages.scrollTop = chatMessages.scrollHeight; }
   function addMsg(text, type) {
-    var msg    = document.createElement('div');
-    msg.className = 'msg ' + (type || 'bot');
-    var bubble = document.createElement('div');
-    bubble.className = 'msg-bubble';
-    bubble.textContent = text;
-    msg.appendChild(bubble);
-    chatMessages.appendChild(msg);
-    scrollChat();
+    var msg = document.createElement('div'); msg.className = 'msg ' + (type || 'bot');
+    var bubble = document.createElement('div'); bubble.className = 'msg-bubble'; bubble.textContent = text;
+    msg.appendChild(bubble); chatMessages.appendChild(msg); scrollChat();
   }
-
-  /* Show typing indicator, then replace with real message */
   function botReply(text, delay) {
     return new Promise(function (resolve) {
-      var typingRow = document.createElement('div');
-      typingRow.className = 'msg bot';
-      typingRow.innerHTML =
-        '<div class="typing-bubble">' +
-          '<div class="typing-dot"></div>' +
-          '<div class="typing-dot"></div>' +
-          '<div class="typing-dot"></div>' +
-        '</div>';
-      chatMessages.appendChild(typingRow);
-      scrollChat();
-
-      setTimeout(function () {
-        if (typingRow.parentNode) {
-          chatMessages.removeChild(typingRow);
-        }
-        addMsg(text, 'bot');
-        resolve();
-      }, delay || 1000);
+      var typingRow = document.createElement('div'); typingRow.className = 'msg bot';
+      typingRow.innerHTML = '<div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+      chatMessages.appendChild(typingRow); scrollChat();
+      setTimeout(function () { if (typingRow.parentNode) chatMessages.removeChild(typingRow); addMsg(text, 'bot'); resolve(); }, delay || 1000);
     });
   }
-
-  /* Render option buttons; returns a Promise that resolves with the chosen value */
   function showOptions(options) {
     return new Promise(function (resolve) {
-      var wrapper = document.createElement('div');
-      wrapper.className = 'chat-options';
-
+      var wrapper = document.createElement('div'); wrapper.className = 'chat-options';
       options.forEach(function (opt) {
-        var btn = document.createElement('button');
-        btn.className = 'chat-option-btn';
-        btn.textContent = opt.label;
+        var btn = document.createElement('button'); btn.className = 'chat-option-btn'; btn.textContent = opt.label;
         btn.addEventListener('click', function () {
-          /* Disable all buttons in this group */
-          wrapper.querySelectorAll('.chat-option-btn').forEach(function (b) {
-            b.disabled = true;
-          });
-          /* Echo user's choice */
-          addMsg(opt.label, 'user');
-          resolve(opt.value);
+          wrapper.querySelectorAll('.chat-option-btn').forEach(function (b) { b.disabled = true; });
+          addMsg(opt.label, 'user'); resolve(opt.value);
         });
         wrapper.appendChild(btn);
       });
-
-      chatMessages.appendChild(wrapper);
-      scrollChat();
+      chatMessages.appendChild(wrapper); scrollChat();
     });
   }
-
-  /* Main conversation flow */
   async function startChat() {
     await botReply("Hey — what are you trying to build?", 800);
-
     var service = await showOptions([
       { label: "Launch campaign",  value: "campaign" },
       { label: "Social media",     value: "social"   },
       { label: "Branding",         value: "branding" },
       { label: "Something else",   value: "other"    }
     ]);
-
-    var serviceReplies = {
-      campaign: "Got it — campaign launches are our bread and butter. Let's make sure everything ships on time.",
-      social:   "Consistent social output requires a system, not just content. We can build that for you.",
-      branding: "Brand identity done right sets everything else up. Let's talk scope.",
-      other:    "No problem — tell us what's on your mind and we'll figure out how to help."
-    };
+    var serviceReplies = { campaign: "Got it — campaign launches are our bread and butter. Let's make sure everything ships on time.", social: "Consistent social output requires a system, not just content. We can build that for you.", branding: "Brand identity done right sets everything else up. Let's talk scope.", other: "No problem — tell us what's on your mind and we'll figure out how to help." };
     await botReply(serviceReplies[service], 900);
-
     await botReply("What's your rough budget range?", 700);
-
     var budget = await showOptions([
-      { label: "₹50K – ₹1L",  value: "low"  },
-      { label: "₹1L – ₹3L",   value: "mid"  },
-      { label: "₹3L – ₹5L",   value: "high" },
+      { label: "₹50K – ₹1L",  value: "low"     },
+      { label: "₹1L – ₹3L",   value: "mid"     },
+      { label: "₹3L – ₹5L",   value: "high"    },
       { label: "₹5L+",        value: "premium" }
     ]);
-
-    var budgetReplies = {
-      low:     "Good to know. Let's find a scope that works within that.",
-      mid:     "That's a solid range to build a meaningful campaign.",
-      high:    "Great — we can do a lot with that. Let's talk specifics.",
-      premium: "Excellent. Full-service execution, no compromises."
-    };
+    var budgetReplies = { low: "Good to know. Let's find a scope that works within that.", mid: "That's a solid range to build a meaningful campaign.", high: "Great — we can do a lot with that. Let's talk specifics.", premium: "Excellent. Full-service execution, no compromises." };
     await botReply(budgetReplies[budget], 900);
-
     await botReply("How would you like to take this forward?", 700);
-
     var next = await showOptions([
       { label: "Continue on WhatsApp", value: "wa"    },
       { label: "Type a quick brief",   value: "brief" }
     ]);
-
     if (next === 'wa') {
       await botReply("Perfect — we'll pick it up there. See you on WhatsApp!", 700);
-      setTimeout(function () {
-        window.open('https://wa.me/918588897488', '_blank');
-      }, 600);
+      setTimeout(function () { window.open('https://wa.me/918588897488', '_blank'); }, 600);
     } else {
       await botReply("Go ahead — describe your project in a few lines.", 700);
       briefInputEl.classList.add('visible');
       chatTextInput.focus();
     }
   }
-
-  /* Handle brief text submission */
   async function submitBrief() {
     var text = chatTextInput.value.trim();
     if (!text) return;
-
-    chatTextInput.value = '';
-    briefInputEl.classList.remove('visible');
-    addMsg(text, 'user');
-
-    /* Show typing */
-    var typingRow = document.createElement('div');
-    typingRow.className = 'msg bot';
-    typingRow.innerHTML =
-      '<div class="typing-bubble">' +
-        '<div class="typing-dot"></div>' +
-        '<div class="typing-dot"></div>' +
-        '<div class="typing-dot"></div>' +
-      '</div>';
-    chatMessages.appendChild(typingRow);
-    scrollChat();
-
+    chatTextInput.value = ''; briefInputEl.classList.remove('visible'); addMsg(text, 'user');
+    var typingRow = document.createElement('div'); typingRow.className = 'msg bot';
+    typingRow.innerHTML = '<div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+    chatMessages.appendChild(typingRow); scrollChat();
     setTimeout(function () {
       if (typingRow.parentNode) chatMessages.removeChild(typingRow);
       addMsg("Got it — this sounds interesting. Let's take it forward on WhatsApp.", 'bot');
-      setTimeout(function () {
-        window.open(
-          'https://wa.me/918588897488?text=' + encodeURIComponent(text),
-          '_blank'
-        );
-      }, 800);
+      setTimeout(function () { window.open('https://wa.me/918588897488?text=' + encodeURIComponent(text), '_blank'); }, 800);
     }, 1200);
   }
-
   chatSendBtn.addEventListener('click', submitBrief);
-  chatTextInput.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      submitBrief();
-    }
-  });
+  chatTextInput.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitBrief(); } });
 
 })();
 </script>
