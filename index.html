@@ -575,6 +575,10 @@
       #chat-panel { width: calc(100vw - 32px) !important; right: 16px !important; bottom: 80px !important; max-height: 80vh !important; }
       .aurora-blob { filter: blur(60px); }
     }
+    /* ── Work grid stacks on mobile ──────────────────────────── */
+      .work-img-card { grid-column: 1 / -1 !important; aspect-ratio: 16/9; }
+      .work-img-overlay { padding: 16px; }
+      .work-img-title { font-size: 14px; }
 
     /* ── Chatbot ─────────────────────────────────────────────── */
     #chat-toggle {
@@ -1358,7 +1362,7 @@
           </div>
           <div>
             <label class="form-label">Contact Number</label>
-            <input type="mobile number" name="mobile number" required placeholder="+91 XXXXX XXXXX" class="form-input" />
+            <input type="tel" name="phone" required placeholder="+91 XXXXX XXXXX" class="form-input" />
           </div>
           <div>
             <label class="form-label">Work Email</label>
@@ -1646,34 +1650,6 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
-
-  /* ── File upload ─────────────────────────────────────────────── */
-  var fileInput   = document.getElementById('resume-input');
-  var fileLabel   = document.getElementById('file-upload-label');
-  var fileArea    = document.getElementById('file-upload-area');
-
-  if (fileInput) {
-    fileInput.addEventListener('change', function() {
-      if (this.files && this.files[0]) {
-        fileLabel.innerHTML = '<p style="color:#A855F7;font-size:13px;font-family:\'Space Grotesk\',sans-serif;">✓ ' + this.files[0].name + '</p>';
-      }
-    });
-    fileArea.addEventListener('dragover', function(e) {
-      e.preventDefault();
-      fileArea.classList.add('drag-over');
-    });
-    fileArea.addEventListener('dragleave', function() {
-      fileArea.classList.remove('drag-over');
-    });
-    fileArea.addEventListener('drop', function(e) {
-      e.preventDefault();
-      fileArea.classList.remove('drag-over');
-      if (e.dataTransfer.files[0]) {
-        fileInput.files = e.dataTransfer.files;
-        fileLabel.innerHTML = '<p style="color:#A855F7;font-size:13px;font-family:\'Space Grotesk\',sans-serif;">✓ ' + e.dataTransfer.files[0].name + '</p>';
-      }
-    });
-  }
 
   /* ── Contact form ────────────────────────────────────────────── */
   var contactForm = document.getElementById('contact-form');
