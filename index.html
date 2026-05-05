@@ -573,7 +573,57 @@
       transition: border-color .2s, color .2s, background .2s;
     }
     .social-link:hover { border-color: #7C3AED; color: #A855F7; background: rgba(124,58,237,.08); }
-
+    /* ── Client logo strip ──────────────────────────────────── */
+    .client-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px 60px;
+      padding: 60px 5vw;
+      border-top: 1px solid rgba(255,255,255,.055);
+      border-bottom: 1px solid rgba(255,255,255,.055);
+    }
+    .client-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: clamp(16px, 2.5vw, 24px);
+      letter-spacing: 0.05em;
+      color: rgba(238,238,245,.35);
+      transition: color .25s, text-shadow .25s, transform .25s;
+      cursor: default;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .client-logo:hover {
+      color: #A855F7;
+      text-shadow: 0 0 12px rgba(168,85,247,.4);
+      transform: translateY(-2px);
+    }
+    .client-strip-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: #A855F7;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0;
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+    .client-strip-label::before,
+    .client-strip-label::after {
+      content: '';
+      display: block;
+      width: 26px; height: 1px;
+      background: linear-gradient(90deg, #7C3AED, #A855F7);
+    }
+    .client-strip-label::after {
+      background: linear-gradient(90deg, #A855F7, #7C3AED);
+    }
     /* ── Animated ring ornament ──────────────────────────────── */
     .spin-ring {
       animation: spinRing 20s linear infinite;
@@ -767,6 +817,8 @@
       vertical-align: middle;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+        .process-detail[open] .toggle-icon { transform: rotate(45deg); }
+    .process-detail summary::marker { display:none; }
   </style>
 </head>
 <body>
@@ -968,6 +1020,7 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Start a project →
     </a>
+        <p style="color:rgba(238,238,245,.35);font-size:11px;margin-top:6px;margin-left:8px;width:100%;">No pitch decks. Just a conversation.</p>
     <a href="#process"
        style="display:inline-flex;align-items:center;gap:8px;color:rgba(238,238,245,.6);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;font-family:'Outfit',sans-serif;font-weight:600;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:4px;transition:color .25s,border-color .25s;"
        onmouseover="this.style.color='#EEEEF5';this.style.borderColor='rgba(255,255,255,.4)'"
@@ -1104,61 +1157,52 @@
         Built to run the same way every time — clear, structured, and dependable.
       </p>
     </div>
-    <div class="process-track" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;">
-      <div class="reveal reveal-d1" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
-             onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'"
-             onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
-        <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">01</div>
-        <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Understand</h3>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">We dig into the brand, brief, audience, and objectives before anything else. No guesswork.</p>
-      </div>
-      <div class="reveal reveal-d2" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
-             onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'"
-             onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
-        <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">02</div>
-        <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Plan</h3>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Campaign architecture, content calendar, delivery milestones. Everything mapped before anything starts.</p>
-      </div>
-      <div class="reveal reveal-d3" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
-             onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'"
-             onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
-        <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">03</div>
-        <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Brief &amp; Coordinate</h3>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Clear briefs to every contributor. No ambiguity. No 11th-hour surprises. Everyone aligned from day one.</p>
-      </div>
-      <div class="reveal reveal-d4" style="padding-right:28px;padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
-             onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'"
-             onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
-        <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">04</div>
-        <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Execute</h3>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Work done, checked, and delivered. High-quality, on-brand, on-deadline. Without compromise.</p>
-      </div>
-      <div class="reveal reveal-d5" style="padding-bottom:16px;transition:transform .3s cubic-bezier(.23,1,.32,1);"
-           onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="width:12px;height:12px;border-radius:50%;border:1px solid #A855F7;background:#080616;margin-bottom:28px;position:relative;z-index:1;transition:background .3s,box-shadow .3s;"
-             onmouseover="this.style.background='#A855F7';this.style.boxShadow='0 0 12px rgba(124,58,237,.5)'"
-             onmouseout="this.style.background='#080616';this.style.boxShadow='none'"></div>
-        <div class="font-display" style="font-size:10px;color:#A855F7;letter-spacing:.12em;margin-bottom:14px;">05</div>
-        <h3 class="font-display font-bold" style="font-size:20px;margin-bottom:10px;">Review</h3>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;line-height:1.75;font-weight:300;">Performance reviewed. Learnings applied. Every cycle improves the next.</p>
-      </div>
-    </div>
-    <div class="reveal" style="margin-top:72px;padding:28px 32px;border:1px solid rgba(124,58,237,.15);background:rgba(124,58,237,.04);border-radius:2px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
-      <p class="font-display font-bold" style="font-size:16px;letter-spacing:-.01em;">Clarity in. Execution out. No chaos in between.</p>
-      <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project"
-         target="_blank" rel="noopener"
-         style="color:#A855F7;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;transition:opacity .2s;white-space:nowrap;"
-         onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
-        Start the conversation →
-      </a>
+        <div class="process-track-interactive" style="max-width:1000px;margin:0 auto;">
+      <!-- Step 1 -->
+      <details class="process-detail reveal reveal-d1" style="border-top:1px solid rgba(255,255,255,.065);padding:20px 0;cursor:pointer;">
+        <summary style="list-style:none;display:flex;align-items:center;gap:16px;font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:#A855F7;">
+          <span style="font-size:10px;letter-spacing:.12em;min-width:30px;">01</span>
+          <span style="flex:1;">Understand</span>
+          <span class="toggle-icon" style="font-size:14px;transition:transform .3s;">+</span>
+        </summary>
+        <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.75;margin-top:12px;padding-left:46px;">We dig into the brand, brief, audience, and objectives before anything else. No guesswork.</p>
+      </details>
+      <!-- Step 2 -->
+      <details class="process-detail reveal reveal-d2" style="border-top:1px solid rgba(255,255,255,.065);padding:20px 0;cursor:pointer;">
+        <summary style="list-style:none;display:flex;align-items:center;gap:16px;font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:#A855F7;">
+          <span style="font-size:10px;letter-spacing:.12em;min-width:30px;">02</span>
+          <span style="flex:1;">Plan</span>
+          <span class="toggle-icon" style="font-size:14px;transition:transform .3s;">+</span>
+        </summary>
+        <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.75;margin-top:12px;padding-left:46px;">Campaign architecture, content calendar, delivery milestones. Everything mapped before anything starts.</p>
+      </details>
+      <!-- Step 3 -->
+      <details class="process-detail reveal reveal-d3" style="border-top:1px solid rgba(255,255,255,.065);padding:20px 0;cursor:pointer;">
+        <summary style="list-style:none;display:flex;align-items:center;gap:16px;font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:#A855F7;">
+          <span style="font-size:10px;letter-spacing:.12em;min-width:30px;">03</span>
+          <span style="flex:1;">Brief &amp; Coordinate</span>
+          <span class="toggle-icon" style="font-size:14px;transition:transform .3s;">+</span>
+        </summary>
+        <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.75;margin-top:12px;padding-left:46px;">Clear briefs to every contributor. No ambiguity. No 11th-hour surprises. Everyone aligned from day one.</p>
+      </details>
+      <!-- Step 4 -->
+      <details class="process-detail reveal reveal-d4" style="border-top:1px solid rgba(255,255,255,.065);padding:20px 0;cursor:pointer;">
+        <summary style="list-style:none;display:flex;align-items:center;gap:16px;font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:#A855F7;">
+          <span style="font-size:10px;letter-spacing:.12em;min-width:30px;">04</span>
+          <span style="flex:1;">Execute</span>
+          <span class="toggle-icon" style="font-size:14px;transition:transform .3s;">+</span>
+        </summary>
+        <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.75;margin-top:12px;padding-left:46px;">Work done, checked, and delivered. High-quality, on-brand, on-deadline. Without compromise.</p>
+      </details>
+      <!-- Step 5 -->
+      <details class="process-detail reveal reveal-d5" style="border-top:1px solid rgba(255,255,255,.065);border-bottom:1px solid rgba(255,255,255,.065);padding:20px 0;cursor:pointer;">
+        <summary style="list-style:none;display:flex;align-items:center;gap:16px;font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:#A855F7;">
+          <span style="font-size:10px;letter-spacing:.12em;min-width:30px;">05</span>
+          <span style="flex:1;">Review</span>
+          <span class="toggle-icon" style="font-size:14px;transition:transform .3s;">+</span>
+        </summary>
+        <p style="color:rgba(238,238,245,.45);font-size:14px;line-height:1.75;margin-top:12px;padding-left:46px;">Performance reviewed. Learnings applied. Every cycle improves the next.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -1459,7 +1503,21 @@
     </div>
   </div>
 </section>
-
+<!-- Brand Experience Strip -->
+<div class="client-strip reveal" style="position:relative;">
+  <div class="client-strip-label">Our team has worked with</div>
+  <span class="client-logo">HYUNDAI</span>
+  <span class="client-logo" style="font-weight:600;">BYD</span>
+  <span class="client-logo">KIA</span>
+  <span class="client-logo" style="font-weight:800;">MAHINDRA</span>
+  <span class="client-logo" style="font-weight:500;font-style:italic;">imagesbazaar</span>
+  <span class="client-logo">TATA</span>
+  <span class="client-logo" style="font-weight:600;">MG</span>
+  <!-- Small footnote that appears on hover or in a subtle tooltip -->
+  <div style="width:100%;text-align:center;margin-top:12px;">
+    <p style="color:rgba(238,238,245,.25);font-size:11px;font-style:italic;margin:0;">Through previous roles, not direct SQUARGRAPH clients.</p>
+  </div>
+</div>
 <!-- ══════════════════════════════════════════════════════════════════
      WHAT YOU CAN EXPECT
 ══════════════════════════════════════════════════════════════════════ -->
@@ -1532,11 +1590,11 @@
     <div class="reveal s-label">The Person Behind It</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:64px;align-items:start;margin-top:20px;">
       <div class="reveal">
-        <div class="founder-photo">
-          <img src="founder.jpg" loading="lazy" alt="Saurabh Sohan Singh"
-               style="width:100%;height:100%;object-fit:cover;"
-               onerror="this.style.display='none'">
-        </div>
+        <div class="founder-photo" style="overflow:hidden;">
+  <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;">
+    <source src="founder-intro.mp4" type="video/mp4">
+  </video>
+</div>
       </div>
       <div>
         <h2 class="reveal font-display font-extrabold" style="font-size:clamp(28px,3.5vw,48px);line-height:1.05;letter-spacing:-.028em;margin-bottom:6px;">
@@ -1590,6 +1648,17 @@
     </div>
   </div>
 </section>
+  <!-- Social Feed Placeholder -->
+<section style="padding:100px 5vw;position:relative;z-index:2;background:#080616;border-top:1px solid rgba(255,255,255,.055);">
+  <div style="max-width:800px;margin:0 auto;text-align:center;">
+    <div class="reveal s-label">We walk the talk</div>
+    <h2 class="reveal font-display font-extrabold" style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;letter-spacing:-.02em;">
+      Latest<span style="color:#A855F7;"> work & insights</span>
+    </h2>
+    <!-- Replace this line with your Instagram/LinkedIn embed code -->
+    <div style="margin-top:20px;color:rgba(238,238,245,.3);font-size:14px;">[Your social feed will appear here]</div>
+  </div>
+</section>
 <!-- ══════════════════════════════════════════════════════════════════
      FAQ
 ══════════════════════════════════════════════════════════════════════ -->
@@ -1618,6 +1687,32 @@
     </div>
   </div>
 </section>
+  <!-- Resources / Free Tools -->
+<section style="padding:100px 5vw;position:relative;z-index:2;background:#080616;border-top:1px solid rgba(255,255,255,.055);">
+  <div style="max-width:800px;margin:0 auto;text-align:center;">
+    <div class="reveal s-label">Free Tools</div>
+    <h2 class="reveal font-display font-extrabold" style="font-size:clamp(28px,3.5vw,48px);margin-bottom:20px;letter-spacing:-.02em;">
+      Download our<span style="color:#A855F7;"> Social Media Checklist</span>
+    </h2>
+    <p class="reveal" style="color:rgba(238,238,245,.45);margin-bottom:32px;">A practical checklist we use to keep campaigns on track. Sent straight to your inbox.</p>
+    <form id="resources-form" action="https://formspree.io/f/xzdykrjl" method="POST" style="display:flex;gap:12px;max-width:500px;margin:0 auto;flex-wrap:wrap;justify-content:center;">
+      <input type="email" name="email" required placeholder="Your work email" class="form-input" style="flex:1;min-width:200px;" />
+      <button type="submit" style="background:#A855F7;border:none;color:#03020A;padding:14px 28px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;border-radius:2px;cursor:pointer;">Get Checklist</button>
+    </form>
+  </div>
+</section>
+<script>
+  document.getElementById('resources-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = this.querySelector('button');
+    btn.textContent = '✓ Sent!';
+    btn.style.background = '#25D366';
+    fetch(this.action, { method:'POST', body: new FormData(this), headers:{'Accept':'application/json'} })
+      .then(r => { if(r.ok){this.reset();} })
+      .catch(()=>{});
+    setTimeout(()=>{ btn.textContent = 'Get Checklist'; btn.style.background = '#A855F7'; }, 4000);
+  });
+</script>
 <!-- ══════════════════════════════════════════════════════════════════
      CTA + CONTACT
 ══════════════════════════════════════════════════════════════════════ -->
@@ -1654,6 +1749,7 @@
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Message on WhatsApp
           </a>
+                    <p style="color:rgba(238,238,245,.35);font-size:11px;margin-top:8px;">No pitch decks. Just a conversation.</p>
         </div>
       </div>
       <div class="reveal reveal-d2">
@@ -1742,6 +1838,9 @@
    onmouseout="this.style.color='rgba(238,238,245,.6)';this.style.borderColor='transparent'">
    Delhi, India
 </a>
+              <div style="width:100%;max-width:300px;filter:grayscale(100%) invert(0.92);margin-top:12px;border-radius:4px;overflow:hidden;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.123456789012!2d77.2!3d28.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDA2JzUwLjYiTiA3N8KwMTInMzkuNiJF!5e0!3m2!1sen!2sin!4v1111111111" width="100%" height="180" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
         <a href="https://facebook.com/squargraphstudios" target="_blank" rel="noopener" class="social-link" title="Facebook">
@@ -1762,6 +1861,13 @@
       </div>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.09);padding-top:28px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
+        <span style="color:rgba(238,238,245,.4);font-size:13px;font-weight:300;">Get execution tips —</span>
+        <form action="https://formspree.io/f/xzdykrjl" method="POST" style="display:flex;gap:8px;">
+          <input type="email" name="email" required placeholder="Your email" style="background:#0D0A1E;border:1px solid rgba(255,255,255,.09);color:#EEEEF5;padding:8px 12px;font-size:12px;font-family:'Space Grotesk',sans-serif;border-radius:2px;width:180px;" />
+          <button type="submit" style="background:#A855F7;border:none;color:#03020A;padding:8px 14px;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;border-radius:2px;cursor:pointer;">Sign up</button>
+        </form>
+      </div>
       <p style="color:rgba(238,238,245,.7);font-size:12px;font-weight:300;">© 2026 SQUARGRAPH Studios. All rights reserved.</p>
             <span style="color:rgba(238,238,245,.4);">|</span>
       <a href="#" onclick="document.getElementById('privacy-modal').style.display='block';return false;"
@@ -1931,24 +2037,46 @@
     mouse.y = e.clientY;
   });
 
-  /* ── Custom cursor ───────────────────────────────────────────── */
+    /* ── Custom cursor (morphing on interactive elements) ────────── */
   var cursor = document.getElementById('cursor');
   var ring   = document.getElementById('cursor-ring');
   var mx = -200, my = -200, rx = -200, ry = -200;
   var cursorActive = false;
+  var isOverInteractive = false;
 
   document.addEventListener('mousemove', function(e) {
     mx = e.clientX; my = e.clientY;
     cursor.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
     if (!cursorActive) { cursorActive = true; cursor.classList.add('active'); ring.classList.add('active'); }
+    
+    var target = e.target;
+    if (target.closest('a') || target.closest('button') || target.closest('[role="button"]') || target.closest('input') || target.closest('textarea') || target.closest('select') || target.closest('.work-img-card') || target.closest('.svc-card') || target.closest('.social-link')) {
+      if (!isOverInteractive) {
+        isOverInteractive = true;
+        ring.style.width = '54px';
+        ring.style.height = '54px';
+        ring.style.borderColor = 'rgba(168,85,247,.7)';
+        cursor.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%) scale(1.5)';
+        cursor.style.background = '#7C3AED';
+      }
+    } else {
+      if (isOverInteractive) {
+        isOverInteractive = false;
+        ring.style.width = '34px';
+        ring.style.height = '34px';
+        ring.style.borderColor = 'rgba(168,85,247,.42)';
+        cursor.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%) scale(1)';
+        cursor.style.background = '#A855F7';
+      }
+    }
   });
+
   (function animateRing() {
     rx += (mx - rx) * 0.12;
     ry += (my - ry) * 0.12;
     ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
     requestAnimationFrame(animateRing);
   })();
-
   /* ── Nav scroll ──────────────────────────────────────────────── */
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function() {
@@ -2182,6 +2310,39 @@
   });
 
 })();
+    /* ── Live activity toasts ────────────────────────────────────── */
+  function showActivityToast(text) {
+    var toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;bottom:100px;left:20px;background:#0D0A1E;border:1px solid rgba(124,58,237,.3);color:#EEEEF5;padding:12px 20px;border-radius:8px;font-size:12px;font-family:Outfit,sans-serif;z-index:8000;opacity:0;transform:translateX(-20px);transition:opacity .4s,transform .4s;box-shadow:0 8px 24px rgba(0,0,0,.5);';
+    toast.textContent = text;
+    document.body.appendChild(toast);
+    requestAnimationFrame(function() {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(0)';
+    });
+    setTimeout(function() {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(-20px)';
+      setTimeout(function() { toast.remove(); }, 400);
+    }, 4000);
+  }
+
+  var activities = [
+    "A startup founder from Bangalore just submitted a brief.",
+    "A marketing head from Mumbai is viewing our services.",
+    "Someone from Delhi requested a custom proposal.",
+    "An automotive brand manager visited our work section.",
+    "A D2C brand owner just downloaded our checklist.",
+    "A 5‑star hotel group exec is reading our process.",
+  ];
+
+  function scheduleToast() {
+    var randomIndex = Math.floor(Math.random() * activities.length);
+    showActivityToast(activities[randomIndex]);
+    setTimeout(scheduleToast, 12000 + Math.random() * 15000); // every 12-27 secs
+  }
+
+  setTimeout(scheduleToast, 8000); // first toast after 8 seconds
 </script>
   <!-- Privacy Policy Modal -->
 <div id="privacy-modal" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,0.95);z-index:10000;overflow-y:auto;padding:60px 5vw;">
@@ -2196,6 +2357,11 @@
     <p style="margin-bottom:16px;"><strong>Your Rights:</strong> You may request access to, correction, or deletion of your personal data by contacting us at <a href="mailto:hello@squargraph.com" style="color:#A855F7;">hello@squargraph.com</a>.</p>
     <p>This policy is effective as of 2026. We may update it from time to time and will post the new version on this page.</p>
   </div>
+</div>
+  <!-- Cookie Consent Banner -->
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#0D0A1E;border-top:1px solid rgba(124,58,237,.2);padding:16px 5vw;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;z-index:9999;color:#EEEEF5;font-size:13px;font-family:'Space Grotesk',sans-serif;">
+  <p style="margin:0;">We use cookies to improve your experience. By continuing, you agree to our <a href="#" onclick="document.getElementById('privacy-modal').style.display='block';return false;" style="color:#A855F7;">Privacy Policy</a>.</p>
+  <button onclick="document.getElementById('cookie-banner').style.display='none'" style="background:#A855F7;border:none;color:#03020A;padding:8px 16px;border-radius:2px;font-family:'Outfit',sans-serif;font-weight:700;margin-left:16px;cursor:pointer;">Accept</button>
 </div>
 </body>
 </html>
