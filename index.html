@@ -1591,12 +1591,6 @@
         …and many more projects like media drives, drive events, and always‑on content for multiple brands.
       </p>
     </div>
-    <!-- Work attribution disclaimer -->
-    <div class="reveal" style="margin-top:40px;padding:16px 20px;border-left:2px solid rgba(124,58,237,.35);background:rgba(124,58,237,.03);border-radius:0 2px 2px 0;">
-      <p style="color:rgba(238,238,245,.35);font-size:12px;line-height:1.8;margin:0;font-style:italic;">
-        Video campaigns shown in this section were executed by our founder during previous tenure at <span style="color:rgba(168,85,247,.5);">INNOCEAN Worldwide India</span>, the in‑house agency for <span style="color:rgba(168,85,247,.5);">Hyundai India</span>. Embedded from public official channels. SQUARGRAPH Studios did not independently produce these campaigns.
-      </p>
-    </div>
   </div>
 </section>
 <!-- ══════════════════════════════════════════════════════════════════
@@ -2580,19 +2574,13 @@
 
   setTimeout(scheduleToast, 8000); // first toast after 8 seconds
 </script>
-<!-- Cookie Consent Popup -->
-<div id="cookie-popup" style="display:flex; position:fixed; inset:0; background:rgba(3,2,10,0.85); z-index:100000; align-items:center; justify-content:center; padding:5vw;">
-  <div style="background:#0D0A1E; border:1px solid rgba(124,58,237,.25); border-radius:4px; padding:32px; max-width:440px; width:100%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.8);">
-    <p style="color:rgba(238,238,245,.8); font-size:14px; line-height:1.7; margin-bottom:20px; font-family:'Space Grotesk',sans-serif;">
-      We use cookies to improve your experience. By continuing, you agree to our 
-      <a href="#" onclick="event.preventDefault(); document.getElementById('privacy-modal').style.display='block';" style="color:#A855F7; text-decoration:none; border-bottom:1px solid rgba(124,58,237,.3);">Privacy Policy</a>.
-    </p>
-    <button onclick="document.getElementById('cookie-popup').style.display='none';" 
-            style="background:#A855F7; border:none; color:#03020A; padding:12px 32px; border-radius:2px; font-family:'Outfit',sans-serif; font-weight:700; font-size:13px; text-transform:uppercase; cursor:pointer; transition:opacity .2s;"
-            onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-      Accept
-    </button>
-  </div>
+<!-- Cookie Consent Top Banner -->
+<div id="cookie-banner" style="position:fixed; top:0; left:0; right:0; background:#0D0A1E; border-bottom:1px solid rgba(124,58,237,.25); padding:14px 5vw; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; z-index:10002; color:#EEEEF5; font-size:13px; font-family:'Space Grotesk',sans-serif; box-shadow:0 4px 20px rgba(0,0,0,.3);">
+  <p style="margin:0; flex:1; padding-right:16px;">
+    We use cookies to improve your experience. By continuing, you agree to our 
+    <a href="#" onclick="event.preventDefault(); document.getElementById('privacy-modal').style.display='block';" style="color:#A855F7; text-decoration:none; border-bottom:1px solid rgba(124,58,237,.3);">Privacy Policy</a>.
+  </p>
+  <button onclick="document.getElementById('cookie-banner').style.display='none'" style="background:#A855F7; border:none; color:#03020A; padding:8px 20px; border-radius:2px; font-family:'Outfit',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; cursor:pointer; white-space:nowrap;">Accept</button>
 </div>
 </body>
 </html>
