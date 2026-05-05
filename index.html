@@ -777,7 +777,7 @@
   <span></span>
   <span></span>
 </button>
-
+</nav>
 <!-- Mobile menu -->
 <div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:400;flex-direction:column;align-items:center;justify-content:center;gap:36px;">
   <button onclick="closeMob()" style="position:absolute;top:24px;right:5vw;background:none;border:none;color:#EEEEF5;font-size:26px;cursor:pointer;">✕</button>
@@ -1902,7 +1902,6 @@
       submitBtn.style.opacity = '.7';
       
       try {
-        // Build a simple object from the form
         var formObject = {};
         var formData = new FormData(contactForm);
         formData.forEach(function(value, key) {
@@ -1919,44 +1918,39 @@
         });
         
         if (res.ok) {
-          submitBtn.textContent = '✓ Sent! Opening WhatsApp...';
+          // Formspree received the data – just show success
+          submitBtn.textContent = '✓ Brief received — we\'ll be in touch soon.';
           submitBtn.style.background = '#25D366';
           contactForm.reset();
           
-          // Prepare a WhatsApp message with the form details
-          var waMsg = encodeURIComponent(
-            'Hi SQUARGRAPH, I just submitted a project brief:\n\n' +
-            'Name: ' + (formObject.name || 'N/A') + '\n' +
-            'Company: ' + (formObject.company || 'N/A') + '\n' +
-            'Looking for: ' + (formObject.service || 'N/A') + '\n' +
-            'Budget: ' + (formObject.budget || 'N/A') + '\n' +
-            'Timeline: ' + (formObject.timeline || 'N/A') + '\n\n' +
-            'Brief: ' + (formObject.message || 'N/A')
-          );
-          
-          // Open WhatsApp after 2 seconds
+          // Reset button after a few seconds
           setTimeout(function() {
-            window.location.href = 'https://wa.me/918588897488?text=' + waMsg;
-          }, 2000);
+            submitBtn.textContent = orig;
+            submitBtn.style.background = '#A855F7';
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+          }, 4500);
           
         } else {
-          submitBtn.textContent = 'Error — click for WhatsApp';
+          submitBtn.textContent = 'Error — please try again later.';
           submitBtn.style.background = '#EF4444';
-          submitBtn.disabled = false; 
-          submitBtn.style.opacity = '1';
-          submitBtn.onclick = function() {
-            window.open('https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20had%20a%20form%20issue%20but%20want%20to%20discuss%20a%20project', '_blank');
-          };
+          setTimeout(function() {
+            submitBtn.textContent = orig;
+            submitBtn.style.background = '#A855F7';
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+          }, 3500);
         }
       } catch(err) {
         console.log('Form error:', err);
-        submitBtn.textContent = 'Error — click for WhatsApp';
+        submitBtn.textContent = 'Network error — try again.';
         submitBtn.style.background = '#EF4444';
-        submitBtn.disabled = false; 
-        submitBtn.style.opacity = '1';
-        submitBtn.onclick = function() {
-          window.open('https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20had%20a%20form%20issue%20but%20want%20to%20discuss%20a%20project', '_blank');
-        };
+        setTimeout(function() {
+          submitBtn.textContent = orig;
+          submitBtn.style.background = '#A855F7';
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+        }, 3500);
       }
     });
   }
