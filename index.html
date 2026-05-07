@@ -894,6 +894,36 @@ nav.scrolled {
       0%, 100% { box-shadow: 0 8px 30px rgba(124,58,237,.45); }
       50%      { box-shadow: 0 8px 40px rgba(124,58,237,.7); }
     }
+    /* FIX: Force cookie banner & chatbot to stick to viewport (no scroll needed) */
+#cookie-banner {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 40px) !important;
+  max-width: 560px !important;
+  z-index: 9999 !important;
+}
+
+#chat-toggle {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 10000 !important;
+}
+
+#chat-panel {
+  position: fixed !important;
+  bottom: 90px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+}
+
+/* Ensure no parent breaks fixed positioning */
+body, .aurora-wrap, #particle-canvas, .flow-lines-section {
+  transform: none !important;
+  will-change: auto !important;
+}
   </style>
 </head>
 <body>
