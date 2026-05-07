@@ -1091,31 +1091,6 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
   transform: none !important;
   will-change: auto !important;
 }
-    /* Fix hero text overlap by floating shapes */
-#hero {
-  z-index: 2 !important;
-}
-
-#hero .hero-fade,
-#hero h1,
-#hero p,
-#hero div,
-#hero a {
-  position: relative;
-  z-index: 10;
-}
-
-/* Push floating shapes behind */
-.flow-lines-section svg,
-.flow-lines-section g,
-.flow-lines-section circle,
-.flow-lines-section path,
-.flow-lines-section line,
-div[style*="position:absolute"][style*="top:"][style*="right:"],
-div[style*="position:absolute"][style*="top:"][style*="left:"],
-div[style*="position:absolute"][style*="bottom:"][style*="right:"] {
-  z-index: 0 !important;
-}
   </style>
 </head>
 <body>
