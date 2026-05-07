@@ -132,6 +132,12 @@
   </script>
 
   <style>
+  body, body > div, body > canvas {
+    transform: none !important;
+    will-change: auto !important;
+  }
+  
+  /* rest of your CSS */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -293,19 +299,37 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 500;
-      padding: 22px 5vw;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background .4s, backdrop-filter .4s, border-color .4s;
-      border-bottom: 1px solid transparent;
-    }
-    nav.scrolled {
-      background: rgba(6,6,8,.88);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-color: rgba(255,255,255,.065);
-    }
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 500;
+  padding: 22px 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background .4s, backdrop-filter .4s, border-color .4s;
+  border-bottom: 1px solid transparent;
+  transform: none !important;
+  will-change: auto !important;
+}
+nav.scrolled {
+  background: rgba(6,6,8,.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-color: rgba(255,255,255,.065);
+}
+    @media (max-width: 768px) {
+  nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #080616;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+}
 
     .s-label {
       font-size: 10px;
