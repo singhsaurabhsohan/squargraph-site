@@ -1016,6 +1016,79 @@ nav.scrolled {
   backdrop-filter: blur(22px) !important;
   -webkit-backdrop-filter: blur(22px) !important;
 }
+    /* ============================================
+   FINAL FIXES – NO OVERRIDES, NO DUPLICATES
+   ============================================ */
+
+/* 1. Navigation – fixed at top on all devices */
+nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 500 !important;
+  background: rgba(6, 6, 8, 0.75) !important;
+  backdrop-filter: blur(20px) !important;
+  transform: none !important;
+  will-change: auto !important;
+}
+nav.scrolled {
+  background: rgba(6, 6, 8, 0.85) !important;
+  backdrop-filter: blur(22px) !important;
+}
+
+/* 2. Cookie banner – fixed bottom center, above chat */
+#cookie-banner {
+  position: fixed !important;
+  bottom: 80px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 32px) !important;
+  max-width: 560px !important;
+  z-index: 10001 !important;
+  margin: 0 !important;
+}
+
+/* 3. Chat button – fixed bottom right, below cookie */
+#chat-toggle {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 10000 !important;
+}
+
+/* 4. Chat panel – fixed above chat button */
+#chat-panel {
+  position: fixed !important;
+  bottom: 90px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  width: 360px !important;
+  max-width: calc(100vw - 40px) !important;
+}
+
+/* 5. Mobile adjustments – keep spacing, no overlap */
+@media (max-width: 768px) {
+  #cookie-banner {
+    bottom: 80px !important;
+    width: calc(100% - 32px) !important;
+  }
+  #chat-toggle {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+  #chat-panel {
+    bottom: 85px !important;
+    right: 16px !important;
+    width: calc(100vw - 32px) !important;
+  }
+}
+
+/* 6. Ensure no ancestor breaks fixed positioning */
+body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
+  transform: none !important;
+  will-change: auto !important;
+}
   </style>
 </head>
 <body>
@@ -1945,86 +2018,88 @@ nav.scrolled {
   </div>
 </footer>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     CHATBOT — CHANGE 3: Always fixed bottom-right, no scroll needed
-══════════════════════════════════════════════════════════════════════ -->
-<button id="chat-toggle" aria-label="Open chat">
-  <span id="chat-toggle-icon">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
-  </span>
-  <span id="chat-close-icon">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round">
-      <line x1="18" y1="6" x2="6" y2="18"/>
-      <line x1="6" y1="6" x2="18" y2="18"/>
-    </svg>
-  </span>
-</button>
+    </div>   <!-- closes .page-wrapper -->
 
-<div id="chat-panel">
-  <div class="chat-header">
-    <div class="chat-avatar">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
-      </svg>
-      <div class="chat-status-dot"></div>
-    </div>
-    <div>
-      <div class="font-display font-bold" style="font-size:13px;letter-spacing:-.01em;">SQUARGRAPH</div>
-      <div style="font-size:11px;color:rgba(238,238,245,.4);font-family:'Space Grotesk',sans-serif;">Usually replies instantly</div>
-    </div>
-  </div>
-  <div class="chat-messages" id="chat-messages"></div>
-  <div class="chat-input-area" id="chat-brief-input">
-    <input type="text" class="chat-input" id="chat-text-input" placeholder="Describe your project briefly…" maxlength="300"/>
-    <button class="chat-send-btn" id="chat-send-btn" aria-label="Send">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    <!-- ══════════════════════════════════════════════════════════════════
+         CHATBOT — CHANGE 3: Always fixed bottom-right, no scroll needed
+    ══════════════════════════════════════════════════════════════════════ -->
+    <button id="chat-toggle" aria-label="Open chat">
+      <span id="chat-toggle-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </span>
+      <span id="chat-close-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </span>
     </button>
-  </div>
-</div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     LIGHTBOX
-══════════════════════════════════════════════════════════════════════ -->
-<div id="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img" src="" alt="Work preview" />
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════════
-     CHANGE 2: COOKIE BANNER — always shows on first visit (no scroll)
-══════════════════════════════════════════════════════════════════════ -->
-<div id="cookie-banner" role="dialog" aria-label="Cookie consent">
-  <div class="cookie-inner">
-    <div class="cookie-icon">🍪</div>
-    <div class="cookie-text">
-      <div class="cookie-title">We value your privacy</div>
-<div class="cookie-desc">We use local storage for preferences and no tracking cookies. <a href="#" id="cookie-privacy-link">Privacy Policy</a>.</div>
+    <div id="chat-panel">
+      <div class="chat-header">
+        <div class="chat-avatar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+          </svg>
+          <div class="chat-status-dot"></div>
+        </div>
+        <div>
+          <div class="font-display font-bold" style="font-size:13px;letter-spacing:-.01em;">SQUARGRAPH</div>
+          <div style="font-size:11px;color:rgba(238,238,245,.4);font-family:'Space Grotesk',sans-serif;">Usually replies instantly</div>
+        </div>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input-area" id="chat-brief-input">
+        <input type="text" class="chat-input" id="chat-text-input" placeholder="Describe your project briefly…" maxlength="300"/>
+        <button class="chat-send-btn" id="chat-send-btn" aria-label="Send">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </div>
     </div>
-    <div class="cookie-actions">
-      <button class="cookie-btn-decline" id="cookie-decline">Decline</button>
-      <button class="cookie-btn-accept" id="cookie-accept">Accept all</button>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         LIGHTBOX
+    ══════════════════════════════════════════════════════════════════════ -->
+    <div id="lightbox" onclick="closeLightbox()">
+      <img id="lightbox-img" src="" alt="Work preview" />
     </div>
-  </div>
-</div>
 
-<!-- PRIVACY MODAL -->
-<div id="privacy-modal">
-  <div style="max-width:700px;margin:0 auto;color:#EEEEF5;font-family:'Space Grotesk',sans-serif;line-height:1.8;position:relative;">
-    <button id="privacy-close" style="position:absolute;top:-20px;right:0;background:none;border:none;color:#A855F7;font-size:24px;cursor:pointer;line-height:1;">✕</button>
-    <h2 class="font-display font-bold" style="font-size:28px;margin-bottom:24px;color:#A855F7;">Privacy Policy</h2>
-    <p style="margin-bottom:16px;">SQUARGRAPH Studios ("we", "us", or "our") operates the website <strong>squargraph.com</strong>. This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our site.</p>
-    <p style="margin-bottom:16px;"><strong>Information Collection and Use:</strong> We collect information you provide directly, such as your name, email address, phone number, and company details when you fill in our contact form. We use this data solely to respond to your inquiry and provide our services.</p>
-    <p style="margin-bottom:16px;"><strong>Data Retention:</strong> We retain your personal data only for as long as necessary to fulfil the purposes described in this policy.</p>
-    <p style="margin-bottom:16px;"><strong>Data Sharing:</strong> We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties except when required by law or to protect our rights.</p>
-    <p style="margin-bottom:16px;"><strong>Your Rights:</strong> You may request access to, correction, or deletion of your personal data by contacting us at <a href="mailto:hello@squargraph.com" style="color:#A855F7;">hello@squargraph.com</a>.</p>
-    <p>This policy is effective as of 2026. We may update it from time to time and will post the new version on this page.</p>
-  </div>
-</div>
+    <!-- ══════════════════════════════════════════════════════════════════
+         CHANGE 2: COOKIE BANNER — always shows on first visit (no scroll)
+    ══════════════════════════════════════════════════════════════════════ -->
+    <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
+      <div class="cookie-inner">
+        <div class="cookie-icon">🍪</div>
+        <div class="cookie-text">
+          <div class="cookie-title">We value your privacy</div>
+          <div class="cookie-desc">We use local storage for preferences and no tracking cookies. <a href="#" id="cookie-privacy-link">Privacy Policy</a>.</div>
+        </div>
+        <div class="cookie-actions">
+          <button class="cookie-btn-decline" id="cookie-decline">Decline</button>
+          <button class="cookie-btn-accept" id="cookie-accept">Accept all</button>
+        </div>
+      </div>
+    </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════════════════════════════════════ -->
+    <!-- PRIVACY MODAL -->
+    <div id="privacy-modal">
+      <div style="max-width:700px;margin:0 auto;color:#EEEEF5;font-family:'Space Grotesk',sans-serif;line-height:1.8;position:relative;">
+        <button id="privacy-close" style="position:absolute;top:-20px;right:0;background:none;border:none;color:#A855F7;font-size:24px;cursor:pointer;line-height:1;">✕</button>
+        <h2 class="font-display font-bold" style="font-size:28px;margin-bottom:24px;color:#A855F7;">Privacy Policy</h2>
+        <p style="margin-bottom:16px;">SQUARGRAPH Studios ("we", "us", or "our") operates the website <strong>squargraph.com</strong>. This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our site.</p>
+        <p style="margin-bottom:16px;"><strong>Information Collection and Use:</strong> We collect information you provide directly, such as your name, email address, phone number, and company details when you fill in our contact form. We use this data solely to respond to your inquiry and provide our services.</p>
+        <p style="margin-bottom:16px;"><strong>Data Retention:</strong> We retain your personal data only for as long as necessary to fulfil the purposes described in this policy.</p>
+        <p style="margin-bottom:16px;"><strong>Data Sharing:</strong> We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties except when required by law or to protect our rights.</p>
+        <p style="margin-bottom:16px;"><strong>Your Rights:</strong> You may request access to, correction, or deletion of your personal data by contacting us at <a href="mailto:hello@squargraph.com" style="color:#A855F7;">hello@squargraph.com</a>.</p>
+        <p>This policy is effective as of 2026. We may update it from time to time and will post the new version on this page.</p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         JAVASCRIPT
+    ══════════════════════════════════════════════════════════════════════ -->
 <script>
 (function () {
   'use strict';
@@ -2477,6 +2552,5 @@ nav.scrolled {
 
 })();
 </script>
-</div>
 </body>
 </html>
