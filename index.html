@@ -136,20 +136,21 @@
     transform: none !important;
     will-change: auto !important;
   }
-  
+  .page-wrapper {
+  animation: pageFade 0.8s ease forwards;
+}
   /* rest of your CSS */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: #03020A;
-      color: #EEEEF5;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      overflow-x: hidden;
-      animation: pageFade 0.8s ease forwards;
-      /* CHANGE 1: Removed cursor: none — system cursor always visible */
-    }
+  background: #03020A;
+  color: #EEEEF5;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  /* animation moved to .page-wrapper */
+}
 
     /* CHANGE 1: Removed cursor: none from a, button, [role="button"] */
 
@@ -1031,26 +1032,22 @@ body {
      NAV
 ══════════════════════════════════════════════════════════════════════ -->
 <nav id="nav">
-  <a href="#" class="font-display font-extrabold text-snow no-underline" style="font-size:17px;letter-spacing:-.02em;">
-    SQUAR<span style="color:#A855F7;">GRAPH</span>
-    <span style="font-weight:400;color:rgba(238,238,245,.7);font-size:13px;"> Studios</span>
-  </a>
-  <div class="mobile-hide" style="display:flex;gap:28px;align-items:center;">
-    <a href="#philosophy" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Philosophy</a>
-    <a href="#process"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Process</a>
-    <a href="#services"   class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
-    <a href="#work"       class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Work</a>
-    <a href="#contact"
-       style="display:inline-flex;align-items:center;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:10px 22px;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
-       onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-      Start a project
-    </a>
-  </div>
+  ... nav content ...
+</nav>
+<!-- Mobile menu -->
+<div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:400;flex-direction:column;align-items:center;justify-content:center;gap:36px;">
+  <a href="#philosophy" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Philosophy</a>
+  <a href="#process" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Process</a>
+  <a href="#services" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
+  <a href="#work" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
+  <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener" onclick="closeMob()" style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">Start a project →</a>
+</div>
+<div class="page-wrapper">
   <button class="md:hidden hamburger" id="mob-toggle" aria-label="Toggle menu" aria-expanded="false" style="background:none;border:none;padding:4px;">
     <span></span><span></span><span></span>
   </button>
 </nav>
-
+<div class="page-wrapper">
 <!-- Mobile menu -->
 <div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:400;flex-direction:column;align-items:center;justify-content:center;gap:36px;">
   <a href="#philosophy" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Philosophy</a>
@@ -2476,5 +2473,6 @@ body {
 
 })();
 </script>
+</div>
 </body>
 </html>
