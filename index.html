@@ -924,6 +924,79 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section {
   transform: none !important;
   will-change: auto !important;
 }
+    /* ========================================
+   FORCE NAVIGATION TO STAY FIXED
+   ======================================== */
+nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  will-change: auto !important;
+  z-index: 500 !important;
+}
+
+/* Remove transform from ancestors that break fixed positioning */
+body, body > div, .aurora-wrap, #particle-canvas,
+.flow-lines-section, #hero, .grid-bg, svg, section {
+  transform: none !important;
+  will-change: auto !important;
+}
+
+/* ========================================
+   COOKIE BANNER – FIXED, CENTERED, ABOVE CHAT
+   ======================================== */
+#cookie-banner {
+  position: fixed !important;
+  bottom: 80px !important;        /* Room above chat icon */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 32px) !important;
+  max-width: 560px !important;
+  z-index: 10001 !important;      /* Above chat button */
+  margin: 0 !important;
+}
+
+/* ========================================
+   CHATBOT ICON – FIXED BOTTOM RIGHT
+   stays on screen, never overlaps cookie banner
+   ======================================== */
+#chat-toggle {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 10000 !important;
+}
+
+/* Chat panel opens above the button */
+#chat-panel {
+  position: fixed !important;
+  bottom: 90px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  width: 360px !important;
+  max-width: calc(100vw - 40px) !important;
+}
+
+/* ========================================
+   MOBILE – SAME BEHAVIOR, ADJUST SPACING
+   ======================================== */
+@media (max-width: 768px) {
+  #cookie-banner {
+    bottom: 80px !important;      /* Same, above chat */
+    width: calc(100% - 32px) !important;
+  }
+  #chat-toggle {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+  #chat-panel {
+    bottom: 85px !important;
+    right: 16px !important;
+    width: calc(100vw - 32px) !important;
+  }
+}
   </style>
 </head>
 <body>
