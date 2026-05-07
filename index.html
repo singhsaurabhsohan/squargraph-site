@@ -142,12 +142,10 @@
       line-height: 1.65;
       overflow-x: hidden;
       animation: pageFade 0.8s ease forwards;
+      /* CHANGE 1: Removed cursor: none — system cursor always visible */
     }
 
-    @media (min-width: 1024px) {
-      body { cursor: none; }
-      a, button, [role="button"] { cursor: none; }
-    }
+    /* CHANGE 1: Removed cursor: none from a, button, [role="button"] */
 
     body::before {
       content: '';
@@ -159,7 +157,7 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
     }
 
-    /* ── Particle canvas ─────────────────────────────────────── */
+    /* ── Particle canvas ─────────────────────────────────────────── */
     #particle-canvas {
       position: fixed;
       inset: 0;
@@ -168,7 +166,7 @@
       opacity: 0.55;
     }
 
-    /* ── Aurora blobs ─────────────────────────────────────────── */
+    /* ── Aurora blobs ─────────────────────────────────────────────── */
     .aurora-wrap {
       position: fixed;
       inset: 0;
@@ -223,7 +221,7 @@
       50%      { transform: translate(-60px, 60px) scale(1.2); opacity: 1; }
     }
 
-    /* ── Flowing SVG lines ────────────────────────────────────── */
+    /* ── Flowing SVG lines ────────────────────────────────────────── */
     .flow-lines-section {
       position: absolute; inset: 0;
       pointer-events: none;
@@ -246,30 +244,7 @@
       to   { stroke-dashoffset: -200; }
     }
 
-    /* ── Custom cursor ─────────────────────────────────────────── */
-    #cursor, #cursor-ring { opacity: 0; transition: opacity .3s; }
-    #cursor.active, #cursor-ring.active { opacity: 1; }
-    #cursor {
-      width: 10px; height: 10px;
-      background: #A855F7;
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none;
-      z-index: 99999;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 8px rgba(168,85,247,.6);
-      transition: background 0.2s, transform 0.15s;
-    }
-    #cursor-ring {
-      width: 36px; height: 36px;
-      border: 1.5px solid rgba(168,85,247,.55);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none;
-      z-index: 99998;
-      transform: translate(-50%, -50%);
-      transition: opacity .3s, width .25s, height .25s, border-color .25s;
-    }
+    /* CHANGE 1: Custom cursor styles removed entirely — #cursor and #cursor-ring are gone */
 
     ::-webkit-scrollbar { width: 2px; }
     ::-webkit-scrollbar-track { background: #03020A; }
@@ -600,9 +575,11 @@
       50% { r: 5; opacity: 1; }
     }
 
-    /* ── Chatbot ─────────────────────────────────────────────── */
+    /* ── CHANGE 3: Chatbot button — always fixed bottom-right, no scroll required ── */
     #chat-toggle {
-      position: fixed; bottom: 100px; right: 28px;
+      position: fixed;
+      bottom: 28px;   /* desktop: 28px from bottom */
+      right: 28px;
       width: 54px; height: 54px;
       background: linear-gradient(135deg, #7C3AED, #A855F7);
       border: none; border-radius: 50%;
@@ -619,8 +596,12 @@
     #chat-toggle.open #chat-toggle-icon { opacity: 0; transform: rotate(90deg) scale(.7); }
     #chat-toggle.open #chat-close-icon  { opacity: 1; transform: rotate(0deg) scale(1); }
 
+    /* CHANGE 3: Chat panel opens above button — positioned relative to bottom */
     #chat-panel {
-      position: fixed; bottom: 168px; right: 28px; width: 360px;
+      position: fixed;
+      bottom: 96px;   /* sits cleanly above the 54px button + 28px bottom + 14px gap */
+      right: 28px;
+      width: 360px;
       background: #080616;
       border: 1px solid rgba(124,58,237,.22);
       border-radius: 12px;
@@ -681,7 +662,7 @@
     #chat-brief-input { display: none; }
     #chat-brief-input.visible { display: flex; }
 
-    /* ── MODERN COOKIE BANNER ─────────────────────────────────── */
+    /* ── CHANGE 2: MODERN COOKIE BANNER — shows for ALL users, fixed bottom ── */
     #cookie-banner {
       position: fixed;
       bottom: 24px;
@@ -689,16 +670,17 @@
       transform: translateX(-50%) translateY(120px);
       width: calc(100% - 48px);
       max-width: 560px;
-      background: rgba(13, 10, 30, 0.92);
+      background: rgba(13, 10, 30, 0.96);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(124,58,237,.25);
+      border: 1px solid rgba(124,58,237,.30);
       border-radius: 16px;
       padding: 20px 24px;
       z-index: 9990;
-      box-shadow: 0 24px 60px rgba(0,0,0,.6), 0 0 0 1px rgba(124,58,237,.08), inset 0 1px 0 rgba(255,255,255,.04);
+      box-shadow: 0 24px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(124,58,237,.10), inset 0 1px 0 rgba(255,255,255,.04);
       transition: transform 0.5s cubic-bezier(.23,1,.32,1), opacity 0.4s ease;
       opacity: 0;
+      /* Always visible — not hidden by default display:none */
     }
     #cookie-banner.show {
       transform: translateX(-50%) translateY(0);
@@ -707,6 +689,7 @@
     #cookie-banner.hide {
       transform: translateX(-50%) translateY(140px);
       opacity: 0;
+      pointer-events: none;
     }
     .cookie-inner {
       display: flex;
@@ -794,7 +777,7 @@
       .cookie-actions { width: 100%; justify-content: flex-end; }
     }
 
-    /* ── Privacy Modal ───────────────────────────────────────── */
+    /* ── Privacy Modal ───────────────────────────────────────────── */
     #privacy-modal {
       display: none;
       position: fixed; inset: 0;
@@ -860,15 +843,15 @@
 
     /* ── Mobile ───────────────────────────────────────────────── */
     @media (max-width: 768px) {
-      #cursor, #cursor-ring { display: none !important; }
-      body { cursor: auto; }
-      a, button, [role="button"] { cursor: pointer; }
+      /* CHANGE 1: No cursor:none needed here any more — removed */
       #hero { padding-top: 110px !important; padding-bottom: 60px !important; justify-content: flex-start !important; }
       .mobile-stack { flex-direction: column !important; }
       .mobile-hide { display: none !important; }
       .stat-strip { display: flex !important; flex-direction: column !important; }
       .stat-item + .stat-item { border-left: none !important; border-top: 1px solid rgba(255,255,255,.065) !important; }
-      #chat-panel { width: calc(100vw - 32px) !important; right: 16px !important; bottom: 80px !important; max-height: 80vh !important; }
+      /* CHANGE 3: Mobile chatbot positioning */
+      #chat-toggle { bottom: 20px !important; right: 16px !important; }
+      #chat-panel { width: calc(100vw - 32px) !important; right: 16px !important; bottom: 88px !important; max-height: 80vh !important; }
       .aurora-blob { filter: blur(60px); }
       .work-img-card { grid-column: 1 / -1 !important; aspect-ratio: 16/9; }
       .work-img-overlay { padding: 16px; }
@@ -910,9 +893,7 @@
 <!-- Particle canvas -->
 <canvas id="particle-canvas"></canvas>
 
-<!-- Custom Cursor -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+<!-- CHANGE 1: Custom cursor HTML elements removed entirely -->
 
 <!-- ══════════════════════════════════════════════════════════════════
      NAV
@@ -933,7 +914,7 @@
       Start a project
     </a>
   </div>
-  <button class="md:hidden hamburger" id="mob-toggle" aria-label="Toggle menu" style="background:none;border:none;padding:4px;">
+  <button class="md:hidden hamburger" id="mob-toggle" aria-label="Toggle menu" aria-expanded="false" style="background:none;border:none;padding:4px;">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -944,10 +925,10 @@
   <a href="#process"    onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Process</a>
   <a href="#services"   onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
   <a href="#work"       onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
-  <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener"
-     style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
-    Start a project →
-  </a>
+  <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener" onclick="closeMob()"
+   style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
+  Start a project →
+</a>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════════
@@ -1423,19 +1404,19 @@
     </p>
     <div class="stat-strip reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:64px;">
       <div class="stat-item" style="padding:28px 20px;">
-        <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;"><span class="count-up" data-count="12" data-suffix="+">0+</span> Clear Briefs</div>
+        <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;"><span class="count-up" data-count="12" data-suffix="+">0</span> Clear Briefs</div>
         <p style="color:rgba(238,238,245,.4);font-size:13px;margin-top:8px;line-height:1.7;">No ambiguity. Everyone aligned before work begins.</p>
       </div>
       <div class="stat-item" style="padding:28px 20px;">
-        <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;"><span class="count-up" data-count="8" data-suffix="+">0+</span> Structured Workflow</div>
+        <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;"><span class="count-up" data-count="8" data-suffix="+">0</span> Structured Workflow</div>
         <p style="color:rgba(238,238,245,.4);font-size:13px;margin-top:8px;line-height:1.7;">Defined steps. No last-minute chaos or guesswork.</p>
       </div>
       <div class="stat-item" style="padding:28px 20px;">
-        <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;"><span class="count-up" data-count="100" data-suffix="%">0%</span> Clear Accountability</div>
+        <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;"><span class="count-up" data-count="100" data-suffix="%">0</span> Clear Accountability</div>
         <p style="color:rgba(238,238,245,.4);font-size:13px;margin-top:8px;line-height:1.7;">Clear ownership across teams. Nothing falls through.</p>
       </div>
       <div class="stat-item" style="padding:28px 20px;">
-        <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;"><span class="count-up" data-count="500" data-suffix="+">0+</span> Production Ready</div>
+        <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;"><span class="count-up" data-count="500" data-suffix="+">0</span> Production Ready</div>
         <p style="color:rgba(238,238,245,.4);font-size:13px;margin-top:8px;line-height:1.7;">Everything delivered ready to go live, no rework.</p>
       </div>
     </div>
@@ -1615,39 +1596,6 @@
   </div>
 </section>
 
-<!-- Latest Thinking -->
-<section style="padding:100px 5vw;position:relative;z-index:2;background:#03020A;border-top:1px solid rgba(255,255,255,.055);">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="reveal s-label">Latest thinking</div>
-    <h2 class="reveal font-display font-extrabold" style="font-size:clamp(28px,3.5vw,48px);margin-bottom:48px;letter-spacing:-.02em;">
-      Ideas that <span style="color:#A855F7;">shape execution</span>
-    </h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
-      <a href="#" style="text-decoration:none;color:inherit;display:block;" class="reveal reveal-d1">
-        <div style="background:#0D0A1E;border:1px solid rgba(255,255,255,.065);border-radius:2px;padding:24px;transition:border-color .25s,transform .25s;" onmouseover="this.style.borderColor='#A855F7';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)';this.style.transform='translateY(0)'">
-          <div style="font-family:'Outfit',sans-serif;font-size:10px;color:#A855F7;text-transform:uppercase;letter-spacing:.14em;margin-bottom:12px;">Strategy</div>
-          <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:8px;">Why most brand content fails (and how to fix it)</h3>
-          <p style="color:rgba(238,238,245,.45);font-size:13px;">The gap between a good idea and a live campaign is bigger than you think.</p>
-        </div>
-      </a>
-      <a href="#" style="text-decoration:none;color:inherit;display:block;" class="reveal reveal-d2">
-        <div style="background:#0D0A1E;border:1px solid rgba(255,255,255,.065);border-radius:2px;padding:24px;transition:border-color .25s,transform .25s;" onmouseover="this.style.borderColor='#A855F7';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)';this.style.transform='translateY(0)'">
-          <div style="font-family:'Outfit',sans-serif;font-size:10px;color:#A855F7;text-transform:uppercase;letter-spacing:.14em;margin-bottom:12px;">Execution</div>
-          <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:8px;">Building a content system that runs without you</h3>
-          <p style="color:rgba(238,238,245,.45);font-size:13px;">How we helped a hospitality brand go from chaos to consistent output.</p>
-        </div>
-      </a>
-      <a href="#" style="text-decoration:none;color:inherit;display:block;" class="reveal reveal-d3">
-        <div style="background:#0D0A1E;border:1px solid rgba(255,255,255,.065);border-radius:2px;padding:24px;transition:border-color .25s,transform .25s;" onmouseover="this.style.borderColor='#A855F7';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,.065)';this.style.transform='translateY(0)'">
-          <div style="font-family:'Outfit',sans-serif;font-size:10px;color:#A855F7;text-transform:uppercase;letter-spacing:.14em;margin-bottom:12px;">Trends</div>
-          <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:8px;">The AI‑powered creative workflow that cuts production time by 50%</h3>
-          <p style="color:rgba(238,238,245,.45);font-size:13px;">Practical ways to integrate AI without losing your brand voice.</p>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- Engagement Models -->
 <section style="padding:100px 5vw;position:relative;z-index:2;background:#080616;border-top:1px solid rgba(255,255,255,.055);">
   <div style="max-width:1000px;margin:0 auto;">
@@ -1744,24 +1692,24 @@
       <div class="reveal reveal-d2">
         <form id="contact-form" action="https://formspree.io/f/xzdykrjl" method="POST" style="display:flex;flex-direction:column;gap:18px;">
           <div>
-            <label class="form-label">Your Name</label>
-            <input type="text" name="name" required placeholder="Full name" class="form-input" />
-          </div>
+  <label class="form-label" for="name">Your Name</label>
+  <input type="text" id="name" name="name" required placeholder="Full name" class="form-input" />
+</div>
           <div>
-            <label class="form-label">Contact Number</label>
-            <input type="tel" name="phone" required placeholder="+91 XXXXX XXXXX" class="form-input" />
-          </div>
+  <label class="form-label" for="phone">Contact Number</label>
+  <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXX XXXXX" class="form-input" />
+</div>
           <div>
-            <label class="form-label">Work Email</label>
-            <input type="email" name="email" required placeholder="name@company.com" class="form-input" />
-          </div>
+  <label class="form-label" for="email">Work Email</label>
+  <input type="email" id="email" name="email" required placeholder="name@company.com" class="form-input" />
+</div>
           <div>
-            <label class="form-label">Brand / Company</label>
-            <input type="text" name="company" placeholder="Your brand or company name" class="form-input" />
-          </div>
+  <label class="form-label" for="company">Brand / Company</label>
+  <input type="text" id="company" name="company" placeholder="Your brand or company name" class="form-input" />
+</div>
           <div>
-            <label class="form-label">What are you looking for?</label>
-            <select name="service" id="service-select" required class="form-input">
+  <label class="form-label" for="service-select">What are you looking for?</label>
+  <select name="service" id="service-select" required class="form-input">
               <option value="">Select</option>
               <option>Full campaign (strategy + execution)</option>
               <option>Content &amp; social media</option>
@@ -1771,8 +1719,8 @@
             </select>
           </div>
           <div>
-            <label class="form-label">Estimated budget</label>
-            <select name="budget" required class="form-input">
+  <label class="form-label" for="budget">Estimated budget</label>
+  <select id="budget" name="budget" required class="form-input">
               <option value="">Select range</option>
               <option>₹50K – ₹1L</option>
               <option>₹1L – ₹3L</option>
@@ -1781,8 +1729,8 @@
             </select>
           </div>
           <div>
-            <label class="form-label">Timeline</label>
-            <select name="timeline" required class="form-input">
+  <label class="form-label" for="timeline">Timeline</label>
+  <select id="timeline" name="timeline" required class="form-input">
               <option value="">Select</option>
               <option>ASAP</option>
               <option>2–4 weeks</option>
@@ -1791,13 +1739,13 @@
             </select>
           </div>
           <div>
-            <label class="form-label">Project brief</label>
-            <textarea name="message" required placeholder="What are you trying to achieve? What's the current situation?" class="form-input"></textarea>
-          </div>
+  <label class="form-label" for="message">Project brief</label>
+  <textarea id="message" name="message" required placeholder="What are you trying to achieve? What's the current situation?" class="form-input"></textarea>
+</div>
           <div>
-            <label class="form-label">Reference links (optional)</label>
-            <input type="url" name="reference" placeholder="Drive / Notion / examples" class="form-input" />
-          </div>
+  <label class="form-label" for="reference">Reference links (optional)</label>
+  <input type="url" id="reference" name="reference" placeholder="Drive / Notion / examples" class="form-input" />
+</div>
           <button type="submit" id="form-submit-btn"
                   style="background:#A855F7;border:none;color:#03020A;padding:18px 32px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:transform .25s,opacity .25s;cursor:pointer;"
                   onmouseover="if(!this.disabled)this.style.transform='translateY(-2px)'"
@@ -1865,7 +1813,7 @@
 </footer>
 
 <!-- ══════════════════════════════════════════════════════════════════
-     CHATBOT
+     CHATBOT — CHANGE 3: Always fixed bottom-right, no scroll needed
 ══════════════════════════════════════════════════════════════════════ -->
 <button id="chat-toggle" aria-label="Open chat">
   <span id="chat-toggle-icon">
@@ -1911,17 +1859,14 @@
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════════
-     MODERN COOKIE BANNER
+     CHANGE 2: COOKIE BANNER — always shows on first visit (no scroll)
 ══════════════════════════════════════════════════════════════════════ -->
 <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
   <div class="cookie-inner">
     <div class="cookie-icon">🍪</div>
     <div class="cookie-text">
-      <div class="cookie-title">We use cookies</div>
-      <div class="cookie-desc">
-        We use cookies to improve your experience.
-        <a href="#" id="cookie-privacy-link">Privacy Policy</a>.
-      </div>
+      <div class="cookie-title">We value your privacy</div>
+<div class="cookie-desc">We use local storage for preferences and no tracking cookies. <a href="#" id="cookie-privacy-link">Privacy Policy</a>.</div>
     </div>
     <div class="cookie-actions">
       <button class="cookie-btn-decline" id="cookie-decline">Decline</button>
@@ -2029,49 +1974,11 @@
   }
   animate();
 
+  /* Particle mouse interaction still works for the ambient effect */
   document.addEventListener('mousemove', function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
 
-  /* ── Custom cursor ───────────────────────────────────────────── */
-  var cursor = document.getElementById('cursor');
-  var ring   = document.getElementById('cursor-ring');
-  var mx = -200, my = -200, rx = -200, ry = -200;
-  var cursorActive = false, isOverInteractive = false;
-
-  document.addEventListener('mousemove', function(e) {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top  = my + 'px';
-    if (!cursorActive) {
-      cursorActive = true;
-      cursor.classList.add('active');
-      ring.classList.add('active');
-    }
-    var t = e.target;
-    var interactive = t.closest('a') || t.closest('button') || t.closest('[role="button"]') ||
-                      t.closest('input') || t.closest('textarea') || t.closest('select') ||
-                      t.closest('.work-img-card') || t.closest('.svc-card');
-    if (interactive && !isOverInteractive) {
-      isOverInteractive = true;
-      ring.style.width = '54px'; ring.style.height = '54px';
-      ring.style.borderColor = 'rgba(168,85,247,.7)';
-      cursor.style.background = '#7C3AED';
-      cursor.style.transform = 'translate(-50%,-50%) scale(1.5)';
-    } else if (!interactive && isOverInteractive) {
-      isOverInteractive = false;
-      ring.style.width = '36px'; ring.style.height = '36px';
-      ring.style.borderColor = 'rgba(168,85,247,.55)';
-      cursor.style.background = '#A855F7';
-      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-    }
-  });
-
-  (function animateRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(animateRing);
-  })();
+  /* CHANGE 1: Custom cursor JS removed entirely.
+     No #cursor or #cursor-ring tracking code. System cursor is visible. */
 
   /* ── Nav scroll ──────────────────────────────────────────────── */
   var nav = document.getElementById('nav');
@@ -2085,11 +1992,12 @@
   var isMenuOpen = false;
 
   mobToggle.addEventListener('click', function() {
-    isMenuOpen = !isMenuOpen;
-    mobToggle.classList.toggle('open', isMenuOpen);
-    mobMenu.style.display = isMenuOpen ? 'flex' : 'none';
-    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
-  });
+  isMenuOpen = !isMenuOpen;
+  mobToggle.classList.toggle('open', isMenuOpen);
+  mobToggle.setAttribute('aria-expanded', isMenuOpen);
+  mobMenu.style.display = isMenuOpen ? 'flex' : 'none';
+  document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+});
 
   window.closeMob = function() {
     isMenuOpen = false;
@@ -2177,11 +2085,15 @@
 
   /* ── Lightbox ─────────────────────────────────────────────────── */
   window.openLightbox = function(card) {
-    // Use the SVG card itself as a visual preview (no external image needed)
-    var lb = document.getElementById('lightbox');
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  };
+  // Try to find an img inside the card
+  var img = card.querySelector('img');
+  if (!img) return;
+  var imgUrl = img.src;
+  var lightboxImg = document.getElementById('lightbox-img');
+  lightboxImg.src = imgUrl;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
   window.closeLightbox = function() {
     document.getElementById('lightbox').classList.remove('open');
     document.body.style.overflow = '';
@@ -2204,25 +2116,38 @@
     if (e.target === this) closePrivacyModal();
   });
 
-  /* ── MODERN COOKIE BANNER ────────────────────────────────────── */
+  /* ── CHANGE 2: COOKIE BANNER — always visible on first visit ── */
+  /* Banner shows for ALL users on every first visit (no scroll required).
+     localStorage stores their choice so it won't appear again once decided. */
   var COOKIE_KEY = 'sq_cookie_consent';
   var cookieBanner = document.getElementById('cookie-banner');
 
   function dismissCookie(accepted) {
     cookieBanner.classList.remove('show');
     cookieBanner.classList.add('hide');
-    setTimeout(function() { cookieBanner.style.display = 'none'; }, 500);
+    /* After transition completes, remove from layout */
+    setTimeout(function() {
+      cookieBanner.style.display = 'none';
+    }, 600);
     try { localStorage.setItem(COOKIE_KEY, accepted ? 'accepted' : 'declined'); } catch(e) {}
   }
 
   document.getElementById('cookie-accept').addEventListener('click', function() { dismissCookie(true); });
   document.getElementById('cookie-decline').addEventListener('click', function() { dismissCookie(false); });
 
-  // Show banner only if not yet decided
-  var consent = null;
-  try { consent = localStorage.getItem(COOKIE_KEY); } catch(e) {}
-  if (!consent) {
-    setTimeout(function() { cookieBanner.classList.add('show'); }, 1800);
+  /* CHANGE 2: Show banner immediately on page load for all new visitors.
+     Only skip if they already made a choice. Short delay for smooth page-in feel. */
+  var existingConsent = null;
+  try { existingConsent = localStorage.getItem(COOKIE_KEY); } catch(e) {}
+
+  if (!existingConsent) {
+    /* Show after a short delay so page animations settle */
+    setTimeout(function() {
+      cookieBanner.classList.add('show');
+    }, 1200);
+  } else {
+    /* Already decided — keep hidden */
+    cookieBanner.style.display = 'none';
   }
 
   /* ── Animated counters ─────────────────────────────────────────── */
@@ -2256,11 +2181,21 @@
   var chatOpen = false, chatStarted = false;
 
   chatToggleBtn.addEventListener('click', function() {
-    chatOpen = !chatOpen;
-    chatToggleBtn.classList.toggle('open', chatOpen);
-    chatPanel.classList.toggle('open', chatOpen);
-    if (chatOpen && !chatStarted) { chatStarted = true; setTimeout(startChat, 350); }
-  });
+  chatOpen = !chatOpen;
+  chatToggleBtn.classList.toggle('open', chatOpen);
+  chatPanel.classList.toggle('open', chatOpen);
+  if (chatOpen && !chatStarted) {
+    chatStarted = true;
+    setTimeout(startChat, 350);
+  }
+  // Reset chat when closing
+  if (!chatOpen && chatStarted) {
+    chatMessages.innerHTML = '';
+    briefInputEl.classList.remove('visible');
+    if (chatTextInput) chatTextInput.value = '';
+    chatStarted = false;
+  }
+});
 
   function scrollChat() { chatMessages.scrollTop = chatMessages.scrollHeight; }
 
@@ -2402,10 +2337,10 @@
   }
 
   function scheduleToast() {
-    showActivityToast(activities[Math.floor(Math.random() * activities.length)]);
-    setTimeout(scheduleToast, 12000 + Math.random() * 15000);
-  }
-  setTimeout(scheduleToast, 8000);
+  showActivityToast(activities[Math.floor(Math.random() * activities.length)]);
+  setTimeout(scheduleToast, 12000 + Math.random() * 15000);
+}
+// setTimeout(scheduleToast, 8000);
 
 })();
 </script>
