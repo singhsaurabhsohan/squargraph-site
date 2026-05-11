@@ -1102,6 +1102,75 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
     margin-top: 10px !important;
   }
 }
+/* Exploration cards (matches your existing card style) */
+.exploration-card {
+  border: 1px solid rgba(255,255,255,.065);
+  background: #0D0A1E;
+  padding: 28px 24px;
+  transition: border-color .3s ease, transform .3s cubic-bezier(.23,1,.32,1), box-shadow .3s ease;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.exploration-card:hover {
+  border-color: rgba(124,58,237,.4);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.5), 0 0 24px rgba(124,58,237,.06);
+}
+.exploration-tag {
+  font-size: 10px;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #A855F7;
+  background: rgba(168,85,247,.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(168,85,247,.2);
+}
+
+/* Fullscreen modal */
+.modal-exploration {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(3,2,10,0.98);
+  backdrop-filter: blur(12px);
+  z-index: 20000;
+  overflow-y: auto;
+  padding: 60px 5vw;
+}
+.modal-exploration.open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  max-width: 900px;
+  margin: 0 auto;
+  background: transparent;
+}
+.modal-close {
+  position: fixed;
+  top: 32px;
+  right: 32px;
+  background: none;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  color: #EEEEF5;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-close:hover {
+  border-color: #A855F7;
+  background: rgba(168,85,247,.1);
+  transform: scale(1.05);
+}
   </style>
 </head>
 <body>
@@ -1619,35 +1688,95 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
   </div>
 </section>
 <!-- ══════════════════════════════════════════════════════════════════
+     SELECTED BRAND EXPLORATIONS
+══════════════════════════════════════════════════════════════════════ -->
+<section id="explorations" style="padding: 120px 5vw; position: relative; z-index: 2;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="display: flex; flex-wrap: wrap; gap: 60px;">
+      <!-- Left label -->
+      <div style="flex: 1.2; min-width: 180px;">
+        <div class="reveal s-label">Selected Brand Explorations</div>
+        <p class="reveal reveal-d1" style="color: rgba(238,238,245,.45); font-size: 13px; margin-top: 12px; line-height: 1.6; max-width: 280px;">
+          Independent strategic observations and speculative communication studies by SQUARGRAPH Studios.
+        </p>
+      </div>
+      <!-- Right grid (2 columns) -->
+      <div style="flex: 2.5; min-width: 260px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px;">
+          
+          <!-- Card 1: The Whole Truth -->
+          <div class="exploration-card" data-exploration="twt">
+            <div style="margin-bottom: 20px;">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 40'%3E%3Ctext x='0' y='25' fill='%23A855F7' font-family='Outfit' font-size='14' font-weight='500' letter-spacing='1'%3ETHE WHOLE TRUTH%3C/text%3E%3C/svg%3E"
+                   alt="The Whole Truth" style="height: 28px; width: auto; filter: brightness(0) invert(0.7);">
+            </div>
+            <p style="color: #EEEEF5; font-size: 18px; line-height: 1.4; margin-bottom: 24px; font-weight: 400;">
+              Trust was never the problem.<br>Emotional depth might become the next opportunity.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+              <span class="exploration-tag">D2C</span>
+              <span class="exploration-tag">Wellness</span>
+              <span class="exploration-tag">Communication Strategy</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Blue Tokai -->
+          <div class="exploration-card" data-exploration="bluetokai">
+            <div style="margin-bottom: 20px;">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 40'%3E%3Ctext x='0' y='25' fill='%23A855F7' font-family='Outfit' font-size='13' font-weight='500' letter-spacing='1'%3EBLUE TOKAI%3C/text%3E%3C/svg%3E"
+                   alt="Blue Tokai" style="height: 28px; width: auto; filter: brightness(0) invert(0.7);">
+            </div>
+            <p style="color: #EEEEF5; font-size: 18px; line-height: 1.4; margin-bottom: 24px; font-weight: 400;">
+              Coffee is a ritual, not just a commodity.<br>How do you own the pause between sips?
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+              <span class="exploration-tag">Hospitality</span>
+              <span class="exploration-tag">Lifestyle</span>
+              <span class="exploration-tag">Brand Poetry</span>
+            </div>
+          </div>
+
+          <!-- Card 3: boAt -->
+          <div class="exploration-card" data-exploration="boat">
+            <div style="margin-bottom: 20px;">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 40'%3E%3Ctext x='0' y='25' fill='%23A855F7' font-family='Outfit' font-size='18' font-weight='600'%3EboAt%3C/text%3E%3C/svg%3E"
+                   alt="boAt" style="height: 28px; width: auto; filter: brightness(0) invert(0.7);">
+            </div>
+            <p style="color: #EEEEF5; font-size: 18px; line-height: 1.4; margin-bottom: 24px; font-weight: 400;">
+              From loud to lasting.<br>Cultural maturity as the next brand frontier.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+              <span class="exploration-tag">Electronics</span>
+              <span class="exploration-tag">Youth Culture</span>
+              <span class="exploration-tag">Identity Shift</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══════════════════════════════════════════════════════════════════
      EXPERIENCE
 ══════════════════════════════════════════════════════════════════════ -->
 <section id="experience" style="padding:120px 5vw;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
-    <div class="reveal s-label">Track Record</div>
+    <div class="reveal s-label">Experience</div>
     <h2 class="reveal font-display font-extrabold" style="font-size:clamp(32px,3.8vw,54px);line-height:1.03;letter-spacing:-.028em;margin-bottom:20px;">
       Not theory.<br/><span style="color:#A855F7;">Execution.</span>
     </h2>
-    <p class="reveal" style="color:rgba(238,238,245,.45);font-size:16px;line-height:1.8;max-width:52ch;margin-bottom:72px;font-weight:300;">
-      Built on work that had to be executed properly — not just sit in decks.
+    <p class="reveal" style="color:rgba(238,238,245,.45);font-size:16px;line-height:1.8;max-width:52ch;margin-bottom:48px;font-weight:300;">
+      SQUARGRAPH is new. Our thinking isn't. Every principle here comes from years of hands‑on campaign delivery — now applied independently.
     </p>
-    <div class="stat-strip reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:64px;">
-      <div class="stat-item" style="padding:28px 20px;">
-        <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;"><span class="count-up" data-count="12" data-suffix="+">0</span> Clear Briefs</div>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;margin-top:8px;line-height:1.7;">No ambiguity. Everyone aligned before work begins.</p>
-      </div>
-      <div class="stat-item" style="padding:28px 20px;">
-        <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;"><span class="count-up" data-count="8" data-suffix="+">0</span> Structured Workflow</div>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;margin-top:8px;line-height:1.7;">Defined steps. No last-minute chaos or guesswork.</p>
-      </div>
-      <div class="stat-item" style="padding:28px 20px;">
-        <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;"><span class="count-up" data-count="100" data-suffix="%">0</span> Clear Accountability</div>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;margin-top:8px;line-height:1.7;">Clear ownership across teams. Nothing falls through.</p>
-      </div>
-      <div class="stat-item" style="padding:28px 20px;">
-        <div class="font-display font-extrabold" style="font-size:20px;color:#A855F7;line-height:1.3;"><span class="count-up" data-count="500" data-suffix="+">0</span> Production Ready</div>
-        <p style="color:rgba(238,238,245,.4);font-size:13px;margin-top:8px;line-height:1.7;">Everything delivered ready to go live, no rework.</p>
-      </div>
+
+    <!-- Replace stat strip with honest, future-looking statement -->
+    <div class="reveal" style="margin-bottom:64px; background: rgba(124,58,237,.05); padding: 40px; border-left: 3px solid #A855F7;">
+      <p style="font-size: 15px; line-height: 1.7; color: rgba(238,238,245,.7); margin-bottom: 0;">
+        ⚡ No fake milestones. No inflated numbers. Just a clear promise: when we take your brief, you get full ownership, structured workflows, and production‑ready deliverables — every single time.
+      </p>
     </div>
+
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
       <div class="reveal reveal-d1" style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;background:rgba(124,58,237,.02);transition:border-color .3s,transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.borderColor='rgba(124,58,237,.3)';this.style.transform='translateY(-4px)'"
@@ -1659,13 +1788,13 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
            onmouseover="this.style.borderColor='rgba(124,58,237,.3)';this.style.transform='translateY(-4px)'"
            onmouseout="this.style.borderColor='rgba(255,255,255,.065)';this.style.transform='translateY(0)'">
         <div style="width:32px;height:1px;background:#A855F7;margin-bottom:20px;"></div>
-        <p style="font-size:15px;line-height:1.75;color:rgba(238,238,245,.7);font-weight:300;">Handled always-on content, ORM, influencer coordination, and cross-team production simultaneously.</p>
+        <p style="font-size:15px;line-height:1.75;color:rgba(238,238,245,.7);font-weight:300;">Handled always‑on content, ORM, influencer coordination, and cross‑team production simultaneously.</p>
       </div>
       <div class="reveal reveal-d3" style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;background:rgba(124,58,237,.02);transition:border-color .3s,transform .3s cubic-bezier(.23,1,.32,1);"
            onmouseover="this.style.borderColor='rgba(124,58,237,.3)';this.style.transform='translateY(-4px)'"
            onmouseout="this.style.borderColor='rgba(255,255,255,.065)';this.style.transform='translateY(0)'">
         <div style="width:32px;height:1px;background:#A855F7;margin-bottom:20px;"></div>
-        <p style="font-size:15px;line-height:1.75;color:rgba(238,238,245,.7);font-weight:300;">Comfortable operating in high-pressure, multi-team environments where timelines don't move and quality can't drop.</p>
+        <p style="font-size:15px;line-height:1.75;color:rgba(238,238,245,.7);font-weight:300;">Comfortable operating in high‑pressure, multi‑team environments where timelines don't move and quality can't drop.</p>
       </div>
     </div>
   </div>
@@ -2607,9 +2736,96 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
   showActivityToast(activities[Math.floor(Math.random() * activities.length)]);
   setTimeout(scheduleToast, 12000 + Math.random() * 15000);
 }
+// Open modals on card click
+document.querySelectorAll('.exploration-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const exploration = card.getAttribute('data-exploration');
+    const modal = document.getElementById(`modal-${exploration}`);
+    if (modal) {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+});
+
+// Close modal
+window.closeExplorationModal = function() {
+  document.querySelectorAll('.modal-exploration').forEach(modal => {
+    modal.classList.remove('open');
+  });
+  document.body.style.overflow = '';
+};
+
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeExplorationModal();
+});
+
+// Close when clicking outside modal content
+document.querySelectorAll('.modal-exploration').forEach(modal => {
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeExplorationModal();
+  });
+});
 // setTimeout(scheduleToast, 8000);
 
 })();
 </script>
+<!-- Modal 1: The Whole Truth -->
+<div id="modal-twt" class="modal-exploration">
+  <button class="modal-close" onclick="closeExplorationModal()">✕</button>
+  <div class="modal-content">
+    <div style="margin-bottom: 48px;">
+      <div style="font-size: 12px; letter-spacing: .2em; color: #A855F7; margin-bottom: 16px;">Selected Exploration</div>
+      <h2 style="font-size: clamp(32px, 6vw, 64px); font-family: 'Outfit', sans-serif; font-weight: 700; line-height: 1.1; margin-bottom: 24px;">The Whole Truth</h2>
+      <p style="font-size: 18px; color: rgba(238,238,245,.7); max-width: 70ch; line-height: 1.7;">Trust was never the problem. Emotional depth might become the next opportunity.</p>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,.1); padding-top: 48px;">
+      <p style="font-size: 16px; line-height: 1.8; color: rgba(238,238,245,.6); margin-bottom: 24px;">In a category flooded with "clean" and "natural", the real white space isn't ingredient‑led — it's emotionally intelligent. How might The Whole Truth evolve from a functional health brand to a companion for mental and emotional wellness? This exploration unpacks a tonal shift: softer, more observational, less instructional.</p>
+      <div style="background: rgba(124,58,237,.08); padding: 32px; margin: 40px 0; border-left: 3px solid #A855F7;">
+        <p style="font-style: italic; font-size: 20px; color: #EEEEF5;">“The next unlock isn’t another variant. It’s permission to feel seen.”</p>
+      </div>
+      <p style="font-size: 16px; line-height: 1.8; color: rgba(238,238,245,.6);">We explored a speculative content ecosystem: micro‑podcasts on daily stress, illustrated “emotional check‑ins” as Instagram carousels, and packaging that invites journaling. No hard sell — just presence.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2: Blue Tokai -->
+<div id="modal-bluetokai" class="modal-exploration">
+  <button class="modal-close" onclick="closeExplorationModal()">✕</button>
+  <div class="modal-content">
+    <div style="margin-bottom: 48px;">
+      <div style="font-size: 12px; letter-spacing: .2em; color: #A855F7; margin-bottom: 16px;">Selected Exploration</div>
+      <h2 style="font-size: clamp(32px, 6vw, 64px); font-family: 'Outfit', sans-serif; font-weight: 700; line-height: 1.1; margin-bottom: 24px;">Blue Tokai</h2>
+      <p style="font-size: 18px; color: rgba(238,238,245,.7); max-width: 70ch; line-height: 1.7;">Coffee is a ritual, not just a commodity. How do you own the pause between sips?</p>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,.1); padding-top: 48px;">
+      <p style="font-size: 16px; line-height: 1.8; color: rgba(238,238,245,.6); margin-bottom: 24px;">Blue Tokai has successfully built a coffee‑lover's brand. But the next chapter might be about the moment of stillness — the ritual, not just the roast. This exploration imagines a brand that celebrates the 3 minutes of brewing as much as the coffee itself.</p>
+      <div style="background: rgba(124,58,237,.08); padding: 32px; margin: 40px 0; border-left: 3px solid #A855F7;">
+        <p style="font-style: italic; font-size: 20px; color: #EEEEF5;">“What if the packaging whispered, not shouted? What if every sip came with a quiet invitation to pause?”</p>
+      </div>
+      <p style="font-size: 16px; line-height: 1.8; color: rgba(238,238,245,.6);">We explored slow‑cinematic Reels, audio‑first content (the sound of pouring, grinding), and a speculative “Pause Club” membership — no points, just poetry.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3: boAt -->
+<div id="modal-boat" class="modal-exploration">
+  <button class="modal-close" onclick="closeExplorationModal()">✕</button>
+  <div class="modal-content">
+    <div style="margin-bottom: 48px;">
+      <div style="font-size: 12px; letter-spacing: .2em; color: #A855F7; margin-bottom: 16px;">Selected Exploration</div>
+      <h2 style="font-size: clamp(32px, 6vw, 64px); font-family: 'Outfit', sans-serif; font-weight: 700; line-height: 1.1; margin-bottom: 24px;">boAt</h2>
+      <p style="font-size: 18px; color: rgba(238,238,245,.7); max-width: 70ch; line-height: 1.7;">From loud to lasting. Cultural maturity as the next brand frontier.</p>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,.1); padding-top: 48px;">
+      <p style="font-size: 16px; line-height: 1.8; color: rgba(238,238,245,.6); margin-bottom: 24px;">boAt conquered the youth market with energy and volume. But as its audience ages, the brand faces a question: can it grow up without selling out? This exploration looks at a tonal evolution — less hype, more heritage. Think: archival campaigns, artist documentaries, and a quieter confidence.</p>
+      <div style="background: rgba(124,58,237,.08); padding: 32px; margin: 40px 0; border-left: 3px solid #A855F7;">
+        <p style="font-style: italic; font-size: 20px; color: #EEEEF5;">“The loudest brand in the room learns that staying power comes from something deeper than volume.”</p>
+      </div>
+      <p style="font-size: 16px; line-height: 1.8; color: rgba(238,238,245,.6);">We proposed a speculative shift: black‑and‑white portrait series of real users, long‑form YouTube essays on sound culture, and a limited “Legacy” line with zero logos — just material and memory.</p>
+    </div>
+  </div>
+</div>
 </body>
 </html>
