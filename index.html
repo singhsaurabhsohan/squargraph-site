@@ -597,21 +597,27 @@ nav.scrolled {
       50% { r: 5; opacity: 1; }
     }
 
-    /* ── CHANGE 3: Chatbot button — always fixed bottom-right, no scroll required ── */
-    #chat-toggle {
-      position: fixed;
-      bottom: 28px;   /* desktop: 28px from bottom */
-      right: 28px;
-      width: 54px; height: 54px;
-      background: linear-gradient(135deg, #7C3AED, #A855F7);
-      border: none; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      z-index: 10000;
-      box-shadow: 0 8px 30px rgba(124,58,237,.45);
-      transition: transform .3s cubic-bezier(.23,1,.32,1), box-shadow .3s ease;
-      overflow: hidden;
-      animation: float 3s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
-    }
+    /* Chatbot button – fixed bottom-right */
+#chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(135deg, #7C3AED, #A855F7);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  box-shadow: 0 8px 30px rgba(124,58,237,.45);
+  transition: transform .3s cubic-bezier(.23,1,.32,1), box-shadow .3s ease;
+  overflow: hidden;
+  animation: float 3s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
+  box-sizing: border-box;
+  padding: 0;
+}
     #chat-toggle:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 14px 40px rgba(124,58,237,.6); }
     #chat-toggle-icon, #chat-close-icon { position: absolute; transition: opacity .2s ease, transform .2s ease; }
     #chat-close-icon { opacity: 0; transform: rotate(-90deg) scale(.7); }
@@ -1178,13 +1184,13 @@ nav a.active-nav {
   border-bottom: 2px solid #A855F7;
   padding-bottom: 4px;
 }
-/* Back to Top Button */
+/* Back to Top Button – perfectly aligned with chat icon */
 .back-to-top {
   position: fixed;
   bottom: 100px;
-  right: 28px;
-  width: 48px;
-  height: 48px;
+  right: 20px;          /* matches final chat button right value */
+  width: 54px;
+  height: 54px;
   background: linear-gradient(135deg, #7C3AED, #A855F7);
   border: none;
   border-radius: 50%;
@@ -1198,6 +1204,8 @@ nav a.active-nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  padding: 0;
 }
 
 .back-to-top.show {
@@ -1214,10 +1222,13 @@ nav a.active-nav {
 @media (max-width: 768px) {
   .back-to-top {
     bottom: 80px;
-    right: 16px;
-    width: 42px;
-    height: 42px;
+    right: 16px;        /* matches mobile chat button */
+    width: 54px;
+    height: 54px;
   }
+  .back-to-top svg {
+  margin-top: 2px;   /* nudges the arrow slightly down if needed */
+}
 }
   </style>
 </head>
