@@ -1171,6 +1171,13 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
   background: rgba(168,85,247,.1);
   transform: scale(1.05);
 }
+
+/* Active navigation link style */
+nav a.active-nav {
+  color: #A855F7 !important;
+  border-bottom: 2px solid #A855F7;
+  padding-bottom: 4px;
+}
   </style>
 </head>
 <body>
@@ -1194,10 +1201,8 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
 <!-- Particle canvas -->
 <canvas id="particle-canvas"></canvas>
 
-<!-- CHANGE 1: Custom cursor HTML elements removed entirely -->
-
 <!-- ══════════════════════════════════════════════════════════════════
-     NAV
+     NAV (condensed: Philosophy, Services, Work, Founder, Contact)
 ══════════════════════════════════════════════════════════════════════ -->
 <nav id="nav">
   <a href="#" class="font-display font-extrabold text-snow no-underline" style="font-size:22px;letter-spacing:-.02em;">
@@ -1206,9 +1211,9 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
 </a>
   <div class="mobile-hide" style="display:flex;gap:28px;align-items:center;">
     <a href="#philosophy" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Philosophy</a>
-    <a href="#process"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Process</a>
-    <a href="#services"   class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
+    <a href="#services"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
     <a href="#work"       class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Work</a>
+    <a href="#founder"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Founder</a>
     <a href="#contact"
        style="display:inline-flex;align-items:center;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:10px 22px;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
        onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
@@ -1223,9 +1228,9 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
 <!-- Mobile menu (outside .page-wrapper) -->
 <div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:400;flex-direction:column;align-items:center;justify-content:center;gap:36px;">
   <a href="#philosophy" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Philosophy</a>
-  <a href="#process"    onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Process</a>
   <a href="#services"   onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
   <a href="#work"       onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
+  <a href="#founder"    onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
   <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener" onclick="closeMob()"
      style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
     Start a project →
@@ -1461,7 +1466,7 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
   </div>
 </section>
 <!-- ══════════════════════════════════════════════════════════════════
-     PROCESS
+     PROCESS (no nav link, but kept for completeness)
 ══════════════════════════════════════════════════════════════════════ -->
 <section id="process" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
@@ -2795,6 +2800,36 @@ document.querySelectorAll('.modal-exploration').forEach(modal => {
     if (e.target === modal) closeExplorationModal();
   });
 });
+
+// Scroll Spy – highlight nav link based on scroll position
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+function updateActiveNav() {
+  let current = '';
+  const scrollPos = window.scrollY + 120; // offset for fixed navbar
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionBottom = sectionTop + section.offsetHeight;
+    if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active-nav');
+    const href = link.getAttribute('href').substring(1);
+    if (href === current) {
+      link.classList.add('active-nav');
+    }
+  });
+}
+
+window.addEventListener('scroll', updateActiveNav);
+window.addEventListener('resize', updateActiveNav);
+updateActiveNav();
+
 // setTimeout(scheduleToast, 8000);
 
 })();
