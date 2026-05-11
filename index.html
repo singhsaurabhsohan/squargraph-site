@@ -1206,7 +1206,7 @@ nav a.active-nav {
 ══════════════════════════════════════════════════════════════════════ -->
 <nav id="nav">
   <a href="#" class="font-display font-extrabold text-snow no-underline" style="font-size:22px;letter-spacing:-.02em;">
-  SQUAR<span style="color:#A855F7;">GRAPH</span>
+  SQUAR<span style="color:rgba(238,238,245,.7);">GRAPH</span>
   <span style="font-weight:400;color:rgba(238,238,245,.7);font-size:16px;"> Studios</span>
 </a>
   <div class="mobile-hide" style="display:flex;gap:28px;align-items:center;">
@@ -2167,7 +2167,7 @@ nav a.active-nav {
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:36px;flex-wrap:wrap;margin-bottom:40px;">
       <div>
         <div class="font-display font-extrabold" style="font-size:20px;letter-spacing:-.02em;margin-bottom:6px;">
-          SQUAR<span style="color:#A855F7;">GRAPH</span>
+          SQUAR<span style="color:rgba(238,238,245,.7);">GRAPH</span>
           <span style="font-weight:400;color:rgba(238,238,245,.7);font-size:12px;"> Studios</span>
         </div>
         <a href="https://share.google/IJKapcriwcXG1BEsC" target="_blank" rel="noopener"
@@ -2822,13 +2822,13 @@ document.querySelectorAll('.modal-exploration').forEach(modal => {
   });
 });
 
-// Scroll Spy – highlight nav link based on scroll position
+// Scroll Spy – highlight nav link based on scroll position (excluding logo)
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
 function updateActiveNav() {
   let current = '';
-  const scrollPos = window.scrollY + 120; // offset for fixed navbar
+  const scrollPos = window.scrollY + 120;
 
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
@@ -2839,6 +2839,9 @@ function updateActiveNav() {
   });
 
   navLinks.forEach(link => {
+    // Skip the logo link (href="#") to prevent it from turning purple
+    if (link.getAttribute('href') === '#') return;
+    
     link.classList.remove('active-nav');
     const href = link.getAttribute('href').substring(1);
     if (href === current) {
@@ -2850,7 +2853,6 @@ function updateActiveNav() {
 window.addEventListener('scroll', updateActiveNav);
 window.addEventListener('resize', updateActiveNav);
 updateActiveNav();
-
 // setTimeout(scheduleToast, 8000);
 
 })();
