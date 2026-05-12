@@ -9,8 +9,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SQUARGRAPH Studios — Content-First Creative Studio</title>
-  <meta name="description" content="SQUARGRAPH Studios. Brief in. Campaign live. Creative strategy, content, and execution for brands that can't afford to get it wrong." />
+  <title>Creative Agency Delhi | SQUARGRAPH Studios – Campaign Execution & Content</title>
+  <meta name="description" content="SQUARGRAPH is a creative agency in Delhi that specialises in campaign execution, content production, and brand strategy. We ship work, not just decks.">
   <meta property="og:title" content="SQUARGRAPH Studios — Content-First Creative Studio">
   <meta property="og:description" content="Brief in. Campaign live. Creative strategy, content, and execution.">
   <meta property="og:image" content="https://squargraph.com/squargraph-logo.jpg">
@@ -280,19 +280,21 @@
     <span style="font-weight:400;color:rgba(238,238,245,.7);font-size:16px;"> Studios</span>
   </a>
   <div class="mobile-hide" style="display:flex;gap:28px;align-items:center;">
-    <a href="#philosophy" class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Philosophy</a>
-    <a href="#services"   class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Services</a>
-    <a href="#work"       class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Work</a>
-    <a href="#founder"    class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Founder</a>
-    <a href="#contact"
-       style="display:inline-flex;align-items:center;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:10px 22px;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
-       onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-      Start a project
-    </a>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Switch dark/light mode">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-  </div>
+  <a href="#philosophy" class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Philosophy</a>
+  <a href="#services"   class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Services</a>
+  <a href="#work"       class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Work</a>
+  <!-- NEW LINK for the dedicated "Creative Agency Delhi" page -->
+  <a href="/creative-agency-delhi.html" class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Agency</a>
+  <a href="#founder"    class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Founder</a>
+  <a href="#contact"
+     style="display:inline-flex;align-items:center;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:10px 22px;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
+     onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+    Start a project
+  </a>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Switch dark/light mode">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</div>
   <button class="hamburger" id="mob-toggle" aria-label="Toggle menu" aria-expanded="false" style="background:none;border:none;padding:4px;">
     <span></span><span></span><span></span>
   </button>
@@ -1318,6 +1320,7 @@
       }).then(function(res) {
         if (res.ok) {
           submitBtn.innerHTML = '\u2713 Brief received \u2014 we\u2019ll be in touch soon.';
+          if (typeof gtag !== 'undefined') { gtag('event', 'generate_lead', { 'event_category': 'contact' }); }
           submitBtn.style.background = '#25D366';
           contactForm.reset();
         } else { throw new Error('server error'); }
@@ -1548,6 +1551,23 @@
   }
   chatToggleBtn.addEventListener('click', function() { if (chatOpen) startToasts(); }, { once: true });
 })();
+</script>
+<!-- GA4 event tracking for WhatsApp clicks and form leads -->
+<script>
+  (function() {
+    // Track all WhatsApp links
+    var waLinks = document.querySelectorAll('a[href^="https://wa.me/"]');
+    for (var i = 0; i < waLinks.length; i++) {
+      waLinks[i].addEventListener('click', function() {
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'begin_checkout', { 'event_category': 'whatsapp_click' });
+        }
+      });
+    }
+
+    // The contact form already fires 'generate_lead' in its fetch success block.
+    // If you haven't added that line, do it now (see note below).
+  })();
 </script>
 </body>
 </html>
