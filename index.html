@@ -40,8 +40,8 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" onload="this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" /></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&display=swap&display=swap" onload="this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&display=swap&display=swap" /></noscript>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
@@ -245,7 +245,7 @@ section[style*="background:#080616"] p {
 }
 
 /* 2. Ensure composited animations (no forced layout) */
-.marquee-inner, .spin-ring, .spin-ring-rev, .work-img-card, .svc-card {
+.marquee-inner, .work-img-card, .svc-card {
   will-change: transform;
 }
 
@@ -261,22 +261,6 @@ nav a, .link-secondary, footer a, .social-link, #privacy-link {
   border-bottom: none !important;
 }
   </style>
-  <script>
-    window.gaConsentGranted = false;
-    window.loadGA = function() {
-      if (window.gaConsentGranted) return;
-      window.gaConsentGranted = true;
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-QL85WYN3S0';
-      document.head.appendChild(s);
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', 'G-QL85WYN3S0');
-    };
-  </script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute">
@@ -302,7 +286,6 @@ nav a, .link-secondary, footer a, .social-link, #privacy-link {
   <a href="#philosophy" class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Philosophy</a>
   <a href="#services"   class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Services</a>
   <a href="#work"       class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Work</a>
-  <!-- NEW LINK for the dedicated "Creative Agency Delhi" page -->
   <a href="/creative-agency-delhi.html" class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Agency</a>
   <a href="#founder"    class="no-underline font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,238,245,.55);transition:color .2s;">Founder</a>
   <a href="#contact"
@@ -318,7 +301,6 @@ nav a, .link-secondary, footer a, .social-link, #privacy-link {
     <span></span><span></span><span></span>
   </button>
 </nav>
-<!-- Mobile menu -->
 <div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:400;flex-direction:column;align-items:center;justify-content:center;gap:36px;" aria-modal="true" role="dialog">
   <a href="#philosophy" onclick="closeMob()" class="font-display font-bold no-underline" style="font-size:28px;letter-spacing:-.02em;color:#EEEEF5;">Philosophy</a>
   <a href="#services"   onclick="closeMob()" class="font-display font-bold no-underline" style="font-size:28px;letter-spacing:-.02em;color:#EEEEF5;">Services</a>
@@ -332,7 +314,6 @@ nav a, .link-secondary, footer a, .social-link, #privacy-link {
 <div class="page-wrapper">
 <!-- HERO -->
 <section id="hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(80px,10vw,120px) 5vw 10vh;position:relative;overflow:hidden;">
-<!-- Static background (no video, super fast) -->
 <div style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; background: radial-gradient(circle at 20% 30%, #0D0A1E, #03020A);"></div>
   <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(3,2,10,.55);z-index:1;"></div>
   <div class="grid-bg"></div>
@@ -382,12 +363,6 @@ nav a, .link-secondary, footer a, .social-link, #privacy-link {
 </div>
 <!-- PHILOSOPHY -->
 <section id="philosophy" style="padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
-  <div style="position:absolute;top:0;right:0;pointer-events:none;">
-    <svg width="400" height="400" viewBox="0 0 400 400" aria-hidden="true">
-      <circle cx="380" cy="60" r="180" stroke="rgba(124,58,237,0.07)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:40s;"/>
-      <circle cx="380" cy="60" r="120" stroke="rgba(124,58,237,0.05)" stroke-width="1" fill="none" class="spin-ring-rev" style="animation-duration:28s;"/>
-    </svg>
-  </div>
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">How We Think</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:72px;align-items:start;">
@@ -592,7 +567,6 @@ nav a, .link-secondary, footer a, .social-link, #privacy-link {
         Visual, digital, and strategic work built to perform &#8212; not just to look good in a deck.
       </p>
     </div>
-    <!-- Capabilities grid -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-bottom:56px;">
       <div class="cap-card reveal reveal-d1">
         <div class="cap-icon" aria-hidden="true">
@@ -651,7 +625,6 @@ nav a, .link-secondary, footer a, .social-link, #privacy-link {
         <p style="color:rgba(238,238,245,.45);font-size:13px;line-height:1.7;">Ad creatives &#8212; static and motion &#8212; built to convert across platforms.</p>
       </div>
     </div>
-    <!-- Case study teasers -->
     <div style="display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:20px;">
       <div class="work-img-card reveal reveal-d1" style="grid-column:span 7;" onclick="openLightbox(this)">
         <svg class="work-img-svg" width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1537,48 +1510,7 @@ nav a, .link-secondary, footer a, .social-link, #privacy-link {
       localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
     });
   }
-  /* Activity toasts — lazy, triggered after chat opens */
-  var activities = [
-    "A startup founder from Bangalore just submitted a brief.",
-    "A marketing head from Mumbai is viewing our services.",
-    "Someone from Delhi requested a custom proposal.",
-    "An automotive brand manager visited our work section.",
-    "A D2C brand owner is reading our process.",
-  ];
-  var toastStarted = false;
-  function startToasts() {
-    if (toastStarted) return; toastStarted = true;
-    function showActivityToast(text) {
-      var toast = document.createElement('div'); toast.className = 'activity-toast'; toast.textContent = text;
-      document.body.appendChild(toast);
-      requestAnimationFrame(function() { requestAnimationFrame(function() { toast.classList.add('visible'); }); });
-      setTimeout(function() { toast.classList.remove('visible'); setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 500); }, 4000);
-    }
-    function scheduleToast() {
-      showActivityToast(activities[Math.floor(Math.random() * activities.length)]);
-      setTimeout(scheduleToast, 12000 + Math.random() * 15000);
-    }
-    scheduleToast();
-  }
-  chatToggleBtn.addEventListener('click', function() { if (chatOpen) startToasts(); }, { once: true });
 })();
-</script>
-<!-- GA4 event tracking for WhatsApp clicks and form leads -->
-<script>
-  (function() {
-    // Track all WhatsApp links
-    var waLinks = document.querySelectorAll('a[href^="https://wa.me/"]');
-    for (var i = 0; i < waLinks.length; i++) {
-      waLinks[i].addEventListener('click', function() {
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'begin_checkout', { 'event_category': 'whatsapp_click' });
-        }
-      });
-    }
-
-    // The contact form already fires 'generate_lead' in its fetch success block.
-    // If you haven't added that line, do it now (see note below).
-  })();
 </script>
 </body>
 </html>
