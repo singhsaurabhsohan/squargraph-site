@@ -9,6 +9,16 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+  /* Critical CSS for hero – avoids render-blocking */
+  body { margin: 0; background: #03020A; color: #EEEEF5; }
+  .font-display { font-family: 'Outfit', sans-serif; }
+  .hero-title { font-size: clamp(42px, 8vw, 112px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; }
+  .shimmer-text { background: linear-gradient(90deg, #A855F7 0%, #fff 40%, #06B6D4 60%, #A855F7 100%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .s-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #A855F7; display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .s-label::before { content: ''; width: 26px; height: 1px; background: linear-gradient(90deg, #7C3AED, #A855F7); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #7C3AED, #A855F7); color: #fff; padding: 16px 34px; text-decoration: none; border-radius: 2px; }
+</style>
   <title>Creative Agency Delhi | SQUARGRAPH Studios – Campaign Execution & Content</title>
   <meta name="description" content="SQUARGRAPH is a creative agency in Delhi that specialises in campaign execution, content production, and brand strategy. We ship work, not just decks.">
   <meta property="og:title" content="SQUARGRAPH Studios — Content-First Creative Studio">
@@ -32,7 +42,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" onload="this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" /></noscript>
-  <script defer src="https://cdn.tailwindcss.com"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       if (window.tailwind) {
@@ -133,7 +142,7 @@
     .spin-ring{animation:spinRing 20s linear infinite;transform-origin:center}
     .spin-ring-rev{animation:spinRing 14s linear infinite reverse;transform-origin:center}
     @keyframes spinRing{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-    #chat-toggle{position:fixed!important;bottom:20px!important;right:20px!important;z-index:10000!important;width:54px;height:54px;background:linear-gradient(135deg,#7C3AED,#A855F7);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(124,58,237,.45);transition:transform .3s cubic-bezier(.23,1,.32,1),box-shadow .3s;animation:chatFloat 3s ease-in-out infinite,glowPulse 2s ease-in-out infinite;overflow:hidden;box-sizing:border-box;padding:0;cursor:pointer}
+    #chat-toggle{position:fixed!important;bottom:20px!important;right:20px!important;z-index:10000!important;width:54px;height:54px;background:linear-gradient(135deg,#7C3AED,#A855F7);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(124,58,237,.65);transition:transform .3s cubic-bezier(.23,1,.32,1),box-shadow .3s;animation:chatFloat 3s ease-in-out infinite,glowPulse 2s ease-in-out infinite;overflow:hidden;box-sizing:border-box;padding:0;cursor:pointer}
     #chat-toggle:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 14px 40px rgba(124,58,237,.6)}
     #chat-toggle-icon,#chat-close-icon{position:absolute;transition:opacity .2s,transform .2s}
     #chat-close-icon{opacity:0;transform:rotate(-90deg) scale(.7)}
@@ -210,7 +219,10 @@
     .back-to-top:hover{transform:translateY(-3px);border-color:#A855F7}
     .elfsight-app-68838809-9c0e-4820-84c2-a97944843fda{margin-top:20px;border-radius:12px;overflow:hidden}
     @keyframes chatFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-    @keyframes glowPulse{0%,100%{box-shadow:0 8px 30px rgba(124,58,237,.45)}50%{box-shadow:0 8px 40px rgba(124,58,237,.7)}}
+    @keyframes glowPulse {
+  0%,100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
     @media(max-width:768px){
       #hero{padding-top:110px!important;padding-bottom:60px!important;justify-content:flex-start!important}
       .mobile-stack{flex-direction:column!important}
@@ -1020,8 +1032,15 @@
     <h2 class="reveal font-display font-extrabold" style="font-size:clamp(28px,3.5vw,48px);margin-bottom:48px;letter-spacing:-.02em;">
       Latest from <span style="color:#A855F7;">Instagram</span>
     </h2>
-    <script src="https://elfsightcdn.com/platform.js" defer></script>
-    <div class="elfsight-app-68838809-9c0e-4820-84c2-a97944843fda" data-elfsight-app-lazy></div>
+    <script>
+  window.addEventListener('load', function() {
+    var script = document.createElement('script');
+    script.src = "https://elfsightcdn.com/platform.js";
+    script.defer = true;
+    document.body.appendChild(script);
+  });
+</script>
+<div class="elfsight-app-68838809-9c0e-4820-84c2-a97944843fda" data-elfsight-app-lazy></div>
   </div>
 </section>
 <!-- CTA + CONTACT -->
@@ -1502,16 +1521,35 @@
   var sections = document.querySelectorAll('section[id]');
   var navLinks = document.querySelectorAll('nav a[href^="#"]');
   function updateActiveNav() {
-    var current = ''; var scrollPos = window.scrollY + 120;
-    sections.forEach(function(s) {
-      if (scrollPos >= s.offsetTop && scrollPos < s.offsetTop + s.offsetHeight) current = s.id;
-    });
+  let current = '';
+  const scrollPos = window.scrollY + 120;
+  const sectionsArray = Array.from(sections);
+  for (let i = 0; i < sectionsArray.length; i++) {
+    const s = sectionsArray[i];
+    const rect = s.getBoundingClientRect();
+    const offsetTop = rect.top + window.scrollY;
+    if (scrollPos >= offsetTop && scrollPos < offsetTop + s.offsetHeight) {
+      current = s.id;
+      break;
+    }
+  }
+  requestAnimationFrame(() => {
     navLinks.forEach(function(link) {
       if (link.getAttribute('href') === '#' || link.getAttribute('href') === '/') return;
       link.classList.toggle('active-nav', link.getAttribute('href').substring(1) === current);
     });
+  });
+}
+  let ticking = false;
+window.addEventListener('scroll', function() {
+  if (!ticking) {
+    requestAnimationFrame(function() {
+      updateActiveNav();
+      ticking = false;
+    });
+    ticking = true;
   }
-  window.addEventListener('scroll', updateActiveNav, { passive: true });
+}); { passive: true });
   updateActiveNav();
   /* Back to top */
   var backToTopBtn = document.getElementById('backToTop');
