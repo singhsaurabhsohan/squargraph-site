@@ -42,27 +42,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" onload="this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" /></noscript>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      if (window.tailwind) {
-        tailwind.config = {
-          theme: {
-            extend: {
-              fontFamily: { display: ['Outfit','sans-serif'], body: ['Space Grotesk','sans-serif'] },
-              colors: {
-                black:'#03020A', charcoal:'#080616', card:'#0D0A1E',
-                accent:'#7C3AED','accent-hi':'#A855F7','accent-dim':'rgba(124,58,237,0.10)',
-                'accent-glow':'rgba(124,58,237,0.22)', gold:'#E8B86D',
-                'gold-dim':'rgba(232,184,109,0.12)', cyan:'#06B6D4',
-                snow:'#EEEEF5', muted:'rgba(238,238,245,0.45)'
-              },
-              letterSpacing: { widest2:'0.18em', widest3:'0.22em' }
-            }
-          }
-        };
-      }
-    });
-  </script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
@@ -217,7 +196,6 @@
     .back-to-top{position:fixed;bottom:88px;right:84px;width:44px;height:44px;background:rgba(13,10,30,.9);border:1px solid rgba(124,58,237,.3);border-radius:50%;color:#A855F7;cursor:pointer;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s,transform .2s,border-color .2s;box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:9998;display:flex;align-items:center;justify-content:center}
     .back-to-top.show{opacity:1;visibility:visible}
     .back-to-top:hover{transform:translateY(-3px);border-color:#A855F7}
-    .elfsight-app-68838809-9c0e-4820-84c2-a97944843fda{margin-top:20px;border-radius:12px;overflow:hidden}
     @keyframes chatFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
     @keyframes glowPulse {
   0%,100% { opacity: 0.9; }
@@ -236,7 +214,6 @@
       .work-img-overlay{padding:16px}
       .work-img-title{font-size:14px}
       .back-to-top{bottom:82px;right:68px}
-      .instagram-section{padding:60px 5vw!important}
     }
     .theme-toggle{background:none;border:none;cursor:pointer;color:rgba(238,238,245,.7);width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s,color .2s;margin-left:8px}
     .theme-toggle:hover{background:rgba(255,255,255,.1);color:#A855F7}
@@ -253,6 +230,36 @@
     body.light-mode .msg.bot .msg-bubble{background:#f0f0f4;color:#1e1e2a}
     body.light-mode #cookie-banner{background:rgba(255,255,255,.98)}
     body.light-mode .cookie-title{color:#1e1e2a}
+/* ========== FINAL PERFORMANCE & ACCESSIBILITY FIXES ========== */
+
+/* 1. Fix low contrast for exploration tags and footer text */
+.exploration-tag {
+  color: #C084FC !important;
+  background: rgba(168,85,247,0.15) !important;
+}
+footer p, #contact p, .cookie-desc, .form-label {
+  color: rgba(238,238,245,0.75) !important;
+}
+section[style*="background:#080616"] p {
+  color: rgba(238,238,245,0.7) !important;
+}
+
+/* 2. Ensure composited animations (no forced layout) */
+.marquee-inner, .spin-ring, .spin-ring-rev, .work-img-card, .svc-card {
+  will-change: transform;
+}
+
+/* 3. Speed up LCP on mobile – content-visibility for hero section */
+#hero {
+  content-visibility: auto;
+  contain-intrinsic-size: 600px;
+}
+
+/* 4. Remove any leftover underlines (cleaner look) */
+nav a, .link-secondary, footer a, .social-link, #privacy-link {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
   </style>
   <script>
     window.gaConsentGranted = false;
@@ -1025,24 +1032,6 @@
     </div>
   </div>
 </section>
-<!-- INSTAGRAM FEED -->
-<section class="instagram-section" style="padding:100px 5vw;position:relative;z-index:2;background:#080616;border-top:1px solid rgba(255,255,255,.055);">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="reveal s-label">Follow Us</div>
-    <h2 class="reveal font-display font-extrabold" style="font-size:clamp(28px,3.5vw,48px);margin-bottom:48px;letter-spacing:-.02em;">
-      Latest from <span style="color:#A855F7;">Instagram</span>
-    </h2>
-    <script>
-  window.addEventListener('load', function() {
-    var script = document.createElement('script');
-    script.src = "https://elfsightcdn.com/platform.js";
-    script.defer = true;
-    document.body.appendChild(script);
-  });
-</script>
-<div class="elfsight-app-68838809-9c0e-4820-84c2-a97944843fda" data-elfsight-app-lazy></div>
-  </div>
-</section>
 <!-- CTA + CONTACT -->
 <section id="contact" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
   <div class="cta-glow"></div>
@@ -1517,40 +1506,24 @@
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') { closeLightbox(); closePrivacyModal(); closeExplorationModal(); }
   });
-  /* Scroll spy */
-  var sections = document.querySelectorAll('section[id]');
-  var navLinks = document.querySelectorAll('nav a[href^="#"]');
-  function updateActiveNav() {
-  let current = '';
-  const scrollPos = window.scrollY + 120;
-  const sectionsArray = Array.from(sections);
-  for (let i = 0; i < sectionsArray.length; i++) {
-    const s = sectionsArray[i];
-    const rect = s.getBoundingClientRect();
-    const offsetTop = rect.top + window.scrollY;
-    if (scrollPos >= offsetTop && scrollPos < offsetTop + s.offsetHeight) {
-      current = s.id;
-      break;
-    }
-  }
-  requestAnimationFrame(() => {
-    navLinks.forEach(function(link) {
-      if (link.getAttribute('href') === '#' || link.getAttribute('href') === '/') return;
-      link.classList.toggle('active-nav', link.getAttribute('href').substring(1) === current);
+  /* Scroll spy – using IntersectionObserver (no forced reflow) */
+  var sectionsForObserver = document.querySelectorAll('section[id]');
+  var navLinksForObserver = document.querySelectorAll('nav a[href^="#"]');
+
+  var observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        var id = entry.target.getAttribute('id');
+        navLinksForObserver.forEach(link => {
+          var href = link.getAttribute('href');
+          if (href === '#' || href === '/') return;
+          link.classList.toggle('active-nav', href.substring(1) === id);
+        });
+      }
     });
-  });
-}
-    let ticking = false;
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(function() {
-        updateActiveNav();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-  updateActiveNav();
+  }, { threshold: 0.5, rootMargin: '-20% 0px -20% 0px' });
+
+  sectionsForObserver.forEach(section => observer.observe(section));
   /* Back to top */
   var backToTopBtn = document.getElementById('backToTop');
   window.addEventListener('scroll', function() { backToTopBtn.classList.toggle('show', window.scrollY > 500); }, { passive: true });
