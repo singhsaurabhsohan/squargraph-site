@@ -12,7 +12,9 @@
   <style>
   /* Critical CSS for hero – avoids render-blocking */
   body { margin: 0; background: #03020A; color: #EEEEF5; }
-  .font-display { font-family: 'Outfit', sans-serif; }
+  .font-display {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
   .hero-title { font-size: clamp(42px, 8vw, 112px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; }
   .shimmer-text { background: linear-gradient(90deg, #A855F7 0%, #fff 40%, #06B6D4 60%, #A855F7 100%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; }
   .s-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #A855F7; display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
@@ -58,7 +60,6 @@
     ::-webkit-scrollbar-track{background:#03020A}
     ::-webkit-scrollbar-thumb{background:linear-gradient(to bottom,#7C3AED,#A855F7);border-radius:2px}
     .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.06) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 85% 65% at 50% 100%,black 30%,transparent 100%);pointer-events:none}
-    .font-display{font-family:'Outfit',sans-serif}
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .75s cubic-bezier(.23,1,.32,1),transform .75s cubic-bezier(.23,1,.32,1)}
     .reveal.visible{opacity:1;transform:translateY(0)}
     .reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.17s}.reveal-d3{transition-delay:.26s}.reveal-d4{transition-delay:.35s}.reveal-d5{transition-delay:.44s}
@@ -87,7 +88,15 @@
     .link-secondary:hover{color:#EEEEF5;border-color:rgba(255,255,255,.6)}
     .marquee-wrap{overflow:hidden}
     .marquee-inner{display:flex;width:max-content;animation:marquee 18s linear infinite;white-space:nowrap}
-    .marquee-item{font-family:'Outfit',sans-serif;font-size:clamp(48px,7vw,96px);font-weight:800;color:rgba(124,58,237,0.08);-webkit-text-stroke:1px rgba(124,58,237,.4);letter-spacing:-.03em;padding:0 60px;text-transform:uppercase}
+    .marquee-item {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 800;
+  color: #E9A6FF;  /* was #A855F7 – much higher contrast */
+  letter-spacing: -.03em;
+  padding: 0 60px;
+  text-transform: uppercase;
+}
     @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
     .work-img-card{position:relative;border-radius:2px;overflow:hidden;border:1px solid rgba(255,255,255,.065);aspect-ratio:4/3;transition:transform .4s cubic-bezier(.23,1,.32,1),box-shadow .4s,border-color .4s;cursor:pointer}
     .work-img-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 24px 56px rgba(0,0,0,.7),0 0 32px rgba(124,58,237,.15);border-color:rgba(124,58,237,.35)}
@@ -118,9 +127,6 @@
     .process-detail[open] .toggle-icon{transform:rotate(45deg)}
     .process-detail summary::marker{display:none}
     .process-detail summary::-webkit-details-marker{display:none}
-    .spin-ring{animation:spinRing 20s linear infinite;transform-origin:center}
-    .spin-ring-rev{animation:spinRing 14s linear infinite reverse;transform-origin:center}
-    @keyframes spinRing{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
     #chat-toggle{position:fixed!important;bottom:20px!important;right:20px!important;z-index:10000!important;width:54px;height:54px;background:linear-gradient(135deg,#7C3AED,#A855F7);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(124,58,237,.65);transition:transform .3s cubic-bezier(.23,1,.32,1),box-shadow .3s;animation:chatFloat 3s ease-in-out infinite,glowPulse 2s ease-in-out infinite;overflow:hidden;box-sizing:border-box;padding:0;cursor:pointer}
     #chat-toggle:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 14px 40px rgba(124,58,237,.6)}
     #chat-toggle-icon,#chat-close-icon{position:absolute;transition:opacity .2s,transform .2s}
@@ -183,8 +189,6 @@
     .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
     .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
     .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-    .activity-toast{position:fixed;bottom:100px;left:20px;background:#0D0A1E;border:1px solid rgba(124,58,237,.3);color:#EEEEF5;padding:12px 20px;border-radius:8px;font-size:12px;font-family:'Outfit',sans-serif;z-index:8000;opacity:0;transform:translateX(-20px);transition:opacity .4s,transform .4s;box-shadow:0 8px 24px rgba(0,0,0,.5);max-width:260px;line-height:1.5}
-    .activity-toast.visible{opacity:1;transform:translateX(0)}
     .exploration-card{border:1px solid rgba(255,255,255,.065);background:#0D0A1E;padding:28px 24px;transition:border-color .3s,transform .3s cubic-bezier(.23,1,.32,1),box-shadow .3s;border-radius:2px;cursor:pointer}
     .exploration-card:hover{border-color:rgba(124,58,237,.4);transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.5)}
     .exploration-tag{font-size:10px;font-family:'Outfit',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#A855F7;background:rgba(168,85,247,.1);padding:4px 10px;border-radius:20px;border:1px solid rgba(168,85,247,.2)}
@@ -1374,91 +1378,107 @@ nav a, .link-secondary, footer a, .social-link, #privacy-link {
     cookieBanner.style.display = 'none';
     if (existingConsent === 'accepted' && window.loadGA) window.loadGA();
   }
-  /* Chatbot */
+    /* Chatbot – lazy loaded when user clicks the toggle */
   var chatToggleBtn = document.getElementById('chat-toggle');
   var chatPanel = document.getElementById('chat-panel');
   var chatMessages = document.getElementById('chat-messages');
   var briefInputEl = document.getElementById('chat-brief-input');
   var chatTextInput = document.getElementById('chat-text-input');
   var chatSendBtn = document.getElementById('chat-send-btn');
-  var chatOpen = false, chatStarted = false;
-  chatToggleBtn.addEventListener('click', function() {
-    chatOpen = !chatOpen;
-    chatToggleBtn.classList.toggle('open', chatOpen);
-    chatToggleBtn.setAttribute('aria-expanded', String(chatOpen));
-    chatPanel.classList.toggle('open', chatOpen);
-    if (chatOpen && !chatStarted) { chatStarted = true; setTimeout(startChat, 350); }
-    if (!chatOpen && chatStarted) {
-      chatMessages.innerHTML = '';
-      briefInputEl.classList.remove('visible');
-      if (chatTextInput) chatTextInput.value = '';
-      chatStarted = false;
+  var chatOpen = false, chatStarted = false, chatLoaded = false;
+
+  function loadChatbot() {
+    if (chatLoaded) return;
+    chatLoaded = true;
+
+    // All chatbot functions and event listeners go here
+    function scrollChat() { chatMessages.scrollTop = chatMessages.scrollHeight; }
+    function addMsg(text, type) {
+      var msg = document.createElement('div'); msg.className = 'msg ' + (type || 'bot');
+      var bubble = document.createElement('div'); bubble.className = 'msg-bubble'; bubble.textContent = text;
+      msg.appendChild(bubble); chatMessages.appendChild(msg); scrollChat();
     }
-    if (chatOpen) chatPanel.focus();
-  });
-  function scrollChat() { chatMessages.scrollTop = chatMessages.scrollHeight; }
-  function addMsg(text, type) {
-    var msg = document.createElement('div'); msg.className = 'msg ' + (type || 'bot');
-    var bubble = document.createElement('div'); bubble.className = 'msg-bubble'; bubble.textContent = text;
-    msg.appendChild(bubble); chatMessages.appendChild(msg); scrollChat();
-  }
-  function botReply(text, delay) {
-    return new Promise(function(resolve) {
+    function botReply(text, delay) {
+      return new Promise(function(resolve) {
+        var row = document.createElement('div'); row.className = 'msg bot';
+        row.innerHTML = '<div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+        chatMessages.appendChild(row); scrollChat();
+        setTimeout(function() { if (row.parentNode) chatMessages.removeChild(row); addMsg(text, 'bot'); resolve(); }, delay || 1000);
+      });
+    }
+    function showOptions(options) {
+      return new Promise(function(resolve) {
+        var wrapper = document.createElement('div'); wrapper.className = 'chat-options';
+        options.forEach(function(opt) {
+          var btn = document.createElement('button'); btn.className = 'chat-option-btn'; btn.textContent = opt.label;
+          btn.addEventListener('click', function() {
+            wrapper.querySelectorAll('.chat-option-btn').forEach(function(b) { b.disabled = true; });
+            addMsg(opt.label, 'user'); resolve(opt.value);
+          });
+          wrapper.appendChild(btn);
+        });
+        chatMessages.appendChild(wrapper); scrollChat();
+      });
+    }
+    async function startChat() {
+      await botReply("Hey — what are you trying to build?", 800);
+      var service = await showOptions([
+        { label:"Launch campaign", value:"campaign" }, { label:"Social media", value:"social" },
+        { label:"Branding", value:"branding" }, { label:"Something else", value:"other" }
+      ]);
+      var replies = { campaign:"Got it — campaign launches are our bread and butter.", social:"Consistent social output requires a system. We can build that.", branding:"Brand identity done right sets everything else up.", other:"No problem — tell us what’s on your mind." };
+      await botReply(replies[service], 900);
+      await botReply("What’s your rough budget range?", 700);
+      var budget = await showOptions([
+        { label:"₹50K – ₹1L", value:"low" }, { label:"₹1L – ₹3L", value:"mid" },
+        { label:"₹3L – ₹5L", value:"high" }, { label:"₹5L+", value:"premium" }
+      ]);
+      var budReplies = { low:"Good to know. Let’s find a scope that works.", mid:"Solid range to build a meaningful campaign.", high:"Great — we can do a lot with that.", premium:"Excellent. Full-service execution, no compromises." };
+      await botReply(budReplies[budget], 900);
+      await botReply("How would you like to take this forward?", 700);
+      var next = await showOptions([{ label:"Continue on WhatsApp", value:"wa" }, { label:"Type a quick brief", value:"brief" }]);
+      if (next === 'wa') { await botReply("Perfect — see you on WhatsApp!", 700); setTimeout(function() { window.open('https://wa.me/918588897488', '_blank'); }, 600); }
+      else { await botReply("Go ahead — describe your project in a few lines.", 700); briefInputEl.classList.add('visible'); chatTextInput.focus(); }
+    }
+    async function submitBrief() {
+      var text = chatTextInput.value.trim(); if (!text) return;
+      chatTextInput.value = ''; briefInputEl.classList.remove('visible');
+      addMsg(text, 'user');
       var row = document.createElement('div'); row.className = 'msg bot';
       row.innerHTML = '<div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
       chatMessages.appendChild(row); scrollChat();
-      setTimeout(function() { if (row.parentNode) chatMessages.removeChild(row); addMsg(text, 'bot'); resolve(); }, delay || 1000);
+      setTimeout(function() {
+        if (row.parentNode) chatMessages.removeChild(row);
+        addMsg("Got it — let’s take this forward on WhatsApp.", 'bot');
+        setTimeout(function() { window.open('https://wa.me/918588897488?text=' + encodeURIComponent(text), '_blank'); }, 800);
+      }, 1200);
+    }
+    chatSendBtn.addEventListener('click', submitBrief);
+    chatTextInput.addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitBrief(); } });
+
+    // Now attach the click handler that actually opens the chat
+    chatToggleBtn.addEventListener('click', function() {
+      chatOpen = !chatOpen;
+      chatToggleBtn.classList.toggle('open', chatOpen);
+      chatToggleBtn.setAttribute('aria-expanded', String(chatOpen));
+      chatPanel.classList.toggle('open', chatOpen);
+      if (chatOpen && !chatStarted) { chatStarted = true; setTimeout(startChat, 350); }
+      if (!chatOpen && chatStarted) {
+        chatMessages.innerHTML = '';
+        briefInputEl.classList.remove('visible');
+        if (chatTextInput) chatTextInput.value = '';
+        chatStarted = false;
+      }
+      if (chatOpen) chatPanel.focus();
     });
   }
-  function showOptions(options) {
-    return new Promise(function(resolve) {
-      var wrapper = document.createElement('div'); wrapper.className = 'chat-options';
-      options.forEach(function(opt) {
-        var btn = document.createElement('button'); btn.className = 'chat-option-btn'; btn.textContent = opt.label;
-        btn.addEventListener('click', function() {
-          wrapper.querySelectorAll('.chat-option-btn').forEach(function(b) { b.disabled = true; });
-          addMsg(opt.label, 'user'); resolve(opt.value);
-        });
-        wrapper.appendChild(btn);
-      });
-      chatMessages.appendChild(wrapper); scrollChat();
-    });
+
+  // Defer loading the chatbot until the browser is idle, or on the first click
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadChatbot, { timeout: 3000 });
+  } else {
+    setTimeout(loadChatbot, 2000);
   }
-  async function startChat() {
-    await botReply("Hey \u2014 what are you trying to build?", 800);
-    var service = await showOptions([
-      { label:"Launch campaign", value:"campaign" }, { label:"Social media", value:"social" },
-      { label:"Branding", value:"branding" }, { label:"Something else", value:"other" }
-    ]);
-    var replies = { campaign:"Got it \u2014 campaign launches are our bread and butter.", social:"Consistent social output requires a system. We can build that.", branding:"Brand identity done right sets everything else up.", other:"No problem \u2014 tell us what\u2019s on your mind." };
-    await botReply(replies[service], 900);
-    await botReply("What\u2019s your rough budget range?", 700);
-    var budget = await showOptions([
-      { label:"\u20b950K \u2013 \u20b91L", value:"low" }, { label:"\u20b91L \u2013 \u20b93L", value:"mid" },
-      { label:"\u20b93L \u2013 \u20b95L", value:"high" }, { label:"\u20b95L+", value:"premium" }
-    ]);
-    var budReplies = { low:"Good to know. Let\u2019s find a scope that works.", mid:"Solid range to build a meaningful campaign.", high:"Great \u2014 we can do a lot with that.", premium:"Excellent. Full-service execution, no compromises." };
-    await botReply(budReplies[budget], 900);
-    await botReply("How would you like to take this forward?", 700);
-    var next = await showOptions([{ label:"Continue on WhatsApp", value:"wa" }, { label:"Type a quick brief", value:"brief" }]);
-    if (next === 'wa') { await botReply("Perfect \u2014 see you on WhatsApp!", 700); setTimeout(function() { window.open('https://wa.me/918588897488', '_blank'); }, 600); }
-    else { await botReply("Go ahead \u2014 describe your project in a few lines.", 700); briefInputEl.classList.add('visible'); chatTextInput.focus(); }
-  }
-  async function submitBrief() {
-    var text = chatTextInput.value.trim(); if (!text) return;
-    chatTextInput.value = ''; briefInputEl.classList.remove('visible');
-    addMsg(text, 'user');
-    var row = document.createElement('div'); row.className = 'msg bot';
-    row.innerHTML = '<div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
-    chatMessages.appendChild(row); scrollChat();
-    setTimeout(function() {
-      if (row.parentNode) chatMessages.removeChild(row);
-      addMsg("Got it \u2014 let\u2019s take this forward on WhatsApp.", 'bot');
-      setTimeout(function() { window.open('https://wa.me/918588897488?text=' + encodeURIComponent(text), '_blank'); }, 800);
-    }, 1200);
-  }
-  chatSendBtn.addEventListener('click', submitBrief);
-  chatTextInput.addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitBrief(); } });
   /* Exploration modals */
   document.querySelectorAll('.exploration-card').forEach(function(card) {
     card.setAttribute('tabindex', '0');
