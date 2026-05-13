@@ -1540,16 +1540,16 @@
     });
   });
 }
-  let ticking = false;
-window.addEventListener('scroll', function() {
-  if (!ticking) {
-    requestAnimationFrame(function() {
-      updateActiveNav();
-      ticking = false;
-    });
-    ticking = true;
-  }
-}); { passive: true });
+    let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        updateActiveNav();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
   updateActiveNav();
   /* Back to top */
   var backToTopBtn = document.getElementById('backToTop');
