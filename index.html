@@ -99,38 +99,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['Outfit', 'sans-serif'],
-            body: ['Space Grotesk', 'sans-serif'],
-          },
-          colors: {
-            black:        '#03020A',
-            charcoal:     '#080616',
-            card:         '#0D0A1E',
-            accent:       '#7C3AED',
-            'accent-hi':  '#A855F7',
-            'accent-dim': 'rgba(124,58,237,0.10)',
-            'accent-glow':'rgba(124,58,237,0.22)',
-            gold:         '#E8B86D',
-            'gold-dim':   'rgba(232,184,109,0.12)',
-            cyan:         '#06B6D4',
-            snow:         '#EEEEF5',
-            muted:        'rgba(238,238,245,0.45)',
-          },
-          letterSpacing: {
-            widest2: '0.18em',
-            widest3: '0.22em',
-          },
-        }
-      }
-    }
-  </script>
-
   <style>
   body, body > div, body > canvas {
     transform: none !important;
@@ -163,16 +131,6 @@
       opacity: 0.018;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
     }
-
-    /* ── Particle canvas ─────────────────────────────────────────── */
-    #particle-canvas {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.55;
-    }
-
     /* ── Aurora blobs ─────────────────────────────────────────────── */
     .aurora-wrap {
       position: fixed;
@@ -184,7 +142,7 @@
     .aurora-blob {
       position: absolute;
       border-radius: 50%;
-      filter: blur(80px);
+      filter: blur(24px);
       mix-blend-mode: screen;
       will-change: transform;
     }
@@ -413,7 +371,7 @@ nav.scrolled {
     .marquee-inner {
       display: flex;
       width: max-content;
-      animation: marquee 18s linear infinite;
+}
       white-space: nowrap;
     }
     .marquee-item {
@@ -580,18 +538,17 @@ nav.scrolled {
 
     /* ── Animated ring ornament ──────────────────────────────── */
     .spin-ring {
-      animation: spinRing 20s linear infinite;
+      animation: none;
       transform-origin: center;
     }
     .spin-ring-rev {
-      animation: spinRing 14s linear infinite reverse;
+      animation: none;
       transform-origin: center;
     }
     @keyframes spinRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
     .pulse-dot {
-      animation: pulseDot 2s ease-in-out infinite;
-    }
+      animation: none;
     @keyframes pulseDot {
       0%,100% { r: 3; opacity: 0.6; }
       50% { r: 5; opacity: 1; }
@@ -874,7 +831,7 @@ nav.scrolled {
       /* CHANGE 3: Mobile chatbot positioning */
       #chat-toggle { bottom: 20px !important; right: 16px !important; }
       #chat-panel { width: calc(100vw - 32px) !important; right: 16px !important; bottom: 88px !important; max-height: 80vh !important; }
-      .aurora-blob { filter: blur(60px); }
+      .aurora-blob { filter: blur(18px); }
       .work-img-card { grid-column: 1 / -1 !important; aspect-ratio: 16/9; }
       .work-img-overlay { padding: 16px; }
       .work-img-title { font-size: 14px; }
@@ -1088,20 +1045,6 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
   transform: none !important;
   will-change: auto !important;
 }
-/* Instagram Feed Widget – match site theme */
-.elfsight-app-68838809-9c0e-4820-84c2-a97944843fda {
-  margin-top: 20px;
-  border-radius: 12px;
-  overflow: hidden;
-}
-@media (max-width: 768px) {
-  .instagram-section {
-    padding: 60px 5vw !important;
-  }
-  .elfsight-app-68838809-9c0e-4820-84c2-a97944843fda {
-    margin-top: 10px !important;
-  }
-}
 /* Exploration cards (matches your existing card style) */
 .exploration-card {
   border: 1px solid rgba(255,255,255,.065);
@@ -1197,10 +1140,6 @@ nav a.active-nav {
   <div class="aurora-blob aurora-blob-3"></div>
   <div class="aurora-blob aurora-blob-4"></div>
 </div>
-
-<!-- Particle canvas -->
-<canvas id="particle-canvas"></canvas>
-
 <!-- ══════════════════════════════════════════════════════════════════
      NAV (condensed: Philosophy, Services, Work, Founder, Contact)
 ══════════════════════════════════════════════════════════════════════ -->
@@ -1242,19 +1181,16 @@ nav a.active-nav {
      HERO
 ══════════════════════════════════════════════════════════════════════ -->
 <section id="hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(80px,10vw,120px) 5vw 10vh;position:relative;overflow:hidden;">
-    <!-- video background - continuous looping -->
-  <video autoplay muted loop playsinline
-    style="position: absolute;
-           top: 0;
-           left: 0;
-           width: 100%;
-           height: 100%;
-           object-fit: cover;
-           z-index: 0;">
-    <source src="https://res.cloudinary.com/dlrr9jh0a/video/upload/v1778516529/15063193_2560_1440_30fps_ik312v.mp4"
-            type="video/mp4">
-  </video>
-
+  <!-- Hero background temporarily replacing video -->
+<div style="
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#03020A;
+z-index:0;
+"></div>
   <!-- optional dark overlay for better text readability -->
   <div style="position: absolute;
               top: 0;
@@ -2039,17 +1975,6 @@ nav a.active-nav {
         </ul>
       </div>
     </div>
-  </div>
-</section>
-<!-- Instagram Feed Section -->
-<section class="instagram-section" style="padding:100px 5vw;position:relative;z-index:2;background:#080616;border-top:1px solid rgba(255,255,255,.055);">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="reveal s-label">Follow Us</div>
-    <h2 class="reveal font-display font-extrabold" style="font-size:clamp(28px,3.5vw,48px);margin-bottom:48px;letter-spacing:-.02em;">
-      Latest from <span style="color:#A855F7;">Instagram</span>
-    </h2>
-    <script src="https://elfsightcdn.com/platform.js" async></script>
-    <div class="elfsight-app-68838809-9c0e-4820-84c2-a97944843fda" data-elfsight-app-lazy></div>
   </div>
 </section>
 <!-- ══════════════════════════════════════════════════════════════════
