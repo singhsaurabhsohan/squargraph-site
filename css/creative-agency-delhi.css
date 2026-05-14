@@ -1171,6 +1171,19 @@ nav a.active-nav {
 }
   </style>
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QL85WYN3S0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-QL85WYN3S0', { 'send_page_view': false });
+</script>
 <body>
 <svg width="0" height="0" style="position:absolute">
   <defs>
@@ -2562,24 +2575,32 @@ nav a.active-nav {
     try { localStorage.setItem(COOKIE_KEY, accepted ? 'accepted' : 'declined'); } catch(e) {}
   }
 
-  document.getElementById('cookie-accept').addEventListener('click', function() { dismissCookie(true); });
+  document.getElementById('cookie-accept').addEventListener('click', function() { 
+  if (typeof gtag === 'function') {
+    gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    gtag('event', 'page_view');
+  }
+  dismissCookie(true); 
+});
   document.getElementById('cookie-decline').addEventListener('click', function() { dismissCookie(false); });
 
   /* CHANGE 2: Show banner immediately on page load for all new visitors.
      Only skip if they already made a choice. Short delay for smooth page-in feel. */
   var existingConsent = null;
-  try { existingConsent = localStorage.getItem(COOKIE_KEY); } catch(e) {}
+try { existingConsent = localStorage.getItem(COOKIE_KEY); } catch(e) {}
 
-  if (!existingConsent) {
-    /* Show after a short delay so page animations settle */
-    setTimeout(function() {
-      cookieBanner.classList.add('show');
-    }, 1200);
-  } else {
-    /* Already decided — keep hidden */
-    cookieBanner.style.display = 'none';
+if (!existingConsent) {
+  setTimeout(function() {
+    cookieBanner.classList.add('show');
+  }, 1200);
+} else {
+  cookieBanner.style.display = 'none';
+  // If user previously accepted, enable GA4 now
+  if (existingConsent === 'accepted' && typeof gtag === 'function') {
+    gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    gtag('event', 'page_view');
   }
-
+}
   /* ── Animated counters ─────────────────────────────────────────── */
   function animateCounters() {
     document.querySelectorAll('.count-up:not([data-counted])').forEach(function(el) {
