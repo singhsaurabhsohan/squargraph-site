@@ -1169,48 +1169,6 @@ nav a.active-nav {
   border-bottom: 2px solid #A855F7;
   padding-bottom: 4px;
 }
-nav a.active-nav {
-  color: #A855F7 !important;
-  border-bottom: 2px solid #A855F7;
-  padding-bottom: 4px;
-}
-/* Back to Top Button */
-#back-to-top {
-  position: fixed;
-  bottom: 24px;
-  left: 24px;
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, #7C3AED, #A855F7);
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 9998;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s, transform 0.2s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  color: white;
-}
-#back-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-#back-to-top:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(124,58,237,0.5);
-}
-@media (max-width: 768px) {
-  #back-to-top {
-    bottom: 16px;
-    left: 16px;
-    width: 42px;
-    height: 42px;
-  }
-}
   </style>
 </head>
 <!-- Google tag (gtag.js) -->
@@ -2241,12 +2199,7 @@ nav a.active-nav {
 </footer>
 
 </div>   <!-- closes .page-wrapper -->
-<!-- Back to Top Button -->
-<button id="back-to-top" aria-label="Back to top">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 19V5M5 12l7-7 7 7"/>
-  </svg>
-</button>
+
 <!-- ══════════════════════════════════════════════════════════════════
      CHATBOT — CHANGE 3: Always fixed bottom-right, no scroll needed
 ══════════════════════════════════════════════════════════════════════ -->
@@ -2902,20 +2855,7 @@ window.addEventListener('scroll', updateActiveNav);
 window.addEventListener('resize', updateActiveNav);
 updateActiveNav();
 // setTimeout(scheduleToast, 8000);
-// Back to Top Button logic
-  var backToTop = document.getElementById('back-to-top');
-  if (backToTop) {
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+
 })();
 </script>
 </body>
