@@ -1118,6 +1118,11 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
     padding: 60px 5vw !important;
   }
 }
+@media (max-width: 640px) {
+  .stat-strip {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
 @media (max-width: 768px) {
   footer > div > div:first-child {
     grid-template-columns: 1fr 1fr !important;
@@ -1324,6 +1329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="#philosophy" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Philosophy</a>
     <a href="#services"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
     <a href="#work"       class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Work</a>
+    <a href="#capabilities" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Capabilities</a>
     <a href="#founder"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Founder</a>
     <a href="#contact"
        style="display:inline-flex;align-items:center;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:10px 22px;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
@@ -1340,9 +1346,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:400;flex-direction:column;align-items:center;justify-content:center;gap:36px;">
   <a href="#philosophy" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Philosophy</a>
   <a href="#services"   onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
-  <a href="#work"       onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
-  <a href="#founder"    onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
-  <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener" onclick="closeMob()"
+  <a href="#work"         onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
+  <a href="#capabilities" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Capabilities</a>
+  <a href="#founder"      onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
      style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
     Start a project →
   </a>
@@ -2353,7 +2359,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           No decks. No long processes.<br>Just clarity, execution, and delivery.
         </p>
         <div class="reveal reveal-d2">
-          <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project"
+          <a href="https://wa.me/918796479772?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project"
              target="_blank" rel="noopener" class="btn-primary"
              style="display:inline-flex;align-items:center;gap:12px;background:#A855F7;color:#03020A;padding:18px 36px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;width:fit-content;">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -3029,7 +3035,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ]);
     if (next === 'wa') {
       await botReply("Perfect — see you on WhatsApp!", 700);
-      setTimeout(function() { window.open('https://wa.me/918588897488', '_blank'); }, 600);
+      setTimeout(function() { window.open('https://wa.me/918796479772', '_blank'); }, 600);
     } else {
       await botReply("Go ahead — describe your project in a few lines.", 700);
       briefInputEl.classList.add('visible');
@@ -3051,7 +3057,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     setTimeout(function() {
       if (row.parentNode) chatMessages.removeChild(row);
       addMsg("Got it — let's take this forward on WhatsApp.", 'bot');
-      setTimeout(function() { window.open('https://wa.me/918588897488?text=' + encodeURIComponent(text), '_blank'); }, 800);
+      setTimeout(function() { window.open('https://wa.me/918796479772?text=' + encodeURIComponent(text), '_blank'); }, 800);
     }, 1200);
   }
 
@@ -3088,7 +3094,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     showActivityToast(activities[Math.floor(Math.random() * activities.length)]);
     setTimeout(scheduleToast, 12000 + Math.random() * 15000);
   }
-
+  setTimeout(scheduleToast, 8000);
   // Open modals on card click
   document.querySelectorAll('.exploration-card').forEach(card => {
     card.addEventListener('click', () => {
