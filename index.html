@@ -164,6 +164,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .page-wrapper {
   animation: pageFade 1.2s cubic-bezier(0.2, 0.9, 0.3, 1.1) forwards;
 }
+    .reel-card {
+  overflow: visible !important;
+}
+.reel-card iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* ensures the video fills the card without distortion */
+}
   /* rest of your CSS */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -464,19 +472,6 @@ nav.scrolled {
     }
 
     /* ── Work showcase ─────────────────────────────────────────── */
-    .work-img-card {
-      position: relative;
-      border-radius: 2px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.065);
-      aspect-ratio: 4/3;
-      transition: transform .4s cubic-bezier(.23,1,.32,1), box-shadow .4s ease, border-color .4s;
-    }
-    .work-img-card:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 24px 56px rgba(0,0,0,.7), 0 0 32px rgba(124,58,237,.15);
-      border-color: rgba(124,58,237,.35);
-    }
     /* Horizontal scroll containers */
 .scroll-horizontal {
   width: 100%;
@@ -484,6 +479,19 @@ nav.scrolled {
   overflow-y: visible;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
+}
+.scroll-horizontal {
+  position: relative;
+}
+.scroll-horizontal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, #080616);
 }
 .scroll-horizontal::-webkit-scrollbar {
   height: 3px;
@@ -502,6 +510,7 @@ nav.scrolled {
   gap: 24px;
   padding: 8px 2px 20px 2px;
   width: max-content;
+  align-items: stretch;
 }
 
 .scroll-track-reels {
@@ -510,9 +519,12 @@ nav.scrolled {
   gap: 24px;
   padding: 8px 2px 20px 2px;
   width: max-content;
+  align-items: stretch;
   overflow-y: visible;   /* ← add this */
 }
-
+.scroll-track, .scroll-track-reels {
+  padding: 8px 24px 20px 2px;  /* extra right padding */
+}
 /* Reel card styling – force 9:16 aspect ratio */
 .reel-card {
   aspect-ratio: 9 / 16;
@@ -545,6 +557,29 @@ nav.scrolled {
   .work-img-card {
     min-width: 260px;
   }
+  /* Prevent cropping on reel cards */
+.reel-card {
+  overflow: visible !important;
+}
+/* Ensure scroll containers don't cut off last item */
+.scroll-track, .scroll-track-reels {
+  padding-right: 24px;
+}
+/* Optional: fade effect on right edge of scrollable area */
+.scroll-horizontal {
+  position: relative;
+}
+.scroll-horizontal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, #080616);
+}
+/* Force consistent height for horizontal video cards (already set) */
 }
     .work-img-svg { width: 100%; height: 100%; display: block; }
     .work-img-overlay {
@@ -1950,7 +1985,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 <!-- ══════════════════════════════════════════════════════════════════
-     WORK SHOWCASE - Horizontal Scrollable Galleries
+     WORK SHOWCASE - Corrected & Aligned
 ══════════════════════════════════════════════════════════════════════ -->
 <section id="work" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;z-index:2;">
   <div style="position:absolute;top:-80px;right:-80px;pointer-events:none;opacity:0.4;">
@@ -1976,25 +2011,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="scroll-horizontal">
         <div class="scroll-track">
           <!-- Video 1 -->
-          <div class="work-img-card" style="min-width:320px; width:40%; max-width:500px;">
-            <iframe src="https://drive.google.com/file/d/12ip7hNWewrB_gympUjgmQdHlfCJhpfBo/preview" 
+          <div class="work-img-card" style="width:380px; min-width:300px; flex-shrink:0;">
+            <iframe src="https://play.gumlet.io/embed/6a0896760ed6988dba19a294" 
                     style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="encrypted-media; picture-in-picture" 
+                    allow="autoplay; encrypted-media; picture-in-picture" 
                     allowfullscreen loading="lazy"></iframe>
           </div>
           <!-- Video 2 -->
-          <div class="work-img-card" style="min-width:320px; width:40%; max-width:500px;">
-            <iframe src="https://drive.google.com/file/d/1eu7ZFEC4pOnkf0DHCNaDYf4znYlFmLqV/preview" 
+          <div class="work-img-card" style="width:380px; min-width:300px; flex-shrink:0;">
+            <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6" 
                     style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="encrypted-media; picture-in-picture" 
+                    allow="autoplay; encrypted-media; picture-in-picture" 
                     allowfullscreen loading="lazy"></iframe>
           </div>
           <!-- Video 3 -->
-          <div class="work-img-card" style="min-width:320px; width:40%; max-width:500px;">
-            <iframe src="https://drive.google.com/file/d/1qhXLZgmb4LWFuncJ5UB3lKb7ob4vUFhm/preview" 
-                  style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                  allow="encrypted-media; picture-in-picture" 
-                  allowfullscreen loading="lazy"></iframe>
+          <div class="work-img-card" style="width:380px; min-width:300px; flex-shrink:0;">
+            <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1" 
+                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                    allow="autoplay; encrypted-media; picture-in-picture" 
+                    allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
       </div>
@@ -2006,57 +2041,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="scroll-horizontal">
         <div class="scroll-track-reels">
           <!-- Reel 1 -->
-          <div class="work-img-card reel-card">
-            <iframe src="https://drive.google.com/file/d/1-VvGP8V1CW-pvjZtxPcuPDPyJSeSdsZQ/preview" 
+          <div class="work-img-card reel-card" style="flex-shrink:0;">
+            <iframe src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd" 
                     style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allowfullscreen
-                    loading="lazy"></iframe>
+                    allow="autoplay; encrypted-media; picture-in-picture" 
+                    allowfullscreen loading="lazy"></iframe>
           </div>
           <!-- Reel 2 -->
-          <div class="work-img-card reel-card">
-            <iframe src="https://drive.google.com/file/d/1prr7L0HCzVuDQhEBowkTldwNPXaJojwf/preview" 
+          <div class="work-img-card reel-card" style="flex-shrink:0;">
+            <iframe src="https://play.gumlet.io/embed/6a08955d3a5246215d479670" 
                     style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allowfullscreen
-                    loading="lazy"></iframe>
+                    allow="autoplay; encrypted-media; picture-in-picture" 
+                    allowfullscreen loading="lazy"></iframe>
           </div>
           <!-- Reel 3 -->
-          <div class="work-img-card reel-card">
-            <iframe src="https://drive.google.com/file/d/1kYli3HnkeyDHw2mFfsy57id8y68cyGXp/preview" 
+          <div class="work-img-card reel-card" style="flex-shrink:0;">
+            <iframe src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad" 
                     style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                    allow="autoplay; encrypted-media; picture-in-picture" 
                     allowfullscreen loading="lazy"></iframe>
           </div>
           <!-- Reel 4 -->
-          <div class="work-img-card reel-card">
-            <iframe src="https://drive.google.com/file/d/1xby22E41UgRZf0nt8S9iLo-JJbKNibQ6/preview" 
+          <div class="work-img-card reel-card" style="flex-shrink:0;">
+            <iframe src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a" 
                     style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allowfullscreen
-                    loading="lazy"></iframe>
+                    allow="autoplay; encrypted-media; picture-in-picture" 
+                    allowfullscreen loading="lazy"></iframe>
           </div>
           <!-- Reel 5 -->
-          <div class="work-img-card reel-card">
-            <iframe src="https://drive.google.com/file/d/1L6DRKJD1BgXioXUss0MWymqsE1oPq618/preview" 
+          <div class="work-img-card reel-card" style="flex-shrink:0;">
+            <iframe src="https://play.gumlet.io/embed/6a0896760143a2000b233c09" 
                     style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allowfullscreen
-                    loading="lazy"></iframe>
+                    allow="autoplay; encrypted-media; picture-in-picture" 
+                    allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Collaboration line -->
-<div class="reveal" style="text-align:center; margin-top:60px; border-top:1px solid rgba(255,255,255,.08); padding-top:40px;">
-  <p style="color:rgba(238,238,245,.35); font-size:12px; letter-spacing:.2em; text-transform:uppercase;">
-    in collaboration with 
-    <a href="https://www.instagram.com/filmsbyjones/" 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       style="color:#A855F7; text-decoration:none; border-bottom:1px solid rgba(168,85,247,0.3); transition:border-color 0.2s;"
-       onmouseover="this.style.borderColor='#A855F7'"
-       onmouseout="this.style.borderColor='rgba(168,85,247,0.3)'">
-      Films By Jones
-    </a>
-  </p>
-</div>
+    <div class="reveal" style="text-align:center; margin-top:60px; border-top:1px solid rgba(255,255,255,.08); padding-top:40px;">
+      <p style="color:rgba(238,238,245,.35); font-size:12px; letter-spacing:.2em; text-transform:uppercase;">
+        in collaboration with 
+        <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer" 
+           style="color:#A855F7; text-decoration:none; border-bottom:1px solid rgba(168,85,247,0.3); transition:border-color 0.2s;"
+           onmouseover="this.style.borderColor='#A855F7'" onmouseout="this.style.borderColor='rgba(168,85,247,0.3)'">
+          Films By Jones
+        </a>
+      </p>
+    </div>
 
     <div class="reveal" style="margin-top:30px;text-align:center;">
       <p style="color:rgba(238,238,245,.2);font-size:11px;line-height:1.8;">
@@ -3259,6 +3292,23 @@ if (window.innerWidth < 768) COUNT = Math.min(40, COUNT);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+// Autoplay on hover (first time only) – fixed
+document.querySelectorAll('#work .work-img-card iframe').forEach(iframe => {
+  let originalSrc = iframe.src;
+  let autoplayAdded = false;
+
+  iframe.addEventListener('mouseenter', () => {
+    if (autoplayAdded) return;
+    const separator = originalSrc.includes('?') ? '&' : '?';
+    const newSrc = `${originalSrc}${separator}autoplay=1&mute=1`;
+    iframe.src = newSrc;
+    autoplayAdded = true;
+  });
+});
+  // Optional: on mouseleave, you could reset to original without autoplay
+  // But that would reload again – not recommended.
+  // Instead, keep autoplay loaded; user can unmute if desired.
+});
 })();
 </script>
 </body>
