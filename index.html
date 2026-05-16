@@ -2432,9 +2432,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </div>
-<!-- ══════════════════════════════════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
   /* ── Particle System ─────────────────────────────────────────── */
   var canvas = document.getElementById('particle-canvas');
   var ctx    = canvas.getContext('2d');
@@ -2516,9 +2517,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* Particle mouse interaction still works for the ambient effect */
   document.addEventListener('mousemove', function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
 
-  /* CHANGE 1: Custom cursor JS removed entirely.
-     No #cursor or #cursor-ring tracking code. System cursor is visible. */
-
   /* ── Nav scroll ──────────────────────────────────────────────── */
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function() {
@@ -2556,7 +2554,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
 
-  /* ── Contact form ────────────────────────────────────────────── */
+  /* ── Contact form (with conversion) ──────────────────────────── */
   var contactForm = document.getElementById('contact-form');
   var submitBtn   = document.getElementById('form-submit-btn');
 
@@ -2579,6 +2577,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           submitBtn.innerHTML = '✓ Brief received — we\'ll be in touch soon.';
           submitBtn.style.background = '#25D366';
           contactForm.reset();
+
+          // Fire Google Ads conversion after successful submission (if consent given)
+          var consent = localStorage.getItem('sq_cookie_consent') === 'accepted';
+          if (consent && typeof gtag === 'function') {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-18103925582/lyFFCKa9jK4cEM72z7hD'
+            });
+          }
         } else {
           throw new Error('server error');
         }
@@ -2595,22 +2601,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   }
 
-  /* ── Resources form ──────────────────────────────────────────── */
-  var resourcesForm = document.getElementById('resources-form');
-  if (resourcesForm) {
-    resourcesForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var btn = this.querySelector('button');
-      var orig = btn.textContent;
-      btn.textContent = '✓ Sent!';
-      btn.style.background = '#25D366';
-      fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } })
-        .then(function(r) { if (r.ok) resourcesForm.reset(); })
-        .catch(function() {});
-      setTimeout(function() { btn.textContent = orig; btn.style.background = '#A855F7'; }, 4000);
-    });
-  }
-
   /* ── Service card click → pre-fill form ─────────────────────── */
   window.setService = function(serviceName) {
     var sel = document.getElementById('service-select');
@@ -2624,7 +2614,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   /* ── Lightbox ─────────────────────────────────────────────────── */
   window.openLightbox = function(card) {
-  // Try to find an img inside the card
   var img = card.querySelector('img');
   if (!img) return;
   var imgUrl = img.src;
@@ -2655,16 +2644,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (e.target === this) closePrivacyModal();
   });
 
-  /* ── CHANGE 2: COOKIE BANNER — always visible on first visit ── */
-  /* Banner shows for ALL users on every first visit (no scroll required).
-     localStorage stores their choice so it won't appear again once decided. */
+  /* ── COOKIE BANNER ──────────────────────────────────────────── */
   var COOKIE_KEY = 'sq_cookie_consent';
   var cookieBanner = document.getElementById('cookie-banner');
 
   function dismissCookie(accepted) {
     cookieBanner.classList.remove('show');
     cookieBanner.classList.add('hide');
-    /* After transition completes, remove from layout */
     setTimeout(function() {
       cookieBanner.style.display = 'none';
     }, 600);
@@ -2673,54 +2659,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.getElementById('cookie-decline').addEventListener('click', function() { dismissCookie(false); });
   
   document.getElementById('cookie-accept').addEventListener('click', function() {
-  // 1. Update Google consent mode
-  gtag('consent', 'update', {
-    'analytics_storage': 'granted',
-    'ad_storage': 'granted'
-  });
-  // 2. Tell GTM that consent was given (optional, but useful for tags that wait for a custom event)
-  dataLayer.push({ 'event': 'consent_granted' });
-  // 3. Hide the banner and remember the choice
-  dismissCookie(true);
-});
-
-  /* CHANGE 2: Show banner immediately on page load for all new visitors.
-     Only skip if they already made a choice. Short delay for smooth page-in feel. */
-  var existingConsent = null;
-try { existingConsent = localStorage.getItem(COOKIE_KEY); } catch(e) {}
-
-if (!existingConsent) {
-  setTimeout(function() {
-    cookieBanner.classList.add('show');
-  }, 1200);
-} else {
-  cookieBanner.style.display = 'none';
-  // If user previously accepted, enable GA4 now
-  if (existingConsent === 'accepted' && typeof gtag === 'function') {
-    gtag('consent', 'update', { 'analytics_storage': 'granted' });
-    gtag('event', 'page_view');
-  }
-}
-  /* ── Animated counters ─────────────────────────────────────────── */
-  function animateCounters() {
-    document.querySelectorAll('.count-up:not([data-counted])').forEach(function(el) {
-      el.dataset.counted = 'true';
-      var target   = +el.getAttribute('data-count');
-      var suffix   = el.getAttribute('data-suffix') || '';
-      var start    = performance.now();
-      var duration = 2000;
-      (function tick(now) {
-        var progress = Math.min((now - start) / duration, 1);
-        el.textContent = Math.floor(progress * target) + suffix;
-        if (progress < 1) requestAnimationFrame(tick);
-      })(start);
+    gtag('consent', 'update', {
+      'analytics_storage': 'granted',
+      'ad_storage': 'granted'
     });
-  }
+    dataLayer.push({ 'event': 'consent_granted' });
+    dismissCookie(true);
+  });
 
-  var counterObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) { if (e.isIntersecting) animateCounters(); });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.count-up').forEach(function(el) { counterObserver.observe(el); });
+  var existingConsent = null;
+  try { existingConsent = localStorage.getItem(COOKIE_KEY); } catch(e) {}
+
+  if (!existingConsent) {
+    setTimeout(function() {
+      cookieBanner.classList.add('show');
+    }, 1200);
+  } else {
+    cookieBanner.style.display = 'none';
+    if (existingConsent === 'accepted' && typeof gtag === 'function') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      gtag('event', 'page_view');
+    }
+  }
 
   /* ── Chatbot ─────────────────────────────────────────────────── */
   var chatToggleBtn = document.getElementById('chat-toggle');
@@ -2732,21 +2692,20 @@ if (!existingConsent) {
   var chatOpen = false, chatStarted = false;
 
   chatToggleBtn.addEventListener('click', function() {
-  chatOpen = !chatOpen;
-  chatToggleBtn.classList.toggle('open', chatOpen);
-  chatPanel.classList.toggle('open', chatOpen);
-  if (chatOpen && !chatStarted) {
-    chatStarted = true;
-    setTimeout(startChat, 350);
-  }
-  // Reset chat when closing
-  if (!chatOpen && chatStarted) {
-    chatMessages.innerHTML = '';
-    briefInputEl.classList.remove('visible');
-    if (chatTextInput) chatTextInput.value = '';
-    chatStarted = false;
-  }
-});
+    chatOpen = !chatOpen;
+    chatToggleBtn.classList.toggle('open', chatOpen);
+    chatPanel.classList.toggle('open', chatOpen);
+    if (chatOpen && !chatStarted) {
+      chatStarted = true;
+      setTimeout(startChat, 350);
+    }
+    if (!chatOpen && chatStarted) {
+      chatMessages.innerHTML = '';
+      briefInputEl.classList.remove('visible');
+      if (chatTextInput) chatTextInput.value = '';
+      chatStarted = false;
+    }
+  });
 
   function scrollChat() { chatMessages.scrollTop = chatMessages.scrollHeight; }
 
@@ -2888,86 +2847,82 @@ if (!existingConsent) {
   }
 
   function scheduleToast() {
-  showActivityToast(activities[Math.floor(Math.random() * activities.length)]);
-  setTimeout(scheduleToast, 12000 + Math.random() * 15000);
-}
-// Open modals on card click
-document.querySelectorAll('.exploration-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const exploration = card.getAttribute('data-exploration');
-    const modal = document.getElementById(`modal-${exploration}`);
-    if (modal) {
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-  });
-});
+    showActivityToast(activities[Math.floor(Math.random() * activities.length)]);
+    setTimeout(scheduleToast, 12000 + Math.random() * 15000);
+  }
 
-// Close modal
-window.closeExplorationModal = function() {
+  // Open modals on card click
+  document.querySelectorAll('.exploration-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const exploration = card.getAttribute('data-exploration');
+      const modal = document.getElementById(`modal-${exploration}`);
+      if (modal) {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  window.closeExplorationModal = function() {
+    document.querySelectorAll('.modal-exploration').forEach(modal => {
+      modal.classList.remove('open');
+    });
+    document.body.style.overflow = '';
+  };
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeExplorationModal();
+  });
+
   document.querySelectorAll('.modal-exploration').forEach(modal => {
-    modal.classList.remove('open');
-  });
-  document.body.style.overflow = '';
-};
-
-// Close on Escape
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeExplorationModal();
-});
-
-// Close when clicking outside modal content
-document.querySelectorAll('.modal-exploration').forEach(modal => {
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeExplorationModal();
-  });
-});
-
-// Scroll Spy – highlight nav link based on scroll position (excluding logo)
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('nav a[href^="#"]');
-
-function updateActiveNav() {
-  let current = '';
-  const scrollPos = window.scrollY + 120;
-
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionBottom = sectionTop + section.offsetHeight;
-    if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
-      current = section.getAttribute('id');
-    }
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeExplorationModal();
+    });
   });
 
-  navLinks.forEach(link => {
-    // Skip the logo link
-    if (link.getAttribute('href') === '#') return;
-    
-    link.classList.remove('active-nav');
-    const href = link.getAttribute('href').substring(1);
-    if (href === current) {
-      link.classList.add('active-nav');
-    }
-  });
-}
+  /* ── Scroll Spy ──────────────────────────────────────────────── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
-window.addEventListener('scroll', updateActiveNav);
-window.addEventListener('resize', updateActiveNav);
-updateActiveNav();
-    // New conversion code
-  var contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function() {
-      var consent = localStorage.getItem('sq_cookie_consent') === 'accepted';
-      if (consent && typeof gtag === 'function') {
-        gtag('event', 'conversion', {
-          'send_to': 'AW-18103925582/lyFFCKa9jK4cEM72z7hD'
-        });
+  function updateActiveNav() {
+    let current = '';
+    const scrollPos = window.scrollY + 120;
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === '#') return;
+      link.classList.remove('active-nav');
+      const href = link.getAttribute('href').substring(1);
+      if (href === current) {
+        link.classList.add('active-nav');
       }
     });
   }
 
-})();   // <-- original closing line
+  window.addEventListener('scroll', updateActiveNav);
+  window.addEventListener('resize', updateActiveNav);
+  updateActiveNav();
+
+  /* ── Back to Top Button ──────────────────────────────────────── */
+  var backToTop = document.getElementById('back-to-top');
+  if (backToTop) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+})();
 </script>
 </body>
 </html>
