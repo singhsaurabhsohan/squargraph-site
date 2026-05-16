@@ -1245,6 +1245,31 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
     grid-template-columns: 1fr !important;
   }
 }
+/* ── Scroll arrow buttons ─────────────────────────────────── */
+.scroll-arrow-btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(13,10,30,.8);
+  color: rgba(238,238,245,.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s, transform .2s;
+  flex-shrink: 0;
+}
+.scroll-arrow-btn:hover {
+  border-color: #A855F7;
+  color: #A855F7;
+  background: rgba(124,58,237,.12);
+  transform: scale(1.08);
+}
+.scroll-arrow-btn:active {
+  transform: scale(0.96);
+}
+
 /* Exploration cards (matches your existing card style) */
 .exploration-card {
   border: 1px solid rgba(255,255,255,.065);
@@ -1460,6 +1485,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#work"         onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
   <a href="#capabilities" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Capabilities</a>
   <a href="#founder"      onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
+     <a href="#contact" onclick="closeMob()"
      style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
     Start a project →
   </a>
@@ -2005,80 +2031,91 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </p>
     </div>
 
-    <!-- Horizontal Videos Section -->
-    <div style="margin-bottom:60px;">
-      <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin-bottom:20px;">Campaigns</h3>
-      <div class="scroll-horizontal">
+    <!-- ── Campaigns ── -->
+    <div style="margin-bottom:64px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin:0;">Campaigns</h3>
+        <div style="display:flex;gap:10px;">
+          <button class="scroll-arrow-btn" onclick="scrollTrack('campaigns-track', -420)" aria-label="Scroll left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="scroll-arrow-btn" onclick="scrollTrack('campaigns-track', 420)" aria-label="Scroll right">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="scroll-horizontal" id="campaigns-track">
         <div class="scroll-track">
-          <!-- Video 1 -->
-          <div class="work-img-card" style="width:380px; min-width:300px; flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a0896760ed6988dba19a294" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
+          <div class="work-img-card" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a0896760ed6988dba19a294"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
                     allowfullscreen loading="lazy"></iframe>
           </div>
-          <!-- Video 2 -->
-          <div class="work-img-card" style="width:380px; min-width:300px; flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
+          <div class="work-img-card" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
                     allowfullscreen loading="lazy"></iframe>
           </div>
-          <!-- Video 3 -->
-          <div class="work-img-card" style="width:380px; min-width:300px; flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
+          <div class="work-img-card" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
                     allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Reels Section (vertical videos) -->
+    <!-- ── Reels ── -->
     <div style="margin-bottom:40px;">
-      <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin-bottom:20px;">Reels</h3>
-      <div class="scroll-horizontal">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin:0;">Reels</h3>
+        <div style="display:flex;gap:10px;">
+          <button class="scroll-arrow-btn" onclick="scrollTrack('reels-track', -280)" aria-label="Scroll left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="scroll-arrow-btn" onclick="scrollTrack('reels-track', 280)" aria-label="Scroll right">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="scroll-horizontal" id="reels-track">
         <div class="scroll-track-reels">
-          <!-- Reel 1 -->
-          <div class="work-img-card reel-card" style="flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy">
+          <div class="work-img-card reel-card" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
-          <!-- Reel 2 -->
-          <div class="work-img-card reel-card" style="flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a08955d3a5246215d479670" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy">
+          <div class="work-img-card reel-card" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a08955d3a5246215d479670"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
-          <!-- Reel 3 -->
-          <div class="work-img-card reel-card" style="flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy">
+          <div class="work-img-card reel-card" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
-          <!-- Reel 4 -->
-          <div class="work-img-card reel-card" style="flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy">
+          <div class="work-img-card reel-card" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
-          <!-- Reel 5 -->
-          <div class="work-img-card reel-card" style="flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a0896760143a2000b233c09" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy">
+          <div class="work-img-card reel-card" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a0896760143a2000b233c09"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
       </div>
     </div>
-
     <!-- Collaboration line -->
     <div class="reveal" style="text-align:center; margin-top:60px; border-top:1px solid rgba(255,255,255,.08); padding-top:40px;">
       <p style="color:rgba(238,238,245,.35); font-size:12px; letter-spacing:.2em; text-transform:uppercase;">
@@ -2355,6 +2392,7 @@ border-top:1px solid rgba(255,255,255,.08);
       Integrated campaigns, social ecosystems, digital execution.
     </div>
   </div>
+</div>
         <!-- Social links -->
         <div class="reveal reveal-d10" style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;">
           <a href="https://facebook.com/saurabhsohansingh" target="_blank" rel="noopener" class="social-link" title="Facebook">
@@ -3292,6 +3330,12 @@ if (window.innerWidth < 768) COUNT = Math.min(40, COUNT);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+/* ── Arrow scroll helper ─────────────────────────────────── */
+window.scrollTrack = function(trackId, amount) {
+  var el = document.getElementById(trackId);
+  if (el) el.scrollBy({ left: amount, behavior: 'smooth' });
+};
+
 // Autoplay on hover (first time only) – fixed
 document.querySelectorAll('#work .work-img-card iframe').forEach(iframe => {
   let originalSrc = iframe.src;
@@ -3305,10 +3349,7 @@ document.querySelectorAll('#work .work-img-card iframe').forEach(iframe => {
     autoplayAdded = true;
   });
 });
-  // Optional: on mouseleave, you could reset to original without autoplay
-  // But that would reload again – not recommended.
-  // Instead, keep autoplay loaded; user can unmute if desired.
-});
+
 })();
 </script>
 </body>
