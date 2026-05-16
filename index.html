@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
+  });
+  dataLayer.push({ 'event': 'consent_default_set' });
+</script>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KBN4JXZD');</script>
+<!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://squargraph.com">
@@ -1250,20 +1267,11 @@ nav a.active-nav {
 }
   </style>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QL85WYN3S0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'analytics_storage': 'denied',
-    'wait_for_update': 500
-  });
-  gtag('js', new Date());
-  gtag('config', 'G-QL85WYN3S0', { 'send_page_view': false });
-</script>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <svg width="0" height="0" style="position:absolute">
   <defs>
     <filter id="blur-glow" x="-50%" y="-50%" width="200%" height="200%">
@@ -2664,15 +2672,19 @@ nav a.active-nav {
     }, 600);
     try { localStorage.setItem(COOKIE_KEY, accepted ? 'accepted' : 'declined'); } catch(e) {}
   }
-
-  document.getElementById('cookie-accept').addEventListener('click', function() { 
-  if (typeof gtag === 'function') {
-    gtag('consent', 'update', { 'analytics_storage': 'granted' });
-    gtag('event', 'page_view');
-  }
-  dismissCookie(true); 
-});
   document.getElementById('cookie-decline').addEventListener('click', function() { dismissCookie(false); });
+  
+  document.getElementById('cookie-accept').addEventListener('click', function() {
+  // 1. Update Google consent mode
+  gtag('consent', 'update', {
+    'analytics_storage': 'granted',
+    'ad_storage': 'granted'
+  });
+  // 2. Tell GTM that consent was given (optional, but useful for tags that wait for a custom event)
+  dataLayer.push({ 'event': 'consent_granted' });
+  // 3. Hide the banner and remember the choice
+  dismissCookie(true);
+});
 
   /* CHANGE 2: Show banner immediately on page load for all new visitors.
      Only skip if they already made a choice. Short delay for smooth page-in feel. */
