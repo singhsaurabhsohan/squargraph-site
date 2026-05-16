@@ -2435,16 +2435,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════════════════
      JAVASCRIPT
 ══════════════════════════════════════════════════════════════════════ -->
-<!-- Back to Top Button -->
-<button id="back-to-top" aria-label="Back to top">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 19V5M5 12l7-7 7 7"/>
-  </svg>
-</button>
-<script>
-(function () {
-  'use strict';
-
   /* ── Particle System ─────────────────────────────────────────── */
   var canvas = document.getElementById('particle-canvas');
   var ctx    = canvas.getContext('2d');
@@ -2964,14 +2954,14 @@ function updateActiveNav() {
 window.addEventListener('scroll', updateActiveNav);
 window.addEventListener('resize', updateActiveNav);
 updateActiveNav();
-  // New conversion code
+    // New conversion code
   var contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', function() {
       var consent = localStorage.getItem('sq_cookie_consent') === 'accepted';
       if (consent && typeof gtag === 'function') {
         gtag('event', 'conversion', {
-          'send_to': 'AW-18103925582/YOUR_LABEL_HERE'
+          'send_to': 'AW-18103925582/lyFFCKa9jK4cEM72z7hD'
         });
       }
     });
