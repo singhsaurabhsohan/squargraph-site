@@ -157,6 +157,61 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </script>
 
   <style>
+  /* ═══════════════════════════════════════
+   Founder Socials
+═══════════════════════════════════════ */
+
+.founder-socials{
+  display:flex;
+  gap:12px;
+  margin-top:26px;
+  flex-wrap:wrap;
+}
+
+.social-link{
+  width:38px;
+  height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  color:rgba(238,238,245,.48);
+
+  background:rgba(255,255,255,.015);
+
+  backdrop-filter:blur(12px);
+
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    color .25s ease,
+    background .25s ease,
+    opacity .25s ease;
+
+  opacity:.72;
+}
+
+.social-link svg{
+  transition:transform .25s ease;
+}
+
+.social-link:hover{
+  opacity:1;
+
+  transform:translateY(-3px);
+
+  border-color:rgba(168,85,247,.45);
+
+  background:rgba(168,85,247,.08);
+
+  color:#A855F7;
+}
+
+.social-link:hover svg{
+  transform:scale(1.05);
+}
   body, body > div, body > canvas {
     transform: none !important;
     will-change: auto !important;
@@ -2140,39 +2195,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 ══════════════════════════════════════════════════════════════════════ -->
 <section id="founder" style="padding:120px 5vw;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
-    <div class="reveal s-label">The Founder</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:64px;align-items:start;margin-top:20px;">
+    <div class="reveal">
+
+  <div style="
+  width:72px;
+  height:1px;
+
+  background:
+  linear-gradient(
+    90deg,
+    rgba(168,85,247,.95),
+    rgba(168,85,247,0)
+  );
+
+  margin-bottom:18px;
+  opacity:.9;
+  "></div>
+
+  <div class="s-label">
+    The Founder
+  </div>
+
+</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:88px;align-items:start;margin-top:20px;">
       <div class="reveal">
         <div class="founder-photo" style="overflow:hidden;">
           <img src="founder.jpg" loading="lazy" alt="Saurabh Sohan Singh"
-               style="width:100%;height:100%;object-fit:cover;"
+               style="width:100%;height:100%;object-fit:cover;filter:contrast(1.02) saturate(.92);transform:scale(1.01);
+"
                onerror="this.style.display='none';this.parentNode.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;\'><span style=\'font-family:Outfit,sans-serif;font-size:72px;font-weight:800;color:rgba(168,85,247,0.25);\'>SS</span></div>';">
         </div>
       </div>
       <div>
-        <h2 class="reveal font-display font-extrabold" style="font-size:clamp(42px, 5vw, 68px);line-height: .95;letter-spacing: -.05em;margin-bottom:6px;">
+        <h2 class="reveal font-display font-extrabold" style="font-size:clamp(42px, 5vw, 68px);line-height: .95;letter-spacing: -.05em;margin-bottom:14px;">
           Saurabh Sohan Singh
         </h2>
         
-        <p class="reveal" style="color:#A855F7;font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:36px;">
-          Creative, <span style="background: linear-gradient(135deg, #A855F7, #7C3AED); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 700;">Communication & Execution</span>
+        <p class="reveal" style="color:#A855F7;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:42px;font-weight:500;">Creative Communication & Execution
         </p>
         
         <!-- Repositioned founder narrative -->
-        <p class="reveal reveal-d1" style="color: rgba(238,238,245,.78);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:20px;max-width:52ch;">
+        <p class="reveal reveal-d1 founder-copy">
           Before building SQUARGRAPH Studios, Saurabh spent years working inside integrated campaign environments - managing large-scale brand communication ecosystems across social media, creative production, digital execution, and cross-functional campaign coordination.
         </p>
-        <p class="reveal reveal-d2" style="color: rgba(238,238,245,.78);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:20px;max-width:52ch;">
+        <p class="reveal reveal-d2 founder-copy">
           That experience shaped a clear understanding of how modern communication systems actually operate at scale - where strategy, creativity, timelines, production, and execution all need to stay aligned simultaneously.
         </p>
-        <p class="reveal reveal-d3" style="color: rgba(238,238,245,.78);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:20px;max-width:52ch;">
+        <p class="reveal reveal-d3 founder-copy">
           Over time, one thing became increasingly clear: the gap between strong creative ideas and actual brand output is rarely a creative problem. More often, it’s an execution problem — unclear systems, fragmented communication, and misaligned workflows.
         </p>
-        <p class="reveal reveal-d4" style="color: rgba(238,238,245,.78);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:20px;max-width:52ch;">
+        <p class="reveal reveal-d4 founder-copy">
           SQUARGRAPH Studios was built to close that gap — bringing strategic clarity, creative thinking, and execution discipline into one streamlined communication ecosystem.
         </p>
-        <p class="reveal reveal-d5" style="color: rgba(238,238,245,.78);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:30px;max-width:52ch;">
-          If your communication needs to be as considered on the outside as your business is on the inside, this is where that work gets done.
+        <p class="reveal reveal-d5 founder-copy">
+          For brands operating in fast-moving digital environments, communication cannot just be visually strong — it has to remain aligned, scalable, and executable over time.
         </p>
         <div style="
 display:flex;
@@ -2225,7 +2301,7 @@ border-top:1px solid rgba(255,255,255,.08);
 
 </div>
         <!-- Social links -->
-        <div class="reveal reveal-d10" style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;">
+        <div class="reveal reveal-d10 founder-socials">
           <a href="https://facebook.com/saurabhsohansingh" target="_blank" rel="noopener" class="social-link" title="Facebook">
             <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
