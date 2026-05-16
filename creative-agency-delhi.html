@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <script>
+  /* Consent defaults — must stay synchronous */
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
   gtag('consent', 'default', {
@@ -10,22 +11,29 @@
     'wait_for_update': 500
   });
   dataLayer.push({ 'event': 'consent_default_set' });
+
+  /* Load GTM + GA after page is interactive */
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      /* Google Tag Manager */
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-KBN4JXZD');
+
+      /* Google Ads tag */
+      var gScript = document.createElement('script');
+      gScript.async = true;
+      gScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18103925582';
+      document.head.appendChild(gScript);
+      gScript.onload = function() {
+        gtag('js', new Date());
+        gtag('config', 'AW-18103925582');
+      };
+    }, 2000); /* 2s delay — page fully painted before analytics loads */
+  });
 </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18103925582"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-18103925582');
-</script>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KBN4JXZD');</script>
-<!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="robots" content="index, follow">
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -234,33 +242,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .aurora-blob {
       position: absolute;
       border-radius: 50%;
-      filter: blur(80px);
+      filter: blur(90px);
       mix-blend-mode: screen;
-      will-change: transform;
+      will-change: auto;
+    }
+    @media (max-width: 768px) {
+      .aurora-blob { display: none !important; }
+      .aurora-blob-1 { display: block !important; }
     }
     .aurora-blob-1 {
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(124,58,237,0.28) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(124,58,237,0.22) 0%, transparent 70%);
       top: -200px; right: -150px;
-      animation: auroraFloat1 14s ease-in-out infinite;
+      animation: auroraFloat1 28s ease-in-out infinite;
     }
     .aurora-blob-2 {
       width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(6,182,212,0.18) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(6,182,212,0.14) 0%, transparent 70%);
       bottom: 10%; left: -200px;
-      animation: auroraFloat2 18s ease-in-out infinite;
+      animation: auroraFloat2 36s ease-in-out infinite;
     }
     .aurora-blob-3 {
       width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(168,85,247,0.20) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%);
       top: 40%; left: 40%;
-      animation: auroraFloat3 22s ease-in-out infinite;
+      animation: auroraFloat3 44s ease-in-out infinite;
     }
     .aurora-blob-4 {
       width: 700px; height: 300px;
-      background: radial-gradient(ellipse, rgba(124,58,237,0.14) 0%, rgba(6,182,212,0.06) 50%, transparent 75%);
+      background: radial-gradient(ellipse, rgba(124,58,237,0.10) 0%, rgba(6,182,212,0.04) 50%, transparent 75%);
       bottom: 0; left: 20%;
-      animation: auroraFloat1 25s ease-in-out infinite reverse;
+      animation: auroraFloat1 50s ease-in-out infinite reverse;
     }
 
     @keyframes auroraFloat1 {
@@ -381,7 +393,13 @@ nav.scrolled {
     -webkit-backdrop-filter: blur(18px);
   }
 }
-
+/* Skip rendering off-screen sections */
+    #philosophy, #process, #services, #capabilities,
+    #builtfor, #explorations, #expect, #founder,
+    #contact, footer {
+      content-visibility: auto;
+      contain-intrinsic-size: 0 600px;
+    }
     .s-label {
       font-size: 10px;
       font-family: 'Outfit', sans-serif;
@@ -1489,6 +1507,21 @@ nav a.active-nav {
     width: 42px;
     height: 42px;
   }
+}
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .aurora-blob { display: none !important; }
+  #particle-canvas { display: none !important; }
+}
+
+/* Pause all animations when tab is not visible */
+.tab-hidden * {
+  animation-play-state: paused !important;
 }
   </style>
 </head>
@@ -2908,93 +2941,105 @@ border-top:1px solid rgba(255,255,255,.08);
 (function () {
   'use strict';
 
-  /* ── Particle System ─────────────────────────────────────────── */
+ /* ── Particle System — performance optimised ─────────────── */
   var canvas = document.getElementById('particle-canvas');
-  var ctx    = canvas.getContext('2d');
-  var W, H, particles = [], mouse = { x: -9999, y: -9999 };
 
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize, { passive: true });
+  /* Kill canvas entirely on mobile — biggest perf win */
+  if (window.innerWidth < 768) {
+    canvas.style.display = 'none';
+  } else {
+    var ctx = canvas.getContext('2d');
+    var W, H, particles = [];
 
-  function Particle() { this.reset(); }
-  Particle.prototype.reset = function() {
-    this.x    = Math.random() * W;
-    this.y    = Math.random() * H;
-    this.r    = Math.random() * 1.8 + 0.3;
-    this.vx   = (Math.random() - 0.5) * 0.4;
-    this.vy   = (Math.random() - 0.5) * 0.4 - 0.15;
-    this.life = Math.random() * 200 + 100;
-    this.age  = 0;
-    this.hue  = Math.random() > 0.7 ? 195 : 271;
-    this.sat  = Math.random() * 30 + 70;
-  };
-  Particle.prototype.update = function() {
-    var dx = this.x - mouse.x, dy = this.y - mouse.y;
-    var dist = Math.sqrt(dx*dx + dy*dy);
-    if (dist < 100) {
-      var force = (100 - dist) / 100 * 0.8;
-      this.vx += (dx / dist) * force;
-      this.vy += (dy / dist) * force;
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
     }
-    this.vx *= 0.98; this.vy *= 0.98;
-    this.x += this.vx; this.y += this.vy;
-    this.age++;
-    if (this.age > this.life || this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
-  };
-  Particle.prototype.draw = function() {
-    var alpha = Math.sin((this.age / this.life) * Math.PI) * 0.6;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    ctx.fillStyle = 'hsla(' + this.hue + ',' + this.sat + '%,70%,' + alpha + ')';
-    ctx.fill();
-  };
+    resize();
 
-  var COUNT = Math.min(80, Math.floor(window.innerWidth * window.innerHeight / 15000));
-if (window.innerWidth < 768) COUNT = Math.min(40, COUNT);
-  for (var i = 0; i < COUNT; i++) {
-    var p = new Particle();
-    p.age = Math.random() * p.life;
-    particles.push(p);
-  }
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 200);
+    }, { passive: true });
 
-  var connFrame = 0;
-  function drawConnections() {
-    connFrame++;
-    if (connFrame % 2 !== 0) return; /* Only run every other frame */
-    for (var a = 0; a < particles.length; a++) {
-      for (var b = a + 1; b < particles.length; b++) {
-        var dx = particles[a].x - particles[b].x;
-        if (Math.abs(dx) > 90) continue; /* Early exit — skip sqrt if x alone too far */
-        var dy = particles[a].y - particles[b].y;
-        if (Math.abs(dy) > 90) continue;
-        var d  = Math.sqrt(dx*dx + dy*dy);
-        if (d < 90) {
-          ctx.strokeStyle = 'rgba(124,58,237,' + ((1 - d/90) * 0.12) + ')';
-          ctx.lineWidth = 0.5;
-          ctx.beginPath();
-          ctx.moveTo(particles[a].x, particles[a].y);
-          ctx.lineTo(particles[b].x, particles[b].y);
-          ctx.stroke();
+    function Particle() { this.reset(); }
+    Particle.prototype.reset = function() {
+      this.x    = Math.random() * W;
+      this.y    = Math.random() * H;
+      this.r    = Math.random() * 1.4 + 0.3;
+      this.vx   = (Math.random() - 0.5) * 0.25;
+      this.vy   = (Math.random() - 0.5) * 0.25 - 0.08;
+      this.life = Math.random() * 300 + 150;
+      this.age  = 0;
+      this.hue  = Math.random() > 0.6 ? 195 : 271;
+    };
+    Particle.prototype.update = function() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.age++;
+      if (this.age > this.life || this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+    };
+    Particle.prototype.draw = function() {
+      var alpha = Math.sin((this.age / this.life) * Math.PI) * 0.45;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'hsla(' + this.hue + ',70%,70%,' + alpha + ')';
+      ctx.fill();
+    };
+
+    /* Max 30 particles on desktop */
+    var COUNT = Math.min(30, Math.floor(W * H / 40000));
+    for (var i = 0; i < COUNT; i++) {
+      var p = new Particle();
+      p.age = Math.random() * p.life;
+      particles.push(p);
+    }
+
+    /* Draw connections max every 4 frames, only between nearby pairs */
+    var frameCount = 0;
+    function drawConnections() {
+      if (frameCount % 4 !== 0) return;
+      var len = particles.length;
+      for (var a = 0; a < len; a++) {
+        for (var b = a + 1; b < len; b++) {
+          var dx = particles[a].x - particles[b].x;
+          if (dx > 80 || dx < -80) continue;
+          var dy = particles[a].y - particles[b].y;
+          if (dy > 80 || dy < -80) continue;
+          var d = dx*dx + dy*dy;
+          if (d < 6400) {
+            ctx.strokeStyle = 'rgba(124,58,237,' + ((1 - d/6400) * 0.08) + ')';
+            ctx.lineWidth = 0.4;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
         }
       }
     }
+
+    /* Pause canvas when tab is hidden */
+    var animPaused = false;
+    document.addEventListener('visibilitychange', function() {
+      animPaused = document.hidden;
+      document.body.classList.toggle('tab-hidden', document.hidden);
+      if (!animPaused) requestAnimationFrame(animate);
+    });
+    function animate() {
+      if (animPaused) return;
+      frameCount++;
+      ctx.clearRect(0, 0, W, H);
+      drawConnections();
+      for (var i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
   }
-
-  function animate() {
-    ctx.clearRect(0, 0, W, H);
-    drawConnections();
-    for (var i = 0; i < particles.length; i++) { particles[i].update(); particles[i].draw(); }
-    requestAnimationFrame(animate);
-  }
-  animate();
-
-  /* Particle mouse interaction still works for the ambient effect */
-  document.addEventListener('mousemove', function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
-
   /* ── Nav scroll ──────────────────────────────────────────────── */
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function() {
