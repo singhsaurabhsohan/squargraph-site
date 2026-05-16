@@ -481,7 +481,7 @@ nav.scrolled {
 .scroll-horizontal {
   width: 100%;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: visible;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
 }
@@ -510,16 +510,23 @@ nav.scrolled {
   gap: 24px;
   padding: 8px 2px 20px 2px;
   width: max-content;
+  overflow-y: visible;   /* ← add this */
 }
 
 /* Reel card styling – force 9:16 aspect ratio */
 .reel-card {
   aspect-ratio: 9 / 16;
-  width: 220px;  /* fixed width, can be adjusted */
-  min-width: 180px;
+  width: 220px;          /* adjust as you like */
   max-width: 260px;
+  flex-shrink: 0;        /* prevents squishing in flex container */
+  overflow: visible;     /* ensures no clipping inside card */
 }
-
+.reel-card iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 /* Horizontal video cards – maintain 4:3 ratio */
 .work-img-card {
   aspect-ratio: 4 / 3;
@@ -1945,7 +1952,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════════════════
      WORK SHOWCASE - Horizontal Scrollable Galleries
 ══════════════════════════════════════════════════════════════════════ -->
-<section id="work" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
+<section id="work" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;z-index:2;">
   <div style="position:absolute;top:-80px;right:-80px;pointer-events:none;opacity:0.4;">
     <svg width="500" height="500" viewBox="0 0 500 500">
       <circle cx="400" cy="100" r="300" stroke="rgba(124,58,237,0.06)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:60s;"/>
@@ -1965,7 +1972,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Horizontal Videos Section -->
     <div style="margin-bottom:60px;">
-      <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin-bottom:20px;">Horizontal Campaigns</h3>
+      <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin-bottom:20px;">Campaigns</h3>
       <div class="scroll-horizontal">
         <div class="scroll-track">
           <!-- Video 1 -->
@@ -1995,7 +2002,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Reels Section (vertical videos) -->
     <div style="margin-bottom:40px;">
-      <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin-bottom:20px;">Short Reels</h3>
+      <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin-bottom:20px;">Reels</h3>
       <div class="scroll-horizontal">
         <div class="scroll-track-reels">
           <!-- Reel 1 -->
@@ -2037,11 +2044,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <!-- Collaboration line -->
-    <div class="reveal" style="text-align:center; margin-top:60px; border-top:1px solid rgba(255,255,255,.08); padding-top:40px;">
-      <p style="color:rgba(238,238,245,.35); font-size:12px; letter-spacing:.2em; text-transform:uppercase;">
-        in collaboration with <span style="color:#A855F7;">Films By Jones</span>
-      </p>
-    </div>
+<div class="reveal" style="text-align:center; margin-top:60px; border-top:1px solid rgba(255,255,255,.08); padding-top:40px;">
+  <p style="color:rgba(238,238,245,.35); font-size:12px; letter-spacing:.2em; text-transform:uppercase;">
+    in collaboration with 
+    <a href="https://www.instagram.com/filmsbyjones/" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       style="color:#A855F7; text-decoration:none; border-bottom:1px solid rgba(168,85,247,0.3); transition:border-color 0.2s;"
+       onmouseover="this.style.borderColor='#A855F7'"
+       onmouseout="this.style.borderColor='rgba(168,85,247,0.3)'">
+      Films By Jones
+    </a>
+  </p>
+</div>
 
     <div class="reveal" style="margin-top:30px;text-align:center;">
       <p style="color:rgba(238,238,245,.2);font-size:11px;line-height:1.8;">
