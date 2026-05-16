@@ -1901,7 +1901,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </p>
     </div>
 
-    <!-- First row: horizontal videos (original 3 cards, no text overlay) -->
+    <!-- First row: horizontal videos (3 cards, no text overlay) -->
     <div style="display:grid; grid-template-columns:repeat(12,1fr); gap:20px;">
       <!-- Card 1: span 7 -->
       <div class="work-img-card reveal reveal-d1" style="grid-column:span 7;">
@@ -1917,7 +1917,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 allow="autoplay; encrypted-media; picture-in-picture" 
                 allowfullscreen></iframe>
       </div>
-      <!-- Card 3: span 4 (this starts a new line because 7+5+4 = 16 > 12, so it wraps automatically) -->
+      <!-- Card 3: span 4 (this wraps to a new line because 7+5+4 = 16 > 12) -->
       <div class="work-img-card reveal reveal-d3" style="grid-column:span 4;">
         <iframe src="https://drive.google.com/file/d/1qhXLZgmb4LWFuncJ5UB3lKb7ob4vUFhm/preview" 
                 style="width:100%; height:100%; border:none; background:#0D0A1E;" 
@@ -1929,26 +1929,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Second row: reels (vertical videos) – 5 reels, each span 4 (3 per row) -->
     <div style="display:grid; grid-template-columns:repeat(12,1fr); gap:20px; margin-top:20px;">
       <!-- Reel 1 -->
+      <div class="work-img-card reveal work-reel" style="grid-column:span 4; aspect-ratio:9/16;">
         <iframe src="https://drive.google.com/file/d/1-VvGP8V1CW-pvjZtxPcuPDPyJSeSdsZQ/preview" 
                 style="width:100%; height:100%; border:none; background:#0D0A1E;" 
                 allowfullscreen></iframe>
       </div>
       <!-- Reel 2 -->
+      <div class="work-img-card reveal work-reel" style="grid-column:span 4; aspect-ratio:9/16;">
         <iframe src="https://drive.google.com/file/d/1prr7L0HCzVuDQhEBowkTldwNPXaJojwf/preview" 
                 style="width:100%; height:100%; border:none; background:#0D0A1E;" 
                 allowfullscreen></iframe>
       </div>
       <!-- Reel 3 -->
+      <div class="work-img-card reveal work-reel" style="grid-column:span 4; aspect-ratio:9/16;">
         <iframe src="https://drive.google.com/file/d/1kYli3HnkeyDHw2mFfsy57id8y68cyGXp/preview" 
                 style="width:100%; height:100%; border:none; background:#0D0A1E;" 
                 allowfullscreen></iframe>
       </div>
-      <!-- Reel 4 – this will wrap to next row (since 3 per row) -->
+      <!-- Reel 4 – wraps to next row -->
+      <div class="work-img-card reveal work-reel" style="grid-column:span 4; aspect-ratio:9/16;">
         <iframe src="https://drive.google.com/file/d/1xby22E41UgRZf0nt8S9iLo-JJbKNibQ6/preview" 
                 style="width:100%; height:100%; border:none; background:#0D0A1E;" 
                 allowfullscreen></iframe>
       </div>
       <!-- Reel 5 -->
+      <div class="work-img-card reveal work-reel" style="grid-column:span 4; aspect-ratio:9/16;">
         <iframe src="https://drive.google.com/file/d/1L6DRKJD1BgXioXUss0MWymqsE1oPq618/preview" 
                 style="width:100%; height:100%; border:none; background:#0D0A1E;" 
                 allowfullscreen></iframe>
@@ -3153,75 +3158,6 @@ border-top:1px solid rgba(255,255,255,.08);
     });
     backToTop.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-})();
-</script>
-  <script>
-(async function loadDriveVideos() {
-  const API_KEY = 'AIzaSyCQ_6D02YSQXY29kSMkv-oZ2LVE_eRIsTI';   // paste your key
-  const FOLDER_ID = '1HfnFZ5ybwXgmMNHqY6OptAc3huyModFw';
-
-  const workSection = document.getElementById('work');
-  if (!workSection) return;
-
-  // Remove existing static cards
-  document.querySelectorAll('#work .work-img-card').forEach(card => card.remove());
-
-  // Create grid container
-  const grid = document.createElement('div');
-  grid.style.display = 'grid';
-  grid.style.gridTemplateColumns = 'repeat(12, 1fr)';
-  grid.style.gap = '20px';
-  grid.style.marginTop = '56px';
-  workSection.appendChild(grid);
-
-  // Fetch videos from Drive
-  let files = [];
-  try {
-    const url = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}' in parents and mimeType contains 'video/'&fields=files(id,name)&key=${API_KEY}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    if (data.error) throw new Error(data.error.message);
-    files = data.files || [];
-  } catch (err) {
-    grid.innerHTML = `<div style="grid-column:1/-1; color:#ff8888; text-align:center;">Error: ${err.message}</div>`;
-    return;
-  }
-
-  if (!files.length) {
-    grid.innerHTML = `<div style="grid-column:1/-1; color:#A855F7; text-align:center;">No videos found in folder.</div>`;
-    return;
-  }
-
-  // Column spans (repeat as needed)
-  const spans = [7, 5, 4, 4];
-  files.forEach((file, i) => {
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://drive.google.com/file/d/${file.id}/preview`;
-    iframe.style.cssText = 'width:100%; height:100%; border:none; background:#0D0A1E';
-    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
-    iframe.allowFullscreen = true;
-
-    const overlay = document.createElement('div');
-    overlay.className = 'work-img-overlay';
-    overlay.innerHTML = `<div class="work-img-tag">Video</div><div class="work-img-title">${escapeHtml(file.name.replace(/\.[^/.]+$/, ''))}</div>`;
-
-    const card = document.createElement('div');
-    card.className = `work-img-card reveal`;
-    card.style.gridColumn = `span ${spans[i % spans.length]}`;
-    card.style.position = 'relative';
-    card.appendChild(iframe);
-    card.appendChild(overlay);
-    grid.appendChild(card);
-  });
-
-  function escapeHtml(str) {
-    return str.replace(/[&<>]/g, function(m) {
-      if (m === '&') return '&amp;';
-      if (m === '<') return '&lt;';
-      if (m === '>') return '&gt;';
-      return m;
     });
   }
 })();
