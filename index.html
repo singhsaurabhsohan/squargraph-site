@@ -157,6 +157,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </script>
 
   <style>
+  body, body > div, body > canvas {
+    transform: none !important;
+    will-change: auto !important;
+  }
   .page-wrapper {
   animation: pageFade 1.2s cubic-bezier(0.2, 0.9, 0.3, 1.1) forwards;
 }
@@ -320,7 +324,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero-fade { animation: fadeIn 1.1s .5s both; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  nav {
+    nav {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
@@ -336,6 +340,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   will-change: auto !important;
 }
 nav.scrolled {
+  background: rgba(6,6,8,.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-color: rgba(255,255,255,.065);
 }
     @media (max-width: 768px) {
@@ -910,41 +917,15 @@ nav.scrolled {
       0%, 100% { box-shadow: 0 8px 30px rgba(124,58,237,.45); }
       50%      { box-shadow: 0 8px 40px rgba(124,58,237,.7); }
     }
-/* ── Fixed positioning: single source of truth ─────────────────── */
-body,
-.aurora-wrap,
-#particle-canvas,
-.flow-lines-section,
-#hero {
-  transform: none !important;
-  will-change: auto !important;
-}
-
-nav {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 500 !important;
-  background: transparent !important;
-  backdrop-filter: none !important;
-  transform: none !important;
-  will-change: auto !important;
-}
-nav.scrolled {
-  background: rgba(3, 2, 10, 0.4) !important;
-  backdrop-filter: blur(8px) !important;
-}
-
+    /* FIX: Force cookie banner & chatbot to stick to viewport (no scroll needed) */
 #cookie-banner {
   position: fixed !important;
-  bottom: 80px !important;
+  bottom: 20px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  width: calc(100% - 32px) !important;
+  width: calc(100% - 40px) !important;
   max-width: 560px !important;
-  z-index: 10001 !important;
-  margin: 0 !important;
+  z-index: 9999 !important;
 }
 
 #chat-toggle {
@@ -959,10 +940,282 @@ nav.scrolled {
   bottom: 90px !important;
   right: 20px !important;
   z-index: 9999 !important;
+}
+
+/* Ensure no parent breaks fixed positioning */
+body, .aurora-wrap, #particle-canvas, .flow-lines-section {
+  transform: none !important;
+  will-change: auto !important;
+}
+    /* ========================================
+   FORCE NAVIGATION TO STAY FIXED
+   ======================================== */
+nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  will-change: auto !important;
+  z-index: 500 !important;
+}
+
+/* Remove transform from ancestors that break fixed positioning */
+body, body > div, .aurora-wrap, #particle-canvas,
+.flow-lines-section, #hero, .grid-bg, svg, section {
+  transform: none !important;
+  will-change: auto !important;
+}
+
+/* ========================================
+   COOKIE BANNER – FIXED, CENTERED, ABOVE CHAT
+   ======================================== */
+#cookie-banner {
+  position: fixed !important;
+  bottom: 80px !important;        /* Room above chat icon */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 32px) !important;
+  max-width: 560px !important;
+  z-index: 10001 !important;      /* Above chat button */
+  margin: 0 !important;
+}
+
+/* ========================================
+   CHATBOT ICON – FIXED BOTTOM RIGHT
+   stays on screen, never overlaps cookie banner
+   ======================================== */
+#chat-toggle {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 10000 !important;
+}
+
+/* Chat panel opens above the button */
+#chat-panel {
+  position: fixed !important;
+  bottom: 90px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
   width: 360px !important;
   max-width: calc(100vw - 40px) !important;
 }
 
+/* ========================================
+   MOBILE – SAME BEHAVIOR, ADJUST SPACING
+   ======================================== */
+@media (max-width: 768px) {
+  #cookie-banner {
+    bottom: 80px !important;      /* Same, above chat */
+    width: calc(100% - 32px) !important;
+  }
+  #chat-toggle {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+  #chat-panel {
+    bottom: 85px !important;
+    right: 16px !important;
+    width: calc(100vw - 32px) !important;
+  }
+}
+    /* Fix navbar fixed positioning on desktop */
+body {
+  transform: none !important;
+  animation: none !important;
+}
+    /* Lighten navbar on desktop and mobile */
+nav {
+  background: rgba(6, 6, 8, 0.75) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+/* When scrolled, keep it slightly darker but still light */
+nav.scrolled {
+  background: rgba(6, 6, 8, 0.85) !important;
+  backdrop-filter: blur(22px) !important;
+  -webkit-backdrop-filter: blur(22px) !important;
+}
+    /* ============================================
+   FINAL FIXES – NO OVERRIDES, NO DUPLICATES
+   ============================================ */
+
+/* 1. Navigation – fixed at top, fully transparent */
+nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 500 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  transform: none !important;
+  will-change: auto !important;
+}
+
+/* Optional: a tiny bit of darkening when scrolled for better readability */
+nav.scrolled {
+  background: rgba(3, 2, 10, 0.4) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* 2. Cookie banner – fixed bottom center, above chat */
+#cookie-banner {
+  position: fixed !important;
+  bottom: 80px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 32px) !important;
+  max-width: 560px !important;
+  z-index: 10001 !important;
+  margin: 0 !important;
+}
+
+/* 3. Chat button – fixed bottom right, below cookie */
+#chat-toggle {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 10000 !important;
+}
+
+/* 4. Chat panel – fixed above chat button */
+#chat-panel {
+  position: fixed !important;
+  bottom: 90px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  width: 360px !important;
+  max-width: calc(100vw - 40px) !important;
+}
+
+/* 5. Mobile adjustments – keep spacing, no overlap */
+@media (max-width: 768px) {
+  #cookie-banner {
+    bottom: 80px !important;
+    width: calc(100% - 32px) !important;
+  }
+  #chat-toggle {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+  #chat-panel {
+    bottom: 85px !important;
+    right: 16px !important;
+    width: calc(100vw - 32px) !important;
+  }
+}
+
+/* 6. Ensure no ancestor breaks fixed positioning */
+body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
+  transform: none !important;
+  will-change: auto !important;
+}
+@media (max-width: 768px) {
+  .instagram-section {
+    padding: 60px 5vw !important;
+  }
+}
+@media (max-width: 640px) {
+  .stat-strip {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width: 768px) {
+  footer > div > div:first-child {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 40px !important;
+  }
+}
+@media (max-width: 480px) {
+  footer > div > div:first-child {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* Exploration cards (matches your existing card style) */
+.exploration-card {
+  border: 1px solid rgba(255,255,255,.065);
+  background: #0D0A1E;
+  padding: 28px 24px;
+  transition: border-color .3s ease, transform .3s cubic-bezier(.23,1,.32,1), box-shadow .3s ease;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.exploration-card:hover {
+  border-color: rgba(124,58,237,.4);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.5), 0 0 24px rgba(124,58,237,.06);
+}
+.exploration-tag {
+  font-size: 10px;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #A855F7;
+  background: rgba(168,85,247,.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(168,85,247,.2);
+}
+
+/* Fullscreen modal */
+.modal-exploration {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(3,2,10,0.98);
+  backdrop-filter: blur(12px);
+  z-index: 20000;
+  overflow-y: auto;
+  padding: 60px 5vw;
+}
+.modal-exploration.open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  max-width: 900px;
+  margin: 0 auto;
+  background: transparent;
+}
+.modal-close {
+  position: fixed;
+  top: 32px;
+  right: 32px;
+  background: none;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  color: #EEEEF5;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-close:hover {
+  border-color: #A855F7;
+  background: rgba(168,85,247,.1);
+  transform: scale(1.05);
+}
+
+/* Active navigation link style */
+nav a.active-nav {
+  color: #A855F7 !important;
+  border-bottom: 2px solid #A855F7;
+  padding-bottom: 4px;
+}
+nav a.active-nav {
+  color: #A855F7 !important;
+  border-bottom: 2px solid #A855F7;
+  padding-bottom: 4px;
+}
+/* Back to Top Button */
 #back-to-top {
   position: fixed;
   bottom: 24px;
@@ -980,7 +1233,7 @@ nav.scrolled {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s, transform 0.2s;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   color: white;
 }
 #back-to-top.visible {
@@ -991,21 +1244,44 @@ nav.scrolled {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(124,58,237,0.5);
 }
-
 @media (max-width: 768px) {
-  #cookie-banner {
-    bottom: 80px !important;
-    width: calc(100% - 32px) !important;
+  #back-to-top {
+    bottom: 16px;
+    left: 16px;
+    width: 42px;
+    height: 42px;
   }
-  #chat-toggle {
-    bottom: 16px !important;
-    right: 16px !important;
-  }
-  #chat-panel {
-    bottom: 85px !important;
-    right: 16px !important;
-    width: calc(100vw - 32px) !important;
-  }
+}
+/* Back to Top Button */
+#back-to-top {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #7C3AED, #A855F7);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s, transform 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+#back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+#back-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(124,58,237,0.5);
+}
+@media (max-width: 768px) {
   #back-to-top {
     bottom: 16px;
     left: 16px;
@@ -1073,7 +1349,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#work"         onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
   <a href="#capabilities" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Capabilities</a>
   <a href="#founder"      onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
-  <a href="#contact" onclick="closeMob()"
      style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
     Start a project →
   </a>
@@ -1861,14 +2136,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 <!-- ══════════════════════════════════════════════════════════════════
-     FOUNDER — Updated: premium, editorial, calm, experience-led
+     FOUNDER — Updated narrative + muted gray logos
 ══════════════════════════════════════════════════════════════════════ -->
 <section id="founder" style="padding:120px 5vw;position:relative;z-index:2;">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal s-label">The Founder</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:64px;align-items:start;margin-top:20px;">
-
-      <!-- Photo column -->
       <div class="reveal">
         <div class="founder-photo" style="overflow:hidden;">
           <img src="founder.jpg" loading="lazy" alt="Saurabh Sohan Singh"
@@ -1876,82 +2149,89 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                onerror="this.style.display='none';this.parentNode.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;\'><span style=\'font-family:Outfit,sans-serif;font-size:72px;font-weight:800;color:rgba(168,85,247,0.25);\'>SS</span></div>';">
         </div>
       </div>
-
-      <!-- Content column -->
       <div>
         <h2 class="reveal font-display font-extrabold" style="font-size:clamp(28px,3.5vw,48px);line-height:1.05;letter-spacing:-.028em;margin-bottom:6px;">
           Saurabh Sohan Singh
         </h2>
-        <p style="color:rgba(238,238,245,.5);font-size:14px;margin-bottom:20px;">Founder &amp; Creative Director</p>
-        <p class="reveal" style="color:#A855F7;font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:40px;">
-          Founder, <span style="background:linear-gradient(135deg,#A855F7,#7C3AED);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700;">SQUARGRAPH Studios</span>
+        <p style="color:rgba(238,238,245,.5);font-size:14px;margin-bottom:20px;">Founder & Creative Director — Integrated Campaigns, Brand Communication & Execution</p>
+        <p class="reveal" style="color:#A855F7;font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:36px;">
+          Founder, <span style="background: linear-gradient(135deg, #A855F7, #7C3AED); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 700;">SQUARGRAPH Studios</span>
+        </p>
+        
+        <!-- Repositioned founder narrative -->
+        <p class="reveal reveal-d1" style="color:rgba(238,238,245,.65);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:20px;max-width:52ch;">
+          Before SQUARGRAPH, I spent years inside integrated campaign environments — working within agency structures handling large-scale automotive accounts, managing social media ecosystems, coordinating across production, PR, and digital teams simultaneously.
+        </p>
+        <p class="reveal reveal-d2" style="color:rgba(238,238,245,.65);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:20px;max-width:52ch;">
+          At INNOCEAN Worldwide, I worked across the Hyundai Motor India ecosystem — understanding how integrated communication operates at scale, what keeps campaigns aligned across functions, and where execution typically breaks down.
+        </p>
+        <p class="reveal reveal-d3" style="color:rgba(238,238,245,.65);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:20px;max-width:52ch;">
+          That experience shaped a clear point of view: the gap between creative ambition and actual output is almost never an ideas problem. It's an operational one. Unclear briefs. Misaligned teams. Execution that doesn't match the thinking.
+        </p>
+        <p class="reveal reveal-d4" style="color:rgba(238,238,245,.65);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:20px;max-width:52ch;">
+          SQUARGRAPH Studios is built to close that gap — combining strategic clarity with structured execution, for brands and agency ecosystems that can't afford to lose either.
+        </p>
+        <p class="reveal reveal-d5" style="color:rgba(238,238,245,.65);font-size:15px;line-height:1.85;font-weight:300;margin-bottom:30px;max-width:52ch;">
+          If your communication needs to be as considered on the outside as your business is on the inside, this is where that work gets done.
         </p>
 
-        <!-- Core narrative — editorial, clean, human -->
-        <p class="reveal reveal-d1" style="color:rgba(238,238,245,.65);font-size:15px;line-height:1.9;font-weight:300;margin-bottom:22px;max-width:52ch;">
-          Saurabh Sohan Singh leads SQUARGRAPH Studios with a focus on brand communication, integrated campaigns, creative systems, and large-scale digital execution — bringing experience from agency ecosystems including Hyundai Motor India during his time at INNOCEAN Worldwide India.
-        </p>
-        <p class="reveal reveal-d2" style="color:rgba(238,238,245,.65);font-size:15px;line-height:1.9;font-weight:300;margin-bottom:22px;max-width:52ch;">
-          Over the course of his work, he has been involved in launch campaigns, brand communication, content systems, creative coordination, digital storytelling, and always-on execution — operating across fast-moving agency environments where strategy, creativity, timelines, and operations had to stay aligned simultaneously.
-        </p>
-        <p class="reveal reveal-d3" style="color:rgba(238,238,245,.65);font-size:15px;line-height:1.9;font-weight:300;margin-bottom:22px;max-width:52ch;">
-          SQUARGRAPH Studios was built on a clear premise: modern brands need more than creative output. They need communication that is strategically clear, creatively considered, and consistently executable — across campaigns, platforms, and evolving digital ecosystems.
-        </p>
-        <p class="reveal reveal-d4" style="color:rgba(238,238,245,.5);font-size:14px;line-height:1.85;font-weight:300;margin-bottom:36px;max-width:52ch;">
-          The studio works across branding, campaigns, content ecosystems, and creative execution for brands, agency networks, and modern communication environments — focused on building systems that are not just visually strong, but reliable, scalable, and built to last.
-        </p>
-
-        <!-- Experience grid -->
-        <div class="reveal reveal-d5" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px;max-width:52ch;">
+        <!-- Experience highlights -->
+        <div class="reveal reveal-d6" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;max-width:52ch;">
           <div style="background:#0D0A1E;border:1px solid rgba(255,255,255,.065);padding:16px 20px;border-radius:2px;">
-            <div style="font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(168,85,247,.7);margin-bottom:7px;">Focus areas</div>
-            <div style="font-size:13px;color:rgba(238,238,245,.65);line-height:1.65;">Integrated campaigns, content systems, creative operations</div>
+            <div style="font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A855F7;margin-bottom:6px;">Background</div>
+            <div style="font-size:13px;color:rgba(238,238,245,.7);line-height:1.6;">Integrated campaigns, social media systems, creative operations</div>
           </div>
           <div style="background:#0D0A1E;border:1px solid rgba(255,255,255,.065);padding:16px 20px;border-radius:2px;">
-            <div style="font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(168,85,247,.7);margin-bottom:7px;">Sectors</div>
-            <div style="font-size:13px;color:rgba(238,238,245,.65);line-height:1.65;">Automotive, hospitality, D2C, lifestyle</div>
+            <div style="font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A855F7;margin-bottom:6px;">Sectors</div>
+            <div style="font-size:13px;color:rgba(238,238,245,.7);line-height:1.6;">Automotive, hospitality, D2C, lifestyle</div>
           </div>
           <div style="background:#0D0A1E;border:1px solid rgba(255,255,255,.065);padding:16px 20px;border-radius:2px;">
-            <div style="font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(168,85,247,.7);margin-bottom:7px;">Agency background</div>
-            <div style="font-size:13px;color:rgba(238,238,245,.65);line-height:1.65;">INNOCEAN Worldwide India</div>
+            <div style="font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A855F7;margin-bottom:6px;">Agency</div>
+            <div style="font-size:13px;color:rgba(238,238,245,.7);line-height:1.6;">INNOCEAN Worldwide</div>
           </div>
           <div style="background:#0D0A1E;border:1px solid rgba(255,255,255,.065);padding:16px 20px;border-radius:2px;">
-            <div style="font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(168,85,247,.7);margin-bottom:7px;">Based in</div>
-            <div style="font-size:13px;color:rgba(238,238,245,.65);line-height:1.65;">Delhi, India</div>
+            <div style="font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A855F7;margin-bottom:6px;">Based in</div>
+            <div style="font-size:13px;color:rgba(238,238,245,.7);line-height:1.6;">Delhi, India</div>
           </div>
         </div>
-
-        <!-- Brands section -->
-        <div class="reveal reveal-d6" style="margin-bottom:28px;">
-          <p style="font-size:11px;color:rgba(238,238,245,.28);letter-spacing:.12em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-bottom:14px;">Brands worked with</p>
-          <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;">
+        
+        <!-- Brands section (muted gray logos) -->
+        <div class="reveal reveal-d8" style="margin-bottom:28px;">
+          <p style="font-size:12px; color:#A855F7; letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px;">Brands I've worked with</p>
+          <div style="display:flex; flex-wrap:wrap; gap:24px; align-items:center;">
             <img src="hyundai-logo.png" alt="Hyundai Motor India"
-                 style="height:26px;width:auto;filter:brightness(0) invert(0.55);transition:filter 0.25s ease;"
-                 onmouseover="this.style.filter='brightness(0) invert(0.9)'"
-                 onmouseout="this.style.filter='brightness(0) invert(0.55)'"
+                 style="height: 28px; width: auto; 
+                        filter: brightness(0) invert(0.7);
+                        transition: filter 0.2s ease, drop-shadow 0.2s ease;"
+                 onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 4px #A855F7)'"
+                 onmouseout="this.style.filter='brightness(0) invert(0.7)'"
                  onerror="this.style.display='none'">
             <img src="fabhotels-logo.png" alt="FabHotels"
-                 style="height:26px;width:auto;filter:brightness(0) invert(0.55);transition:filter 0.25s ease;"
-                 onmouseover="this.style.filter='brightness(0) invert(0.9)'"
-                 onmouseout="this.style.filter='brightness(0) invert(0.55)'"
+                 style="height: 28px; width: auto; 
+                        filter: brightness(0) invert(0.7);
+                        transition: filter 0.2s ease, drop-shadow 0.2s ease;"
+                 onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 4px #A855F7)'"
+                 onmouseout="this.style.filter='brightness(0) invert(0.7)'"
                  onerror="this.style.display='none'">
           </div>
         </div>
-
-        <!-- Agency section -->
-        <div class="reveal reveal-d7" style="margin-bottom:32px;">
-          <p style="font-size:11px;color:rgba(238,238,245,.28);letter-spacing:.12em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-bottom:14px;">Agency background</p>
-          <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;">
-            <img src="innocean-logo.png" alt="INNOCEAN Worldwide India"
-                 style="height:26px;width:auto;filter:brightness(0) invert(0.55);transition:filter 0.25s ease;"
-                 onmouseover="this.style.filter='brightness(0) invert(0.9)'"
-                 onmouseout="this.style.filter='brightness(0) invert(0.55)'"
+        
+        <!-- Agency section (muted gray logo) -->
+        <div class="reveal reveal-d9" style="margin-bottom:30px;">
+          <p style="font-size:12px; color:#A855F7; letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px;">Agency I was associated with</p>
+          <div style="display:flex; flex-wrap:wrap; gap:24px; align-items:center;">
+            <img src="innocean-logo.png" alt="INNOCEAN Worldwide"
+                 style="height: 28px; width: auto; 
+                        filter: brightness(0) invert(0.7);
+                        transition: filter 0.2s ease, drop-shadow 0.2s ease;"
+                 onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 4px #A855F7)'"
+                 onmouseout="this.style.filter='brightness(0) invert(0.7)'"
                  onerror="this.style.display='none'">
           </div>
         </div>
 
         <!-- Social links -->
-        <div class="reveal reveal-d8" style="display:flex;gap:10px;flex-wrap:wrap;">
+        <div class="reveal reveal-d10" style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;">
           <a href="https://facebook.com/saurabhsohansingh" target="_blank" rel="noopener" class="social-link" title="Facebook">
             <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
@@ -1965,8 +2245,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
         </div>
-
-      </div><!-- /content column -->
+      </div>
     </div>
   </div>
 </section>
