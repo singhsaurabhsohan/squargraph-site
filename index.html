@@ -477,6 +477,68 @@ nav.scrolled {
       box-shadow: 0 24px 56px rgba(0,0,0,.7), 0 0 32px rgba(124,58,237,.15);
       border-color: rgba(124,58,237,.35);
     }
+    /* Horizontal scroll containers */
+.scroll-horizontal {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.scroll-horizontal::-webkit-scrollbar {
+  height: 3px;
+}
+.scroll-horizontal::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+}
+.scroll-horizontal::-webkit-scrollbar-thumb {
+  background: #A855F7;
+  border-radius: 3px;
+}
+
+.scroll-track {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  padding: 8px 2px 20px 2px;
+  width: max-content;
+}
+
+.scroll-track-reels {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  padding: 8px 2px 20px 2px;
+  width: max-content;
+}
+
+/* Reel card styling – force 9:16 aspect ratio */
+.reel-card {
+  aspect-ratio: 9 / 16;
+  width: 220px;  /* fixed width, can be adjusted */
+  min-width: 180px;
+  max-width: 260px;
+}
+
+/* Horizontal video cards – maintain 4:3 ratio */
+.work-img-card {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+}
+
+/* Mobile adjustment: make cards slightly larger on touch */
+@media (max-width: 768px) {
+  .scroll-track, .scroll-track-reels {
+    gap: 16px;
+  }
+  .reel-card {
+    width: 160px;
+    min-width: 140px;
+  }
+  .work-img-card {
+    min-width: 260px;
+  }
+}
     .work-img-svg { width: 100%; height: 100%; display: block; }
     .work-img-overlay {
       position: absolute; inset: 0;
@@ -1881,7 +1943,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 <!-- ══════════════════════════════════════════════════════════════════
-     WORK SHOWCASE
+     WORK SHOWCASE - Horizontal Scrollable Galleries
 ══════════════════════════════════════════════════════════════════════ -->
 <section id="work" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;overflow:hidden;z-index:2;">
   <div style="position:absolute;top:-80px;right:-80px;pointer-events:none;opacity:0.4;">
@@ -1897,71 +1959,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         The kind of work<br/>we <span style="color:#A855F7;">actually make</span>
       </h2>
       <p class="reveal mobile-hide" style="color:rgba(238,238,245,.4);font-size:13px;max-width:32ch;line-height:1.8;">
-        Visual, digital, and strategic work built to perform — not just to look good in a deck.
+        Scroll → swipe → watch. No clutter, just the work.
       </p>
     </div>
 
-    <!-- First row: horizontal videos (3 cards, no text overlay) -->
-    <div style="display:grid; grid-template-columns:repeat(12,1fr); gap:20px;">
-      <!-- Card 1: span 7 -->
-      <div class="work-img-card reveal reveal-d1" style="grid-column:span 7;">
-        <iframe src="https://drive.google.com/file/d/12ip7hNWewrB_gympUjgmQdHlfCJhpfBo/preview" 
-                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                allow="autoplay; encrypted-media; picture-in-picture" 
-                allowfullscreen></iframe>
-      </div>
-      <!-- Card 2: span 5 -->
-      <div class="work-img-card reveal reveal-d2" style="grid-column:span 5;">
-        <iframe src="https://drive.google.com/file/d/1eu7ZFEC4pOnkf0DHCNaDYf4znYlFmLqV/preview" 
-                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                allow="autoplay; encrypted-media; picture-in-picture" 
-                allowfullscreen></iframe>
-      </div>
-      <!-- Card 3: span 4 (this wraps to a new line because 7+5+4 = 16 > 12) -->
-      <div class="work-img-card reveal reveal-d3" style="grid-column:span 4;">
-        <iframe src="https://drive.google.com/file/d/1qhXLZgmb4LWFuncJ5UB3lKb7ob4vUFhm/preview" 
-                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                allow="autoplay; encrypted-media; picture-in-picture" 
-                allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <!-- Second row: reels (vertical videos) – 5 reels, each span 4 (3 per row) -->
-    <div style="display:grid; grid-template-columns:repeat(12,1fr); gap:20px; margin-top:20px;">
-      <!-- Reel 1 -->
-      <div class="work-img-card reveal work-reel" style="grid-column:span 4; aspect-ratio:9/16;">
-        <iframe src="https://drive.google.com/file/d/1-VvGP8V1CW-pvjZtxPcuPDPyJSeSdsZQ/preview" 
-                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                allowfullscreen></iframe>
-      </div>
-      <!-- Reel 2 -->
-      <div class="work-img-card reveal work-reel" style="grid-column:span 4; aspect-ratio:9/16;">
-        <iframe src="https://drive.google.com/file/d/1prr7L0HCzVuDQhEBowkTldwNPXaJojwf/preview" 
-                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                allowfullscreen></iframe>
-      </div>
-      <!-- Reel 3 -->
-      <div class="work-img-card reveal work-reel" style="grid-column:span 4; aspect-ratio:9/16;">
-        <iframe src="https://drive.google.com/file/d/1kYli3HnkeyDHw2mFfsy57id8y68cyGXp/preview" 
-                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                allowfullscreen></iframe>
-      </div>
-      <!-- Reel 4 – wraps to next row -->
-      <div class="work-img-card reveal work-reel" style="grid-column:span 4; aspect-ratio:9/16;">
-        <iframe src="https://drive.google.com/file/d/1xby22E41UgRZf0nt8S9iLo-JJbKNibQ6/preview" 
-                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                allowfullscreen></iframe>
-      </div>
-      <!-- Reel 5 -->
-      <div class="work-img-card reveal work-reel" style="grid-column:span 4; aspect-ratio:9/16;">
-        <iframe src="https://drive.google.com/file/d/1L6DRKJD1BgXioXUss0MWymqsE1oPq618/preview" 
-                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                allowfullscreen></iframe>
+    <!-- Horizontal Videos Section -->
+    <div style="margin-bottom:60px;">
+      <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin-bottom:20px;">Horizontal Campaigns</h3>
+      <div class="scroll-horizontal">
+        <div class="scroll-track">
+          <!-- Video 1 -->
+          <div class="work-img-card" style="min-width:320px; width:40%; max-width:500px;">
+            <iframe src="https://drive.google.com/file/d/12ip7hNWewrB_gympUjgmQdHlfCJhpfBo/preview" 
+                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                    allow="encrypted-media; picture-in-picture" 
+                    allowfullscreen loading="lazy"></iframe>
+          </div>
+          <!-- Video 2 -->
+          <div class="work-img-card" style="min-width:320px; width:40%; max-width:500px;">
+            <iframe src="https://drive.google.com/file/d/1eu7ZFEC4pOnkf0DHCNaDYf4znYlFmLqV/preview" 
+                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                    allow="encrypted-media; picture-in-picture" 
+                    allowfullscreen loading="lazy"></iframe>
+          </div>
+          <!-- Video 3 -->
+          <div class="work-img-card" style="min-width:320px; width:40%; max-width:500px;">
+            <iframe src="https://drive.google.com/file/d/1qhXLZgmb4LWFuncJ5UB3lKb7ob4vUFhm/preview" 
+                  style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                  allow="encrypted-media; picture-in-picture" 
+                  allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="reveal" style="margin-top:40px;text-align:center;">
-      <p style="color:rgba(238,238,245,.3);font-size:13px;line-height:1.8;margin:0;">
+    <!-- Reels Section (vertical videos) -->
+    <div style="margin-bottom:40px;">
+      <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin-bottom:20px;">Short Reels</h3>
+      <div class="scroll-horizontal">
+        <div class="scroll-track-reels">
+          <!-- Reel 1 -->
+          <div class="work-img-card reel-card">
+            <iframe src="https://drive.google.com/file/d/1-VvGP8V1CW-pvjZtxPcuPDPyJSeSdsZQ/preview" 
+                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                    allowfullscreen
+                    loading="lazy"></iframe>
+          </div>
+          <!-- Reel 2 -->
+          <div class="work-img-card reel-card">
+            <iframe src="https://drive.google.com/file/d/1prr7L0HCzVuDQhEBowkTldwNPXaJojwf/preview" 
+                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                    allowfullscreen
+                    loading="lazy"></iframe>
+          </div>
+          <!-- Reel 3 -->
+          <div class="work-img-card reel-card">
+            <iframe src="https://drive.google.com/file/d/1kYli3HnkeyDHw2mFfsy57id8y68cyGXp/preview" 
+                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                    allowfullscreen loading="lazy"></iframe>
+          </div>
+          <!-- Reel 4 -->
+          <div class="work-img-card reel-card">
+            <iframe src="https://drive.google.com/file/d/1xby22E41UgRZf0nt8S9iLo-JJbKNibQ6/preview" 
+                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                    allowfullscreen
+                    loading="lazy"></iframe>
+          </div>
+          <!-- Reel 5 -->
+          <div class="work-img-card reel-card">
+            <iframe src="https://drive.google.com/file/d/1L6DRKJD1BgXioXUss0MWymqsE1oPq618/preview" 
+                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                    allowfullscreen
+                    loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collaboration line -->
+    <div class="reveal" style="text-align:center; margin-top:60px; border-top:1px solid rgba(255,255,255,.08); padding-top:40px;">
+      <p style="color:rgba(238,238,245,.35); font-size:12px; letter-spacing:.2em; text-transform:uppercase;">
+        in collaboration with <span style="color:#A855F7;">Films By Jones</span>
+      </p>
+    </div>
+
+    <div class="reveal" style="margin-top:30px;text-align:center;">
+      <p style="color:rgba(238,238,245,.2);font-size:11px;line-height:1.8;">
         …and many more projects like media drives, drive events, and always‑on content for multiple brands.
       </p>
     </div>
@@ -2719,7 +2802,8 @@ border-top:1px solid rgba(255,255,255,.08);
     ctx.fill();
   };
 
-  var COUNT = Math.min(120, Math.floor(window.innerWidth * window.innerHeight / 12000));
+  var COUNT = Math.min(80, Math.floor(window.innerWidth * window.innerHeight / 15000));
+if (window.innerWidth < 768) COUNT = Math.min(40, COUNT);
   for (var i = 0; i < COUNT; i++) {
     var p = new Particle();
     p.age = Math.random() * p.life;
