@@ -164,14 +164,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .page-wrapper {
   animation: pageFade 1.2s cubic-bezier(0.2, 0.9, 0.3, 1.1) forwards;
 }
-    .reel-card {
-  overflow: visible !important;
-}
-.reel-card iframe {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;  /* ensures the video fills the card without distortion */
-}
   /* rest of your CSS */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -183,14 +175,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   line-height: 1.65;
   overflow-x: hidden;
   /* animation moved to .page-wrapper */
-}
-/* Mobile adjustments for reels */
-@media (max-width: 768px) {
-  /* Existing rule for .work-img-card sets aspect-ratio:16/9 – override for reels */
-  .work-reel {
-    aspect-ratio: 9 / 16 !important;
-    grid-column: span 12 !important;  /* full width on mobile */
-  }
 }
     /* CHANGE 1: Removed cursor: none from a, button, [role="button"] */
 
@@ -472,115 +456,6 @@ nav.scrolled {
     }
 
     /* ── Work showcase ─────────────────────────────────────────── */
-    /* Horizontal scroll containers */
-.scroll-horizontal {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: visible;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-}
-.scroll-horizontal {
-  position: relative;
-}
-.scroll-horizontal::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 60px;
-  height: 100%;
-  pointer-events: none;
-  background: linear-gradient(to right, transparent, #080616);
-}
-.scroll-horizontal::-webkit-scrollbar {
-  height: 3px;
-}
-.scroll-horizontal::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.05);
-}
-.scroll-horizontal::-webkit-scrollbar-thumb {
-  background: #A855F7;
-  border-radius: 3px;
-}
-
-.scroll-track {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  padding: 8px 2px 20px 2px;
-  width: max-content;
-  align-items: stretch;
-}
-
-.scroll-track-reels {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  padding: 8px 2px 20px 2px;
-  width: max-content;
-  align-items: stretch;
-  overflow-y: visible;   /* ← add this */
-}
-.scroll-track, .scroll-track-reels {
-  padding: 8px 24px 20px 2px;  /* extra right padding */
-}
-/* Reel card styling – force 9:16 aspect ratio */
-.reel-card {
-  aspect-ratio: 9 / 16;
-  width: 220px;          /* adjust as you like */
-  max-width: 260px;
-  flex-shrink: 0;        /* prevents squishing in flex container */
-  overflow: visible;     /* ensures no clipping inside card */
-}
-.reel-card iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-/* Horizontal video cards – maintain 4:3 ratio */
-.work-img-card {
-  aspect-ratio: 4 / 3;
-  width: 100%;
-}
-
-/* Mobile adjustment: make cards slightly larger on touch */
-@media (max-width: 768px) {
-  .scroll-track, .scroll-track-reels {
-    gap: 16px;
-  }
-  .reel-card {
-    width: 160px;
-    min-width: 140px;
-  }
-  .work-img-card {
-    min-width: 260px;
-  }
-  /* Prevent cropping on reel cards */
-.reel-card {
-  overflow: visible !important;
-}
-/* Ensure scroll containers don't cut off last item */
-.scroll-track, .scroll-track-reels {
-  padding-right: 24px;
-}
-/* Optional: fade effect on right edge of scrollable area */
-.scroll-horizontal {
-  position: relative;
-}
-.scroll-horizontal::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 60px;
-  height: 100%;
-  pointer-events: none;
-  background: linear-gradient(to right, transparent, #080616);
-}
-/* Force consistent height for horizontal video cards (already set) */
-}
     .work-img-svg { width: 100%; height: 100%; display: block; }
     .work-img-overlay {
       position: absolute; inset: 0;
@@ -1985,7 +1860,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 <!-- ══════════════════════════════════════════════════════════════════
-     WORK SHOWCASE - Corrected & Aligned
+     WORK SHOWCASE - Custom arrows, no scrollbar, adjusted ratios
 ══════════════════════════════════════════════════════════════════════ -->
 <section id="work" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;z-index:2;">
   <div style="position:absolute;top:-80px;right:-80px;pointer-events:none;opacity:0.4;">
@@ -2001,81 +1876,89 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         The kind of work<br/>we <span style="color:#A855F7;">actually make</span>
       </h2>
       <p class="reveal mobile-hide" style="color:rgba(238,238,245,.4);font-size:13px;max-width:32ch;line-height:1.8;">
-        Scroll → swipe → watch. No clutter, just the work.
+        Click arrows to browse. No clutter, just the work.
       </p>
     </div>
 
-    <!-- Horizontal Videos Section -->
-    <div style="margin-bottom:60px;">
+    <!-- Horizontal Videos Section with arrows -->
+    <div style="margin-bottom:60px; position:relative;">
       <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin-bottom:20px;">Campaigns</h3>
-      <div class="scroll-horizontal">
-        <div class="scroll-track">
-          <!-- Video 1 -->
-          <div class="work-img-card" style="width:380px; min-width:300px; flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a0896760ed6988dba19a294" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy"></iframe>
-          </div>
-          <!-- Video 2 -->
-          <div class="work-img-card" style="width:380px; min-width:300px; flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy"></iframe>
-          </div>
-          <!-- Video 3 -->
-          <div class="work-img-card" style="width:380px; min-width:300px; flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy"></iframe>
+      <div class="scroll-wrapper">
+        <div class="scroll-arrow left-arrow" data-scroll="campaigns">‹</div>
+        <div class="scroll-horizontal campaigns-scroll" id="campaigns-scroll">
+          <div class="scroll-track">
+            <!-- Video 1 -->
+            <div class="work-img-card" style="width:380px; min-width:300px; flex-shrink:0;">
+              <iframe src="https://play.gumlet.io/embed/6a0896760ed6988dba19a294" 
+                      style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                      allow="autoplay; encrypted-media; picture-in-picture" 
+                      allowfullscreen loading="lazy"></iframe>
+            </div>
+            <!-- Video 2 -->
+            <div class="work-img-card" style="width:380px; min-width:300px; flex-shrink:0;">
+              <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6" 
+                      style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                      allow="autoplay; encrypted-media; picture-in-picture" 
+                      allowfullscreen loading="lazy"></iframe>
+            </div>
+            <!-- Video 3 -->
+            <div class="work-img-card" style="width:380px; min-width:300px; flex-shrink:0;">
+              <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1" 
+                      style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                      allow="autoplay; encrypted-media; picture-in-picture" 
+                      allowfullscreen loading="lazy"></iframe>
+            </div>
           </div>
         </div>
+        <div class="scroll-arrow right-arrow" data-scroll="campaigns">›</div>
       </div>
     </div>
 
-    <!-- Reels Section (vertical videos) -->
-    <div style="margin-bottom:40px;">
+    <!-- Reels Section with arrows -->
+    <div style="margin-bottom:40px; position:relative;">
       <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin-bottom:20px;">Reels</h3>
-      <div class="scroll-horizontal">
-        <div class="scroll-track-reels">
-          <!-- Reel 1 -->
-          <div class="work-img-card reel-card" style="flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy"></iframe>
-          </div>
-          <!-- Reel 2 -->
-          <div class="work-img-card reel-card" style="flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a08955d3a5246215d479670" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy"></iframe>
-          </div>
-          <!-- Reel 3 -->
-          <div class="work-img-card reel-card" style="flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy"></iframe>
-          </div>
-          <!-- Reel 4 -->
-          <div class="work-img-card reel-card" style="flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy"></iframe>
-          </div>
-          <!-- Reel 5 -->
-          <div class="work-img-card reel-card" style="flex-shrink:0;">
-            <iframe src="https://play.gumlet.io/embed/6a0896760143a2000b233c09" 
-                    style="width:100%; height:100%; border:none; background:#0D0A1E;" 
-                    allow="autoplay; encrypted-media; picture-in-picture" 
-                    allowfullscreen loading="lazy"></iframe>
+      <div class="scroll-wrapper">
+        <div class="scroll-arrow left-arrow" data-scroll="reels">‹</div>
+        <div class="scroll-horizontal reels-scroll" id="reels-scroll">
+          <div class="scroll-track-reels">
+            <!-- Reel 1 -->
+            <div class="work-img-card reel-card" style="flex-shrink:0;">
+              <iframe src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd" 
+                      style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                      allow="autoplay; encrypted-media; picture-in-picture" 
+                      allowfullscreen loading="lazy"></iframe>
+            </div>
+            <!-- Reel 2 -->
+            <div class="work-img-card reel-card" style="flex-shrink:0;">
+              <iframe src="https://play.gumlet.io/embed/6a08955d3a5246215d479670" 
+                      style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                      allow="autoplay; encrypted-media; picture-in-picture" 
+                      allowfullscreen loading="lazy"></iframe>
+            </div>
+            <!-- Reel 3 -->
+            <div class="work-img-card reel-card" style="flex-shrink:0;">
+              <iframe src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad" 
+                      style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                      allow="autoplay; encrypted-media; picture-in-picture" 
+                      allowfullscreen loading="lazy"></iframe>
+            </div>
+            <!-- Reel 4 -->
+            <div class="work-img-card reel-card" style="flex-shrink:0;">
+              <iframe src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a" 
+                      style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                      allow="autoplay; encrypted-media; picture-in-picture" 
+                      allowfullscreen loading="lazy"></iframe>
+            </div>
+            <!-- Reel 5 -->
+            <div class="work-img-card reel-card" style="flex-shrink:0;">
+              <iframe src="https://play.gumlet.io/embed/6a0896760143a2000b233c09" 
+                      style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                      allow="autoplay; encrypted-media; picture-in-picture" 
+                      allowfullscreen loading="lazy"></iframe>
+            </div>
           </div>
         </div>
+        <div class="scroll-arrow right-arrow" data-scroll="reels">›</div>
       </div>
     </div>
 
@@ -3292,6 +3175,36 @@ if (window.innerWidth < 768) COUNT = Math.min(40, COUNT);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+// ========== ARROW SCROLLING FOR WORK SECTION ==========
+(function initScrollArrows() {
+  const campaignsScroll = document.getElementById('campaigns-scroll');
+  const reelsScroll = document.getElementById('reels-scroll');
+  
+  function setupArrows(scrollEl, leftBtn, rightBtn) {
+    if (!scrollEl) return;
+    const step = 400;
+    leftBtn.addEventListener('click', () => {
+      scrollEl.scrollBy({ left: -step, behavior: 'smooth' });
+    });
+    rightBtn.addEventListener('click', () => {
+      scrollEl.scrollBy({ left: step, behavior: 'smooth' });
+    });
+  }
+  
+  const leftCampaigns = document.querySelector('.left-arrow[data-scroll="campaigns"]');
+  const rightCampaigns = document.querySelector('.right-arrow[data-scroll="campaigns"]');
+  const leftReels = document.querySelector('.left-arrow[data-scroll="reels"]');
+  const rightReels = document.querySelector('.right-arrow[data-scroll="reels"]');
+  
+  if (campaignsScroll && leftCampaigns && rightCampaigns) {
+    setupArrows(campaignsScroll, leftCampaigns, rightCampaigns);
+  }
+  if (reelsScroll && leftReels && rightReels) {
+    setupArrows(reelsScroll, leftReels, rightReels);
+  }
+})();
+
 // Autoplay on hover (first time only) – fixed
 document.querySelectorAll('#work .work-img-card iframe').forEach(iframe => {
   let originalSrc = iframe.src;
