@@ -176,7 +176,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   overflow-x: hidden;
   /* animation moved to .page-wrapper */
 }
-
+/* Mobile adjustments for reels */
+@media (max-width: 768px) {
+  /* Existing rule for .work-img-card sets aspect-ratio:16/9 – override for reels */
+  .work-reel {
+    aspect-ratio: 9 / 16 !important;
+    grid-column: span 12 !important;  /* full width on mobile */
+  }
+}
     /* CHANGE 1: Removed cursor: none from a, button, [role="button"] */
 
     body::before {
@@ -1893,77 +1900,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Visual, digital, and strategic work built to perform — not just to look good in a deck.
       </p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:20px;">
-      <div class="work-img-card reveal reveal-d1" style="grid-column:span 7;cursor:pointer;">
-        <svg class="work-img-svg" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="800" height="600" rx="2" fill="#0D0A1E"/>
-          <circle cx="380" cy="280" r="160" stroke="#EEEEF5" stroke-opacity="0.12" stroke-width="1" fill="none"/>
-          <circle cx="380" cy="280" r="110" stroke="#A855F7" stroke-opacity="0.3" stroke-width="1.5" fill="none"/>
-          <circle cx="380" cy="280" r="60" stroke="#A855F7" stroke-opacity="0.5" stroke-width="1.5" fill="none"/>
-          <path d="M380 120 L380 170 M380 390 L380 460 M220 280 L270 280 M490 280 L560 280" stroke="#EEEEF5" stroke-opacity="0.25" stroke-width="1" stroke-linecap="round"/>
-          <circle cx="380" cy="280" r="230" stroke="#06B6D4" stroke-opacity="0.2" stroke-width="0.8" stroke-dasharray="6 8" fill="none"/>
-          <circle cx="380" cy="50" r="22" fill="#A855F7" fill-opacity="0.08"/>
-          <circle cx="380" cy="50" r="5" fill="#A855F7"/>
-          <circle cx="610" cy="280" r="18" fill="#A855F7" fill-opacity="0.06"/>
-          <circle cx="610" cy="280" r="4" fill="#06B6D4"/>
-          <circle cx="380" cy="510" r="16" fill="#A855F7" fill-opacity="0.06"/>
-          <circle cx="380" cy="510" r="3.5" fill="#A855F7"/>
-          <path d="M380 72 L380 120 M610 262 L610 200 M380 488 L380 460" stroke="#06B6D4" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="3 4"/>
-        </svg>
-        <div class="work-img-overlay">
-          <div class="work-img-tag">Campaign Execution</div>
-          <div class="work-img-title">Launch campaigns that ship on time, every time.</div>
-        </div>
+
+    <!-- First row: horizontal videos (original 3 cards, no text overlay) -->
+    <div style="display:grid; grid-template-columns:repeat(12,1fr); gap:20px;">
+      <!-- Card 1: span 7 -->
+      <div class="work-img-card reveal reveal-d1" style="grid-column:span 7;">
+        <iframe src="https://drive.google.com/file/d/12ip7hNWewrB_gympUjgmQdHlfCJhpfBo/preview" 
+                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                allow="autoplay; encrypted-media; picture-in-picture" 
+                allowfullscreen></iframe>
       </div>
+      <!-- Card 2: span 5 -->
       <div class="work-img-card reveal reveal-d2" style="grid-column:span 5;">
-        <svg class="work-img-svg" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="800" height="600" rx="2" fill="#0D0A1E"/>
-          <ellipse cx="400" cy="300" rx="180" ry="200" stroke="#EEEEF5" stroke-opacity="0.1" stroke-width="1" fill="none"/>
-          <ellipse cx="400" cy="300" rx="150" ry="170" stroke="#A855F7" stroke-opacity="0.25" stroke-width="1.2" fill="none"/>
-          <path d="M250 300 L550 300" stroke="#EEEEF5" stroke-opacity="0.15" stroke-width="1"/>
-          <path d="M400 100 L400 500" stroke="#EEEEF5" stroke-opacity="0.15" stroke-width="1"/>
-          <polygon points="400,230 460,265 460,335 400,370 340,335 340,265" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1.5"/>
-          <circle cx="400" cy="300" r="10" fill="#A855F7"/>
-          <circle cx="400" cy="300" r="4" fill="#FFF"/>
-        </svg>
-        <div class="work-img-overlay">
-          <div class="work-img-tag">Creative Strategy</div>
-          <div class="work-img-title">Strategy that actually becomes output.</div>
-        </div>
+        <iframe src="https://drive.google.com/file/d/1eu7ZFEC4pOnkf0DHCNaDYf4znYlFmLqV/preview" 
+                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                allow="autoplay; encrypted-media; picture-in-picture" 
+                allowfullscreen></iframe>
       </div>
+      <!-- Card 3: span 4 (this starts a new line because 7+5+4 = 16 > 12, so it wraps automatically) -->
       <div class="work-img-card reveal reveal-d3" style="grid-column:span 4;">
-        <svg class="work-img-svg" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="800" height="600" rx="2" fill="#0D0A1E"/>
-          <g stroke="#EEEEF5" stroke-opacity="0.18" stroke-width="1" fill="none">
-            <rect x="90" y="100" width="260" height="180" rx="4"/>
-            <rect x="450" y="140" width="260" height="220" rx="4"/>
-          </g>
-          <polygon points="180,160 220,200 180,240 140,200" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1"/>
-          <rect x="130" y="260" width="100" height="6" rx="3" fill="#06B6D4" fill-opacity="0.3"/>
-          <rect x="480" y="190" width="200" height="8" rx="4" fill="#EEEEF5" fill-opacity="0.07"/>
-          <rect x="480" y="210" width="150" height="5" rx="2.5" fill="#06B6D4" fill-opacity="0.25"/>
-        </svg>
-        <div class="work-img-overlay">
-          <div class="work-img-tag">Brand Content</div>
-          <div class="work-img-title">Multi-format assets, one unified voice.</div>
-        </div>
-      </div>
-      <div class="work-img-card reveal reveal-d4" style="grid-column:span 4;">
-        <svg class="work-img-svg" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="800" height="600" rx="2" fill="#0D0A1E"/>
-          <circle cx="320" cy="300" r="120" stroke="#EEEEF5" stroke-opacity="0.12" stroke-width="1" fill="none"/>
-          <circle cx="320" cy="300" r="90" stroke="#A855F7" stroke-opacity="0.3" stroke-width="1.5" fill="none"/>
-          <circle cx="320" cy="300" r="55" stroke="#A855F7" stroke-opacity="0.5" stroke-width="1.2" fill="none"/>
-          <circle cx="320" cy="300" r="25" fill="#A855F7" fill-opacity="0.1" stroke="#A855F7" stroke-width="1"/>
-          <path d="M500 200 L530 180 L550 220 L570 160 L590 200 L610 140 L630 180 L650 150" stroke="#A855F7" stroke-opacity="0.6" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
-          <path d="M500 210 L530 190 L550 230 L570 170 L590 210 L610 150 L630 190 L650 160" stroke="#06B6D4" stroke-opacity="0.3" stroke-width="1" fill="none" stroke-linejoin="round"/>
-        </svg>
-        <div class="work-img-overlay">
-          <div class="work-img-tag">Digital Production</div>
-          <div class="work-img-title">Video, stills, and digital films — end to end.</div>
-        </div>
+        <iframe src="https://drive.google.com/file/d/1qhXLZgmb4LWFuncJ5UB3lKb7ob4vUFhm/preview" 
+                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                allow="autoplay; encrypted-media; picture-in-picture" 
+                allowfullscreen></iframe>
       </div>
     </div>
+
+    <!-- Second row: reels (vertical videos) – 5 reels, each span 4 (3 per row) -->
+    <div style="display:grid; grid-template-columns:repeat(12,1fr); gap:20px; margin-top:20px;">
+      <!-- Reel 1 -->
+        <iframe src="https://drive.google.com/file/d/1-VvGP8V1CW-pvjZtxPcuPDPyJSeSdsZQ/preview" 
+                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                allowfullscreen></iframe>
+      </div>
+      <!-- Reel 2 -->
+        <iframe src="https://drive.google.com/file/d/1prr7L0HCzVuDQhEBowkTldwNPXaJojwf/preview" 
+                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                allowfullscreen></iframe>
+      </div>
+      <!-- Reel 3 -->
+        <iframe src="https://drive.google.com/file/d/1kYli3HnkeyDHw2mFfsy57id8y68cyGXp/preview" 
+                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                allowfullscreen></iframe>
+      </div>
+      <!-- Reel 4 – this will wrap to next row (since 3 per row) -->
+        <iframe src="https://drive.google.com/file/d/1xby22E41UgRZf0nt8S9iLo-JJbKNibQ6/preview" 
+                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                allowfullscreen></iframe>
+      </div>
+      <!-- Reel 5 -->
+        <iframe src="https://drive.google.com/file/d/1L6DRKJD1BgXioXUss0MWymqsE1oPq618/preview" 
+                style="width:100%; height:100%; border:none; background:#0D0A1E;" 
+                allowfullscreen></iframe>
+      </div>
+    </div>
+
     <div class="reveal" style="margin-top:40px;text-align:center;">
       <p style="color:rgba(238,238,245,.3);font-size:13px;line-height:1.8;margin:0;">
         …and many more projects like media drives, drive events, and always‑on content for multiple brands.
@@ -3162,6 +3153,75 @@ border-top:1px solid rgba(255,255,255,.08);
     });
     backToTop.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+})();
+</script>
+  <script>
+(async function loadDriveVideos() {
+  const API_KEY = 'AIzaSyCQ_6D02YSQXY29kSMkv-oZ2LVE_eRIsTI';   // paste your key
+  const FOLDER_ID = '1HfnFZ5ybwXgmMNHqY6OptAc3huyModFw';
+
+  const workSection = document.getElementById('work');
+  if (!workSection) return;
+
+  // Remove existing static cards
+  document.querySelectorAll('#work .work-img-card').forEach(card => card.remove());
+
+  // Create grid container
+  const grid = document.createElement('div');
+  grid.style.display = 'grid';
+  grid.style.gridTemplateColumns = 'repeat(12, 1fr)';
+  grid.style.gap = '20px';
+  grid.style.marginTop = '56px';
+  workSection.appendChild(grid);
+
+  // Fetch videos from Drive
+  let files = [];
+  try {
+    const url = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}' in parents and mimeType contains 'video/'&fields=files(id,name)&key=${API_KEY}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    files = data.files || [];
+  } catch (err) {
+    grid.innerHTML = `<div style="grid-column:1/-1; color:#ff8888; text-align:center;">Error: ${err.message}</div>`;
+    return;
+  }
+
+  if (!files.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1; color:#A855F7; text-align:center;">No videos found in folder.</div>`;
+    return;
+  }
+
+  // Column spans (repeat as needed)
+  const spans = [7, 5, 4, 4];
+  files.forEach((file, i) => {
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://drive.google.com/file/d/${file.id}/preview`;
+    iframe.style.cssText = 'width:100%; height:100%; border:none; background:#0D0A1E';
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+    iframe.allowFullscreen = true;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'work-img-overlay';
+    overlay.innerHTML = `<div class="work-img-tag">Video</div><div class="work-img-title">${escapeHtml(file.name.replace(/\.[^/.]+$/, ''))}</div>`;
+
+    const card = document.createElement('div');
+    card.className = `work-img-card reveal`;
+    card.style.gridColumn = `span ${spans[i % spans.length]}`;
+    card.style.position = 'relative';
+    card.appendChild(iframe);
+    card.appendChild(overlay);
+    grid.appendChild(card);
+  });
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
     });
   }
 })();
