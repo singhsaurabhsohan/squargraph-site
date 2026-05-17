@@ -558,12 +558,19 @@ nav.scrolled {
   height: 100%;
   border: none;
 }
-/* Horizontal video cards – maintain 4:3 ratio */
+/* Horizontal video cards */
 .work-img-card {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   width: 100%;
+  display: block;
+  line-height: 0;
 }
-
+.work-img-card iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 /* Mobile adjustment: make cards slightly larger on touch */
 @media (max-width: 768px) {
   .scroll-track, .scroll-track-reels {
@@ -1265,40 +1272,6 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
     grid-template-columns: 1fr !important;
   }
 }
-/* ── Video lazy load placeholders ───────────────────────────── */
-.video-placeholder {
-  width: 100%;
-  height: 100%;
-  background: #0D0A1E;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  cursor: pointer;
-  transition: background .2s;
-}
-.video-placeholder:hover { background: rgba(124,58,237,.12); }
-.video-placeholder span {
-  font-family: 'Outfit', sans-serif;
-  font-size: 11px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: rgba(238,238,245,.35);
-}
-.play-btn {
-  width: 60px; height: 60px;
-  background: rgba(124,58,237,.25);
-  border: 1px solid rgba(168,85,247,.4);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .2s, transform .2s;
-}
-.video-placeholder:hover .play-btn {
-  background: rgba(124,58,237,.5);
-  transform: scale(1.08);
-}
-
 /* ── Scroll arrow buttons ─────────────────────────────────── */
 .scroll-arrow-btn {
   width: 38px;
@@ -2158,20 +2131,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="scroll-horizontal" id="campaigns-track">
         <div class="scroll-track">
-          <div class="work-img-card" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+          <div class="work-img-card" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);height:240px;">
             <iframe src="https://play.gumlet.io/embed/6a0896760ed6988dba19a294?preload=false&autoplay=true&loop=true&muted=true"
                     style="width:100%;height:100%;border:none;background:#0D0A1E;"
                     allow="autoplay;encrypted-media;picture-in-picture"
                     allowfullscreen loading="lazy"></iframe>
           </div>
-          <div class="work-img-card" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
-            <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?preload=false&autoplay=true&loop=true&muted=true"
+          <div class="work-img-card" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);height:240px;">
+            <iframe src="https://play.gumlet.io/embed/6a0896760ed6988dba19a294?preload=false&autoplay=true&loop=true&muted=true"
                     style="width:100%;height:100%;border:none;background:#0D0A1E;"
                     allow="autoplay;encrypted-media;picture-in-picture"
                     allowfullscreen loading="lazy"></iframe>
           </div>
-          <div class="work-img-card" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
-            <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?preload=false&autoplay=true&loop=true&muted=true"
+          <div class="work-img-card" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);height:240px;">
+            <iframe src="https://play.gumlet.io/embed/6a0896760ed6988dba19a294?preload=false&autoplay=true&loop=true&muted=true"
                     style="width:100%;height:100%;border:none;background:#0D0A1E;"
                     allow="autoplay;encrypted-media;picture-in-picture"
                     allowfullscreen loading="lazy"></iframe>
