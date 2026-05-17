@@ -939,27 +939,7 @@
     /* Show hamburger only below 1024px */
     @media (min-width: 1025px) { #mob-toggle { display: none !important; } }
     @media (max-width: 1024px) { #mob-toggle { display: inline-flex !important; } }
-    /* ── Activity toasts ──────────────────────────────────────── */
-    .activity-toast {
-      position: fixed; bottom: 100px; left: 20px;
-      background: #0D0A1E;
-      border: 1px solid rgba(124,58,237,.3);
-      color: #EEEEF5;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-family: 'Outfit', sans-serif;
-      z-index: 8000;
-      opacity: 0;
-      transform: translateX(-20px);
-      transition: opacity .4s, transform .4s;
-      box-shadow: 0 8px 24px rgba(0,0,0,.5);
-      max-width: 260px;
-      line-height: 1.5;
-    }
-    .activity-toast.visible { opacity: 1; transform: translateX(0); }
-
-    /* ── Mobile ───────────────────────────────────────────────── */
+   /* ── Mobile ───────────────────────────────────────────────── */
     /* Hide nav links between 768–1024px (hamburger takes over) */
     @media (max-width: 1024px) {
   .mobile-hide { display: none !important; }
@@ -1087,11 +1067,6 @@ body, .page-wrapper, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero 
   transform: none !important;
   will-change: auto !important;
 }
-@media (max-width: 768px) {
-  .instagram-section {
-    padding: 60px 5vw !important;
-  }
-}
 @media (max-width: 640px) {
   .stat-strip {
     display: grid !important;
@@ -1147,12 +1122,42 @@ body, .page-wrapper, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero 
   }
 }
 @media (max-width: 768px) {
-  #contact .grid-cols-2 {
-    text-align: center;
-  }
   #contact .btn-primary {
     justify-content: center;
     width: 100%;
+  }
+}
+/* Reduce vertical padding on mobile for tighter spacing */
+@media (max-width: 768px) {
+  #philosophy,
+  #process,
+  #services,
+  #capabilities,
+  #builtfor,
+  #expect,
+  #founder,
+  #contact,
+  #explorations {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* Hero bottom padding reduced */
+  #hero {
+    padding-bottom: 6vh !important;
+  }
+
+  /* Stat strip items – reduce inner padding on mobile */
+  .stat-item {
+    padding: 24px 20px !important;
+  }
+}
+@media (max-width: 640px) {
+  .footer-grid {
+    gap: 32px !important;
+  }
+  footer {
+    padding-top: 50px !important;
   }
 }
 /* ── Scroll arrow buttons ─────────────────────────────────── */
@@ -1421,9 +1426,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Mobile menu (outside .page-wrapper) -->
 <div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:550;flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;transition:opacity 0.3s ease;">
   <button onclick="closeMob()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#EEEEF5;font-size:40px;cursor:pointer;z-index:560;line-height:1;padding:0 8px;">&times;</button>
+  <a href="#work" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
   <a href="#philosophy" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Philosophy</a>
   <a href="#services" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
-  <a href="#work" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
   <a href="#capabilities" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Capabilities</a>
   <a href="#founder" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
   <a href="#contact" onclick="closeMob()" style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
