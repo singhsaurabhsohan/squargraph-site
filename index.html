@@ -1371,6 +1371,61 @@ nav a.active-nav {
     max-width: 100vw !important;
   }
 }
+/* ── Brand strip (marquee) ─────────────────────────────────── */
+.brand-strip {
+  margin-top: 40px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.brand-strip-track {
+  display: inline-block;
+  animation: scrollBrands 24s linear infinite;
+}
+
+.brand-strip-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 32px;
+  width: auto;
+  height: 48px;
+  filter: grayscale(0.6) brightness(0.8);
+  transition: filter 0.3s ease, transform 0.2s ease;
+  vertical-align: middle;
+}
+
+.brand-strip-item img {
+  max-height: 100%;
+  width: auto;
+  display: block;
+}
+
+.brand-strip-item:hover {
+  filter: grayscale(0) brightness(1);
+  transform: scale(1.05);
+}
+
+@keyframes scrollBrands {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+  .brand-strip-item {
+    margin: 0 20px;
+    height: 36px;
+  }
+  .brand-strip {
+    padding: 16px 0;
+  }
+}
 </style>
 </head>
 <body>
@@ -1740,6 +1795,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </a>
       </p>
     </div>
+    <!-- Brand strip -->
+<div class="brand-strip">
+  <div class="brand-strip-track">
+    <!-- Duplicate the logos twice to create seamless loop -->
+    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3ETATA%3C/text%3E%3C/svg%3E" alt="TATA Motors"></span>
+    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3EMahindra%3C/text%3E%3C/svg%3E" alt="Mahindra"></span>
+    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3ESONY%3C/text%3E%3C/svg%3E" alt="SONY"></span>
+    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3EVIVO%3C/text%3E%3C/svg%3E" alt="VIVO"></span>
+    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3ECEAT%3C/text%3E%3C/svg%3E" alt="CEAT"></span>
+    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='12'%3EMany more%3C/text%3E%3C/svg%3E" alt="Many more"></span>
+
+    <!-- Duplicate the same set for seamless loop -->
+    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3ETATA%3C/text%3E%3C/svg%3E" alt="TATA Motors"></span>
+    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3EMahindra%3C/text%3E%3C/svg%3E" alt="Mahindra"></span>
+    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3ESONY%3C/text%3E%3C/svg%3E" alt="SONY"></span>
+    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3EVIVO%3C/text%3E%3C/svg%3E" alt="VIVO"></span>
+    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3ECEAT%3C/text%3E%3C/svg%3E" alt="CEAT"></span>
+    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='12'%3EMany more%3C/text%3E%3C/svg%3E" alt="Many more"></span>
+  </div>
+</div>
   </div>
 </section>
 <!-- ══════════════════════════════════════════════════════════════════
