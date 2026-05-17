@@ -504,7 +504,7 @@ nav.scrolled {
   overflow-x: auto;
   overflow-y: visible;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
 .scroll-horizontal {
   position: relative;
@@ -520,14 +520,7 @@ nav.scrolled {
   background: linear-gradient(to right, transparent, #080616);
 }
 .scroll-horizontal::-webkit-scrollbar {
-  height: 3px;
-}
-.scroll-horizontal::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.05);
-}
-.scroll-horizontal::-webkit-scrollbar-thumb {
-  background: #A855F7;
-  border-radius: 3px;
+  display: none;
 }
 
 .scroll-track {
