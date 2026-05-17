@@ -354,24 +354,17 @@
     }
     .hero-fade { animation: fadeIn 1.1s .5s both; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @media (max-width: 768px) {
-  nav {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    background: #080616;
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
-}
-/* Skip rendering off-screen sections */
-    #philosophy, #process, #services, #capabilities,
-    #builtfor, #explorations, #expect, #founder,
-    #contact, footer {
-      content-visibility: auto;
-      contain-intrinsic-size: 0 600px;
-    }
+/* content-visibility with accurate intrinsic sizes to prevent scroll jumps */
+    #philosophy  { content-visibility: auto; contain-intrinsic-size: 0 900px; }
+    #process     { content-visibility: auto; contain-intrinsic-size: 0 700px; }
+    #services    { content-visibility: auto; contain-intrinsic-size: 0 900px; }
+    #capabilities{ content-visibility: auto; contain-intrinsic-size: 0 800px; }
+    #builtfor    { content-visibility: auto; contain-intrinsic-size: 0 900px; }
+    #explorations{ content-visibility: auto; contain-intrinsic-size: 0 700px; }
+    #expect      { content-visibility: auto; contain-intrinsic-size: 0 800px; }
+    #founder     { content-visibility: auto; contain-intrinsic-size: 0 1100px; }
+    #contact     { content-visibility: auto; contain-intrinsic-size: 0 1200px; }
+    footer       { content-visibility: auto; contain-intrinsic-size: 0 500px; }
     .s-label {
       font-size: 10px;
       font-family: 'Outfit', sans-serif;
@@ -956,6 +949,9 @@
     .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+    /* Show hamburger only below 1024px */
+    @media (min-width: 1025px) { #mob-toggle { display: none !important; } }
+    @media (max-width: 1024px) { #mob-toggle { display: inline-flex !important; } }
     /* ── Activity toasts ──────────────────────────────────────── */
     .activity-toast {
       position: fixed; bottom: 100px; left: 20px;
@@ -977,18 +973,28 @@
     .activity-toast.visible { opacity: 1; transform: translateX(0); }
 
     /* ── Mobile ───────────────────────────────────────────────── */
-    @media (max-width: 768px) {
-      #hero { padding-top: 110px !important; padding-bottom: 60px !important; justify-content: flex-start !important; }
-      .mobile-stack { flex-direction: column !important; }
+    /* Hide nav links between 768–1024px (hamburger takes over) */
+    @media (max-width: 1024px) {
       .mobile-hide { display: none !important; }
+    }
+
+    @media (max-width: 768px) {
+      #hero { padding-top: 130px !important; padding-bottom: 60px !important; justify-content: flex-start !important; }
+      .mobile-stack { flex-direction: column !important; }
       .stat-strip { display: flex !important; flex-direction: column !important; }
       .stat-item + .stat-item { border-left: none !important; border-top: 1px solid rgba(255,255,255,.065) !important; }
-      #chat-toggle { bottom: 20px !important; right: 16px !important; }
-      #chat-panel { width: calc(100vw - 32px) !important; right: 16px !important; bottom: 88px !important; max-height: 80vh !important; }
+      #chat-toggle { bottom: 16px !important; right: 16px !important; }
+      #chat-panel { width: calc(100vw - 32px) !important; right: 16px !important; bottom: 85px !important; max-height: 80vh !important; }
       .aurora-blob { filter: blur(60px); }
       .work-img-card { grid-column: 1 / -1 !important; aspect-ratio: 16/9; }
       .work-img-overlay { padding: 16px; }
       .work-img-title { font-size: 14px; }
+    }
+
+    /* Landscape / short screen chat panel fix */
+    @media (max-height: 600px) {
+      #chat-panel { max-height: 70vh !important; }
+      .chat-messages { min-height: 120px !important; max-height: 180px !important; }
     }
 
     @keyframes pageFade {
@@ -1028,48 +1034,56 @@ nav.scrolled {
   -webkit-backdrop-filter: blur(24px) !important;
   border-bottom-color: rgba(255,255,255,.10) !important;
 }
-/* 2. Cookie banner – fixed bottom center, above chat */
+/* 2. Cookie banner – sits above everything, centered */
 #cookie-banner {
   position: fixed !important;
-  bottom: 80px !important;
+  bottom: 24px !important;
   left: 50% !important;
-  width: calc(100% - 32px) !important;
+  width: calc(100% - 48px) !important;
   max-width: 560px !important;
   z-index: 10001 !important;
   margin: 0 !important;
-  /* Do NOT override transform here — JS uses it for show/hide animation */
+  /* JS controls translateX(-50%) translateY(...) for show/hide — don't override transform */
 }
 
-/* 3. Chat button – fixed bottom right, below cookie */
+/* 3. Chat button – bottom right, always visible */
 #chat-toggle {
   position: fixed !important;
-  bottom: 20px !important;
-  right: 20px !important;
+  bottom: 24px !important;
+  right: 24px !important;
   z-index: 10000 !important;
 }
 
-/* 4. Chat panel – fixed above chat button */
-#chat-panel {
-  position: fixed !important;
-  bottom: 90px !important;
-  right: 20px !important;
-  z-index: 9999 !important;
-  width: 360px !important;
-  max-width: calc(100vw - 40px) !important;
+/* When cookie banner is showing, push chat button up */
+body.cookie-visible #chat-toggle {
+  bottom: 110px !important;
 }
 
-/* 5. Mobile adjustments – keep spacing, no overlap */
+/* 4. Chat panel – above chat button */
+#chat-panel {
+  position: fixed !important;
+  bottom: 92px !important;
+  right: 24px !important;
+  z-index: 9999 !important;
+  width: 360px !important;
+  max-width: calc(100vw - 48px) !important;
+}
+
+/* 5. Mobile */
 @media (max-width: 768px) {
   #cookie-banner {
-    bottom: 80px !important;
+    bottom: 16px !important;
     width: calc(100% - 32px) !important;
   }
   #chat-toggle {
     bottom: 16px !important;
     right: 16px !important;
   }
+  body.cookie-visible #chat-toggle {
+    bottom: 120px !important;
+  }
   #chat-panel {
-    bottom: 85px !important;
+    bottom: 84px !important;
     right: 16px !important;
     width: calc(100vw - 32px) !important;
   }
@@ -1087,17 +1101,28 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
 }
 @media (max-width: 640px) {
   .stat-strip {
+    display: grid !important;
     grid-template-columns: 1fr 1fr !important;
   }
+  .stat-item + .stat-item {
+    border-left: none !important;
+    border-top: 1px solid rgba(255,255,255,.065) !important;
+  }
 }
-@media (max-width: 768px) {
-  footer > div > div:first-child {
+@media (max-width: 960px) {
+  .footer-grid {
     grid-template-columns: 1fr 1fr !important;
     gap: 40px !important;
   }
 }
 @media (max-width: 480px) {
-  footer > div > div:first-child {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+@media (max-width: 480px) {
+  .why-different-grid {
     grid-template-columns: 1fr !important;
   }
 }
@@ -1216,11 +1241,16 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
   transform: scale(1.05);
 }
 
-/* Active navigation link style */
+/* Active navigation link style — reserve space to prevent height jump */
+nav .mobile-hide a[href^="#"] {
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
 nav a.active-nav {
   color: #A855F7 !important;
-  border-bottom: 2px solid #A855F7;
-  padding-bottom: 4px;
+  border-bottom: 2px solid #A855F7 !important;
+  padding-bottom: 2px;
 }
 /* Back to Top Button */
 #back-to-top {
@@ -1327,12 +1357,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════════════════
      NAV (condensed: Philosophy, Services, Work, Founder, Contact)
 ══════════════════════════════════════════════════════════════════════ -->
-<nav id="nav">
-  <a href="#" class="font-display font-extrabold no-underline" style="font-size:22px;letter-spacing:-.02em;color:#EEEEF5;display:flex;flex-direction:column;line-height:1.1;">
-  <span>SQUAR<span style="color:#A855F7;">GRAPH</span>
-  <span style="font-weight:400;color:rgba(238,238,245,.7);font-size:16px;"> Studios</span></span>
-  <span style="font-family:'Outfit',sans-serif;font-size:9px;letter-spacing:.12em;color:rgba(238,238,245,.25);font-weight:400;text-transform:uppercase;">Private Limited</span>
-</a>
+<nav id="nav" style="display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;">
+  <a href="#" class="font-display font-extrabold no-underline" style="font-size:20px;letter-spacing:-.02em;color:#EEEEF5;display:flex;flex-direction:column;line-height:1.15;flex-shrink:0;text-decoration:none;">
+    <span>SQUAR<span style="color:#A855F7;">GRAPH</span><span style="font-weight:400;color:rgba(238,238,245,.6);font-size:14px;"> Studios</span></span>
+    <span style="font-family:'Outfit',sans-serif;font-size:8px;letter-spacing:.14em;color:rgba(238,238,245,.2);font-weight:400;text-transform:uppercase;">Private Limited</span>
+  </a>
   <div class="mobile-hide" style="display:flex;gap:28px;align-items:center;">
     <a href="#philosophy" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Philosophy</a>
     <a href="#services"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
@@ -1345,13 +1374,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       Start a project
     </a>
   </div>
-  <button class="md:hidden hamburger" id="mob-toggle" aria-label="Toggle menu" aria-expanded="false" style="background:none;border:none;padding:4px;">
+  <button class="hamburger" id="mob-toggle" aria-label="Toggle menu" aria-expanded="false" style="background:none;border:none;padding:4px;">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- Mobile menu (outside .page-wrapper) -->
-<div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:400;flex-direction:column;align-items:center;justify-content:center;gap:36px;">
+<div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:550;flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;transition:opacity 0.3s ease;">
   <a href="#philosophy" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Philosophy</a>
   <a href="#services"   onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
   <a href="#work"         onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
@@ -2031,7 +2060,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="reveal font-display font-extrabold" style="font-size:clamp(26px,3vw,36px);margin-bottom:32px;letter-spacing:-.02em;">
       Why SQUARGRAPH works differently
     </h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:700px;">
+    <div class="why-different-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:700px;">
       <div style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;">
         <p style="color:rgba(238,238,245,.4);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-bottom:14px;">Most setups</p>
         <p style="color:rgba(238,238,245,.6);line-height:2;font-size:14px;">Strategy → delay → freelancers → misalignment → chaos</p>
@@ -2484,7 +2513,7 @@ border-top:1px solid rgba(255,255,255,.08);
   <input type="url" id="reference" name="reference" placeholder="Drive / Notion / examples" class="form-input" />
 </div>
           <button type="submit" id="form-submit-btn"
-                  style="background:#A855F7;border:none;color:#03020A;padding:18px 32px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:transform .25s,opacity .25s;cursor:pointer;"
+                  style="background:#A855F7;border:none;color:#03020A;padding:18px 32px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:transform .25s,opacity .25s;cursor:pointer;min-width:180px;display:flex;align-items:center;justify-content:center;"
                   onmouseover="if(!this.disabled)this.style.transform='translateY(-2px)'"
                   onmouseout="this.style.transform='translateY(0)'">
             Send Brief →
@@ -2501,7 +2530,7 @@ border-top:1px solid rgba(255,255,255,.08);
   <div style="max-width:1200px;margin:0 auto;">
 
     <!-- Top grid -->
-    <div style="display:grid;grid-template-columns:1.8fr 1fr 1fr 1.4fr;gap:60px;padding-bottom:64px;flex-wrap:wrap;">
+    <div class="footer-grid" style="display:grid;grid-template-columns:1.8fr 1fr 1fr 1.4fr;gap:60px;padding-bottom:64px;">
 
       <!-- Col 1: Brand -->
       <div>
@@ -2843,18 +2872,29 @@ border-top:1px solid rgba(255,255,255,.08);
   var isMenuOpen = false;
 
   mobToggle.addEventListener('click', function() {
-  isMenuOpen = !isMenuOpen;
-  mobToggle.classList.toggle('open', isMenuOpen);
-  mobToggle.setAttribute('aria-expanded', isMenuOpen);
-  mobMenu.style.display = isMenuOpen ? 'flex' : 'none';
-  document.body.style.overflow = isMenuOpen ? 'hidden' : '';
-});
+    isMenuOpen = !isMenuOpen;
+    mobToggle.classList.toggle('open', isMenuOpen);
+    mobToggle.setAttribute('aria-expanded', String(isMenuOpen));
+    if (isMenuOpen) {
+      mobMenu.style.display = 'flex';
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() { mobMenu.style.opacity = '1'; });
+      });
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobMenu.style.opacity = '0';
+      setTimeout(function() { mobMenu.style.display = 'none'; }, 300);
+      document.body.style.overflow = '';
+    }
+  });
 
   window.closeMob = function() {
     isMenuOpen = false;
-    mobMenu.style.display = 'none';
+    mobMenu.style.opacity = '0';
+    setTimeout(function() { mobMenu.style.display = 'none'; }, 300);
     document.body.style.overflow = '';
     mobToggle.classList.remove('open');
+    mobToggle.setAttribute('aria-expanded', 'false');
   };
 
   /* ── Scroll reveal ───────────────────────────────────────────── */
@@ -2965,6 +3005,7 @@ border-top:1px solid rgba(255,255,255,.08);
   function dismissCookie(accepted) {
     cookieBanner.classList.remove('show');
     cookieBanner.classList.add('hide');
+    document.body.classList.remove('cookie-visible');
     setTimeout(function() {
       cookieBanner.style.display = 'none';
     }, 600);
@@ -2987,6 +3028,7 @@ border-top:1px solid rgba(255,255,255,.08);
   if (!existingConsent) {
     setTimeout(function() {
       cookieBanner.classList.add('show');
+      document.body.classList.add('cookie-visible');
     }, 1200);
   } else {
     cookieBanner.style.display = 'none';
@@ -3167,12 +3209,21 @@ border-top:1px solid rgba(255,255,255,.08);
   setTimeout(scheduleToast, 8000);
   // Open modals on card click
   document.querySelectorAll('.exploration-card').forEach(card => {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Read exploration: ' + (card.querySelector('p') || {}).textContent || '');
     card.addEventListener('click', () => {
       const exploration = card.getAttribute('data-exploration');
       const modal = document.getElementById(`modal-${exploration}`);
       if (modal) {
         modal.classList.add('open');
         document.body.style.overflow = 'hidden';
+      }
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
       }
     });
   });
