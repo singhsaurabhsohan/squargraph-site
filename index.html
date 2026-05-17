@@ -558,15 +558,6 @@
 .scroll-track, .scroll-track-reels {
   padding-right: 24px;
 }
-/* Optional: fade effect on right edge of scrollable area */
-.scroll-horizontal {
-  position: relative;
-}
-.scroll-horizontal::after {
-  display: none;
-}
-/* Force consistent height for horizontal video cards (already set) */
-}
     .work-img-svg { width: 100%; height: 100%; display: block; }
     .work-img-overlay {
       position: absolute; inset: 0;
@@ -986,7 +977,7 @@
     .activity-toast.visible { opacity: 1; transform: translateX(0); }
 
     /* ── Mobile ───────────────────────────────────────────────── */
-      /* CHANGE 1: No cursor:none needed here any more — removed */
+    @media (max-width: 768px) {
       #hero { padding-top: 110px !important; padding-bottom: 60px !important; justify-content: flex-start !important; }
       .mobile-stack { flex-direction: column !important; }
       .mobile-hide { display: none !important; }
@@ -3266,14 +3257,38 @@ function updateArrows(trackId, leftBtnLabel, rightBtnLabel) {
     }
   });
 }
-/* ── Click to unmute all iframes ─────────────────────────── */
-document.querySelectorAll('#campaigns-track iframe, #reels-track iframe').forEach(function(iframe) {
-  iframe.parentElement.addEventListener('click', function() {
-    var src = iframe.src;
-    if (src.includes('muted=true')) {
-      iframe.src = src.replace('muted=true', 'muted=false');
+/* ── Auto-unmute on scroll into view + desktop hover ─────── */
+var iframeObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    var iframe = entry.target;
+    if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
+      if (iframe.src.includes('muted=true')) {
+        iframe.src = iframe.src.replace('muted=true', 'muted=false');
+      }
+    } else {
+      if (iframe.src.includes('muted=false')) {
+        iframe.src = iframe.src.replace('muted=false', 'muted=true');
+      }
     }
   });
+}, { threshold: 0.7 });
+
+document.querySelectorAll('#campaigns-track iframe, #reels-track iframe').forEach(function(iframe) {
+  iframeObserver.observe(iframe);
+
+  /* Desktop: unmute on hover, mute on leave */
+  if (window.innerWidth >= 768) {
+    iframe.parentElement.addEventListener('mouseenter', function() {
+      if (iframe.src.includes('muted=true')) {
+        iframe.src = iframe.src.replace('muted=true', 'muted=false');
+      }
+    });
+    iframe.parentElement.addEventListener('mouseleave', function() {
+      if (iframe.src.includes('muted=false')) {
+        iframe.src = iframe.src.replace('muted=false', 'muted=true');
+      }
+    });
+  }
 });
 ['campaigns-track', 'reels-track'].forEach(function(id) {
   var el = document.getElementById(id);
