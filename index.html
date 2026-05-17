@@ -1006,15 +1006,18 @@ nav {
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
+  width: 100% !important;
   z-index: 500 !important;
   background: rgba(3, 2, 10, 0.6) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  transform: none !important;
+  transform: translateZ(0) !important;
   will-change: auto !important;
   border-bottom: 1px solid rgba(255,255,255,.06) !important;
 }
-
+body {
+  transform: none !important;
+}
 nav.scrolled {
   background: rgba(3, 2, 10, 0.88) !important;
   backdrop-filter: blur(24px) !important;
@@ -1077,7 +1080,7 @@ body.cookie-visible #chat-toggle {
 }
 
 /* 6. Ensure no ancestor breaks fixed positioning */
-body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
+body, .page-wrapper, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
   transform: none !important;
   will-change: auto !important;
 }
@@ -1390,23 +1393,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════════════════
      NAV (condensed: Philosophy, Services, Work, Founder, Contact)
 ══════════════════════════════════════════════════════════════════════ -->
-<nav id="nav" style="display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;">
+<nav id="nav" style="display:flex;align-items:center;padding:0 5vw;height:68px;">
   <a href="#" class="font-display font-extrabold no-underline" style="font-size:20px;letter-spacing:-.02em;color:#EEEEF5;display:flex;flex-direction:column;line-height:1.15;flex-shrink:0;text-decoration:none;">
     <span>SQUAR<span style="color:#A855F7;">GRAPH</span><span style="font-weight:400;color:rgba(238,238,245,.6);font-size:14px;"> Studios</span></span>
     <span style="font-family:'Outfit',sans-serif;font-size:8px;letter-spacing:.14em;color:rgba(238,238,245,.2);font-weight:400;text-transform:uppercase;">Private Limited</span>
   </a>
-  <div class="mobile-hide" style="display:flex;gap:28px;align-items:center;">
-    <a href="#philosophy" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Philosophy</a>
-    <a href="#services"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
-    <a href="#work"       class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Work</a>
-    <a href="#capabilities" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Capabilities</a>
-    <a href="#founder"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Founder</a>
-    <a href="#contact"
-       style="display:inline-flex;align-items:center;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:10px 22px;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
-       onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-      Start a project
-    </a>
-  </div>
+  <div class="mobile-hide" style="display:flex;gap:28px;align-items:center;margin-left:auto;">
+  <a href="#work" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Work</a>
+  <a href="#philosophy" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Philosophy</a>
+  <a href="#services" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
+  <a href="#capabilities" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Capabilities</a>
+  <a href="#founder" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Founder</a>
+  <a href="#contact"
+     style="display:inline-flex;align-items:center;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:10px 22px;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
+     onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+    Start a project
+  </a>
+</div>
   <button class="hamburger" id="mob-toggle" aria-label="Toggle menu" aria-expanded="false" style="background:none;border:none;padding:4px;">
     <span></span><span></span><span></span>
   </button>
@@ -1414,13 +1417,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- Mobile menu (outside .page-wrapper) -->
 <div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:550;flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;transition:opacity 0.3s ease;">
+  <button onclick="closeMob()" style="position:absolute;top:24px;right:24px;background:none;border:none;color:#EEEEF5;font-size:40px;cursor:pointer;z-index:560;line-height:1;">&times;</button>
   <a href="#philosophy" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Philosophy</a>
-  <a href="#services"   onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
-  <a href="#work"         onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
+  <a href="#services" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
+  <a href="#work" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
   <a href="#capabilities" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Capabilities</a>
-  <a href="#founder"      onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
-     <a href="#contact" onclick="closeMob()"
-     style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
+  <a href="#founder" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
+  <a href="#contact" onclick="closeMob()" style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
     Start a project →
   </a>
 </div>
