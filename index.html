@@ -216,10 +216,6 @@
     grid-column: span 12 !important;  /* full width on mobile */
   }
 }
-    /* CHANGE 1: Removed cursor: none from a, button, [role="button"] */
-
-    /* noise texture removed */
-
     /* ── Particle canvas ─────────────────────────────────────────── */
     #particle-canvas {
       position: fixed;
@@ -358,28 +354,6 @@
     }
     .hero-fade { animation: fadeIn 1.1s .5s both; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    nav {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 500;
-  padding: 22px 5vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: background .4s, backdrop-filter .4s, border-color .4s;
-  border-bottom: 1px solid transparent;
-  transform: none !important;
-  will-change: auto !important;
-}
-nav.scrolled {
-  background: rgba(6,6,8,.88);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-color: rgba(255,255,255,.065);
-}
     @media (max-width: 768px) {
   nav {
     position: fixed !important;
@@ -1012,14 +986,12 @@ nav.scrolled {
     .activity-toast.visible { opacity: 1; transform: translateX(0); }
 
     /* ── Mobile ───────────────────────────────────────────────── */
-    @media (max-width: 768px) {
       /* CHANGE 1: No cursor:none needed here any more — removed */
       #hero { padding-top: 110px !important; padding-bottom: 60px !important; justify-content: flex-start !important; }
       .mobile-stack { flex-direction: column !important; }
       .mobile-hide { display: none !important; }
       .stat-strip { display: flex !important; flex-direction: column !important; }
       .stat-item + .stat-item { border-left: none !important; border-top: 1px solid rgba(255,255,255,.065) !important; }
-      /* CHANGE 3: Mobile chatbot positioning */
       #chat-toggle { bottom: 20px !important; right: 16px !important; }
       #chat-panel { width: calc(100vw - 32px) !important; right: 16px !important; bottom: 88px !important; max-height: 80vh !important; }
       .aurora-blob { filter: blur(60px); }
@@ -1040,127 +1012,7 @@ nav.scrolled {
       0%, 100% { box-shadow: 0 8px 30px rgba(124,58,237,.45); }
       50%      { box-shadow: 0 8px 40px rgba(124,58,237,.7); }
     }
-    /* FIX: Force cookie banner & chatbot to stick to viewport (no scroll needed) */
-#cookie-banner {
-  position: fixed !important;
-  bottom: 20px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: calc(100% - 40px) !important;
-  max-width: 560px !important;
-  z-index: 9999 !important;
-}
-
-#chat-toggle {
-  position: fixed !important;
-  bottom: 20px !important;
-  right: 20px !important;
-  z-index: 10000 !important;
-}
-
-#chat-panel {
-  position: fixed !important;
-  bottom: 90px !important;
-  right: 20px !important;
-  z-index: 9999 !important;
-}
-
-/* Ensure no parent breaks fixed positioning */
-body, .aurora-wrap, #particle-canvas, .flow-lines-section {
-  transform: none !important;
-  will-change: auto !important;
-}
-    /* ========================================
-   FORCE NAVIGATION TO STAY FIXED
-   ======================================== */
-nav {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  transform: none !important;
-  will-change: auto !important;
-  z-index: 500 !important;
-}
-
-/* Remove transform from ancestors that break fixed positioning */
-body, body > div, .aurora-wrap, #particle-canvas,
-.flow-lines-section, #hero, .grid-bg, svg, section {
-  transform: none !important;
-  will-change: auto !important;
-}
-
-/* ========================================
-   COOKIE BANNER – FIXED, CENTERED, ABOVE CHAT
-   ======================================== */
-#cookie-banner {
-  position: fixed !important;
-  bottom: 80px !important;        /* Room above chat icon */
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: calc(100% - 32px) !important;
-  max-width: 560px !important;
-  z-index: 10001 !important;      /* Above chat button */
-  margin: 0 !important;
-}
-
-/* ========================================
-   CHATBOT ICON – FIXED BOTTOM RIGHT
-   stays on screen, never overlaps cookie banner
-   ======================================== */
-#chat-toggle {
-  position: fixed !important;
-  bottom: 20px !important;
-  right: 20px !important;
-  z-index: 10000 !important;
-}
-
-/* Chat panel opens above the button */
-#chat-panel {
-  position: fixed !important;
-  bottom: 90px !important;
-  right: 20px !important;
-  z-index: 9999 !important;
-  width: 360px !important;
-  max-width: calc(100vw - 40px) !important;
-}
-
-/* ========================================
-   MOBILE – SAME BEHAVIOR, ADJUST SPACING
-   ======================================== */
-@media (max-width: 768px) {
-  #cookie-banner {
-    bottom: 80px !important;      /* Same, above chat */
-    width: calc(100% - 32px) !important;
-  }
-  #chat-toggle {
-    bottom: 16px !important;
-    right: 16px !important;
-  }
-  #chat-panel {
-    bottom: 85px !important;
-    right: 16px !important;
-    width: calc(100vw - 32px) !important;
-  }
-}
-    /* Fix navbar fixed positioning on desktop */
-body {
-  transform: none !important;
-}
-    /* Lighten navbar on desktop and mobile */
-nav {
-  background: rgba(6, 6, 8, 0.75) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-}
-
-/* When scrolled, keep it slightly darker but still light */
-nav.scrolled {
-  background: rgba(6, 6, 8, 0.85) !important;
-  backdrop-filter: blur(22px) !important;
-  -webkit-backdrop-filter: blur(22px) !important;
-}
-    /* ============================================
+  /* ============================================
    FINAL FIXES – NO OVERRIDES, NO DUPLICATES
    ============================================ */
 
@@ -1378,48 +1230,6 @@ nav a.active-nav {
   color: #A855F7 !important;
   border-bottom: 2px solid #A855F7;
   padding-bottom: 4px;
-}
-nav a.active-nav {
-  color: #A855F7 !important;
-  border-bottom: 2px solid #A855F7;
-  padding-bottom: 4px;
-}
-/* Back to Top Button */
-#back-to-top {
-  position: fixed;
-  bottom: 24px;
-  left: 24px;
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, #7C3AED, #A855F7);
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 9998;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s, transform 0.2s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  color: white;
-}
-#back-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-#back-to-top:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(124,58,237,0.5);
-}
-@media (max-width: 768px) {
-  #back-to-top {
-    bottom: 16px;
-    left: 16px;
-    width: 42px;
-    height: 42px;
-  }
 }
 /* Back to Top Button */
 #back-to-top {
@@ -1725,7 +1535,149 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </div>
+<!-- ══════════════════════════════════════════════════════════════════
+     WORK SHOWCASE - Corrected & Aligned
+══════════════════════════════════════════════════════════════════════ -->
+<section id="work" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;z-index:2;">
+  <div style="position:absolute;top:-80px;right:-80px;pointer-events:none;opacity:0.4;">
+    <svg width="500" height="500" viewBox="0 0 500 500">
+      <circle cx="400" cy="100" r="300" stroke="rgba(124,58,237,0.06)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:60s;"/>
+      <circle cx="400" cy="100" r="200" stroke="rgba(6,182,212,0.04)" stroke-width="1" fill="none" class="spin-ring-rev" style="animation-duration:40s;"/>
+    </svg>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal s-label">Work &amp; Capabilities</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px;flex-wrap:wrap;">
+      <h2 class="reveal font-display font-extrabold" style="font-size:clamp(32px,3.8vw,54px);line-height:1.03;letter-spacing:-.028em;">
+        The kind of work<br/>we <span style="color:#A855F7;">actually make</span>
+      </h2>
+      <p class="reveal mobile-hide" style="color:rgba(238,238,245,.4);font-size:13px;max-width:32ch;line-height:1.8;">
+        Scroll → swipe → watch. No clutter, just the work.
+      </p>
+    </div>
 
+    <!-- ── Campaigns ── -->
+    <div style="margin-bottom:64px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <div style="display:flex;gap:10px;">
+          <button class="scroll-arrow-btn" onclick="scrollTrack('campaigns-track', -420)" aria-label="Scroll left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="scroll-arrow-btn" onclick="scrollTrack('campaigns-track', 420)" aria-label="Scroll right">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="scroll-horizontal" id="campaigns-track">
+        <div class="scroll-track">
+
+          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:420px;min-width:300px;position:relative;aspect-ratio:16/9;">
+            <iframe loading="lazy" title="Gumlet video player"
+              src="https://play.gumlet.io/embed/6a0896760ed6988dba19a294?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
+              referrerpolicy="origin"
+              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
+            </iframe>
+          </div>
+
+          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:420px;min-width:300px;position:relative;aspect-ratio:16/9;">
+            <iframe loading="lazy" title="Gumlet video player"
+              src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
+              referrerpolicy="origin"
+              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
+            </iframe>
+          </div>
+
+          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:420px;min-width:300px;position:relative;aspect-ratio:16/9;">
+            <iframe loading="lazy" title="Gumlet video player"
+              src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
+              referrerpolicy="origin"
+              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
+            </iframe>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Reels ── -->
+    <div style="margin-bottom:40px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+                <div style="display:flex;gap:10px;">
+          <button class="scroll-arrow-btn" onclick="scrollTrack('reels-track', -280)" aria-label="Scroll left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="scroll-arrow-btn" onclick="scrollTrack('reels-track', 280)" aria-label="Scroll right">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="scroll-horizontal" id="reels-track">
+        <div class="scroll-track-reels">
+
+          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:220px;min-width:200px;position:relative;aspect-ratio:9/16;">
+            <iframe loading="lazy" title="Gumlet video player"
+              src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
+              referrerpolicy="origin"
+              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
+            </iframe>
+          </div>
+
+          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:220px;min-width:200px;position:relative;aspect-ratio:9/16;">
+            <iframe loading="lazy" title="Gumlet video player"
+              src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
+              referrerpolicy="origin"
+              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
+            </iframe>
+          </div>
+
+          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:220px;min-width:200px;position:relative;aspect-ratio:9/16;">
+            <iframe loading="lazy" title="Gumlet video player"
+              src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
+              referrerpolicy="origin"
+              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
+            </iframe>
+          </div>
+
+          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:220px;min-width:200px;position:relative;aspect-ratio:9/16;">
+            <iframe loading="lazy" title="Gumlet video player"
+              src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
+              referrerpolicy="origin"
+              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
+            </iframe>
+          </div>
+
+          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:220px;min-width:200px;position:relative;aspect-ratio:9/16;">
+            <iframe loading="lazy" title="Gumlet video player"
+              src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
+              referrerpolicy="origin"
+              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
+            </iframe>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Collaboration line -->
+    <div class="reveal" style="text-align:center; margin-top:60px; border-top:1px solid rgba(255,255,255,.08); padding-top:40px;">
+      <p style="color:rgba(238,238,245,.35); font-size:12px; letter-spacing:.2em; text-transform:uppercase;">
+        in collaboration with 
+        <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer" 
+           style="color:#A855F7; text-decoration:none; border-bottom:1px solid rgba(168,85,247,0.3); transition:border-color 0.2s;"
+           onmouseover="this.style.borderColor='#A855F7'" onmouseout="this.style.borderColor='rgba(168,85,247,0.3)'">
+          Films By Jones
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
 <!-- ══════════════════════════════════════════════════════════════════
      PHILOSOPHY
 ══════════════════════════════════════════════════════════════════════ -->
@@ -2081,239 +2033,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
-<!-- ══════════════════════════════════════════════════════════════════
-     WORK SHOWCASE - Corrected & Aligned
-══════════════════════════════════════════════════════════════════════ -->
-<section id="work" style="background:#080616;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055);padding:120px 5vw;position:relative;z-index:2;">
-  <div style="position:absolute;top:-80px;right:-80px;pointer-events:none;opacity:0.4;">
-    <svg width="500" height="500" viewBox="0 0 500 500">
-      <circle cx="400" cy="100" r="300" stroke="rgba(124,58,237,0.06)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:60s;"/>
-      <circle cx="400" cy="100" r="200" stroke="rgba(6,182,212,0.04)" stroke-width="1" fill="none" class="spin-ring-rev" style="animation-duration:40s;"/>
-    </svg>
-  </div>
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="reveal s-label">Work &amp; Capabilities</div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px;flex-wrap:wrap;">
-      <h2 class="reveal font-display font-extrabold" style="font-size:clamp(32px,3.8vw,54px);line-height:1.03;letter-spacing:-.028em;">
-        The kind of work<br/>we <span style="color:#A855F7;">actually make</span>
-      </h2>
-      <p class="reveal mobile-hide" style="color:rgba(238,238,245,.4);font-size:13px;max-width:32ch;line-height:1.8;">
-        Scroll → swipe → watch. No clutter, just the work.
-      </p>
-    </div>
-
-    <!-- ── Campaigns ── -->
-    <div style="margin-bottom:64px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-        <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin:0;">Campaigns</h3>
-        <div style="display:flex;gap:10px;">
-          <button class="scroll-arrow-btn" onclick="scrollTrack('campaigns-track', -420)" aria-label="Scroll left">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <button class="scroll-arrow-btn" onclick="scrollTrack('campaigns-track', 420)" aria-label="Scroll right">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-        </div>
+<!-- WHY DIFFERENT -->
+<section style="background:#080616;border-top:1px solid rgba(255,255,255,.055);padding:100px 5vw;position:relative;z-index:2;">
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="reveal s-label">Why Different</div>
+    <h2 class="reveal font-display font-extrabold" style="font-size:clamp(26px,3vw,36px);margin-bottom:32px;letter-spacing:-.02em;">
+      Why SQUARGRAPH works differently
+    </h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:700px;">
+      <div style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;">
+        <p style="color:rgba(238,238,245,.4);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-bottom:14px;">Most setups</p>
+        <p style="color:rgba(238,238,245,.6);line-height:2;font-size:14px;">Strategy → delay → freelancers → misalignment → chaos</p>
       </div>
-      <div class="scroll-horizontal" id="campaigns-track">
-        <div class="scroll-track">
-
-          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:420px;min-width:300px;position:relative;aspect-ratio:16/9;">
-            <iframe loading="lazy" title="Gumlet video player"
-              src="https://play.gumlet.io/embed/6a0896760ed6988dba19a294?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
-              referrerpolicy="origin"
-              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
-            </iframe>
-          </div>
-
-          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:420px;min-width:300px;position:relative;aspect-ratio:16/9;">
-            <iframe loading="lazy" title="Gumlet video player"
-              src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
-              referrerpolicy="origin"
-              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
-            </iframe>
-          </div>
-
-          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:420px;min-width:300px;position:relative;aspect-ratio:16/9;">
-            <iframe loading="lazy" title="Gumlet video player"
-              src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
-              referrerpolicy="origin"
-              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
-            </iframe>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- ── Reels ── -->
-    <div style="margin-bottom:40px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-        <h3 class="reveal" style="font-family:'Outfit',sans-serif;font-size:14px;letter-spacing:.1em;color:#A855F7;margin:0;">Reels</h3>
-        <div style="display:flex;gap:10px;">
-          <button class="scroll-arrow-btn" onclick="scrollTrack('reels-track', -280)" aria-label="Scroll left">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <button class="scroll-arrow-btn" onclick="scrollTrack('reels-track', 280)" aria-label="Scroll right">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-        </div>
-      </div>
-      <div class="scroll-horizontal" id="reels-track">
-        <div class="scroll-track-reels">
-
-          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:220px;min-width:200px;position:relative;aspect-ratio:9/16;">
-            <iframe loading="lazy" title="Gumlet video player"
-              src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
-              referrerpolicy="origin"
-              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
-            </iframe>
-          </div>
-
-          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:220px;min-width:200px;position:relative;aspect-ratio:9/16;">
-            <iframe loading="lazy" title="Gumlet video player"
-              src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
-              referrerpolicy="origin"
-              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
-            </iframe>
-          </div>
-
-          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:220px;min-width:200px;position:relative;aspect-ratio:9/16;">
-            <iframe loading="lazy" title="Gumlet video player"
-              src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
-              referrerpolicy="origin"
-              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
-            </iframe>
-          </div>
-
-          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:220px;min-width:200px;position:relative;aspect-ratio:9/16;">
-            <iframe loading="lazy" title="Gumlet video player"
-              src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
-              referrerpolicy="origin"
-              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
-            </iframe>
-          </div>
-
-          <div style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);width:220px;min-width:200px;position:relative;aspect-ratio:9/16;">
-            <iframe loading="lazy" title="Gumlet video player"
-              src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-              style="border:none;position:absolute;top:0;left:0;height:100%;width:100%;"
-              referrerpolicy="origin"
-              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;">
-            </iframe>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!-- Collaboration line -->
-    <div class="reveal" style="text-align:center; margin-top:60px; border-top:1px solid rgba(255,255,255,.08); padding-top:40px;">
-      <p style="color:rgba(238,238,245,.35); font-size:12px; letter-spacing:.2em; text-transform:uppercase;">
-        in collaboration with 
-        <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer" 
-           style="color:#A855F7; text-decoration:none; border-bottom:1px solid rgba(168,85,247,0.3); transition:border-color 0.2s;"
-           onmouseover="this.style.borderColor='#A855F7'" onmouseout="this.style.borderColor='rgba(168,85,247,0.3)'">
-          Films By Jones
-        </a>
-      </p>
-    </div>
-
-    <div class="reveal" style="margin-top:30px;text-align:center;">
-      <p style="color:rgba(238,238,245,.2);font-size:11px;line-height:1.8;">
-        …and many more projects like media drives, drive events, and always‑on content for multiple brands.
-      </p>
-    </div>
-  </div>
-</section>
-<!-- ══════════════════════════════════════════════════════════════════
-     SELECTED BRAND EXPLORATIONS
-══════════════════════════════════════════════════════════════════════ -->
-<section id="explorations" style="padding: 120px 5vw; position: relative; z-index: 2;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <div style="display: flex; flex-wrap: wrap; gap: 60px;">
-      <!-- Left label -->
-      <div style="flex: 1.2; min-width: 180px;">
-        <div class="reveal s-label">Selected Brand Explorations</div>
-        <p class="reveal reveal-d1" style="color: rgba(238,238,245,.45); font-size: 13px; margin-top: 12px; line-height: 1.6; max-width: 280px;">
-          Independent strategic observations and speculative communication studies by SQUARGRAPH Studios.
-        </p>
-      </div>
-      <!-- Right grid (2 columns) -->
-      <div style="flex: 2.5; min-width: 260px;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px;">
-          
-          <!-- Card 1: The Whole Truth -->
-<div class="exploration-card" data-exploration="twt">
-  <div style="margin-bottom: 20px;">
-    <img src="thewholetruth-logo.svg" alt="The Whole Truth"
-         style="height: 28px; width: auto; 
-                filter: brightness(0) invert(0.7);
-                transition: filter 0.2s ease, drop-shadow 0.2s ease;"
-         onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 4px #A855F7)'"
-         onmouseout="this.style.filter='brightness(0) invert(0.7)'"
-         onerror="this.style.display='none'">
-  </div>
-  <p style="color: #EEEEF5; font-size: 18px; line-height: 1.4; margin-bottom: 24px; font-weight: 400;">
-    Trust was never the problem.<br>Emotional depth might become the next opportunity.
-  </p>
-  <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-    <span class="exploration-tag">D2C</span>
-    <span class="exploration-tag">Wellness</span>
-    <span class="exploration-tag">Communication Strategy</span>
-  </div>
-</div>
-
-          <!-- Card 2: Blue Tokai -->
-<div class="exploration-card" data-exploration="bluetokai">
-  <div style="margin-bottom: 20px;">
-    <img src="bluetokai-logo.png" alt="Blue Tokai"
-         style="height: 28px; width: auto; 
-                filter: brightness(0) invert(0.7);
-                transition: filter 0.2s ease, drop-shadow 0.2s ease;"
-         onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 4px #A855F7)'"
-         onmouseout="this.style.filter='brightness(0) invert(0.7)'"
-         onerror="this.style.display='none'">
-  </div>
-  <p style="color: #EEEEF5; font-size: 18px; line-height: 1.4; margin-bottom: 24px; font-weight: 400;">
-    Coffee is a ritual, not just a commodity.<br>How do you own the pause between sips?
-  </p>
-  <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-    <span class="exploration-tag">Hospitality</span>
-    <span class="exploration-tag">Lifestyle</span>
-    <span class="exploration-tag">Brand Poetry</span>
-  </div>
-</div>
-
-          <!-- Card 3: boAt -->
-<div class="exploration-card" data-exploration="boat">
-  <div style="margin-bottom: 20px;">
-    <img src="boat-logo.png" alt="boAt"
-         style="height: 28px; width: auto; 
-                filter: brightness(0) invert(0.7);
-                transition: filter 0.2s ease, drop-shadow 0.2s ease;"
-         onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 4px #A855F7)'"
-         onmouseout="this.style.filter='brightness(0) invert(0.7)'"
-         onerror="this.style.display='none'">
-  </div>
-  <p style="color: #EEEEF5; font-size: 18px; line-height: 1.4; margin-bottom: 24px; font-weight: 400;">
-    From loud to lasting.<br>Cultural maturity as the next brand frontier.
-  </p>
-  <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-    <span class="exploration-tag">Electronics</span>
-    <span class="exploration-tag">Youth Culture</span>
-    <span class="exploration-tag">Identity Shift</span>
-  </div>
-</div>
-          </div>
-
-        </div>
+      <div class="animated-border" style="padding:28px;border-radius:2px;">
+        <p style="color:#A855F7;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-bottom:14px;">SQUARGRAPH</p>
+        <p style="color:rgba(238,238,245,.8);line-height:2;font-size:14px;">Clear brief → aligned team → execution → delivery</p>
       </div>
     </div>
   </div>
@@ -2509,25 +2243,6 @@ border-top:1px solid rgba(255,255,255,.08);
     </div>
   </div>
 </section>
-  <!-- WHY DIFFERENT -->
-<section style="background:#080616;border-top:1px solid rgba(255,255,255,.055);padding:100px 5vw;position:relative;z-index:2;">
-  <div style="max-width:900px;margin:0 auto;">
-    <div class="reveal s-label">Why Different</div>
-    <h2 class="reveal font-display font-extrabold" style="font-size:clamp(26px,3vw,36px);margin-bottom:32px;letter-spacing:-.02em;">
-      Why SQUARGRAPH works differently
-    </h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:700px;">
-      <div style="padding:28px;border:1px solid rgba(255,255,255,.065);border-radius:2px;">
-        <p style="color:rgba(238,238,245,.4);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-bottom:14px;">Most setups</p>
-        <p style="color:rgba(238,238,245,.6);line-height:2;font-size:14px;">Strategy → delay → freelancers → misalignment → chaos</p>
-      </div>
-      <div class="animated-border" style="padding:28px;border-radius:2px;">
-        <p style="color:#A855F7;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-bottom:14px;">SQUARGRAPH</p>
-        <p style="color:rgba(238,238,245,.8);line-height:2;font-size:14px;">Clear brief → aligned team → execution → delivery</p>
-      </div>
-    </div>
-  </div>
-</section>
 <!-- FAQ -->
 <section style="padding:100px 5vw;position:relative;z-index:2;">
   <div style="max-width:800px;margin:0 auto;">
@@ -2585,6 +2300,92 @@ border-top:1px solid rgba(255,255,255,.08);
           <li>— Dedicated team</li>
           <li>— Video, design, copy, strategy</li>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══════════════════════════════════════════════════════════════════
+     SELECTED BRAND EXPLORATIONS
+══════════════════════════════════════════════════════════════════════ -->
+<section id="explorations" style="padding: 120px 5vw; position: relative; z-index: 2;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="display: flex; flex-wrap: wrap; gap: 60px;">
+      <!-- Left label -->
+      <div style="flex: 1.2; min-width: 180px;">
+        <div class="reveal s-label">Selected Brand Explorations</div>
+        <p class="reveal reveal-d1" style="color: rgba(238,238,245,.45); font-size: 13px; margin-top: 12px; line-height: 1.6; max-width: 280px;">
+          Independent strategic observations and speculative communication studies by SQUARGRAPH Studios.
+        </p>
+      </div>
+      <!-- Right grid (2 columns) -->
+      <div style="flex: 2.5; min-width: 260px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px;">
+          
+          <!-- Card 1: The Whole Truth -->
+<div class="exploration-card" data-exploration="twt">
+  <div style="margin-bottom: 20px;">
+    <img src="thewholetruth-logo.svg" alt="The Whole Truth"
+         style="height: 28px; width: auto; 
+                filter: brightness(0) invert(0.7);
+                transition: filter 0.2s ease, drop-shadow 0.2s ease;"
+         onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 4px #A855F7)'"
+         onmouseout="this.style.filter='brightness(0) invert(0.7)'"
+         onerror="this.style.display='none'">
+  </div>
+  <p style="color: #EEEEF5; font-size: 18px; line-height: 1.4; margin-bottom: 24px; font-weight: 400;">
+    Trust was never the problem.<br>Emotional depth might become the next opportunity.
+  </p>
+  <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+    <span class="exploration-tag">D2C</span>
+    <span class="exploration-tag">Wellness</span>
+    <span class="exploration-tag">Communication Strategy</span>
+  </div>
+</div>
+
+          <!-- Card 2: Blue Tokai -->
+<div class="exploration-card" data-exploration="bluetokai">
+  <div style="margin-bottom: 20px;">
+    <img src="bluetokai-logo.png" alt="Blue Tokai"
+         style="height: 28px; width: auto; 
+                filter: brightness(0) invert(0.7);
+                transition: filter 0.2s ease, drop-shadow 0.2s ease;"
+         onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 4px #A855F7)'"
+         onmouseout="this.style.filter='brightness(0) invert(0.7)'"
+         onerror="this.style.display='none'">
+  </div>
+  <p style="color: #EEEEF5; font-size: 18px; line-height: 1.4; margin-bottom: 24px; font-weight: 400;">
+    Coffee is a ritual, not just a commodity.<br>How do you own the pause between sips?
+  </p>
+  <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+    <span class="exploration-tag">Hospitality</span>
+    <span class="exploration-tag">Lifestyle</span>
+    <span class="exploration-tag">Brand Poetry</span>
+  </div>
+</div>
+
+          <!-- Card 3: boAt -->
+<div class="exploration-card" data-exploration="boat">
+  <div style="margin-bottom: 20px;">
+    <img src="boat-logo.png" alt="boAt"
+         style="height: 28px; width: auto; 
+                filter: brightness(0) invert(0.7);
+                transition: filter 0.2s ease, drop-shadow 0.2s ease;"
+         onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 4px #A855F7)'"
+         onmouseout="this.style.filter='brightness(0) invert(0.7)'"
+         onerror="this.style.display='none'">
+  </div>
+  <p style="color: #EEEEF5; font-size: 18px; line-height: 1.4; margin-bottom: 24px; font-weight: 400;">
+    From loud to lasting.<br>Cultural maturity as the next brand frontier.
+  </p>
+  <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+    <span class="exploration-tag">Electronics</span>
+    <span class="exploration-tag">Youth Culture</span>
+    <span class="exploration-tag">Identity Shift</span>
+  </div>
+</div>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
