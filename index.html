@@ -546,17 +546,14 @@
   .reel-card {
     width: 160px;
     min-width: 140px;
+    overflow: visible !important;
   }
   .work-img-card {
     min-width: 260px;
   }
-  /* Prevent cropping on reel cards */
-.reel-card {
-  overflow: visible !important;
-}
-/* Ensure scroll containers don't cut off last item */
-.scroll-track, .scroll-track-reels {
-  padding-right: 24px;
+  .scroll-track, .scroll-track-reels {
+    padding-right: 24px;
+  }
 }
     .work-img-svg { width: 100%; height: 100%; display: block; }
     .work-img-overlay {
