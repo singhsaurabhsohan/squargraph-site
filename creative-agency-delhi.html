@@ -471,85 +471,72 @@
   overflow-x: auto;
   overflow-y: visible;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.scroll-horizontal {
-  position: relative;
-}
-.scroll-horizontal::after {
-  display: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(124,58,237,0.3) transparent;
 }
 .scroll-horizontal::-webkit-scrollbar {
-  display: none;
+  height: 4px;
+}
+.scroll-horizontal::-webkit-scrollbar-thumb {
+  background: rgba(124,58,237,0.4);
+  border-radius: 4px;
 }
 
-.scroll-track {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  padding: 8px 2px 20px 2px;
-  width: max-content;
-  align-items: stretch;
-}
-
+.scroll-track,
 .scroll-track-reels {
   display: flex;
   flex-direction: row;
-  gap: 24px;
-  padding: 8px 2px 20px 2px;
+  gap: 20px;
+  padding: 8px 24px 20px 2px;
   width: max-content;
   align-items: stretch;
-  overflow-y: visible;   /* ← add this */
 }
-.scroll-track, .scroll-track-reels {
-  padding: 8px 24px 20px 2px;  /* extra right padding */
-}
-/* Reel card styling – force 9:16 aspect ratio */
-.reel-card {
-  aspect-ratio: 9 / 16;
-  width: 220px;          /* adjust as you like */
-  max-width: 260px;
-  flex-shrink: 0;        /* prevents squishing in flex container */
-  overflow: visible;     /* ensures no clipping inside card */
-}
-.reel-card iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-/* Horizontal video cards */
+
+/* Campaign cards (16:9) */
 .work-img-card {
-  aspect-ratio: 16 / 9;
+  flex: 0 0 auto;
   width: 100%;
-  display: block;
-  line-height: 0;
+  max-width: 420px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.07);
 }
 .work-img-card iframe {
-  display: block;
   width: 100%;
   height: 100%;
+  display: block;
   border: none;
 }
-/* Mobile adjustment: make cards slightly larger on touch */
+
+/* Reel cards (9:16) */
+.reel-card {
+  flex: 0 0 auto;
+  width: 200px;
+  aspect-ratio: 9 / 16;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.07);
+}
+.reel-card iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
+
 @media (max-width: 768px) {
-  .scroll-track, .scroll-track-reels {
-    gap: 16px;
+  .scroll-track,
+  .scroll-track-reels {
+    gap: 12px;
+    padding-right: 20px;
+  }
+  .work-img-card {
+    max-width: 280px;
   }
   .reel-card {
     width: 160px;
-    min-width: 140px;
   }
-  .work-img-card {
-    min-width: 260px;
-  }
-  /* Prevent cropping on reel cards */
-.reel-card {
-  overflow: visible !important;
-}
-/* Ensure scroll containers don't cut off last item */
-.scroll-track, .scroll-track-reels {
-  padding-right: 24px;
 }
     .work-img-svg { width: 100%; height: 100%; display: block; }
     .work-img-overlay {
@@ -952,31 +939,14 @@
     /* Show hamburger only below 1024px */
     @media (min-width: 1025px) { #mob-toggle { display: none !important; } }
     @media (max-width: 1024px) { #mob-toggle { display: inline-flex !important; } }
-    /* ── Activity toasts ──────────────────────────────────────── */
-    .activity-toast {
-      position: fixed; bottom: 100px; left: 20px;
-      background: #0D0A1E;
-      border: 1px solid rgba(124,58,237,.3);
-      color: #EEEEF5;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-family: 'Outfit', sans-serif;
-      z-index: 8000;
-      opacity: 0;
-      transform: translateX(-20px);
-      transition: opacity .4s, transform .4s;
-      box-shadow: 0 8px 24px rgba(0,0,0,.5);
-      max-width: 260px;
-      line-height: 1.5;
-    }
-    .activity-toast.visible { opacity: 1; transform: translateX(0); }
-
-    /* ── Mobile ───────────────────────────────────────────────── */
+   /* ── Mobile ───────────────────────────────────────────────── */
     /* Hide nav links between 768–1024px (hamburger takes over) */
     @media (max-width: 1024px) {
-      .mobile-hide { display: none !important; }
-    }
+  .mobile-hide { display: none !important; }
+  #mob-toggle {
+    margin-left: auto !important;
+  }
+}
 
     @media (max-width: 768px) {
       #hero { padding-top: 130px !important; padding-bottom: 60px !important; justify-content: flex-start !important; }
@@ -1019,15 +989,18 @@ nav {
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
+  width: 100% !important;
   z-index: 500 !important;
   background: rgba(3, 2, 10, 0.6) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  transform: none !important;
+  transform: translateZ(0) !important;
   will-change: auto !important;
   border-bottom: 1px solid rgba(255,255,255,.06) !important;
 }
-
+body {
+  transform: none !important;
+}
 nav.scrolled {
   background: rgba(3, 2, 10, 0.88) !important;
   backdrop-filter: blur(24px) !important;
@@ -1090,14 +1063,9 @@ body.cookie-visible #chat-toggle {
 }
 
 /* 6. Ensure no ancestor breaks fixed positioning */
-body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
+body, .page-wrapper, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
   transform: none !important;
   will-change: auto !important;
-}
-@media (max-width: 768px) {
-  .instagram-section {
-    padding: 60px 5vw !important;
-  }
 }
 @media (max-width: 640px) {
   .stat-strip {
@@ -1112,18 +1080,84 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
 @media (max-width: 960px) {
   .footer-grid {
     grid-template-columns: 1fr 1fr !important;
-    gap: 40px !important;
+    gap: 48px 32px !important;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .footer-grid {
     grid-template-columns: 1fr !important;
-    gap: 32px !important;
+    gap: 40px !important;
+    text-align: center;
+  }
+  .footer-grid .social-link {
+    justify-content: center;
+  }
+  footer > div:last-child {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 0;
   }
 }
 @media (max-width: 480px) {
   .why-different-grid {
     grid-template-columns: 1fr !important;
+  }
+}
+/* Contact form responsive fixes */
+#contact .form-input,
+#contact select.form-input,
+#contact textarea.form-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+#contact button[type="submit"] {
+  width: 100%;
+  min-width: 180px;
+  margin-top: 8px;
+}
+@media (min-width: 768px) {
+  #contact button[type="submit"] {
+    width: auto;
+    align-self: flex-start;
+  }
+}
+@media (max-width: 768px) {
+  #contact .btn-primary {
+    justify-content: center;
+    width: 100%;
+  }
+}
+/* Reduce vertical padding on mobile for tighter spacing */
+@media (max-width: 768px) {
+  #philosophy,
+  #process,
+  #services,
+  #capabilities,
+  #builtfor,
+  #expect,
+  #founder,
+  #contact,
+  #explorations {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* Hero bottom padding reduced */
+  #hero {
+    padding-bottom: 6vh !important;
+  }
+
+  /* Stat strip items – reduce inner padding on mobile */
+  .stat-item {
+    padding: 24px 20px !important;
+  }
+}
+@media (max-width: 640px) {
+  .footer-grid {
+    gap: 32px !important;
+  }
+  footer {
+    padding-top: 50px !important;
   }
 }
 /* ── Scroll arrow buttons ─────────────────────────────────── */
@@ -1179,6 +1213,10 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
   transition: border-color .3s ease, transform .3s cubic-bezier(.23,1,.32,1), box-shadow .3s ease;
   border-radius: 2px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 .exploration-card:hover {
   border-color: rgba(124,58,237,.4);
@@ -1195,6 +1233,12 @@ body, .aurora-wrap, #particle-canvas, .flow-lines-section, #hero {
   padding: 4px 10px;
   border-radius: 20px;
   border: 1px solid rgba(168,85,247,.2);
+  display: inline-block;
+}
+.exploration-card img {
+  max-height: 32px;
+  object-fit: contain;
+  margin-bottom: 20px;
 }
 
 /* Fullscreen modal */
@@ -1327,7 +1371,68 @@ nav a.active-nav {
     max-width: 100vw !important;
   }
 }
-  </style>
+/* Brand strip (marquee) */
+.brand-strip {
+  margin-top: 60px;          /* increased breathing space above */
+  margin-bottom: 20px;       /* space below strip */
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+  padding: 24px 0;           /* more vertical breathing */
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.brand-strip-track {
+  display: inline-block;
+  animation: scrollBrands 16s linear infinite;
+}
+
+.brand-strip-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 48px;
+  margin: 0 24px;            /* increased horizontal gap between logos */
+  filter: grayscale(0.6) brightness(0.8);
+  transition: filter 0.3s ease, transform 0.2s ease;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.brand-strip-item img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-strip-item:hover {
+  filter: grayscale(0) brightness(1);
+  transform: scale(1.05);
+}
+
+@keyframes scrollBrands {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+  .brand-strip-item {
+    width: 80px;
+    height: 36px;
+    margin: 0 16px;          /* increased gap on mobile as well */
+  }
+  .brand-strip {
+    padding: 16px 0;
+    margin-top: 40px;
+  }
+}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1357,23 +1462,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════════════════
      NAV (condensed: Philosophy, Services, Work, Founder, Contact)
 ══════════════════════════════════════════════════════════════════════ -->
-<nav id="nav" style="display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;">
+<nav id="nav" style="display:flex;align-items:center;padding:0 5vw;height:68px;">
   <a href="#" class="font-display font-extrabold no-underline" style="font-size:20px;letter-spacing:-.02em;color:#EEEEF5;display:flex;flex-direction:column;line-height:1.15;flex-shrink:0;text-decoration:none;">
     <span>SQUAR<span style="color:#A855F7;">GRAPH</span><span style="font-weight:400;color:rgba(238,238,245,.6);font-size:14px;"> Studios</span></span>
     <span style="font-family:'Outfit',sans-serif;font-size:8px;letter-spacing:.14em;color:rgba(238,238,245,.2);font-weight:400;text-transform:uppercase;">Private Limited</span>
   </a>
-  <div class="mobile-hide" style="display:flex;gap:28px;align-items:center;">
-    <a href="#philosophy" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Philosophy</a>
-    <a href="#services"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
-    <a href="#work"       class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Work</a>
-    <a href="#capabilities" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Capabilities</a>
-    <a href="#founder"    class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Founder</a>
-    <a href="#contact"
-       style="display:inline-flex;align-items:center;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:10px 22px;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
-       onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-      Start a project
-    </a>
-  </div>
+  <div class="mobile-hide" style="display:flex;gap:28px;align-items:center;margin-left:auto;">
+  <a href="#work" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Work</a>
+  <a href="#philosophy" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Philosophy</a>
+  <a href="#services" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Services</a>
+  <a href="#capabilities" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Capabilities</a>
+  <a href="#founder" class="no-underline text-muted hover:text-snow transition-colors font-display font-semibold" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Founder</a>
+  <a href="#contact"
+     style="display:inline-flex;align-items:center;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:10px 22px;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .2s;"
+     onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+    Start a project
+  </a>
+</div>
   <button class="hamburger" id="mob-toggle" aria-label="Toggle menu" aria-expanded="false" style="background:none;border:none;padding:4px;">
     <span></span><span></span><span></span>
   </button>
@@ -1381,13 +1486,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- Mobile menu (outside .page-wrapper) -->
 <div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(3,2,10,.97);z-index:550;flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;transition:opacity 0.3s ease;">
+  <button onclick="closeMob()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#EEEEF5;font-size:40px;cursor:pointer;z-index:560;line-height:1;padding:0 8px;">&times;</button>
+  <a href="#work" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
   <a href="#philosophy" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Philosophy</a>
-  <a href="#services"   onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
-  <a href="#work"         onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Work</a>
+  <a href="#services" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Services</a>
   <a href="#capabilities" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Capabilities</a>
-  <a href="#founder"      onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
-     <a href="#contact" onclick="closeMob()"
-     style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
+  <a href="#founder" onclick="closeMob()" class="font-display font-bold text-snow no-underline" style="font-size:28px;letter-spacing:-.02em;">Founder</a>
+  <a href="#contact" onclick="closeMob()" style="background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:16px 40px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:16px;">
     Start a project →
   </a>
 </div>
@@ -1696,6 +1801,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </a>
       </p>
     </div>
+    <!-- Brand strip -->
+<div class="brand-strip">
+  <div class="brand-strip-track">
+  <!-- Copy 1 -->
+  <span class="brand-strip-item"><img src="/tatamotors-logo.png" alt="TATA Motors"></span>
+  <span class="brand-strip-item"><img src="/mahindra-logo.png" alt="Mahindra"></span>
+  <span class="brand-strip-item"><img src="/sony-logo.png" alt="SONY"></span>
+  <span class="brand-strip-item"><img src="/vivo-logo.png" alt="VIVO"></span>
+  <span class="brand-strip-item"><img src="/ceat-logo.png" alt="CEAT"></span>
+  <span class="brand-strip-item"><img src="/booking.com-logo.png" alt="Booking.com"></span>
+
+  <!-- Copy 2 -->
+  <span class="brand-strip-item"><img src="/tatamotors-logo.png" alt="TATA Motors"></span>
+  <span class="brand-strip-item"><img src="/mahindra-logo.png" alt="Mahindra"></span>
+  <span class="brand-strip-item"><img src="/sony-logo.png" alt="SONY"></span>
+  <span class="brand-strip-item"><img src="/vivo-logo.png" alt="VIVO"></span>
+  <span class="brand-strip-item"><img src="/ceat-logo.png" alt="CEAT"></span>
+  <span class="brand-strip-item"><img src="/booking.com-logo.png" alt="Booking.com"></span>
+
+  <!-- Copy 3 -->
+  <span class="brand-strip-item"><img src="/tatamotors-logo.png" alt="TATA Motors"></span>
+  <span class="brand-strip-item"><img src="/mahindra-logo.png" alt="Mahindra"></span>
+  <span class="brand-strip-item"><img src="/sony-logo.png" alt="SONY"></span>
+  <span class="brand-strip-item"><img src="/vivo-logo.png" alt="VIVO"></span>
+  <span class="brand-strip-item"><img src="/ceat-logo.png" alt="CEAT"></span>
+  <span class="brand-strip-item"><img src="/booking.com-logo.png" alt="Booking.com"></span>
+</div>
+</div>
+  <div style="text-align: center; margin-top: 16px;">
+  <span style="color: rgba(238,238,245,.45); font-family: 'Outfit', sans-serif; font-size: 13px; letter-spacing: 0.08em;">&amp; many more...</span>
+</div>
   </div>
 </section>
 <!-- ══════════════════════════════════════════════════════════════════
@@ -3177,36 +3313,6 @@ border-top:1px solid rgba(255,255,255,.08);
   chatTextInput.addEventListener('keydown', function(e) {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitBrief(); }
   });
-
-  /* ── Activity toasts ─────────────────────────────────────────── */
-  var activities = [
-    "A startup founder from Bangalore just submitted a brief.",
-    "A marketing head from Mumbai is viewing our services.",
-    "Someone from Delhi requested a custom proposal.",
-    "An automotive brand manager visited our work section.",
-    "A D2C brand owner just downloaded our checklist.",
-    "A 5‑star hotel group exec is reading our process.",
-  ];
-
-  function showActivityToast(text) {
-    var toast = document.createElement('div');
-    toast.className = 'activity-toast';
-    toast.textContent = text;
-    document.body.appendChild(toast);
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() { toast.classList.add('visible'); });
-    });
-    setTimeout(function() {
-      toast.classList.remove('visible');
-      setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 500);
-    }, 4000);
-  }
-
-  function scheduleToast() {
-    showActivityToast(activities[Math.floor(Math.random() * activities.length)]);
-    setTimeout(scheduleToast, 12000 + Math.random() * 15000);
-  }
-  setTimeout(scheduleToast, 8000);
   // Open modals on card click
   document.querySelectorAll('.exploration-card').forEach(card => {
     card.setAttribute('tabindex', '0');
