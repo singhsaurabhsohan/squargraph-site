@@ -1373,12 +1373,13 @@ nav a.active-nav {
 }
 /* Brand strip (marquee) */
 .brand-strip {
-  margin-top: 40px;
+  margin-top: 60px;          /* increased breathing space above */
+  margin-bottom: 20px;       /* space below strip */
   overflow: hidden;
   white-space: nowrap;
   position: relative;
   width: 100%;
-  padding: 20px 0;
+  padding: 24px 0;           /* more vertical breathing */
   border-top: 1px solid rgba(255,255,255,.08);
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
@@ -1394,7 +1395,7 @@ nav a.active-nav {
   justify-content: center;
   width: 100px;
   height: 48px;
-  margin: 0 12px;
+  margin: 0 24px;            /* increased horizontal gap between logos */
   filter: grayscale(0.6) brightness(0.8);
   transition: filter 0.3s ease, transform 0.2s ease;
   vertical-align: middle;
@@ -1424,10 +1425,11 @@ nav a.active-nav {
   .brand-strip-item {
     width: 80px;
     height: 36px;
-    margin: 0 8px;
+    margin: 0 16px;          /* increased gap on mobile as well */
   }
   .brand-strip {
     padding: 16px 0;
+    margin-top: 40px;
   }
 }
 </style>
