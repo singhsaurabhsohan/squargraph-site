@@ -192,7 +192,11 @@
 }
   /* rest of your CSS */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
     body {
   background: #03020A;
   color: #EEEEF5;
@@ -200,7 +204,9 @@
   font-size: 16px;
   line-height: 1.65;
   overflow-x: hidden;
-  /* animation moved to .page-wrapper */
+  max-width: 100%;
+  width: 100%;
+  position: relative;
 }
 /* Mobile adjustments for reels */
 @media (max-width: 768px) {
@@ -212,15 +218,7 @@
 }
     /* CHANGE 1: Removed cursor: none from a, button, [role="button"] */
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.018;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    }
+    /* noise texture removed */
 
     /* ── Particle canvas ─────────────────────────────────────────── */
     #particle-canvas {
@@ -1523,6 +1521,29 @@ nav a.active-nav {
 .tab-hidden * {
   animation-play-state: paused !important;
 }
+/* Prevent any element from causing horizontal scroll */
+*, *::before, *::after {
+  max-width: 100%;
+}
+.page-wrapper {
+  overflow-x: hidden;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .aurora-wrap,
+  #particle-canvas,
+  .flow-lines-section,
+  .cta-glow {
+    max-width: 100vw !important;
+    overflow: hidden !important;
+  }
+  .aurora-blob-1,
+  .aurora-blob-2,
+  .aurora-blob-3,
+  .aurora-blob-4 {
+    max-width: 100vw !important;
+  }
+}
   </style>
 </head>
 <body>
@@ -2144,23 +2165,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="scroll-horizontal" id="campaigns-track">
         <div class="scroll-track">
-          <div class="work-img-card video-lazy-wrap" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);" data-src="https://play.gumlet.io/embed/6a0896760ed6988dba19a294">
-            <div class="video-placeholder" onclick="loadVideo(this)">
-              <div class="play-btn"><svg width="36" height="36" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
-              <span>Campaign Film 1</span>
-            </div>
+          <div class="work-img-card" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a0896760ed6988dba19a294?preload=false&autoplay=true&loop=true&muted=true"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
-          <div class="work-img-card video-lazy-wrap" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6">
-            <div class="video-placeholder" onclick="loadVideo(this)">
-              <div class="play-btn"><svg width="36" height="36" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
-              <span>Campaign Film 2</span>
-            </div>
+          <div class="work-img-card" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?preload=false&autoplay=true&loop=true&muted=true"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
-          <div class="work-img-card video-lazy-wrap" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1">
-            <div class="video-placeholder" onclick="loadVideo(this)">
-              <div class="play-btn"><svg width="36" height="36" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
-              <span>Campaign Film 3</span>
-            </div>
+          <div class="work-img-card" style="width:420px;min-width:300px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?preload=false&autoplay=true&loop=true&muted=true"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
       </div>
@@ -2181,35 +2202,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="scroll-horizontal" id="reels-track">
         <div class="scroll-track-reels">
-          <div class="work-img-card reel-card video-lazy-wrap" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);" data-src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd">
-            <div class="video-placeholder" onclick="loadVideo(this)">
-              <div class="play-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
-              <span>Reel 1</span>
-            </div>
+          <div class="work-img-card reel-card" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?preload=false&autoplay=true&loop=true&muted=true"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
-          <div class="work-img-card reel-card video-lazy-wrap" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);" data-src="https://play.gumlet.io/embed/6a08955d3a5246215d479670">
-            <div class="video-placeholder" onclick="loadVideo(this)">
-              <div class="play-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
-              <span>Reel 2</span>
-            </div>
+          <div class="work-img-card reel-card" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?preload=false&autoplay=true&loop=true&muted=true"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
-          <div class="work-img-card reel-card video-lazy-wrap" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);" data-src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad">
-            <div class="video-placeholder" onclick="loadVideo(this)">
-              <div class="play-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
-              <span>Reel 3</span>
-            </div>
+          <div class="work-img-card reel-card" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?preload=false&autoplay=true&loop=true&muted=true"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
-          <div class="work-img-card reel-card video-lazy-wrap" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);" data-src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a">
-            <div class="video-placeholder" onclick="loadVideo(this)">
-              <div class="play-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
-              <span>Reel 4</span>
-            </div>
+          <div class="work-img-card reel-card" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?preload=false&autoplay=true&loop=true&muted=true"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
-          <div class="work-img-card reel-card video-lazy-wrap" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);" data-src="https://play.gumlet.io/embed/6a0896760143a2000b233c09">
-            <div class="video-placeholder" onclick="loadVideo(this)">
-              <div class="play-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
-              <span>Reel 5</span>
-            </div>
+          <div class="work-img-card reel-card" style="flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);">
+            <iframe src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?preload=false&autoplay=true&loop=true&muted=true"
+                    style="width:100%;height:100%;border:none;background:#0D0A1E;"
+                    allow="autoplay;encrypted-media;picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
       </div>
@@ -3445,38 +3466,6 @@ border-top:1px solid rgba(255,255,255,.08);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
-/* ── Lazy video loader ───────────────────────────────────── */
-window.loadVideo = function(placeholder) {
-  var wrap = placeholder.closest('.video-lazy-wrap');
-  if (!wrap) return;
-  var src = wrap.getAttribute('data-src');
-  if (!src) return;
-  var iframe = document.createElement('iframe');
-  iframe.src = src + '?autoplay=1';
-  iframe.style.cssText = 'width:100%;height:100%;border:none;background:#0D0A1E;';
-  iframe.allow = 'autoplay;encrypted-media;picture-in-picture';
-  iframe.allowFullscreen = true;
-  wrap.innerHTML = '';
-  wrap.appendChild(iframe);
-};
-
-/* Use IntersectionObserver to auto-load first visible video */
-(function() {
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        var ph = entry.target.querySelector('.video-placeholder');
-        if (ph) loadVideo(ph);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('.video-lazy-wrap').forEach(function(el, i) {
-    if (i === 0) observer.observe(el); /* Only auto-load the very first one */
-  });
-})();
-
 /* ── Arrow scroll helper with disabled state ─────────────── */
 window.scrollTrack = function(trackId, amount) {
   var el = document.getElementById(trackId);
@@ -3506,21 +3495,7 @@ function updateArrows(trackId, leftBtnLabel, rightBtnLabel) {
     setTimeout(function() { updateArrows(id); }, 500);
   }
 });
-
-// Autoplay on hover (first time only) – fixed
-document.querySelectorAll('#work .work-img-card iframe').forEach(iframe => {
-  let originalSrc = iframe.src;
-  let autoplayAdded = false;
-
-  iframe.addEventListener('mouseenter', () => {
-    if (autoplayAdded) return;
-    const separator = originalSrc.includes('?') ? '&' : '?';
-    const newSrc = `${originalSrc}${separator}autoplay=1&mute=1`;
-    iframe.src = newSrc;
-    autoplayAdded = true;
-  });
-});
-
+  
 })();
 </script>
 </body>
