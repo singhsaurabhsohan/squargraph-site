@@ -1392,17 +1392,21 @@ nav a.active-nav {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin: 0 32px;
-  width: auto;
+  width: 100px;
   height: 48px;
+  margin: 0 12px;
   filter: grayscale(0.6) brightness(0.8);
   transition: filter 0.3s ease, transform 0.2s ease;
   vertical-align: middle;
+  overflow: hidden;
 }
 
 .brand-strip-item img {
+  max-width: 100%;
   max-height: 100%;
   width: auto;
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 
@@ -1416,11 +1420,11 @@ nav a.active-nav {
   100% { transform: translateX(-50%); }
 }
 
-/* Mobile adjustment */
 @media (max-width: 768px) {
   .brand-strip-item {
-    margin: 0 20px;
+    width: 80px;
     height: 36px;
+    margin: 0 8px;
   }
   .brand-strip {
     padding: 16px 0;
@@ -1798,21 +1802,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Brand strip -->
 <div class="brand-strip">
   <div class="brand-strip-track">
-    <!-- Duplicate the logos twice to create seamless loop -->
-    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3ETATA%3C/text%3E%3C/svg%3E" alt="TATA Motors"></span>
-    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3EMahindra%3C/text%3E%3C/svg%3E" alt="Mahindra"></span>
-    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3ESONY%3C/text%3E%3C/svg%3E" alt="SONY"></span>
-    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3EVIVO%3C/text%3E%3C/svg%3E" alt="VIVO"></span>
-    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3ECEAT%3C/text%3E%3C/svg%3E" alt="CEAT"></span>
-    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='12'%3EMany more%3C/text%3E%3C/svg%3E" alt="Many more"></span>
+    <!-- First set -->
+    <span class="brand-strip-item"><img src="/tatamotors-logo.png" alt="TATA Motors"></span>
+    <span class="brand-strip-item"><img src="/mahindra-logo.png" alt="Mahindra"></span>
+    <span class="brand-strip-item"><img src="/sony-logo.png" alt="SONY"></span>
+    <span class="brand-strip-item"><img src="/vivo-logo.png" alt="VIVO"></span>
+    <span class="brand-strip-item"><img src="/ceat-logo.png" alt="CEAT"></span>
+    <span class="brand-strip-item"><img src="/booking.com-logo.png" alt="Booking.com"></span>
+    <span class="brand-strip-item"><img src="/more-logo.png" alt="Many more"></span>
 
     <!-- Duplicate the same set for seamless loop -->
-    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3ETATA%3C/text%3E%3C/svg%3E" alt="TATA Motors"></span>
-    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3EMahindra%3C/text%3E%3C/svg%3E" alt="Mahindra"></span>
-    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3ESONY%3C/text%3E%3C/svg%3E" alt="SONY"></span>
-    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3EVIVO%3C/text%3E%3C/svg%3E" alt="VIVO"></span>
-    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='14'%3ECEAT%3C/text%3E%3C/svg%3E" alt="CEAT"></span>
-    <span class="brand-strip-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Crect width='100' height='40' fill='%23EEEEF5' opacity='0.15' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23EEEEF5' font-family='Outfit' font-weight='600' font-size='12'%3EMany more%3C/text%3E%3C/svg%3E" alt="Many more"></span>
+    <span class="brand-strip-item"><img src="/tatamotors-logo.png" alt="TATA Motors"></span>
+    <span class="brand-strip-item"><img src="/mahindra-logo.png" alt="Mahindra"></span>
+    <span class="brand-strip-item"><img src="/sony-logo.png" alt="SONY"></span>
+    <span class="brand-strip-item"><img src="/vivo-logo.png" alt="VIVO"></span>
+    <span class="brand-strip-item"><img src="/ceat-logo.png" alt="CEAT"></span>
+    <span class="brand-strip-item"><img src="/booking.com-logo.png" alt="Booking.com"></span>
+    <span class="brand-strip-item"><img src="/more-logo.png" alt="Many more"></span>
   </div>
 </div>
   </div>
