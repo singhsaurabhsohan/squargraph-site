@@ -492,11 +492,11 @@
   align-items: stretch;
 }
 
-/* Campaign cards (16:9) */
+/* Campaign cards (16:9) – same height as reels */
 .work-img-card {
   flex: 0 0 auto;
-  width: 100%;
-  max-width: 420px;
+  height: 240px;
+  width: auto;
   aspect-ratio: 16 / 9;
   border-radius: 8px;
   overflow: hidden;
@@ -509,10 +509,11 @@
   border: none;
 }
 
-/* Reel cards (9:16) */
+/* Reel cards (9:16) – same height as campaign cards */
 .reel-card {
   flex: 0 0 auto;
-  width: 200px;
+  height: 240px;
+  width: auto;
   aspect-ratio: 9 / 16;
   border-radius: 8px;
   overflow: hidden;
@@ -531,11 +532,10 @@
     gap: 12px;
     padding-right: 20px;
   }
-  .work-img-card {
-    max-width: 280px;
-  }
+  /* On mobile, reduce height but keep both equal */
+  .work-img-card,
   .reel-card {
-    width: 160px;
+    height: 180px;
   }
 }
     .work-img-svg { width: 100%; height: 100%; display: block; }
@@ -1792,40 +1792,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </a>
       </p>
     </div>
-    <!-- Separator line -->
-<div style="width: 80px; height: 1px; background: linear-gradient(90deg, transparent, rgba(168,85,247,0.6), transparent); margin: 32px auto 24px auto;"></div>
-    <!-- Brand strip -->
-    <div style="text-align: center; margin-bottom: 24px;">
-  <div class="s-label" style="justify-content: center; margin-bottom: 8px;">BRANDS</div>
-  <div style="width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #A855F7, transparent); margin: 0 auto;"></div>
-</div>
-<div class="brand-strip">
-  <div class="brand-strip-track">
-  <!-- Copy 1 -->
-  <span class="brand-strip-item"><img src="/tatamotors-logo.png" alt="TATA Motors"></span>
-  <span class="brand-strip-item"><img src="/mahindra-logo.png" alt="Mahindra"></span>
-  <span class="brand-strip-item"><img src="/sony-logo.png" alt="SONY"></span>
-  <span class="brand-strip-item"><img src="/vivo-logo.png" alt="VIVO"></span>
-  <span class="brand-strip-item"><img src="/booking.com-logo.png" alt="Booking.com"></span>
-
-  <!-- Copy 2 -->
-  <span class="brand-strip-item"><img src="/tatamotors-logo.png" alt="TATA Motors"></span>
-  <span class="brand-strip-item"><img src="/mahindra-logo.png" alt="Mahindra"></span>
-  <span class="brand-strip-item"><img src="/sony-logo.png" alt="SONY"></span>
-  <span class="brand-strip-item"><img src="/vivo-logo.png" alt="VIVO"></span>
-  <span class="brand-strip-item"><img src="/booking.com-logo.png" alt="Booking.com"></span>
-
-  <!-- Copy 3 -->
-  <span class="brand-strip-item"><img src="/tatamotors-logo.png" alt="TATA Motors"></span>
-  <span class="brand-strip-item"><img src="/mahindra-logo.png" alt="Mahindra"></span>
-  <span class="brand-strip-item"><img src="/sony-logo.png" alt="SONY"></span>
-  <span class="brand-strip-item"><img src="/vivo-logo.png" alt="VIVO"></span>
-  <span class="brand-strip-item"><img src="/booking.com-logo.png" alt="Booking.com"></span>
-</div>
-</div>
-  <div style="text-align: center; margin-top: 16px;">
-  <span style="color: rgba(238,238,245,.45); font-family: 'Outfit', sans-serif; font-size: 13px; letter-spacing: 0.08em;">&amp; many more...</span>
-</div>
   </div>
 </section>
 <!-- ══════════════════════════════════════════════════════════════════
