@@ -40,7 +40,6 @@
   <link rel="dns-prefetch" href="//play.gumlet.io">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://play.gumlet.io" crossorigin>
   <link rel="canonical" href="https://squargraph.com">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
@@ -119,6 +118,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -128,8 +129,6 @@ body {
   font-size: 16px;
   line-height: 1.65;
   overflow-x: hidden;
-  transform: none !important;
-  will-change: auto !important;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -616,7 +615,8 @@ nav.scrolled {
 .system-intro-right p {
   color: rgba(238,238,245,.45);
   font-size: 15px; line-height: 1.85;
-  font-weight: 300; max-width: 48ch;
+  font-weight: 300; max-width: 100%;
+  overflow-wrap: break-word;
 }
 .system-grid {
   display: grid;
@@ -667,7 +667,9 @@ nav.scrolled {
   font-size: 14px; line-height: 1.78;
   color: rgba(238,238,245,.45);
   font-weight: 300; margin-bottom: 28px;
-  max-width: 36ch;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 .pillar-outputs {
   list-style: none;
@@ -729,7 +731,14 @@ nav.scrolled {
 .process-body {
   padding: 0 0 28px 48px;
   color: rgba(238,238,245,.45); font-size: 14px; line-height: 1.8;
-  font-weight: 300; max-width: 56ch;
+  font-weight: 300; max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+@media (max-width: 560px) {
+  .process-body {
+    padding: 0 0 24px 28px;
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -1348,6 +1357,24 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
 #intelligence        { content-visibility: auto; contain-intrinsic-size: 0 700px; }
 #founder             { content-visibility: auto; contain-intrinsic-size: 0 1100px; }
 #contact             { content-visibility: auto; contain-intrinsic-size: 0 1200px; }
+@media (max-width: 640px) {
+  #founder-cred-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+@media (max-width: 768px) {
+  #intelligence-intro-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+}
+@media (max-width: 768px) {
+  #built-for-grid {
+    grid-template-columns: 1fr !important;
+    padding: 28px 20px !important;
+    gap: 24px !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -1694,7 +1721,7 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
     </div>
 
     <!-- "Built For" absorbed here, elegantly -->
-    <div class="reveal" style="margin-top:56px;padding:40px;border:1px solid rgba(255,255,255,.06);background:#0D0A1E;border-radius:2px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;">
+    <div class="reveal" style="margin-top:56px;padding:40px;border:1px solid rgba(255,255,255,.06);background:#0D0A1E;border-radius:2px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;" id="built-for-grid">
       <div>
         <div style="font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#A855F7;margin-bottom:12px;">Enterprise Brands</div>
         <p style="font-size:13px;color:rgba(238,238,245,.45);line-height:1.75;font-weight:300;">Large brand teams that need a reliable execution partner — one that understands brand systems and delivers at scale without friction.</p>
@@ -1785,7 +1812,7 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
 ══════════════════════════════════════════ -->
 <section id="intelligence" class="intelligence-section">
   <div style="max-width:1200px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;" id="intelligence-intro-grid">
       <div>
         <div class="s-label reveal">Strategic Intelligence</div>
         <h2 class="reveal font-display" style="font-size:clamp(28px,3vw,42px);font-weight:800;letter-spacing:-.028em;line-height:1.1;margin-bottom:20px;">
@@ -1890,7 +1917,7 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
      No LinkedIn sentences. No "spent years working."
 ══════════════════════════════════════════ -->
 <section id="founder" class="founder-section">
-  <<div style="max-width:1200px;margin:0 auto;">
+  <div style="max-width:1200px;margin:0 auto;">
 
   <div class="reveal">
     <div class="s-label">Leadership</div>
@@ -1902,7 +1929,10 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
     <div class="reveal">
       <div style="width:100%;aspect-ratio:1/1;border:1px solid rgba(255,255,255,.065);border-radius:2px;overflow:hidden;position:relative;">
         <img src="founder.jpg" loading="lazy" alt="Saurabh Sohan Singh — Founder, SQUARGRAPH"
-             style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:contrast(1.02) saturate(.88);"
+     style="width:100%; height:100%;
+     object-fit: cover;
+     filter: contrast(1.02) saturate(.92);
+     transform: scale(1.01);
              onerror="this.style.display='none';this.parentNode.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#0D0A1E;\'><span style=\'font-family:Outfit,sans-serif;font-size:56px;font-weight:800;color:rgba(168,85,247,0.2);\'>SS</span></div>';">
         <!-- Subtle overlay on photo -->
         <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(3,2,10,0.5) 0%,transparent 50%);pointer-events:none;"></div>
@@ -1932,7 +1962,7 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
       </h2>
 
       <!-- Two-column credential grid — reads like an operator, not a storyteller -->
-      <div class="reveal reveal-d1" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:40px;">
+      <div class="reveal reveal-d1" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:40px;" id="founder-cred-grid">
 
         <div style="background:#0D0A1E;border:1px solid rgba(255,255,255,.06);padding:28px 24px;">
           <div style="font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#A855F7;margin-bottom:10px;">Operational Background</div>
