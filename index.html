@@ -1621,90 +1621,176 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
 <!-- ══════════════════════════════════════════
      SECTION 03 — WORK
 ══════════════════════════════════════════ -->
-<section id="work" class="work-section">
-  <div style="position:absolute;top:-80px;right:-80px;pointer-events:none;opacity:.3;">
-    <svg width="500" height="500" viewBox="0 0 500 500">
-      <circle cx="400" cy="100" r="300" stroke="rgba(124,58,237,0.06)" stroke-width="1" fill="none" class="spin-ring" style="animation-duration:60s;"/>
-    </svg>
-  </div>
+<section id="work" class="work-section" style="position:relative;padding:80px 40px;background:#09090f;overflow:hidden;">
+
+  <style>
+    .strip-label {
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #A855F7;
+      margin: 0 0 12px 4px;
+      font-weight: 500;
+    }
+    .scroll-strip {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 10px;
+      cursor: grab;
+    }
+    .scroll-strip:active { cursor: grabbing; }
+    .scroll-strip::-webkit-scrollbar { height: 3px; }
+    .scroll-strip::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 99px; }
+    .scroll-strip::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.45); border-radius: 99px; }
+
+    .film-card {
+      flex: 0 0 560px;
+      aspect-ratio: 16/9;
+      scroll-snap-align: start;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #111;
+      position: relative;
+    }
+    .reel-card {
+      flex: 0 0 200px;
+      aspect-ratio: 9/16;
+      scroll-snap-align: start;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #111;
+      position: relative;
+    }
+    .film-card iframe,
+    .reel-card iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      pointer-events: none;
+    }
+    .work-vtag {
+      display: inline-block;
+      padding: 5px 13px;
+      border: 1px solid rgba(168,85,247,0.35);
+      border-radius: 999px;
+      font-size: 11px;
+      color: rgba(238,238,245,0.55);
+      margin: 3px;
+    }
+    .work-attr {
+      margin-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(238,238,245,0.3);
+    }
+    .work-attr a { color: #A855F7; text-decoration: none; }
+  </style>
+
   <div style="max-width:1200px;margin:0 auto;">
-    <div class="s-label reveal">Execution on Record</div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px;flex-wrap:wrap;">
-      <h2 class="reveal font-display" style="font-size:clamp(32px,3.8vw,54px);line-height:1.03;font-weight:800;letter-spacing:-.028em;">
+
+    <div class="strip-label" style="letter-spacing:.18em;margin-bottom:18px;">Execution on Record</div>
+
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:40px;flex-wrap:wrap;">
+      <h2 style="font-size:clamp(26px,3.8vw,48px);line-height:1.05;font-weight:800;letter-spacing:-.028em;color:#eeeef5;margin:0;">
         Selected work.<br/>Across <span style="color:#A855F7;">industries & audiences.</span>
       </h2>
-      <div class="work-verticals reveal" style="align-self:flex-end;">
-        <span class="work-vertical-tag">Hospitality</span>
-        <span class="work-vertical-tag">Lifestyle</span>
-        <span class="work-vertical-tag">D2C</span>
-        <span class="work-vertical-tag">Automotive</span>
+      <div style="align-self:flex-end;">
+        <span class="work-vtag">Hospitality</span>
+        <span class="work-vtag">Lifestyle</span>
+        <span class="work-vtag">D2C</span>
+        <span class="work-vtag">Automotive</span>
       </div>
     </div>
 
-    <!-- Top row: 2 wide campaign films -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
-      <div class="work-video-card wide-card">
-        <span class="work-format-badge">Campaign Film</span>
-        <iframe loading="lazy" title="Campaign — Squargraph"
+    <!-- Campaign Films Strip -->
+    <div class="strip-label">Campaign Films</div>
+    <div class="scroll-strip" id="films-strip">
+      <div class="film-card">
+        <iframe loading="lazy" title="Campaign film 1"
           src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true"
           referrerpolicy="origin"
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"></iframe>
       </div>
-      <div class="work-video-card wide-card">
-        <span class="work-format-badge">Campaign Film</span>
-        <iframe loading="lazy" title="Campaign — Squargraph"
+      <div class="film-card">
+        <iframe loading="lazy" title="Campaign film 2"
           src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true"
           referrerpolicy="origin"
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"></iframe>
       </div>
     </div>
 
-    <!-- Bottom row: 5 reels in equal columns -->
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;">
-      <div class="work-video-card reel-card-new">
-        <span class="work-format-badge">Reel</span>
-        <iframe loading="lazy" title="Reel — Squargraph"
+    <!-- Reels Strip -->
+    <div class="strip-label" style="margin-top:32px;">Reels</div>
+    <div class="scroll-strip" id="reels-strip">
+      <div class="reel-card">
+        <iframe loading="lazy" title="Reel 1"
           src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true"
           referrerpolicy="origin"
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"></iframe>
       </div>
-      <div class="work-video-card reel-card-new">
-        <span class="work-format-badge">Reel</span>
-        <iframe loading="lazy" title="Reel — Squargraph"
+      <div class="reel-card">
+        <iframe loading="lazy" title="Reel 2"
           src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true"
           referrerpolicy="origin"
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"></iframe>
       </div>
-      <div class="work-video-card reel-card-new">
-        <span class="work-format-badge">Reel</span>
-        <iframe loading="lazy" title="Reel — Squargraph"
+      <div class="reel-card">
+        <iframe loading="lazy" title="Reel 3"
           src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true"
           referrerpolicy="origin"
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"></iframe>
       </div>
-      <div class="work-video-card reel-card-new">
-        <span class="work-format-badge">Reel</span>
-        <iframe loading="lazy" title="Reel — Squargraph"
+      <div class="reel-card">
+        <iframe loading="lazy" title="Reel 4"
           src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true"
           referrerpolicy="origin"
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"></iframe>
       </div>
-      <div class="work-video-card reel-card-new">
-        <span class="work-format-badge">Reel</span>
-        <iframe loading="lazy" title="Reel — Squargraph"
+      <div class="reel-card">
+        <iframe loading="lazy" title="Reel 5"
           src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true"
           referrerpolicy="origin"
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"></iframe>
       </div>
     </div>
 
-    <div class="attribution-line reveal">
-      <p>Production in collaboration with <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer">Films By Jones</a></p>
-      <p style="color:rgba(238,238,245,.2);font-size:11px;">More work available on request</p>
+    <div class="work-attr">
+      <span>Production in collaboration with <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer">Films By Jones</a></span>
+      <span style="font-size:11px;">More work available on request</span>
     </div>
-  </div>
-</section>
 
+  </div>
+
+  <script>
+    function addDragScroll(el) {
+      let isDown = false, startX, scrollLeft;
+      el.addEventListener('mousedown', e => {
+        isDown = true;
+        el.style.cursor = 'grabbing';
+        startX = e.pageX - el.offsetLeft;
+        scrollLeft = el.scrollLeft;
+      });
+      document.addEventListener('mouseup', () => { isDown = false; el.style.cursor = 'grab'; });
+      el.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - el.offsetLeft;
+        el.scrollLeft = scrollLeft - (x - startX);
+      });
+    }
+    addDragScroll(document.getElementById('films-strip'));
+    addDragScroll(document.getElementById('reels-strip'));
+  </script>
+
+</section>
 <!-- ══════════════════════════════════════════
      SECTION 04 — SYSTEM ARCHITECTURE
      WHAT CHANGED:
