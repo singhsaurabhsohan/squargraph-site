@@ -32,8 +32,8 @@
   <meta charset="UTF-8" />
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SQUARGRAPH — Campaign Execution Infrastructure</title>
-  <meta name="description" content="SQUARGRAPH is a campaign execution infrastructure — the operational layer between strategy and output for brands that cannot afford to lose weeks to misalignment." />
+  <title>SQUARGRAPH — Integrated Advertising & Creative Communication Studio</title>
+  <meta name="description" content="SQUARGRAPH is an integrated advertising and creative communication studio building campaigns, content, media systems, production, and digital experiences for modern brands." />
 
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -75,8 +75,8 @@
   }
   </script>
 
-  <meta property="og:title" content="SQUARGRAPH — Campaign Execution Infrastructure">
-  <meta property="og:description" content="The operational layer between strategy and output. Campaign execution infrastructure for modern brands.">
+  <meta property="og:title" content="SQUARGRAPH Studios — Integrated Advertising & Creative Communication">
+  <meta property="og:description" content="Integrated advertising, content, production, media, and digital communication for modern brands.">
   <meta property="og:image" content="https://squargraph.com/preview.jpg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://squargraph.com">
@@ -381,14 +381,6 @@ nav.scrolled {
    ══════════════════════════════════════════════════
    SECTION 01: HERO — Compressed. Cinematic. Decisive.
    ══════════════════════════════════════════════════
-   WHAT CHANGED:
-   - Removed: second body paragraph, bullet strip, disclaimer,
-     "Now collaborating" indicator, scroll hint duplication
-   - Compressed from 11 elements to 4 core elements
-   - Headline unchanged (it was strong)
-   - Subheadline is now ONE declarative positioning sentence
-   - CTAs: simplified to two, with sharper labels
-   - Added: subtle left-edge vertical rule for cinematic framing
 ───────────────────────────────────────────────────────────── */
 #hero {
   min-height: 100vh;
@@ -486,7 +478,7 @@ nav.scrolled {
    ══════════════════════════════════════════════════
    WHAT CHANGED:
    - Headline reframed from hedge to declaration
-   - "The kind of work we actually make" → "Execution on record."
+   - "The kind of work we actually make" → "Selected Work."
    - Collaboration credit moved into proper attribution block
    - Sub-label added: industry verticals as context
 ───────────────────────────────────────────────────────────── */
@@ -588,7 +580,7 @@ nav.scrolled {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   SECTION 04: SYSTEM ARCHITECTURE
+   SECTION 04: CAPABILITIES
    ══════════════════════════════════════════════════
    WHAT CHANGED:
    - REPLACES four sections: Integrated Advertising Systems,
@@ -693,7 +685,7 @@ nav.scrolled {
    WHAT CHANGED:
    - Visual treatment elevated: numbered accordion with
      left accent line rather than basic accordion
-   - Heading refined: "Not a workflow. A system." preserved —
+   - Heading refined: "Built for modern campaign execution." preserved —
      it's strong. Sub-framing text tightened.
 ───────────────────────────────────────────────────────────── */
 .process-section {
@@ -742,11 +734,11 @@ nav.scrolled {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   SECTION 06: INTELLIGENCE LAYER (Brand Explorations)
+   SECTION 06: Strategic Thinking
    ══════════════════════════════════════════════════
    WHAT CHANGED:
    - Moved earlier in page (was after founder)
-   - Framing rewritten: "Strategic Studies" not "Explorations"
+   - Framing rewritten: "Brand Insights" not "Explorations"
    - Header copy elevated: positions this as intellectual capital,
      not spec work or portfolio pieces
    - Card visual treatment: cleaner, with stronger quote pull
@@ -853,100 +845,198 @@ nav.scrolled {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   SECTION 07: FOUNDER MANIFESTO
-   ══════════════════════════════════════════════════
-   WHAT CHANGED:
-   - "Before building SQUARGRAPH, Saurabh spent years..."
-     → Replaced with 3-paragraph manifesto structure:
-     1. The broken thing (problem)
-     2. The conviction (why it matters)
-     3. SQUARGRAPH (the answer)
-   - No résumé sentences. No LinkedIn language.
-   - Photo + text layout preserved (it works)
-   - Social links preserved
+   SECTION 07: BRAND ENVIRONMENTS
+   Replaces founder section.
+   Enterprise perception. Category expansion.
+   Cinematic restraint.
 ───────────────────────────────────────────────────────────── */
-.founder-section {
-  padding: 100px 5vw;
-  position: relative; z-index: 2;
+.brand-env-section {
+  padding: 120px 5vw;
   background: #080616;
   border-top: 1px solid rgba(255,255,255,.055);
   border-bottom: 1px solid rgba(255,255,255,.055);
-}
-.founder-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 88px; align-items: start;
-  margin-top: 20px;
-}
-@media (max-width: 768px) {
-  .founder-grid { grid-template-columns: 1fr; gap: 48px; }
-  #founder > div > div[style*="grid-template-columns:320px"] {
-    grid-template-columns: 1fr !important;
-    gap: 40px !important;
-  }
-  #founder > div > div[style*="grid-template-columns:320px"] > div:first-child {
-    max-width: 240px;
-  }
-}
-.founder-photo {
-  width: 100%; aspect-ratio: 3/4;
-  border: 1px solid rgba(255,255,255,.065);
-  border-radius: 2px; overflow: hidden;
-}
-.founder-photo img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: contrast(1.02) saturate(.92);
-  transform: scale(1.01);
-}
-.founder-name {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(38px, 5vw, 62px);
-  line-height: .95; font-weight: 800;
-  letter-spacing: -.05em; margin-bottom: 12px;
-}
-.founder-role {
-  color: #A855F7; font-family: 'Outfit', sans-serif;
-  font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
-  margin-bottom: 44px; font-weight: 500;
-}
-/* Manifesto paragraphs */
-.manifesto-p {
-  color: rgba(238,238,245,.65);
-  font-size: 15px; line-height: 1.88;
-  font-weight: 300; margin-bottom: 22px; max-width: 52ch;
-}
-.manifesto-p strong {
-  color: rgba(238,238,245,.9); font-weight: 500;
-}
-.founder-meta {
-  display: flex; flex-wrap: wrap; gap: 40px;
-  margin-top: 44px; padding-top: 28px;
-  border-top: 1px solid rgba(255,255,255,.08);
-}
-.founder-meta-item {}
-.founder-meta-label {
-  color: #A855F7; font-size: 10px;
-  letter-spacing: .18em; text-transform: uppercase;
-  margin-bottom: 8px; font-family: 'Outfit', sans-serif;
-}
-.founder-meta-value {
-  color: rgba(238,238,245,.75);
-  font-size: 14px; line-height: 1.7; max-width: 200px;
-}
-.social-links { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
-.social-link {
-  width: 38px; height: 38px;
-  border: 1px solid rgba(255,255,255,.09); border-radius: 2px;
-  display: inline-flex; align-items: center; justify-content: center;
-  color: rgba(238,238,245,.5); text-decoration: none;
-  transition: border-color .2s, color .2s, background .2s;
-}
-.social-link:hover {
-  border-color: #7C3AED; color: #A855F7;
-  background: rgba(124,58,237,.08);
+  position: relative; z-index: 2;
+  overflow: hidden;
 }
 
+/* Subtle background ornament — matches hero SVG language */
+.brand-env-section::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(124,58,237,.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.brand-env-intro {
+  margin-bottom: 72px;
+}
+
+.brand-env-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+  .brand-env-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+/* Primary grid: 3 large cards top, 3 smaller bottom */
+.brand-env-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 2px;
+}
+
+@media (max-width: 960px) {
+  .brand-env-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .brand-env-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Base card — inherits pillar-card language */
+.brand-env-card {
+  background: #0D0A1E;
+  border: 1px solid rgba(255,255,255,.055);
+  padding: 44px 36px 40px;
+  position: relative; overflow: hidden;
+  transition: border-color .35s ease, background .35s ease, transform .35s cubic-bezier(.23,1,.32,1);
+  cursor: default;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+
+/* Top accent line — animates in on hover */
+.brand-env-accent {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(168,85,247,.7), transparent);
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.brand-env-card:hover {
+  border-color: rgba(124,58,237,.28);
+  background: rgba(124,58,237,.035);
+  transform: translateY(-5px);
+}
+
+.brand-env-card:hover .brand-env-accent {
+  opacity: 1;
+}
+
+/* Large cards: slightly more padding, larger name */
+.brand-env-large {
+  padding: 48px 40px 44px;
+}
+
+/* Small cards: tighter */
+.brand-env-small {
+  padding: 36px 36px 32px;
+}
+
+.brand-env-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px; letter-spacing: .2em;
+  color: rgba(124,58,237,.45);
+  margin-bottom: 28px;
+  display: block;
+}
+
+.brand-env-body {
+  flex: 1;
+  display: flex; flex-direction: column;
+}
+
+.brand-env-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 21px; font-weight: 700;
+  letter-spacing: -.02em; color: #EEEEF5;
+  margin-bottom: 14px; line-height: 1.15;
+}
+
+.brand-env-large .brand-env-name {
+  font-size: 24px;
+}
+
+.brand-env-line {
+  font-size: 13px; line-height: 1.8;
+  color: rgba(238,238,245,.4);
+  font-weight: 300; margin-bottom: 28px;
+  flex: 1;
+  overflow-wrap: break-word;
+}
+
+/* Signal tags — lighter than pillar outputs,
+   feel like environmental indicators */
+.brand-env-signals {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  border-top: 1px solid rgba(255,255,255,.045);
+  padding-top: 20px;
+  margin-top: auto;
+}
+
+.brand-env-signals span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(238,238,245,.3);
+  padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,.055);
+  border-radius: 1px;
+  transition: color .2s, border-color .2s;
+}
+
+.brand-env-card:hover .brand-env-signals span {
+  color: rgba(168,85,247,.6);
+  border-color: rgba(124,58,237,.2);
+}
+
+/* Footer closing statement */
+.brand-env-footer {
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,.06);
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.brand-env-footer-line {
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, #7C3AED, #A855F7);
+  flex-shrink: 0;
+}
+
+.brand-env-footer p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px; letter-spacing: .06em;
+  color: rgba(238,238,245,.25);
+  font-style: italic;
+  flex: 1;
+}
+
+@media (max-width: 560px) {
+  .brand-env-large {
+    padding: 32px 24px 28px;
+  }
+  .brand-env-small {
+    padding: 28px 24px 24px;
+  }
+}
 /* ─────────────────────────────────────────────────────────────
    SECTION 08: ENGAGEMENT MODELS
 ───────────────────────────────────────────────────────────── */
@@ -1355,13 +1445,8 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
 #system-architecture { content-visibility: auto; contain-intrinsic-size: 0 900px; }
 #process-section     { content-visibility: auto; contain-intrinsic-size: 0 700px; }
 #intelligence        { content-visibility: auto; contain-intrinsic-size: 0 700px; }
-#founder             { content-visibility: auto; contain-intrinsic-size: 0 1100px; }
+#brand-environments { content-visibility: auto; contain-intrinsic-size: 0 900px; }
 #contact             { content-visibility: auto; contain-intrinsic-size: 0 1200px; }
-@media (max-width: 640px) {
-  #founder-cred-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
 @media (max-width: 768px) {
   #intelligence-intro-grid {
     grid-template-columns: 1fr !important;
@@ -1397,10 +1482,10 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
   <a href="#" class="nav-logo">SQUAR<span>GRAPH</span></a>
   <div class="nav-links">
     <a href="#work">Work</a>
-    <a href="#system-architecture">System</a>
-    <a href="#intelligence">Thinking</a>
-    <a href="#founder">Founder</a>
-    <a href="#contact" class="nav-cta">Start a project</a>
+    <a href="#system-architecture">Capabilities</a>
+    <a href="#intelligence">Insights</a>
+    <a href="#brand-environments">Environments</a>
+    <a href="#contact" class="nav-cta">Let's Talk</a>
   </div>
   <button class="hamburger" id="mob-toggle" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -1413,8 +1498,8 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
   <a href="#work" onclick="closeMob()">Work</a>
   <a href="#system-architecture" onclick="closeMob()">System</a>
   <a href="#intelligence" onclick="closeMob()">Thinking</a>
-  <a href="#founder" onclick="closeMob()">Founder</a>
-  <a href="#contact" onclick="closeMob()" class="mob-cta">Start a project →</a>
+  <a href="#brand-environments" onclick="closeMob()">Environments</a>
+  <a href="#contact" onclick="closeMob()" class="mob-cta">Let's Talk →</a>
 </div>
 
 <div class="page-wrapper">
@@ -1479,18 +1564,20 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
 
     <!-- 02. ONE declarative positioning sentence -->
     <p class="hero-fade" style="font-size:clamp(16px,1.5vw,21px);line-height:1.72;color:rgba(238,238,245,.6);max-width:58ch;margin-bottom:44px;font-weight:300;letter-spacing:-.01em;">
-      The operational layer between strategy and output — for brands and agency ecosystems that cannot afford to lose weeks to misalignment.
-    </p>
+  We build modern brand communication — across strategy, production, content, and media — so you move from brief to live in weeks, not quarters. D2C, Automotive, Lifestype, hospitality: the system is the same.
+</p>
 
     <!-- 03. Two CTAs -->
     <div class="hero-fade-2" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:20px;">
       <a href="#contact" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;padding:17px 36px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;">
         Start the brief →
       </a>
-      <a href="#work" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:#EEEEF5;padding:16px 32px;font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;border:1px solid rgba(255,255,255,.16);transition:border-color .25s,background .25s;" onmouseover="this.style.borderColor='rgba(168,85,247,.5)';this.style.background='rgba(124,58,237,.08)'" onmouseout="this.style.borderColor='rgba(255,255,255,.16)';this.style.background='transparent'">
+      <a href="#work" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:#EEEEF5;padding:16px 32px;font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;border:1px solid rgba(255,255,255,.16);transition:border-color .25s,background .25s;"
+        onmouseover="this.style.borderColor='rgba(168,85,247,.5)';this.style.background='rgba(124,58,237,.08)'"
+        onmouseout="this.style.borderColor='rgba(255,255,255,.16)';this.style.background='transparent'">
         See the work
       </a>
-    </div>
+</div>
 
     <!-- 04. Active signal — single line, not a paragraph -->
     <div class="hero-fade-3" style="display:flex;align-items:center;gap:10px;">
@@ -1516,8 +1603,8 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
       <div class="proof-label">Brand Verticals</div>
     </div>
     <div class="proof-item reveal reveal-d1">
-      <div class="proof-number">Auto<span>·</span>D2C<span>·</span>Hosp</div>
-      <div class="proof-label" style="font-size:9px;">Core Campaign Sectors</div>
+      <div class="proof-number">3<span>+</span></div>
+      <div class="proof-label">Core Sectors</div>
     </div>
     <div class="proof-item reveal reveal-d2">
       <div class="proof-number">Brief<span>→</span>Live</div>
@@ -1547,13 +1634,13 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
     <div class="s-label reveal">Execution on Record</div>
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px;flex-wrap:wrap;">
       <h2 class="reveal font-display" style="font-size:clamp(32px,3.8vw,54px);line-height:1.03;font-weight:800;letter-spacing:-.028em;">
-        The work that<br/>earned the <span style="color:#A855F7;">brief.</span>
-      </h2>
+  Selected work.<br/>Across <span style="color:#A855F7;">industries & audiences.</span>
+</h2>
       <div class="work-verticals reveal" style="align-self:flex-end;">
-        <span class="work-vertical-tag">Automotive</span>
         <span class="work-vertical-tag">Hospitality</span>
-        <span class="work-vertical-tag">D2C</span>
         <span class="work-vertical-tag">Lifestyle</span>
+        <span class="work-vertical-tag">D2C</span>
+        <span class="work-vertical-tag">Automotive</span>
       </div>
     </div>
 
@@ -1640,7 +1727,7 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
       </div>
       <div class="system-intro-right reveal reveal-d2">
         <p>Most brands run their communication through disconnected parts — a freelancer here, an agency there, a production house on the side. SQUARGRAPH integrates all of it into a single operating system: briefed once, executed in parallel, delivered on time.</p>
-        <p style="margin-top:16px;">This is not a menu of services. It is a system architecture.</p>
+        <p style="margin-top:16px;">This is not a menu of services. It is how we work — every time.</p>
       </div>
     </div>
 
@@ -1908,94 +1995,127 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
   </div>
 </div>
 
-
 <!-- ══════════════════════════════════════════
-     SECTION 07 — FOUNDER MANIFESTO
-     WHAT CHANGED:
-     Replaced 5 résumé paragraphs with 3-paragraph
-     manifesto: Problem → Conviction → SQUARGRAPH.
-     No LinkedIn sentences. No "spent years working."
+     SECTION 07 — BRAND ENVIRONMENTS
 ══════════════════════════════════════════ -->
-<section id="founder" class="founder-section">
-  <div style="max-width:1200px;margin:0 auto;">
+<section id="brand-environments" class="brand-env-section">
+  <div style="max-width:1300px;margin:0 auto;">
 
-  <div class="reveal">
-    <div class="s-label">Leadership</div>
-  </div>
-
-  <div style="display:grid;grid-template-columns:320px 1fr;gap:80px;align-items:start;margin-top:20px;">
-
-    <!-- Photo column: smaller, contained, not dominating -->
-    <div class="reveal">
-      <div style="width:100%;aspect-ratio:1/1;border:1px solid rgba(255,255,255,.065);border-radius:2px;overflow:hidden;position:relative;">
-        <img src="founder.jpg" loading="lazy" alt="Saurabh Sohan Singh — Founder, SQUARGRAPH"
-     style="width:100%; height:100%;
-     object-fit: cover;
-     filter: contrast(1.02) saturate(.92);
-     transform: scale(1.01);
-             onerror="this.style.display='none';this.parentNode.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#0D0A1E;\'><span style=\'font-family:Outfit,sans-serif;font-size:56px;font-weight:800;color:rgba(168,85,247,0.2);\'>SS</span></div>';">
-        <!-- Subtle overlay on photo -->
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(3,2,10,0.5) 0%,transparent 50%);pointer-events:none;"></div>
-      </div>
-      <!-- Name and role under photo — compact -->
-      <div style="margin-top:20px;">
-        <div class="font-display" style="font-size:20px;font-weight:800;letter-spacing:-.02em;color:#EEEEF5;margin-bottom:4px;">Saurabh Sohan Singh</div>
-        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#A855F7;font-family:'Outfit',sans-serif;margin-bottom:16px;">Founder & Executive Director</div>
-        <div class="social-links">
-          <a href="https://instagram.com/saurabhsohansingh" target="_blank" rel="noopener" class="social-link" title="Instagram">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
-          <a href="https://linkedin.com/in/saurabhsohansingh" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          <a href="https://x.com/imsssingh" target="_blank" rel="noopener" class="social-link" title="X">
-            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-        </div>
+    <div class="brand-env-intro reveal">
+      <div class="s-label">Brand Environments</div>
+      <div class="brand-env-intro-grid">
+        <h2 class="font-display" style="font-size:clamp(32px,3.8vw,54px);line-height:1.03;font-weight:800;letter-spacing:-.028em;">
+          Built for the brands<br/>that <span style="color:#A855F7;">define categories.</span>
+        </h2>
+        <p style="color:rgba(238,238,245,.4);font-size:15px;line-height:1.85;font-weight:300;max-width:44ch;">
+          SQUARGRAPH operates across the full spectrum of modern brand communication — from launch to legacy, from product to culture. The system adapts. The standard does not.
+        </p>
       </div>
     </div>
 
-    <!-- Right column: operational bio, not manifesto -->
-    <div>
-      <h2 class="reveal font-display" style="font-size:clamp(28px,3.5vw,46px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:32px;">
-        Built by someone who has run<br/><span style="color:#A855F7;">the system from the inside.</span>
-      </h2>
+    <!-- Primary environment grid: 3 large + 3 supporting -->
+    <div class="brand-env-grid">
 
-      <!-- Two-column credential grid — reads like an operator, not a storyteller -->
-      <div class="reveal reveal-d1" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:40px;" id="founder-cred-grid">
-
-        <div style="background:#0D0A1E;border:1px solid rgba(255,255,255,.06);padding:28px 24px;">
-          <div style="font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#A855F7;margin-bottom:10px;">Operational Background</div>
-          <p style="font-size:13px;color:rgba(238,238,245,.55);line-height:1.78;font-weight:300;">Large-scale campaign management across automotive, hospitality, and D2C ecosystems. Social architecture, production pipeline coordination, and cross-functional execution at volume.</p>
+      <!-- Environment 01: Luxury & Lifestyle -->
+      <div class="brand-env-card brand-env-large reveal reveal-d1" data-env="luxury">
+        <div class="brand-env-num">01</div>
+        <div class="brand-env-body">
+          <div class="brand-env-name">Luxury &amp; Lifestyle</div>
+          <p class="brand-env-line">Communication systems for brands where perception is the product — fashion, watches, interiors, premium D2C.</p>
+          <div class="brand-env-signals">
+            <span>Editorial Production</span>
+            <span>Campaign Architecture</span>
+            <span>Brand World Building</span>
+          </div>
         </div>
-
-        <div style="background:#0D0A1E;border:1px solid rgba(255,255,255,.06);padding:28px 24px;">
-          <div style="font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#A855F7;margin-bottom:10px;">System Design Focus</div>
-          <p style="font-size:13px;color:rgba(238,238,245,.55);line-height:1.78;font-weight:300;">Built SQUARGRAPH as an execution infrastructure — not a studio, not an agency. The focus is operational architecture: briefing systems, delivery pipelines, and multidisciplinary team coordination.</p>
-        </div>
-
-        <div style="background:#0D0A1E;border:1px solid rgba(255,255,255,.06);padding:28px 24px;">
-          <div style="font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#A855F7;margin-bottom:10px;">Primary Sectors</div>
-          <p style="font-size:13px;color:rgba(238,238,245,.55);line-height:1.78;font-weight:300;">Automotive · Hospitality · Direct-to-Consumer · Lifestyle. Campaign systems designed for both emerging brands and enterprise marketing teams.</p>
-        </div>
-
-        <div style="background:#0D0A1E;border:1px solid rgba(255,255,255,.06);padding:28px 24px;">
-          <div style="font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#A855F7;margin-bottom:10px;">Organisation Model</div>
-          <p style="font-size:13px;color:rgba(238,238,245,.55);line-height:1.78;font-weight:300;">A coordinated specialist network — not a fixed headcount. Strategy, production, design, copy, and media expertise assembled per project and run through a unified operational layer.</p>
-        </div>
-
+        <div class="brand-env-accent"></div>
       </div>
 
-      <!-- Single declarative line — no manifesto -->
-      <p class="reveal reveal-d2" style="font-size:14px;color:rgba(238,238,245,.35);line-height:1.8;font-weight:300;border-left:2px solid rgba(124,58,237,.4);padding-left:20px;max-width:52ch;">
-        SQUARGRAPH is designed to run the same way regardless of who is in the room — because the system is the product.
-      </p>
+      <!-- Environment 02: Hospitality & Experience -->
+      <div class="brand-env-card brand-env-large reveal reveal-d2" data-env="hospitality">
+        <div class="brand-env-num">02</div>
+        <div class="brand-env-body">
+          <div class="brand-env-name">Hospitality &amp; Experience</div>
+          <p class="brand-env-line">From hotel groups to dining concepts — communication that sells the feeling before the visit.</p>
+          <div class="brand-env-signals">
+            <span>Launch Campaigns</span>
+            <span>Social Ecosystems</span>
+            <span>Visual Identity</span>
+          </div>
+        </div>
+        <div class="brand-env-accent"></div>
+      </div>
+
+      <!-- Environment 03: Automotive & Engineering -->
+      <div class="brand-env-card brand-env-large reveal reveal-d3" data-env="auto">
+        <div class="brand-env-num">03</div>
+        <div class="brand-env-body">
+          <div class="brand-env-name">Automotive &amp; Engineering</div>
+          <p class="brand-env-line">CGI-led product storytelling, launch infrastructure, and digital communication for precision-engineered brands.</p>
+          <div class="brand-env-signals">
+            <span>CGI &amp; Motion</span>
+            <span>Product Films</span>
+            <span>Launch Systems</span>
+          </div>
+        </div>
+        <div class="brand-env-accent"></div>
+      </div>
+
+      <!-- Environment 04: Consumer & D2C -->
+      <div class="brand-env-card brand-env-small reveal reveal-d1" data-env="d2c">
+        <div class="brand-env-num">04</div>
+        <div class="brand-env-body">
+          <div class="brand-env-name">Consumer &amp; D2C</div>
+          <p class="brand-env-line">Performance-aware brand communication for brands building audiences and conversions simultaneously.</p>
+          <div class="brand-env-signals">
+            <span>Content Systems</span>
+            <span>Performance Creative</span>
+          </div>
+        </div>
+        <div class="brand-env-accent"></div>
+      </div>
+
+      <!-- Environment 05: Entertainment & Media -->
+      <div class="brand-env-card brand-env-small reveal reveal-d2" data-env="entertainment">
+        <div class="brand-env-num">05</div>
+        <div class="brand-env-body">
+          <div class="brand-env-name">Entertainment &amp; Media</div>
+          <p class="brand-env-line">Title launches, streaming communication, talent-led campaigns, and cultural storytelling at scale.</p>
+          <div class="brand-env-signals">
+            <span>Launch Films</span>
+            <span>Campaign Rollout</span>
+          </div>
+        </div>
+        <div class="brand-env-accent"></div>
+      </div>
+
+      <!-- Environment 06: Emerging & Venture-Backed -->
+      <div class="brand-env-card brand-env-small reveal reveal-d3" data-env="emerging">
+        <div class="brand-env-num">06</div>
+        <div class="brand-env-body">
+          <div class="brand-env-name">Emerging &amp; Venture-Backed</div>
+          <p class="brand-env-line">Enterprise-grade communication infrastructure for brands building their first serious presence.</p>
+          <div class="brand-env-signals">
+            <span>Brand Architecture</span>
+            <span>Go-To-Market</span>
+          </div>
+        </div>
+        <div class="brand-env-accent"></div>
+      </div>
 
     </div>
+
+    <!-- Closing statement — company-scale signal -->
+    <div class="brand-env-footer reveal">
+      <div class="brand-env-footer-line"></div>
+      <p>The brief determines the environment. The system handles the rest.</p>
+      <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;color:#A855F7;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:opacity .2s;" onmouseover="this.style.opacity='.65'" onmouseout="this.style.opacity='1'">
+        Start a conversation →
+      </a>
+    </div>
+
   </div>
-</div>
 </section>
-
 
 <!-- ══════════════════════════════════════════
      SECTION 08 — ENGAGEMENT MODELS
@@ -2095,7 +2215,7 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
       <!-- Left: CTA copy -->
       <div>
         <h2 class="reveal font-display contact-headline">
-          The brief<br/>is where<br/><span style="color:#A855F7;">it starts.</span>
+          Start the<br/>conversation.<br/><span style="color:#A855F7;">No pitch decks.</span>
         </h2>
         <p class="reveal contact-sub">
           No pitch decks. No long discovery calls.<br/>
@@ -2177,9 +2297,7 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
             <label class="form-label" for="reference">Reference links (optional)</label>
             <input type="url" id="reference" name="reference" placeholder="Drive / Notion / examples" class="form-input"/>
           </div>
-          <button type="submit" id="form-submit-btn" class="submit-btn">
-            Send Brief →
-          </button>
+          <button type="submit" id="form-submit-btn" class="submit-btn">Send inquiry →</button>
           <p class="form-next-steps">We review every brief within 48 hours and respond with a clear plan — not a pitch deck.</p>
         </form>
       </div>
@@ -2200,9 +2318,7 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
         <div class="font-display" style="font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px;">
           SQUAR<span style="color:#A855F7;">GRAPH</span>
         </div>
-        <p style="color:rgba(238,238,245,.35);font-size:13px;line-height:1.75;font-weight:300;max-width:26ch;margin-bottom:24px;">
-          Campaign execution infrastructure for modern brands and agency ecosystems.
-        </p>
+        <p style="color:rgba(238,238,245,.35);font-size:13px;line-height:1.75;font-weight:300;max-width:26ch;margin-bottom:24px;">Integrated brand communication for modern brands and agency ecosystems — delivered from Delhi to global markets.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <a href="https://instagram.com/squargraph" target="_blank" rel="noopener" class="social-link" title="Instagram">
             <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -2223,7 +2339,7 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
         <span class="footer-col-label">Company</span>
         <a href="#" id="privacy-link" class="footer-link">Privacy Policy</a>
         <a href="#intelligence" class="footer-link">Brand Studies</a>
-        <a href="#founder" class="footer-link">Founder</a>
+        <a href="#brand-environments" class="footer-link">Brand Environments</a>
       </div>
       <!-- Services -->
       <div>
@@ -2249,7 +2365,7 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
 
     <div class="footer-bar">
       <p style="color:rgba(238,238,245,.2);font-size:12px;font-weight:300;">© 2026 SQUARGRAPH. All rights reserved.</p>
-      <p style="color:rgba(238,238,245,.15);font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Campaign Execution Infrastructure — Delhi, India</p>
+      <p style="color:rgba(238,238,245,.15);font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Integrated Brand Communication — Delhi, India</p>
     </div>
   </div>
 </footer>
