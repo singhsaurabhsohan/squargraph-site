@@ -517,19 +517,6 @@ nav.scrolled {
 .work-img-card iframe {
   width: 100%; height: 100%; display: block; border: none;
 }
-.reel-card {
-  flex: 0 0 auto; width: 240px; aspect-ratio: 9/16;
-  border-radius: 6px; overflow: hidden;
-  border: 1px solid rgba(255,255,255,.07);
-  transition: border-color .3s ease, transform .3s ease;
-}
-.reel-card:hover {
-  border-color: rgba(124,58,237,.35);
-  transform: translateY(-4px);
-}
-.reel-card iframe {
-  width: 100%; height: 100%; display: block; border: none;
-}
 @media (max-width: 768px) {
   .work-img-card { width: 290px; }
   .reel-card { width: 180px; }
@@ -1786,8 +1773,10 @@ body.cookie-visible #chat-toggle { bottom: 110px !important; }
         el.scrollLeft = scrollLeft - (x - startX);
       });
     }
-    addDragScroll(document.getElementById('films-strip'));
-    addDragScroll(document.getElementById('reels-strip'));
+    document.addEventListener('DOMContentLoaded', function() {
+  addDragScroll(document.getElementById('films-strip'));
+  addDragScroll(document.getElementById('reels-strip'));
+});
   </script>
 
 </section>
