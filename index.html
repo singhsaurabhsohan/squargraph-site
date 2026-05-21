@@ -2056,7 +2056,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
   <div class="film-card" data-video-id="film-0">
     <iframe id="vid-film-0" loading="lazy" title="Campaign film 1" width="560" height="315"
-      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=false&loop=true"
+      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=false&loop=true&disable_player_controls=true"
       referrerpolicy="origin"
       allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
       sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
@@ -2064,7 +2064,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
   <div class="film-card" data-video-id="film-1">
     <iframe id="vid-film-1" loading="lazy" title="Campaign film 2" width="560" height="315"
-      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=false&loop=true"
+      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=false&loop=true&disable_player_controls=true"
       referrerpolicy="origin"
       allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
       sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
@@ -2145,6 +2145,68 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
   }
   addDragScroll(document.getElementById('films-strip'));
   addDragScroll(document.getElementById('reels-strip'));
+
+  /* ── Hover mute/unmute ── */
+  var allVideoIds = ['film-0','film-1','reel-0','reel-1','reel-2','reel-3','reel-4'];
+  var baseUrls = {
+    'film-0': 'https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6',
+    'film-1': 'https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1',
+    'reel-0': 'https://play.gumlet.io/embed/6a0896763a5246215d47a7fd',
+    'reel-1': 'https://play.gumlet.io/embed/6a08955d3a5246215d479670',
+    'reel-2': 'https://play.gumlet.io/embed/6a08955d0143a2000b232aad',
+    'reel-3': 'https://play.gumlet.io/embed/6a0896160ed6988dba199c1a',
+    'reel-4': 'https://play.gumlet.io/embed/6a0896760143a2000b233c09'
+  };
+  var filmControls = { 'film-0': true, 'film-1': true };
+
+  function setMute(id, muted) {
+    var iframe = document.getElementById('vid-' + id);
+    if (!iframe) return;
+    var controls = filmControls[id] ? '&disable_player_controls=true' : '';
+    iframe.src = baseUrls[id] + '?autoplay=true&muted=' + muted + '&loop=true' + controls;
+  }
+
+  function attachHover(cardEl, id) {
+    cardEl.addEventListener('mouseenter', function() { setMute(id, 'false'); });
+    cardEl.addEventListener('mouseleave', function() { setMute(id, 'true'); });
+  }
+
+  var isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  var activeId = null;
+
+  function attachInteraction(cardEl, id) {
+    if (isMobile) {
+      cardEl.addEventListener('touchstart', function(e) {
+        if (activeId && activeId !== id) {
+          setMute(activeId, 'true');
+        }
+        if (activeId === id) {
+          setMute(id, 'true');
+          activeId = null;
+        } else {
+          setMute(id, 'false');
+          activeId = id;
+        }
+      }, { passive: true });
+    } else {
+      cardEl.addEventListener('mouseenter', function() { setMute(id, 'false'); });
+      cardEl.addEventListener('mouseleave', function() { setMute(id, 'true'); });
+    }
+  }
+
+  document.querySelectorAll('.film-card').forEach(function(card) {
+    var iframe = card.querySelector('iframe');
+    if (!iframe) return;
+    var id = iframe.id.replace('vid-', '');
+    attachInteraction(card, id);
+  });
+
+  document.querySelectorAll('.reel-wrap').forEach(function(card) {
+    var iframe = card.querySelector('iframe');
+    if (!iframe) return;
+    var id = iframe.id.replace('vid-', '');
+    attachInteraction(card, id);
+  });
 
 </section>
 <!-- ══════════════════════════════════════════
