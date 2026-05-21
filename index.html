@@ -224,26 +224,27 @@ nav.scrolled {
 
 /* ─── Brand identity classes ─── */
 .tm {
-  font-size: .45em;
-  font-weight: 400;
-  letter-spacing: .01em;
-  color: rgba(168,85,247,.55);
-  vertical-align: baseline;
-  line-height: 1;
-  margin-left: .08em;
+  font-size: .38em;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #A855F7;
+  vertical-align: super;
+  line-height: 0;
+  margin-left: .06em;
   position: relative;
-  top: -.1em;
+  top: .1em;
   font-family: 'Outfit', sans-serif;
 }
 .studios {
+  display: block;
   font-family: 'Outfit', sans-serif;
-  font-size: .48em;
-  font-weight: 300;
-  letter-spacing: .24em;
+  font-size: .52em;
+  font-weight: 400;
+  letter-spacing: .35em;
   text-transform: uppercase;
-  color: rgba(238,238,245,.35);
-  margin-left: .28em;
-  vertical-align: baseline;
+  color: rgba(238,238,245,.4);
+  margin-left: 0;
+  margin-top: .15em;
   line-height: 1;
 }
 .nav-links {
@@ -1608,7 +1609,10 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
      NAV
 ══════════════════════════════════════════ -->
 <nav id="nav">
-  <a href="#" class="nav-logo" aria-label="SQUARGRAPH Studios">SQUAR<span>GRAPH</span><sup class="tm">™</sup><span class="studios">Studios</span></a>
+  <a href="#" class="nav-logo" aria-label="SQUARGRAPH Studios" style="display:flex;flex-direction:column;align-items:flex-start;line-height:1;">
+  <span>SQUAR<span style="color:#A855F7;">GRAPH</span><sup class="tm">™</sup></span>
+  <span class="studios">Studios</span>
+</a>
   <div class="nav-links">
     <a href="#work">Work</a>
     <a href="#system-architecture">Capabilities</a>
@@ -2844,9 +2848,10 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
     <div class="footer-grid">
       <!-- Brand -->
       <div>
-        <div class="font-display" style="font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;">
-          SQUAR<span style="color:#A855F7;">GRAPH</span><sup class="tm">™</sup><span class="studios">Studios</span>
-        </div>
+        <div class="font-display" style="font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px;display:flex;flex-direction:column;align-items:flex-start;line-height:1;">
+  <span>SQUAR<span style="color:#A855F7;">GRAPH</span><sup class="tm">™</sup></span>
+  <span class="studios">Studios</span>
+</div>
         <p style="color:rgba(238,238,245,.35);font-size:13px;line-height:1.75;font-weight:300;max-width:26ch;margin-bottom:24px;">Integrated brand communication for modern brands and agency ecosystems — delivered from Delhi to global markets.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <a href="https://facebook.com/squargraphstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow SQUARGRAPH on Facebook">
