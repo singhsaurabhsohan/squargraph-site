@@ -2004,32 +2004,15 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 @media (max-width:768px) {
   #work { padding:60px 20px !important; }
 
-  /* Films become full-width 16:9 stacked */
-  #films-strip {
-    flex-direction:column !important;
-    overflow-x:visible !important;
-    gap:16px !important;
-    cursor:default !important;
-  }
   .film-card {
-    flex:0 0 auto !important;
-    width:100% !important;
-    aspect-ratio:16/9 !important;
+    flex: 0 0 80vw !important;
+    aspect-ratio: 16/9 !important;
   }
 
-  /* Reels become full-width 9:16 stacked */
-  #reels-strip {
-    flex-direction:column !important;
-    overflow-x:visible !important;
-    gap:16px !important;
-    cursor:default !important;
-  }
   .reel-wrap {
-    flex:0 0 auto !important;
-    width:100% !important;
-    /* 9:16 on mobile — tall and immersive */
-    aspect-ratio:9/16 !important;
-    max-height:75vh;
+    flex: 0 0 42vw !important;
+    aspect-ratio: 9/16 !important;
+    max-height: 280px !important;
   }
 }
 </style>
