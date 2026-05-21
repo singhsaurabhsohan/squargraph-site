@@ -216,7 +216,7 @@ nav.scrolled {
 .nav-logo {
   font-family: 'Outfit', sans-serif;
   font-size: 20px; font-weight: 800;
-  letter-spacing: -.02em; color: #EEEEF5;
+  letter-spacing: -.02em; color: #ffffff;
   text-decoration: none; flex-shrink: 0;
   line-height: 1;
 }
@@ -2157,7 +2157,11 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
     'reel-3': 'https://play.gumlet.io/embed/6a0896160ed6988dba199c1a',
     'reel-4': 'https://play.gumlet.io/embed/6a0896760143a2000b233c09'
   };
-  var filmControls = { 'film-0': true, 'film-1': true };
+  var filmControls = {
+    'film-0': true, 'film-1': true,
+    'reel-0': true, 'reel-1': true,
+    'reel-2': true, 'reel-3': true, 'reel-4': true
+  };
 
   var muteState = {};
   allVideoIds.forEach(function(id) { muteState[id] = 'true'; });
