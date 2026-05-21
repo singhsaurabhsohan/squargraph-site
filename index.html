@@ -224,16 +224,16 @@ nav.scrolled {
 
 /* ─── Brand identity classes ─── */
 .tm {
-  font-size: .38em;
-  font-weight: 600;
+  font-size: .55em;
+  font-weight: 700;
   letter-spacing: 0;
   color: #A855F7;
-  vertical-align: super;
-  line-height: 0;
-  margin-left: .06em;
-  position: relative;
-  top: .1em;
+  vertical-align: top;
+  line-height: 1.15;
+  margin-left: .04em;
   font-family: 'Outfit', sans-serif;
+  position: static;
+  top: auto;
 }
 .studios {
   display: block;
@@ -244,7 +244,7 @@ nav.scrolled {
   text-transform: uppercase;
   color: rgba(238,238,245,.4);
   margin-left: 0;
-  margin-top: .15em;
+  margin-top: .18em;
   line-height: 1;
 }
 .nav-links {
@@ -1610,7 +1610,9 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 ══════════════════════════════════════════ -->
 <nav id="nav">
   <a href="#" class="nav-logo" aria-label="SQUARGRAPH Studios" style="display:flex;flex-direction:column;align-items:flex-start;line-height:1;">
-  <span>SQUAR<span style="color:#A855F7;">GRAPH</span><sup class="tm">™</sup></span>
+  <span style="display:inline-flex;align-items:flex-start;">
+    <span style="color:#EEEEF5;">SQUAR</span><span style="background:linear-gradient(90deg,#7C3AED,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">GRAPH</span><span class="tm">™</span>
+  </span>
   <span class="studios">Studios</span>
 </a>
   <div class="nav-links">
@@ -2008,8 +2010,12 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
   transition:background .2s, transform .2s;
   color:#fff;
 }
-.reel-sound-btn:hover { background:rgba(124,58,237,.5); transform:scale(1.1); }
-.reel-sound-btn svg { pointer-events:none; }
+.reel-sound-btn:hover { background:rgba(124,58,237,.6); transform:scale(1.1); }
+.reel-sound-btn svg { pointer-events:none; display:block; }
+.sound-btn-muted .ic-unmute { display:none; }
+.sound-btn-muted .ic-mute   { display:block; }
+.sound-btn-live .ic-mute    { display:none; }
+.sound-btn-live .ic-unmute  { display:block; }
 
 /* ── MOBILE: full-width vertical stack ── */
 @media (max-width:768px) {
@@ -2062,102 +2068,132 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
   </div>
 
   <!-- Campaign Films -->
-  <div class="strip-label">Campaign Films</div>
-  <div class="scroll-strip" id="films-strip">
-    <div class="film-card">
-      <iframe loading="lazy" title="Campaign film 1" width="560" height="315"
-        src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-        referrerpolicy="origin"
-        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-    </div>
-    <div class="film-card">
-      <iframe loading="lazy" title="Campaign film 2" width="560" height="315"
-        src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-        referrerpolicy="origin"
-        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-    </div>
+<div class="strip-label">Campaign Films</div>
+<div class="scroll-strip" id="films-strip">
+
+  <div class="film-card" data-video-id="film-0">
+    <iframe id="vid-film-0" loading="lazy" title="Campaign film 1" width="560" height="315"
+      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      referrerpolicy="origin"
+      allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+      sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+    <button class="reel-sound-btn sound-btn-muted" data-vid="film-0" aria-label="Unmute">
+      <svg class="ic-mute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+      <svg class="ic-unmute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+      </svg>
+    </button>
   </div>
 
+  <div class="film-card" data-video-id="film-1">
+    <iframe id="vid-film-1" loading="lazy" title="Campaign film 2" width="560" height="315"
+      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      referrerpolicy="origin"
+      allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+      sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+    <button class="reel-sound-btn sound-btn-muted" data-vid="film-1" aria-label="Unmute">
+      <svg class="ic-mute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+      <svg class="ic-unmute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+      </svg>
+    </button>
+  </div>
+
+</div>
+
   <!-- Reels -->
-  <div class="strip-label" style="margin-top:32px;">Reels</div>
-  <div class="scroll-strip" id="reels-strip">
+<div class="strip-label" style="margin-top:32px;">Reels</div>
+<div class="scroll-strip" id="reels-strip">
 
-    <div class="reel-wrap" data-reel-id="0">
-      <iframe id="reel-iframe-0" loading="lazy" title="Reel 1" width="200" height="356"
-        src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-        referrerpolicy="origin"
-        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-      <button class="reel-sound-btn" data-reel="0" aria-label="Unmute reel 1">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-          <path class="icon-muted" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 3.53-2.61 6.44-6 6.93v2.02c4.01-.51 7.11-3.95 7.11-8.95H19zM16.5 3.07v2.02c3.39.49 6 3.4 6 6.91s-2.61 6.42-6 6.91v2.02c4.01-.51 7.11-3.95 7.11-8.93H23.5c0-5-3.1-9.42-7-10.93z"/>
-          <path class="icon-unmuted" style="display:none" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zM11.5 4L8.5 7 3 2.5 1.5 4 7 9.5 8.5 8 11.5 11V4z"/>
-        </svg>
-      </button>
-    </div>
+  <div class="reel-wrap" data-reel-id="0">
+    <iframe id="vid-reel-0" loading="lazy" title="Reel 1" width="200" height="356"
+      src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      referrerpolicy="origin"
+      allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+      sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+    <button class="reel-sound-btn sound-btn-muted" data-vid="reel-0" aria-label="Unmute">
+      <svg class="ic-mute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+      <svg class="ic-unmute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+      </svg>
+    </button>
+  </div>
 
-    <div class="reel-wrap" data-reel-id="1">
-      <iframe id="reel-iframe-1" loading="lazy" title="Reel 2" width="200" height="356"
-        src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-        referrerpolicy="origin"
-        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-      <button class="reel-sound-btn" data-reel="1" aria-label="Unmute reel 2">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-          <path class="icon-muted" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 3.53-2.61 6.44-6 6.93v2.02c4.01-.51 7.11-3.95 7.11-8.95H19zM16.5 3.07v2.02c3.39.49 6 3.4 6 6.91s-2.61 6.42-6 6.91v2.02c4.01-.51 7.11-3.95 7.11-8.93H23.5c0-5-3.1-9.42-7-10.93z"/>
-          <path class="icon-unmuted" style="display:none" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zM11.5 4L8.5 7 3 2.5 1.5 4 7 9.5 8.5 8 11.5 11V4z"/>
-        </svg>
-      </button>
-    </div>
+  <div class="reel-wrap" data-reel-id="1">
+    <iframe id="vid-reel-1" loading="lazy" title="Reel 2" width="200" height="356"
+      src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      referrerpolicy="origin"
+      allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+      sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+    <button class="reel-sound-btn sound-btn-muted" data-vid="reel-1" aria-label="Unmute">
+      <svg class="ic-mute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+      <svg class="ic-unmute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+      </svg>
+    </button>
+  </div>
 
-    <div class="reel-wrap" data-reel-id="2">
-      <iframe id="reel-iframe-2" loading="lazy" title="Reel 3" width="200" height="356"
-        src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-        referrerpolicy="origin"
-        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-      <button class="reel-sound-btn" data-reel="2" aria-label="Unmute reel 3">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-          <path class="icon-muted" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 3.53-2.61 6.44-6 6.93v2.02c4.01-.51 7.11-3.95 7.11-8.95H19zM16.5 3.07v2.02c3.39.49 6 3.4 6 6.91s-2.61 6.42-6 6.91v2.02c4.01-.51 7.11-3.95 7.11-8.93H23.5c0-5-3.1-9.42-7-10.93z"/>
-          <path class="icon-unmuted" style="display:none" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zM11.5 4L8.5 7 3 2.5 1.5 4 7 9.5 8.5 8 11.5 11V4z"/>
-        </svg>
-      </button>
-    </div>
+  <div class="reel-wrap" data-reel-id="2">
+    <iframe id="vid-reel-2" loading="lazy" title="Reel 3" width="200" height="356"
+      src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      referrerpolicy="origin"
+      allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+      sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+    <button class="reel-sound-btn sound-btn-muted" data-vid="reel-2" aria-label="Unmute">
+      <svg class="ic-mute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+      <svg class="ic-unmute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+      </svg>
+    </button>
+  </div>
 
-    <div class="reel-wrap" data-reel-id="3">
-      <iframe id="reel-iframe-3" loading="lazy" title="Reel 4" width="200" height="356"
-        src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-        referrerpolicy="origin"
-        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-      <button class="reel-sound-btn" data-reel="3" aria-label="Unmute reel 4">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-          <path class="icon-muted" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 3.53-2.61 6.44-6 6.93v2.02c4.01-.51 7.11-3.95 7.11-8.95H19zM16.5 3.07v2.02c3.39.49 6 3.4 6 6.91s-2.61 6.42-6 6.91v2.02c4.01-.51 7.11-3.95 7.11-8.93H23.5c0-5-3.1-9.42-7-10.93z"/>
-          <path class="icon-unmuted" style="display:none" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zM11.5 4L8.5 7 3 2.5 1.5 4 7 9.5 8.5 8 11.5 11V4z"/>
-        </svg>
-      </button>
-    </div>
+  <div class="reel-wrap" data-reel-id="3">
+    <iframe id="vid-reel-3" loading="lazy" title="Reel 4" width="200" height="356"
+      src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      referrerpolicy="origin"
+      allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+      sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+    <button class="reel-sound-btn sound-btn-muted" data-vid="reel-3" aria-label="Unmute">
+      <svg class="ic-mute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+      <svg class="ic-unmute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+      </svg>
+    </button>
+  </div>
 
-    <div class="reel-wrap" data-reel-id="4">
-      <iframe id="reel-iframe-4" loading="lazy" title="Reel 5" width="200" height="356"
-        src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-        referrerpolicy="origin"
-        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-      <button class="reel-sound-btn" data-reel="4" aria-label="Unmute reel 5">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-          <path class="icon-muted" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 3.53-2.61 6.44-6 6.93v2.02c4.01-.51 7.11-3.95 7.11-8.95H19zM16.5 3.07v2.02c3.39.49 6 3.4 6 6.91s-2.61 6.42-6 6.91v2.02c4.01-.51 7.11-3.95 7.11-8.93H23.5c0-5-3.1-9.42-7-10.93z"/>
-          <path class="icon-unmuted" style="display:none" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zM11.5 4L8.5 7 3 2.5 1.5 4 7 9.5 8.5 8 11.5 11V4z"/>
-        </svg>
-      </button>
-    </div>
+  <div class="reel-wrap" data-reel-id="4">
+    <iframe id="vid-reel-4" loading="lazy" title="Reel 5" width="200" height="356"
+      src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      referrerpolicy="origin"
+      allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+      sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+    <button class="reel-sound-btn sound-btn-muted" data-vid="reel-4" aria-label="Unmute">
+      <svg class="ic-mute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+      <svg class="ic-unmute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+      </svg>
+    </button>
+  </div>
 
+</div>
   </div><!-- /reels-strip -->
 
   <div class="work-attr">
-    <span>Production in collaboration with <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer">Films By Jones</a></span>
+    <span>In collaboration with <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer">Films By Jones</a></span>
     <span style="font-size:11px;">More work available on request</span>
   </div>
 
@@ -2165,7 +2201,8 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
 <script>
 (function(){
-  /* ── Drag scroll for desktop ── */
+
+  /* ── Drag scroll ── */
   function addDragScroll(el) {
     if (!el) return;
     var isDown = false, startX, scrollLeft;
@@ -2182,62 +2219,62 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
   addDragScroll(document.getElementById('films-strip'));
   addDragScroll(document.getElementById('reels-strip'));
 
-  /* ── Mute / unmute with exclusive audio ── */
-  // Each reel iframe src: muted=true initially.
-  // We rebuild the src with muted=false when unmuting,
-  // and restore muted=true on all others.
-  var reelSrcs = [
-    'https://play.gumlet.io/embed/6a0896763a5246215d47a7fd',
-    'https://play.gumlet.io/embed/6a08955d3a5246215d479670',
-    'https://play.gumlet.io/embed/6a08955d0143a2000b232aad',
-    'https://play.gumlet.io/embed/6a0896160ed6988dba199c1a',
-    'https://play.gumlet.io/embed/6a0896760143a2000b233c09'
-  ];
-  var MUTED_PARAMS   = '?autoplay=true&muted=true&loop=true&disable_player_controls=true';
-  var UNMUTED_PARAMS = '?autoplay=true&muted=false&loop=true&disable_player_controls=true';
+  /* ── Video src map ── */
+  var srcMap = {
+    'film-0': 'https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6',
+    'film-1': 'https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1',
+    'reel-0': 'https://play.gumlet.io/embed/6a0896763a5246215d47a7fd',
+    'reel-1': 'https://play.gumlet.io/embed/6a08955d3a5246215d479670',
+    'reel-2': 'https://play.gumlet.io/embed/6a08955d0143a2000b232aad',
+    'reel-3': 'https://play.gumlet.io/embed/6a0896160ed6988dba199c1a',
+    'reel-4': 'https://play.gumlet.io/embed/6a0896760143a2000b233c09'
+  };
+  var MUTED   = '?autoplay=true&muted=true&loop=true&disable_player_controls=true';
+  var UNMUTED = '?autoplay=true&muted=false&loop=true&disable_player_controls=true';
 
-  var activeReel = null; // currently unmuted reel index, null = all muted
+  var activeVid = null;
 
-  function setReelMute(idx, muted) {
-    var iframe = document.getElementById('reel-iframe-' + idx);
-    var btn    = document.querySelector('.reel-sound-btn[data-reel="' + idx + '"]');
-    if (!iframe || !btn) return;
+  function muteAll() {
+    Object.keys(srcMap).forEach(function(id) {
+      var iframe = document.getElementById('vid-' + id);
+      var btn    = document.querySelector('[data-vid="' + id + '"]');
+      if (iframe) iframe.src = srcMap[id] + MUTED;
+      if (btn) {
+        btn.classList.remove('sound-btn-live');
+        btn.classList.add('sound-btn-muted');
+        btn.setAttribute('aria-label', 'Unmute');
+        btn.style.background = 'rgba(0,0,0,.55)';
+      }
+    });
+    activeVid = null;
+  }
 
-    iframe.src = reelSrcs[idx] + (muted ? MUTED_PARAMS : UNMUTED_PARAMS);
-
-    var iconMuted   = btn.querySelector('.icon-muted');
-    var iconUnmuted = btn.querySelector('.icon-unmuted');
-    if (muted) {
-      iconMuted.style.display   = '';
-      iconUnmuted.style.display = 'none';
-      btn.setAttribute('aria-label', 'Unmute reel ' + (idx + 1));
-      btn.style.background = 'rgba(0,0,0,.55)';
-    } else {
-      iconMuted.style.display   = 'none';
-      iconUnmuted.style.display = '';
-      btn.setAttribute('aria-label', 'Mute reel ' + (idx + 1));
+  function unmuteOne(id) {
+    muteAll();
+    var iframe = document.getElementById('vid-' + id);
+    var btn    = document.querySelector('[data-vid="' + id + '"]');
+    if (iframe) iframe.src = srcMap[id] + UNMUTED;
+    if (btn) {
+      btn.classList.remove('sound-btn-muted');
+      btn.classList.add('sound-btn-live');
+      btn.setAttribute('aria-label', 'Mute');
       btn.style.background = 'rgba(124,58,237,.65)';
     }
+    activeVid = id;
   }
 
   document.querySelectorAll('.reel-sound-btn').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
-      var idx = parseInt(btn.getAttribute('data-reel'), 10);
-
-      if (activeReel === idx) {
-        // toggling off — mute this one
-        setReelMute(idx, true);
-        activeReel = null;
+      var id = btn.getAttribute('data-vid');
+      if (activeVid === id) {
+        muteAll();
       } else {
-        // mute previously active reel
-        if (activeReel !== null) setReelMute(activeReel, true);
-        // unmute this one
-        setReelMute(idx, false);
-        activeReel = idx;
+        unmuteOne(id);
       }
     });
   });
+
 })();
 </script>
 
@@ -2849,7 +2886,9 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
       <!-- Brand -->
       <div>
         <div class="font-display" style="font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px;display:flex;flex-direction:column;align-items:flex-start;line-height:1;">
-  <span>SQUAR<span style="color:#A855F7;">GRAPH</span><sup class="tm">™</sup></span>
+  <span style="display:inline-flex;align-items:flex-start;">
+    <span style="color:#EEEEF5;">SQUAR</span><span style="background:linear-gradient(90deg,#7C3AED,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">GRAPH</span><span class="tm">™</span>
+  </span>
   <span class="studios">Studios</span>
 </div>
         <p style="color:rgba(238,238,245,.35);font-size:13px;line-height:1.75;font-weight:300;max-width:26ch;margin-bottom:24px;">Integrated brand communication for modern brands and agency ecosystems — delivered from Delhi to global markets.</p>
