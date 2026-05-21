@@ -224,24 +224,26 @@ nav.scrolled {
 
 /* ─── Brand identity classes ─── */
 .tm {
-  font-size: .52em;
+  font-size: .45em;
   font-weight: 400;
   letter-spacing: .01em;
   color: rgba(168,85,247,.55);
-  vertical-align: super;
-  line-height: 0;
-  margin-left: .05em;
+  vertical-align: baseline;
+  line-height: 1;
+  margin-left: .08em;
+  position: relative;
+  top: -.1em;
   font-family: 'Outfit', sans-serif;
 }
 .studios {
   font-family: 'Outfit', sans-serif;
-  font-size: .52em;
+  font-size: .48em;
   font-weight: 300;
-  letter-spacing: .22em;
+  letter-spacing: .24em;
   text-transform: uppercase;
-  color: rgba(238,238,245,.38);
-  margin-left: .35em;
-  vertical-align: middle;
+  color: rgba(238,238,245,.35);
+  margin-left: .28em;
+  vertical-align: baseline;
   line-height: 1;
 }
 .nav-links {
@@ -1504,6 +1506,89 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
     gap: 24px !important;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   MOBILE FIXES — comprehensive
+───────────────────────────────────────────────────────────── */
+
+/* 1. Navbar logo: hide Studios on small screens to prevent overflow */
+@media (max-width: 480px) {
+  .nav-logo .studios { display: none; }
+  .nav-logo { font-size: 17px; }
+}
+
+/* 2. Work section: override hardcoded inline padding */
+@media (max-width: 768px) {
+  #work { padding: 60px 20px !important; }
+}
+
+/* 3. Film cards: fit mobile viewport */
+@media (max-width: 768px) {
+  .film-card { flex: 0 0 85vw !important; }
+  .reel-card { flex: 0 0 160px !important; }
+}
+
+/* 4. Proof strip: reduce padding on very small screens */
+@media (max-width: 400px) {
+  .proof-item { padding: 20px 14px; }
+  .proof-number { font-size: 20px; }
+}
+
+/* 5. Contact form: stack name/phone and service/budget rows on mobile */
+@media (max-width: 640px) {
+  #contact-form > div[style*="grid-template-columns:1fr 1fr"],
+  #contact-form > div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* 6. Footer: left-align text on mobile, fix social icons centering */
+@media (max-width: 560px) {
+  .footer-grid { text-align: left !important; }
+  .footer-grid div:first-child > div[style*="display:flex"] {
+    justify-content: flex-start;
+  }
+}
+
+/* 7. Process section: reduce side padding on mobile */
+@media (max-width: 560px) {
+  .process-section { padding: 80px 20px; }
+  .process-detail summary { font-size: 16px; gap: 12px; }
+}
+
+/* 8. System/capabilities section: reduce padding */
+@media (max-width: 560px) {
+  .system-section { padding: 80px 20px; }
+  .pillar-card { padding: 28px 24px; }
+}
+
+/* 9. Intelligence section */
+@media (max-width: 560px) {
+  .intelligence-section { padding: 80px 20px; }
+  .intel-card { padding: 28px 24px; }
+}
+
+/* 10. Brand environments section */
+@media (max-width: 560px) {
+  .brand-env-section { padding: 80px 20px; }
+}
+
+/* 11. Contact section */
+@media (max-width: 560px) {
+  .contact-section { padding: 80px 20px; }
+  .contact-headline { font-size: clamp(32px, 9vw, 52px); }
+}
+
+/* 12. Engage + FAQ sections */
+@media (max-width: 560px) {
+  .engage-section { padding: 60px 20px; }
+  .faq-section { padding: 60px 20px; }
+}
+
+/* 13. Hero: tighten letter-spacing on very small phones */
+@media (max-width: 400px) {
+  #hero h1 { letter-spacing: -.04em !important; }
+}
 </style>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -1662,184 +1747,304 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 <!-- ══════════════════════════════════════════
      SECTION 03 — WORK
 ══════════════════════════════════════════ -->
-<section id="work" class="work-section" style="position:relative;padding:80px 40px;background:#09090f;overflow:hidden;">
+<section id="work" style="position:relative;padding:80px 40px;background:#09090f;overflow:hidden;">
+<style>
+/* ── Work section base ── */
+.work-inner { max-width:1200px; margin:0 auto; }
+.strip-label {
+  font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:#A855F7; margin:0 0 12px 0; font-weight:500;
+  font-family:'Outfit',sans-serif;
+}
+.work-vtag {
+  display:inline-block; padding:5px 13px;
+  border:1px solid rgba(168,85,247,0.35); border-radius:999px;
+  font-size:11px; color:rgba(238,238,245,0.55); margin:3px;
+  font-family:'Outfit',sans-serif;
+}
+.work-attr {
+  margin-top:28px; display:flex; justify-content:space-between;
+  align-items:center; font-size:12px; color:rgba(238,238,245,0.3);
+  flex-wrap:wrap; gap:8px;
+}
+.work-attr a { color:#A855F7; text-decoration:none; }
 
-  <style>
-    .strip-label {
-      font-size: 11px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: #A855F7;
-      margin: 0 0 12px 4px;
-      font-weight: 500;
-    }
-    .scroll-strip {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 10px;
-      cursor: grab;
-    }
-    .scroll-strip:active { cursor: grabbing; }
-    .scroll-strip::-webkit-scrollbar { height: 3px; }
-    .scroll-strip::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 99px; }
-    .scroll-strip::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.45); border-radius: 99px; }
+/* ── Horizontal scroll strip (desktop) ── */
+.scroll-strip {
+  display:flex; gap:12px; overflow-x:auto;
+  scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+  padding-bottom:10px; cursor:grab;
+}
+.scroll-strip:active { cursor:grabbing; }
+.scroll-strip::-webkit-scrollbar { height:3px; }
+.scroll-strip::-webkit-scrollbar-track { background:rgba(255,255,255,0.05); border-radius:99px; }
+.scroll-strip::-webkit-scrollbar-thumb { background:rgba(168,85,247,0.45); border-radius:99px; }
 
-    .film-card {
-      flex: 0 0 560px;
-      aspect-ratio: 16/9;
-      scroll-snap-align: start;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #111;
-      position: relative;
-    }
-    .reel-card {
-      flex: 0 0 200px;
-      aspect-ratio: 9/16;
-      scroll-snap-align: start;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #111;
-      position: relative;
-    }
-    .film-card iframe,
-    .reel-card iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-      pointer-events: none;
-      contain: strict;
-    }
-    .work-vtag {
-      display: inline-block;
-      padding: 5px 13px;
-      border: 1px solid rgba(168,85,247,0.35);
-      border-radius: 999px;
-      font-size: 11px;
-      color: rgba(238,238,245,0.55);
-      margin: 3px;
-    }
-    .work-attr {
-      margin-top: 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      color: rgba(238,238,245,0.3);
-    }
-    .work-attr a { color: #A855F7; text-decoration: none; }
-  </style>
+/* ── Film card (16:9 landscape) ── */
+.film-card {
+  flex:0 0 560px; aspect-ratio:16/9;
+  scroll-snap-align:start; border-radius:12px;
+  overflow:hidden; background:#111; position:relative;
+}
+.film-card iframe {
+  position:absolute; inset:0; width:100%; height:100%;
+  border:none; display:block; pointer-events:none; contain:strict;
+}
 
-  <div style="max-width:1200px;margin:0 auto;">
+/* ── Reel card — Instagram-style vertical ── */
+.reel-wrap {
+  flex:0 0 200px; aspect-ratio:9/16;
+  scroll-snap-align:start; border-radius:12px;
+  overflow:hidden; background:#111; position:relative;
+  cursor:pointer;
+}
+.reel-wrap iframe {
+  position:absolute; inset:0; width:100%; height:100%;
+  border:none; display:block; pointer-events:none; contain:strict;
+}
+/* Mute/unmute pill */
+.reel-sound-btn {
+  position:absolute; bottom:12px; right:12px;
+  width:32px; height:32px;
+  background:rgba(0,0,0,.55); backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.18); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; z-index:10;
+  transition:background .2s, transform .2s;
+  color:#fff;
+}
+.reel-sound-btn:hover { background:rgba(124,58,237,.5); transform:scale(1.1); }
+.reel-sound-btn svg { pointer-events:none; }
 
-    <div class="strip-label" style="letter-spacing:.18em;margin-bottom:18px;">Execution on Record</div>
+/* ── MOBILE: full-width vertical stack ── */
+@media (max-width:768px) {
+  #work { padding:60px 20px !important; }
 
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:40px;flex-wrap:wrap;">
-      <h2 style="font-size:clamp(26px,3.8vw,48px);line-height:1.05;font-weight:800;letter-spacing:-.028em;color:#eeeef5;margin:0;">
-        Selected work.<br/>Across <span style="color:#A855F7;">industries & audiences.</span>
-      </h2>
-      <div style="align-self:flex-end;">
-        <span class="work-vtag">Hospitality</span>
-        <span class="work-vtag">Lifestyle</span>
-        <span class="work-vtag">D2C</span>
-        <span class="work-vtag">Automotive</span>
-      </div>
+  /* Films become full-width 16:9 stacked */
+  #films-strip {
+    flex-direction:column !important;
+    overflow-x:visible !important;
+    gap:16px !important;
+    cursor:default !important;
+  }
+  .film-card {
+    flex:0 0 auto !important;
+    width:100% !important;
+    aspect-ratio:16/9 !important;
+  }
+
+  /* Reels become full-width 9:16 stacked */
+  #reels-strip {
+    flex-direction:column !important;
+    overflow-x:visible !important;
+    gap:16px !important;
+    cursor:default !important;
+  }
+  .reel-wrap {
+    flex:0 0 auto !important;
+    width:100% !important;
+    /* 9:16 on mobile — tall and immersive */
+    aspect-ratio:9/16 !important;
+    max-height:75vh;
+  }
+}
+</style>
+
+<div class="work-inner">
+
+  <div class="strip-label" style="letter-spacing:.18em;margin-bottom:18px;">Execution on Record</div>
+
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:40px;flex-wrap:wrap;">
+    <h2 style="font-size:clamp(26px,3.8vw,48px);line-height:1.05;font-weight:800;letter-spacing:-.028em;color:#eeeef5;margin:0;font-family:'Outfit',sans-serif;">
+      Selected work.<br/>Across <span style="color:#A855F7;">industries &amp; audiences.</span>
+    </h2>
+    <div style="align-self:flex-end;">
+      <span class="work-vtag">Hospitality</span>
+      <span class="work-vtag">Lifestyle</span>
+      <span class="work-vtag">D2C</span>
+      <span class="work-vtag">Automotive</span>
     </div>
-
-    <!-- Campaign Films Strip -->
-    <div class="strip-label">Campaign Films</div>
-    <div class="scroll-strip" id="films-strip">
-      <div class="film-card">
-        <iframe loading="lazy" title="Campaign film 1" width="560" height="315"
-          src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-          referrerpolicy="origin"
-          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-          sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-      </div>
-      <div class="film-card">
-        <iframe loading="lazy" title="Campaign film 2" width="560" height="315"
-          src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-          referrerpolicy="origin"
-          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-          sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-      </div>
-    </div>
-
-    <!-- Reels Strip -->
-    <div class="strip-label" style="margin-top:32px;">Reels</div>
-    <div class="scroll-strip" id="reels-strip">
-      <div class="reel-card">
-        <iframe loading="lazy" title="Reel 1" width="200" height="356"
-          src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-          referrerpolicy="origin"
-          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-          sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-      </div>
-      <div class="reel-card">
-        <iframe loading="lazy" title="Reel 2" width="200" height="356"
-          src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-          referrerpolicy="origin"
-          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-          sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-      </div>
-      <div class="reel-card">
-        <iframe loading="lazy" title="Reel 3" width="200" height="356"
-          src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-          referrerpolicy="origin"
-          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-          sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-      </div>
-      <div class="reel-card">
-        <<iframe loading="lazy" title="Reel 4" width="200" height="356"
-          src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-          referrerpolicy="origin"
-          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-          sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-      </div>
-      <div class="reel-card">
-        <iframe loading="lazy" title="Reel 5" width="200" height="356"
-          src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true"
-          referrerpolicy="origin"
-          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
-          sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
-      </div>
-    </div>
-
-    <div class="work-attr">
-      <span>Production in collaboration with <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer">Films By Jones</a></span>
-      <span style="font-size:11px;">More work available on request</span>
-    </div>
-
   </div>
 
-  <script>
-    function addDragScroll(el) {
-      let isDown = false, startX, scrollLeft;
-      el.addEventListener('mousedown', e => {
-        isDown = true;
-        el.style.cursor = 'grabbing';
-        startX = e.pageX - el.offsetLeft;
-        scrollLeft = el.scrollLeft;
-      });
-      document.addEventListener('mouseup', () => { isDown = false; el.style.cursor = 'grab'; });
-      el.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - el.offsetLeft;
-        el.scrollLeft = scrollLeft - (x - startX);
-      });
-    }
-    document.addEventListener('DOMContentLoaded', function() {
+  <!-- Campaign Films -->
+  <div class="strip-label">Campaign Films</div>
+  <div class="scroll-strip" id="films-strip">
+    <div class="film-card">
+      <iframe loading="lazy" title="Campaign film 1" width="560" height="315"
+        src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+        referrerpolicy="origin"
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+    </div>
+    <div class="film-card">
+      <iframe loading="lazy" title="Campaign film 2" width="560" height="315"
+        src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+        referrerpolicy="origin"
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+    </div>
+  </div>
+
+  <!-- Reels -->
+  <div class="strip-label" style="margin-top:32px;">Reels</div>
+  <div class="scroll-strip" id="reels-strip">
+
+    <div class="reel-wrap" data-reel-id="0">
+      <iframe id="reel-iframe-0" loading="lazy" title="Reel 1" width="200" height="356"
+        src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+        referrerpolicy="origin"
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+      <button class="reel-sound-btn" data-reel="0" aria-label="Unmute reel 1">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path class="icon-muted" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 3.53-2.61 6.44-6 6.93v2.02c4.01-.51 7.11-3.95 7.11-8.95H19zM16.5 3.07v2.02c3.39.49 6 3.4 6 6.91s-2.61 6.42-6 6.91v2.02c4.01-.51 7.11-3.95 7.11-8.93H23.5c0-5-3.1-9.42-7-10.93z"/>
+          <path class="icon-unmuted" style="display:none" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zM11.5 4L8.5 7 3 2.5 1.5 4 7 9.5 8.5 8 11.5 11V4z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="reel-wrap" data-reel-id="1">
+      <iframe id="reel-iframe-1" loading="lazy" title="Reel 2" width="200" height="356"
+        src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+        referrerpolicy="origin"
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+      <button class="reel-sound-btn" data-reel="1" aria-label="Unmute reel 2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path class="icon-muted" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 3.53-2.61 6.44-6 6.93v2.02c4.01-.51 7.11-3.95 7.11-8.95H19zM16.5 3.07v2.02c3.39.49 6 3.4 6 6.91s-2.61 6.42-6 6.91v2.02c4.01-.51 7.11-3.95 7.11-8.93H23.5c0-5-3.1-9.42-7-10.93z"/>
+          <path class="icon-unmuted" style="display:none" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zM11.5 4L8.5 7 3 2.5 1.5 4 7 9.5 8.5 8 11.5 11V4z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="reel-wrap" data-reel-id="2">
+      <iframe id="reel-iframe-2" loading="lazy" title="Reel 3" width="200" height="356"
+        src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+        referrerpolicy="origin"
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+      <button class="reel-sound-btn" data-reel="2" aria-label="Unmute reel 3">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path class="icon-muted" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 3.53-2.61 6.44-6 6.93v2.02c4.01-.51 7.11-3.95 7.11-8.95H19zM16.5 3.07v2.02c3.39.49 6 3.4 6 6.91s-2.61 6.42-6 6.91v2.02c4.01-.51 7.11-3.95 7.11-8.93H23.5c0-5-3.1-9.42-7-10.93z"/>
+          <path class="icon-unmuted" style="display:none" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zM11.5 4L8.5 7 3 2.5 1.5 4 7 9.5 8.5 8 11.5 11V4z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="reel-wrap" data-reel-id="3">
+      <iframe id="reel-iframe-3" loading="lazy" title="Reel 4" width="200" height="356"
+        src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+        referrerpolicy="origin"
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+      <button class="reel-sound-btn" data-reel="3" aria-label="Unmute reel 4">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path class="icon-muted" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 3.53-2.61 6.44-6 6.93v2.02c4.01-.51 7.11-3.95 7.11-8.95H19zM16.5 3.07v2.02c3.39.49 6 3.4 6 6.91s-2.61 6.42-6 6.91v2.02c4.01-.51 7.11-3.95 7.11-8.93H23.5c0-5-3.1-9.42-7-10.93z"/>
+          <path class="icon-unmuted" style="display:none" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zM11.5 4L8.5 7 3 2.5 1.5 4 7 9.5 8.5 8 11.5 11V4z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="reel-wrap" data-reel-id="4">
+      <iframe id="reel-iframe-4" loading="lazy" title="Reel 5" width="200" height="356"
+        src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+        referrerpolicy="origin"
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
+        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
+      <button class="reel-sound-btn" data-reel="4" aria-label="Unmute reel 5">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path class="icon-muted" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 3.53-2.61 6.44-6 6.93v2.02c4.01-.51 7.11-3.95 7.11-8.95H19zM16.5 3.07v2.02c3.39.49 6 3.4 6 6.91s-2.61 6.42-6 6.91v2.02c4.01-.51 7.11-3.95 7.11-8.93H23.5c0-5-3.1-9.42-7-10.93z"/>
+          <path class="icon-unmuted" style="display:none" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zM11.5 4L8.5 7 3 2.5 1.5 4 7 9.5 8.5 8 11.5 11V4z"/>
+        </svg>
+      </button>
+    </div>
+
+  </div><!-- /reels-strip -->
+
+  <div class="work-attr">
+    <span>Production in collaboration with <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer">Films By Jones</a></span>
+    <span style="font-size:11px;">More work available on request</span>
+  </div>
+
+</div><!-- /work-inner -->
+
+<script>
+(function(){
+  /* ── Drag scroll for desktop ── */
+  function addDragScroll(el) {
+    if (!el) return;
+    var isDown = false, startX, scrollLeft;
+    el.addEventListener('mousedown', function(e) {
+      isDown = true; el.style.cursor = 'grabbing';
+      startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft;
+    });
+    document.addEventListener('mouseup', function() { isDown = false; el.style.cursor = 'grab'; });
+    el.addEventListener('mousemove', function(e) {
+      if (!isDown) return; e.preventDefault();
+      el.scrollLeft = scrollLeft - (e.pageX - el.offsetLeft - startX);
+    });
+  }
   addDragScroll(document.getElementById('films-strip'));
   addDragScroll(document.getElementById('reels-strip'));
-});
-  </script>
+
+  /* ── Mute / unmute with exclusive audio ── */
+  // Each reel iframe src: muted=true initially.
+  // We rebuild the src with muted=false when unmuting,
+  // and restore muted=true on all others.
+  var reelSrcs = [
+    'https://play.gumlet.io/embed/6a0896763a5246215d47a7fd',
+    'https://play.gumlet.io/embed/6a08955d3a5246215d479670',
+    'https://play.gumlet.io/embed/6a08955d0143a2000b232aad',
+    'https://play.gumlet.io/embed/6a0896160ed6988dba199c1a',
+    'https://play.gumlet.io/embed/6a0896760143a2000b233c09'
+  ];
+  var MUTED_PARAMS   = '?autoplay=true&muted=true&loop=true&disable_player_controls=true';
+  var UNMUTED_PARAMS = '?autoplay=true&muted=false&loop=true&disable_player_controls=true';
+
+  var activeReel = null; // currently unmuted reel index, null = all muted
+
+  function setReelMute(idx, muted) {
+    var iframe = document.getElementById('reel-iframe-' + idx);
+    var btn    = document.querySelector('.reel-sound-btn[data-reel="' + idx + '"]');
+    if (!iframe || !btn) return;
+
+    iframe.src = reelSrcs[idx] + (muted ? MUTED_PARAMS : UNMUTED_PARAMS);
+
+    var iconMuted   = btn.querySelector('.icon-muted');
+    var iconUnmuted = btn.querySelector('.icon-unmuted');
+    if (muted) {
+      iconMuted.style.display   = '';
+      iconUnmuted.style.display = 'none';
+      btn.setAttribute('aria-label', 'Unmute reel ' + (idx + 1));
+      btn.style.background = 'rgba(0,0,0,.55)';
+    } else {
+      iconMuted.style.display   = 'none';
+      iconUnmuted.style.display = '';
+      btn.setAttribute('aria-label', 'Mute reel ' + (idx + 1));
+      btn.style.background = 'rgba(124,58,237,.65)';
+    }
+  }
+
+  document.querySelectorAll('.reel-sound-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var idx = parseInt(btn.getAttribute('data-reel'), 10);
+
+      if (activeReel === idx) {
+        // toggling off — mute this one
+        setReelMute(idx, true);
+        activeReel = null;
+      } else {
+        // mute previously active reel
+        if (activeReel !== null) setReelMute(activeReel, true);
+        // unmute this one
+        setReelMute(idx, false);
+        activeReel = idx;
+      }
+    });
+  });
+})();
+</script>
 
 </section>
 <!-- ══════════════════════════════════════════
