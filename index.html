@@ -2056,7 +2056,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
   <div class="film-card" data-video-id="film-0">
     <iframe id="vid-film-0" loading="lazy" title="Campaign film 1" width="560" height="315"
-      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=false&loop=true&disable_player_controls=true"
+      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true"
       referrerpolicy="origin"
       allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
       sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
@@ -2064,7 +2064,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
   <div class="film-card" data-video-id="film-1">
     <iframe id="vid-film-1" loading="lazy" title="Campaign film 2" width="560" height="315"
-      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=false&loop=true&disable_player_controls=true"
+      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true"
       referrerpolicy="origin"
       allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
       sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
@@ -2159,7 +2159,12 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
   };
   var filmControls = { 'film-0': true, 'film-1': true };
 
+  var muteState = {};
+  allVideoIds.forEach(function(id) { muteState[id] = 'true'; });
+
   function setMute(id, muted) {
+    if (muteState[id] === muted) return;
+    muteState[id] = muted;
     var iframe = document.getElementById('vid-' + id);
     if (!iframe) return;
     var controls = filmControls[id] ? '&disable_player_controls=true' : '';
