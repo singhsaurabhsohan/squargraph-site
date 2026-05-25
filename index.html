@@ -86,33 +86,6 @@
   <meta property="og:url" content="https://squargraph.com">
   <meta property="og:site_name" content="SQUARGRAPH">
 
-  <script>window.tailwind = window.tailwind || {};</script>
-  <script src="https://cdn.tailwindcss.com" defer></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['Outfit', 'sans-serif'],
-            body: ['Space Grotesk', 'sans-serif'],
-          },
-          colors: {
-            black:        '#03020A',
-            charcoal:     '#080616',
-            card:         '#0D0A1E',
-            accent:       '#7C3AED',
-            'accent-hi':  '#A855F7',
-            'accent-dim': 'rgba(124,58,237,0.10)',
-            gold:         '#E8B86D',
-            cyan:         '#06B6D4',
-            snow:         '#EEEEF5',
-            muted:        'rgba(238,238,245,0.45)',
-          }
-        }
-      }
-    }
-  </script>
-
 <style>
 /* ─────────────────────────────────────────────────────────────
    RESET & BASE
@@ -163,18 +136,8 @@ body {
   top: -200px; right: -150px;
   animation: auroraFloat1 28s ease-in-out infinite;
 }
-.aurora-blob-2 {
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(6,182,212,0.14) 0%, transparent 70%);
-  bottom: 10%; left: -200px;
-  animation: auroraFloat2 36s ease-in-out infinite;
-}
-.aurora-blob-3 {
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%);
-  top: 40%; left: 40%;
-  animation: auroraFloat3 44s ease-in-out infinite;
-}
+.aurora-blob-2 { display: none; }
+.aurora-blob-3 { display: none; }
 @media (max-width: 768px) {
   .aurora-blob-2, .aurora-blob-3 { display: none; }
   .aurora-blob-1 { filter: blur(60px); }
@@ -455,52 +418,6 @@ nav.scrolled {
 @media (max-width: 768px) {
   #hero { padding-top: 130px !important; padding-bottom: 64px !important; justify-content: flex-start !important; }
   .scroll-hint { display: none; }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   SECTION 02: PROOF STRIP
-   ══════════════════════════════════════════════════
-   WHAT CHANGED:
-   - Replaced generic "Strategy / Creative / Content / Execution"
-     labels with credibility signals: campaign count, industry
-     verticals, geography, production types
-   - Each item now earns its space with specificity
-───────────────────────────────────────────────────────────── */
-.proof-strip {
-  border-top: 1px solid rgba(255,255,255,.055);
-  border-bottom: 1px solid rgba(255,255,255,.055);
-  position: relative; z-index: 2;
-}
-.proof-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-@media (max-width: 640px) {
-  .proof-grid { grid-template-columns: 1fr 1fr; }
-}
-.proof-item {
-  padding: 32px 40px;
-  display: flex; flex-direction: column; gap: 5px;
-  border-left: 1px solid rgba(255,255,255,.04);
-}
-.proof-item:first-child { border-left: none; }
-.proof-number {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(22px, 3vw, 36px); font-weight: 800;
-  letter-spacing: -.03em; color: #EEEEF5;
-  line-height: 1;
-}
-.proof-number span { color: #A855F7; }
-.proof-label {
-  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-  color: rgba(238,238,245,.35); font-family: 'Outfit', sans-serif;
-}
-@media (max-width: 768px) {
-  .proof-item { padding: 24px 20px; }
-  .proof-item + .proof-item {
-    border-left: none;
-    border-top: 1px solid rgba(255,255,255,.055);
-  }
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -1529,12 +1446,6 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
   .reel-card { flex: 0 0 160px !important; }
 }
 
-/* 4. Proof strip: reduce padding on very small screens */
-@media (max-width: 400px) {
-  .proof-item { padding: 20px 14px; }
-  .proof-number { font-size: 20px; }
-}
-
 /* 5. Contact form: stack name/phone and service/budget rows on mobile */
 @media (max-width: 640px) {
   #contact-form > div[style*="grid-template-columns:1fr 1fr"],
@@ -1631,8 +1542,8 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 <div id="mob-menu">
   <button onclick="closeMob()" aria-label="Close navigation menu" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#EEEEF5;font-size:40px;cursor:pointer;line-height:1;padding:0 8px;">&times;</button>
   <a href="#work" onclick="closeMob()">Work</a>
-  <a href="#system-architecture" onclick="closeMob()">System</a>
-  <a href="#intelligence" onclick="closeMob()">Thinking</a>
+  <a href="#system-architecture" onclick="closeMob()">Capabilities</a>
+  <a href="#intelligence" onclick="closeMob()">Insights</a>
   <a href="#brand-environments" onclick="closeMob()">Environments</a>
   <a href="#contact" onclick="closeMob()" class="mob-cta">Let's Talk →</a>
 </div>
@@ -1914,34 +1825,6 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 </section>
 
 <!-- ══════════════════════════════════════════
-     SECTION 02 — PROOF STRIP
-     WHAT CHANGED:
-     Generic "Strategy / Creative / Content / Execution"
-     → Specific credibility signals with numbers
-══════════════════════════════════════════ -->
-<div class="proof-strip">
-  <div class="proof-grid">
-    <div class="proof-item reveal">
-      <div class="proof-number">12<span>+</span></div>
-      <div class="proof-label">Brand Verticals</div>
-    </div>
-    <div class="proof-item reveal reveal-d1">
-      <div class="proof-number">3<span>+</span></div>
-      <div class="proof-label">Core Sectors</div>
-    </div>
-    <div class="proof-item reveal reveal-d2">
-      <div class="proof-number">Brief<span>→</span>Live</div>
-      <div class="proof-label">In 2–4 Weeks</div>
-    </div>
-    <div class="proof-item reveal reveal-d3">
-      <div class="proof-number">Delhi<span>,</span> IN</div>
-      <div class="proof-label">HQ · Global Execution</div>
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════════════════════════════════════════
      SECTION 03 — WORK
 ══════════════════════════════════════════ -->
 <section id="work" style="position:relative;padding:80px 40px;background:#09090f;overflow:hidden;">
@@ -2039,7 +1922,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
   <div class="film-card" data-video-id="film-0">
     <iframe id="vid-film-0" loading="lazy" title="Campaign film 1" width="560" height="315"
-      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=false&muted=true&loop=true&disable_player_controls=true"
       referrerpolicy="origin"
       allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
       sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
@@ -2047,7 +1930,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
   <div class="film-card" data-video-id="film-1">
     <iframe id="vid-film-1" loading="lazy" title="Campaign film 2" width="560" height="315"
-      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=false&muted=true&loop=true&disable_player_controls=true"
       referrerpolicy="origin"
       allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
       sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
@@ -2061,7 +1944,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
   <div class="reel-wrap" data-reel-id="0">
     <iframe id="vid-reel-0" loading="lazy" title="Reel 1" width="200" height="356"
-      src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=false&muted=true&loop=true&disable_player_controls=true"
       referrerpolicy="origin"
       allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
       sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
@@ -2069,7 +1952,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
   <div class="reel-wrap" data-reel-id="1">
     <iframe id="vid-reel-1" loading="lazy" title="Reel 2" width="200" height="356"
-      src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=false&muted=true&loop=true&disable_player_controls=true"
       referrerpolicy="origin"
       allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
       sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
@@ -2077,7 +1960,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
   <div class="reel-wrap" data-reel-id="2">
     <iframe id="vid-reel-2" loading="lazy" title="Reel 3" width="200" height="356"
-      src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=false&muted=true&loop=true&disable_player_controls=true"
       referrerpolicy="origin"
       allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
       sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
@@ -2085,7 +1968,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
   <div class="reel-wrap" data-reel-id="3">
     <iframe id="vid-reel-3" loading="lazy" title="Reel 4" width="200" height="356"
-      src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=false&muted=true&loop=true&disable_player_controls=true"
       referrerpolicy="origin"
       allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
       sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
@@ -2093,7 +1976,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
   <div class="reel-wrap" data-reel-id="4">
     <iframe id="vid-reel-4" loading="lazy" title="Reel 5" width="200" height="356"
-      src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true"
+      src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=false&muted=true&loop=true&disable_player_controls=true"
       referrerpolicy="origin"
       allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write;"
       sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
@@ -2713,7 +2596,6 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
           Start the<br/>conversation.<br/><span style="color:#A855F7;">No pitch decks.</span>
         </h2>
         <p class="reveal contact-sub">
-          No pitch decks. No long discovery calls.<br/>
           Send us a brief — rough is fine — and we'll come back with a clear plan within 48 hours.
         </p>
         <div class="reveal reveal-d2">
@@ -2962,9 +2844,8 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 
   /* ── Particle system ───────────────────────────────────── */
   var canvas = document.getElementById('particle-canvas');
-  if (window.innerWidth < 768) {
-    canvas.style.display = 'none';
-  } else {
+  canvas.style.display = 'none';
+  if (false) {
     var ctx = canvas.getContext('2d');
     var W, H, particles = [];
 
