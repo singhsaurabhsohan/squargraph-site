@@ -10,6 +10,8 @@
   <meta property="og:description" content="Strategy-led brand communication, content systems, campaigns, and digital experiences for modern brands." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://squargraph.com" />
+<meta name="theme-color" content="#FAFAF9" />
+<link rel="icon" href="/favicon.ico" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,7 +46,7 @@
       overflow-x: hidden;
     }
 
-    ::selection { background: rgba(139,126,200,.06); color: var(--textprimary); }
+    ::selection { background: rgba(139,126,200,.18); color: var(--textprimary); }
     * { -webkit-tap-highlight-color: transparent; }
 
     img { display: block; max-width: 100%; }
@@ -143,13 +145,14 @@
 
     /* Mobile menu */
     #mob-menu {
-      display: none; position: fixed; inset: 0; z-index: 99;
+      display: flex; position: fixed; inset: 0; z-index: 101;
       background: #fff;
       flex-direction: column; justify-content: center;
       padding: 40px;
-      opacity: 0; transition: opacity .3s;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s;
     }
-    #mob-menu.open { display: flex; opacity: 1; }
+    #mob-menu.open { opacity: 1; pointer-events: all; }
     #mob-menu a {
       font-size: 32px; font-weight: 500;
       letter-spacing: -0.03em;
@@ -189,6 +192,7 @@
     .hero-anim-3 { animation: heroFade .8s .55s both; }
     .hero-anim-4 { animation: heroFade .8s .7s both; }
     .hero-anim-5 { animation: heroFade 1s 1.2s both; }
+    .hero-anim-6 { animation: heroFade 1s 1.6s both; }
 
     /* Scale reveal */
     @keyframes scaleX {
@@ -237,6 +241,7 @@
     .hero-ctas {
       display: flex; flex-wrap: wrap; gap: 14px;
       align-items: center;
+      margin-top: 32px;
     }
     .btn-primary {
       display: inline-flex; align-items: center;
@@ -262,7 +267,7 @@
 
     /* Hero stats */
     .hero-stats {
-      margin-top: clamp(48px, 7vw, 80px);
+      margin-top: clamp(64px, 9vw, 100px);
       padding-top: 32px;
       border-top: 1px solid var(--bordergray);
       display: flex; gap: clamp(28px, 5vw, 64px);
@@ -280,7 +285,8 @@
       text-transform: uppercase; color: var(--textmuted);
     }
     .hero-proof{
-  margin-top:28px;
+  margin-top:40px;
+  margin-bottom: 8px;
   font-size:12px;
   letter-spacing:.04em;
   color:var(--textmuted);
@@ -377,6 +383,14 @@
     .section-count {
       font-size: 13px; color: var(--textmuted);
     }
+    .section-manifesto {
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+  font-weight: 600;
+}
     @media (max-width: 480px) { .section-count { display: none; } }
 
     /* Work grid */
@@ -449,6 +463,14 @@
       overflow: hidden; background: var(--warmgray);
       position: relative;
       border: 1px solid var(--bordergray);
+      cursor: pointer;
+    }
+    .film-card::after {
+      content: 'Hover to unmute';
+      position: absolute; bottom: 12px; right: 12px;
+      font-size: 10px; letter-spacing: .06em; text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      pointer-events: none;
     }
     .film-card iframe {
       position: absolute; inset: 0; width: 100%; height: 100%;
@@ -488,26 +510,18 @@
     .services-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--bordergray);
+      border-top: none;
     }
     @media (max-width: 900px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 500px) {
-      .services-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; gap: 24px; }
     }
     .service-card {
-      padding: 36px 28px 36px 0;
-      border-bottom: 1px solid var(--bordergray);
-      border-right: 1px solid var(--bordergray);
-    }
-    .service-card:nth-child(4n) { border-right: none; }
-    @media (max-width: 900px) {
-      .service-card:nth-child(4n) { border-right: 1px solid var(--bordergray); }
-      .service-card:nth-child(2n) { border-right: none; }
-    }
-    @media (max-width: 500px) {
-      .service-card { border-right: none; padding-right: 0; }
+      padding: 48px 36px 48px 0;
+      border-bottom: none;
+      border-right: none;
     }
     .service-num {
       font-size: 12px; font-weight: 500;
@@ -553,7 +567,7 @@
       max-width: 340px;
       margin: clamp(48px, 6vw, 80px) 0 clamp(36px, 5vw, 64px);
       transform-origin: left;
-      animation: none;
+      animation: scaleX 0s linear paused;
     }
     .approach-divider.visible { animation: scaleX .9s .3s cubic-bezier(.25,.1,.25,1) both; }
     .approach-pillars {
@@ -667,7 +681,7 @@
        STUDIO / ABOUT
     ══════════════════════════ */
     .studio-section {
-      background: var(--warmgray);
+      background: #ffffff;
       padding: clamp(80px, 12vw, 160px) clamp(24px, 4vw, 64px);
     }
     .studio-grid {
@@ -721,7 +735,7 @@
       line-height: 1.8; max-width: 28ch;
     }
     .intel-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
+      display: grid; grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
     @media (max-width: 900px) { .intel-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -980,7 +994,7 @@
     .footer-bar {
       max-width: 1440px; margin: 0 auto;
       border-top: 1px solid var(--bordergray);
-      padding-top: 24px–40px;
+      padding-top: 32px;
       display: flex; justify-content: space-between;
       align-items: center; flex-wrap: wrap; gap: 10px;
     }
@@ -1040,7 +1054,7 @@
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="SQUARGRAPH Studios">
       <span style="display:flex;flex-direction:column;line-height:1;">
-        <span style="display:flex;align-items:flex-start;line-height:1;">SQUARGRAPH<sup style="font-size:9px;color:var(--accent);line-height:1;margin-left:2px;vertical-align:top;margin-top:2px;">™</sup></span>
+        <span style="display:flex;align-items:flex-start;line-height:1;font-weight:800;letter-spacing:-0.04em;">SQUARGRAPH<sup style="font-size:9px;color:var(--accent);line-height:1;margin-left:2px;vertical-align:top;margin-top:2px;">™</sup></span>
         <span style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--textsecondary);font-weight:500;margin-top:3px;">Studios</span>
       </span>
     </a>
@@ -1063,7 +1077,7 @@
   <a href="#services" onclick="closeMob()">Services</a>
   <a href="#capabilities" onclick="closeMob()">Capabilities</a>
   <a href="#studio" onclick="closeMob()">Studio</a>
-  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href="#contact" onclick="closeMob()" style="color: var(--accent); font-weight: 600;">Contact →</a>
   <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
 </div>
 
@@ -1084,14 +1098,14 @@
       <p class="hero-sub hero-anim-3">
         We create strategy-led brands, campaigns, content, and digital experiences designed for modern attention spans.
       </p>
-      <div class="hero-proof">
+      <div class="hero-proof hero-anim-3">
       Trusted across automotive, hospitality, lifestyle, and emerging consumer brands.
       </div>
       <div class="hero-ctas hero-anim-4">
         <a href="#contact" class="btn-primary">Start a Conversation →</a>
         <a href="#work" class="btn-outline">See the work</a>
       </div>
-      <div class="hero-stats hero-anim-4">
+      <div class="hero-stats hero-anim-5">
         <div>
           <div class="hero-stat-num">12+</div>
           <div class="hero-stat-label">Brand Verticals</div>
@@ -1105,13 +1119,13 @@
           <div class="hero-stat-label">Execution Timelines</div>
         </div>
         <div>
-          <div class="hero-stat-num" style="font-size:clamp(16px,1.6vw,22px);">Delhi, IN</div>
-          <div class="hero-stat-label">Delhi, India</div>
+          <div class="hero-stat-num" style="font-size:clamp(16px,1.6vw,22px);">India</div>
+          <div class="hero-stat-label">Based in Delhi</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="scroll-hint hero-anim-5">
+  <div class="scroll-hint hero-anim-6">
     <div class="scroll-line"><div class="scroll-line-inner"></div></div>
     <span>Scroll</span>
   </div>
@@ -1120,7 +1134,7 @@
 <!-- ══════════════
      TICKER
 ══════════════ -->
-<div class="ticker-wrap">
+<div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
     <!-- repeated 4× for seamless loop -->
     <span class="ticker-item"><span>Campaign Strategy</span><span class="ticker-dot"></span></span>
@@ -1154,7 +1168,7 @@
     <div class="section-header fade-up">
       <div>
         <p class="section-eyebrow">Selected Work</p>
-        <p class="approach-manifesto">
+        <p class="section-manifesto">
   Modern brands are remembered in fragments.
 </p>
         <h2 class="section-title">Execution on Record</h2>
@@ -1167,14 +1181,14 @@
     <div class="scroll-strip" id="films-strip">
       <div class="film-card">
         <iframe id="vid-film-0" loading="lazy" title="Campaign film 1"
-          src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=false&muted=true&loop=true&disable_player_controls=true"
+          width="560" height="315" src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=false&muted=true&loop=true&disable_player_controls=true"
           referrerpolicy="origin"
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;"
           sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
       </div>
       <div class="film-card">
         <iframe id="vid-film-1" loading="lazy" title="Campaign film 2"
-          src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=false&muted=true&loop=true&disable_player_controls=true"
+          width="560" height="315" src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=false&muted=true&loop=true&disable_player_controls=true"
           referrerpolicy="origin"
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;"
           sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>
@@ -1184,11 +1198,11 @@
     <!-- Reels -->
     <p class="work-strip-label fade-up" style="margin-top:40px;">Reels</p>
     <div class="scroll-strip" id="reels-strip">
-      <div class="reel-wrap"><iframe id="vid-reel-0" loading="lazy" title="Reel 1" src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=false&muted=true&loop=true&disable_player_controls=true" referrerpolicy="origin" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe></div>
-      <div class="reel-wrap"><iframe id="vid-reel-1" loading="lazy" title="Reel 2" src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=false&muted=true&loop=true&disable_player_controls=true" referrerpolicy="origin" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe></div>
-      <div class="reel-wrap"><iframe id="vid-reel-2" loading="lazy" title="Reel 3" src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=false&muted=true&loop=true&disable_player_controls=true" referrerpolicy="origin" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe></div>
-      <div class="reel-wrap"><iframe id="vid-reel-3" loading="lazy" title="Reel 4" src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=false&muted=true&loop=true&disable_player_controls=true" referrerpolicy="origin" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe></div>
-      <div class="reel-wrap"><iframe id="vid-reel-4" loading="lazy" title="Reel 5" src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=false&muted=true&loop=true&disable_player_controls=true" referrerpolicy="origin" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe></div>
+      <div class="reel-wrap"><iframe id="vid-reel-0" loading="lazy" title="Reel 1" width="200" height="356" src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=false&muted=true&loop=true&disable_player_controls=true" referrerpolicy="origin" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe></div>
+      <div class="reel-wrap"><iframe id="vid-reel-1" loading="lazy" title="Reel 2" width="200" height="356" src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=false&muted=true&loop=true&disable_player_controls=true" referrerpolicy="origin" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe></div>
+      <div class="reel-wrap"><iframe id="vid-reel-2" loading="lazy" title="Reel 3" width="200" height="356" src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=false&muted=true&loop=true&disable_player_controls=true" referrerpolicy="origin" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe></div>
+      <div class="reel-wrap"><iframe id="vid-reel-3" loading="lazy" title="Reel 4" width="200" height="356" src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=false&muted=true&loop=true&disable_player_controls=true" referrerpolicy="origin" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe></div>
+      <div class="reel-wrap"><iframe id="vid-reel-4" loading="lazy" title="Reel 5" width="200" height="356" src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=false&muted=true&loop=true&disable_player_controls=true" referrerpolicy="origin" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe></div>
     </div>
 
     <div class="work-attr fade-up" style="padding: 0 clamp(24px, 4vw, 64px);">
@@ -1274,7 +1288,6 @@
       </h2>
       <div class="cap-intro-right fade-up d1">
         <p>Most brands run their communication through disconnected parts — a freelancer here, an agency there, a production house on the side. SQUARGRAPH integrates all of it into a unified execution model: briefed once, executed in parallel, delivered on time.</p>
-        <p style="margin-top:14px;"></p>
       </div>
     </div>
 
@@ -1382,7 +1395,7 @@
             <span class="studio-stat-label">Core Sectors</span>
           </div>
           <div>
-            <span class="studio-stat-num">2021</span>
+            <span class="studio-stat-num">2026</span>
             <span class="studio-stat-label">Founded</span>
           </div>
         </div>
@@ -1488,9 +1501,6 @@
         <h2 class="contact-h2">
           Start the<br/>conversation.<br/><em>No pitch decks.</em>
         </h2>
-        <p class="contact-philosophy">
-  Perception shapes value. We help brands control both.
-</p>
         <p class="contact-sub">Send us a brief — rough is fine — and we'll come back with a clear plan within 48 hours.</p>
         <a href="https://wa.me/918796479772?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" class="wa-btn">
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1517,25 +1527,25 @@
           <div class="form-row">
             <div>
               <label class="form-label" for="name">Name</label>
-              <input type="text" id="name" name="name" required placeholder="Full name" class="form-input"/>
+              <input type="text" id="name" name="name" required placeholder="Full name" class="form-input" autocomplete="name"/>
             </div>
             <div>
               <label class="form-label" for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXX XXXXX" class="form-input"/>
+              <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXX XXXXX" class="form-input" autocomplete="tel"/>
             </div>
           </div>
           <div>
             <label class="form-label" for="email">Work Email</label>
-            <input type="email" id="email" name="email" required placeholder="name@company.com" class="form-input"/>
+            <input type="email" id="email" name="email" required placeholder="name@company.com" class="form-input" autocomplete="email"/>
           </div>
           <div>
             <label class="form-label" for="company">Brand / Company</label>
-            <input type="text" id="company" name="company" placeholder="Your brand name" class="form-input"/>
+            <input type="text" id="company" name="company" required placeholder="Your brand name" class="form-input" autocomplete="text"/>
           </div>
           <div class="form-row">
             <div>
               <label class="form-label" for="service-select">What do you need?</label>
-              <select name="service" id="service-select" required class="form-input">
+              <select name="service" id="service-select" required class="form-input" autocomplete="off">
                 <option value="">Select</option>
                 <option>Full campaign (strategy + execution)</option>
                 <option>Content &amp; social media</option>
@@ -1546,7 +1556,7 @@
             </div>
             <div>
               <label class="form-label" for="budget">Budget range</label>
-              <select id="budget" name="budget" required class="form-input">
+              <select id="budget" name="budget" required class="form-input" autocomplete="off">
                 <option value="">Select</option>
                 <option>₹50K – ₹1L</option>
                 <option>₹1L – ₹3L</option>
@@ -1557,7 +1567,7 @@
           </div>
           <div>
             <label class="form-label" for="timeline">Timeline</label>
-            <select id="timeline" name="timeline" required class="form-input">
+            <select id="timeline" name="timeline" required class="form-input" autocomplete="off">
               <option value="">Select</option>
               <option>ASAP</option>
               <option>2–4 weeks</option>
@@ -1571,7 +1581,7 @@
           </div>
           <div>
             <label class="form-label" for="reference">Reference links (optional)</label>
-            <input type="url" id="reference" name="reference" placeholder="Drive / Notion / examples" class="form-input"/>
+            <input type="text" id="reference" name="reference" placeholder="Paste a link — Drive, Notion, or any reference" class="form-input"/>
           </div>
           <button type="submit" id="form-submit-btn" class="submit-btn">Send inquiry →</button>
           <p class="form-next">We review every brief within 48 hours and respond with a clear plan — not a pitch deck.</p>
@@ -1591,7 +1601,7 @@
     <div>
       <div class="footer-logo">
         <span style="display:flex;flex-direction:column;line-height:1;">
-          <span style="display:flex;align-items:flex-start;line-height:1;">SQUARGRAPH<sup style="font-size:9px;color:var(--accent);line-height:1;margin-left:2px;vertical-align:top;margin-top:2px;">™</sup></span>
+          <span style="display:flex;align-items:flex-start;line-height:1;font-weight:800;letter-spacing:-0.04em;">SQUARGRAPH<sup style="font-size:9px;color:var(--accent);line-height:1;margin-left:2px;vertical-align:top;margin-top:2px;">™</sup></span>
           <span style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--textsecondary);font-weight:500;margin-top:3px;">Studios</span>
         </span>
       </div>
@@ -1620,7 +1630,6 @@
     <div>
       <span class="footer-col-label">Company</span>
       <a href="#intelligence" class="footer-link">Brand Studies</a>
-      <a href="#environments" class="footer-link">Brand Environments</a>
       <a href="#approach" class="footer-link">Our Approach</a>
     </div>
     <div>
