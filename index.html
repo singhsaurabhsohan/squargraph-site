@@ -477,12 +477,12 @@
       border: none; display: block;
     }
     .reel-wrap {
-      flex: 0 0 200px; aspect-ratio: 9/16;
-      scroll-snap-align: start; border-radius: 8px;
-      overflow: hidden; background: var(--warmgray);
-      position: relative;
-      border: 1px solid var(--bordergray);
-    }
+  flex: 0 0 200px; aspect-ratio: 9/16;
+  scroll-snap-align: start; border-radius: 8px;
+  overflow: hidden; background: #000;
+  position: relative;
+  border: none;
+}
     .reel-wrap iframe {
       position: absolute; inset: 0; width: 100%; height: 100%;
       border: none;
@@ -495,9 +495,9 @@
     }
     .work-attr a { color: var(--accent); border-bottom: 1px solid var(--accentmuted); }
     @media (max-width: 768px) {
-      .film-card { flex: 0 0 88vw; }
-      .reel-wrap { flex: 0 0 52vw; max-height: 300px; }
-    }
+  .film-card { flex: 0 0 88vw; }
+  .reel-wrap { flex: 0 0 52vw; max-height: 300px; background: #000; }
+}
 
     /* ══════════════════════════
        SERVICES
@@ -1053,11 +1053,8 @@
 <nav id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="SQUARGRAPH Studios">
-      <span style="display:flex;flex-direction:column;line-height:1;">
-        <span style="display:flex;align-items:flex-start;line-height:1;font-weight:800;letter-spacing:-0.04em;">SQUARGRAPH<sup style="font-size:9px;color:var(--accent);line-height:1;margin-left:2px;vertical-align:top;margin-top:2px;">™</sup></span>
-        <span style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--textsecondary);font-weight:500;margin-top:3px;">Studios</span>
-      </span>
-    </a>
+  <img src="/logo.png" alt="SQUARGRAPH Studios" style="height:28px;width:auto;" />
+</a>
     <div class="nav-links">
       <a href="#work">Work</a>
       <a href="#services">Services</a>
@@ -1600,11 +1597,8 @@
   <div class="footer-inner">
     <div>
       <div class="footer-logo">
-        <span style="display:flex;flex-direction:column;line-height:1;">
-          <span style="display:flex;align-items:flex-start;line-height:1;font-weight:800;letter-spacing:-0.04em;">SQUARGRAPH<sup style="font-size:9px;color:var(--accent);line-height:1;margin-left:2px;vertical-align:top;margin-top:2px;">™</sup></span>
-          <span style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--textsecondary);font-weight:500;margin-top:3px;">Studios</span>
-        </span>
-      </div>
+  <img src="/logo.png" alt="SQUARGRAPH Studios" style="height:32px;width:auto;" />
+</div>
       <p class="footer-tagline">Integrated brand communication for modern brands and agency ecosystems.</p>
       <p class="footer-philosophy">
   Perception shapes value. We help brands control both.
