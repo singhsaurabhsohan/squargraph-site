@@ -2166,5 +2166,16 @@
   };
 })();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const supabaseUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
+
+const supabaseKey = 'YOUR_PUBLISHABLE_KEY';
+
+const supabaseClient = supabase.createClient(
+  supabaseUrl,
+  supabaseKey
+);
+</script>
 </body>
 </html>
