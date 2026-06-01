@@ -2077,39 +2077,50 @@
 
   /* ── Contact form ── */
   var cForm = document.getElementById('contact-form');
-  var cBtn  = document.getElementById('form-submit-btn');
-  if (cForm) {
-    cForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var orig = cBtn.innerHTML;
-      cBtn.innerHTML = '<span class="spinner"></span>';
-      cBtn.disabled = true;
+var cBtn  = document.getElementById('form-submit-btn');
 
-      var data = {};
-      new FormData(cForm).forEach(function(v, k) { data[k] = v; });
+if (cForm) {
+  cForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-      fetch('https://formspree.io/f/xzdykrjl', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
-      }).then(function(res) {
-        if (res.ok) {
-          cBtn.innerHTML = '✓ Brief received — we\'ll respond within 48 hours.';
-          cBtn.style.background = '#1fad4e';
-          cForm.reset();
-        } else { throw new Error('server'); }
-      }).catch(function() {
-        cBtn.innerHTML = 'Error — please try again.';
-        cBtn.style.background = '#EF4444';
-      }).finally(function() {
-        setTimeout(function() {
-          cBtn.innerHTML = orig;
-          cBtn.style.background = '';
-          cBtn.disabled = false;
-        }, 5000);
-      });
-    });
-  }
+    var orig = cBtn.innerHTML;
+    cBtn.innerHTML = '<span class="spinner"></span>';
+    cBtn.disabled = true;
+
+    try {
+
+      const formData = Object.fromEntries(
+        new FormData(cForm).entries()
+      );
+
+      const { error } = await supabaseClient
+        .from('leads')
+        .insert([formData]);
+
+      if (error) throw error;
+
+      cBtn.innerHTML = '✓ Brief received — we’ll respond within 48 hours.';
+      cBtn.style.background = '#1fad4e';
+      cForm.reset();
+
+    } catch (err) {
+
+      console.error(err);
+
+      cBtn.innerHTML = 'Error — please try again.';
+      cBtn.style.background = '#EF4444';
+
+    } finally {
+
+      setTimeout(function() {
+        cBtn.innerHTML = orig;
+        cBtn.style.background = '';
+        cBtn.disabled = false;
+      }, 5000);
+
+    }
+  });
+}
 /* ── Razorpay Checkout Placeholder ── */
   var RAZORPAY_PRODUCTS = {
     discovery: { name: 'Discovery Session™', amount: 299900, description: '60-min founder-led brand strategy session' },
@@ -2170,7 +2181,7 @@
 <script>
 const supabaseUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
 
-const supabaseKey = 'YOUR_PUBLISHABLE_KEY';
+const supabaseKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
 
 const supabaseClient = supabase.createClient(
   supabaseUrl,
