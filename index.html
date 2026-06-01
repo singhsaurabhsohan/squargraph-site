@@ -2153,12 +2153,25 @@
   }
 
   async function submitLead(payload) {
-    if (!window.__sb) throw new Error('Supabase client not initialised.');
-    const { error } = await window.__sb.from(SUPABASE_TABLE).insert([payload]);
-    if (error) throw new Error('Insert failed — ' + error.code + ': ' + error.message);
-    return true;
-  }
+  if (!window.__sb) throw new Error('Supabase client not initialised.');
 
+  const { error } = await window.__sb
+    .from(SUPABASE_TABLE)
+    .insert([payload]);
+
+  if (error) throw new Error('Insert failed');
+
+  // SEND TO PIPEDREAM
+  await fetch('https://eou44pd9t90wa37.m.pipedream.net', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  });
+
+  return true;
+}
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     if (submitted) return;
