@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://squargraph.com/og-image.jpg" />
   <meta name="theme-color" content="#FAFAF9" />
+  <meta name="robots" content="index, follow" />
+  <meta name="twitter:title" content="SQUARGRAPH™ Studios — Brand Communication & Digital Experiences" />
+  <meta name="twitter:description" content="Strategy-led brand communication, content systems, campaigns, and digital experiences for modern brands." />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
 
@@ -23,9 +26,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="dns-prefetch" href="https://checkout.razorpay.com" />
+  <link rel="preconnect" href="https://checkout.razorpay.com" />
   <link rel="dns-prefetch" href="https://play.gumlet.io" />
+  <link rel="preconnect" href="https://play.gumlet.io" />
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" onload="this.rel='stylesheet'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" /></noscript>
 
   <style>
     /* ─── CSS Variables ─── */
@@ -34,7 +41,7 @@
       --warmgray: #F5F5F3;
       --coolgray: #F0EFED;
       --bordergray: #E5E3DF;
-      --textmuted: #A39E98;
+      --textmuted: #7A7570;
       --textsecondary: #6E6860;
       --textprimary: #1A1714;
       --accent: #8B7EC8;
@@ -137,7 +144,7 @@
     .hamburger {
       display: none; flex-direction: column;
       align-items: center; justify-content: center;
-      width: 32px; height: 32px;
+      width: 44px; height: 44px;
       background: none; border: none; cursor: pointer;
       gap: 5px;
     }
@@ -234,6 +241,7 @@
       letter-spacing: -0.05em;
       color: var(--textprimary);
       margin-bottom: clamp(24px, 3vw, 36px);
+      contain: layout style;
     }
     .hero-h1 em {
       font-style: italic;
@@ -280,7 +288,9 @@
       padding-top: 32px;
       border-top: 1px solid var(--bordergray);
       display: flex; gap: clamp(28px, 5vw, 64px);
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
     }
     .hero-stat-num {
       font-family: 'DM Serif Display', Georgia, serif;
@@ -290,9 +300,10 @@
       letter-spacing: -0.02em;
     }
     .hero-stat-label {
-      font-size: 11px; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--textmuted);
-    }
+  font-size: 11px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--textmuted);
+  white-space: nowrap;
+}
     .hero-proof{
   margin-top:40px;
   margin-bottom: 8px;
@@ -340,6 +351,8 @@
     .ticker-track {
       display: flex; align-items: center;
       animation: tickerScroll 35s linear infinite;
+      animation-play-state: running;
+      will-change: transform;
       width: max-content;
     }
     @keyframes tickerScroll {
@@ -493,7 +506,7 @@
   border: none;
 }
 .reel-wrap iframe {
-      position: absolute; inset: -2px; width: calc(100% + 4px); height: calc(100% + 4px);
+      position: absolute; inset: -10%; width: 120%; height: 120%;
       border: none; background: #000;
     }
     .work-attr {
@@ -978,7 +991,7 @@
     }
     .social-links { display: flex; gap: 8px; flex-wrap: wrap; }
     .social-link {
-      width: 30px; height: 30px;
+      width: 44px; height: 44px;
       border: 1px solid var(--bordergray);
       border-radius: 2px;
       display: inline-flex; align-items: center; justify-content: center;
@@ -1077,7 +1090,7 @@
 <!-- ══════════════
      NAVIGATION
 ══════════════ -->
-<nav id="nav">
+<nav id="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="SQUARGRAPH Studios">
   <img src="/logo.png" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;margin-left:-6px;" fetchpriority="high" />
@@ -1089,7 +1102,7 @@
       <a href="#studio">Studio</a>
       <a href="#" onclick="openRazorpay('discovery');return false;" class="nav-cta">Book Discovery — ₹2,999</a>
     </div>
-    <button class="hamburger" id="mob-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <button class="hamburger" id="mob-toggle" aria-label="Open navigation menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -1106,7 +1119,7 @@
   <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
 </div>
 
-<main id="main-content">
+<main id="main-content" role="main">
 
 <!-- ══════════════
      HERO
@@ -1585,7 +1598,7 @@
       </div>
       <div class="intel-grid fade-up d1">
         <!-- Card 01 -->
-        <div class="intel-card" data-exploration="twt" tabindex="0" role="button" aria-label="Read brand study: The Whole Truth">
+        <div class="intel-card" data-exploration="twt" tabindex="0" role="button" aria-label="Read brand study: The Whole Truth" aria-haspopup="dialog">
           <span class="intel-arrow">↗</span>
           <div class="intel-brand-label">The Whole Truth</div>
           <p class="intel-thesis">Trust was never the problem. Emotional depth might become the next opportunity.</p>
@@ -1596,7 +1609,7 @@
           </div>
         </div>
         <!-- Card 02 -->
-        <div class="intel-card" data-exploration="bluetokai" tabindex="0" role="button" aria-label="Read brand study: Blue Tokai">
+        <div class="intel-card" data-exploration="bluetokai" tabindex="0" role="button" aria-label="Read brand study: Blue Tokai" aria-haspopup="dialog">
           <span class="intel-arrow">↗</span>
           <div class="intel-brand-label">Blue Tokai</div>
           <p class="intel-thesis">Owning the pause between sips.</p>
@@ -1607,7 +1620,7 @@
           </div>
         </div>
         <!-- Card 03 -->
-        <div class="intel-card" data-exploration="boat" tabindex="0" role="button" aria-label="Read brand study: boAt">
+        <div class="intel-card" data-exploration="boat" tabindex="0" role="button" aria-label="Read brand study: boAt" aria-haspopup="dialog">
           <span class="intel-arrow">↗</span>
           <div class="intel-brand-label">boAt</div>
           <p class="intel-thesis">From loud to lasting. Cultural maturity as the next brand frontier.</p>
@@ -1623,33 +1636,33 @@
 </section>
 
 <!-- Intelligence modals -->
-<div id="modal-twt" class="modal-overlay">
+<div id="modal-twt" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-twt-title">
   <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
   <div class="modal-body">
     <p class="modal-cat">Strategic Study — D2C / Wellness</p>
-    <h2 class="modal-h2">The Whole Truth</h2>
+    <h2 class="modal-h2" id="modal-twt-title">The Whole Truth</h2>
     <p class="modal-lead">Trust was never the problem. Emotional depth might become the next opportunity.</p>
     <p class="modal-p">In a category flooded with "clean" and "natural", the real white space isn't ingredient-led — it's emotionally intelligent. How might The Whole Truth evolve from a functional health brand to a companion for mental and emotional wellness?</p>
     <div class="modal-quote">"The next unlock isn't another variant. It's permission to feel seen."</div>
     <p class="modal-p">We explored a speculative content ecosystem: micro-podcasts on daily stress, illustrated "emotional check-ins" as Instagram carousels, and packaging that invites journaling. No hard sell — just presence.</p>
   </div>
 </div>
-<div id="modal-bluetokai" class="modal-overlay">
+<div id="modal-bluetokai" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-bluetokai-title">
   <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
   <div class="modal-body">
     <p class="modal-cat">Strategic Study — Hospitality / Lifestyle</p>
-    <h2 class="modal-h2">Blue Tokai</h2>
+    <h2 class="modal-h2" id="modal-bluetokai-title">Blue Tokai</h2>
     <p class="modal-lead">Coffee is a ritual, not just a commodity. How do you own the pause between sips?</p>
     <p class="modal-p">Blue Tokai has successfully built a coffee-lover's brand. The next chapter might be about the moment of stillness — the ritual, not just the roast. This exploration imagines a brand that celebrates the 3 minutes of brewing as much as the coffee itself.</p>
     <div class="modal-quote">"What if the packaging whispered, not shouted? What if every sip came with a quiet invitation to pause?"</div>
     <p class="modal-p">We proposed slow-cinematic Reels, audio-first content, and a speculative "Pause Club" membership — no points, just poetry.</p>
   </div>
 </div>
-<div id="modal-boat" class="modal-overlay">
+<div id="modal-boat" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-boat-title">
   <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
   <div class="modal-body">
     <p class="modal-cat">Strategic Study — Electronics / Youth Culture</p>
-    <h2 class="modal-h2">boAt</h2>
+    <h2 class="modal-h2" id="modal-boat-title">boAt</h2>
     <p class="modal-lead">From loud to lasting. Cultural maturity as the next brand frontier.</p>
     <p class="modal-p">boAt conquered the youth market with energy and volume. As its audience ages, the brand faces a question: can it grow up without selling out? This exploration looks at a tonal evolution — less hype, more heritage.</p>
     <div class="modal-quote">"The loudest brand in the room learns that staying power comes from something deeper than volume."</div>
@@ -1764,7 +1777,7 @@
 <!-- ══════════════
      FOOTER
 ══════════════ -->
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo">
   <div class="footer-inner">
     <div>
       <div class="footer-logo">
@@ -1848,7 +1861,7 @@
 <!-- ══════════════
      PAYMENT SUCCESS OVERLAY
 ══════════════ -->
-<div id="payment-success-overlay" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(26,23,20,.97);overflow-y:auto;padding:60px 5vw;align-items:center;justify-content:center;">
+<div id="payment-success-overlay" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(26,23,20,.97);overflow-y:auto;padding:60px 5vw;align-items:center;justify-content:center;" aria-modal="true" role="dialog" aria-label="Payment confirmed">
   <div style="max-width:620px;margin:0 auto;text-align:center;">
 
     <!-- Checkmark -->
@@ -1948,6 +1961,7 @@
     menuOpen = !menuOpen;
     mobToggle.classList.toggle('open', menuOpen);
     mobToggle.setAttribute('aria-expanded', String(menuOpen));
+    mobToggle.setAttribute('aria-label', menuOpen ? 'Close navigation menu' : 'Open navigation menu');
     mobMenu.classList.toggle('open', menuOpen);
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   });
@@ -2239,6 +2253,26 @@
     document.head.appendChild(s);
   })();
 </script>
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "SQUARGRAPH Studios",
+  "url": "https://squargraph.com",
+  "logo": "https://squargraph.com/logo.png",
+  "description": "Strategy-led brand communication, content systems, campaigns, and digital experiences for modern brands.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "New Delhi",
+    "addressCountry": "IN"
+  },
+  "telephone": "+918796479772",
+  "email": "hello@squargraph.com",
+  "sameAs": [
+    "https://instagram.com/squargraph",
+    "https://linkedin.com/company/squargraph"
+  ]
+}
+</script>
 </body>
 </html>
