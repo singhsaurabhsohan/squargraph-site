@@ -31,9 +31,9 @@
   <link rel="preconnect" href="https://play.gumlet.io" crossorigin />
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap&display=swap" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
 
   <style>
     /* ─── CSS Variables ─── */
@@ -55,7 +55,7 @@
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
     body {
-      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--textprimary);
       background: #FFFFFF;
       line-height: 1.5;
@@ -251,10 +251,10 @@
     @media (max-width: 1000px) {
       .hero-edge-left, .hero-edge-right { display: none; }
     }
-    .hero-h1 {
-  font-family: 'DM Serif Display', Georgia, serif;
+.hero-h1 {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 500;
   font-size: clamp(2.2rem, 5.5vw, 4.8rem);
-  font-weight: 400;
   line-height: 1.08;
   letter-spacing: -0.04em;
   color: var(--textprimary);
@@ -317,9 +317,10 @@
       -webkit-overflow-scrolling: touch;
     }
     .hero-stat-num {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 500;
       font-size: clamp(22px, 2.5vw, 34px);
-      font-weight: 400; color: var(--textprimary);
+      color: var(--textprimary);
       margin-bottom: 4px; line-height: 1;
       letter-spacing: -0.02em;
     }
@@ -600,9 +601,9 @@
       padding: clamp(100px, 14vw, 200px) clamp(24px, 4vw, 64px);
     }
     .approach-quote {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 500;
       font-size: clamp(1.75rem, 4vw, 3.5rem);
-      font-weight: 400;
       line-height: 1.18;
       letter-spacing: -0.03em;
       color: var(--textprimary);
@@ -656,15 +657,16 @@
     }
     @media (max-width: 768px) { .cap-intro { grid-template-columns: 1fr; gap: 28px; } }
     .cap-intro-h2 {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 500;
       font-size: clamp(28px, 3.5vw, 48px);
-      font-weight: 400; line-height: 1.08;
+      line-height: 1.08;
       letter-spacing: -0.03em;
     }
     .cap-intro-h2 em { font-style: italic; color: var(--accent); }
     .cap-intro-right p {
       font-size: 14px; color: var(--textsecondary);
-      line-height: 1.8; font-weight: 400;
+      line-height: 1.8;
     }
     .cap-grid {
       display: grid;
@@ -762,9 +764,10 @@
       .studio-stats { grid-template-columns: 1fr; gap: 16px; }
     }
     .studio-stat-num {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 500;
       font-size: clamp(22px, 2.5vw, 30px);
-      font-weight: 400; letter-spacing: -0.02em;
+      letter-spacing: -0.02em;
       color: var(--textprimary); display: block; margin-bottom: 4px;
     }
     .studio-stat-label {
@@ -783,9 +786,10 @@
     }
     @media (max-width: 768px) { .intel-intro-grid { grid-template-columns: 1fr; gap: 40px; } }
     .intel-h2 {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 500;
       font-size: clamp(26px, 3vw, 40px);
-      font-weight: 400; line-height: 1.1;
+      line-height: 1.1;
       letter-spacing: -0.025em; margin-bottom: 16px;
     }
     .intel-sub {
@@ -862,9 +866,10 @@
       color: var(--accentmuted); margin-bottom: 14px;
     }
     .modal-h2 {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 500;
       font-size: clamp(30px, 5vw, 54px);
-      font-weight: 400; letter-spacing: -0.03em;
+      letter-spacing: -0.03em;
       line-height: 1.05; margin-bottom: 18px;
     }
     .modal-lead {
@@ -894,9 +899,10 @@
     }
     @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 48px; } }
     .contact-h2 {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 500;
       font-size: clamp(32px, 4.5vw, 60px);
-      font-weight: 400; line-height: 1.05;
+      line-height: 1.05;
       letter-spacing: -0.035em; margin-bottom: 20px;
     }
     .contact-h2 em { font-style: italic; color: var(--accent); }
@@ -964,7 +970,7 @@
       color: var(--textprimary);
       padding: 13px 16px;
       min-height: 44px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Satoshi', sans-serif;
       font-size: 14px; border-radius: 2px;
       outline: none;
       transition: border-color .25s;
@@ -985,7 +991,7 @@
       background: var(--textprimary); border: none;
       color: #fff; width: 100%;
       padding: 16px 24px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Satoshi', sans-serif;
       font-size: 14px; font-weight: 500;
       letter-spacing: -0.01em; border-radius: 2px;
       cursor: pointer; min-height: 52px;
@@ -1062,14 +1068,15 @@
     }
     .footer-bar p { font-size: 12px; color: var(--textmuted); }
     .footer-philosophy{
-  font-family:'DM Serif Display', Georgia, serif;
-  font-size:20px;
-  line-height:1.4;
-  letter-spacing:-0.02em;
-  color:var(--textprimary);
-  max-width:18ch;
-  margin-bottom:28px;
-}
+      font-family:'Satoshi', sans-serif;
+      font-weight: 500;
+      font-size:20px;
+      line-height:1.4;
+      letter-spacing:-0.02em;
+      color:var(--textprimary);
+      max-width:18ch;
+      margin-bottom:28px;
+    }
 
     /* ══════════════════════════
        FLOATING UI
@@ -1201,7 +1208,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
   <span>Production</span>
 </div>
       <div class="hero-ctas hero-anim-4">
-  <button onclick="openRazorpay('discovery')" class="btn-primary" style="border:none;cursor:pointer;font-family:'DM Sans',sans-serif;">Book Discovery Session </button>
+  <button onclick="openRazorpay('discovery')" class="btn-primary" style="border:none;cursor:pointer;">Book Discovery Session </button>
   <a href="#Engagements" class="btn-outline">Explore Engagements</a>
   </div>
     </div>
@@ -1295,7 +1302,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       <div class="engagement-card">
         <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;">Entry Point</div>
         <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);">Discovery Session™</div>
-        <div style="font-family:'DM Serif Display',Georgia,serif;font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">₹2,999</div>
+        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">₹2,999</div>
         <p style="font-size:14px;color:var(--textsecondary);line-height:1.7;flex:1;">A focused strategic session designed to identify opportunities, uncover communication gaps, and define the next best move for your business. You'll leave with a clear roadmap and practical direction.</p>
 <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--bordergray);padding-top:16px;">
   <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Strategic Consultation</li>
@@ -1304,14 +1311,14 @@ We build brand systems, digital experiences, and communication ecosystems for bu
   <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Action Roadmap PDF</li>
   <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Session Recording</li>
 </ul>
-        <button onclick="openRazorpay('discovery')" class="btn-primary" style="border:none;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;">Book Discovery →</button>
+        <button onclick="openRazorpay('discovery')" class="btn-primary" style="border:none;cursor:pointer;margin-top:8px;">Book Discovery →</button>
       </div>
 
       <!-- Card 2 -->
       <div class="engagement-card">
         <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;">Audit</div>
         <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);">Brand Growth Audit™</div>
-        <div style="font-family:'DM Serif Display',Georgia,serif;font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">₹9,999</div>
+        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">₹9,999</div>
         <p style="font-size:14px;color:var(--textsecondary);line-height:1.7;flex:1;">A comprehensive evaluation of how your business is positioned, communicated, and experienced across every major touchpoint, supported by competitor benchmarking and strategic recommendations.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--bordergray);padding-top:16px;">
           <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Brand Positioning Assessment</li>
@@ -1327,7 +1334,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       <div class="engagement-card engagement-card--dark">
         <div style="font-size:11px;letter-spacing:.12em;color:var(--accentmuted);font-weight:600;text-transform:uppercase;">Sprint</div>
         <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:#fff;">Brand Foundation Sprint™</div>
-        <div style="font-family:'DM Serif Display',Georgia,serif;font-size:22px;color:var(--textprimary);letter-spacing:-0.02em;">Custom scope.<br/><span style="font-size:14px;font-weight:400;font-family:'DM Sans',sans-serif;color:var(--textsecondary);letter-spacing:0;">Priced per project.</span></div>
+        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">Custom scope.<br/><span style="font-size:14px;font-weight:400;color:var(--textsecondary);letter-spacing:0;">Priced per project.</span></div>
         <p style="font-size:14px;color:rgba(255,255,255,.65);line-height:1.7;flex:1;">A complete strategic and visual foundation designed for businesses preparing to scale, reposition, or build stronger market presence.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;">
           <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Positioning Framework</li>
@@ -1342,7 +1349,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       <div class="engagement-card">
         <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;">Ongoing Engagement</div>
         <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);">Websites & Digital Experiences</div>
-        <div style="font-family:'DM Serif Display',Georgia,serif;font-size:22px;color:var(--textprimary);letter-spacing:-0.02em;">Custom scope.<br/><span style="font-size:14px;font-weight:400;font-family:'DM Sans',sans-serif;color:var(--textsecondary);letter-spacing:0;">Priced per project.</span></div>
+        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">Custom scope.<br/><span style="font-size:14px;font-weight:400;color:var(--textsecondary);letter-spacing:0;">Priced per project.</span></div>
         <p style="font-size:14px;color:var(--textsecondary);line-height:1.7;flex:1;">A flexible long-term engagement for businesses that require ongoing strategic, creative, and execution support across multiple initiatives.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--bordergray);padding-top:16px;">
           <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Brand-aligned UX & design</li>
@@ -1401,7 +1408,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     <div class="fade-up howwework-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
 
       <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 32px;">
-        <div style="font-family:'DM Serif Display',Georgia,serif;font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">01</div>
+        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">01</div>
         <div style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Discover</div>
         <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">We start with a structured session to understand your brand, category, competitive landscape, and growth objectives.</p>
         <div style="margin-top:20px;">
@@ -1410,19 +1417,19 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       </div>
 
       <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 32px;">
-        <div style="font-family:'DM Serif Display',Georgia,serif;font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">02</div>
+        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">02</div>
         <div style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Define</div>
         <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Positioning, messaging architecture, and campaign frameworks — documented and aligned before a single pixel is designed.</p>
       </div>
 
       <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 32px;">
-        <div style="font-family:'DM Serif Display',Georgia,serif;font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">03</div>
+        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">03</div>
         <div style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Create</div>
         <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Design, production, content, and digital — executed in parallel through a single integrated team. Briefed once, delivered on time.</p>
       </div>
 
       <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 32px;">
-        <div style="font-family:'DM Serif Display',Georgia,serif;font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">04</div>
+        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">04</div>
         <div style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Grow</div>
         <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Ongoing performance review, content iteration, and communication optimisation — so your brand compounds over time, not just at launch.</p>
       </div>
@@ -1538,7 +1545,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       <!-- Bio -->
       <div>
         <p class="section-eyebrow" style="margin-bottom:16px;">The Founder</p>
-        <h2 style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(28px,3.5vw,48px);font-weight:400;line-height:1.08;letter-spacing:-0.03em;margin-bottom:20px;">Saurabh<br/>Sohan Singh</h2>
+        <h2 style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3.5vw,48px);line-height:1.08;letter-spacing:-0.03em;margin-bottom:20px;">Saurabh<br/>Sohan Singh</h2>
         <div style="font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;">Founder & Creative Strategist</div>
         <p style="font-size:clamp(16px,1.6vw,18px);color:var(--textsecondary);line-height:1.75;margin-bottom:20px;">Saurabh founded SQUARGRAPH to bridge the gap between strategic thinking and creative execution.</p>
         <p style="font-size:15px;color:var(--textsecondary);line-height:1.75;margin-bottom:32px;">With experience across brand communication, campaign development, content ecosystems, digital experiences, and large-scale automotive launches — he helps businesses create brands that are strategically aligned, creatively differentiated, and commercially effective. Every engagement is founder-led. One point of accountability. No context lost between strategy and execution.</p>
@@ -1562,7 +1569,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     <div class="studio-grid fade-up">
       <div>
         <p class="section-eyebrow" style="margin-bottom:10px;">The Studio</p>
-        <h2 class="section-title" style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(26px,3vw,40px);font-weight:400;letter-spacing:-0.03em;">About</h2>
+        <h2 class="section-title" style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(26px,3vw,40px);letter-spacing:-0.03em;">About</h2>
       </div>
       <div class="studio-main">
         <p>Built by strategists and creative directors with experience across advertising, brand communication, and large-scale campaign execution.</p>
@@ -1879,7 +1886,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     </div>
 
     <p style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accentmuted);margin-bottom:14px;">Payment Confirmed</p>
-    <h2 style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(30px,5vw,52px);font-weight:400;letter-spacing:-0.03em;color:#F5F3F0;line-height:1.05;margin-bottom:20px;">Welcome to<br/>SQUARGRAPH™</h2>
+    <h2 style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(30px,5vw,52px);letter-spacing:-0.03em;color:#F5F3F0;line-height:1.05;margin-bottom:20px;">Welcome to<br/>SQUARGRAPH™</h2>
     <p style="font-size:16px;color:rgba(245,243,240,.55);line-height:1.75;margin-bottom:16px;max-width:46ch;margin-left:auto;margin-right:auto;">Your onboarding has started. Within <strong style="color:rgba(245,243,240,.85);">24 business hours</strong> you will receive everything you need to prepare for your session.</p>
 <p style="font-size:13px;color:rgba(245,243,240,.3);line-height:1.7;margin-bottom:48px;max-width:46ch;margin-left:auto;margin-right:auto;">A GST invoice will be shared on your registered email address after confirmation of your booking.</p>
 
@@ -1924,12 +1931,12 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     <!-- CTA -->
     <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
       <a href="https://wa.me/918588897488?text=Hi%20Saurabh%2C%20I%20just%20booked%20a%20Discovery%20Session%20and%20wanted%20to%20introduce%20myself." target="_blank" rel="noopener noreferrer"
-        style="display:inline-flex;align-items:center;gap:8px;background:#1fad4e;color:#fff;border:none;border-radius:999px;padding:14px 24px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:-0.01em;cursor:pointer;text-decoration:none;">
+  style="display:inline-flex;align-items:center;gap:8px;background:#1fad4e;color:#fff;border:none;border-radius:999px;padding:14px 24px;font-size:13px;font-weight:500;letter-spacing:-0.01em;cursor:pointer;text-decoration:none;">
         <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Say hi on WhatsApp
       </a>
       <button onclick="document.getElementById('payment-success-overlay').style.display='none';document.body.style.overflow='';"
-        style="display:inline-flex;align-items:center;background:transparent;color:rgba(245,243,240,.4);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:13px 24px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;letter-spacing:-0.01em;">
+  style="display:inline-flex;align-items:center;background:transparent;color:rgba(245,243,240,.4);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:13px 24px;font-size:13px;font-weight:500;cursor:pointer;letter-spacing:-0.01em;">
         Back to site
       </button>
     </div>
@@ -1945,7 +1952,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     <span style="font-size:12px;color:rgba(255,255,255,.5);">A 30-min session that comes with a clear action plan.</span>
   </div>
   <div style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
-    <button onclick="openRazorpay('discovery')" style="background:var(--accent);color:#fff;border:none;border-radius:999px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;transition:opacity .2s;" onmouseenter="this.style.opacity='.85'" onmouseleave="this.style.opacity='1'">Book Discovery Session →</button>
+    <button onclick="openRazorpay('discovery')" style="background:var(--accent);color:#fff;border:none;border-radius:999px;padding:11px 24px;font-size:13px;font-weight:500;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;transition:opacity .2s;" onmouseenter="this.style.opacity='.85'" onmouseleave="this.style.opacity='1'">Book Discovery Session →</button>
     <button onclick="document.getElementById('persistent-cta').style.transform='translateY(100%)'" style="background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;padding:4px;line-height:1;" aria-label="Dismiss">✕</button>
   </div>
 </div>
