@@ -223,17 +223,33 @@
     #hero {
       min-height: 100vh;
       display: flex; flex-direction: column; justify-content: center;
-      padding: 80px clamp(24px, 4vw, 64px) 80px;
+      padding: 80px clamp(24px, 5vw, 80px) 80px;
       position: relative;
     }
     .hero-inner { max-width: 1440px; margin: 0 auto; width: 100%; }
-    .hero-content { max-width: 860px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .hero-content { max-width: 1040px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
     .hero-eyebrow {
       font-size: 13px; font-weight: 500;
       color: var(--textsecondary);
       letter-spacing: .08em; text-transform: uppercase;
       margin-bottom: clamp(28px, 4vw, 40px);
       text-align: center;
+    }
+    .hero-edge-left,
+    .hero-edge-right {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 80px;
+      height: 2px;
+      background: var(--bordergray);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .hero-edge-left { left: clamp(24px, 4vw, 64px); }
+    .hero-edge-right { right: clamp(24px, 4vw, 64px); }
+    @media (max-width: 1000px) {
+      .hero-edge-left, .hero-edge-right { display: none; }
     }
     .hero-h1 {
   font-family: 'DM Serif Display', Georgia, serif;
@@ -356,8 +372,8 @@
     /* ══════════════════════════
        SELECTED WORK
     ══════════════════════════ */
-    .work-section {
-      padding: clamp(110px, 14vw, 200px) 0;
+    .work-section{
+    padding: clamp(70px,10vw,140px) 0;
     }
     .work-section .section-inner {
       padding: 0 clamp(24px, 4vw, 64px);
@@ -1140,7 +1156,12 @@
      HERO
 ══════════════ -->
 <section id="hero">
-<div aria-hidden="true" style="position:absolute;top:0;right:0;width:52%;height:100%;pointer-events:none;overflow:hidden;z-index:0;">
+  <!-- Edge lines (item 3) -->
+  <div class="hero-edge-left" aria-hidden="true"></div>
+  <div class="hero-edge-right" aria-hidden="true"></div>
+
+  <!-- Full‑width background grid (item 4) -->
+  <div aria-hidden="true" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:0;">
   <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:.035;">
     <defs>
       <pattern id="sq-grid" width="48" height="48" patternUnits="userSpaceOnUse">
@@ -1169,21 +1190,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       <div class="hero-ctas hero-anim-4">
   <button onclick="openRazorpay('discovery')" class="btn-primary" style="border:none;cursor:pointer;font-family:'DM Sans',sans-serif;">Book Discovery Session </button>
   <a href="#Engagements" class="btn-outline">Explore Engagements</a>
-</div>
-      <div class="hero-stats hero-anim-5">
-  <div>
-  <div class="hero-stat-num">₹2,999</div>
-  <div class="hero-stat-label">To start — Discovery Session</div>
-</div>
-<div>
-  <div class="hero-stat-num">48hr</div>
-  <div class="hero-stat-label">Brief-to-plan turnaround</div>
-</div>
-<div>
-  <div class="hero-stat-num">1 Team</div>
-  <div class="hero-stat-label">Strategy through execution</div>
-</div>
-</div>
+  </div>
     </div>
   </div>
   <div class="scroll-hint hero-anim-6">
