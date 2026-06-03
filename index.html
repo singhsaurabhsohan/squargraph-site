@@ -226,7 +226,7 @@
       position: relative;
     }
     .hero-inner { max-width: 1440px; margin: 0 auto; width: 100%; }
-    .hero-content { max-width: 860px; margin: 0 auto; text-align: center; }
+    .hero-content { max-width: 860px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
     .hero-eyebrow {
       font-size: 13px; font-weight: 500;
       color: var(--textsecondary);
@@ -289,7 +289,7 @@
 
     /* Hero stats */
     .hero-stats {
-      margin-top: clamp(64px, 9vw, 100px);
+      margin-top: clamp(48px, 7vw, 80px);
       padding-top: 32px;
       border-top: 1px solid var(--bordergray);
       display: flex; gap: clamp(16px, 4vw, 64px);
@@ -325,6 +325,7 @@
       position: absolute; bottom: 40px;
       left: clamp(24px, 4vw, 64px);
       display: flex; align-items: center; gap: 12px;
+      z-index: 1;
     }
     .scroll-line {
       width: 1px; height: 40px;
@@ -351,38 +352,7 @@
     /* ══════════════════════════
        TICKER
     ══════════════════════════ */
-    .ticker-wrap {
-      border-top: 1px solid var(--bordergray);
-      border-bottom: 1px solid var(--bordergray);
-      padding: 18px 0;
-      overflow: hidden;
-    }
-    .ticker-track {
-      display: flex; align-items: center;
-      animation: tickerScroll 35s linear infinite;
-      animation-play-state: running;
-      will-change: transform;
-      width: max-content;
-    }
-    @keyframes tickerScroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    .ticker-item {
-      display: flex; align-items: center;
-      white-space: nowrap;
-    }
-    .ticker-item span {
-      font-size: 13px; font-weight: 500;
-      color: var(--textmuted);
-      letter-spacing: .04em; text-transform: uppercase;
-      padding: 0 28px;
-    }
-    .ticker-dot {
-      width: 4px; height: 4px; border-radius: 2px;
-      background: var(--bordergray); flex-shrink: 0;
-    }
-
+  
     /* ══════════════════════════
        SELECTED WORK
     ══════════════════════════ */
@@ -1128,7 +1098,7 @@
       <a href="#services">Services</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#studio">Studio</a>
-      <a href="#" onclick="openRazorpay('discovery');return false;" class="nav-cta">Book Discovery — ₹2,999</a>
+      <a href="#" onclick="openRazorpay('discovery');return false;" class="nav-cta">Book Discovery Session</a>
     </div>
     <button class="hamburger" id="mob-toggle" aria-label="Open navigation menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1153,10 +1123,21 @@
      HERO
 ══════════════ -->
 <section id="hero">
+<div aria-hidden="true" style="position:absolute;top:0;right:0;width:52%;height:100%;pointer-events:none;overflow:hidden;z-index:0;">
+  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:.035;">
+    <defs>
+      <pattern id="sq-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+        <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#1A1714" stroke-width="1"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#sq-grid)"/>
+  </svg>
+</div>
   <div class="hero-inner">
     <div class="hero-content">
       <p class="hero-eyebrow hero-anim-1">SQUARGRAPH™ Studios — Strategic Brand Systems</p>
-<h1 class="hero-h1 hero-anim-2">
+<div class="hero-anim-2" aria-hidden="true" style="width:72px;height:1px;background:var(--accent);margin:0 auto clamp(20px,2.5vw,28px);transform-origin:left;animation:scaleX .7s .3s cubic-bezier(.25,.1,.25,1) both;"></div>
+      <h1 class="hero-h1 hero-anim-2">
   Your Brand Is A Business <em>Asset.</em>
 </h1>
 <p class="hero-sub hero-anim-3">
@@ -1165,11 +1146,14 @@
 <p class="hero-sub hero-anim-3" style="font-size:clamp(14px,1.3vw,16px);margin-top:-24px;margin-bottom:0;">
   From positioning and identity to websites, campaigns, content systems, and production — we build connected brand ecosystems designed for modern markets.
 </p>
-<div class="hero-proof hero-anim-3">
-  GST & MSME Registered · Trusted by D2C, Hospitality & Automotive brands across India.
+<div class="hero-proof hero-anim-3" style="margin-top:32px;margin-bottom:0;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;justify-content:center;">
+  <span>GST Registered</span><span style="color:var(--bordergray);">·</span>
+  <span>MSME Registered</span><span style="color:var(--bordergray);">·</span>
+  <span>Razorpay Secured</span><span style="color:var(--bordergray);">·</span>
+  <span>New Delhi, India</span>
 </div>
       <div class="hero-ctas hero-anim-4">
-  <button onclick="openRazorpay('discovery')" class="btn-primary" style="border:none;cursor:pointer;font-family:'DM Sans',sans-serif;">Book Discovery Session — ₹2,999 →</button>
+  <button onclick="openRazorpay('discovery')" class="btn-primary" style="border:none;cursor:pointer;font-family:'DM Sans',sans-serif;">Book Discovery Session </button>
   <a href="#services" class="btn-outline">See our solutions</a>
 </div>
       <div class="hero-stats hero-anim-5">
@@ -1196,54 +1180,6 @@
 <!-- ══════════════
      TRUST BAR
 ══════════════ -->
-<div style="background:var(--warmgray);border-top:1px solid var(--bordergray);border-bottom:1px solid var(--bordergray);padding:14px clamp(24px,4vw,64px);overflow:hidden;">
-  <div style="max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:center;">
-    <div style="display:flex;align-items:center;gap:8px;">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span style="font-size:12px;font-weight:500;color:var(--textsecondary);letter-spacing:.03em;">GST Registered Business</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-      <span style="font-size:12px;font-weight:500;color:var(--textsecondary);letter-spacing:.03em;">MSME Registered Enterprise</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-      <span style="font-size:12px;font-weight:500;color:var(--textsecondary);letter-spacing:.03em;">Secure Payments via Razorpay</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      <span style="font-size:12px;font-weight:500;color:var(--textsecondary);letter-spacing:.03em;">Based in New Delhi, India</span>
-    </div>
-  </div>
-</div>
-<!-- ══════════════
-     TICKER
-══════════════ -->
-<div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker-track">
-    <!-- repeated 4× for seamless loop -->
-    <span class="ticker-item"><span>Campaign Strategy</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Brand Communication</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>CGI &amp; Motion</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Production</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Social Platforms</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Creative Execution</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>D2C</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Automotive</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Hospitality</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Lifestyle</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Campaign Strategy</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Brand Communication</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>CGI &amp; Motion</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Production</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Social Platforms</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Creative Execution</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>D2C</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Automotive</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Hospitality</span><span class="ticker-dot"></span></span>
-    <span class="ticker-item"><span>Lifestyle</span><span class="ticker-dot"></span></span>
-  </div>
-</div>
 
 <!-- ══════════════
      SELECTED WORK
@@ -1320,7 +1256,7 @@
   <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Action Plan PDF — delivered within 24hrs</li>
   <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Full Session Recording</li>
 </ul>
-        <button onclick="openRazorpay('discovery')" style="margin-top:8px;background:var(--textprimary);color:#fff;border:none;border-radius:999px;padding:14px 24px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;letter-spacing:-0.01em;cursor:pointer;transition:background .25s;" onmouseenter="this.style.background='var(--accent)'" onmouseleave="this.style.background='var(--textprimary)'">Book Now — ₹2,999 →</button>
+        <button onclick="openRazorpay('discovery')" style="margin-top:8px;background:var(--textprimary);color:#fff;border:none;border-radius:999px;padding:14px 24px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;letter-spacing:-0.01em;cursor:pointer;transition:background .25s;" onmouseenter="this.style.background='var(--accent)'" onmouseleave="this.style.background='var(--textprimary)'">Book Now →</button>
       </div>
 
       <!-- Card 2 -->
@@ -1959,7 +1895,7 @@
 <div id="persistent-cta" style="position:fixed;bottom:0;left:0;right:0;z-index:9997;background:var(--textprimary);padding:12px clamp(12px,4vw,64px);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:nowrap;transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.1,.25,1);border-top:1px solid rgba(255,255,255,.08);">
   <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
     <span style="font-size:13px;font-weight:500;color:#fff;letter-spacing:-0.01em;">Not sure where to start?</span>
-    <span style="font-size:12px;color:rgba(255,255,255,.5);">A 30-min session is ₹2,999 — and comes with a clear plan.</span>
+    <span style="font-size:12px;color:rgba(255,255,255,.5);">A 30-min session that comes with a clear action plan.</span>
   </div>
   <div style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
     <button onclick="openRazorpay('discovery')" style="background:var(--accent);color:#fff;border:none;border-radius:999px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;transition:opacity .2s;" onmouseenter="this.style.opacity='.85'" onmouseleave="this.style.opacity='1'">Book Discovery Session →</button>
