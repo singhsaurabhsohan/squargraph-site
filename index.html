@@ -20,6 +20,9 @@
   <meta name="robots" content="index, follow" />
   <meta name="twitter:title" content="SQUARGRAPH™ Studios: Brand Systems & Digital Experiences" />
   <meta name="twitter:description" content="Building brand systems, digital experiences, content ecosystems, and market presence for ambitious businesses." />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://checkout.razorpay.com" />
+  <link rel="preconnect" href="https://play.gumlet.io" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
 
@@ -28,12 +31,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="dns-prefetch" href="https://checkout.razorpay.com" />
   <link rel="preconnect" href="https://checkout.razorpay.com" />
-  <link rel="preconnect" href="https://play.gumlet.io" crossorigin />
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="preload" as="style" onload="this.rel='stylesheet'" />
+  <noscript><link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" /></noscript>
 
   <style>
     /* ─── CSS Variables ─── */
@@ -342,33 +345,6 @@
       transition: border-color .3s;
     }
     .btn-outline:hover { border-color: var(--textprimary); }
-
-    /* Hero stats */
-    .hero-stats {
-      margin-top: clamp(48px, 7vw, 80px);
-      padding-top: 32px;
-      border-top: 1px solid var(--bordergray);
-      display: flex; gap: clamp(16px, 4vw, 64px);
-      flex-wrap: nowrap;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .hero-stat-num {
-      font-family: 'Satoshi', sans-serif;
-      font-weight: 500;
-      font-size: clamp(22px, 2.5vw, 34px);
-      color: var(--textprimary);
-      margin-bottom: 4px; line-height: 1;
-      letter-spacing: -0.02em;
-    }
-    .hero-stat-label {
-  font-size: 11px; letter-spacing: .08em;
-  text-transform: uppercase; color: var(--textmuted);
-  white-space: nowrap;
-}
     .hero-proof{
   margin-top:40px;
   margin-bottom: 8px;
@@ -1225,10 +1201,6 @@
 @media (max-width: 540px) {
   .howwework-grid { grid-template-columns: 1fr !important; }
 }
-    @media (max-width: 480px) {
-  .hero-stat-label { font-size: 9px; letter-spacing: .04em; }
-  .hero-stats { gap: 12px; padding-top: 24px; }
-}
     /* Founder mobile */
     @media (max-width: 768px) {
       .founder-grid { grid-template-columns: 1fr !important; }
@@ -1912,7 +1884,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
             <input type="text" id="reference" name="reference" placeholder="Paste a link, Drive, Notion, or any reference" class="form-input"/>
           </div>
           <button type="submit" id="form-submit-btn" class="submit-btn">Send inquiry →</button>
-          <p class="form-next">Every brief reviewed within 48 hours. No follow-up sequence. No pitch deck.</p>
+          <p class="form-next" style="text-align: left;">Every brief reviewed within 48 hours. No follow-up sequence. No pitch deck.</p>
         </form>
       </div>
     </div>
