@@ -585,7 +585,11 @@
     }
     .work-attr a { color: var(--accent); border-bottom: 1px solid var(--accentmuted); }
     @media (max-width: 768px) {
-  .film-card { flex: 0 0 88vw; }
+  .film-card {
+    flex: 0 0 88vw;
+    min-height: auto;
+    background: transparent;
+  }
   .reel-wrap {
     flex: 0 0 44vw;
     aspect-ratio: 9/16;
