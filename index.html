@@ -1008,11 +1008,16 @@
     .wa-btn {
       display: inline-flex; align-items: center; gap: 10px;
       background: #1fad4e; color: #fff;
-      padding: 16px 28px;
+      padding: 13px 28px;
       font-size: 13px; font-weight: 500;
       letter-spacing: -0.01em;
-      border-radius: 2px;
+      border-radius: 999px;
       transition: opacity .2s, transform .2s;
+      border: none;
+    }
+    .wa-btn:hover {
+      background: #1a9e45;
+      transform: translateY(-2px);
     }
     .wa-btn:hover { opacity: .88; transform: translateY(-2px); }
     .wa-note {
@@ -1098,7 +1103,7 @@
     }
     .footer-inner {
       max-width: 1440px; margin: 0 auto;
-      display: grid; grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
+      display: grid; grid-template-columns: 1.8fr 1fr 1fr;
       gap: 48px; padding-bottom: 48px;
     }
     @media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; } }
@@ -1931,14 +1936,6 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       <a href="#capabilities" class="footer-link">Social Platforms</a>
       <a href="#capabilities" class="footer-link">CGI &amp; Motion</a>
     </div>
-    <div>
-      <span class="footer-col-label">Contact</span>
-      <div class="footer-contact-label">Email</div>
-      <a href="mailto:hello@squargraph.com" class="footer-contact-val">hello@squargraph.com</a>
-      <div class="footer-contact-label">Phone</div>
-      <a href="tel:+918588897488" class="footer-contact-val">+91 85888 97488</a>
-      <a href="https://wa.me/918588897488" target="_blank" rel="noopener noreferrer" style="font-size:13px;color:#1fad4e;">WhatsApp →</a>
-    </div>
   </div>
   <div class="footer-bar" style="flex-direction:column;align-items:flex-start;gap:16px;">
     <div style="display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;">
@@ -1956,7 +1953,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       </span>
     </div>
     <div style="display:flex;flex-wrap:wrap;justify-content:space-between;width:100%;gap:12px;align-items:center;">
-      <p style="font-size:12px;color:var(--textmuted);">© 2026 SQUARGRAPH<sup style="font-size:8px;">™</sup> Studios. All rights reserved. New Delhi, India</p>
+      <p style="font-size:12px;color:var(--textmuted);">© 2026 SQUARGRAPH™ Studios. All rights reserved. New Delhi, India</p>
       <div style="display:flex;gap:20px;flex-wrap:wrap;">
         <a href="/terms" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Terms & Conditions</a>
         <a href="/privacy" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Privacy Policy</a>
