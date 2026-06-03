@@ -1060,10 +1060,11 @@
       width: 100%; background: var(--warmgray);
       border: 1px solid var(--bordergray);
       color: var(--textprimary);
-      padding: 13px 16px;
-      min-height: 44px;
+      padding: 13px 20px;
+      min-height: 48px;
       font-family: 'Satoshi', sans-serif;
-      font-size: 14px; border-radius: 2px;
+      font-size: 14px;
+      border-radius: 999px;
       outline: none;
       transition: border-color .25s;
       -webkit-appearance: none;
@@ -1072,25 +1073,37 @@
       color: #8A8580;
     }
     .form-input:focus { border-color: var(--accentmuted); }
-    textarea.form-input { resize: vertical; min-height: 100px; }
+    textarea.form-input {
+      border-radius: 24px;
+      resize: vertical;
+      min-height: 100px;
+      padding: 16px 20px;
+    }
     select.form-input {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A39E98' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 14px center;
-      padding-right: 36px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 20px center;
+      padding-right: 44px;
     }
     select.form-input option { background: #fff; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
     .submit-btn {
       background: var(--textprimary); border: none;
-      color: #fff; width: 100%;
-      padding: 16px 24px;
+      color: #fff;
+      width: auto;
+      min-width: 180px;
+      padding: 10px 24px;
       font-family: 'Satoshi', sans-serif;
       font-size: 14px; font-weight: 500;
-      letter-spacing: -0.01em; border-radius: 2px;
-      cursor: pointer; min-height: 52px;
+      letter-spacing: -0.01em;
+      border-radius: 999px;
+      cursor: pointer;
       transition: background .25s, transform .25s;
-      display: flex; align-items: center; justify-content: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 8px;
     }
     .submit-btn:hover:not(:disabled) { background: var(--accent); transform: translateY(-2px); }
     .submit-btn:disabled { opacity: .6; cursor: not-allowed; }
