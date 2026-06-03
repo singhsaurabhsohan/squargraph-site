@@ -534,10 +534,9 @@
     .scroll-strip::-webkit-scrollbar { height: 2px; }
     .scroll-strip::-webkit-scrollbar-track { background: var(--bordergray); border-radius: 99px; }
     .scroll-strip::-webkit-scrollbar-thumb { background: var(--textmuted); border-radius: 99px; }
-    .film-card {
+.film-card {
   flex: 0 0 560px;
   aspect-ratio: 16/9;
-  min-height: 315px;
   border-radius: 8px;
   overflow: hidden;
   background: var(--warmgray);
@@ -584,11 +583,10 @@
       flex-wrap: wrap; gap: 8px;
     }
     .work-attr a { color: var(--accent); border-bottom: 1px solid var(--accentmuted); }
-    @media (max-width: 768px) {
+ @media (max-width: 768px) {
   .film-card {
     flex: 0 0 88vw;
-    min-height: auto;
-    background: transparent;
+    background: #000;
   }
   .reel-wrap {
     flex: 0 0 44vw;
