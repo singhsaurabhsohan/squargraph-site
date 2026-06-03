@@ -1019,7 +1019,6 @@
       background: #1a9e45;
       transform: translateY(-2px);
     }
-    .wa-btn:hover { opacity: .88; transform: translateY(-2px); }
     .wa-note {
       font-size: 11px; color: var(--textmuted); margin-top: 8px;
     }
@@ -1088,14 +1087,24 @@
     select.form-input option { background: #fff; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) {
+  .submit-btn {
+    width: 60%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
     .submit-btn {
-      background: var(--textprimary); border: none;
+      background: var(--textprimary);
+      border: none;
       color: #fff;
-      width: auto;
-      min-width: 140px;
-      padding: 10px 20px;
+      width: 30%;
+      min-width: 120px;
+      padding: 14px 20px;
       font-family: 'Satoshi', sans-serif;
-      font-size: 14px; font-weight: 500;
+      font-size: 14px;
+      font-weight: 500;
       letter-spacing: -0.01em;
       border-radius: 999px;
       cursor: pointer;
@@ -1103,7 +1112,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin-top: 8px;
+      margin-top: 12px;
+      margin-bottom: 4px;
     }
     .submit-btn:hover:not(:disabled) { background: var(--accent); transform: translateY(-2px); }
     .submit-btn:disabled { opacity: .6; cursor: not-allowed; }
