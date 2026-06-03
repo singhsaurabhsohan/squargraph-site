@@ -236,13 +236,14 @@
     }
     .hero-h1 {
       font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(2.6rem, 6.5vw, 5.8rem);
+      font-size: clamp(2.6rem, 5.5vw, 4.8rem);
       font-weight: 400;
-      line-height: 1.04;
-      letter-spacing: -0.05em;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
       color: var(--textprimary);
       margin-bottom: clamp(24px, 3vw, 36px);
       contain: layout style;
+      white-space: nowrap;
     }
     .hero-h1 em {
       font-style: italic;
@@ -1093,6 +1094,12 @@
       .founder-grid { grid-template-columns: 1fr !important; }
       .founder-grid > div:first-child { max-width: 280px; margin: 0 auto; }
     }
+    @media (max-width: 768px) {
+  .hero-h1 {
+    white-space: normal;
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
+  }
+}
       .scroll-strip { touch-action: pan-x; }
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
@@ -1150,9 +1157,7 @@
     <div class="hero-content">
       <p class="hero-eyebrow hero-anim-1">SQUARGRAPH™ Studios — Strategic Brand Systems</p>
 <h1 class="hero-h1 hero-anim-2">
-  Your Brand Is<br/>
-  A Business<br/>
-  <em>Asset.</em>
+  Your Brand Is A Business <em>Asset.</em>
 </h1>
 <p class="hero-sub hero-anim-3">
   We help ambitious businesses build clarity, communication, and digital experiences that create attention, trust, and measurable growth.
