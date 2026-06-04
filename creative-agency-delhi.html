@@ -156,9 +156,17 @@
       background: var(--textprimary);
       transition: transform .3s, opacity .3s;
       transform-origin: center;
+      margin: 0;
     }
+    .hamburger {
+      gap: 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .hamburger span + span { margin-top: 5px; }
     .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
     @media (max-width: 768px) { .hamburger { display: flex; } }
 
@@ -167,27 +175,29 @@
       display: flex; position: fixed; inset: 0; z-index: 101;
       background: #fff;
       flex-direction: column; justify-content: center;
-      padding: 40px;
+      padding: clamp(32px, 8vw, 64px);
       opacity: 0; pointer-events: none;
       transition: opacity .3s;
     }
     #mob-menu.open { opacity: 1; pointer-events: all; }
     #mob-menu a:not(.mob-contact) {
-  border-bottom: 1px solid var(--bordergray);
-}
-#mob-menu .mob-contact {
-  margin-top: 32px;
-  font-size: 13px;
-  color: var(--textmuted);
-}
+      display: block;
+      font-size: clamp(22px, 6vw, 32px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: var(--textprimary);
+      padding: 16px 0;
+      border-bottom: 1px solid var(--bordergray);
+      transition: color .2s;
+    }
     #mob-menu a:hover { color: var(--accent); }
     #mob-menu .mob-contact {
       margin-top: 32px;
-      font-size: 14px; color: var(--textmuted);
       font-size: 13px;
+      color: var(--textmuted);
       border-bottom: none;
+      display: block;
     }
-
     /* ══════════════════════════
        ANIMATIONS
     ══════════════════════════ */
@@ -229,13 +239,13 @@
       position: relative;
     }
     .hero-inner { max-width: 1440px; margin: 0 auto; width: 100%; }
-    .hero-content { max-width: 1040px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .hero-content { max-width: 1040px; margin: 0 auto; text-align: left; position: relative; z-index: 1; }
     .hero-eyebrow {
       font-size: 13px; font-weight: 500;
       color: var(--textsecondary);
       letter-spacing: .08em; text-transform: uppercase;
       margin-bottom: clamp(28px, 4vw, 40px);
-      text-align: center;
+      text-align: left;
     }
     .hero-edge-left,
     .hero-edge-right {
@@ -320,7 +330,7 @@
     .hero-ctas {
       display: flex; flex-wrap: wrap; gap: 14px;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       margin-top: 32px;
     }
     .btn-primary {
@@ -1090,7 +1100,7 @@
       width: auto;
       min-width: 120px;
       white-space: nowrap;
-      padding: 14px 20px;
+      padding: 14px 24px;
       font-family: 'Satoshi', sans-serif;
       font-size: 14px;
       font-weight: 500;
@@ -1103,6 +1113,7 @@
       justify-content: center;
       margin-top: 12px;
       margin-bottom: 4px;
+      align-self: flex-start;
     }
     .submit-btn:hover:not(:disabled) { background: var(--accent); transform: translateY(-2px); }
     .submit-btn:disabled { opacity: .6; cursor: not-allowed; }
@@ -1192,7 +1203,7 @@
       position: fixed; bottom: 80px; left: 24px;
       width: 44px; height: 44px;
       background: var(--textprimary); border: none;
-      border-radius: 2px;
+      border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; z-index: 9998;
       opacity: 0; visibility: hidden;
@@ -1973,7 +1984,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
   <div class="footer-inner">
     <div>
       <div class="footer-logo">
-  <img src="/logo.webp" alt="SQUARGRAPH Studios" width="144" height="36" style="height:36px;width:auto;" />
+  <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" />
 </div>
       <p class="footer-tagline">Brand systems, campaign architecture, and digital experiences, built for modern businesses.</p>
       <p class="footer-philosophy">
