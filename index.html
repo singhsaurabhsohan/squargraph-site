@@ -47,7 +47,7 @@
       --textsecondary: #3D3935;
       --textprimary: #1A1714;
       --accent: #6B5DB8;
-      --accentmuted: #A99FD6;
+      --accentmuted: #7B6FB8;
       --accentlight: #EEECf7;
     }
 
@@ -141,7 +141,22 @@
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .nav-cta { display: none; }
+      .nav-cta {
+        display: none;
+      }
+    }
+    @media (min-width: 480px) and (max-width: 768px) {
+      .nav-cta {
+        display: inline-flex;
+        font-size: 12px;
+        padding: 9px 16px;
+        margin-right: 8px;
+      }
+    }
+    @media (max-width: 768px) {
+      .hero-ctas { padding-bottom: 80px; }
+    }
+      .hero-ctas { padding-bottom: 80px; }
     }
 
     /* Hamburger */
@@ -192,6 +207,7 @@
       transition: color .2s;
     }
     #mob-menu a:hover { color: var(--accent); }
+    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
     #mob-menu .mob-contact {
       margin-top: 32px;
       font-size: 13px;
@@ -1205,7 +1221,7 @@
        FLOATING UI
     ══════════════════════════ */
     #back-to-top {
-      position: fixed; bottom: 32px; right: 80px;
+      position: fixed; bottom: 32px; left: 20px;
       width: 44px; height: 44px;
       background: var(--textprimary); border: none;
       border-radius: 50%;
@@ -1325,6 +1341,13 @@
     }
     @media (max-width: 768px) {
       #persistent-cta { display: none !important; }
+      #back-to-top {
+        left: 20px;
+        right: auto;
+        bottom: 24px;
+        width: 52px;
+        height: 52px;
+      }
     }
     #mobile-wa {
       display: none;
@@ -1372,7 +1395,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav id="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="SQUARGRAPH Studios">
-  <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" fetchpriority="high" />
+  <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" fetchpriority="high" decoding="async" />
 </a>
     <div class="nav-links">
       <a href="#work">Work</a>
@@ -1388,7 +1411,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <!-- Mobile menu -->
-<div id="mob-menu" role="dialog" aria-modal="true" aria-label="Navigation">
+<div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" aria-hidden="true">
+  <span id="mob-menu-title" class="sr-only">Navigation Menu</span>
   <a href="#work" onclick="closeMob()">Work</a>
   <a href="#Engagements" onclick="closeMob()">Engagements</a>
   <a href="#capabilities" onclick="closeMob()">Capabilities</a>
@@ -2014,7 +2038,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
           </div>
           <div>
             <label class="form-label" for="message">Project brief</label>
-            <textarea id="message" name="message" required placeholder="What are you trying to achieve? What's the current gap?" class="form-input"></textarea>
+            <textarea id="message" name="message" required placeholder="What are you trying to achieve? What's the current gap?" class="form-input" style="min-height:120px;border-radius:16px;resize:vertical;"></textarea>
             <p class="field-error">Please describe your project briefly.</p>
           </div>
           <div>
@@ -2038,7 +2062,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
   <div class="footer-inner">
     <div>
       <div class="footer-logo">
-  <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" />
+  <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" />
 </div>
       <p class="footer-tagline">Brand systems, campaign architecture, and digital experiences, built for modern businesses.</p>
       <p class="footer-philosophy">
@@ -2212,6 +2236,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     mobToggle.setAttribute('aria-expanded', String(menuOpen));
     mobToggle.setAttribute('aria-label', menuOpen ? 'Close navigation menu' : 'Open navigation menu');
     mobMenu.classList.toggle('open', menuOpen);
+    mobMenu.setAttribute('aria-hidden', String(!menuOpen));
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   });
   window.closeMob = function() {
@@ -2219,6 +2244,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     mobToggle.classList.remove('open');
     mobToggle.setAttribute('aria-expanded', 'false');
     mobMenu.classList.remove('open');
+    mobMenu.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   };
 
