@@ -125,6 +125,7 @@
       letter-spacing: -0.01em;
     }
     .nav-links a:hover { color: var(--textprimary); }
+    .nav-links a.active { color: var(--textprimary); border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
     .nav-cta {
       font-size: 13px; font-weight: 500;
       color: var(--textprimary);
@@ -145,30 +146,30 @@
 
     /* Hamburger */
     .hamburger {
-      display: none; flex-direction: column;
-      align-items: center; justify-content: center;
-      width: 44px; height: 44px;
-      background: none; border: none; cursor: pointer;
-      gap: 5px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 44px; height: 44px;
+    background: none; border: none; cursor: pointer;
+    gap: 0;
+    padding: 0;
+    position: relative;
+    z-index: 102;
     }
     .hamburger span {
-      display: block; width: 20px; height: 1.5px;
+      display: block;
+      width: 20px; height: 1.5px;
       background: var(--textprimary);
       transition: transform .3s, opacity .3s;
       transform-origin: center;
-      margin: 0;
     }
-    .hamburger {
-      gap: 0;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .hamburger span + span { margin-top: 5px; }
+    .hamburger span:nth-child(1) { margin-bottom: 5px; }
+    .hamburger span:nth-child(2) { margin-bottom: 5px; }
     .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-    @media (max-width: 768px) { .hamburger { display: flex; } }
+    @media (max-width: 768px) { .hamburger { display: flex; margin-left: auto; } }
 
     /* Mobile menu */
     #mob-menu {
@@ -322,10 +323,10 @@
       color: var(--textsecondary);
       font-weight: 400;
       line-height: 1.65;
-      max-width: 520px;
+      max-width: 52ch;
       margin-bottom: clamp(36px, 5vw, 52px);
-      margin-left: auto;
-      margin-right: auto;
+      margin-left: 0;
+      margin-right: 0;
     }
     .hero-ctas {
       display: flex; flex-wrap: wrap; gap: 14px;
@@ -360,7 +361,7 @@
   font-size:12px;
   letter-spacing:.04em;
   color:var(--textmuted);
-  text-align: center;
+  text-align: left;
 }
         /* Fine line vectors */
     .hero-lines {
@@ -642,6 +643,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  height: 100%;
   transition: border-color .3s, transform .35s cubic-bezier(.25,.1,.25,1);
 }
 .engagement-card:hover {
@@ -1070,12 +1072,15 @@
       color: #8A8580;
     }
     .form-input:focus { border-color: var(--accentmuted); }
-    textarea.form-input {
-      border-radius: 24px;
-      resize: vertical;
-      min-height: 100px;
-      padding: 16px 20px;
+    .form-input.error { border-color: #EF4444; }
+    .field-error {
+      font-size: 11px;
+      color: #EF4444;
+      margin-top: 5px;
+      padding-left: 4px;
+      display: none;
     }
+    .field-error.visible { display: block; }
     select.form-input {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
@@ -1200,7 +1205,7 @@
        FLOATING UI
     ══════════════════════════ */
     #back-to-top {
-      position: fixed; bottom: 80px; left: 24px;
+      position: fixed; bottom: 32px; right: 80px;
       width: 44px; height: 44px;
       background: var(--textprimary); border: none;
       border-radius: 50%;
@@ -1283,7 +1288,22 @@
     .video-poster .play-btn svg {
       margin-left: 4px;
     }
-    .video-poster.hidden { display: none; }
+    .reel-poster-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--textprimary);
+      z-index: 3;
+    }
+    .reel-spinner {
+      width: 24px; height: 24px;
+      border: 2px solid rgba(255,255,255,.2);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
     a:focus-visible, button:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
@@ -1302,6 +1322,32 @@
       outline: 2px solid var(--accent);
       outline-offset: 2px;
       border-color: var(--accentmuted);
+    }
+    @media (max-width: 768px) {
+      #persistent-cta { display: none !important; }
+    }
+    #mobile-wa {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      #mobile-wa {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        bottom: 24px;
+        right: 20px;
+        z-index: 9996;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: #1fad4e;
+        box-shadow: 0 4px 16px rgba(31,173,78,.35);
+        border: none;
+        cursor: pointer;
+        transition: transform .2s, background .2s;
+      }
+      #mobile-wa:hover { transform: scale(1.08); }
     }
   </style>
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
@@ -1394,7 +1440,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p class="hero-sub hero-anim-2">
 We build brand systems, digital experiences, and communication ecosystems for businesses building for the long term. One integrated system. Briefed once, executed in parallel, delivered on time.
 </p>
-<div class="hero-proof hero-anim-3" style="margin-top:32px;margin-bottom:0;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;justify-content:center;">
+<div class="hero-proof hero-anim-3" style="margin-top:32px;margin-bottom:0;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;justify-content:flex-start;">
   <span>Strategy</span><span style="color:var(--bordergray);">·</span>
   <span>Creative</span><span style="color:var(--bordergray);">·</span>
   <span>Digital</span><span style="color:var(--bordergray);">·</span>
@@ -1434,22 +1480,22 @@ We build brand systems, digital experiences, and communication ecosystems for bu
    <!-- Campaign Films -->
     <p class="work-strip-label fade-up">Campaign Films</p>
     <div class="scroll-strip" id="films-strip">
-      <div class="film-card"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/film1.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:16px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);"></div><div style="position:relative;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="film-card"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/film2.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:16px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);"></div><div style="position:relative;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="film-card"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/film1.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;gap:16px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);"></div><div style="position:relative;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="film-card"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/film2.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;gap:16px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);"></div><div style="position:relative;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
     </div>
 
     <!-- Reels -->
     <p class="work-strip-label fade-up" style="margin-top:40px;">Reels</p>
     <div class="scroll-strip" id="reels-strip">
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel1.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel2.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel3.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel4.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel5.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20aee640fe2ab62837d2c7?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel6.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20b11240fe2ab62837f6ce?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel7.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20b4f340fe2ab628383a81?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel8.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20ba6b40fe2ab6283896e4?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel9.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel1.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:flex-start;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel2.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:flex-start;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel3.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:flex-start;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel4.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:flex-start;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel5.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:flex-start;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20aee640fe2ab62837d2c7?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel6.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:flex-start;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20b11240fe2ab62837f6ce?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel7.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:flex-start;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20b4f340fe2ab628383a81?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel8.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:flex-start;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20ba6b40fe2ab6283896e4?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel9.webp') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:flex-start;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
     </div>
     <div class="work-attr fade-up" style="padding: 0 clamp(24px, 4vw, 64px);">
       <span>In collaboration with <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer">Films By Jones</a></span>
@@ -1480,7 +1526,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     identifying opportunities, and building the right system for growth.
   </p>
 </div>
-    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:2px;">
+    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:2px;align-items:stretch;">
 
       <!-- Card 1 -->
       <div class="engagement-card">
@@ -1912,19 +1958,23 @@ We build brand systems, digital experiences, and communication ecosystems for bu
             <div>
               <label class="form-label" for="name">Name</label>
               <input type="text" id="name" name="name" required placeholder="Full name" class="form-input" autocomplete="name"/>
+              <p class="field-error">Please enter your name.</p>
             </div>
             <div>
               <label class="form-label" for="phone">Phone</label>
               <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXX XXXXX" class="form-input" autocomplete="tel"/>
+              <p class="field-error">Please enter your phone number.</p>
             </div>
           </div>
           <div>
             <label class="form-label" for="email">Work Email</label>
             <input type="email" id="email" name="email" required placeholder="name@company.com" class="form-input" autocomplete="email"/>
+            <p class="field-error">Please enter your email id.</p>
           </div>
           <div>
             <label class="form-label" for="company">Brand / Company</label>
             <input type="text" id="company" name="company" required placeholder="Your brand name" class="form-input" autocomplete="organization"/>
+            <p class="field-error">Please enter your company name</p>
           </div>
           <div class="form-row">
             <div>
@@ -1937,6 +1987,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
                 <option>Performance creatives</option>
                 <option>Something else</option>
               </select>
+                <p class="field-error">Please select a service.</p>
             </div>
             <div>
               <label class="form-label" for="budget">Budget range</label>
@@ -1947,6 +1998,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
                 <option>₹3L – ₹7L</option>
                 <option>₹7L+</option>
               </select>
+                <p class="field-error">Please select a budget range.</p>
             </div>
           </div>
           <div>
@@ -1958,10 +2010,12 @@ We build brand systems, digital experiences, and communication ecosystems for bu
               <option>1–2 months</option>
               <option>Just exploring</option>
             </select>
+              <p class="field-error">Please select a timeline.</p>
           </div>
           <div>
             <label class="form-label" for="message">Project brief</label>
             <textarea id="message" name="message" required placeholder="What are you trying to achieve? What's the current gap?" class="form-input"></textarea>
+            <p class="field-error">Please describe your project briefly.</p>
           </div>
           <div>
             <label class="form-label" for="reference">Reference links (optional)</label>
@@ -2168,6 +2222,12 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     document.body.style.overflow = '';
   };
 
+  document.addEventListener('click', function(e) {
+    if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
+      closeMob();
+    }
+  });
+
   var revealObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
@@ -2215,6 +2275,26 @@ We build brand systems, digital experiences, and communication ecosystems for bu
   }
   addDrag(document.getElementById('films-strip'));
   addDrag(document.getElementById('reels-strip'));
+
+  var navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+  var sections = [];
+  navAnchors.forEach(function(a) {
+    var id = a.getAttribute('href').replace('#', '');
+    var sec = document.getElementById(id);
+    if (sec) sections.push({ el: sec, link: a });
+  });
+ function setActiveNav() {
+    var scrollY = window.scrollY + 120;
+    var current = null;
+    sections.forEach(function(s) {
+      if (s.el.offsetTop <= scrollY) current = s;
+    });
+    sections.forEach(function(s) {
+      s.link.classList.toggle('active', s === current);
+    });
+  }
+  window.addEventListener('scroll', setActiveNav, { passive: true });
+  setActiveNav();
 
  window.loadVideo = function(posterEl, src) {
     var iframe = document.createElement('iframe');
@@ -2318,6 +2398,10 @@ We build brand systems, digital experiences, and communication ecosystems for bu
         submitBtn.innerHTML = message || 'Something went wrong — please try again.';
         submitBtn.style.background = '#EF4444';
         submitted = false;
+        var formNext = document.querySelector('.form-next');
+        if (formNext) {
+          formNext.innerHTML = 'Having trouble? <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" style="color:var(--accent);border-bottom:1px solid var(--accentmuted);">Send us a WhatsApp instead →</a>';
+        }
         setTimeout(function () {
           submitBtn.innerHTML = originalLabel;
           submitBtn.style.background = '';
@@ -2349,12 +2433,28 @@ We build brand systems, digital experiences, and communication ecosystems for bu
 
   function validateForm(formEl) {
     var required = formEl.querySelectorAll('[required]');
-    for (var i = 0; i < required.length; i++) {
-      if (!required[i].value.trim()) { required[i].focus(); return false; }
-    }
-    return true;
+    var valid = true;
+    required.forEach(function(field) {
+      var err = field.parentNode.querySelector('.field-error');
+      if (!field.value.trim()) {
+        field.classList.add('error');
+        if (err) err.classList.add('visible');
+        if (valid) field.focus();
+        valid = false;
+      } else {
+        field.classList.remove('error');
+        if (err) err.classList.remove('visible');
+      }
+    });
+    return valid;
   }
-
+document.querySelectorAll('#contact-form .form-input').forEach(function(field) {
+    field.addEventListener('input', function() {
+      field.classList.remove('error');
+      var err = field.parentNode.querySelector('.field-error');
+      if (err) err.classList.remove('visible');
+    });
+  });
   async function submitLead(payload) {
   if (!window.__sb) {
     await new Promise(function(resolve, reject) {
@@ -2436,13 +2536,18 @@ document.addEventListener('click', function(e) {
   var poster = e.target.closest('.reel-poster');
   if (!poster) return;
   var src = poster.getAttribute('data-src');
+  var loading = document.createElement('div');
+  loading.className = 'reel-poster-loading';
+  loading.innerHTML = '<div class="reel-spinner"></div>';
+  poster.parentNode.appendChild(loading);
+  poster.remove();
   var iframe = document.createElement('iframe');
   iframe.src = src;
   iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;display:block;';
   iframe.allow = 'accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen';
   iframe.referrerPolicy = 'origin';
-  poster.parentNode.appendChild(iframe);
-  poster.remove();
+  iframe.onload = function() { loading.remove(); };
+  poster.parentNode ? poster.parentNode.appendChild(iframe) : loading.parentNode.appendChild(iframe);
 });
 </script>
 <script type="application/ld+json">
@@ -2466,5 +2571,12 @@ document.addEventListener('click', function(e) {
   ]
 }
 </script>
+<a id="mobile-wa"
+   href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Chat on WhatsApp">
+  <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 </body>
 </html>
