@@ -1444,6 +1444,7 @@
         padding: 0 32px;
         background: var(--accent);
         height: 52px;
+        cursor: pointer;
       }
       #mobile-book-close {
         display: flex;
@@ -2771,7 +2772,7 @@ document.addEventListener('click', function(e) {
 }
 </script>
 <div id="mobile-book-wrap">
-  <div id="mobile-book-label">
+  <div id="mobile-book-label" onclick="openRazorpay('discovery')">
     <span id="mobile-book-title">Not sure where to start?</span>
     <span id="mobile-book-sub">A 30-min session with a clear action plan.</span>
   </div>
