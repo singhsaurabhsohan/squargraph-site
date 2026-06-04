@@ -42,10 +42,10 @@
       --warmgray: #F5F5F3;
       --coolgray: #F0EFED;
       --bordergray: #E5E3DF;
-      --textmuted: #3D3935;
+      --textmuted: #2A2623;
       --textsecondary: #3D3935;
       --textprimary: #1A1714;
-      --accent: #8B7EC8;
+      --accent: #6B5DB8;
       --accentmuted: #A99FD6;
       --accentlight: #EEECf7;
     }
@@ -1266,7 +1266,10 @@
       margin-left: 4px;
     }
     .video-poster.hidden { display: none; }
-
+    a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    }
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -1706,7 +1709,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
         <p style="font-size:15px;color:var(--textsecondary);line-height:1.75;margin-bottom:32px;">With experience across brand communication, campaign development, content ecosystems, digital experiences, and large-scale automotive launches, he helps businesses create brands that are strategically aligned, creatively differentiated, and commercially effective. Every engagement is founder-led. One point of accountability. No context lost between strategy and execution.</p>
         <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
           <button type="button" onclick="openRazorpay('discovery')" class="btn-primary">Book a Discovery Session →</button>
-          <a href="https://linkedin.com/company/saurabhsohansingh" target="_blank" rel="noopener noreferrer" style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:6px;transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textsecondary)'">
+          <a href="https://linkedin.com/in/saurabhsohansingh" target="_blank" rel="noopener noreferrer" style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:6px;transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textsecondary)'">
             <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             LinkedIn
           </a>
