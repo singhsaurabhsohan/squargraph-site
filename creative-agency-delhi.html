@@ -581,10 +581,8 @@
 }
 .reel-poster > div:last-child,
 .film-card .reel-poster > div:last-child {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -598,6 +596,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.reel-poster > div:first-child {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
       .reel-wrap {
       flex: 0 0 200px;
@@ -1368,7 +1371,7 @@
       #back-to-top {
         left: 20px;
         right: auto;
-        bottom: 24px;
+        bottom: 32px;
         width: 52px;
         height: 52px;
       }
@@ -1427,6 +1430,22 @@
         background: var(--accent);
         height: 52px;
       }
+      #mobile-book-close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent);
+        color: rgba(255,255,255,.6);
+        border: none;
+        border-left: 1px solid rgba(255,255,255,.2);
+        width: 40px;
+        height: 52px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: color .2s;
+        flex-shrink: 0;
+      }
+      #mobile-book-close:hover { color: #fff; }
       #mobile-book-title {
         font-size: 13px;
         font-weight: 500;
@@ -1445,7 +1464,7 @@
         display: flex;
         align-items: center;
         position: fixed;
-        bottom: 24px;
+        bottom: 32px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 9997;
@@ -1489,12 +1508,13 @@
       #mobile-book-close:hover { color: #fff; }
     }
     @media (max-width: 768px) {
+      @media (max-width: 768px) {
       #mobile-wa {
         display: flex;
         align-items: center;
         justify-content: center;
         position: fixed;
-        bottom: 24px;
+        bottom: 32px;
         right: 20px;
         z-index: 9996;
         width: 52px;
@@ -1640,22 +1660,22 @@ We build brand systems, digital experiences, and communication ecosystems for bu
    <!-- Campaign Films -->
     <p class="work-strip-label fade-up">Campaign Films</p>
     <div class="scroll-strip" id="films-strip">
-      <div class="film-card"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/film1.webp') center/cover no-repeat;cursor:pointer;gap:16px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);pointer-events:none;"></div><div style="position:relative;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="film-card"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/film2.webp') center/cover no-repeat;cursor:pointer;gap:16px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);pointer-events:none;"></div><div style="position:relative;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="film-card"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/film1.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);pointer-events:none;"></div><div style="position:relative;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="film-card"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/film2.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);pointer-events:none;"></div><div style="position:relative;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
     </div>
 
     <!-- Reels -->
     <p class="work-strip-label fade-up" style="margin-top:40px;">Reels</p>
     <div class="scroll-strip" id="reels-strip">
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel1.webp') center/cover no-repeat;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel2.webp') center/cover no-repeat;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel3.webp') center/cover no-repeat;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel4.webp') center/cover no-repeat;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel5.webp') center/cover no-repeat;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20aee640fe2ab62837d2c7?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel6.webp') center/cover no-repeat;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20b11240fe2ab62837f6ce?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel7.webp') center/cover no-repeat;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20b4f340fe2ab628383a81?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel8.webp') center/cover no-repeat;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20ba6b40fe2ab6283896e4?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel9.webp') center/cover no-repeat;cursor:pointer;gap:12px;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel1.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel2.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel3.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel4.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel5.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20aee640fe2ab62837d2c7?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel6.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20b11240fe2ab62837f6ce?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel7.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20b4f340fe2ab628383a81?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel8.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20ba6b40fe2ab6283896e4?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel9.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
     </div>
     <div class="work-attr fade-up" style="padding: 0 clamp(24px, 4vw, 64px);">
       <span>In collaboration with <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer">Films By Jones</a></span>
