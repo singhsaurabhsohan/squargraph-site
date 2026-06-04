@@ -90,7 +90,7 @@
        NAVIGATION
     ══════════════════════════ */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 103;
       transition: background .4s, border-color .4s, backdrop-filter .4s;
     }
     nav.scrolled {
@@ -192,6 +192,7 @@
       background: #fff;
       flex-direction: column; justify-content: center;
       padding: clamp(32px, 8vw, 64px);
+      padding-top: 100px;
       opacity: 0; pointer-events: none;
       transition: opacity .3s;
     }
@@ -1351,6 +1352,60 @@
     }
     #mobile-wa {
       display: none;
+    }
+    #mobile-book {
+      display: none;
+    }
+    #mobile-book-wrap {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      #mobile-book-wrap {
+        display: flex;
+        align-items: center;
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9997;
+        gap: 0;
+        box-shadow: 0 4px 16px rgba(107,93,184,.35);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      #mobile-book {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 0 16px;
+        height: 52px;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: background .2s;
+      }
+      #mobile-book:hover { background: var(--textprimary); }
+      #mobile-book-close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--textprimary);
+        color: rgba(255,255,255,.6);
+        border: none;
+        border-left: 1px solid rgba(255,255,255,.1);
+        width: 40px;
+        height: 52px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: color .2s;
+        flex-shrink: 0;
+      }
+      #mobile-book-close:hover { color: #fff; }
     }
     @media (max-width: 768px) {
       #mobile-wa {
@@ -2597,6 +2652,10 @@ document.addEventListener('click', function(e) {
   ]
 }
 </script>
+<div id="mobile-book-wrap">
+  <button id="mobile-book" type="button" onclick="openRazorpay('discovery')">Book Discovery</button>
+  <button id="mobile-book-close" type="button" aria-label="Dismiss" onclick="document.getElementById('mobile-book-wrap').style.display='none'">✕</button>
+</div>
 <a id="mobile-wa"
    href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project"
    target="_blank"
