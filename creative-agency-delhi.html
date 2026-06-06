@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SQUARGRAPH™ Studios - Brand Systems & Digital Experiences</title>
-  <meta name="description" content="SQUARGRAPH™ Studios builds brand systems, digital experiences, and campaigns for ambitious businesses. Strategy, creative, and execution — integrated." />
+  <meta name="description" content="SQUARGRAPH™ Studios builds brand systems, digital experiences, and campaigns for ambitious businesses. Strategy, communication, creative, and execution — integrated." />
   <meta name="author" content="SQUARGRAPH Studios" />
   <link rel="canonical" href="https://squargraph.com" />
   <meta property="og:title" content="SQUARGRAPH™ Studios: Brand Systems & Digital Experiences" />
@@ -159,29 +159,44 @@
 
     /* Hamburger */
     .hamburger {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 44px; height: 44px;
-    background: none; border: none; cursor: pointer;
-    gap: 0;
-    padding: 0;
-    position: relative;
-    z-index: 102;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 44px; height: 44px;
+      background: none; border: none; cursor: pointer;
+      padding: 0;
+      position: relative;
+      z-index: 102;
     }
-    .hamburger span {
-      display: block;
-      width: 20px; height: 1.5px;
+    .pill-menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    .pill-line {
+      width: 28px;
+      height: 1.5px;
       background: var(--textprimary);
-      transition: transform .3s, opacity .3s;
-      transform-origin: center;
+      border-radius: 999px;
+      transition: transform .35s cubic-bezier(.77,0,.18,1), opacity .3s;
     }
-    .hamburger span:nth-child(1) { margin-bottom: 5px; }
-    .hamburger span:nth-child(2) { margin-bottom: 5px; }
-    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .pill-body {
+      width: 28px;
+      height: 13px;
+      border: 1.5px solid var(--textprimary);
+      border-radius: 999px;
+      background: transparent;
+      transition: transform .35s cubic-bezier(.77,0,.18,1), opacity .3s;
+    }
+    .hamburger.open .pill-line {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .hamburger.open .pill-body {
+      opacity: 0;
+      transform: scaleX(0);
+    }
     @media (max-width: 768px) { .hamburger { display: flex; } }
     @media (min-width: 769px) { .hamburger { display: none !important; } }
 
@@ -1429,6 +1444,7 @@
         padding: 0 32px;
         background: var(--accent);
         height: 52px;
+        cursor: pointer;
       }
       #mobile-book-close {
         display: flex;
@@ -1507,8 +1523,10 @@
       }
       #mobile-book-close:hover { color: #fff; }
     }
+    @media (max-width: 640px) {
+      .who-grid { grid-template-columns: 1fr !important; }
+    }
     @media (max-width: 768px) {
-      @media (max-width: 768px) {
       #mobile-wa {
         display: flex;
         align-items: center;
@@ -1561,7 +1579,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#" onclick="openRazorpay('discovery');return false;" class="nav-cta">Book Discovery Session</a>
     </div>
     <button type="button" class="hamburger" id="mob-toggle" aria-label="Open navigation menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+      <div class="pill-menu">
+        <div class="pill-line"></div>
+        <div class="pill-body"></div>
+      </div>
     </button>
   </div>
 </nav>
@@ -1858,7 +1879,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
   <div class="section-inner">
     <div class="cap-intro">
       <h2 class="cap-intro-h2 fade-up">
-        Strategy, content,<br/>and <em>execution.</em>
+        Strategy, content, communication<br/>and <em>execution.</em>
       </h2>
       <div class="cap-intro-right fade-up d1">
         <p>Most brands run their communication through disconnected parts: a freelancer here, an agency there, a production house on the side. SQUARGRAPH™ integrates all of it into a unified execution model: briefed once, executed in parallel, delivered on time.</p>
@@ -1916,7 +1937,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
           <li>Community &amp; campaign storytelling</li>
         </ul>
       </div>
-      <div class="cap-card fade-up d2">
+      <div class="cap-card fade-up d1">
         <span class="cap-num">06</span>
         <div class="cap-name">Creative Execution</div>
         <p class="cap-def">The operational layer that keeps everything moving: team coordination, feedback cycles, stakeholder alignment, and delivery accountability.</p>
@@ -1924,6 +1945,17 @@ We build brand systems, digital experiences, and communication ecosystems for bu
           <li>Multidisciplinary team coordination</li>
           <li>Brief-to-live pipeline management</li>
           <li>Agency-compatible execution support</li>
+        </ul>
+      </div>
+      <div class="cap-card fade-up d2">
+        <span class="cap-num">07</span>
+        <div class="cap-name">Strategic Communications</div>
+        <p class="cap-def">Perception management for founders and modern brands — from launch communications to digital reputation and partnership strategy.</p>
+        <ul class="cap-outputs">
+          <li>Founder Positioning</li>
+          <li>Launch Communications</li>
+          <li>Creator Relations &amp; Partnership Strategy</li>
+          <li>Digital Reputation</li>
         </ul>
       </div>
     </div>
@@ -1959,7 +1991,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       <div>
         <p class="section-eyebrow" style="margin-bottom:16px;">The Founder</p>
         <h2 style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3.5vw,48px);line-height:1.08;letter-spacing:-0.03em;margin-bottom:20px;">Saurabh Sohan Singh</h2>
-        <div style="font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;">Founder & Creative Strategist</div>
+        <div style="font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;">Founder & Strategic Communications Director</div>
         <p style="font-size:clamp(16px,1.6vw,18px);color:var(--textsecondary);line-height:1.75;margin-bottom:20px;">Saurabh founded SQUARGRAPH™ to bridge the gap between strategic thinking and creative execution.</p>
         <p style="font-size:15px;color:var(--textsecondary);line-height:1.75;margin-bottom:32px;">With experience across brand communication, campaign development, content ecosystems, digital experiences, and large-scale automotive launches, he helps businesses create brands that are strategically aligned, creatively differentiated, and commercially effective. Every engagement is founder-led. One point of accountability. No context lost between strategy and execution.</p>
         <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
@@ -2098,7 +2130,36 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     <p class="modal-p">Black-and-white portrait series of real users, long-form YouTube essays on sound culture, and a limited "Legacy" line with zero logos — just material and memory.</p>
   </div>
 </div>
-
+<!-- ══════════════
+     WHO WE WORK WITH
+══════════════ -->
+<section style="padding:clamp(80px,12vw,160px) clamp(24px,4vw,64px);background:#fff;">
+  <div class="section-inner">
+    <div class="fade-up" style="margin-bottom:clamp(48px,8vw,80px);">
+      <p class="section-eyebrow" style="margin-bottom:10px;">Fit</p>
+      <h2 class="section-title">Who We Work With</h2>
+    </div>
+    <div class="fade-up who-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+      <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 36px;">
+        <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;margin-bottom:20px;">Built for</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;">
+          <li style="font-size:15px;color:var(--textprimary);font-weight:500;display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Founders building category-defining businesses</li>
+          <li style="font-size:15px;color:var(--textprimary);font-weight:500;display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Agencies requiring specialist execution</li>
+          <li style="font-size:15px;color:var(--textprimary);font-weight:500;display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Premium and automotive brands</li>
+          <li style="font-size:15px;color:var(--textprimary);font-weight:500;display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Cultural and lifestyle businesses</li>
+        </ul>
+      </div>
+      <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 36px;">
+        <div style="font-size:11px;letter-spacing:.12em;color:var(--textmuted);font-weight:600;text-transform:uppercase;margin-bottom:20px;">Not built for</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;">
+          <li style="font-size:15px;color:var(--textsecondary);display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--bordergray);flex-shrink:0;"></span>High-volume social media retainers</li>
+          <li style="font-size:15px;color:var(--textsecondary);display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--bordergray);flex-shrink:0;"></span>Commodity design work</li>
+          <li style="font-size:15px;color:var(--textsecondary);display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--bordergray);flex-shrink:0;"></span>Lowest-cost vendor sourcing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- ══════════════
      CONTACT
 ══════════════ -->
@@ -2201,7 +2262,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
             <label class="form-label" for="reference">Reference links (optional)</label>
             <input type="text" id="reference" name="reference" placeholder="Paste a link, Drive, Notion, or any reference" class="form-input"/>
           </div>
-          <button type="submit" id="form-submit-btn" class="submit-btn">Send inquiry →</button>
+          <button type="submit" id="form-submit-btn" class="submit-btn">Send the Brief →</button>
           <p class="form-next" style="text-align: left;">Every brief reviewed within 48 hours. No follow-up sequence. No pitch deck.</p>
         </form>
       </div>
@@ -2754,7 +2815,7 @@ document.addEventListener('click', function(e) {
 }
 </script>
 <div id="mobile-book-wrap">
-  <div id="mobile-book-label">
+  <div id="mobile-book-label" onclick="openRazorpay('discovery')">
     <span id="mobile-book-title">Not sure where to start?</span>
     <span id="mobile-book-sub">A 30-min session with a clear action plan.</span>
   </div>
