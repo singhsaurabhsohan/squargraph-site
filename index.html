@@ -22,16 +22,13 @@
   <meta name="twitter:title" content="SQUARGRAPH™ Studios, Independent Strategic Studio, New Delhi" />
   <meta name="twitter:description" content="An independent strategic studio. Brand strategy, campaign architecture, and digital experiences for businesses that take their market position seriously." />
   <meta name="google-site-verification" content="4hPJrhXVEImlpjzhdAr1Ieh_RCDjpIcfhkRvNt3uLl8" />
-  <link rel="preconnect" href="https://checkout.razorpay.com" />
-  <link rel="preconnect" href="https://play.gumlet.io" />
-  <link rel="preconnect" href="https://cdn.razorpay.com" />
+  <link rel="preload" href="/fonts/Satoshi-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="dns-prefetch" href="https://cdn.razorpay.com" />
   <meta http-equiv="x-dns-prefetch-control" content="on" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
 
   <!-- Fonts -->
-  <link rel="dns-prefetch" href="https://checkout.razorpay.com" />
   <link rel="preconnect" href="https://checkout.razorpay.com" crossorigin />
   <style>
   @font-face{font-family:'Satoshi';src:url('/fonts/Satoshi-Regular.woff2') format('woff2');font-weight:400;font-display:swap;}
@@ -1213,7 +1210,7 @@
     }
     .social-links { display: flex; gap: 8px; flex-wrap: wrap; }
     .social-link {
-      width: 40px; height: 40px;
+      width: 44px; height: 44px;
       border: none;
       border-radius: 50%;
       background: var(--warmgray);
@@ -1632,7 +1629,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav id="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="SQUARGRAPH Studios">
-  <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" fetchpriority="high" decoding="async" />
+  <img src="/logo-120.webp" alt="SQUARGRAPH Studios" width="120" height="14" style="height:28px;width:auto;" fetchpriority="high" decoding="async" srcset="/logo-120.webp 1x, /logo-240.webp 2x" />
 </a>
     <div class="nav-links">
       <a href="#work">Work</a>
@@ -1651,7 +1648,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <!-- Mobile menu -->
-<div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" aria-hidden="true">
+<div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" aria-hidden="true" inert>
   <span id="mob-menu-title" class="sr-only">Navigation Menu</span>
   <a href="#work" onclick="closeMob()">Work</a>
   <a href="#Engagements" onclick="closeMob()">Engagements</a>
@@ -1827,7 +1824,7 @@ We work with businesses that are serious about how they are positioned, communic
 
       <!-- Card 3 -->
       <div class="engagement-card engagement-card--dark">
-        <div style="font-size:11px;letter-spacing:.12em;color:var(--accentmuted);font-weight:600;text-transform:uppercase;">Sprint</div>
+        <div style="font-size:11px;letter-spacing:.12em;color:#B8AEED;font-weight:600;text-transform:uppercase;">Sprint</div>
         <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:#fff;">Brand Foundation Sprint™</div>
         <div style="margin:0 0 4px 0;">
           <div style="font-family:'Satoshi',sans-serif; font-weight:600; font-size:22px; color:#fff; letter-spacing:-0.02em;">Custom scope</div>
@@ -1880,15 +1877,15 @@ We work with businesses that are serious about how they are positioned, communic
     <div class="approach-divider fade-up" id="approach-divider"></div>
     <div class="approach-pillars fade-up d2">
       <div>
-        <h4 class="approach-pillar-name">Strategy First</h4>
+        <h3 class="approach-pillar-name">Strategy First</h3>
         <p class="approach-pillar-text">Every decision rooted in intention.</p>
       </div>
       <div>
-        <h4 class="approach-pillar-name">Production Led</h4>
+        <h3 class="approach-pillar-name">Production Led</h3>
         <p class="approach-pillar-text">Craft at every point of expression.</p>
       </div>
       <div>
-        <h4 class="approach-pillar-name">Execution Focused</h4>
+        <h3 class="approach-pillar-name">Execution Focused</h3>
         <p class="approach-pillar-text">Timelines measured in weeks, not months.</p>
       </div>
     </div>
@@ -2015,7 +2012,7 @@ We work with businesses that are serious about how they are positioned, communic
     </div>
     </div>
 
-    <div class="built-for fade-up" style="margin-top:2px;">
+    <div class="built-for fade-up">
       <article class="built-for-card">
         <div class="built-for-label">Enterprise Brands</div>
         <p class="built-for-text">Large brand teams that need a reliable execution partner, one that understands brand systems and delivers at scale without friction.</p>
@@ -2304,7 +2301,7 @@ We work with businesses that are serious about how they are positioned, communic
   <div class="footer-inner">
     <div>
       <div class="footer-logo">
-  <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" />
+  <img src="/logo-120.webp" alt="SQUARGRAPH Studios" width="120" height="14" style="height:28px;width:auto;" decoding="async" loading="lazy" srcset="/logo-120.webp 1x, /logo-240.webp 2x" />
 </div>
       <p class="footer-tagline">Brand strategy, campaign architecture, and digital experiences for businesses that take their market position seriously.</p>
       <p class="footer-philosophy">
@@ -2471,6 +2468,7 @@ We work with businesses that are serious about how they are positioned, communic
     mobToggle.setAttribute('aria-label', menuOpen ? 'Close navigation menu' : 'Open navigation menu');
     mobMenu.classList.toggle('open', menuOpen);
     mobMenu.setAttribute('aria-hidden', String(!menuOpen));
+    if (menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert', ''); }
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   });
   window.closeMob = function() {
@@ -2479,6 +2477,7 @@ We work with businesses that are serious about how they are positioned, communic
     mobToggle.setAttribute('aria-expanded', 'false');
     mobMenu.classList.remove('open');
     mobMenu.setAttribute('aria-hidden', 'true');
+    mobMenu.setAttribute('inert', '');
     document.body.style.overflow = '';
   };
 
@@ -2525,12 +2524,13 @@ We work with businesses that are serious about how they are positioned, communic
     var isDown = false, startX, scrollLeft;
     el.addEventListener('mousedown', function(e) {
       isDown = true; el.style.cursor = 'grabbing';
-      startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft;
+      startX = e.pageX - el.getBoundingClientRect().left; scrollLeft = el.scrollLeft;
     });
     document.addEventListener('mouseup', function() { isDown = false; el.style.cursor = 'grab'; });
     el.addEventListener('mousemove', function(e) {
       if (!isDown) return; e.preventDefault();
-      el.scrollLeft = scrollLeft - (e.pageX - el.offsetLeft - startX);
+      var x = e.pageX - el.getBoundingClientRect().left;
+      el.scrollLeft = scrollLeft - (x - startX);
     });
   }
   addDrag(document.getElementById('films-strip'));
@@ -2860,8 +2860,8 @@ document.addEventListener('click', function(e) {
    aria-label="Chat on WhatsApp">
   <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<!-- Google Tag Manager (deferred) -->
+<script>window.addEventListener('load',function(){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
