@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SQUARGRAPH™ Studios - Brand Systems & Digital Experiences</title>
-  <meta name="description" content="SQUARGRAPH™ Studios builds brand systems, digital experiences, and campaigns for ambitious businesses. Strategy, communication, creative, and execution — integrated." />
+  <title>SQUARGRAPH Studios | Brand Systems & Strategic Communications</title>
+  <meta name="description" content="SQUARGRAPH™ Studios Independent strategic studio creating brands, digital experiences, communication and campaigns." />
   <meta name="author" content="SQUARGRAPH Studios" />
   <link rel="canonical" href="https://squargraph.com" />
   <meta property="og:title" content="SQUARGRAPH™ Studios: Brand Systems & Digital Experiences" />
-  <meta property="og:description" content="Building brand systems, digital experiences, content ecosystems, and market presence for ambitious businesses." />
+  <meta property="og:description" content="Building brands, digital experiences, content, and market presence." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://squargraph.com" />
   <meta property="og:image" content="https://squargraph.com/og-image.jpg" />
@@ -19,17 +19,18 @@
   <meta name="theme-color" content="#FAFAF9" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1A1714" media="(prefers-color-scheme: dark)" />
   <meta name="robots" content="index, follow" />
+  <meta name="geo.region" content="IN-DL" />
+  <meta name="geo.placename" content="New Delhi" />
   <meta name="twitter:title" content="SQUARGRAPH™ Studios: Brand Systems & Digital Experiences" />
-  <meta name="twitter:description" content="Building brand systems, digital experiences, content ecosystems, and market presence for ambitious businesses." />
+  <meta name="twitter:description" content="Building brands, digital experiences, content, and market presence." />
   <meta name="google-site-verification" content="4hPJrhXVEImlpjzhdAr1Ieh_RCDjpIcfhkRvNt3uLl8" />
-  <link rel="preconnect" href="https://checkout.razorpay.com" />
+  <link rel="preconnect" href="https://checkout.razorpay.com" crossorigin />
   <link rel="preconnect" href="https://play.gumlet.io" />
+  <link rel="dns-prefetch" href="https://checkout.razorpay.com" />
+  <link rel="preload" href="/fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/Satoshi-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
-
-  <!-- Fonts -->
-  <link rel="dns-prefetch" href="https://checkout.razorpay.com" />
-  <link rel="preconnect" href="https://checkout.razorpay.com" crossorigin />
   <style>
   @font-face{font-family:'Satoshi';src:url('/fonts/Satoshi-Regular.woff2') format('woff2');font-weight:400;font-display:swap;}
   @font-face{font-family:'Satoshi';src:url('/fonts/Satoshi-Medium.woff2') format('woff2');font-weight:500;font-display:swap;}
@@ -129,7 +130,7 @@
     .nav-cta {
       font-size: 13px; font-weight: 500;
       color: var(--textprimary);
-      border: 1px solid var(--bordergray);
+      border: 1px solid var(--textprimary);
       border-radius: 999px;
       padding: 10px 24px;
       transition: background .25s, color .25s, border-color .25s;
@@ -248,13 +249,6 @@
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .hero-anim-1 { animation: heroFade .8s .2s both; }
-    .hero-anim-2 { animation: heroFade .9s .35s both; }
-    .hero-anim-3 { animation: heroFade .8s .55s both; }
-    .hero-anim-4 { animation: heroFade .8s .7s both; }
-    .hero-anim-5 { animation: heroFade 1s 1.2s both; }
-    .hero-anim-6 { animation: heroFade 1s 1.6s both; }
-
     /* Scale reveal */
     @keyframes scaleX {
       from { transform: scaleX(0); }
@@ -267,11 +261,11 @@
     #hero {
       min-height: 100vh;
       display: flex; flex-direction: column; justify-content: center;
-      padding: 80px clamp(24px, 5vw, 80px) 80px;
+      padding: 80px clamp(24px, 4vw, 64px) 80px;
       position: relative;
     }
     .hero-inner { max-width: 1440px; margin: 0 auto; width: 100%; }
-    .hero-content { max-width: 1040px; margin: 0 auto; text-align: left; position: relative; z-index: 1; }
+    .hero-content { max-width: 860px; margin: 0; text-align: left; position: relative; z-index: 1; }
     .hero-eyebrow {
       font-size: 13px; font-weight: 500;
       color: var(--textsecondary);
@@ -290,42 +284,6 @@
       opacity: 0.4;
       pointer-events: none;
     }
-    /* Abstract floating vector shapes */
-.hero-bg-shapes {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-.shape {
-  position: absolute;
-  background: var(--accent);
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.08;
-}
-.shape-1 {
-  width: 40vw;
-  height: 40vw;
-  top: -20vw;
-  right: -10vw;
-}
-.shape-2 {
-  width: 30vw;
-  height: 30vw;
-  bottom: -15vw;
-  left: -15vw;
-}
-.shape-3 {
-  width: 20vw;
-  height: 20vw;
-  top: 30%;
-  left: 20%;
-}
 @media (max-width: 768px) {
   .shape { filter: blur(40px); opacity: 0.05; }
 }
@@ -350,11 +308,11 @@
       color: var(--accent);
     }
     .hero-sub {
-      font-size: clamp(16px, 1.5vw, 20px);
+      font-size: clamp(16px, 1.5vw, 19px);
       color: var(--textsecondary);
       font-weight: 400;
-      line-height: 1.65;
-      max-width: 52ch;
+      line-height: 1.6;
+      max-width: 44ch;
       margin-bottom: clamp(36px, 5vw, 52px);
       margin-left: 0;
       margin-right: 0;
@@ -381,7 +339,7 @@
       font-size: 14px; font-weight: 500;
       border: 1px solid var(--bordergray);
       border-radius: 999px;
-      padding: 13px 28px;
+      padding: 14px 28px;
       letter-spacing: -0.01em;
       transition: border-color .3s;
     }
@@ -555,7 +513,7 @@
       font-size: 11px; font-weight: 500;
       color: var(--textmuted); letter-spacing: .08em;
       text-transform: uppercase; margin-bottom: 14px;
-      margin-top: 56px;
+     margin-top: 48px;
       padding: 0 clamp(24px, 4vw, 64px);
     }
     .scroll-strip {
@@ -579,7 +537,7 @@
 .film-card {
   flex: 0 0 560px;
   aspect-ratio: 16/9;
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
   background: var(--warmgray);
   position: relative;
@@ -621,7 +579,7 @@
       flex: 0 0 200px;
       aspect-ratio: 9/16;
       scroll-snap-align: start;
-      border-radius: 8px;
+      border-radius: 0;
       overflow: hidden;
       background: transparent;
       position: relative;
@@ -693,7 +651,7 @@
     .engagement-card {
   background: #fff;
   border: 1px solid var(--bordergray);
-  padding: 40px 32px;
+  padding: 36px 32px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -736,7 +694,7 @@
        APPROACH (QUOTE)
     ══════════════════════════ */
     .approach-section {
-      padding: clamp(100px, 14vw, 200px) clamp(24px, 4vw, 64px);
+      padding: clamp(80px, 10vw, 140px) clamp(24px, 4vw, 64px);
     }
     .approach-quote {
       font-family: 'Satoshi', sans-serif;
@@ -767,8 +725,8 @@
     .approach-pillars {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: clamp(24px, 4vw, 48px);
-      max-width: 780px;
+      gap: 2px;
+      max-width: 100%;
     }
     @media (max-width: 640px) { .approach-pillars { grid-template-columns: 1fr; } }
     .approach-pillar-name {
@@ -861,7 +819,7 @@
     @media (max-width: 640px) { .built-for { grid-template-columns: 1fr; } }
     .built-for-card {
       background: #fff; border: 1px solid var(--bordergray);
-      padding: 32px;
+      padding: 36px 32px;
     }
     .built-for-label {
       font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
@@ -936,7 +894,7 @@
     }
     .intel-grid {
       display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 2px;
     }
     .intel-grid .intel-card:last-child:nth-child(odd) {
       grid-column: 1 / -1;
@@ -946,7 +904,7 @@
     .intel-card {
       border: 1px solid var(--bordergray);
       background: #fff;
-      padding: 32px 28px;
+      padding: 36px 32px;
       cursor: pointer; position: relative;
       transition: border-color .3s, transform .35s cubic-bezier(.25,.1,.25,1), box-shadow .3s;
       display: flex; flex-direction: column; gap: 0;
@@ -1117,7 +1075,7 @@
       min-height: 48px;
       font-family: 'Satoshi', sans-serif;
       font-size: 14px;
-      border-radius: 999px;
+      border-radius: 4px;
       outline: none;
       transition: border-color .25s;
       -webkit-appearance: none;
@@ -1164,7 +1122,7 @@
       font-size: 14px;
       font-weight: 500;
       letter-spacing: -0.01em;
-      border-radius: 999px;
+      border-radius: 4px;
       cursor: pointer;
       transition: background .25s, transform .25s;
       display: inline-flex;
@@ -1201,7 +1159,7 @@
       line-height:1;
       font-size: 20px; font-weight: 600;
       letter-spacing: -0.03em; color: var(--textprimary);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
     .footer-logo sup { font-size: 9px; color: var(--accent); vertical-align: super; }
     .footer-tagline {
@@ -1242,7 +1200,7 @@
     .footer-bar {
       max-width: 1440px; margin: 0 auto;
       border-top: 1px solid var(--bordergray);
-      padding-top: 32px;
+      padding-top: 40px;
       display: flex; justify-content: space-between;
       align-items: flex-start; flex-wrap: wrap; gap: 10px;
     }
@@ -1381,7 +1339,6 @@
       border-color: var(--accentmuted);
     }
      @media (max-width: 99999px) {
-      #persistent-cta { display: none !important; }
       #mobile-book-wrap { display: flex !important; }
       #back-to-top {
         left: 20px;
@@ -1526,6 +1483,12 @@
     @media (max-width: 640px) {
       .who-grid { grid-template-columns: 1fr !important; }
     }
+    @media (max-width: 900px) {
+      #Engagements .section-inner > div[style] { grid-template-columns: repeat(2,1fr) !important; }
+    }
+    @media (max-width: 540px) {
+      #Engagements .section-inner > div[style] { grid-template-columns: 1fr !important; }
+    }
     @media (max-width: 768px) {
       #mobile-wa {
         display: flex;
@@ -1576,7 +1539,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#Engagements">Engagements</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#studio">Studio</a>
-      <a href="#" onclick="openRazorpay('discovery');return false;" class="nav-cta">Book Discovery Session</a>
+      <a href="#" onclick="openRazorpay('discovery');return false;" class="nav-cta">Start a Brief</a>
     </div>
     <button type="button" class="hamburger" id="mob-toggle" aria-label="Open navigation menu" aria-expanded="false">
       <div class="pill-menu">
@@ -1595,7 +1558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#capabilities" onclick="closeMob()">Capabilities</a>
   <a href="#studio" onclick="closeMob()">Studio</a>
   <a href="#contact" onclick="closeMob()">Contact</a>
-  <a href="#" onclick="closeMob();openRazorpay('discovery');return false;" style="color: var(--accent); font-weight: 600;">Book Discovery — ₹2,999 →</a>
+  <a href="#" onclick="closeMob();openRazorpay('discovery');return false;" style="color: var(--accent); font-weight: 600;">Reserve Discovery Call - ₹2,999</a>
   <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
 </div>
 
@@ -1605,21 +1568,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      HERO
 ══════════════ -->
 <section id="hero">
-  <div class="hero-bg-shapes" aria-hidden="true">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-  </div>
-  <div class="hero-lines" aria-hidden="true">
-    <div class="line-vert"></div>
-    <div class="line-vert"></div>
-    <div class="line-horiz"></div>
-    <div class="line-horiz"></div>
-  </div>
-  <!-- Edge lines (item 3) -->
-  <div class="hero-edge-left" aria-hidden="true"></div>
-  <div class="hero-edge-right" aria-hidden="true"></div>
-
   <!-- Full‑width background grid (item 4) -->
   <div aria-hidden="true" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:0;">
   <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:.035;">
@@ -1633,27 +1581,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
   <div class="hero-inner">
     <div class="hero-content">
-      <p class="hero-eyebrow hero-anim-1">SQUARGRAPH™ Studios: Brand Systems & Integrated Execution</p>
-<div class="hero-anim-2" aria-hidden="true" style="width:72px;height:1px;background:var(--accent);margin:0 0 clamp(20px,2.5vw,28px) 0;transform-origin:left;animation:scaleX .7s .3s cubic-bezier(.25,.1,.25,1) both;"></div>
-      <h1 class="hero-h1 hero-anim-2">
-  Your Brand Is A Business <em>Asset.</em>
+      <p class="hero-eyebrow fade-up d1">Independent Strategic Studio • New Delhi</p>
+      <h1 class="hero-h1 fade-up d2">
+Building clarity<br/><em>into brands.</em>
 </h1>
-<p class="hero-sub hero-anim-2">
-We build brand systems, digital experiences, and communication ecosystems for businesses building for the long term. One integrated system. Briefed once, executed in parallel, delivered on time.
+<p class="hero-sub fade-up d2">
+Strategy. Identity. Digital. Content. Communications. Built together, not in silos.
+From the first conversation to the final delivery, one team owns the thinking and the execution.
 </p>
-<div class="hero-proof hero-anim-3" style="margin-top:32px;margin-bottom:0;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;justify-content:flex-start;">
-  <span>Strategy</span><span style="color:var(--bordergray);">·</span>
-  <span>Creative</span><span style="color:var(--bordergray);">·</span>
-  <span>Digital</span><span style="color:var(--bordergray);">·</span>
-  <span>Production</span>
-</div>
-      <div class="hero-ctas hero-anim-4">
-  <button type="button" onclick="openRazorpay('discovery')" class="btn-primary" style="border:none;cursor:pointer;">Book Discovery Session</button>
-  <a href="#Engagements" class="btn-outline">Explore Engagements</a>
+      <div class="hero-ctas fade-up d3">
+  <button type="button" onclick="openRazorpay('discovery')" class="btn-primary" style="border:none;cursor:pointer;">Start a Brief</button>
+  <a href="#Engagements" class="btn-outline">View Engagement Models</a>
   </div>
     </div>
   </div>
-  <div class="scroll-hint hero-anim-6">
+  <div class="scroll-hint fade-up d4">
     <div class="scroll-line"><div class="scroll-line-inner"></div></div>
     <span>Scroll</span>
   </div>
@@ -1669,25 +1611,22 @@ We build brand systems, digital experiences, and communication ecosystems for bu
   <div class="section-inner">
     <div class="section-header fade-up">
       <div>
-        <p class="section-eyebrow">Selected Work</p>
-        <p class="section-manifesto">
-  Market presence is built through consistent execution.
-</p>
-        <h2 class="section-title">Systems In Motion</h2>
+        <p class="section-eyebrow">Recent Engagements</p>
+        <h2 class="section-title">Selected Work</h2>
       </div>
-      <span class="section-count">Automotive · Hospitality · D2C · Lifestyle</span>
+      <span class="section-count">Automotive • Hospitality • Consumer • Lifestyle</span>
     </div>
 
    <!-- Campaign Films -->
     <p class="work-strip-label fade-up">Campaign Films</p>
-    <div class="scroll-strip" id="films-strip">
+    <div class="scroll-strip" id="films-strip" role="region" aria-label="Campaign Films">
       <div class="film-card"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/film1.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);pointer-events:none;"></div><div style="position:relative;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
       <div class="film-card"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/film2.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);pointer-events:none;"></div><div style="position:relative;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
     </div>
 
     <!-- Reels -->
     <p class="work-strip-label fade-up" style="margin-top:40px;">Reels</p>
-    <div class="scroll-strip" id="reels-strip">
+    <div class="scroll-strip" id="reels-strip" role="region" aria-label="Reels">
       <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel1.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
       <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel2.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
       <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel3.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
@@ -1723,11 +1662,10 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     line-height:1.8;
     color:var(--textsecondary);
   ">
-    Every engagement begins with understanding the business,
-    identifying opportunities, and building the right system for growth.
+    Every engagement is scoped to the work, not a package. One strategic lead from brief to delivery. No fragmented handoffs.
   </p>
 </div>
-    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:2px;align-items:stretch;">
+    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;align-items:stretch;">
 
       <!-- Card 1 -->
       <div class="engagement-card">
@@ -1766,8 +1704,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
         <div style="font-size:11px;letter-spacing:.12em;color:var(--accentmuted);font-weight:600;text-transform:uppercase;">Sprint</div>
         <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:#fff;">Brand Foundation Sprint™</div>
         <div style="margin:0 0 4px 0;">
-          <div style="font-family:'Satoshi',sans-serif; font-weight:600; font-size:22px; color:#fff; letter-spacing:-0.02em;">Custom scope</div>
-          <div style="font-size:13px; font-weight:400; color:rgba(255,255,255,.6);">Priced per project</div>
+          <div style="font-size:15px; font-weight:400; color:rgba(255,255,255,.65); letter-spacing:-0.01em;">Scoped &amp; priced per project</div>
         </div>
         <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.5;margin:0;flex:1;">A complete strategic and visual foundation designed for businesses preparing to scale, reposition, or build stronger market presence.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;">
@@ -1783,7 +1720,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       <div class="engagement-card">
         <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;">Ongoing Engagement</div>
         <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);">Websites & Digital Experiences</div>
-        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">Custom scope.<br/><span style="font-size:14px;font-weight:400;color:var(--textsecondary);letter-spacing:0;">Priced per project.</span></div>
+        <div style="font-size:15px;font-weight:400;color:var(--textsecondary);">Scoped &amp; priced per project</div>
         <p style="font-size:14px;color:var(--textsecondary);line-height:1.7;flex:1;">A flexible long-term engagement for businesses that require ongoing strategic, creative, and execution support across multiple initiatives.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--bordergray);padding-top:16px;">
           <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Brand-aligned UX & design</li>
@@ -1807,25 +1744,22 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     <div class="fade-up" style="max-width:1000px;">
       <p class="section-eyebrow" style="margin-bottom:36px;">Our Approach</p>
       <p class="approach-quote">
-        We believe modern brands are built through
-        <em>clarity</em>,
-        <em>consistency</em>, and
-        <em>cultural relevance</em>.
+        The brands that last aren't the loudest.<br/>They're the most <em>coherent.</em>
       </p>
     </div>
     <div class="approach-divider fade-up" id="approach-divider"></div>
     <div class="approach-pillars fade-up d2">
-      <div>
+      <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:36px 32px;">
         <h4 class="approach-pillar-name">Strategy First</h4>
-        <p class="approach-pillar-text">Every decision rooted in intention.</p>
+        <p class="approach-pillar-text" style="margin-top:10px;">Every decision rooted in intention.</p>
       </div>
-      <div>
+      <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:36px 32px;">
         <h4 class="approach-pillar-name">Production Led</h4>
-        <p class="approach-pillar-text">Craft at every point of expression.</p>
+        <p class="approach-pillar-text" style="margin-top:10px;">Craft at every point of expression.</p>
       </div>
-      <div>
+      <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:36px 32px;">
         <h4 class="approach-pillar-name">Execution Focused</h4>
-        <p class="approach-pillar-text">Timelines measured in weeks, not months.</p>
+        <p class="approach-pillar-text" style="margin-top:10px;">Timelines measured in weeks, not months.</p>
       </div>
     </div>
   </div>
@@ -1842,30 +1776,30 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     <div class="fade-up howwework-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
 
       <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 32px;">
-        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">01</div>
+        <div style="font-size:13px;font-weight:500;color:var(--accent);letter-spacing:.12em;margin-bottom:20px;">01</div>
         <h3 style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Discover</h3>
-        <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">We start with a structured session to understand your brand, category, competitive landscape, and growth objectives.</p>
+        <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">A structured conversation about where the brand stands, where it needs to go, and what's in the way.</p>
         <div style="margin-top:20px;">
           <a href="#" onclick="openRazorpay('discovery');return false;" style="font-size:12px;color:var(--accent);font-weight:500;letter-spacing:.02em;border-bottom:1px solid var(--accentmuted);text-decoration:none;">Book a Discovery Session →</a>
         </div>
       </div>
 
       <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 32px;">
-        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">02</div>
+        <div style="font-size:13px;font-weight:500;color:var(--accent);letter-spacing:.12em;margin-bottom:20px;">02</div>
         <h3 style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Define</h3>
-        <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Positioning, messaging architecture, and campaign frameworks, documented and aligned before a single pixel is designed.</p>
+        <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Positioning, messaging, and campaign architecture, agreed before anything is made.</p>
       </div>
 
       <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 32px;">
-        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">03</div>
+        <div style="font-size:13px;font-weight:500;color:var(--accent);letter-spacing:.12em;margin-bottom:20px;">03</div>
         <h3 style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Create</h3>
-        <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Design, production, content, and digital, executed in parallel through a single integrated team. Briefed once, delivered on time.</p>
+        <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Design, production, and digital executed in parallel. One brief, one team, delivered on time.</p>
       </div>
 
       <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 32px;">
-        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">04</div>
+        <div style="font-size:13px;font-weight:500;color:var(--accent);letter-spacing:.12em;margin-bottom:20px;">04</div>
         <h3 style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Grow</h3>
-        <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Ongoing performance review, content iteration, and communication optimisation, so your brand compounds over time, not just at launch.</p>
+        <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Brands that compound don't just launch well. They stay consistent. We build for both.</p>
       </div>
 
     </div>
@@ -1882,24 +1816,24 @@ We build brand systems, digital experiences, and communication ecosystems for bu
         Strategy, content, communication<br/>and <em>execution.</em>
       </h2>
       <div class="cap-intro-right fade-up d1">
-        <p>Most brands run their communication through disconnected parts: a freelancer here, an agency there, a production house on the side. SQUARGRAPH™ integrates all of it into a unified execution model: briefed once, executed in parallel, delivered on time.</p>
+        <p>Most brands fragment their communication across freelancers, agencies, and production houses. SQUARGRAPH doesn't. Strategy, creative, production, and digital operate as one connected system.</p>
       </div>
     </div>
 
     <div class="cap-grid">
       <div class="cap-card fade-up">
         <span class="cap-num">01</span>
-        <div class="cap-name">Campaign Systems</div>
+        <h3 class="cap-name">Campaign Systems</h3>
         <p class="cap-def">End-to-end campaign architecture across digital, OOH, social, and production, planned as one continuous rollout, not a sequence of handoffs.</p>
         <ul class="cap-outputs">
-          <li>Integrated campaign planning</li>
+          <li>connected campaign planning</li>
           <li>Multi-channel rollout coordination</li>
           <li>Master creative → adaptation pipeline</li>
         </ul>
       </div>
       <div class="cap-card fade-up d1">
         <span class="cap-num">02</span>
-        <div class="cap-name">Brand Communication</div>
+        <h3 class="cap-name">Brand Communication</h3>
         <p class="cap-def">Positioning, launch architecture, messaging systems, and tone, built to hold across every channel, every format, every team member.</p>
         <ul class="cap-outputs">
           <li>Positioning &amp; messaging architecture</li>
@@ -1909,7 +1843,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       </div>
       <div class="cap-card fade-up d2">
         <span class="cap-num">03</span>
-        <div class="cap-name">CGI &amp; Motion Systems</div>
+        <h3 class="cap-name">CGI &amp; Motion Systems</h3>
         <p class="cap-def">Cinematic digital storytelling: product visualization, launch films, and CGI-led campaigns that communicate precision without a physical shoot.</p>
         <ul class="cap-outputs">
           <li>Product CGI &amp; visualization</li>
@@ -1919,7 +1853,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       </div>
       <div class="cap-card fade-up">
         <span class="cap-num">04</span>
-        <div class="cap-name">Production Systems</div>
+        <h3 class="cap-name">Production Systems</h3>
         <p class="cap-def">Shoot coordination, post-production, asset pipelines, and adaptation workflows structured so quality holds at volume and velocity.</p>
         <ul class="cap-outputs">
           <li>Shoot execution &amp; direction</li>
@@ -1929,8 +1863,8 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       </div>
       <div class="cap-card fade-up d1">
         <span class="cap-num">05</span>
-        <div class="cap-name">Social &amp; Digital Ecosystems</div>
-        <p class="cap-def">Platform-specific content systems, always-on execution, rollout calendars, and community storytelling, managed as an integrated content system.</p>
+        <h3 class="cap-name">Social &amp; Digital systems</h3>
+        <p class="cap-def">Platform-specific content systems, always-on execution, rollout calendars, and community storytelling, managed as an connected content system.</p>
         <ul class="cap-outputs">
           <li>Content calendar &amp; always-on</li>
           <li>Platform-specific creative systems</li>
@@ -1939,7 +1873,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       </div>
       <div class="cap-card fade-up d1">
         <span class="cap-num">06</span>
-        <div class="cap-name">Creative Execution</div>
+       <h3 class="cap-name">Creative Execution</h3>
         <p class="cap-def">The operational layer that keeps everything moving: team coordination, feedback cycles, stakeholder alignment, and delivery accountability.</p>
         <ul class="cap-outputs">
           <li>Multidisciplinary team coordination</li>
@@ -1947,15 +1881,19 @@ We build brand systems, digital experiences, and communication ecosystems for bu
           <li>Agency-compatible execution support</li>
         </ul>
       </div>
-      <div class="cap-card fade-up d2">
-        <span class="cap-num">07</span>
-        <div class="cap-name">Strategic Communications</div>
-        <p class="cap-def">Perception management for founders and modern brands — from launch communications to digital reputation and partnership strategy.</p>
-        <ul class="cap-outputs">
-          <li>Founder Positioning</li>
-          <li>Launch Communications</li>
-          <li>Creator Relations &amp; Partnership Strategy</li>
-          <li>Digital Reputation</li>
+      <div class="cap-card fade-up" style="grid-column:1/-1;display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:start;">
+        <div>
+          <span class="cap-num">07</span>
+          <h3 class="cap-name">Strategic Communications</h3>
+          <p class="cap-def">How a brand is positioned in language, culture, and conversation. Built before the campaign, sustained after it.</p>
+        </div>
+        <ul class="cap-outputs" style="border-top:none;padding-top:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 32px;">
+          <li>Founder &amp; brand positioning</li>
+          <li>Launch communications</li>
+          <li>Narrative architecture</li>
+          <li>Creator &amp; media relations</li>
+          <li>Digital reputation</li>
+          <li>Partnership communications</li>
         </ul>
       </div>
     </div>
@@ -1982,18 +1920,18 @@ We build brand systems, digital experiences, and communication ecosystems for bu
 <section style="padding:clamp(80px,12vw,160px) clamp(24px,4vw,64px);background:var(--warmgray);">
   <div class="section-inner">
     <div style="display:grid;grid-template-columns:1fr 2fr;gap:clamp(40px,6vw,80px);align-items:center;" class="fade-up founder-grid">
-            <div style="aspect-ratio:1/1;overflow:hidden;border-radius:50%;max-width:280px;width:100%;margin:0 auto;">
-  <img src="/founder.webp" alt="Saurabh Sohan Singh, Founder &amp; Creative Strategist, SQUARGRAPH Studios"
-    width="380" height="507" loading="eager" fetchpriority="high" decoding="async"
-    style="width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;aspect-ratio:1/1;" />
+            <div style="aspect-ratio:3/4;overflow:hidden;border-radius:0;max-width:240px;width:100%;margin:0 auto;">
+  <img src="/founder.webp" alt="Saurabh Sohan Singh, Principal &amp; Founder, SQUARGRAPH Studios"
+    width="380" height="507" loading="lazy" fetchpriority="auto" decoding="async"
+    style="width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;aspect-ratio:3/4;" />
 </div>
       <!-- Bio -->
       <div>
-        <p class="section-eyebrow" style="margin-bottom:16px;">The Founder</p>
+        <p class="section-eyebrow" style="margin-bottom:16px;">The Studio</p>
         <h2 style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3.5vw,48px);line-height:1.08;letter-spacing:-0.03em;margin-bottom:20px;">Saurabh Sohan Singh</h2>
-        <div style="font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;">Founder & Strategic Communications Director</div>
-        <p style="font-size:clamp(16px,1.6vw,18px);color:var(--textsecondary);line-height:1.75;margin-bottom:20px;">Saurabh founded SQUARGRAPH™ to bridge the gap between strategic thinking and creative execution.</p>
-        <p style="font-size:15px;color:var(--textsecondary);line-height:1.75;margin-bottom:32px;">With experience across brand communication, campaign development, content ecosystems, digital experiences, and large-scale automotive launches, he helps businesses create brands that are strategically aligned, creatively differentiated, and commercially effective. Every engagement is founder-led. One point of accountability. No context lost between strategy and execution.</p>
+        <div style="font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;">Principal &amp; Founder</div>
+        <p style="font-size:clamp(16px,1.6vw,18px);color:var(--textsecondary);line-height:1.75;margin-bottom:20px;">SQUARGRAPH is an independent strategic studio built for ambitious brands. Experience spans automotive, hospitality, luxury, D2C, and technology, across connected campaigns, digital systems, brand launches, and production programs. The studio was founded by Saurabh Sohan Singh, who has spent years leading connected creative programs across brand communication, campaign architecture, and large-scale campaigns.</p>
+        <p style="font-size:15px;color:var(--textsecondary);line-height:1.75;margin-bottom:32px;">SQUARGRAPH works across brand systems, strategic communications, digital experiences, production, and campaigns, bringing together the right specialists around each brief. Every engagement is assembled around the needs of the work, with one strategic lead from brief to delivery. No context lost. No handoffs.</p>
         <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
           <button type="button" onclick="openRazorpay('discovery')" class="btn-primary">Book a Discovery Session →</button>
           <a href="https://linkedin.com/in/saurabhsohansingh" target="_blank" rel="noopener noreferrer" style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:6px;transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textsecondary)'">
@@ -2014,26 +1952,12 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     <div class="studio-grid fade-up">
       <div>
         <p class="section-eyebrow" style="margin-bottom:10px;">The Studio</p>
-        <h2 class="section-title" style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(26px,3vw,40px);letter-spacing:-0.03em;">About</h2>
+        <h2 class="section-title" style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(26px,3vw,40px);letter-spacing:-0.03em;">The Studio</h2>
       </div>
       <div class="studio-main">
-        <p>Built by strategists and creative directors with experience across advertising, brand communication, and large-scale campaign execution.</p>
-        <p class="small">SQUARGRAPH™ operates at the intersection of strategy and production, integrating campaign architecture, content, motion, and media into a single creative framework. Briefed once. Delivered in parallel. Delivered with precision and speed.</p>
+        <p>SQUARGRAPH is an independent strategic studio built through a network of strategists, designers, filmmakers, developers, and production partners, assembled around each challenge, not maintained as overhead.</p>
+        <p class="small">Strategy, creative, production, and digital operate as a single connected framework. Briefed once. Executed in parallel. Delivered with precision.</p>
         <p class="small">We work across Automotive, D2C, Hospitality, and Lifestyle, adapting the system to the brand environment, never the other way around.</p>
-        <div class="studio-stats">
-  <div>
-    <span class="studio-stat-num" style="font-size:clamp(13px,1.3vw,16px);">Brand Systems</span>
-    <span class="studio-stat-label">Strategy to execution, unified</span>
-  </div>
-  <div>
-    <span class="studio-stat-num" style="font-size:clamp(13px,1.3vw,16px);">Campaign Architecture</span>
-    <span class="studio-stat-label">Built for modern attention</span>
-  </div>
-  <div>
-    <span class="studio-stat-num" style="font-size:clamp(13px,1.3vw,16px);">Digital Experiences</span>
-    <span class="studio-stat-label">Designed for conversion</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -2047,8 +1971,8 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     <div class="intel-intro-grid">
       <div class="fade-up">
         <p class="section-eyebrow" style="margin-bottom:10px;">Insights</p>
-<h2 class="intel-h2">How we think about<br/>modern brands.</h2>
-        <p class="intel-sub">Unprompted strategic analyses of brands we find interesting, published to show how we think, not to pitch.</p>
+<h2 class="intel-h2">How we think.</h2>
+        <p class="intel-sub">Strategic observations. Published to show how we think.</p>
 <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
   <span style="font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--textsecondary);background:var(--warmgray);border:1px solid var(--bordergray);padding:5px 12px;border-radius:999px;">Brand Strategy</span>
   <span style="font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--textsecondary);background:var(--warmgray);border:1px solid var(--bordergray);padding:5px 12px;border-radius:999px;">Luxury Marketing</span>
@@ -2103,9 +2027,9 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     <p class="modal-cat">Strategic Study — D2C / Wellness</p>
     <h2 class="modal-h2" id="modal-twt-title">The Whole Truth</h2>
     <p class="modal-lead">Trust was never the problem. Emotional depth might become the next opportunity.</p>
-    <p class="modal-p">In a category flooded with "clean" and "natural", the real white space isn't ingredient-led — it's emotionally intelligent. How might The Whole Truth evolve from a functional health brand to a companion for mental and emotional wellness?</p>
+    <p class="modal-p">In a category flooded with "clean" and "natural", the real white space isn't ingredient-led. It's emotionally intelligent. How might The Whole Truth evolve from a functional health brand to a companion for mental and emotional wellness?</p>
     <div class="modal-quote">"The next unlock isn't another variant. It's permission to feel seen."</div>
-    <p class="modal-p">We explored a speculative content ecosystem: micro-podcasts on daily stress, illustrated "emotional check-ins" as Instagram carousels, and packaging that invites journaling. No hard sell — just presence.</p>
+    <p class="modal-p">We explored a speculative content system: micro-podcasts on daily stress, illustrated "emotional check-ins" as Instagram carousels, and packaging that invites journaling. No hard sell. Just presence.</p>
   </div>
 </div>
 <div id="modal-bluetokai" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-bluetokai-title">
@@ -2125,41 +2049,11 @@ We build brand systems, digital experiences, and communication ecosystems for bu
     <p class="modal-cat">Strategic Study — Electronics / Youth Culture</p>
     <h2 class="modal-h2" id="modal-boat-title">boAt</h2>
     <p class="modal-lead">From loud to lasting. Cultural maturity as the next brand frontier.</p>
-    <p class="modal-p">boAt conquered the youth market with energy and volume. As its audience ages, the brand faces a question: can it grow up without selling out? This exploration looks at a tonal evolution — less hype, more heritage.</p>
+    <p class="modal-p">boAt conquered the youth market with energy and volume. As its audience ages, the brand faces a question: can it grow up without selling out? This exploration looks at a tonal evolution. Less hype, more heritage.</p>
     <div class="modal-quote">"The loudest brand in the room learns that staying power comes from something deeper than volume."</div>
     <p class="modal-p">Black-and-white portrait series of real users, long-form YouTube essays on sound culture, and a limited "Legacy" line with zero logos — just material and memory.</p>
   </div>
 </div>
-<!-- ══════════════
-     WHO WE WORK WITH
-══════════════ -->
-<section style="padding:clamp(80px,12vw,160px) clamp(24px,4vw,64px);background:#fff;">
-  <div class="section-inner">
-    <div class="fade-up" style="margin-bottom:clamp(48px,8vw,80px);">
-      <p class="section-eyebrow" style="margin-bottom:10px;">Fit</p>
-      <h2 class="section-title">Who We Work With</h2>
-    </div>
-    <div class="fade-up who-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
-      <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 36px;">
-        <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;margin-bottom:20px;">Built for</div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;">
-          <li style="font-size:15px;color:var(--textprimary);font-weight:500;display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Founders building category-defining businesses</li>
-          <li style="font-size:15px;color:var(--textprimary);font-weight:500;display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Agencies requiring specialist execution</li>
-          <li style="font-size:15px;color:var(--textprimary);font-weight:500;display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Premium and automotive brands</li>
-          <li style="font-size:15px;color:var(--textprimary);font-weight:500;display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>Cultural and lifestyle businesses</li>
-        </ul>
-      </div>
-      <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 36px;">
-        <div style="font-size:11px;letter-spacing:.12em;color:var(--textmuted);font-weight:600;text-transform:uppercase;margin-bottom:20px;">Not built for</div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;">
-          <li style="font-size:15px;color:var(--textsecondary);display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--bordergray);flex-shrink:0;"></span>High-volume social media retainers</li>
-          <li style="font-size:15px;color:var(--textsecondary);display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--bordergray);flex-shrink:0;"></span>Commodity design work</li>
-          <li style="font-size:15px;color:var(--textsecondary);display:flex;align-items:center;gap:12px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:var(--bordergray);flex-shrink:0;"></span>Lowest-cost vendor sourcing</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
 <!-- ══════════════
      CONTACT
 ══════════════ -->
@@ -2172,7 +2066,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
         <h2 class="contact-h2">
           Start the<br/>conversation.<br/><em>No pitch decks.</em>
         </h2>
-        <p class="contact-sub">Send us a brief. Rough is fine. We'll respond with a clear plan within 48 hours, not a deck.</p>
+        <p class="contact-sub">Rough is fine. We'll respond within 48 hours with a clear direction, not a pitch.</p>
         <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" class="wa-btn">
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Message on WhatsApp
@@ -2255,7 +2149,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
           </div>
           <div>
             <label class="form-label" for="message">Project brief</label>
-            <textarea id="message" name="message" required placeholder="What are you trying to achieve? What's the current gap?" class="form-input" style="min-height:120px;border-radius:16px;resize:vertical;"></textarea>
+            <textarea id="message" name="message" required placeholder="What are you trying to achieve? What's the current gap?" class="form-input" style="min-height:120px;border-radius:4px;resize:vertical;"></textarea>
             <p class="field-error">Please describe your project briefly.</p>
           </div>
           <div>
@@ -2281,9 +2175,8 @@ We build brand systems, digital experiences, and communication ecosystems for bu
       <div class="footer-logo">
   <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" />
 </div>
-      <p class="footer-tagline">Brand systems, campaign architecture, and digital experiences, built for modern businesses.</p>
       <p class="footer-philosophy">
-  Perception shapes value.<br/>We build the systems that control it.
+  Perception shapes value.<br/>We build the systems that shape it.
 </p>
       <div class="social-links">
         <a href="https://facebook.com/squargraphstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="FB / Facebook">
@@ -2393,7 +2286,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
           <div style="width:28px;height:28px;border-radius:50%;background:rgba(139,126,200,.15);border:1px solid rgba(139,126,200,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:600;color:var(--accentmuted);">4</div>
           <div>
             <div style="font-size:14px;font-weight:500;color:#F5F3F0;margin-bottom:3px;">Your 30-Minute Session</div>
-            <div style="font-size:13px;color:rgba(245,243,240,.45);line-height:1.6;">Founder-led. Recorded. Followed by your Action Plan PDF within 24 hours of the call.</div>
+            <div style="font-size:13px;color:rgba(245,243,240,.45);line-height:1.6;">Recorded. Followed by your Action Plan PDF within 24 hours of the call.</div>
           </div>
         </div>
       </div>
@@ -2417,20 +2310,7 @@ We build brand systems, digital experiences, and communication ecosystems for bu
 
   </div>
 </div>
-<!-- ══════════════
-     PERSISTENT CTA
-══════════════ -->
-<div id="persistent-cta" style="position:fixed;bottom:0;left:0;right:0;z-index:9997;background:var(--textprimary);padding:12px clamp(12px,4vw,64px);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:nowrap;transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.1,.25,1);border-top:1px solid rgba(255,255,255,.08);">
-  <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
-    <span style="font-size:13px;font-weight:500;color:#fff;letter-spacing:-0.01em;">Not sure where to start?</span>
-    <span style="font-size:12px;color:rgba(255,255,255,.5);">A 30-min session that comes with a clear action plan.</span>
-  </div>
-  <div style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
-    <button type="button" onclick="openRazorpay('discovery')" style="background:var(--accent);color:#fff;border:none;border-radius:999px;padding:11px 24px;font-size:13px;font-weight:500;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;transition:opacity .2s;">Book Discovery Session →</button>
-    <button type="button" aria-label="Dismiss" style="background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;padding:4px;line-height:1;">✕</button>
-  </div>
-</div>
-<script>
+
 (function() {
   'use strict';
 
