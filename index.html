@@ -24,6 +24,9 @@
   <meta name="google-site-verification" content="4hPJrhXVEImlpjzhdAr1Ieh_RCDjpIcfhkRvNt3uLl8" />
   <link rel="preconnect" href="https://checkout.razorpay.com" />
   <link rel="preconnect" href="https://play.gumlet.io" />
+  <link rel="preconnect" href="https://cdn.razorpay.com" />
+  <link rel="dns-prefetch" href="https://cdn.razorpay.com" />
+  <meta http-equiv="x-dns-prefetch-control" content="on" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
 
@@ -809,7 +812,7 @@
     .cap-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
+      gap: 16px;
     }
     @media (max-width: 900px) { .cap-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 560px) { .cap-grid { grid-template-columns: 1fr; } }
@@ -854,9 +857,9 @@
 
     /* Built For strip */
     .built-for {
-      margin-top: 2px;
+      margin-top: 16px;
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
+      gap: 16px;
     }
     @media (max-width: 640px) { .built-for { grid-template-columns: 1fr; } }
     .built-for-card {
@@ -1548,15 +1551,73 @@
       }
       #mobile-wa:hover { transform: scale(1.08); }
     }
+  /* ── Card border → shadow upgrade ── */
+.cap-card,
+.engagement-card,
+.intel-card,
+.built-for-card {
+  border: none !important;
+  box-shadow: 0 2px 12px rgba(26,23,20,0.06), 0 1px 3px rgba(26,23,20,0.04);
+  transition: box-shadow .35s cubic-bezier(.25,.1,.25,1), transform .35s cubic-bezier(.25,.1,.25,1);
+}
+
+.cap-card:hover,
+.engagement-card:hover,
+.intel-card:hover {
+  box-shadow: 0 8px 32px rgba(26,23,20,0.10), 0 2px 8px rgba(26,23,20,0.06);
+  transform: translateY(-4px);
+}
+
+/* How we work cards */
+.howwework-grid > div {
+  border: none !important;
+  box-shadow: 0 2px 12px rgba(26,23,20,0.06);
+}
+
+/* Engagement dark card */
+.engagement-card--dark {
+  box-shadow: 0 8px 32px rgba(107,93,184,0.18) !important;
+}
+
+/* Gap between cards → slight breathing room */
+.cap-grid,
+.built-for {
+  gap: 16px !important;
+}
+
+.engagements-grid,
+[style*="grid-template-columns:repeat(auto-fit"] {
+  gap: 16px !important;
+}
+
+/* Film / reel cards */
+.film-card,
+.reel-wrap {
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(26,23,20,0.10);
+}
+
+/* Footer trust badge area */
+.footer-bar {
+  border-top: none !important;
+  padding-top: 24px;
+}
+
+/* Section headers */
+.section-header {
+  border-bottom: none !important;
+  padding-bottom: 0;
+}
+
+/* Contact links */
+.contact-link-row {
+  border-bottom: 1px solid var(--bordergray);
+}
+.contact-links {
+  border-top: 1px solid var(--bordergray);
+}
   </style>
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KBN4JXZD');</script>
-<!-- End Google Tag Manager -->
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1730,7 +1791,7 @@ We work with businesses that are serious about how they are positioned, communic
     Every engagement begins the same way: we understand the business before we touch the brief.
   </p>
 </div>
-    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:2px;align-items:stretch;">
+    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:16px;align-items:stretch;">
 
       <!-- Card 1 -->
       <div class="engagement-card">
@@ -1842,9 +1903,9 @@ We work with businesses that are serious about how they are positioned, communic
       <p class="section-eyebrow" style="margin-bottom:10px;">Process</p>
       <h2 class="section-title" style="font-size:clamp(22px,2.5vw,28px);font-weight:500;letter-spacing:-0.03em;">How We Work</h2>
     </div>
-    <div class="fade-up howwework-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
+    <div class="fade-up howwework-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
 
-      <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 32px;">
+      <div style="background:var(--warmgray);padding:40px 32px;">
         <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">01</div>
         <h3 style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Discover</h3>
         <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">We start with a structured session to understand your brand, category, competitive landscape, and growth objectives.</p>
@@ -1853,19 +1914,19 @@ We work with businesses that are serious about how they are positioned, communic
         </div>
       </div>
 
-      <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 32px;">
+      <div style="background:var(--warmgray);padding:40px 32px;">
         <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">02</div>
         <h3 style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Define</h3>
         <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Positioning, messaging architecture, and campaign frameworks, documented and aligned before a single pixel is designed.</p>
       </div>
 
-      <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 32px;">
+      <div style="background:var(--warmgray);padding:40px 32px;">
         <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">03</div>
         <h3 style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Create</h3>
         <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Design, production, content, and digital — developed in parallel by a specialist team built around your brief. One input. Everything moves at once.</p>
       </div>
 
-      <div style="background:var(--warmgray);border:1px solid var(--bordergray);padding:40px 32px;">
+      <div style="background:var(--warmgray);padding:40px 32px;">
         <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">04</div>
         <h3 style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Grow</h3>
         <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Ongoing performance review, content iteration, and communication optimisation, so your brand compounds over time, not just at launch.</p>
@@ -1955,18 +2016,18 @@ We work with businesses that are serious about how they are positioned, communic
     </div>
 
     <div class="built-for fade-up" style="margin-top:2px;">
-      <div class="built-for-card">
+      <article class="built-for-card">
         <div class="built-for-label">Enterprise Brands</div>
         <p class="built-for-text">Large brand teams that need a reliable execution partner, one that understands brand systems and delivers at scale without friction.</p>
-      </div>
-      <div class="built-for-card">
+      </article>
+      <article class="built-for-card">
         <div class="built-for-label">Agency Networks</div>
         <p class="built-for-text">Agencies that need a trusted creative execution partner for overflow, specialised production, or dedicated campaign support.</p>
-      </div>
-      <div class="built-for-card">
+      </article>
+      <article class="built-for-card">
         <div class="built-for-label">Emerging Brands</div>
         <p class="built-for-text">Early-stage brands that need to build their brand communication from the ground up, with the rigour of an enterprise studio and none of the overhead.</p>
-      </div>
+      </article>
     </div>
   </div>
 </section>
@@ -2219,7 +2280,7 @@ We work with businesses that are serious about how they are positioned, communic
           </div>
           <div>
             <label class="form-label" for="message">Project brief</label>
-            <textarea id="message" name="message" required placeholder="What are you trying to achieve? What's the current gap?" class="form-input" style="min-height:120px;border-radius:16px;resize:vertical;"></textarea>
+            <textarea id="message" name="message" required placeholder="What are you trying to achieve? What's the current gap?" class="form-input" autocomplete="off" style="min-height:120px;border-radius:16px;resize:vertical;"></textarea>
             <p class="field-error">Please describe your project briefly.</p>
           </div>
           <div>
@@ -2284,7 +2345,7 @@ We work with businesses that are serious about how they are positioned, communic
     <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;">
   <a href="https://razorpay.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:6px;text-decoration:none;">
   <span style="font-size:11px;color:var(--textmuted);">Payments Secured by</span>
-  <img src="https://cdn.razorpay.com/logo.svg" alt="Razorpay" height="16" style="display:block;" />
+  <img src="https://cdn.razorpay.com/logo.svg" alt="Razorpay" height="16" width="80" loading="lazy" decoding="async" style="display:block;" />
 </a>
 </div>
     <div style="display:flex;flex-wrap:wrap;justify-content:space-between;width:100%;gap:12px;align-items:center;">
@@ -2799,5 +2860,12 @@ document.addEventListener('click', function(e) {
    aria-label="Chat on WhatsApp">
   <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KBN4JXZD');</script>
+<!-- End Google Tag Manager -->
 </body>
 </html>
