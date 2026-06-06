@@ -22,8 +22,9 @@
   <meta name="twitter:title" content="SQUARGRAPH™ Studios, Independent Strategic Studio, New Delhi" />
   <meta name="twitter:description" content="An independent strategic studio. Brand strategy, campaign architecture, and digital experiences for businesses that take their market position seriously." />
   <meta name="google-site-verification" content="4hPJrhXVEImlpjzhdAr1Ieh_RCDjpIcfhkRvNt3uLl8" />
+  <link rel="preload" href="/fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/Satoshi-Medium.woff2" as="font" type="font/woff2" crossorigin />
-  <meta http-equiv="x-dns-prefetch-control" content="on" />
+  <link rel="preload" href="/fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
 
@@ -451,11 +452,12 @@
       position: absolute; width: 100%;
       background: var(--textmuted);
       animation: scrollAnim 2.5s ease-in-out infinite;
+      will-change: transform;
     }
     @keyframes scrollAnim {
-      0%   { height: 0%; top: 0%; }
-      50%  { height: 100%; top: 0%; }
-      100% { height: 0%; top: 100%; }
+      0%   { transform: scaleY(0) translateY(0); transform-origin: top; }
+      50%  { transform: scaleY(1) translateY(0); transform-origin: top; }
+      100% { transform: scaleY(0) translateY(100%); transform-origin: bottom; }
     }
     .scroll-hint span {
       font-size: 11px; letter-spacing: .06em;
@@ -1692,7 +1694,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-inner">
     <div class="hero-content">
       <p class="hero-eyebrow hero-anim-1">SQUARGRAPH™ Studios · Brand Strategy & Creative Production</p>
-<div class="hero-anim-2" aria-hidden="true" style="width:72px;height:1px;background:var(--accent);margin:0 0 clamp(20px,2.5vw,28px) 0;transform-origin:left;animation:scaleX .7s .3s cubic-bezier(.25,.1,.25,1) both;"></div>
+<div class="hero-anim-2" aria-hidden="true" style="width:72px;height:1px;background:var(--accent);margin:0 0 clamp(20px,2.5vw,28px) 0;transform-origin:left;animation:scaleX .7s .3s cubic-bezier(.25,.1,.25,1) both;will-change:transform;"></div>
       <h1 class="hero-h1 hero-anim-2">
   Your Brand Is A Business <em>Asset.</em>
 </h1>
@@ -2034,7 +2036,7 @@ We work with businesses that are serious about how they are positioned, communic
     <div style="display:grid;grid-template-columns:1fr 2fr;gap:clamp(40px,6vw,80px);align-items:center;" class="fade-up founder-grid">
             <div style="aspect-ratio:1/1;overflow:hidden;border-radius:50%;max-width:280px;width:100%;margin:0 auto;">
   <img src="/founder.webp" alt="Saurabh Sohan Singh, Founder &amp; Creative Strategist, SQUARGRAPH Studios"
-    width="380" height="507" loading="eager" fetchpriority="high" decoding="async"
+    width="380" height="507" loading="eager" fetchpriority="high" decoding="sync"
     style="width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;aspect-ratio:1/1;" />
 </div>
       <!-- Bio -->
