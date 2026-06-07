@@ -782,166 +782,23 @@
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
   window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
 
-  /* ── AI scoring via Claude ── */
+  /* ── AI scoring via Gemini ── */
   async function fetchAIScores(payload) {
-
-    /* ── Helper: fetch a URL via proxy, strip HTML, cap length ── */
-    async function fetchPageText(url, cap) {
-      try {
-        var clean = url.trim();
-        if (!/^https?:\/\//i.test(clean)) clean = 'https://' + clean;
-        var res = await fetch('https://corsproxy.io/?' + encodeURIComponent(clean), { signal: AbortSignal.timeout(8000) });
-        var text = await res.text();
-        var json = { contents: text };
-        var text = (json.contents || '')
-          .replace(/<script[\s\S]*?<\/script>/gi, '')
-          .replace(/<style[\s\S]*?<\/style>/gi, '')
-          .replace(/<[^>]+>/g, ' ')
-          .replace(/\s+/g, ' ')
-          .trim()
-          .slice(0, cap || 1500);
-        return text.length > 80 ? text : null;
-      } catch(e) { return null; }
-    }
-
-    /* ── Fetch website ── */
-    var websiteContent = 'Not available';
-    if (payload.website) {
-      var wt = await fetchPageText(payload.website, 2000);
-      if (wt) websiteContent = wt;
-    }
-
-    /* ── Fetch Instagram ── */
-    var instaContent = 'Not available';
-    if (payload.instagram) {
-      var it = await fetchPageText(payload.instagram, 1000);
-      if (it) instaContent = it;
-    }
-
-    /* ── Fetch Facebook ── */
-    var fbContent = 'Not available';
-    if (payload.facebook) {
-      var ft = await fetchPageText(payload.facebook, 1000);
-      if (ft) fbContent = ft;
-    }
-
-    /* ── Fetch competitors ── */
-    var comp1Content = 'Not available';
-    var comp2Content = 'Not available';
-    var comp3Content = 'Not available';
-    if (payload.competitor1) {
-      var c1url = payload.competitor1.trim();
-      if (!c1url.includes('.')) c1url = 'https://www.google.com/search?q=' + encodeURIComponent(c1url + ' brand');
-      var c1t = await fetchPageText(c1url, 800);
-      if (c1t) comp1Content = c1t;
-      // Also try their Instagram if provided
-      if (payload.competitor1_instagram) {
-        var c1it = await fetchPageText(payload.competitor1_instagram, 500);
-        if (c1it) comp1Content += ' | Instagram: ' + c1it;
-      }
-    }
-    if (payload.competitor2) {
-      var c2url = payload.competitor2.trim();
-      if (!c2url.includes('.')) c2url = 'https://www.google.com/search?q=' + encodeURIComponent(c2url + ' brand');
-      var c2t = await fetchPageText(c2url, 800);
-      if (c2t) comp2Content = c2t;
-      if (payload.competitor2_instagram) {
-        var c2it = await fetchPageText(payload.competitor2_instagram, 500);
-        if (c2it) comp2Content += ' | Instagram: ' + c2it;
-      }
-    }
-    if (payload.competitor3) {
-      var c3url = payload.competitor3.trim();
-      if (!c3url.includes('.')) c3url = 'https://www.google.com/search?q=' + encodeURIComponent(c3url + ' brand');
-      var c3t = await fetchPageText(c3url, 800);
-      if (c3t) comp3Content = c3t;
-      if (payload.competitor3_instagram) {
-        var c3it = await fetchPageText(payload.competitor3_instagram, 500);
-        if (c3it) comp3Content += ' | Instagram: ' + c3it;
-      }
-    }
-
-    var prompt = [
-      'You are a senior brand strategist conducting a paid brand audit. The client has submitted a formal brief. Analyse everything provided and return a JSON object only. No explanation, no markdown, no code fences. Raw JSON only.',
-      '',
-      '=== CLIENT ===',
-      'Contact: ' + (payload.name || 'Unknown') + ', ' + (payload.designation || ''),
-      'Email: ' + (payload.email || 'Not provided'),
-      '',
-      '=== BRAND BEING AUDITED ===',
-      'Company: ' + (payload.company || 'Unknown'),
-      'Industry: ' + (payload.industry || 'Not provided'),
-      'What they do: ' + (payload.brand_description || 'Not provided'),
-      'Annual revenue: ' + (payload.revenue || 'Not provided'),
-      'Website: ' + (payload.website || 'Not provided'),
-      'Website content (scraped): ' + websiteContent,
-      '',
-      '=== SOCIAL PRESENCE ===',
-      'Instagram: ' + (payload.instagram || 'Not provided'),
-      'Instagram page content (scraped): ' + instaContent,
-      'Facebook: ' + (payload.facebook || 'Not provided'),
-      'Facebook page content (scraped): ' + fbContent,
-      'LinkedIn: ' + (payload.linkedin || 'Not provided'),
-      'YouTube: ' + (payload.youtube || 'Not provided'),
-      'X / Twitter: ' + (payload.twitter || 'Not provided'),
-      '',
-      '=== COMPETITIVE LANDSCAPE ===',
-      'Competitor 1 website: ' + (payload.competitor1 || 'Not provided'),
-      'Competitor 1 Instagram: ' + (payload.competitor1_instagram || 'Not provided'),
-      'Competitor 1 website content (scraped): ' + comp1Content,
-      'Competitor 2 website: ' + (payload.competitor2 || 'Not provided'),
-      'Competitor 2 Instagram: ' + (payload.competitor2_instagram || 'Not provided'),
-      'Competitor 2 website content (scraped): ' + comp2Content,
-      'Competitor 3 website: ' + (payload.competitor3 || 'Not provided'),
-      'Competitor 3 Instagram: ' + (payload.competitor3_instagram || 'Not provided'),
-      'Competitor 3 website content (scraped): ' + comp3Content,
-      '',
-      '=== BUSINESS CONTEXT ===',
-      'Biggest challenge: ' + (payload.challenge || 'Not provided'),
-      'Monthly marketing budget: ' + (payload.budget || 'Not provided'),
-      'Annual revenue range: ' + (payload.revenue || 'Not provided'),
-      'Primary goal: ' + (payload.goal || 'Not provided'),
-      '',
-      '=== SCORING INSTRUCTIONS ===',
-      'Score each dimension 0–100. Be honest, direct, and specific. Do not inflate scores.',
-      '',
-      'Web score (0-100): Evaluate clarity of value proposition, messaging hierarchy, UX signals, and whether the site would convert a first-time visitor. A site with vague messaging, no clear CTA, or weak positioning scores below 50.',
-      '',
-      'Comm score (0-100): Evaluate brand voice consistency across website, Instagram, Facebook, LinkedIn. If fewer than 2 social platforms are active, score below 55. If social presence is entirely absent, score below 40.',
-      '',
-      'Comp score (0-100): Evaluate how differentiated this brand is versus the named competitors. Use your own knowledge of those competitor brands — their brand strength, market position, and communication quality — combined with any scraped content. A small brand competing against well-known established players should score below 60 unless their website shows a genuinely distinct angle.',
-      '',
-      'Overall: weighted average — web 35%, comm 35%, comp 30%.',
-      '',
-      'Return exactly this JSON (numbers only for scores, no ranges, no text):',
-      '{',
-      '  "web": <integer 0-100>,',
-      '  "comm": <integer 0-100>,',
-      '  "comp": <integer 0-100>,',
-      '  "overall": <integer 0-100>,',
-      '  "web_insight": "<one direct sentence about what the website communicates or fails to — reference actual scraped content where possible>",',
-      '  "comm_insight": "<one direct sentence about brand communication consistency — name which platforms are active or absent>",',
-      '  "comp_insight": "<one direct sentence comparing this brand to the named competitors — name the competitors explicitly>",',
-      '  "headline": "<5–8 words that honestly describe this brand\'s current market position>",',
-      '  "summary": "<4 sentences. Address ' + (payload.name ? payload.name.split(' ')[0] : 'the client') + ' directly. Sentence 1: what the brand is doing well. Sentence 2: the single most significant gap based on what was found. Sentence 3: how they compare to their named competitors specifically. Sentence 4: the one thing they should prioritise in the next 90 days.>"',
-      '}'
-    ].join('\n');
-
     var response = await fetch('https://eo5isa4657t5ffg.m.pipedream.net', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ payload: payload })
     });
     var data = await response.json();
-    var text = (data.text || '').replace(/```json|```/g, '').trim();
-    var parsed = JSON.parse(text);
-    // Ensure all score fields are numbers
+    var raw = (data.text || '').replace(/```json|```/g, '').trim();
+    var jsonMatch = raw.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('No JSON found in response');
+    var parsed = JSON.parse(jsonMatch[0]);
     ['web','comm','comp','overall'].forEach(function(k) {
       parsed[k] = Number(parsed[k]) || 0;
     });
     return parsed;
   }
-
   /* ── Grade label ── */
   function gradeLabel(score) {
     if (score >= 80) return 'Strong positioning';
