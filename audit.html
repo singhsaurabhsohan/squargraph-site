@@ -1229,7 +1229,8 @@
     }
 
     function validateStep(n) {
-      const stepEl = document.getElementById(`step-${n}`);
+      const idMap = { 1:'step-1', 2:'step-2-company', 3:'step-3', 4:'step-4', 5:'step-5-context', 6:'step-6' };
+      const stepEl = document.getElementById(idMap[n] || ('step-' + n));
       clearErrors(stepEl);
       let valid = true;
 
