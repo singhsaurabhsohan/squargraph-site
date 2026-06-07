@@ -782,55 +782,21 @@
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
   window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
 
-  /* ── AI scoring via Gemini ── */
   async function fetchAIScores(payload) {
-    const firstName = payload.name ? payload.name.split(' ')[0] : 'the client';
-    const prompt = `You are a senior brand strategist doing a paid audit. Return raw JSON only. No markdown, no code fences, no explanation.
+    var firstName = payload.name ? payload.name.split(' ')[0] : 'the client';
+    var prompt = 'You are a senior brand strategist doing a paid audit. Return raw JSON only. No markdown, no code fences, no explanation.\n\n=== BRAND ===\nCompany: ' + (payload.company || 'Unknown') + '\nIndustry: ' + (payload.industry || 'Not provided') + '\nWhat they do: ' + (payload.brand_description || 'Not provided') + '\nWebsite: ' + (payload.website || 'Not provided') + '\n\n=== SOCIAL ===\nInstagram: ' + (payload.instagram || 'Not provided') + '\nFacebook: ' + (payload.facebook || 'Not provided') + '\nLinkedIn: ' + (payload.linkedin || 'Not provided') + '\nYouTube: ' + (payload.youtube || 'Not provided') + '\nTwitter: ' + (payload.twitter || 'Not provided') + '\n\n=== COMPETITORS ===\nCompetitor 1: ' + (payload.competitor1 || 'Not provided') + '\nCompetitor 2: ' + (payload.competitor2 || 'Not provided') + '\nCompetitor 3: ' + (payload.competitor3 || 'Not provided') + '\n\n=== CONTEXT ===\nChallenge: ' + (payload.challenge || 'Not provided') + '\nBudget: ' + (payload.budget || 'Not provided') + '\nRevenue: ' + (payload.revenue || 'Not provided') + '\nGoal: ' + (payload.goal || 'Not provided') + '\n\n=== SCORING ===\nWeb (0-100): Evaluate website URL and brand description. Unknown site = 40-55.\nComm (0-100): Count active social platforms. 0=below 35. 1=below 50. 2=up to 60. 3+=up to 80.\nComp (0-100): Use your knowledge of the named competitors. Small vs established = below 55.\nOverall: web 35% + comm 35% + comp 30%.\n\nReturn exactly this JSON:\n{"web":<integer>,"comm":<integer>,"comp":<integer>,"overall":<integer>,"web_insight":"<one sentence>","comm_insight":"<one sentence naming platforms>","comp_insight":"<one sentence naming competitors>","headline":"<5-8 words>","summary":"<4 sentences addressing ' + firstName + ' directly>"}';
 
-=== BRAND ===
-Company: ${payload.company || 'Unknown'}
-Industry: ${payload.industry || 'Not provided'}
-What they do: ${payload.brand_description || 'Not provided'}
-Website: ${payload.website || 'Not provided'}
-
-=== SOCIAL ===
-Instagram: ${payload.instagram || 'Not provided'}
-Facebook: ${payload.facebook || 'Not provided'}
-LinkedIn: ${payload.linkedin || 'Not provided'}
-YouTube: ${payload.youtube || 'Not provided'}
-Twitter: ${payload.twitter || 'Not provided'}
-
-=== COMPETITORS ===
-Competitor 1: ${payload.competitor1 || 'Not provided'}
-Competitor 2: ${payload.competitor2 || 'Not provided'}
-Competitor 3: ${payload.competitor3 || 'Not provided'}
-
-=== CONTEXT ===
-Challenge: ${payload.challenge || 'Not provided'}
-Budget: ${payload.budget || 'Not provided'}
-Revenue: ${payload.revenue || 'Not provided'}
-Goal: ${payload.goal || 'Not provided'}
-
-=== SCORING ===
-Web (0-100): Evaluate website URL and brand description. Unknown site = 40-55.
-Comm (0-100): Count active social platforms. 0=below 35. 1=below 50. 2=up to 60. 3+=up to 80.
-Comp (0-100): Use your knowledge of the named competitors. Small vs established = below 55.
-Overall: web 35% + comm 35% + comp 30%.
-
-Return exactly this JSON:
-{"web":<integer>,"comm":<integer>,"comp":<integer>,"overall":<integer>,"web_insight":"<one sentence>","comm_insight":"<one sentence naming platforms>","comp_insight":"<one sentence naming competitors>","headline":"<5-8 words>","summary":"<4 sentences addressing ${firstName} directly>"}`;
-
-    const response = await fetch('https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev', {
+    var response = await fetch('https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt })
+      body: JSON.stringify({ prompt: prompt })
     });
-    const data = await response.json();
-    const raw = (data.text || '').replace(/```json|```/g, '').trim();
-    const jsonMatch = raw.match(/\{[\s\S]*\}/);
+    var data = await response.json();
+    var raw = (data.text || '').replace(/```json|```/g, '').trim();
+    var jsonMatch = raw.match(/\{[\s\S]*\}/);
     if (!jsonMatch) throw new Error('No JSON in response');
-    const parsed = JSON.parse(jsonMatch[0]);
-    ['web','comm','comp','overall'].forEach(k => { parsed[k] = Number(parsed[k]) || 0; });
+    var parsed = JSON.parse(jsonMatch[0]);
+    ['web','comm','comp','overall'].forEach(function(k) { parsed[k] = Number(parsed[k]) || 0; });
     return parsed;
   }
   /* ── Grade label ── */
