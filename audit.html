@@ -955,31 +955,8 @@
           </div>
         </div>
 
-        <!-- STEP 3 -->
-        <div class="step" id="step-3">
-          <div class="step-heading">Your competitors' websites</div>
-          <div class="step-desc">Paste the website URL of up to 3 brands you compete with. We'll analyse their positioning directly — at least one required.</div>
-          <div class="field-group">
-            <div class="field">
-              <label for="comp1">Competitor 1 Website</label>
-              <input type="url" id="comp1" name="competitor_1" placeholder="https://competitorone.com" autocomplete="off" />
-              <span class="error-msg">Please enter at least one competitor URL.</span>
-            </div>
-            <div class="field">
-              <label for="comp2">Competitor 2 Website <span class="optional">optional</span></label>
-              <input type="url" id="comp2" name="competitor_2" placeholder="https://competitortwo.com" autocomplete="off" />
-              <span class="error-msg">Please enter a valid URL.</span>
-            </div>
-            <div class="field">
-              <label for="comp3">Competitor 3 Website <span class="optional">optional</span></label>
-              <input type="url" id="comp3" name="competitor_3" placeholder="https://competitorthree.com" autocomplete="off" />
-              <span class="error-msg">Please enter a valid URL.</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 5 -->
-        <div class="step" id="step-5-context">
+        <!-- STEP 4 -->
+        <div class="step" id="step-4">
           <div class="step-heading">Who are you competing with?</div>
           <div class="step-desc">Add their website and Instagram. The more specific you are, the sharper the competitive analysis.</div>
           <div class="field-group">
@@ -1018,6 +995,31 @@
                 <input type="url" id="comp3-insta" name="competitor_3_instagram" placeholder="https://instagram.com/competitor3" autocomplete="off" />
                 <span class="error-msg">Please enter a valid URL.</span>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="step" id="step-5-context">
+          <div class="step-heading">Marketing context</div>
+          <div class="step-desc">Help us calibrate your audit to your real-world constraints.</div>
+          <div class="field-group">
+            <div class="field">
+              <label for="challenge">Biggest Business Challenge</label>
+              <input type="text" id="challenge" name="challenge" placeholder="e.g. Low conversion rate, unclear positioning…" />
+              <span class="error-msg">Please describe your main challenge.</span>
+            </div>
+            <div class="field">
+              <label>Current Monthly Marketing Budget</label>
+              <div class="budget-options">
+                <div class="budget-pill" data-value="Under ₹50K">Under ₹50K</div>
+                <div class="budget-pill" data-value="₹50K–₹2L">₹50K–₹2L</div>
+                <div class="budget-pill" data-value="₹2L–₹5L">₹2L–₹5L</div>
+                <div class="budget-pill" data-value="₹5L–₹20L">₹5L–₹20L</div>
+                <div class="budget-pill" data-value="₹20L+">₹20L+</div>
+              </div>
+              <input type="hidden" name="budget" id="budget-value" />
+              <span class="error-msg" id="budget-error" style="display:none">Please select a budget range.</span>
             </div>
           </div>
         </div>
