@@ -862,6 +862,7 @@
       'Facebook URL: ' + (payload.facebook || 'Not provided'),
       'Facebook page content (scraped): ' + fbContent,
       'LinkedIn: ' + (payload.linkedin || 'Not provided'),
+      'YouTube: ' + (payload.youtube || 'Not provided'),
       '',
       '=== COMPETITIVE LANDSCAPE ===',
       'Competitor 1: ' + (payload.competitor1 || 'Not provided'),
@@ -986,7 +987,7 @@
       '  <button class="btn-unlock" onclick="unlockScores()">See My Full Score \u2192</button>',
       '  <button class="btn-later" onclick="closeBrandQuotientModal()">I\'ll decide later</button>',
       '  <div style="display:flex;align-items:center;justify-content:center;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">',
-      '    <img src="https://cdn.razorpay.com/static/assets/logo/rzp_logo_white_bg.png" alt="Secured by Razorpay" style="height:22px;width:auto;opacity:0.7;" />',
+      '    <img src="https://cdn.razorpay.com/logo.svg" alt="Secured by Razorpay" style="height:18px;width:auto;opacity:0.8;" />',
       '  </div>',
       '</div>'
     ].join('');
@@ -1080,7 +1081,7 @@
       '    <div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;stroke:#8A8580;stroke-width:2;fill:none;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Founder-reviewed</div>',
       '  </div>',
       '  <div style="display:flex;align-items:center;justify-content:center;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">',
-      '    <img src="https://cdn.razorpay.com/static/assets/logo/rzp_logo_white_bg.png" alt="Secured by Razorpay" style="height:22px;width:auto;opacity:0.7;" />',
+      '    <img src="https://cdn.razorpay.com/logo.svg" alt="Secured by Razorpay" style="height:18px;width:auto;opacity:0.8;" />',
       '  </div>',
       '</div>'
     ].join('');
@@ -1123,6 +1124,7 @@
   /* ── Fallback scores if API fails ── */
   function fallbackScores(payload) {
     var web = 55, comm = 50, comp = 48;
+    var company = (payload && payload.company) ? payload.company : 'Your brand';
     if (payload && payload.website) web += 10;
     if (payload && payload.instagram) web += 8;
     if (payload && payload.competitor1) comp += 12;
@@ -1136,7 +1138,8 @@
       web_insight: 'Your digital footprint shows room for stronger positioning.',
       comm_insight: 'Brand communication could be more consistent across channels.',
       comp_insight: 'Competitive differentiation needs to be made more explicit.',
-      headline: 'Early-stage brand with clear growth potential.'
+      headline: 'Early-stage brand with clear growth potential.',
+      summary: company + ' shows early-stage brand signals with identifiable gaps across digital presence and competitive positioning. Based on the information provided, there is room to sharpen the core value proposition and establish clearer differentiation in the market. Communication consistency across channels needs attention. The full audit will diagnose each dimension in detail.'
     };
   }
 
