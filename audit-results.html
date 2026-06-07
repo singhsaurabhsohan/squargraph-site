@@ -930,9 +930,8 @@
     var response = await fetch('https://eo5isa4657t5ffg.m.pipedream.net', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: prompt })
+      body: JSON.stringify({ payload: payload })
     });
-
     var data = await response.json();
     var text = (data.text || '').replace(/```json|```/g, '').trim();
     var parsed = JSON.parse(text);
