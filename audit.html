@@ -529,9 +529,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 32px 28px;
+      padding: 20px 20px 28px;
       border-top: 1px solid var(--border);
-      gap: 12px;
+      gap: 10px;
+      flex-wrap: nowrap;
+      overflow: hidden;
     }
 
     .btn {
@@ -589,14 +591,30 @@
     .btn-generate {
       background: linear-gradient(135deg, var(--accent) 0%, #9B8AE0 100%);
       color: #fff;
-      font-size: 14px;
-      padding: 13px 28px;
+      font-size: 13px;
+      padding: 13px 18px;
       box-shadow: 0 4px 20px rgba(107,93,184,.4);
+      flex-shrink: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .btn-generate:hover {
       box-shadow: 0 6px 28px rgba(107,93,184,.5);
       transform: translateY(-1px);
+    }
+
+    @media (max-width: 400px) {
+      .btn-generate {
+        font-size: 12px;
+        padding: 12px 14px;
+      }
+      .btn-ghost {
+        padding: 11px 16px;
+        font-size: 13px;
+      }
     }
 
     .btn svg {
