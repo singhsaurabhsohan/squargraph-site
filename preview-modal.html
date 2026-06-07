@@ -219,7 +219,7 @@
       transition: stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1) .3s;
     }
 
-    /* 244 * (1 - 0.73) = 65.88 ≈ 66 */
+    /* dashoffset now set dynamically via JS — .animated class no longer used */
     .ring-fill.animated {
       stroke-dashoffset: 66;
     }
@@ -777,18 +777,209 @@
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
   window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
 
+  /* ── Score computation from audit payload ── */
+  function computeScores() {
+    var raw = null;
+    try { raw = JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
+
+    // Defaults if no data
+    var scores = { web: 62, comm: 58, comp: 55, overall: 58 };
+    if (!raw) return scores;
+
+    // Website & Digital (0-100)
+    // Having a website URL = base 50. Each social channel adds points.
+    var web = 50;
+    if (raw.website && raw.website.length > 8) web += 15;
+    if (raw.instagram && raw.instagram.length > 8) web += 10;
+    if (raw.linkedin && raw.linkedin.length > 8) web += 10;
+    if (raw.facebook && raw.facebook.length > 8) web += 5;
+    // Clamp 50-90
+    web = Math.min(90, Math.max(50, web));
+
+    // Brand Communication (0-100)
+    // Based on goal clarity and challenge specificity
+    var comm = 45;
+    if (raw.goal) comm += 15;
+    if (raw.challenge && raw.challenge.length > 20) comm += 15;
+    if (raw.message && raw.message.length > 30) comm += 10;
+    // Industry premium sectors
+    var premiumSectors = ['Technology & SaaS', 'Finance & Fintech', 'E-commerce & Retail'];
+    if (raw.industry && premiumSectors.indexOf(raw.industry) > -1) comm += 8;
+    comm = Math.min(88, Math.max(42, comm));
+
+    // Competitive Positioning (0-100)
+    // Based on number of competitors named (awareness = good sign)
+    var comp = 48;
+    if (raw.competitor1 && raw.competitor1.trim()) comp += 12;
+    if (raw.competitor2 && raw.competitor2.trim()) comp += 8;
+    if (raw.competitor3 && raw.competitor3.trim()) comp += 6;
+    // Budget signals ambition
+    var budgetMap = {
+      'Under ₹50K': 2,
+      '₹50K–₹2L': 6,
+      '₹2L–₹5L': 10,
+      '₹5L–₹20L': 14,
+      '₹20L+': 18
+    };
+    if (raw.budget && budgetMap[raw.budget]) comp += budgetMap[raw.budget];
+    comp = Math.min(90, Math.max(44, comp));
+
+    // Overall = weighted average
+    var overall = Math.round((web * 0.35) + (comm * 0.35) + (comp * 0.30));
+
+    return {
+      web: web,
+      comm: comm,
+      comp: comp,
+      overall: overall
+    };
+  }
+
+  /* ── Grade label ── */
+  function gradeLabel(score) {
+    if (score >= 80) return 'Strong positioning';
+    if (score >= 70) return 'Growth potential identified';
+    if (score >= 60) return 'Gaps identified';
+    return 'Significant opportunity';
+  }
+
+  /* ── Ring dashoffset for r=39, circumference≈245 ── */
+  function ringOffset(score) {
+    return Math.round(244 * (1 - score / 100));
+  }
+
+ /* ── Score computation from audit payload ── */
+  function computeScores() {
+    var raw = null;
+    try { raw = JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
+
+    // Defaults if no data
+    var scores = { web: 62, comm: 58, comp: 55, overall: 58 };
+    if (!raw) return scores;
+
+    // Website & Digital (0-100)
+    // Having a website URL = base 50. Each social channel adds points.
+    var web = 50;
+    if (raw.website && raw.website.length > 8) web += 15;
+    if (raw.instagram && raw.instagram.length > 8) web += 10;
+    if (raw.linkedin && raw.linkedin.length > 8) web += 10;
+    if (raw.facebook && raw.facebook.length > 8) web += 5;
+    // Clamp 50-90
+    web = Math.min(90, Math.max(50, web));
+
+    // Brand Communication (0-100)
+    // Based on goal clarity and challenge specificity
+    var comm = 45;
+    if (raw.goal) comm += 15;
+    if (raw.challenge && raw.challenge.length > 20) comm += 15;
+    if (raw.message && raw.message.length > 30) comm += 10;
+    // Industry premium sectors
+    var premiumSectors = ['Technology & SaaS', 'Finance & Fintech', 'E-commerce & Retail'];
+    if (raw.industry && premiumSectors.indexOf(raw.industry) > -1) comm += 8;
+    comm = Math.min(88, Math.max(42, comm));
+
+    // Competitive Positioning (0-100)
+    // Based on number of competitors named (awareness = good sign)
+    var comp = 48;
+    if (raw.competitor1 && raw.competitor1.trim()) comp += 12;
+    if (raw.competitor2 && raw.competitor2.trim()) comp += 8;
+    if (raw.competitor3 && raw.competitor3.trim()) comp += 6;
+    // Budget signals ambition
+    var budgetMap = {
+      'Under ₹50K': 2,
+      '₹50K–₹2L': 6,
+      '₹2L–₹5L': 10,
+      '₹5L–₹20L': 14,
+      '₹20L+': 18
+    };
+    if (raw.budget && budgetMap[raw.budget]) comp += budgetMap[raw.budget];
+    comp = Math.min(90, Math.max(44, comp));
+
+    // Overall = weighted average
+    var overall = Math.round((web * 0.35) + (comm * 0.35) + (comp * 0.30));
+
+    return {
+      web: web,
+      comm: comm,
+      comp: comp,
+      overall: overall
+    };
+  }
+
+  /* ── Grade label ── */
+  function gradeLabel(score) {
+    if (score >= 80) return 'Strong positioning';
+    if (score >= 70) return 'Growth potential identified';
+    if (score >= 60) return 'Gaps identified';
+    return 'Significant opportunity';
+  }
+
+  /* ── Ring dashoffset for r=39, circumference≈245 ── */
+  function ringOffset(score) {
+    return Math.round(244 * (1 - score / 100));
+  }
+
   /* ── Modal open/close ── */
   function openBrandQuotientModal() {
+    var scores = computeScores();
+
+    // Update ring CSS for actual score
+    var ringEl = document.getElementById('ring-fill');
+    var offset = ringOffset(scores.overall);
+    // Override the .animated dashoffset dynamically
+    ringEl.style.transition = 'none';
+    ringEl.style.strokeDashoffset = '244';
+
+    // Update score title
+    var titleEl = document.getElementById('modal-title');
+    if (titleEl) {
+      if (scores.overall >= 70) {
+        titleEl.innerHTML = 'Initial score<br /><em>above average.</em>';
+      } else if (scores.overall >= 55) {
+        titleEl.innerHTML = 'Initial score<br /><em>needs attention.</em>';
+      } else {
+        titleEl.innerHTML = 'Initial score<br /><em>significant gaps.</em>';
+      }
+    }
+
+    // Update grade badge
+    var gradeEl = document.querySelector('.score-grade');
+    if (gradeEl) gradeEl.textContent = gradeLabel(scores.overall);
+
+    // Update metric bars data-pct and displayed values
+    var bars = document.querySelectorAll('.metric-bar');
+    var vals = document.querySelectorAll('.metric-val');
+    var metricScores = [scores.web, scores.comm, scores.comp];
+    bars.forEach(function(bar, i) {
+      bar.dataset.pct = metricScores[i];
+      bar.style.width = '0';
+    });
+    vals.forEach(function(val, i) {
+      var display = (metricScores[i] / 10).toFixed(1);
+      val.innerHTML = display + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span>';
+    });
+
+    // Update growth gaps count based on scores below 70
+    var gaps = metricScores.filter(function(s) { return s < 70; }).length;
+    var gapBadge = document.querySelector('.growth-badge');
+    if (gapBadge) {
+      gapBadge.textContent = gaps + ' priority area' + (gaps !== 1 ? 's' : '');
+    }
+
     var backdrop = document.getElementById('modal-backdrop');
     backdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
 
+    // Animate ring to actual score
     setTimeout(function() {
-      document.getElementById('ring-fill').classList.add('animated');
+      ringEl.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1) 0s';
+      ringEl.style.strokeDashoffset = String(offset);
     }, 120);
 
-    animateCount(0, 73, 1400, document.getElementById('ring-num'));
+    // Count-up to actual overall score
+    animateCount(0, scores.overall, 1400, document.getElementById('ring-num'));
 
+    // Animate metric bars to actual values
     setTimeout(function() {
       document.querySelectorAll('.metric-bar').forEach(function(bar, i) {
         setTimeout(function() {
@@ -797,7 +988,6 @@
       });
     }, 300);
   }
-
   function closeBrandQuotientModal() {
     document.getElementById('modal-backdrop').classList.remove('open');
     document.body.style.overflow = '';
