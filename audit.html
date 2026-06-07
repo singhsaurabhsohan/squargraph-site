@@ -1294,7 +1294,7 @@
 
     goal: document.getElementById('goal-value').value,
 
-    source: 'brand-audit'
+    source: 'Brand Growth Audit™'
 
   };
 
@@ -1312,7 +1312,7 @@ await fetch('https://eou44pd9t90wa37.m.pipedream.net', {
   body: JSON.stringify(payload)
 });
 
-launchSuccessScreen();
+document.getElementById("previewModal").style.display = "flex";
 
   } catch (err) {
 
@@ -1391,6 +1391,44 @@ window.__sb = {
     };
   }
 };
+</script>
+<script>
+
+async function showBrandQuotientPreview(){
+
+    if(document.getElementById("modal-backdrop"))
+    {
+        openBrandQuotientModal();
+        return;
+    }
+
+    const response = await fetch('/preview-modal.html');
+    const html = await response.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html,'text/html');
+
+    document.body.insertAdjacentHTML(
+        'beforeend',
+        doc.body.innerHTML
+    );
+
+    doc.querySelectorAll("script").forEach(oldScript=>{
+        const s=document.createElement("script");
+        if(oldScript.src){
+            s.src=oldScript.src;
+        }else{
+            s.textContent=oldScript.textContent;
+        }
+        document.body.appendChild(s);
+    });
+
+    setTimeout(()=>{
+        openBrandQuotientModal();
+    },100);
+
+}
+
 </script>
 </body>
 </html>
