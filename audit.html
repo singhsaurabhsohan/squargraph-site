@@ -871,41 +871,51 @@
 
         <!-- STEP 2 -->
         <div class="step" id="step-2">
-          <div class="step-heading">Your social presence</div>
-          <div class="step-desc">Share your handles so we can assess your digital footprint.</div>
+          <div class="step-heading">Social profiles to analyse</div>
+          <div class="step-desc">Paste the full URLs of the social profiles you want included in the audit. All fields are optional — add whichever are active.</div>
           <div class="field-group">
             <div class="field">
-              <label for="instagram">Instagram <span class="optional">optional</span></label>
-              <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/yourhandle" />
+              <label for="instagram">Instagram URL <span class="optional">optional</span></label>
+              <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/yourbrand" autocomplete="off" />
+              <span class="error-msg">Please enter a valid URL.</span>
             </div>
             <div class="field">
-              <label for="linkedin">LinkedIn <span class="optional">optional</span></label>
-              <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/company/yourco" />
+              <label for="linkedin">LinkedIn URL <span class="optional">optional</span></label>
+              <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/company/yourbrand" autocomplete="off" />
+              <span class="error-msg">Please enter a valid URL.</span>
             </div>
             <div class="field">
-              <label for="facebook">Facebook <span class="optional">optional</span></label>
-              <input type="url" id="facebook" name="facebook" placeholder="https://facebook.com/yourpage" />
+              <label for="facebook">Facebook URL <span class="optional">optional</span></label>
+              <input type="url" id="facebook" name="facebook" placeholder="https://facebook.com/yourbrand" autocomplete="off" />
+              <span class="error-msg">Please enter a valid URL.</span>
+            </div>
+            <div class="field">
+              <label for="youtube">YouTube URL <span class="optional">optional</span></label>
+              <input type="url" id="youtube" name="youtube" placeholder="https://youtube.com/@yourbrand" autocomplete="off" />
+              <span class="error-msg">Please enter a valid URL.</span>
             </div>
           </div>
         </div>
 
         <!-- STEP 3 -->
         <div class="step" id="step-3">
-          <div class="step-heading">Who are your competitors?</div>
-          <div class="step-desc">Name up to 3 brands you compete with or aspire to rival.</div>
+          <div class="step-heading">Your competitors' websites</div>
+          <div class="step-desc">Paste the website URL of up to 3 brands you compete with. We'll analyse their positioning directly — at least one required.</div>
           <div class="field-group">
             <div class="field">
-              <label for="comp1">Competitor 1</label>
-              <input type="text" id="comp1" name="competitor_1" placeholder="e.g. Notion, Figma, Linear…" />
-              <span class="error-msg">Please enter at least one competitor.</span>
+              <label for="comp1">Competitor 1 Website</label>
+              <input type="url" id="comp1" name="competitor_1" placeholder="https://competitorone.com" autocomplete="off" />
+              <span class="error-msg">Please enter at least one competitor URL.</span>
             </div>
             <div class="field">
-              <label for="comp2">Competitor 2 <span class="optional">optional</span></label>
-              <input type="text" id="comp2" name="competitor_2" placeholder="e.g. Webflow, Framer…" />
+              <label for="comp2">Competitor 2 Website <span class="optional">optional</span></label>
+              <input type="url" id="comp2" name="competitor_2" placeholder="https://competitortwo.com" autocomplete="off" />
+              <span class="error-msg">Please enter a valid URL.</span>
             </div>
             <div class="field">
-              <label for="comp3">Competitor 3 <span class="optional">optional</span></label>
-              <input type="text" id="comp3" name="competitor_3" placeholder="e.g. Squarespace, Wix…" />
+              <label for="comp3">Competitor 3 Website <span class="optional">optional</span></label>
+              <input type="url" id="comp3" name="competitor_3" placeholder="https://competitorthree.com" autocomplete="off" />
+              <span class="error-msg">Please enter a valid URL.</span>
             </div>
           </div>
         </div>
@@ -1148,9 +1158,34 @@
         }
       }
 
+      if (n === 2) {
+        // Validate any filled social URLs are actually valid URLs
+        ['instagram','linkedin','facebook','youtube'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el.value.trim()) {
+            try { new URL(el.value.trim()); el.classList.remove('error'); }
+            catch(e) { el.classList.add('error'); valid = false; }
+          }
+        });
+      }
+
       if (n === 3) {
-        const c1 = document.getElementById('comp1');
-        if (!c1.value.trim()) { c1.classList.add('error'); valid = false; }
+        var c1 = document.getElementById('comp1');
+        // Require at least comp1, and validate as URL
+        if (!c1.value.trim()) {
+          c1.classList.add('error'); valid = false;
+        } else {
+          try { new URL(c1.value.trim()); c1.classList.remove('error'); }
+          catch(e) { c1.classList.add('error'); valid = false; }
+        }
+        // Validate optional comp2 and comp3 if filled
+        ['comp2','comp3'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el.value.trim()) {
+            try { new URL(el.value.trim()); el.classList.remove('error'); }
+            catch(e) { el.classList.add('error'); valid = false; }
+          }
+        });
       }
 
       if (n === 4) {
@@ -1227,43 +1262,26 @@
   if (!validateStep(TOTAL_STEPS)) return;
 
   const payload = {
-
     name: document.getElementById('company-name').value,
-
     email: document.getElementById('email').value,
-
     phone: '',
-
     company: document.getElementById('company-name').value,
-
     service: 'Brand Growth Audit™',
-
     message: document.getElementById('challenge').value,
-
     budget: document.getElementById('budget-value').value,
-
     website: document.getElementById('website-url').value,
-
     instagram: document.getElementById('instagram').value,
-
     linkedin: document.getElementById('linkedin').value,
-
     facebook: document.getElementById('facebook').value,
-
+    youtube: document.getElementById('youtube').value,
     competitor1: document.getElementById('comp1').value,
-
     competitor2: document.getElementById('comp2').value,
-
     competitor3: document.getElementById('comp3').value,
-
     challenge: document.getElementById('challenge').value,
-
     goal: document.getElementById('goal-value').value,
-
+    industry: document.getElementById('industry').value,
     source: 'Brand Growth Audit™'
-
   };
-
   try {
 
     await window.__sb
