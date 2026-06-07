@@ -773,154 +773,258 @@
   </div>
 </div>
 <script>
-  /* ── Supabase shim (needed for any future inserts from this page) ── */
+ /* ── Supabase shim ── */
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
   window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
 
-  /* ── Score computation from audit payload ── */
-  function computeScores() {
-    var raw = null;
-    try { raw = JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
+  /* ── AI scoring via Claude ── */
+  async function fetchAIScores(payload) {
+    var prompt = [
+      'You are a brand strategist. Analyse this brand audit submission and return a JSON object only. No explanation, no markdown, no code fences. Return raw JSON only.',
+      '',
+      'Audit submission:',
+      'Company: ' + (payload.company || 'Unknown'),
+      'Website: ' + (payload.website || 'Not provided'),
+      'Industry: ' + (payload.industry || 'Not provided'),
+      'Instagram: ' + (payload.instagram || 'Not provided'),
+      'LinkedIn: ' + (payload.linkedin || 'Not provided'),
+      'Facebook: ' + (payload.facebook || 'Not provided'),
+      'Competitor 1: ' + (payload.competitor1 || 'Not provided'),
+      'Competitor 2: ' + (payload.competitor2 || 'Not provided'),
+      'Competitor 3: ' + (payload.competitor3 || 'Not provided'),
+      'Biggest challenge: ' + (payload.challenge || 'Not provided'),
+      'Monthly marketing budget: ' + (payload.budget || 'Not provided'),
+      'Primary goal: ' + (payload.goal || 'Not provided'),
+      '',
+      'Score each dimension from 0 to 100 based on what is provided. Be honest and realistic. A brand with no social presence should score low on digital. A brand that cannot name competitors scores low on positioning.',
+      '',
+      'Return exactly this JSON structure:',
+      '{',
+      '  "web": <number 0-100>,',
+      '  "comm": <number 0-100>,',
+      '  "comp": <number 0-100>,',
+      '  "overall": <number 0-100>,',
+      '  "web_insight": "<one crisp sentence about their website and digital presence>",',
+      '  "comm_insight": "<one crisp sentence about their brand communication>",',
+      '  "comp_insight": "<one crisp sentence about their competitive positioning>",',
+      '  "headline": "<5-8 word summary of the brand\'s current situation, no fluff>"',
+      '}'
+    ].join('\n');
 
-    // Defaults if no data
-    var scores = { web: 62, comm: 58, comp: 55, overall: 58 };
-    if (!raw) return scores;
+    var response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
 
-    // Website & Digital (0-100)
-    // Having a website URL = base 50. Each social channel adds points.
-    var web = 50;
-    if (raw.website && raw.website.length > 8) web += 15;
-    if (raw.instagram && raw.instagram.length > 8) web += 10;
-    if (raw.linkedin && raw.linkedin.length > 8) web += 10;
-    if (raw.facebook && raw.facebook.length > 8) web += 5;
-    // Clamp 50-90
-    web = Math.min(90, Math.max(50, web));
-
-    // Brand Communication (0-100)
-    // Based on goal clarity and challenge specificity
-    var comm = 45;
-    if (raw.goal) comm += 15;
-    if (raw.challenge && raw.challenge.length > 20) comm += 15;
-    if (raw.message && raw.message.length > 30) comm += 10;
-    // Industry premium sectors
-    var premiumSectors = ['Technology & SaaS', 'Finance & Fintech', 'E-commerce & Retail'];
-    if (raw.industry && premiumSectors.indexOf(raw.industry) > -1) comm += 8;
-    comm = Math.min(88, Math.max(42, comm));
-
-    // Competitive Positioning (0-100)
-    // Based on number of competitors named (awareness = good sign)
-    var comp = 48;
-    if (raw.competitor1 && raw.competitor1.trim()) comp += 12;
-    if (raw.competitor2 && raw.competitor2.trim()) comp += 8;
-    if (raw.competitor3 && raw.competitor3.trim()) comp += 6;
-    // Budget signals ambition
-    var budgetMap = {
-      'Under ₹50K': 2,
-      '₹50K–₹2L': 6,
-      '₹2L–₹5L': 10,
-      '₹5L–₹20L': 14,
-      '₹20L+': 18
-    };
-    if (raw.budget && budgetMap[raw.budget]) comp += budgetMap[raw.budget];
-    comp = Math.min(90, Math.max(44, comp));
-
-    // Overall = weighted average
-    var overall = Math.round((web * 0.35) + (comm * 0.35) + (comp * 0.30));
-
-    return {
-      web: web,
-      comm: comm,
-      comp: comp,
-      overall: overall
-    };
+    var data = await response.json();
+    var text = data.content.map(function(b) { return b.text || ''; }).join('');
+    // Strip any accidental markdown fences
+    text = text.replace(/```json|```/g, '').trim();
+    return JSON.parse(text);
   }
 
   /* ── Grade label ── */
   function gradeLabel(score) {
     if (score >= 80) return 'Strong positioning';
-    if (score >= 70) return 'Growth potential identified';
-    if (score >= 60) return 'Gaps identified';
-    return 'Significant opportunity';
+    if (score >= 65) return 'Growth potential identified';
+    if (score >= 50) return 'Gaps identified';
+    return 'Significant gaps found';
   }
 
-  /* ── Ring dashoffset for r=39, circumference≈245 ── */
+  /* ── Ring dashoffset for r=39, circumference≈244 ── */
   function ringOffset(score) {
     return Math.round(244 * (1 - score / 100));
   }
 
- /* ── Score computation from audit payload ── */
-  function computeScores() {
-    var raw = null;
-    try { raw = JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
+  /* ── Show loading state in modal ── */
+  function showLoadingState() {
+    var backdrop = document.getElementById('modal-backdrop');
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
 
-    // Defaults if no data
-    var scores = { web: 62, comm: 58, comp: 55, overall: 58 };
-    if (!raw) return scores;
+    // Replace modal-content with a loading indicator
+    var content = document.getElementById('modal-content');
+    content.innerHTML = [
+      '<div style="padding:60px 28px;text-align:center;">',
+      '  <div style="width:48px;height:48px;border:3px solid rgba(107,93,184,.15);border-top-color:#6B5DB8;border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 24px;"></div>',
+      '  <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#6B5DB8;margin-bottom:10px;">Analysing your brand</div>',
+      '  <div style="font-size:14px;color:#8A8580;line-height:1.6;max-width:28ch;margin:0 auto;">Reviewing your digital presence, communication, and competitive positioning.</div>',
+      '</div>',
+      '<style>@keyframes spin { to { transform: rotate(360deg); } }</style>'
+    ].join('');
+  }
 
-    // Website & Digital (0-100)
-    // Having a website URL = base 50. Each social channel adds points.
-    var web = 50;
-    if (raw.website && raw.website.length > 8) web += 15;
-    if (raw.instagram && raw.instagram.length > 8) web += 10;
-    if (raw.linkedin && raw.linkedin.length > 8) web += 10;
-    if (raw.facebook && raw.facebook.length > 8) web += 5;
-    // Clamp 50-90
-    web = Math.min(90, Math.max(50, web));
+  /* ── Render real scores into modal ── */
+  function renderScores(scores) {
+    var metricScores = [scores.web, scores.comm, scores.comp];
+    var gaps = metricScores.filter(function(s) { return s < 65; }).length;
 
-    // Brand Communication (0-100)
-    // Based on goal clarity and challenge specificity
-    var comm = 45;
-    if (raw.goal) comm += 15;
-    if (raw.challenge && raw.challenge.length > 20) comm += 15;
-    if (raw.message && raw.message.length > 30) comm += 10;
-    // Industry premium sectors
-    var premiumSectors = ['Technology & SaaS', 'Finance & Fintech', 'E-commerce & Retail'];
-    if (raw.industry && premiumSectors.indexOf(raw.industry) > -1) comm += 8;
-    comm = Math.min(88, Math.max(42, comm));
+    var content = document.getElementById('modal-content');
+    content.innerHTML = [
+      '<div class="modal-head">',
+      '  <div class="bq-eyebrow">Preliminary Assessment</div>',
+      '  <div class="score-row">',
+      '    <div class="ring-wrap">',
+      '      <svg viewBox="0 0 88 88">',
+      '        <circle class="ring-track" cx="44" cy="44" r="39" />',
+      '        <circle class="ring-fill" id="ring-fill" cx="44" cy="44" r="39" style="stroke-dashoffset:244;" />',
+      '      </svg>',
+      '      <div class="ring-center">',
+      '        <div class="ring-num" id="ring-num">0</div>',
+      '        <div class="ring-denom">/ 100</div>',
+      '      </div>',
+      '    </div>',
+      '    <div class="score-meta">',
+      '      <div class="score-label">Brand Quotient\u2122</div>',
+      '      <div class="score-title" id="modal-title">' + escHtml(scores.headline || 'Initial assessment complete.') + '</div>',
+      '      <div class="score-grade">' + gradeLabel(scores.overall) + '</div>',
+      '    </div>',
+      '  </div>',
+      '  <div class="metrics-grid">',
+      '    <div class="metric">',
+      '      <div class="metric-label">Website &amp; Digital</div>',
+      '      <div class="metric-bar-wrap"><div class="metric-bar" id="bar-web" style="width:0"></div></div>',
+      '      <div class="metric-val">' + (scores.web / 10).toFixed(1) + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div>',
+      '    </div>',
+      '    <div class="metric">',
+      '      <div class="metric-label">Brand Communication</div>',
+      '      <div class="metric-bar-wrap"><div class="metric-bar" id="bar-comm" style="width:0"></div></div>',
+      '      <div class="metric-val">' + (scores.comm / 10).toFixed(1) + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div>',
+      '    </div>',
+      '    <div class="metric">',
+      '      <div class="metric-label">Competitive Position</div>',
+      '      <div class="metric-bar-wrap"><div class="metric-bar" id="bar-comp" style="width:0"></div></div>',
+      '      <div class="metric-val">' + (scores.comp / 10).toFixed(1) + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div>',
+      '    </div>',
+      '  </div>',
+      '  <div class="growth-row">',
+      '    <div class="growth-label">Priority areas identified</div>',
+      '    <div class="growth-badge">' + gaps + ' dimension' + (gaps !== 1 ? 's' : '') + ' need work</div>',
+      '  </div>',
+      // AI insights block
+      '  <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px;">',
+      '    <div style="padding:12px 16px;border-bottom:1px solid var(--border);">',
+      '      <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8A8580;margin-bottom:3px;">Website &amp; Digital</div>',
+      '      <div style="font-size:13px;color:var(--text);line-height:1.5;">' + escHtml(scores.web_insight || '') + '</div>',
+      '    </div>',
+      '    <div style="padding:12px 16px;border-bottom:1px solid var(--border);">',
+      '      <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8A8580;margin-bottom:3px;">Brand Communication</div>',
+      '      <div style="font-size:13px;color:var(--text);line-height:1.5;">' + escHtml(scores.comm_insight || '') + '</div>',
+      '    </div>',
+      '    <div style="padding:12px 16px;">',
+      '      <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8A8580;margin-bottom:3px;">Competitive Position</div>',
+      '      <div style="font-size:13px;color:var(--text);line-height:1.5;">' + escHtml(scores.comp_insight || '') + '</div>',
+      '    </div>',
+      '  </div>',
+      '</div>',
+      '<div class="modal-divider"></div>',
+      '<div class="modal-cta">',
+      '  <div class="cta-headline">The full picture requires<br />the complete audit.</div>',
+      '  <div class="cta-sub">The Brand Growth Audit\u2122 delivers a structured executive report across eight dimensions:</div>',
+      '  <ul class="deliverables">',
+      '    <li>Executive Summary</li>',
+      '    <li>Website &amp; Digital Experience Analysis</li>',
+      '    <li>Brand Positioning Review</li>',
+      '    <li>Competitive Landscape</li>',
+      '    <li>Social Media Assessment</li>',
+      '    <li>Communication Gap Analysis</li>',
+      '    <li>Growth Opportunities</li>',
+      '    <li>90-Day Strategic Roadmap</li>',
+      '  </ul>',
+      '  <div class="price-row">',
+      '    <div class="price-label">Brand Growth Audit\u2122<span>Delivered within 24 hours \u00b7 PDF report</span></div>',
+      '    <div class="price-amount">\u20b99,999</div>',
+      '  </div>',
+      '  <button class="btn-unlock" onclick="handleUnlock()">Commission the Audit \u2192</button>',
+      '  <button class="btn-later" onclick="closeBrandQuotientModal()">I\'ll decide later</button>',
+      '  <div class="trust-row">',
+      '    <div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;stroke:#8A8580;stroke-width:2;fill:none;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Secure payment</div>',
+      '    <div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;stroke:#8A8580;stroke-width:2;fill:none;"><polyline points="20 6 9 17 4 12"/></svg>24-hour delivery</div>',
+      '    <div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;stroke:#8A8580;stroke-width:2;fill:none;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Founder-reviewed</div>',
+      '  </div>',
+      '</div>'
+    ].join('');
 
-    // Competitive Positioning (0-100)
-    // Based on number of competitors named (awareness = good sign)
-    var comp = 48;
-    if (raw.competitor1 && raw.competitor1.trim()) comp += 12;
-    if (raw.competitor2 && raw.competitor2.trim()) comp += 8;
-    if (raw.competitor3 && raw.competitor3.trim()) comp += 6;
-    // Budget signals ambition
-    var budgetMap = {
-      'Under ₹50K': 2,
-      '₹50K–₹2L': 6,
-      '₹2L–₹5L': 10,
-      '₹5L–₹20L': 14,
-      '₹20L+': 18
-    };
-    if (raw.budget && budgetMap[raw.budget]) comp += budgetMap[raw.budget];
-    comp = Math.min(90, Math.max(44, comp));
+    // Animate ring
+    setTimeout(function() {
+      var ring = document.getElementById('ring-fill');
+      if (ring) {
+        ring.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)';
+        ring.style.strokeDashoffset = String(ringOffset(scores.overall));
+      }
+    }, 80);
 
-    // Overall = weighted average
+    // Count-up
+    animateCount(0, scores.overall, 1400, document.getElementById('ring-num'));
+
+    // Animate bars
+    setTimeout(function() {
+      var barIds = ['bar-web', 'bar-comm', 'bar-comp'];
+      var vals = [scores.web, scores.comm, scores.comp];
+      barIds.forEach(function(id, i) {
+        setTimeout(function() {
+          var b = document.getElementById(id);
+          if (b) b.style.width = vals[i] + '%';
+        }, i * 160);
+      });
+    }, 300);
+  }
+
+  /* ── Fallback scores if API fails ── */
+  function fallbackScores(payload) {
+    var web = 55, comm = 50, comp = 48;
+    if (payload && payload.website) web += 10;
+    if (payload && payload.instagram) web += 8;
+    if (payload && payload.competitor1) comp += 12;
+    if (payload && payload.goal) comm += 12;
+    web = Math.min(85, web);
+    comm = Math.min(82, comm);
+    comp = Math.min(80, comp);
     var overall = Math.round((web * 0.35) + (comm * 0.35) + (comp * 0.30));
-
     return {
-      web: web,
-      comm: comm,
-      comp: comp,
-      overall: overall
+      web: web, comm: comm, comp: comp, overall: overall,
+      web_insight: 'Your digital footprint shows room for stronger positioning.',
+      comm_insight: 'Brand communication could be more consistent across channels.',
+      comp_insight: 'Competitive differentiation needs to be made more explicit.',
+      headline: 'Early-stage brand with clear growth potential.'
     };
   }
 
-  /* ── Grade label ── */
-  function gradeLabel(score) {
-    if (score >= 80) return 'Strong positioning';
-    if (score >= 70) return 'Growth potential identified';
-    if (score >= 60) return 'Gaps identified';
-    return 'Significant opportunity';
-  }
-
-  /* ── Ring dashoffset for r=39, circumference≈245 ── */
-  function ringOffset(score) {
-    return Math.round(244 * (1 - score / 100));
+  /* ── XSS-safe string ── */
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
 
   /* ── Modal open/close ── */
-  function openBrandQuotientModal() {
+  async function openBrandQuotientModal() {
+    showLoadingState();
+
+    var raw = null;
+    try { raw = JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
+
+    var scores;
+    try {
+      scores = await fetchAIScores(raw || {});
+      // Clamp all values to 0-100
+      ['web','comm','comp','overall'].forEach(function(k) {
+        scores[k] = Math.min(100, Math.max(0, Math.round(scores[k])));
+      });
+    } catch(e) {
+      console.warn('AI scoring failed, using fallback:', e);
+      scores = fallbackScores(raw);
+    }
+
+    renderScores(scores);
+  }
     var scores = computeScores();
 
     // Update ring CSS for actual score
