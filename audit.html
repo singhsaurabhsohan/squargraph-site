@@ -1301,10 +1301,18 @@
   try {
 
     await window.__sb
-      .from('leads')
-      .insert([payload]);
+  .from('leads')
+  .insert([payload]);
 
-    launchSuccessScreen();
+await fetch('https://eou44pd9t90wa37.m.pipedream.net', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(payload)
+});
+
+launchSuccessScreen();
 
   } catch (err) {
 
