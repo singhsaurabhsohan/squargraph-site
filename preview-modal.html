@@ -731,18 +731,33 @@
   }
 
   function handleUnlock() {
-
-    if (typeof openRazorpay === 'function') {
-
-        openRazorpay('audit');
-
+    var options = {
+      key: 'rzp_live_SvayEzczzvrE7f',
+      amount: 999900,
+      currency: 'INR',
+      name: 'SQUARGRAPH\u2122 Studios',
+      description: 'Full Brand Growth Audit\u2122 Report',
+      image: '/logo.webp',
+      theme: { color: '#8B7EC8' },
+      handler: function(response) {
+        closeBrandQuotientModal();
+        alert('Payment confirmed. Your full report will be sent to your email within 24 hours.\nPayment ID: ' + response.razorpay_payment_id);
+      }
+    };
+    if (typeof Razorpay !== 'undefined') {
+      new Razorpay(options).open();
     } else {
-
-        alert('Payment system not available.');
-
+      var script = document.createElement('script');
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.onload = function() { new Razorpay(options).open(); };
+      document.head.appendChild(script);
     }
+  }
 
-}
+  // Auto-open on load
+  window.addEventListener('load', function() {
+    openBrandQuotientModal();
+  });
 
   // Close on backdrop click
   document.getElementById('modal-backdrop').addEventListener('click', function(e) {
