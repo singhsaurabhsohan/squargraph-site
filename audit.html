@@ -727,64 +727,7 @@
     .check-status.complete {
       color: var(--success);
     }
-
-    /* ── BQ CARD ── */
-    .bq-card {
-      background: linear-gradient(135deg, #F4F2FF 0%, #FDFCFF 60%, #F0EFF9 100%);
-      border: 1px solid rgba(107,93,184,.2);
-      border-radius: 14px;
-      padding: 28px 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .bq-card::before {
-      content: '';
-      position: absolute;
-      top: -40px; right: -40px;
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(107,93,184,.12), transparent 70%);
-    }
-
-    .bq-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-
-    .bq-message {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      line-height: 1.45;
-      margin-bottom: 16px;
-    }
-
-    .bq-eta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--muted);
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-pill);
-      padding: 5px 12px;
-    }
-
-    .bq-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
+    
     /* ── MISC ── */
     .privacy-note {
       font-size: 11px;
@@ -830,9 +773,9 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-eyebrow">AI-Powered Brand Audit</div>
-    <h1>Measure Your Brand<br /><em>Before You Build It.</em></h1>
-    <p class="hero-sub">Get an AI-powered strategic assessment of your website, digital presence, and competitive positioning.</p>
+    <div class="hero-eyebrow">Brand Growth Audit™</div>
+    <h1>What your brand<br />communicates <em>without you.</em></h1>
+    <p class="hero-sub">A structured audit of your positioning, digital presence, and competitive standing. Delivered as an executive report within 24 hours.</p>
   </section>
 
   <!-- FORM SECTION -->
@@ -963,7 +906,7 @@
         <!-- STEP 5 -->
         <div class="step" id="step-5">
           <div class="step-heading">Almost there.</div>
-          <div class="step-desc">Where should we send your Brand Quotient™ report?</div>
+          <div class="step-desc">Where should we send the audit results?</div>
           <div class="field-group">
             <div class="field">
               <label for="email">Email Address</label>
@@ -1039,39 +982,30 @@
             <div class="spinner"></div>
             Processing
           </div>
-          <div class="analysis-title">Analyzing Your Brand…</div>
-          <div class="analysis-sub">Our AI is generating your personalized Brand Quotient™ report.</div>
+          <div class="analysis-title">Reviewing your brand…</div>
+          <div class="analysis-sub">Building your preliminary assessment across four dimensions.</div>
         </div>
 
         <div class="checklist" id="checklist">
           <div class="check-item" data-delay="300">
             <div class="check-icon" id="ci-1">⏳</div>
-            <div class="check-label">Website Structure</div>
-            <div class="check-status" id="cs-1">Analyzing…</div>
+            <div class="check-label">Website & Digital Experience</div>
+            <div class="check-status" id="cs-1">Reviewing…</div>
           </div>
           <div class="check-item" data-delay="1100">
             <div class="check-icon" id="ci-2">⏳</div>
-            <div class="check-label">Digital Presence</div>
-            <div class="check-status" id="cs-2">Analyzing…</div>
+            <div class="check-label">Brand Communication</div>
+            <div class="check-status" id="cs-2">Reviewing…</div>
           </div>
           <div class="check-item" data-delay="1900">
             <div class="check-icon" id="ci-3">⏳</div>
             <div class="check-label">Competitive Positioning</div>
-            <div class="check-status" id="cs-3">Analyzing…</div>
+            <div class="check-status" id="cs-3">Reviewing…</div>
           </div>
           <div class="check-item" data-delay="2700">
             <div class="check-icon" id="ci-4">⏳</div>
             <div class="check-label">Growth Opportunities</div>
-            <div class="check-status" id="cs-4">Analyzing…</div>
-          </div>
-        </div>
-
-        <div class="bq-card">
-          <div class="bq-label">Brand Quotient™</div>
-          <div class="bq-message">Your Brand Quotient™ is being calculated and will be sent to your email within 24 hours.</div>
-          <div class="bq-eta">
-            <div class="bq-dot"></div>
-            Report arriving within 24 hours
+            <div class="check-status" id="cs-4">Reviewing…</div>
           </div>
         </div>
       </div>
@@ -1324,37 +1258,35 @@ launchSuccessScreen();
 });
 
     function launchSuccessScreen() {
-      // Hide form contents, show success
       document.querySelector('.progress-wrap').style.display = 'none';
       document.querySelector('.steps-container').style.display = 'none';
       document.querySelector('.form-footer').style.display = 'none';
       document.querySelector('.privacy-note').style.display = 'none';
 
       successScreen.classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Animate checklist items
       const items = document.querySelectorAll('.check-item');
+      let lastDelay = 0;
+
       items.forEach((item, idx) => {
         const delay = parseInt(item.dataset.delay) || (idx * 800 + 300);
-        setTimeout(() => {
-          item.classList.add('revealed');
-        }, delay);
+        lastDelay = delay + 900;
 
-        // Mark as done after reveal
+        setTimeout(() => { item.classList.add('revealed'); }, delay);
+
         setTimeout(() => {
-          const iconId = `ci-${idx + 1}`;
-          const statusId = `cs-${idx + 1}`;
-          document.getElementById(iconId).textContent = '✓';
-          document.getElementById(iconId).classList.add('done');
-          document.getElementById(statusId).textContent = 'Complete';
-          document.getElementById(statusId).classList.add('complete');
+          document.getElementById(`ci-${idx + 1}`).textContent = '✓';
+          document.getElementById(`ci-${idx + 1}`).classList.add('done');
+          document.getElementById(`cs-${idx + 1}`).textContent = 'Complete';
+          document.getElementById(`cs-${idx + 1}`).classList.add('complete');
         }, delay + 900);
       });
+
+      // After all checks complete, navigate to the preview modal
       setTimeout(() => {
-
-    window.location.href = "/preview-modal.html";
-
-    }, 5000);
+        window.location.href = '/preview-modal.html';
+      }, lastDelay + 600);
     }
 
     /* ── INIT ── */
@@ -1396,44 +1328,6 @@ window.__sb = {
     };
   }
 };
-</script>
-<script>
-
-async function showBrandQuotientPreview(){
-
-    if(document.getElementById("modal-backdrop"))
-    {
-        openBrandQuotientModal();
-        return;
-    }
-
-    const response = await fetch('/preview-modal.html');
-    const html = await response.text();
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html,'text/html');
-
-    document.body.insertAdjacentHTML(
-        'beforeend',
-        doc.body.innerHTML
-    );
-
-    doc.querySelectorAll("script").forEach(oldScript=>{
-        const s=document.createElement("script");
-        if(oldScript.src){
-            s.src=oldScript.src;
-        }else{
-            s.textContent=oldScript.textContent;
-        }
-        document.body.appendChild(s);
-    });
-
-    setTimeout(()=>{
-        openBrandQuotientModal();
-    },100);
-
-}
-
 </script>
 </body>
 </html>
