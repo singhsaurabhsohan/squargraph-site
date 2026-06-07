@@ -820,7 +820,7 @@ Overall: web 35% + comm 35% + comp 30%.
 Return exactly this JSON:
 {"web":<integer>,"comm":<integer>,"comp":<integer>,"overall":<integer>,"web_insight":"<one sentence>","comm_insight":"<one sentence naming platforms>","comp_insight":"<one sentence naming competitors>","headline":"<5-8 words>","summary":"<4 sentences addressing ${firstName} directly>"}`;
 
-    const response = await fetch('/gemini-proxy.php', {
+    const response = await fetch('https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })
