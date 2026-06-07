@@ -4,23 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brand Audit — SQUARGRAPH</title>
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet" />
+  <style>
+    @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
+    @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
+    @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
+  </style>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --bg: #FFFFFF;
-      --text: #1A1714;
+      --offwhite: #FAFAF9;
+      --warmgray: #F5F5F3;
+      --coolgray: #F0EFED;
+      --bordergray: #E5E3DF;
+      --textmuted: #2A2623;
+      --textsecondary: #3D3935;
+      --textprimary: #1A1714;
       --accent: #6B5DB8;
-      --accent-light: #EAE7F8;
-      --accent-mid: #8B7DD4;
+      --accentmuted: #7B6FB8;
+      --accentlight: #EEECf7;
+      /* aliases so existing audit.html selectors keep working */
+      --text: #1A1714;
       --border: #E5E3DF;
-      --muted: #7A7672;
-      --surface: #F9F8F6;
+      --muted: #3D3935;
+      --surface: #F5F5F3;
       --success: #16A34A;
-      --font: 'Satoshi', sans-serif;
+      --accent-light: #EEECf7;
+      --accent-mid: #7B6FB8;
+      --font: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
       --radius-pill: 999px;
       --radius-card: 16px;
       --shadow-sm: 0 1px 3px rgba(26,23,20,.06), 0 1px 2px rgba(26,23,20,.04);
