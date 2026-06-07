@@ -785,60 +785,115 @@
   /* ── AI scoring via Claude ── */
   async function fetchAIScores(payload) {
 
-    /* ── Attempt to fetch website content ── */
-    var websiteContent = 'Not available';
-    if (payload.website) {
+    /* ── Helper: fetch a URL via proxy, strip HTML, cap length ── */
+    async function fetchPageText(url, cap) {
       try {
-        var siteUrl = payload.website.trim();
-        if (!/^https?:\/\//i.test(siteUrl)) siteUrl = 'https://' + siteUrl;
-        var proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(siteUrl);
-        var siteRes = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
-        var siteData = await siteRes.json();
-        var raw = siteData.contents || '';
-        // Strip tags, collapse whitespace, cap at ~2000 chars
-        var stripped = raw
+        var clean = url.trim();
+        if (!/^https?:\/\//i.test(clean)) clean = 'https://' + clean;
+        var res = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(clean), { signal: AbortSignal.timeout(8000) });
+        var json = await res.json();
+        var text = (json.contents || '')
           .replace(/<script[\s\S]*?<\/script>/gi, '')
           .replace(/<style[\s\S]*?<\/style>/gi, '')
           .replace(/<[^>]+>/g, ' ')
           .replace(/\s+/g, ' ')
           .trim()
-          .slice(0, 2000);
-        if (stripped.length > 80) websiteContent = stripped;
-      } catch(e) {
-        console.warn('Website fetch failed:', e);
-      }
+          .slice(0, cap || 1500);
+        return text.length > 80 ? text : null;
+      } catch(e) { return null; }
+    }
+
+    /* ── Fetch website ── */
+    var websiteContent = 'Not available';
+    if (payload.website) {
+      var wt = await fetchPageText(payload.website, 2000);
+      if (wt) websiteContent = wt;
+    }
+
+    /* ── Fetch Instagram ── */
+    var instaContent = 'Not available';
+    if (payload.instagram) {
+      var it = await fetchPageText(payload.instagram, 1000);
+      if (it) instaContent = it;
+    }
+
+    /* ── Fetch Facebook ── */
+    var fbContent = 'Not available';
+    if (payload.facebook) {
+      var ft = await fetchPageText(payload.facebook, 1000);
+      if (ft) fbContent = ft;
+    }
+
+    /* ── Fetch competitors ── */
+    var comp1Content = 'Not available';
+    var comp2Content = 'Not available';
+    var comp3Content = 'Not available';
+    if (payload.competitor1) {
+      var c1url = payload.competitor1.trim();
+      if (!c1url.includes('.')) c1url = 'https://www.google.com/search?q=' + encodeURIComponent(c1url + ' brand');
+      var c1t = await fetchPageText(c1url, 800);
+      if (c1t) comp1Content = c1t;
+    }
+    if (payload.competitor2) {
+      var c2url = payload.competitor2.trim();
+      if (!c2url.includes('.')) c2url = 'https://www.google.com/search?q=' + encodeURIComponent(c2url + ' brand');
+      var c2t = await fetchPageText(c2url, 800);
+      if (c2t) comp2Content = c2t;
+    }
+    if (payload.competitor3) {
+      var c3url = payload.competitor3.trim();
+      if (!c3url.includes('.')) c3url = 'https://www.google.com/search?q=' + encodeURIComponent(c3url + ' brand');
+      var c3t = await fetchPageText(c3url, 800);
+      if (c3t) comp3Content = c3t;
     }
 
     var prompt = [
-      'You are a brand strategist. Analyse this brand audit submission and return a JSON object only. No explanation, no markdown, no code fences. Return raw JSON only.',
+      'You are a senior brand strategist conducting a real audit. Analyse everything provided and return a JSON object only. No explanation, no markdown, no code fences. Raw JSON only.',
       '',
-      'Audit submission:',
+      '=== BRAND BEING AUDITED ===',
       'Company: ' + (payload.company || 'Unknown'),
+      'Industry: ' + (payload.industry || 'Not provided'),
       'Website: ' + (payload.website || 'Not provided'),
       'Website content (scraped): ' + websiteContent,
-      'Industry: ' + (payload.industry || 'Not provided'),
-      'Instagram: ' + (payload.instagram || 'Not provided'),
+      '',
+      '=== SOCIAL PRESENCE ===',
+      'Instagram URL: ' + (payload.instagram || 'Not provided'),
+      'Instagram page content (scraped): ' + instaContent,
+      'Facebook URL: ' + (payload.facebook || 'Not provided'),
+      'Facebook page content (scraped): ' + fbContent,
       'LinkedIn: ' + (payload.linkedin || 'Not provided'),
-      'Facebook: ' + (payload.facebook || 'Not provided'),
+      '',
+      '=== COMPETITIVE LANDSCAPE ===',
       'Competitor 1: ' + (payload.competitor1 || 'Not provided'),
+      'Competitor 1 content (scraped): ' + comp1Content,
       'Competitor 2: ' + (payload.competitor2 || 'Not provided'),
+      'Competitor 2 content (scraped): ' + comp2Content,
       'Competitor 3: ' + (payload.competitor3 || 'Not provided'),
+      'Competitor 3 content (scraped): ' + comp3Content,
+      '',
+      '=== BUSINESS CONTEXT ===',
       'Biggest challenge: ' + (payload.challenge || 'Not provided'),
       'Monthly marketing budget: ' + (payload.budget || 'Not provided'),
       'Primary goal: ' + (payload.goal || 'Not provided'),
       '',
-      'Score each dimension from 0 to 100 based on what is provided. Be honest and realistic. A brand with no social presence should score low on digital. A brand that cannot name competitors scores low on positioning.',
+      '=== SCORING INSTRUCTIONS ===',
+      'Score each dimension 0-100. Be honest and specific — use what was actually scraped, not assumptions.',
+      'Web score: judge clarity of messaging, UX signals, and whether the site communicates a clear value proposition.',
+      'Comm score: judge consistency of brand voice across website and social. No social presence = low comm score.',
+      'Comp score: judge how differentiated this brand is versus the named competitors. Use your existing knowledge of those competitor brands combined with any scraped content. If the competitors are well-known established brands, the audit brand likely scores lower on differentiation unless their website shows a clear unique angle.',
+      'Overall: weighted average (web 35%, comm 35%, comp 30%).',
       '',
-      'Return exactly this JSON structure:',
+      'Return exactly this JSON:',
       '{',
       '  "web": <number 0-100>,',
       '  "comm": <number 0-100>,',
       '  "comp": <number 0-100>,',
       '  "overall": <number 0-100>,',
-      '  "web_insight": "<one crisp sentence about their website and digital presence>",',
-      '  "comm_insight": "<one crisp sentence about their brand communication>",',
-      '  "comp_insight": "<one crisp sentence about their competitive positioning>",',
-      '  "headline": "<5-8 word summary of the brand\'s current situation, no fluff>"',
+      '  "web_insight": "<one sentence: what the website actually communicates or fails to communicate, based on scraped content>",',
+      '  "comm_insight": "<one sentence: honest assessment of brand communication consistency across website and social channels>",',
+      '  "comp_insight": "<one sentence: how this brand compares to the named competitors specifically — name them if possible>",',
+      '  "headline": "<5-8 word summary of the brand\'s current situation, no fluff>",',
+      '  "summary": "<3-4 sentences written like a strategist briefing a client. Mention the company name. Reference what you actually found on their website. Use your knowledge of the named competitors to make a specific comparison — do not say you cannot assess them. End with the single most important gap or opportunity.>"',
       '}'
     ].join('\n');
 
@@ -890,7 +945,54 @@
     ].join('');
   }
 
-  /* ── Render real scores into modal ── */
+  /* ── Stage 1: Render research summary with teased scores ── */
+  function renderSummary(scores, payload) {
+    var companyName = (payload && payload.company) ? payload.company : 'your brand';
+    var content = document.getElementById('modal-content');
+    content.innerHTML = [
+      '<div class="modal-head">',
+      '  <div class="bq-eyebrow">Research Complete</div>',
+      '  <div style="margin-bottom:20px;">',
+      '    <div style="font-size:19px;font-weight:500;letter-spacing:-0.03em;color:var(--text);line-height:1.25;margin-bottom:12px;">Here\'s what we found<br/>about <em style="color:var(--accent);font-style:normal;">' + escHtml(companyName) + '</em></div>',
+      '    <div style="font-size:13px;line-height:1.75;color:#5A5550;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;">' + escHtml(scores.summary || 'Our analysis is complete. Your Brand Quotient™ score and dimension breakdown are ready.') + '</div>',
+      '  </div>',
+      // Teased/blurred scores
+      '  <div style="position:relative;margin-bottom:20px;">',
+      '    <div style="filter:blur(6px);pointer-events:none;user-select:none;">',
+      '      <div class="metrics-grid">',
+      '        <div class="metric"><div class="metric-label">Website &amp; Digital</div><div class="metric-bar-wrap"><div class="metric-bar" style="width:' + scores.web + '%"></div></div><div class="metric-val">' + (scores.web / 10).toFixed(1) + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
+      '        <div class="metric"><div class="metric-label">Brand Communication</div><div class="metric-bar-wrap"><div class="metric-bar" style="width:' + scores.comm + '%"></div></div><div class="metric-val">' + (scores.comm / 10).toFixed(1) + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
+      '        <div class="metric"><div class="metric-label">Competitive Position</div><div class="metric-bar-wrap"><div class="metric-bar" style="width:' + scores.comp + '%"></div></div><div class="metric-val">' + (scores.comp / 10).toFixed(1) + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
+      '      </div>',
+      '    </div>',
+      '    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">',
+      '      <div style="background:var(--text);color:#fff;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:6px 16px;border-radius:999px;">Scores locked</div>',
+      '      <div style="font-size:12px;color:#8A8580;">Commission the full audit to unlock</div>',
+      '    </div>',
+      '  </div>',
+      '  <div class="growth-row">',
+      '    <div class="growth-label">Priority areas identified</div>',
+      '    <div class="growth-badge">' + [scores.web, scores.comm, scores.comp].filter(function(s){return s<65;}).length + ' dimension' + ([scores.web, scores.comm, scores.comp].filter(function(s){return s<65;}).length !== 1 ? 's' : '') + ' need work</div>',
+      '  </div>',
+      '</div>',
+      '<div class="modal-divider"></div>',
+      '<div class="modal-cta">',
+      '  <div class="cta-headline">Unlock your full<br />Brand Quotient™ score.</div>',
+      '  <div class="cta-sub">The Brand Growth Audit™ delivers a complete executive report across eight dimensions — plus your actual scores, insights per dimension, and a 90-day roadmap.</div>',
+      '  <div class="price-row">',
+      '    <div class="price-label">Brand Growth Audit\u2122<span>Delivered within 24 hours \u00b7 PDF report</span></div>',
+      '    <div class="price-amount">\u20b99,999</div>',
+      '  </div>',
+      '  <button class="btn-unlock" onclick="unlockScores()">See My Full Score \u2192</button>',
+      '  <button class="btn-later" onclick="closeBrandQuotientModal()">I\'ll decide later</button>',
+      '  <div style="display:flex;align-items:center;justify-content:center;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">',
+      '    <img src="https://cdn.razorpay.com/static/assets/logo/rzp_logo_white_bg.png" alt="Secured by Razorpay" style="height:22px;width:auto;opacity:0.7;" />',
+      '  </div>',
+      '</div>'
+    ].join('');
+  }
+
+  /* ── Stage 2: Render real scores into modal ── */
   function renderScores(scores) {
     var metricScores = [scores.web, scores.comm, scores.comp];
     var gaps = metricScores.filter(function(s) { return s < 65; }).length;
@@ -974,9 +1076,11 @@
       '  <button class="btn-unlock" onclick="handleUnlock()">Commission the Audit \u2192</button>',
       '  <button class="btn-later" onclick="closeBrandQuotientModal()">I\'ll decide later</button>',
       '  <div class="trust-row">',
-      '    <div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;stroke:#8A8580;stroke-width:2;fill:none;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Secure payment</div>',
       '    <div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;stroke:#8A8580;stroke-width:2;fill:none;"><polyline points="20 6 9 17 4 12"/></svg>24-hour delivery</div>',
       '    <div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;stroke:#8A8580;stroke-width:2;fill:none;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Founder-reviewed</div>',
+      '  </div>',
+      '  <div style="display:flex;align-items:center;justify-content:center;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">',
+      '    <img src="https://cdn.razorpay.com/static/assets/logo/rzp_logo_white_bg.png" alt="Secured by Razorpay" style="height:22px;width:auto;opacity:0.7;" />',
       '  </div>',
       '</div>'
     ].join('');
@@ -1004,6 +1108,16 @@
         }, i * 160);
       });
     }, 300);
+  }
+
+  /* ── Unlock: transition from summary to full scores ── */
+  var _cachedScores = null;
+  function unlockScores() {
+    if (_cachedScores) {
+      renderScores(_cachedScores);
+    } else {
+      handleUnlock();
+    }
   }
 
   /* ── Fallback scores if API fails ── */
@@ -1045,7 +1159,6 @@
     var scores;
     try {
       scores = await fetchAIScores(raw || {});
-      // Clamp all values to 0-100
       ['web','comm','comp','overall'].forEach(function(k) {
         scores[k] = Math.min(100, Math.max(0, Math.round(scores[k])));
       });
@@ -1054,7 +1167,8 @@
       scores = fallbackScores(raw);
     }
 
-    renderScores(scores);
+    _cachedScores = scores;
+    renderSummary(scores, raw);
   }
   
   function closeBrandQuotientModal() {
