@@ -10,7 +10,7 @@ $body = file_get_contents('php://input');
 $decoded = json_decode($body, true);
 $prompt = $decoded['prompt'] ?? '';
 
-$apiKey = 'AQ.Ab8RN6KtfToDZEg_T-DuaP3Q64b6vP_yZXzb5uv9cLws5I2Zaw';
+$apiKey = 'GEMINI_API_KEY';
 $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' . $apiKey;
 
 $payload = json_encode([
