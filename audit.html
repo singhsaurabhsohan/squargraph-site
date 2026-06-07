@@ -6,6 +6,7 @@
   <title>Brand Audit — SQUARGRAPH</title>
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -75,12 +76,10 @@
     .back-link .arrow { font-size: 15px; transition: transform var(--transition); }
     .back-link:hover .arrow { transform: translateX(-3px); }
 
-    .header-logo {
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--text);
-      text-transform: uppercase;
+    .header-logo img {
+      height: 26px;
+      width: auto;
+      display: block;
     }
 
     /* ── PAGE LAYOUT ── */
@@ -764,7 +763,9 @@
       <span class="arrow">←</span>
       Back to SQUARGRAPH
     </a>
-    <div class="header-logo">SQUARGRAPH</div>
+    <div class="header-logo">
+      <img src="/logo.webp" alt="SQUARGRAPH Studios" />
+    </div>
   </div>
 </header>
 
@@ -1245,6 +1246,9 @@ await fetch('https://eou44pd9t90wa37.m.pipedream.net', {
   },
   body: JSON.stringify(payload)
 });
+
+// Store audit inputs for scoring on preview page
+sessionStorage.setItem('sq_audit_payload', JSON.stringify(payload));
 
 launchSuccessScreen();
 
