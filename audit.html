@@ -833,11 +833,41 @@
 
         <!-- STEP 1 -->
         <div class="step active" id="step-1">
-          <div class="step-heading">Tell us about your company</div>
-          <div class="step-desc">We'll use this to anchor the audit to your business context.</div>
+          <div class="step-heading">Who are we speaking with?</div>
+          <div class="step-desc">This stays between us. We use this to personalise your audit report.</div>
+          <div class="field-group">
+            <div class="field-row">
+              <div class="field">
+                <label for="contact-name">Full Name</label>
+                <input type="text" id="contact-name" name="contact_name" placeholder="Saurabh Singh" autocomplete="name" />
+                <span class="error-msg">Please enter your name.</span>
+              </div>
+              <div class="field">
+                <label for="designation">Designation</label>
+                <input type="text" id="designation" name="designation" placeholder="Founder / CMO / Brand Manager" autocomplete="organization-title" />
+                <span class="error-msg">Please enter your designation.</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="contact-email">Work Email</label>
+              <input type="email" id="contact-email" name="contact_email" placeholder="you@yourcompany.com" autocomplete="email" />
+              <span class="error-msg">Please enter a valid work email.</span>
+            </div>
+            <div class="field">
+              <label for="contact-phone">WhatsApp / Phone Number</label>
+              <input type="tel" id="contact-phone" name="contact_phone" placeholder="+91 98765 43210" autocomplete="tel" />
+              <span class="error-msg">Please enter your phone number.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step" id="step-2-company">
+          <div class="step-heading">Tell us about your brand</div>
+          <div class="step-desc">Be specific — vague answers produce vague audits.</div>
           <div class="field-group">
             <div class="field">
-              <label for="company-name">Company Name</label>
+              <label for="company-name">Brand / Company Name</label>
               <input type="text" id="company-name" name="company_name" placeholder="e.g. Acme Studios" autocomplete="organization" />
               <span class="error-msg">Please enter your company name.</span>
             </div>
@@ -847,51 +877,79 @@
               <span class="error-msg">Please enter a valid URL.</span>
             </div>
             <div class="field">
-              <label for="industry">Industry</label>
-              <div class="select-wrap">
-                <select id="industry" name="industry">
-                  <option value="" disabled selected>Select your industry…</option>
-                  <option>Technology & SaaS</option>
-                  <option>E-commerce & Retail</option>
-                  <option>Professional Services</option>
-                  <option>Health & Wellness</option>
-                  <option>Finance & Fintech</option>
-                  <option>Creative & Design</option>
-                  <option>Media & Entertainment</option>
-                  <option>Education & EdTech</option>
-                  <option>Real Estate</option>
-                  <option>Food & Hospitality</option>
-                  <option>Other</option>
-                </select>
+              <label for="brand-desc">What does your brand do? Who is it for?</label>
+              <input type="text" id="brand-desc" name="brand_description" placeholder="e.g. Premium skincare for women 25–40 in metro cities" />
+              <span class="error-msg">Please describe your brand briefly.</span>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="industry">Industry</label>
+                <div class="select-wrap">
+                  <select id="industry" name="industry">
+                    <option value="" disabled selected>Select…</option>
+                    <option>Technology & SaaS</option>
+                    <option>E-commerce & Retail</option>
+                    <option>Professional Services</option>
+                    <option>Health & Wellness</option>
+                    <option>Finance & Fintech</option>
+                    <option>Automotive</option>
+                    <option>Hospitality & F&B</option>
+                    <option>Real Estate</option>
+                    <option>D2C & Consumer Brands</option>
+                    <option>Media & Entertainment</option>
+                    <option>Education & EdTech</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <span class="error-msg">Please select your industry.</span>
               </div>
-              <span class="error-msg">Please select your industry.</span>
+              <div class="field">
+                <label for="revenue">Annual Revenue Range</label>
+                <div class="select-wrap">
+                  <select id="revenue" name="revenue">
+                    <option value="" disabled selected>Select…</option>
+                    <option>Under ₹25L</option>
+                    <option>₹25L – ₹1Cr</option>
+                    <option>₹1Cr – ₹5Cr</option>
+                    <option>₹5Cr – ₹25Cr</option>
+                    <option>₹25Cr+</option>
+                    <option>Prefer not to say</option>
+                  </select>
+                </div>
+                <span class="error-msg">Please select a range.</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- STEP 2 -->
-        <div class="step" id="step-2">
-          <div class="step-heading">Social profiles to analyse</div>
-          <div class="step-desc">Paste the full URLs of the social profiles you want included in the audit. All fields are optional — add whichever are active.</div>
+        <!-- STEP 3 -->
+        <div class="step" id="step-3">
+          <div class="step-heading">Your social presence</div>
+          <div class="step-desc">Add all active profiles. Skip platforms you don't use — absence is also data.</div>
           <div class="field-group">
             <div class="field">
-              <label for="instagram">Instagram URL <span class="optional">optional</span></label>
+              <label for="instagram">Instagram <span class="optional">optional</span></label>
               <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/yourbrand" autocomplete="off" />
               <span class="error-msg">Please enter a valid URL.</span>
             </div>
             <div class="field">
-              <label for="linkedin">LinkedIn URL <span class="optional">optional</span></label>
+              <label for="linkedin">LinkedIn <span class="optional">optional</span></label>
               <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/company/yourbrand" autocomplete="off" />
               <span class="error-msg">Please enter a valid URL.</span>
             </div>
             <div class="field">
-              <label for="facebook">Facebook URL <span class="optional">optional</span></label>
+              <label for="facebook">Facebook <span class="optional">optional</span></label>
               <input type="url" id="facebook" name="facebook" placeholder="https://facebook.com/yourbrand" autocomplete="off" />
               <span class="error-msg">Please enter a valid URL.</span>
             </div>
             <div class="field">
-              <label for="youtube">YouTube URL <span class="optional">optional</span></label>
+              <label for="youtube">YouTube <span class="optional">optional</span></label>
               <input type="url" id="youtube" name="youtube" placeholder="https://youtube.com/@yourbrand" autocomplete="off" />
+              <span class="error-msg">Please enter a valid URL.</span>
+            </div>
+            <div class="field">
+              <label for="twitter">X / Twitter <span class="optional">optional</span></label>
+              <input type="url" id="twitter" name="twitter" placeholder="https://x.com/yourbrand" autocomplete="off" />
               <span class="error-msg">Please enter a valid URL.</span>
             </div>
           </div>
@@ -920,40 +978,68 @@
           </div>
         </div>
 
-        <!-- STEP 4 -->
-        <div class="step" id="step-4">
-          <div class="step-heading">Marketing context</div>
-          <div class="step-desc">Help us calibrate your audit to your real-world constraints.</div>
+        <!-- STEP 5 -->
+        <div class="step" id="step-5-context">
+          <div class="step-heading">Who are you competing with?</div>
+          <div class="step-desc">Add their website and Instagram. The more specific you are, the sharper the competitive analysis.</div>
           <div class="field-group">
-            <div class="field">
-              <label for="challenge">Biggest Business Challenge</label>
-              <input type="text" id="challenge" name="challenge" placeholder="e.g. Low conversion rate, unclear positioning…" />
-              <span class="error-msg">Please describe your main challenge.</span>
-            </div>
-            <div class="field">
-              <label>Current Monthly Marketing Budget</label>
-              <div class="budget-options">
-                <div class="budget-pill" data-value="Under ₹50K">Under ₹50K</div>
-                <div class="budget-pill" data-value="₹50K–₹2L">₹50K–₹2L</div>
-                <div class="budget-pill" data-value="₹2L–₹5L">₹2L–₹5L</div>
-                <div class="budget-pill" data-value="₹5L–₹20L">₹5L–₹20L</div>
-                <div class="budget-pill" data-value="₹20L+">₹20L+</div>
+            <div class="field-row">
+              <div class="field">
+                <label for="comp1">Competitor 1 Website</label>
+                <input type="url" id="comp1" name="competitor_1" placeholder="https://competitor.com" autocomplete="off" />
+                <span class="error-msg">Please enter at least one competitor URL.</span>
               </div>
-              <input type="hidden" name="budget" id="budget-value" />
-              <span class="error-msg" id="budget-error" style="display:none">Please select a budget range.</span>
+              <div class="field">
+                <label for="comp1-insta">Their Instagram <span class="optional">optional</span></label>
+                <input type="url" id="comp1-insta" name="competitor_1_instagram" placeholder="https://instagram.com/competitor" autocomplete="off" />
+                <span class="error-msg">Please enter a valid URL.</span>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="comp2">Competitor 2 Website <span class="optional">optional</span></label>
+                <input type="url" id="comp2" name="competitor_2" placeholder="https://competitor2.com" autocomplete="off" />
+                <span class="error-msg">Please enter a valid URL.</span>
+              </div>
+              <div class="field">
+                <label for="comp2-insta">Their Instagram <span class="optional">optional</span></label>
+                <input type="url" id="comp2-insta" name="competitor_2_instagram" placeholder="https://instagram.com/competitor2" autocomplete="off" />
+                <span class="error-msg">Please enter a valid URL.</span>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="comp3">Competitor 3 Website <span class="optional">optional</span></label>
+                <input type="url" id="comp3" name="competitor_3" placeholder="https://competitor3.com" autocomplete="off" />
+                <span class="error-msg">Please enter a valid URL.</span>
+              </div>
+              <div class="field">
+                <label for="comp3-insta">Their Instagram <span class="optional">optional</span></label>
+                <input type="url" id="comp3-insta" name="competitor_3_instagram" placeholder="https://instagram.com/competitor3" autocomplete="off" />
+                <span class="error-msg">Please enter a valid URL.</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- STEP 5 -->
-        <div class="step" id="step-5">
+        <!-- STEP 6 -->
+        <div class="step" id="step-6">
           <div class="step-heading">Almost there.</div>
-          <div class="step-desc">Where should we send the audit results?</div>
+          <div class="step-desc">A few final details to complete your audit request.</div>
           <div class="field-group">
             <div class="field">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" />
-              <span class="error-msg">Please enter a valid email address.</span>
+              <label for="how-heard">How did you hear about SQUARGRAPH™? <span class="optional">optional</span></label>
+              <div class="select-wrap">
+                <select id="how-heard" name="how_heard">
+                  <option value="" disabled selected>Select…</option>
+                  <option>Google / Search</option>
+                  <option>Instagram</option>
+                  <option>LinkedIn</option>
+                  <option>Word of mouth / Referral</option>
+                  <option>WhatsApp</option>
+                  <option>Other</option>
+                </select>
+              </div>
             </div>
             <div class="field">
               <label>Main Goal</label>
@@ -1059,17 +1145,17 @@
 
 <script>
   (function () {
-    const TOTAL_STEPS = 5;
+    const TOTAL_STEPS = 6;
     let currentStep = 1;
 
     const stepLabels = [
+      'Your Details',
       'Company Info',
       'Social Presence',
       'Competitors',
       'Marketing Context',
       'Final Details',
     ];
-
     /* ── ELEMENTS ── */
     const progressFill  = document.getElementById('progress-fill');
     const stepLabelEl   = document.getElementById('step-label');
@@ -1120,9 +1206,18 @@
       }
     }
 
+    const stepIdMap = {
+      1: 'step-1',
+      2: 'step-2-company',
+      3: 'step-3',
+      4: 'step-4',
+      5: 'step-5-context',
+      6: 'step-6'
+    };
     function showStep(n) {
       document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-      const el = document.getElementById(`step-${n}`);
+      const id = stepIdMap[n] || ('step-' + n);
+      const el = document.getElementById(id);
       if (el) el.classList.add('active');
     }
 
@@ -1137,51 +1232,41 @@
       let valid = true;
 
       if (n === 1) {
-        const name = document.getElementById('company-name');
-        const url  = document.getElementById('website-url');
-        const ind  = document.getElementById('industry');
-
-        if (!name.value.trim()) { name.classList.add('error'); valid = false; }
-
-        if (!url.value.trim()) {
-          url.classList.add('error'); valid = false;
-        } else {
-          try { new URL(url.value.trim()); }
-          catch { url.classList.add('error'); valid = false; }
-        }
-
-        if (!ind.value) {
-          ind.style.borderColor = '#E53E3E';
-          valid = false;
-        } else {
-          ind.style.borderColor = '';
-        }
+        var cname = document.getElementById('contact-name');
+        var desig = document.getElementById('designation');
+        var cemail = document.getElementById('contact-email');
+        var cphone = document.getElementById('contact-phone');
+        var emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!cname.value.trim()) { cname.classList.add('error'); valid = false; }
+        if (!desig.value.trim()) { desig.classList.add('error'); valid = false; }
+        if (!emailReg.test(cemail.value.trim())) { cemail.classList.add('error'); valid = false; }
+        if (!cphone.value.trim()) { cphone.classList.add('error'); valid = false; }
       }
 
       if (n === 2) {
-        // Validate any filled social URLs are actually valid URLs
-        ['instagram','linkedin','facebook','youtube'].forEach(function(id) {
-          var el = document.getElementById(id);
-          if (el.value.trim()) {
-            try { new URL(el.value.trim()); el.classList.remove('error'); }
-            catch(e) { el.classList.add('error'); valid = false; }
-          }
-        });
+        var bname = document.getElementById('company-name');
+        var burl  = document.getElementById('website-url');
+        var bdesc = document.getElementById('brand-desc');
+        var bind  = document.getElementById('industry');
+        if (!bname.value.trim()) { bname.classList.add('error'); valid = false; }
+        if (!bdesc.value.trim()) { bdesc.classList.add('error'); valid = false; }
+        if (!burl.value.trim()) {
+          burl.classList.add('error'); valid = false;
+        } else {
+          try { new URL(burl.value.trim()); burl.classList.remove('error'); }
+          catch(e) { burl.classList.add('error'); valid = false; }
+        }
+        if (!bind.value) {
+          bind.style.borderColor = '#E53E3E'; valid = false;
+        } else {
+          bind.style.borderColor = '';
+        }
       }
 
       if (n === 3) {
-        var c1 = document.getElementById('comp1');
-        // Require at least comp1, and validate as URL
-        if (!c1.value.trim()) {
-          c1.classList.add('error'); valid = false;
-        } else {
-          try { new URL(c1.value.trim()); c1.classList.remove('error'); }
-          catch(e) { c1.classList.add('error'); valid = false; }
-        }
-        // Validate optional comp2 and comp3 if filled
-        ['comp2','comp3'].forEach(function(id) {
+        ['instagram','linkedin','facebook','youtube','twitter'].forEach(function(id) {
           var el = document.getElementById(id);
-          if (el.value.trim()) {
+          if (el && el.value.trim()) {
             try { new URL(el.value.trim()); el.classList.remove('error'); }
             catch(e) { el.classList.add('error'); valid = false; }
           }
@@ -1189,8 +1274,25 @@
       }
 
       if (n === 4) {
-        const ch = document.getElementById('challenge');
-        const bv = document.getElementById('budget-value');
+        var c1 = document.getElementById('comp1');
+        if (!c1.value.trim()) {
+          c1.classList.add('error'); valid = false;
+        } else {
+          try { new URL(c1.value.trim()); c1.classList.remove('error'); }
+          catch(e) { c1.classList.add('error'); valid = false; }
+        }
+        ['comp2','comp3','comp1-insta','comp2-insta','comp3-insta'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el && el.value.trim()) {
+            try { new URL(el.value.trim()); el.classList.remove('error'); }
+            catch(e) { el.classList.add('error'); valid = false; }
+          }
+        });
+      }
+
+      if (n === 5) {
+        var ch = document.getElementById('challenge');
+        var bv = document.getElementById('budget-value');
         if (!ch.value.trim()) { ch.classList.add('error'); valid = false; }
         if (!bv.value) {
           document.getElementById('budget-error').style.display = 'block';
@@ -1200,11 +1302,8 @@
         }
       }
 
-      if (n === 5) {
-        const email = document.getElementById('email');
-        const gv    = document.getElementById('goal-value');
-        const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailReg.test(email.value.trim())) { email.classList.add('error'); valid = false; }
+      if (n === 6) {
+        var gv = document.getElementById('goal-value');
         if (!gv.value) {
           document.getElementById('goal-error').style.display = 'block';
           valid = false;
@@ -1262,24 +1361,36 @@
   if (!validateStep(TOTAL_STEPS)) return;
 
   const payload = {
-    name: document.getElementById('company-name').value,
-    email: document.getElementById('email').value,
-    phone: '',
+    name: document.getElementById('contact-name').value,
+    email: document.getElementById('contact-email').value,
+    phone: document.getElementById('contact-phone').value,
     company: document.getElementById('company-name').value,
     service: 'Brand Growth Audit™',
     message: document.getElementById('challenge').value,
     budget: document.getElementById('budget-value').value,
+    timeline: '',
+    reference: '',
+    source_url: window.location.href,
+    // Extended audit fields
+    designation: document.getElementById('designation').value,
+    brand_description: document.getElementById('brand-desc').value,
+    revenue: document.getElementById('revenue').value,
     website: document.getElementById('website-url').value,
     instagram: document.getElementById('instagram').value,
     linkedin: document.getElementById('linkedin').value,
     facebook: document.getElementById('facebook').value,
     youtube: document.getElementById('youtube').value,
+    twitter: document.getElementById('twitter').value,
     competitor1: document.getElementById('comp1').value,
+    competitor1_instagram: document.getElementById('comp1-insta').value,
     competitor2: document.getElementById('comp2').value,
+    competitor2_instagram: document.getElementById('comp2-insta').value,
     competitor3: document.getElementById('comp3').value,
+    competitor3_instagram: document.getElementById('comp3-insta').value,
     challenge: document.getElementById('challenge').value,
     goal: document.getElementById('goal-value').value,
     industry: document.getElementById('industry').value,
+    how_heard: document.getElementById('how-heard') ? document.getElementById('how-heard').value : '',
     source: 'Brand Growth Audit™'
   };
   try {
