@@ -784,19 +784,27 @@
 
   /* ── AI scoring via Gemini ── */
   async function fetchAIScores(payload) {
-    var response = await fetch('https://eo5isa4657t5ffg.m.pipedream.net', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ payload: payload })
-    });
+    var GEMINI_KEY = 'AQ.Ab8RN6KtfToDZEg_T-DuaP3Q64b6vP_yZXzb5uv9cLws5I2Zaw';
+    var firstName = payload.name ? payload.name.split(' ')[0] : 'the client';
+    var prompt = 'You are a senior brand strategist doing a paid audit. Return raw JSON only. No markdown, no code fences, no explanation.\n\n=== BRAND ===\nCompany: ' + (payload.company || 'Unknown') + '\nIndustry: ' + (payload.industry || 'Not provided') + '\nWhat they do: ' + (payload.brand_description || 'Not provided') + '\nWebsite: ' + (payload.website || 'Not provided') + '\n\n=== SOCIAL ===\nInstagram: ' + (payload.instagram || 'Not provided') + '\nFacebook: ' + (payload.facebook || 'Not provided') + '\nLinkedIn: ' + (payload.linkedin || 'Not provided') + '\nYouTube: ' + (payload.youtube || 'Not provided') + '\nTwitter: ' + (payload.twitter || 'Not provided') + '\n\n=== COMPETITORS ===\nCompetitor 1: ' + (payload.competitor1 || 'Not provided') + '\nCompetitor 2: ' + (payload.competitor2 || 'Not provided') + '\nCompetitor 3: ' + (payload.competitor3 || 'Not provided') + '\n\n=== CONTEXT ===\nChallenge: ' + (payload.challenge || 'Not provided') + '\nBudget: ' + (payload.budget || 'Not provided') + '\nRevenue: ' + (payload.revenue || 'Not provided') + '\nGoal: ' + (payload.goal || 'Not provided') + '\n\n=== SCORING ===\nWeb (0-100): Evaluate website URL and brand description. Unknown site = 40-55.\nComm (0-100): Count active social platforms. 0=below 35. 1=below 50. 2=up to 60. 3+=up to 80.\nComp (0-100): Use your knowledge of the named competitors. Small vs established = below 55.\nOverall: web 35% + comm 35% + comp 30%.\n\nReturn exactly:\n{"web":<integer>,"comm":<integer>,"comp":<integer>,"overall":<integer>,"web_insight":"<one sentence>","comm_insight":"<one sentence naming platforms>","comp_insight":"<one sentence naming competitors>","headline":"<5-8 words>","summary":"<4 sentences addressing ' + firstName + ' directly>"}';
+
+    var response = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + GEMINI_KEY,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.4, maxOutputTokens: 1200 }
+        })
+      }
+    );
     var data = await response.json();
-    var raw = (data.text || '').replace(/```json|```/g, '').trim();
+    var raw = ((data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text) || '').replace(/```json|```/g, '').trim();
     var jsonMatch = raw.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error('No JSON found in response');
+    if (!jsonMatch) throw new Error('No JSON in response');
     var parsed = JSON.parse(jsonMatch[0]);
-    ['web','comm','comp','overall'].forEach(function(k) {
-      parsed[k] = Number(parsed[k]) || 0;
-    });
+    ['web','comm','comp','overall'].forEach(function(k) { parsed[k] = Number(parsed[k]) || 0; });
     return parsed;
   }
   /* ── Grade label ── */
