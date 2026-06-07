@@ -1402,14 +1402,6 @@
   .from('leads')
   .insert([payload]);
 
-await fetch('https://eou44pd9t90wa37.m.pipedream.net', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(payload)
-});
-
 // Store audit inputs for scoring on preview page
 sessionStorage.setItem('sq_audit_payload', JSON.stringify(payload));
 
