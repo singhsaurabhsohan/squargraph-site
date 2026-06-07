@@ -898,20 +898,14 @@
       '}'
     ].join('\n');
 
-    var response = await fetch('https://api.anthropic.com/v1/messages', {
+    var response = await fetch('https://eo5isa4657t5ffg.m.pipedream.net', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
-      })
+      body: JSON.stringify({ prompt: prompt })
     });
 
     var data = await response.json();
-    var text = data.content.map(function(b) { return b.text || ''; }).join('');
-    // Strip any accidental markdown fences
-    text = text.replace(/```json|```/g, '').trim();
+    var text = (data.text || '').replace(/```json|```/g, '').trim();
     return JSON.parse(text);
   }
 
