@@ -1256,10 +1256,64 @@
     });
 
     /* ── SUBMIT ── */
-    btnSubmit.addEventListener('click', () => {
-      if (!validateStep(TOTAL_STEPS)) return;
-      launchSuccessScreen();
-    });
+    btnSubmit.addEventListener('click', async () => {
+
+  if (!validateStep(TOTAL_STEPS)) return;
+
+  const payload = {
+
+    name: document.getElementById('company-name').value,
+
+    email: document.getElementById('email').value,
+
+    phone: '',
+
+    company: document.getElementById('company-name').value,
+
+    service: 'Brand Growth Audit™',
+
+    message: document.getElementById('challenge').value,
+
+    budget: document.getElementById('budget-value').value,
+
+    website: document.getElementById('website-url').value,
+
+    instagram: document.getElementById('instagram').value,
+
+    linkedin: document.getElementById('linkedin').value,
+
+    facebook: document.getElementById('facebook').value,
+
+    competitor1: document.getElementById('comp1').value,
+
+    competitor2: document.getElementById('comp2').value,
+
+    competitor3: document.getElementById('comp3').value,
+
+    challenge: document.getElementById('challenge').value,
+
+    goal: document.getElementById('goal-value').value,
+
+    source: 'brand-audit'
+
+  };
+
+  try {
+
+    await window.__sb
+      .from('leads')
+      .insert([payload]);
+
+    launchSuccessScreen();
+
+  } catch (err) {
+
+    console.error(err);
+    alert('Submission failed. Please try again.');
+
+  }
+
+});
 
     function launchSuccessScreen() {
       // Hide form contents, show success
@@ -1294,6 +1348,41 @@
     buildDots();
     updateProgress();
   })();
+</script>
+<script>
+window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
+
+window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
+
+window.__sb = {
+  from: function(table){
+    return {
+      insert: async function(rows){
+
+        const res = await fetch(
+          window.__sbUrl + '/rest/v1/' + table,
+          {
+            method: 'POST',
+            headers: {
+              'apikey': window.__sbKey,
+              'Authorization': 'Bearer ' + window.__sbKey,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(rows)
+          }
+        );
+
+        if(!res.ok){
+          throw new Error('Insert failed');
+        }
+
+        return { error:null };
+
+      }
+    };
+  }
+};
 </script>
 </body>
 </html>
