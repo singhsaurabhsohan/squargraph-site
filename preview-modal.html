@@ -779,12 +779,38 @@
 
   /* ── AI scoring via Claude ── */
   async function fetchAIScores(payload) {
+
+    /* ── Attempt to fetch website content ── */
+    var websiteContent = 'Not available';
+    if (payload.website) {
+      try {
+        var siteUrl = payload.website.trim();
+        if (!/^https?:\/\//i.test(siteUrl)) siteUrl = 'https://' + siteUrl;
+        var proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(siteUrl);
+        var siteRes = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
+        var siteData = await siteRes.json();
+        var raw = siteData.contents || '';
+        // Strip tags, collapse whitespace, cap at ~2000 chars
+        var stripped = raw
+          .replace(/<script[\s\S]*?<\/script>/gi, '')
+          .replace(/<style[\s\S]*?<\/style>/gi, '')
+          .replace(/<[^>]+>/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim()
+          .slice(0, 2000);
+        if (stripped.length > 80) websiteContent = stripped;
+      } catch(e) {
+        console.warn('Website fetch failed:', e);
+      }
+    }
+
     var prompt = [
       'You are a brand strategist. Analyse this brand audit submission and return a JSON object only. No explanation, no markdown, no code fences. Return raw JSON only.',
       '',
       'Audit submission:',
       'Company: ' + (payload.company || 'Unknown'),
       'Website: ' + (payload.website || 'Not provided'),
+      'Website content (scraped): ' + websiteContent,
       'Industry: ' + (payload.industry || 'Not provided'),
       'Instagram: ' + (payload.instagram || 'Not provided'),
       'LinkedIn: ' + (payload.linkedin || 'Not provided'),
