@@ -2887,5 +2887,76 @@ document.addEventListener('click', function(e) {
   setTimeout(loadGTM, 5000);
 })();
 </script>
+<script>
+
+(function(){
+
+const form = document.getElementById("auditForm");
+
+if(!form) return;
+
+form.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const payload = {
+
+        name: document.getElementById("companyName").value,
+
+        email: document.getElementById("email").value,
+
+        phone: "",
+
+        company: document.getElementById("companyName").value,
+
+        service: "Brand Growth Audit™",
+
+        message: document.getElementById("challenge").value,
+
+        budget: document.getElementById("budget").value,
+
+        website: document.getElementById("website").value,
+
+        instagram: document.getElementById("instagram").value,
+
+        linkedin: document.getElementById("linkedin").value,
+
+        facebook: document.getElementById("facebook").value,
+
+        competitor1: document.getElementById("competitor1").value,
+
+        competitor2: document.getElementById("competitor2").value,
+
+        competitor3: document.getElementById("competitor3").value,
+
+        challenge: document.getElementById("challenge").value,
+
+        goal: document.getElementById("goal").value,
+
+        source: "brand-audit"
+
+    };
+
+    try{
+
+        await window.__sb
+            .from("leads")
+            .insert([payload]);
+
+        document.getElementById("audit-form").style.display="none";
+        document.getElementById("success-screen").style.display="block";
+
+    }catch(err){
+
+        console.error(err);
+        alert("Submission failed.");
+
+    }
+
+});
+
+})();
+
+</script>
 </body>
 </html>
