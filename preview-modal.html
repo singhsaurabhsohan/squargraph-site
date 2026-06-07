@@ -553,9 +553,6 @@
 </head>
 <body>
 
-<!-- DEMO BACKDROP -->
-<button class="demo-trigger" onclick="openModal()">View Brand Quotient™ Report</button>
-
 <!-- BACKDROP -->
 <div id="modal-backdrop" role="dialog" aria-modal="true" aria-label="Brand Quotient Report">
   <div class="modal" id="modal">
@@ -564,7 +561,7 @@
     <div class="modal-stripe"></div>
 
     <!-- CLOSE -->
-    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <button class="modal-close" onclick="closeBrandQuotientModal()" aria-label="Close">✕</button>
 
     <!-- SVG DEFS -->
     <svg width="0" height="0" style="position:absolute">
@@ -661,7 +658,7 @@
         <span class="btn-unlock-price">— ₹2,999</span>
       </button>
 
-      <button class="btn-later" onclick="closeModal()">Maybe Later</button>
+      <button class="btn-later" onclick="closeBrandQuotientModal()">Maybe Later</button>
 
       <div class="trust-row">
         <div class="trust-item">
@@ -683,7 +680,7 @@
 </div>
 
 <script>
-  function openModal() {
+  function openBrandQuotientModal() {
     const backdrop = document.getElementById('modal-backdrop');
     backdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -707,7 +704,7 @@
     }, 300);
   }
 
-  function closeModal() {
+  function closeBrandQuotientModal() {
     const backdrop = document.getElementById('modal-backdrop');
     backdrop.classList.remove('open');
     document.body.style.overflow = '';
@@ -734,30 +731,29 @@
   }
 
   function handleUnlock() {
-    const btn = document.querySelector('.btn-unlock');
-    btn.textContent = 'Redirecting to checkout…';
-    btn.style.opacity = '.7';
-    btn.disabled = true;
-    // Wire up your payment link here
-    setTimeout(() => {
-      btn.innerHTML = 'Unlock Full Report <span class="btn-unlock-price">— ₹2,999</span>';
-      btn.style.opacity = '';
-      btn.disabled = false;
-    }, 2000);
-  }
+
+    if (typeof openRazorpay === 'function') {
+
+        openRazorpay('audit');
+
+    } else {
+
+        alert('Payment system not available.');
+
+    }
+
+}
 
   // Close on backdrop click
   document.getElementById('modal-backdrop').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
+    if (e.target === this) closeBrandQuotientModal();
   });
 
   // Close on Escape
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') closeBrandQuotientModal();
   });
 
-  // Auto-open on load (remove if embedding)
-  window.addEventListener('load', () => setTimeout(openModal, 400));
 </script>
 </body>
 </html>
