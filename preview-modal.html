@@ -1025,73 +1025,7 @@
 
     renderScores(scores);
   }
-    var scores = computeScores();
-
-    // Update ring CSS for actual score
-    var ringEl = document.getElementById('ring-fill');
-    var offset = ringOffset(scores.overall);
-    // Override the .animated dashoffset dynamically
-    ringEl.style.transition = 'none';
-    ringEl.style.strokeDashoffset = '244';
-
-    // Update score title
-    var titleEl = document.getElementById('modal-title');
-    if (titleEl) {
-      if (scores.overall >= 70) {
-        titleEl.innerHTML = 'Initial score<br /><em>above average.</em>';
-      } else if (scores.overall >= 55) {
-        titleEl.innerHTML = 'Initial score<br /><em>needs attention.</em>';
-      } else {
-        titleEl.innerHTML = 'Initial score<br /><em>significant gaps.</em>';
-      }
-    }
-
-    // Update grade badge
-    var gradeEl = document.querySelector('.score-grade');
-    if (gradeEl) gradeEl.textContent = gradeLabel(scores.overall);
-
-    // Update metric bars data-pct and displayed values
-    var bars = document.querySelectorAll('.metric-bar');
-    var vals = document.querySelectorAll('.metric-val');
-    var metricScores = [scores.web, scores.comm, scores.comp];
-    bars.forEach(function(bar, i) {
-      bar.dataset.pct = metricScores[i];
-      bar.style.width = '0';
-    });
-    vals.forEach(function(val, i) {
-      var display = (metricScores[i] / 10).toFixed(1);
-      val.innerHTML = display + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span>';
-    });
-
-    // Update growth gaps count based on scores below 70
-    var gaps = metricScores.filter(function(s) { return s < 70; }).length;
-    var gapBadge = document.querySelector('.growth-badge');
-    if (gapBadge) {
-      gapBadge.textContent = gaps + ' priority area' + (gaps !== 1 ? 's' : '');
-    }
-
-    var backdrop = document.getElementById('modal-backdrop');
-    backdrop.classList.add('open');
-    document.body.style.overflow = 'hidden';
-
-    // Animate ring to actual score
-    setTimeout(function() {
-      ringEl.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1) 0s';
-      ringEl.style.strokeDashoffset = String(offset);
-    }, 120);
-
-    // Count-up to actual overall score
-    animateCount(0, scores.overall, 1400, document.getElementById('ring-num'));
-
-    // Animate metric bars to actual values
-    setTimeout(function() {
-      document.querySelectorAll('.metric-bar').forEach(function(bar, i) {
-        setTimeout(function() {
-          bar.style.width = bar.dataset.pct + '%';
-        }, i * 160);
-      });
-    }, 300);
-  }
+  
   function closeBrandQuotientModal() {
     document.getElementById('modal-backdrop').classList.remove('open');
     document.body.style.overflow = '';
