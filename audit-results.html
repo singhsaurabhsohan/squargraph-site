@@ -906,7 +906,12 @@
 
     var data = await response.json();
     var text = (data.text || '').replace(/```json|```/g, '').trim();
-    return JSON.parse(text);
+    var parsed = JSON.parse(text);
+    // Ensure all score fields are numbers
+    ['web','comm','comp','overall'].forEach(function(k) {
+      parsed[k] = Number(parsed[k]) || 0;
+    });
+    return parsed;
   }
 
   /* ── Grade label ── */
