@@ -6,6 +6,9 @@
   <title>Brand Growth Audit™ — SQUARGRAPH™ Studios</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');</script>
+  <!-- End Google Tag Manager -->
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -630,6 +633,10 @@
 </head>
 <body>
 
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <!-- HEADER -->
 <header class="page-header">
   <a href="/" class="back-link">← Back to SQUARGRAPH</a>
@@ -1077,6 +1084,7 @@
     }
 
     _cachedScores = scores;
+    trackEvent('ai_analysis_generated');
     renderSummary(scores, raw);
   }
   
@@ -1099,6 +1107,7 @@
 
   /* ── Razorpay checkout ── */
   function handleUnlock() {
+    trackEvent('unlock_clicked');
     var options = {
       key: 'rzp_live_SvayEzczzvrE7f',
       amount: 999900,
@@ -1109,6 +1118,7 @@
       notes: { product: 'Brand Growth Audit\u2122' },
       theme: { color: '#6B5DB8' },
       handler: function(response) {
+        trackEvent('payment_success', { payment_id: response.razorpay_payment_id });
         document.getElementById('modal-content').style.display = 'none';
         var ps = document.getElementById('payment-success');
         ps.classList.add('visible');
@@ -1127,8 +1137,13 @@
     }
   }
 
+  function trackEvent(name, params) {
+    if (window.dataLayer) window.dataLayer.push(Object.assign({ event: name }, params || {}));
+  }
+
   /* ── Auto-open on load ── */
   window.addEventListener('load', function() {
+    trackEvent('preview_viewed');
     openBrandQuotientModal();
   });
 
