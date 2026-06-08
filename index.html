@@ -2760,6 +2760,8 @@ document.querySelectorAll('#contact-form .form-input').forEach(function(field) {
       await submitLead(getPayload(form));
       console.info('[SQUARGRAPH] Lead inserted successfully.');
       setState('success');
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'form_submission_success' });
       form.reset();
     } catch (err) {
       console.error('[SQUARGRAPH] Form error:', err.message);
