@@ -839,6 +839,7 @@
     content.innerHTML = [
       '<div class="modal-head">',
       '  <div class="bq-eyebrow">Research Complete</div>',
+      '  <div style="font-size:11px;color:#8A8580;line-height:1.6;margin-bottom:16px;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">AI-Powered Strategic Assessment &nbsp;·&nbsp; Generated using website, social and market signals. Reviewed by SQUARGRAPH methodology.</div>',
       '  <div style="margin-bottom:20px;">',
       '    <div style="font-size:19px;font-weight:500;letter-spacing:-0.03em;color:var(--text);line-height:1.25;margin-bottom:12px;">Here\'s what we found<br/>about <em style="color:var(--accent);font-style:normal;">' + escHtml(companyName) + '</em></div>',
       '    <div style="font-size:13px;line-height:1.75;color:#5A5550;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;">' + escHtml(scores.summary || 'Our analysis is complete. Your Brand Quotient™ score and dimension breakdown are ready.') + '</div>',
@@ -893,6 +894,7 @@
     content.innerHTML = [
       '<div class="modal-head">',
       '  <div class="bq-eyebrow">Preliminary Assessment</div>',
+      '  <div style="font-size:11px;color:#8A8580;line-height:1.6;margin-bottom:16px;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">AI-Powered Strategic Assessment &nbsp;·&nbsp; Generated using website, social and market signals. Reviewed by SQUARGRAPH methodology.</div>',
       '  <div class="score-row">',
       '    <div class="ring-wrap">',
       '      <svg viewBox="0 0 88 88">',
@@ -1071,6 +1073,7 @@
     } catch(e) {
       console.warn('AI scoring failed, using fallback:', e);
       scores = fallbackScores(raw);
+      scores.summary = (raw && raw.company ? raw.company : 'Your brand') + ' — our AI is currently experiencing high demand. Your audit request has been received and our team will review it shortly. The preliminary scores below are indicative and will be refined in your full report.';
     }
 
     _cachedScores = scores;
