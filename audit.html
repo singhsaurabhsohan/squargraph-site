@@ -1319,10 +1319,16 @@
       return valid;
     }
 
+    /* ── ANALYTICS ── */
+    function trackEvent(name, params) {
+      if (window.dataLayer) window.dataLayer.push(Object.assign({ event: name }, params || {}));
+    }
+
     /* ── NAV ── */
     btnNext.addEventListener('click', () => {
       if (!validateStep(currentStep)) return;
       if (currentStep < TOTAL_STEPS) {
+        trackEvent('audit_step_' + currentStep + '_complete');
         currentStep++;
         showStep(currentStep);
         updateProgress();
@@ -1363,6 +1369,7 @@
     btnSubmit.addEventListener('click', async () => {
 
   if (!validateStep(TOTAL_STEPS)) return;
+  trackEvent('audit_completed');
 
   const payload = {
     name: document.getElementById('contact-name').value,
@@ -1452,6 +1459,7 @@ launchSuccessScreen();
     /* ── INIT ── */
     buildDots();
     updateProgress();
+    trackEvent('audit_started');
   })();
 </script>
 <script>
