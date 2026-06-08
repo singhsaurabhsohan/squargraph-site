@@ -784,7 +784,7 @@
 
   async function fetchAIScores(payload) {
     var firstName = payload.name ? payload.name.split(' ')[0] : 'the client';
-    var prompt = 'You are a senior brand strategist doing a paid audit. Return raw JSON only. No markdown, no code fences, no explanation.\n\n=== BRAND ===\nCompany: ' + (payload.company || 'Unknown') + '\nIndustry: ' + (payload.industry || 'Not provided') + '\nWhat they do: ' + (payload.brand_description || 'Not provided') + '\nWebsite: ' + (payload.website || 'Not provided') + '\n\n=== SOCIAL ===\nInstagram: ' + (payload.instagram || 'Not provided') + '\nFacebook: ' + (payload.facebook || 'Not provided') + '\nLinkedIn: ' + (payload.linkedin || 'Not provided') + '\nYouTube: ' + (payload.youtube || 'Not provided') + '\nTwitter: ' + (payload.twitter || 'Not provided') + '\n\n=== COMPETITORS ===\nCompetitor 1: ' + (payload.competitor1 || 'Not provided') + '\nCompetitor 2: ' + (payload.competitor2 || 'Not provided') + '\nCompetitor 3: ' + (payload.competitor3 || 'Not provided') + '\n\n=== CONTEXT ===\nChallenge: ' + (payload.challenge || 'Not provided') + '\nBudget: ' + (payload.budget || 'Not provided') + '\nRevenue: ' + (payload.revenue || 'Not provided') + '\nGoal: ' + (payload.goal || 'Not provided') + '\n\n=== SCORING ===\nWeb (0-100): Evaluate website URL and brand description. Unknown site = 40-55.\nComm (0-100): Count active social platforms. 0=below 35. 1=below 50. 2=up to 60. 3+=up to 80.\nComp (0-100): Use your knowledge of the named competitors. Small vs established = below 55.\nOverall: web 35% + comm 35% + comp 30%.\n\nReturn exactly this JSON:\n{"web":<integer>,"comm":<integer>,"comp":<integer>,"overall":<integer>,"web_insight":"<one sentence>","comm_insight":"<one sentence naming platforms>","comp_insight":"<one sentence naming competitors>","headline":"<5-8 words>","summary":"<4 sentences addressing ' + firstName + ' directly>"}';
+    var prompt = 'You are a senior brand strategist doing a paid audit. Return raw JSON only. No markdown, no code fences, no explanation.\n\n=== BRAND ===\nCompany: ' + (payload.company || 'Unknown') + '\nIndustry: ' + (payload.industry || 'Not provided') + '\nWhat they do: ' + (payload.brand_description || 'Not provided') + '\nWebsite: ' + (payload.website || 'Not provided') + '\n\n=== SOCIAL ===\nInstagram: ' + (payload.instagram || 'Not provided') + '\nFacebook: ' + (payload.facebook || 'Not provided') + '\nLinkedIn: ' + (payload.linkedin || 'Not provided') + '\nYouTube: ' + (payload.youtube || 'Not provided') + '\nTwitter: ' + (payload.twitter || 'Not provided') + '\n\n=== COMPETITORS ===\nCompetitor 1: ' + (payload.competitor1 || 'Not provided') + '\nCompetitor 2: ' + (payload.competitor2 || 'Not provided') + '\nCompetitor 3: ' + (payload.competitor3 || 'Not provided') + '\n\n=== CONTEXT ===\nChallenge: ' + (payload.challenge || 'Not provided') + '\nBudget: ' + (payload.budget || 'Not provided') + '\nRevenue: ' + (payload.revenue || 'Not provided') + '\nGoal: ' + (payload.goal || 'Not provided') + '\n\n=== SCORING ===\nWeb (0-100): Evaluate website URL and brand description. Unknown site = 40-55.\nComm (0-100): Count active social platforms. 0=below 35. 1=below 50. 2=up to 60. 3+=up to 80.\nComp (0-100): Use your knowledge of the named competitors. If fewer than 2 competitors are provided, cap this score at 52 and note limited data. Small vs established = below 55.\nOverall: web 40% + comm 30% + comp 30%.\n\nReturn exactly this JSON:\n{"web":<integer>,"comm":<integer>,"comp":<integer>,"overall":<integer>,"confidence":<integer 0-100, lower if fewer than 2 competitors provided>,"web_insight":"<one sentence>","comm_insight":"<one sentence naming platforms>","comp_insight":"<one sentence naming competitors>","headline":"<5-8 words>","summary":"<4 sentences addressing ' + firstName + ' directly>"}';
 
     var response = await fetch('https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev', {
       method: 'POST',
@@ -859,6 +859,10 @@
       '    <div class="growth-label">Priority areas identified</div>',
       '    <div class="growth-badge">' + [scores.web, scores.comm, scores.comp].filter(function(s){return s<65;}).length + ' dimension' + ([scores.web, scores.comm, scores.comp].filter(function(s){return s<65;}).length !== 1 ? 's' : '') + ' need work</div>',
       '  </div>',
+      '  <div class="growth-row">',
+      '    <div class="growth-label">Analysis confidence</div>',
+      '    <div class="growth-badge" style="' + ((scores.confidence || 100) < 70 ? 'color:#92400E;background:#FEF3C7;border-color:#FCD34D;' : '') + '">' + (scores.confidence !== undefined ? scores.confidence : 85) + '%' + ((scores.confidence || 100) < 70 ? ' · add more competitor data' : '') + '</div>',
+      '  </div>',
       '</div>',
       '<div class="modal-divider"></div>',
       '<div class="modal-cta">',
@@ -924,6 +928,10 @@
       '  <div class="growth-row">',
       '    <div class="growth-label">Priority areas identified</div>',
       '    <div class="growth-badge">' + gaps + ' dimension' + (gaps !== 1 ? 's' : '') + ' need work</div>',
+      '  </div>',
+      '  <div class="growth-row">',
+      '    <div class="growth-label">Analysis confidence</div>',
+      '    <div class="growth-badge" style="' + ((scores.confidence || 100) < 70 ? 'color:#92400E;background:#FEF3C7;border-color:#FCD34D;' : '') + '">' + (scores.confidence !== undefined ? scores.confidence : 85) + '%' + ((scores.confidence || 100) < 70 ? ' · add more competitor data' : '') + '</div>',
       '  </div>',
       // AI insights block
       '  <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px;">',
@@ -1018,7 +1026,7 @@
     web = Math.min(85, web);
     comm = Math.min(82, comm);
     comp = Math.min(80, comp);
-    var overall = Math.round((web * 0.35) + (comm * 0.35) + (comp * 0.30));
+    var overall = Math.round((web * 0.40) + (comm * 0.30) + (comp * 0.30));
     return {
       web: web, comm: comm, comp: comp, overall: overall,
       web_insight: 'Your digital footprint shows room for stronger positioning.',
@@ -1052,8 +1060,11 @@
         var v = Number(scores[k]);
         scores[k] = (!isNaN(v) && v > 0) ? Math.min(100, Math.max(0, Math.round(v))) : 50;
       });
+      if (scores.confidence !== undefined) {
+        scores.confidence = Math.min(100, Math.max(0, Math.round(Number(scores.confidence) || 75)));
+      }
       if (!scores.overall || scores.overall === 0) {
-        scores.overall = Math.round((scores.web * 0.35) + (scores.comm * 0.35) + (scores.comp * 0.30));
+        scores.overall = Math.round((scores.web * 0.40) + (scores.comm * 0.30) + (scores.comp * 0.30));
       }
     } catch(e) {
       console.warn('AI scoring failed, using fallback:', e);
