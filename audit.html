@@ -1029,10 +1029,13 @@
     }
     #success-screen.visible ~ * { display: none; }
     .iti {
-      display: block;
+      display: flex;
       width: 100%;
       max-width: 100%;
       height: 44px;
+      align-items: stretch;
+      position: relative;
+      overflow: visible;
     }
     .iti__flag-container {
       position: absolute;
@@ -1048,6 +1051,10 @@
       border-right: none;
       padding: 0 10px 0 14px;
       min-width: 72px;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      flex-shrink: 0;
     }
     .iti__flag-container:hover .iti__selected-flag { background: var(--coolgray); }
     .iti input#contact-phone {
@@ -1070,7 +1077,7 @@
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(107,93,184,.12);
     }
-    .iti__country-list { border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(26,23,20,0.10); font-family: var(--font); font-size: 13px; }
+    .iti__country-list { border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(26,23,20,0.10); font-family: var(--font); font-size: 13px; z-index: 200; position: absolute; max-height: 220px; overflow-y: auto; background: #fff; width: max-content; min-width: 280px; }
     .iti__country.iti__highlight { background: var(--accent-light); }
     .iti__search-input { font-family: var(--font); font-size: 13px; border-radius: 8px; border: 1px solid var(--border); padding: 8px 12px; }
     .iti__dial-code { color: var(--muted); }
@@ -1241,7 +1248,7 @@
 </div>
 <div class="field">
   <label for="contact-phone">WhatsApp / Phone Number</label>
-  <div style="display:block;max-width:100%;">
+  <div style="display:block;max-width:100%;position:relative;overflow:visible;">
     <input type="tel" id="contact-phone" name="contact_phone" required placeholder="98765 43210" autocomplete="tel" style="width:100%;"/>
   </div>
   <span class="error-msg">Please enter your phone number.</span>
