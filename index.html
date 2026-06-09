@@ -1620,13 +1620,16 @@
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
   <style>
     .iti { width: 100%; }
-    .iti__selected-flag { background: var(--warmgray); border-radius: 999px 0 0 999px; border: 1px solid var(--bordergray); border-right: none; padding: 0 10px 0 14px; }
+    .iti__selected-flag { background: var(--warmgray); border-radius: 999px 0 0 999px; border: 1px solid var(--bordergray); border-right: none; padding: 0 12px 0 16px; height: 48px; }
     .iti__flag-container:hover .iti__selected-flag { background: var(--coolgray); }
-    .iti input#phone { border-radius: 0 999px 999px 0 !important; border-left: none !important; padding-left: 12px !important; }
-    .iti__country-list { border-radius: 12px; border: 1px solid var(--bordergray); box-shadow: 0 8px 32px rgba(26,23,20,0.10); font-family: 'Satoshi', sans-serif; font-size: 13px; }
+    .iti input#phone { border-radius: 0 999px 999px 0 !important; border-left: none !important; padding-left: 10px !important; min-height: 48px; width: 100%; background: var(--warmgray); border: 1px solid var(--bordergray); color: var(--textprimary); font-family: 'Satoshi', sans-serif; font-size: 14px; outline: none; }
+    .iti input#phone:focus { border-color: var(--accentmuted); }
+    .iti__country-list { border-radius: 12px; border: 1px solid var(--bordergray); box-shadow: 0 8px 32px rgba(26,23,20,0.10); font-family: 'Satoshi', sans-serif; font-size: 13px; max-height: 280px; }
     .iti__country.iti__highlight { background: var(--accentlight); }
-    .iti__search-input { font-family: 'Satoshi', sans-serif; font-size: 13px; border-radius: 8px; border: 1px solid var(--bordergray); padding: 8px 12px; }
+    .iti__search-input { font-family: 'Satoshi', sans-serif; font-size: 13px; border-radius: 8px; border: 1px solid var(--bordergray); padding: 8px 12px; width: calc(100% - 24px); margin: 8px 12px 4px; display: block; }
     .iti__dial-code { color: var(--textsecondary); }
+    #country-location + .iti { display: none !important; }
+    #country-location + .iti { display: none !important; }
   </style>
 </head>
 <body>
@@ -2236,17 +2239,15 @@ We work with businesses that are serious about their positioning, communication,
       <!-- Right: Form -->
       <div class="fade-up d2">
         <form id="contact-form" novalidate style="display:flex;flex-direction:column;gap:14px;">
-          <div class="form-row">
-            <div>
-              <label class="form-label" for="name">Name</label>
-              <input type="text" id="name" name="name" required placeholder="Full name" class="form-input" autocomplete="name"/>
-              <p class="field-error">Please enter your name.</p>
-            </div>
-            <div>
-              <label class="form-label" for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" required placeholder="98765 43210" autocomplete="tel"/>
-              <p class="field-error">Please enter your phone number.</p>
-            </div>
+          <div>
+            <label class="form-label" for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Full name" class="form-input" autocomplete="name"/>
+            <p class="field-error">Please enter your name.</p>
+          </div>
+          <div>
+            <label class="form-label" for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required placeholder="98765 43210" autocomplete="tel"/>
+            <p class="field-error">Please enter your phone number.</p>
           </div>
           <div>
             <label class="form-label" for="email">Work Email</label>
@@ -2262,7 +2263,7 @@ We work with businesses that are serious about their positioning, communication,
   <label class="form-label" for="city">City / Location</label>
   <div style="display:flex;gap:8px;">
     <div style="position:relative;flex:1;">
-      <select id="country-location" name="country" class="form-input" autocomplete="country">
+      <select id="country-location" name="country" class="form-input" autocomplete="off" data-iti-ignore>
         <option value="">Country</option>
         <option value="India" selected>🇮🇳 India</option>
         <option value="USA">🇺🇸 USA</option>
