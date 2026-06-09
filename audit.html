@@ -292,7 +292,7 @@
     /* ── FORM STEPS ── */
     .steps-container {
       position: relative;
-      overflow: hidden;
+      overflow: visible;
     }
 
     .step {
@@ -1032,7 +1032,6 @@
       display: block;
       width: 100%;
       max-width: 100%;
-      height: 44px;
       position: relative;
       overflow: visible;
     }
@@ -1047,22 +1046,14 @@
       border-radius: 10px 0 0 10px !important;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-right: 1px solid var(--border);
+      border-right: none !important;
       padding: 0 10px 0 14px;
       min-width: 72px;
       display: flex;
       align-items: center;
       box-sizing: border-box;
-      top: 0;
     }
     .iti__flag-container:hover .iti__selected-flag { background: var(--coolgray); }
-    .iti__selected-flag {
-      border-right: none !important;
-    }
-    .iti input#contact-phone {
-      border-left: none !important;
-      padding-left: 86px !important;
-    }
     .iti input#contact-phone {
       border-radius: 0 10px 10px 0 !important;
       border-left: none !important;
@@ -1077,7 +1068,7 @@
       outline: none;
       -webkit-appearance: none;
       appearance: none;
-      padding-left: 80px !important;
+      padding-left: 86px !important;
     }
     .iti input#contact-phone:focus {
       border-color: var(--accent);
