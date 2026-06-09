@@ -1182,8 +1182,8 @@
             <div class="field">
   <label>City / Location</label>
  <div style="display:flex;gap:8px;flex-wrap:wrap;">
-    <div style="position:relative;flex:1;min-width:140px;">
-      <select id="audit-country" name="country" style="font-family:var(--font);font-size:14px;padding:11px 30px 11px 14px;width:100%;appearance:none;-webkit-appearance:none;cursor:pointer;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none;" autocomplete="country">
+    <div style="flex:1;min-width:140px;">
+      <select id="audit-country" name="country" style="font-family:var(--font);font-size:14px;padding:11px 30px 11px 14px;width:100%;appearance:none;-webkit-appearance:none;-moz-appearance:none;cursor:pointer;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l4 4 4-4'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 12px center;" autocomplete="country">
         <option value="">Country</option>
         <option value="India" selected>🇮🇳 India</option>
         <option value="USA">🇺🇸 USA</option>
@@ -1197,7 +1197,6 @@
         <option value="Japan">🇯🇵 Japan</option>
         <option value="Other">🌍 Other</option>
       </select>
-      <svg style="position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none;" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5A5550" stroke-width="1.5" stroke-linecap="round"/></svg>
     </div>
     <input type="text" id="audit-city" name="city" placeholder="City" style="flex:1;min-width:120px;font-family:var(--font);font-size:14px;padding:11px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none;" autocomplete="address-level2"/>
   </div>
