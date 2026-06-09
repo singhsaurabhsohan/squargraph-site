@@ -1346,7 +1346,12 @@ select:focus {
         <option value="Other">🌍 Other</option>
       </select>
     </div>
-    <input type="text" id="audit-city" name="city" placeholder="City" style="width:100%;font-family:var(--font);font-size:14px;padding:13px 20px;min-height:48px;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--text);outline:none;" autocomplete="address-level2"/>
+    <div style="width:100%;position:relative;">
+      <select id="audit-city" name="city" style="display:none;font-family:var(--font);font-size:14px;padding:13px 44px 13px 20px;min-height:48px;width:100%;appearance:none;-webkit-appearance:none;-moz-appearance:none;cursor:pointer;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--text);outline:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2714%27 height=%278%27 viewBox=%270 0 14 8%27%3E%3Cpath fill=%27none%27 stroke=%27%235A5550%27 stroke-width=%271.5%27 d=%27M1 1l6 5 6-5%27/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 20px center;">
+        <option value="" disabled selected>Select city</option>
+      </select>
+      <input type="text" id="audit-city-text" name="city_text" placeholder="Enter city" style="display:block;font-family:var(--font);font-size:14px;padding:13px 20px;min-height:48px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--text);outline:none;" autocomplete="address-level2"/>
+    </div>
   </div>
 </div>
 <div class="field">
@@ -2074,6 +2079,7 @@ launchSuccessScreen();
   })();
 </script>
 <script>
+updateCityDropdown('audit-country', 'audit-city');
 var itiAudit = window.intlTelInput(document.getElementById('contact-phone'), {
   initialCountry: 'in',
   preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
@@ -2118,6 +2124,86 @@ window.__sb = {
     };
   }
 };
+</script>
+<script>
+var CITY_DATA = {
+  'India': ['Ahmedabad','Bengaluru','Chennai','Delhi','Hyderabad','Jaipur','Kochi','Kolkata','Lucknow','Mumbai','Noida','Pune','Surat'],
+  'USA': ['Atlanta','Austin','Boston','Chicago','Dallas','Houston','Los Angeles','Miami','New York','San Francisco','Seattle','Washington D.C.'],
+  'UK': ['Birmingham','Bristol','Edinburgh','Glasgow','Leeds','Liverpool','London','Manchester','Oxford'],
+  'UAE': ['Abu Dhabi','Ajman','Dubai','Ras Al Khaimah','Sharjah'],
+  'Singapore': ['Singapore'],
+  'Australia': ['Brisbane','Canberra','Melbourne','Perth','Sydney'],
+  'Canada': ['Calgary','Edmonton','Montreal','Ottawa','Toronto','Vancouver'],
+  'Germany': ['Berlin','Cologne','Frankfurt','Hamburg','Munich','Stuttgart'],
+  'France': ['Bordeaux','Lyon','Marseille','Nice','Paris','Toulouse'],
+  'Japan': ['Fukuoka','Kyoto','Nagoya','Osaka','Sapporo','Tokyo','Yokohama'],
+  'Other': []
+};
+
+function updateCityDropdown(countrySelectId, citySelectId) {
+  var countryEl = document.getElementById(countrySelectId);
+  var cityEl = document.getElementById(citySelectId);
+  if (!countryEl || !cityEl) return;
+
+  countryEl.addEventListener('change', function() {
+    var country = this.value;
+    var cities = CITY_DATA[country] || [];
+
+    // Reset city dropdown
+    cityEl.innerHTML = '';
+
+    if (!country || cities.length === 0) {
+      var opt = document.createElement('option');
+      opt.value = '';
+      opt.textContent = 'Enter city name';
+      cityEl.appendChild(opt);
+      cityEl.style.display = 'none';
+      // Show text input instead
+      var textInput = document.getElementById(citySelectId + '-text');
+      if (textInput) textInput.style.display = 'block';
+      return;
+    }
+
+    // Add placeholder
+    var placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = 'Select city';
+    cityEl.appendChild(placeholder);
+
+    // Add cities
+    cities.forEach(function(city) {
+      var opt = document.createElement('option');
+      opt.value = city;
+      opt.textContent = city;
+      cityEl.appendChild(opt);
+    });
+
+    // Add Other option
+    var other = document.createElement('option');
+    other.value = 'Other';
+    other.textContent = 'Other';
+    cityEl.appendChild(other);
+
+    cityEl.style.display = 'block';
+    var textInput = document.getElementById(citySelectId + '-text');
+    if (textInput) textInput.style.display = 'none';
+  });
+
+  // Handle "Other" city selection → show text input
+  cityEl.addEventListener('change', function() {
+    var textInput = document.getElementById(citySelectId + '-text');
+    if (!textInput) return;
+    if (this.value === 'Other') {
+      textInput.style.display = 'block';
+      textInput.focus();
+    } else {
+      textInput.style.display = 'none';
+      textInput.value = '';
+    }
+  });
+}
 </script>
 </body>
 </html>
