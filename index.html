@@ -1619,62 +1619,113 @@
 .contact-links {
   border-top: 1px solid var(--bordergray);
 }
+.iti__country-list {
+  border-radius: 16px;
+  border: 1px solid var(--bordergray);
+  box-shadow: 0 12px 40px rgba(26,23,20,0.12);
+  font-family: 'Satoshi', sans-serif;
+  font-size: 13px;
+  z-index: 200;
+  position: absolute;
+  max-height: 280px;
+  overflow-y: auto;
+  background: #fff;
+  width: max-content;
+  min-width: 280px;
+  padding: 8px 0;
+  scrollbar-width: thin;
+}
+.iti__country-list::-webkit-scrollbar {
+  width: 4px;
+  background: var(--bordergray);
+}
+.iti__country-list::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+.iti__country {
+  padding: 10px 16px;
+  transition: background 0.2s;
+}
+.iti__country.iti__highlight {
+  background: var(--accentlight);
+}
+.iti__country-name {
+  color: var(--textprimary);
+  font-weight: 500;
+}
+.iti__dial-code {
+  color: var(--textsecondary);
+  font-size: 12px;
+  margin-left: 8px;
+}
+.iti__search-input {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 13px;
+  border-radius: 12px;
+  border: 1px solid var(--bordergray);
+  padding: 10px 14px;
+  margin: 8px 12px;
+  width: calc(100% - 24px);
+  background: var(--warmgray);
+  color: var(--textprimary);
+}
+.iti__search-input:focus {
+  border-color: var(--accentmuted);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(107,93,184,.2);
+}
   </style>
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
   <style>
     /* intl-tel-input overrides — phone field only */
     .iti {
-      display: block;
-      width: 100%;
-      position: relative;
-      overflow: visible;
-    }
-    .iti__flag-container {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      overflow: hidden;
-      border-radius: 999px 0 0 999px;
-    }
-    .iti__selected-flag {
-      height: 48px !important;
-      border-radius: 999px 0 0 999px !important;
-      background: var(--warmgray);
-      border: 1px solid var(--bordergray);
-      border-right: none !important;
-      padding: 0 10px 0 14px;
-      min-width: 72px;
-      display: flex;
-      align-items: center;
-      box-sizing: border-box;
-    }
-    .iti__flag-container:hover .iti__selected-flag { background: var(--coolgray); }
-    .iti input#phone {
-      border-radius: 0 999px 999px 0 !important;
-      border-left: none !important;
-      height: 48px;
-      width: 100% !important;
-      box-sizing: border-box !important;
-      background: var(--warmgray);
-      border: 1px solid var(--bordergray);
-      color: var(--textprimary);
-      font-family: 'Satoshi', sans-serif;
-      font-size: 14px;
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
-      padding-left: 86px !important;
-    }
-    .iti input#phone:focus { border-color: var(--accentmuted); }
-    .iti__country-list {
-      border-radius: 12px;
-      border: 1px solid var(--bordergray);
-      box-shadow: 0 8px 32px rgba(26,23,20,0.10);
-      font-family: 'Satoshi', sans-serif;
-      font-size: 13px;
-      max-height: 280px;
-    }
+  display: block;
+  width: 100%;
+  position: relative;
+  border-radius: 999px;
+  background: var(--warmgray);
+  border: 1px solid var(--bordergray);
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.iti:focus-within {
+  border-color: var(--accentmuted);
+}
+.iti__flag-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 0;
+}
+.iti__selected-flag {
+  height: 48px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 10px 0 14px;
+  min-width: 72px;
+  display: flex;
+  align-items: center;
+}
+.iti input#phone {
+  border: none !important;
+  background: transparent !important;
+  height: 48px;
+  width: 100% !important;
+  padding-left: 86px !important;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  color: var(--textprimary);
+  outline: none;
+  box-shadow: none !important;
+}
+.iti input#phone:focus {
+  box-shadow: none !important;
+}
+.iti__arrow {
+  border-top-color: var(--textsecondary);
+}
     .iti__country.iti__highlight { background: var(--accentlight); }
     .iti__search-input {
       font-family: 'Satoshi', sans-serif;
