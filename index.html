@@ -1622,17 +1622,86 @@
   </style>
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
   <style>
+    /* intl-tel-input overrides — phone field only */
     .iti { display: block; width: 100%; }
-    .iti__selected-flag { background: var(--warmgray); border-radius: 999px 0 0 999px; border: 1px solid var(--bordergray); border-right: none; padding: 0 12px 0 16px; height: 48px; }
+    .iti__selected-flag {
+      background: var(--warmgray);
+      border-radius: 999px 0 0 999px;
+      border: 1px solid var(--bordergray);
+      border-right: none;
+      padding: 0 12px 0 16px;
+      height: 48px;
+    }
     .iti__flag-container:hover .iti__selected-flag { background: var(--coolgray); }
-    .iti input#phone { border-radius: 0 999px 999px 0 !important; border-left: none !important; padding-left: 12px !important; min-height: 48px; width: 100% !important; box-sizing: border-box !important; background: var(--warmgray); border: 1px solid var(--bordergray); color: var(--textprimary); font-family: 'Satoshi', sans-serif; font-size: 14px; outline: none; }
+    .iti input#phone {
+      border-radius: 0 999px 999px 0 !important;
+      border-left: none !important;
+      padding-left: 12px !important;
+      min-height: 48px;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      background: var(--warmgray);
+      border: 1px solid var(--bordergray);
+      color: var(--textprimary);
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      outline: none;
+    }
     .iti input#phone:focus { border-color: var(--accentmuted); }
-    .iti__country-list { border-radius: 12px; border: 1px solid var(--bordergray); box-shadow: 0 8px 32px rgba(26,23,20,0.10); font-family: 'Satoshi', sans-serif; font-size: 13px; max-height: 280px; }
+    .iti__country-list {
+      border-radius: 12px;
+      border: 1px solid var(--bordergray);
+      box-shadow: 0 8px 32px rgba(26,23,20,0.10);
+      font-family: 'Satoshi', sans-serif;
+      font-size: 13px;
+      max-height: 280px;
+    }
     .iti__country.iti__highlight { background: var(--accentlight); }
-    .iti__search-input { font-family: 'Satoshi', sans-serif; font-size: 13px; border-radius: 8px; border: 1px solid var(--bordergray); padding: 8px 12px; width: calc(100% - 24px); margin: 8px 12px 4px; display: block; }
+    .iti__search-input {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 13px;
+      border-radius: 8px;
+      border: 1px solid var(--bordergray);
+      padding: 8px 12px;
+      width: calc(100% - 24px);
+      margin: 8px 12px 4px;
+      display: block;
+    }
     .iti__dial-code { color: var(--textsecondary); }
-    #country-location + .iti { display: none !important; }
-  </style>
+    /* Prevent ITI from wrapping the country select */
+    #country-location + .iti,
+    #country-location ~ .iti,
+    .iti:has(#country-location) { display: none !important; }
+    /* Country select: fully self-contained styles, no .form-input inheritance */
+    #country-location {
+      width: 100%;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      color: var(--textprimary);
+      background: var(--warmgray);
+      border: 1px solid var(--bordergray);
+      border-radius: 999px;
+      padding: 13px 36px 13px 20px;
+      min-height: 48px;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      transition: border-color .25s;
+    }
+    #country-location:focus {
+      border-color: var(--accentmuted);
+    }
+    #country-location option { background: #fff; }
+    /* Belt-and-suspenders: hide any ITI wrapper the library creates around this select */
+    #country-location + .iti,
+    #country-location ~ .iti,
+    .iti:has(#country-location) { display: none !important; }
+    </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -2247,9 +2316,9 @@ We work with businesses that are serious about their positioning, communication,
             <p class="field-error">Please enter your name.</p>
           </div>
           <div>
-            <label class="form-label" for="phone">Phone</label>
-            <div style="display:block;max-width:100%;">
-              <input type="tel" id="phone" name="phone" required placeholder="98765 43210" autocomplete="tel" style="width:100%;"/>
+            <label class="form-label" style="display:block;margin-bottom:7px;">Phone</label>
+            <div style="display:block;width:100%;">
+              <input type="tel" id="phone" name="phone" required placeholder="98765 43210" autocomplete="tel"/>
             </div>
             <p class="field-error">Please enter your phone number.</p>
           </div>
@@ -2266,8 +2335,8 @@ We work with businesses that are serious about their positioning, communication,
 <div>
   <label class="form-label" for="city">City / Location</label>
   <div style="display:flex;gap:8px;flex-wrap:wrap;">
-    <div style="position:relative;flex:1;min-width:140px;">
-      <select id="country-location" name="country" class="form-input" autocomplete="off" data-iti-ignore>
+    <div style="flex:1;min-width:140px;">
+      <select id="country-location" name="country" autocomplete="off">
         <option value="">Country</option>
         <option value="India" selected>🇮🇳 India</option>
         <option value="USA">🇺🇸 USA</option>
@@ -2281,8 +2350,7 @@ We work with businesses that are serious about their positioning, communication,
         <option value="Japan">🇯🇵 Japan</option>
         <option value="Other">🌍 Other</option>
       </select>
-      <svg style="position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5A5550" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </div>
+      </div>
     <input type="text" id="city" name="city" placeholder="City" class="form-input" autocomplete="address-level2" style="flex:1;min-width:120px;"/>
   </div>
 </div>
@@ -2685,12 +2753,18 @@ We work with businesses that are serious about their positioning, communication,
 </script>
 
 <script>
-var iti = window.intlTelInput(document.getElementById('phone'), {
-  initialCountry: 'in',
-  preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
-  separateDialCode: false,
-  utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
-});
+var phoneEl = document.getElementById('phone');
+var iti;
+if (phoneEl) {
+  iti = window.intlTelInput(phoneEl, {
+    initialCountry: 'in',
+    preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
+    separateDialCode: false,
+    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
+    excludeCountries: [],
+    autoPlaceholder: 'polite'
+  });
+}
 </script>
 
 <!-- ══════════════
@@ -2764,7 +2838,8 @@ city: raw.city || null
     var required = formEl.querySelectorAll('[required]');
     var valid = true;
     required.forEach(function(field) {
-      var err = field.parentNode.querySelector('.field-error');
+      var errContainer = field.closest('form > div') || field.parentNode;
+      var err = errContainer.querySelector('.field-error');
       if (!field.value.trim()) {
         field.classList.add('error');
         if (err) err.classList.add('visible');
