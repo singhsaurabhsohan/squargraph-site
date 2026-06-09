@@ -1624,10 +1624,9 @@
   <style>
     /* intl-tel-input overrides — phone field only */
     .iti {
-      display: flex;
+      display: block;
       width: 100%;
       height: 48px;
-      align-items: stretch;
       position: relative;
       overflow: visible;
     }
@@ -1642,15 +1641,22 @@
       border-radius: 999px 0 0 999px !important;
       background: var(--warmgray);
       border: 1px solid var(--bordergray);
-      border-right: none;
+      border-right: 1px solid var(--bordergray);
       padding: 0 10px 0 14px;
       min-width: 72px;
       display: flex;
       align-items: center;
       box-sizing: border-box;
-      flex-shrink: 0;
+      top: 0;
     }
     .iti__flag-container:hover .iti__selected-flag { background: var(--coolgray); }
+    .iti__selected-flag {
+      border-right: none !important;
+    }
+    .iti input#phone {
+      border-left: none !important;
+      padding-left: 86px !important;
+    }
     .iti input#phone {
       border-radius: 0 999px 999px 0 !important;
       border-left: none !important;
