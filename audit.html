@@ -402,8 +402,9 @@
       color: var(--text);
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 11px 14px;
+      border-radius: 999px;
+      padding: 13px 20px;
+      min-height: 48px;
       outline: none;
       transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
       appearance: none;
@@ -418,8 +419,7 @@
       box-shadow: 0 0 0 3px rgba(107,93,184,.12);
     }
 
-    .field input.error { border-color: #E53E3E; }
-    .field input.error:focus { box-shadow: 0 0 0 3px rgba(229,62,62,.12); }
+   .field textarea { border-radius: 16px !important; resize: vertical; }
 
     .error-msg {
       font-size: 11px;
@@ -440,22 +440,23 @@
     .select-wrap {
       position: relative;
     }
-    select {
+ select {
   font-family: var(--font);
   font-size: 14px;
   font-weight: 400;
   color: var(--text);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 11px 36px 11px 14px;
+  border-radius: 999px;
+  padding: 13px 44px 13px 20px;
+  min-height: 48px;
   outline: none;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 14px center;
+  background-position: right 20px center;
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 select:focus {
@@ -1077,14 +1078,14 @@ select:focus {
       .progress-wrap { display: none; }
     }
     #success-screen.visible ~ * { display: none; }
-    .iti {
+ .iti {
   display: block;
   width: 100%;
   position: relative;
   border-radius: 999px;
   background: var(--surface);
   border: 1px solid var(--border);
-  overflow: hidden;
+  overflow: visible;
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 .iti:focus-within {
@@ -1099,7 +1100,7 @@ select:focus {
   border-radius: 0;
 }
 .iti__selected-flag {
-  height: 44px !important;
+  height: 48px !important;
   background: transparent !important;
   border: none !important;
   padding: 0 10px 0 14px;
@@ -1110,7 +1111,7 @@ select:focus {
 .iti input#contact-phone {
   border: none !important;
   background: transparent !important;
-  height: 44px;
+  height: 48px;
   width: 100% !important;
   padding-left: 86px !important;
   font-family: var(--font);
@@ -1328,9 +1329,9 @@ select:focus {
             </div>
             <div class="field">
   <label>City / Location</label>
- <div style="display:flex;gap:8px;flex-wrap:wrap;">
-    <div style="flex:1;min-width:140px;">
-      <select id="audit-country" name="country" style="font-family:var(--font);font-size:14px;padding:11px 30px 11px 14px;width:100%;appearance:none;-webkit-appearance:none;-moz-appearance:none;cursor:pointer;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none;" autocomplete="country">
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;">
+    <div style="width:100%;">
+      <select id="audit-country" name="country" style="font-family:var(--font);font-size:14px;padding:13px 44px 13px 20px;min-height:48px;width:100%;appearance:none;-webkit-appearance:none;-moz-appearance:none;cursor:pointer;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--text);outline:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2714%27 height=%278%27 viewBox=%270 0 14 8%27%3E%3Cpath fill=%27none%27 stroke=%27%235A5550%27 stroke-width=%271.5%27 d=%27M1 1l6 5 6-5%27/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 20px center;" autocomplete="country">
         <option value="">Country</option>
         <option value="India" selected>🇮🇳 India</option>
         <option value="USA">🇺🇸 USA</option>
@@ -1345,7 +1346,7 @@ select:focus {
         <option value="Other">🌍 Other</option>
       </select>
     </div>
-    <input type="text" id="audit-city" name="city" placeholder="City" style="flex:1;min-width:120px;font-family:var(--font);font-size:14px;padding:11px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none;" autocomplete="address-level2"/>
+    <input type="text" id="audit-city" name="city" placeholder="City" style="width:100%;font-family:var(--font);font-size:14px;padding:13px 20px;min-height:48px;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--text);outline:none;" autocomplete="address-level2"/>
   </div>
 </div>
 <div class="field">
@@ -1988,9 +1989,17 @@ trackEvent('audit_completed');
     goal: document.getElementById('goal-value').value,
     industry: document.getElementById('industry').value,
     how_heard: document.getElementById('how-heard') ? document.getElementById('how-heard').value : '',
-country: document.getElementById('audit-country').value,
-city: document.getElementById('audit-city').value,
-    source: 'Brand Growth Audit™'
+    country: document.getElementById('audit-country') ? document.getElementById('audit-country').value : '',
+    city: document.getElementById('audit-city') ? document.getElementById('audit-city').value : '',
+    designation: document.getElementById('designation') ? document.getElementById('designation').value : '',
+    brand_description: document.getElementById('brand-desc') ? document.getElementById('brand-desc').value : '',
+    revenue: document.getElementById('revenue') ? document.getElementById('revenue').value : '',
+    website: document.getElementById('website-url') ? document.getElementById('website-url').value : '',
+    goal: document.getElementById('goal-value') ? document.getElementById('goal-value').value : '',
+    industry: document.getElementById('industry') ? document.getElementById('industry').value : '',
+    source: 'Brand Growth Audit™',
+    created_at: new Date().toISOString(),
+    source_url: window.location.href
   };
   try {
 
