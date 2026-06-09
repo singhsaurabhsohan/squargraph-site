@@ -16,6 +16,43 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/>
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
+  /* Force country list styling for phone input */
+.iti--container .iti__country-list,
+.iti__country-list {
+  border-radius: 16px !important;
+  border: 1px solid var(--border, #E5E3DF) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12) !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  max-height: 280px !important;
+  overflow-y: auto !important;
+  background: #fff !important;
+  padding: 8px 0 !important;
+}
+.iti__country {
+  padding: 10px 16px !important;
+  transition: background 0.2s !important;
+}
+.iti__country.iti__highlight {
+  background: var(--accentlight, #EEECf7) !important;
+}
+.iti__country-name {
+  font-weight: 500 !important;
+}
+.iti__dial-code {
+  font-size: 12px !important;
+  margin-left: 8px !important;
+  opacity: 0.7;
+}
+/* Ensure flags are visible */
+.iti__flag {
+  background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags.png") !important;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important;
+  }
+}
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
