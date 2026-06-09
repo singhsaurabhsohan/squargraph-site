@@ -13,7 +13,9 @@
     @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
   </style>
   <link rel="icon" type="image/png" href="/favicon.png" />
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1026,6 +1028,14 @@
       .progress-wrap { display: none; }
     }
     #success-screen.visible ~ * { display: none; }
+    .iti { width: 100%; }
+    .iti__selected-flag { background: var(--surface); border-radius: 10px 0 0 10px; border: 1px solid var(--border); border-right: none; }
+    .iti__flag-container:hover .iti__selected-flag { background: var(--coolgray); }
+    .iti input#contact-phone { border-radius: 0 10px 10px 0 !important; border-left: none !important; }
+    .iti__country-list { border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(26,23,20,0.10); font-family: var(--font); font-size: 13px; }
+    .iti__country.iti__highlight { background: var(--accent-light); }
+    .iti__search-input { font-family: var(--font); font-size: 13px; border-radius: 8px; border: 1px solid var(--border); padding: 8px 12px; }
+    .iti__dial-code { color: var(--muted); }
     .form-card:has(#success-screen.visible) {
       grid-template-columns: 1fr;
     }
@@ -1194,30 +1204,7 @@
 </div>
 <div class="field">
   <label for="contact-phone">WhatsApp / Phone Number</label>
-  <div style="display:flex;gap:8px;align-items:stretch;">
-    <div style="position:relative;flex-shrink:0;">
-      <select id="phone-country-audit" name="phone_country" class="form-input" style="font-family:var(--font);font-size:14px;padding:11px 30px 11px 10px;width:auto;min-width:110px;appearance:none;-webkit-appearance:none;cursor:pointer;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none;" autocomplete="tel-country-code">
-        <option value="+91">🇮🇳 +91</option>
-        <option value="+1">🇺🇸 +1</option>
-        <option value="+44">🇬🇧 +44</option>
-        <option value="+971">🇦🇪 +971</option>
-        <option value="+65">🇸🇬 +65</option>
-        <option value="+61">🇦🇺 +61</option>
-        <option value="+49">🇩🇪 +49</option>
-        <option value="+33">🇫🇷 +33</option>
-        <option value="+81">🇯🇵 +81</option>
-        <option value="+86">🇨🇳 +86</option>
-        <option value="+7">🇷🇺 +7</option>
-        <option value="+55">🇧🇷 +55</option>
-        <option value="+92">🇵🇰 +92</option>
-        <option value="+880">🇧🇩 +880</option>
-        <option value="+94">🇱🇰 +94</option>
-        <option value="+977">🇳🇵 +977</option>
-      </select>
-      <svg style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5A5550" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </div>
-    <input type="tel" id="contact-phone" name="contact_phone" required placeholder="98765 43210" autocomplete="tel-national" style="flex:1;min-width:0;" />
-  </div>
+  <input type="tel" id="contact-phone" name="contact_phone" required placeholder="98765 43210" autocomplete="tel"/>
   <span class="error-msg">Please enter your phone number.</span>
 </div>
           </div>
@@ -1825,7 +1812,7 @@ trackEvent('audit_completed');
   const payload = {
     name: document.getElementById('contact-name').value,
     email: document.getElementById('contact-email').value,
-    phone: (document.getElementById('phone-country-audit').value + ' ' + document.getElementById('contact-phone').value).trim(),
+    phone: (typeof itiAudit !== 'undefined' ? itiAudit.getNumber() : document.getElementById('contact-phone').value) || '',
     company: document.getElementById('company-name').value,
     service: 'Brand Growth Audit™',
     message: document.getElementById('challenge').value,
@@ -1917,6 +1904,15 @@ launchSuccessScreen();
     trackEvent('audit_started');
   })();
 </script>
+<script>
+var itiAudit = window.intlTelInput(document.getElementById('contact-phone'), {
+  initialCountry: 'in',
+  preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
+  separateDialCode: true,
+  utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
+});
+</script>
+
 <script>
 window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
 
