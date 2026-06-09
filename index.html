@@ -1624,9 +1624,12 @@
   <style>
     /* intl-tel-input overrides — phone field only */
     .iti {
-      display: block;
+      display: flex;
       width: 100%;
       height: 48px;
+      align-items: stretch;
+      position: relative;
+      overflow: visible;
     }
     .iti__flag-container {
       position: absolute;
@@ -1642,6 +1645,10 @@
       border-right: none;
       padding: 0 10px 0 14px;
       min-width: 72px;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      flex-shrink: 0;
     }
     .iti__flag-container:hover .iti__selected-flag { background: var(--coolgray); }
     .iti input#phone {
@@ -1660,6 +1667,7 @@
       -webkit-appearance: none;
       appearance: none;
       padding-left: 80px !important;
+      vertical-align: top;
     }
     .iti input#phone:focus { border-color: var(--accentmuted); }
     .iti__country-list {
