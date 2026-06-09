@@ -1028,10 +1028,10 @@
       .progress-wrap { display: none; }
     }
     #success-screen.visible ~ * { display: none; }
-    .iti { width: 100%; }
-    .iti__selected-flag { background: var(--surface); border-radius: 10px 0 0 10px; border: 1px solid var(--border); border-right: none; }
+    .iti { display: block; width: 100%; max-width: 100%; }
+    .iti__selected-flag { background: var(--surface); border-radius: 10px 0 0 10px; border: 1px solid var(--border); border-right: none; height: 44px; }
     .iti__flag-container:hover .iti__selected-flag { background: var(--coolgray); }
-    .iti input#contact-phone { border-radius: 0 10px 10px 0 !important; border-left: none !important; }
+    .iti input#contact-phone { border-radius: 0 10px 10px 0 !important; border-left: none !important; width: 100% !important; box-sizing: border-box !important; }
     .iti__country-list { border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(26,23,20,0.10); font-family: var(--font); font-size: 13px; }
     .iti__country.iti__highlight { background: var(--accent-light); }
     .iti__search-input { font-family: var(--font); font-size: 13px; border-radius: 8px; border: 1px solid var(--border); padding: 8px 12px; }
@@ -1181,8 +1181,8 @@
             </div>
             <div class="field">
   <label>City / Location</label>
-  <div style="display:flex;gap:8px;">
-    <div style="position:relative;flex:1;">
+ <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <div style="position:relative;flex:1;min-width:140px;">
       <select id="audit-country" name="country" style="font-family:var(--font);font-size:14px;padding:11px 30px 11px 14px;width:100%;appearance:none;-webkit-appearance:none;cursor:pointer;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none;" autocomplete="country">
         <option value="">Country</option>
         <option value="India" selected>🇮🇳 India</option>
@@ -1199,12 +1199,14 @@
       </select>
       <svg style="position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none;" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5A5550" stroke-width="1.5" stroke-linecap="round"/></svg>
     </div>
-    <input type="text" id="audit-city" name="city" placeholder="City" style="flex:1;min-width:0;font-family:var(--font);font-size:14px;padding:11px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none;" autocomplete="address-level2"/>
+    <input type="text" id="audit-city" name="city" placeholder="City" style="flex:1;min-width:120px;font-family:var(--font);font-size:14px;padding:11px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none;" autocomplete="address-level2"/>
   </div>
 </div>
 <div class="field">
   <label for="contact-phone">WhatsApp / Phone Number</label>
-  <input type="tel" id="contact-phone" name="contact_phone" required placeholder="98765 43210" autocomplete="tel"/>
+  <div style="display:block;max-width:100%;">
+    <input type="tel" id="contact-phone" name="contact_phone" required placeholder="98765 43210" autocomplete="tel" style="width:100%;"/>
+  </div>
   <span class="error-msg">Please enter your phone number.</span>
 </div>
           </div>
@@ -1908,7 +1910,7 @@ launchSuccessScreen();
 var itiAudit = window.intlTelInput(document.getElementById('contact-phone'), {
   initialCountry: 'in',
   preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
-  separateDialCode: true,
+  separateDialCode: false,
   utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
 });
 </script>
