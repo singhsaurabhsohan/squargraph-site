@@ -1143,6 +1143,9 @@
       background-repeat: no-repeat;
       background-position: right 20px center;
       padding-right: 44px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
     }
     select.form-input option { background: #fff; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -1619,19 +1622,16 @@
   </style>
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
   <style>
-    .iti { width: 100%; }
+    .iti { display: block; width: 100%; }
     .iti__selected-flag { background: var(--warmgray); border-radius: 999px 0 0 999px; border: 1px solid var(--bordergray); border-right: none; padding: 0 12px 0 16px; height: 48px; }
     .iti__flag-container:hover .iti__selected-flag { background: var(--coolgray); }
-    .iti input#phone { border-radius: 0 999px 999px 0 !important; border-left: none !important; padding-left: 10px !important; min-height: 48px; width: 100%; background: var(--warmgray); border: 1px solid var(--bordergray); color: var(--textprimary); font-family: 'Satoshi', sans-serif; font-size: 14px; outline: none; }
+    .iti input#phone { border-radius: 0 999px 999px 0 !important; border-left: none !important; padding-left: 12px !important; min-height: 48px; width: 100% !important; box-sizing: border-box !important; background: var(--warmgray); border: 1px solid var(--bordergray); color: var(--textprimary); font-family: 'Satoshi', sans-serif; font-size: 14px; outline: none; }
     .iti input#phone:focus { border-color: var(--accentmuted); }
     .iti__country-list { border-radius: 12px; border: 1px solid var(--bordergray); box-shadow: 0 8px 32px rgba(26,23,20,0.10); font-family: 'Satoshi', sans-serif; font-size: 13px; max-height: 280px; }
     .iti__country.iti__highlight { background: var(--accentlight); }
     .iti__search-input { font-family: 'Satoshi', sans-serif; font-size: 13px; border-radius: 8px; border: 1px solid var(--bordergray); padding: 8px 12px; width: calc(100% - 24px); margin: 8px 12px 4px; display: block; }
     .iti__dial-code { color: var(--textsecondary); }
     #country-location + .iti { display: none !important; }
-    .iti { display: block; width: 100%; max-width: 100%; }
-    .iti__selected-flag { height: 48px; }
-    .iti input#phone { width: 100% !important; box-sizing: border-box !important; }
   </style>
 </head>
 <body>
