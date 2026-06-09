@@ -1629,7 +1629,9 @@
     .iti__search-input { font-family: 'Satoshi', sans-serif; font-size: 13px; border-radius: 8px; border: 1px solid var(--bordergray); padding: 8px 12px; width: calc(100% - 24px); margin: 8px 12px 4px; display: block; }
     .iti__dial-code { color: var(--textsecondary); }
     #country-location + .iti { display: none !important; }
-    #country-location + .iti { display: none !important; }
+    .iti { display: block; width: 100%; max-width: 100%; }
+    .iti__selected-flag { height: 48px; }
+    .iti input#phone { width: 100% !important; box-sizing: border-box !important; }
   </style>
 </head>
 <body>
@@ -2246,7 +2248,9 @@ We work with businesses that are serious about their positioning, communication,
           </div>
           <div>
             <label class="form-label" for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" required placeholder="98765 43210" autocomplete="tel"/>
+            <div style="display:block;max-width:100%;">
+              <input type="tel" id="phone" name="phone" required placeholder="98765 43210" autocomplete="tel" style="width:100%;"/>
+            </div>
             <p class="field-error">Please enter your phone number.</p>
           </div>
           <div>
@@ -2261,8 +2265,8 @@ We work with businesses that are serious about their positioning, communication,
 </div>
 <div>
   <label class="form-label" for="city">City / Location</label>
-  <div style="display:flex;gap:8px;">
-    <div style="position:relative;flex:1;">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <div style="position:relative;flex:1;min-width:140px;">
       <select id="country-location" name="country" class="form-input" autocomplete="off" data-iti-ignore>
         <option value="">Country</option>
         <option value="India" selected>🇮🇳 India</option>
@@ -2279,7 +2283,7 @@ We work with businesses that are serious about their positioning, communication,
       </select>
       <svg style="position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5A5550" stroke-width="1.5" stroke-linecap="round"/></svg>
     </div>
-    <input type="text" id="city" name="city" placeholder="City" class="form-input" autocomplete="address-level2" style="flex:1;min-width:0;"/>
+    <input type="text" id="city" name="city" placeholder="City" class="form-input" autocomplete="address-level2" style="flex:1;min-width:120px;"/>
   </div>
 </div>
           <div class="form-row">
@@ -2684,7 +2688,7 @@ We work with businesses that are serious about their positioning, communication,
 var iti = window.intlTelInput(document.getElementById('phone'), {
   initialCountry: 'in',
   preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
-  separateDialCode: true,
+  separateDialCode: false,
   utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
 });
 </script>
