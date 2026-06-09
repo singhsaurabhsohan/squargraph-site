@@ -1821,11 +1821,23 @@ select:focus {
         var desig = document.getElementById('designation');
         var cemail = document.getElementById('contact-email');
         var cphone = document.getElementById('contact-phone');
+        var phoneErr = cphone.closest('.field') ? cphone.closest('.field').querySelector('.error-msg') : null;
         var emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!cname.value.trim()) { cname.classList.add('error'); valid = false; }
         if (!desig.value.trim()) { desig.classList.add('error'); valid = false; }
         if (!emailReg.test(cemail.value.trim())) { cemail.classList.add('error'); valid = false; }
-        if (!cphone.value.trim()) { cphone.classList.add('error'); valid = false; }
+        if (!cphone.value.trim()) {
+          cphone.classList.add('error');
+          if (phoneErr) { phoneErr.textContent = 'Please enter your phone number.'; phoneErr.style.display = 'block'; }
+          valid = false;
+        } else if (typeof itiAudit !== 'undefined' && !itiAudit.isValidNumber()) {
+          cphone.classList.add('error');
+          if (phoneErr) { phoneErr.textContent = 'Please enter a valid ' + itiAudit.getSelectedCountryData().name + ' phone number.'; phoneErr.style.display = 'block'; }
+          valid = false;
+        } else {
+          cphone.classList.remove('error');
+          if (phoneErr) { phoneErr.style.display = 'none'; }
+        }
       }
 
       if (n === 2) {
