@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brand Growth Audit™ — SQUARGRAPH™ Studios</title>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');</script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZK');</script>
   <!-- End Google Tag Manager -->
   <style>
     @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
@@ -168,9 +168,9 @@
 
     /* ── FORM CARD ── */
     .form-section {
-      max-width: 640px;
+      max-width: 1160px;
       margin: 0 auto 80px;
-      padding: 0 24px;
+      padding: 0 clamp(16px, 3vw, 40px);
       width: 100%;
     }
 
@@ -180,6 +180,18 @@
       border-radius: var(--radius-card);
       box-shadow: var(--shadow-lg);
       overflow: hidden;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      grid-template-rows: auto 1fr auto;
+      min-height: 560px;
+    }
+
+    @media (max-width: 768px) {
+      .form-card {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        min-height: unset;
+      }
     }
 
     /* ── PROGRESS BAR ── */
@@ -787,12 +799,247 @@
       .privacy-note { padding: 0 20px 18px; }
       #success-screen { padding: 36px 20px; }
     }
-  </style>
+    /* ── SIDEBAR TABS ── */
+    .form-sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      grid-row: 1 / -1;
+    }
+
+    .sidebar-brand {
+      padding: 0 20px 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    .sidebar-brand-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .sidebar-brand-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .sidebar-tab {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 20px;
+      cursor: default;
+      transition: background var(--transition);
+      position: relative;
+    }
+
+    .sidebar-tab.clickable {
+      cursor: pointer;
+    }
+
+    .sidebar-tab.clickable:hover {
+      background: rgba(107,93,184,.06);
+    }
+
+    .sidebar-tab.active {
+      background: var(--accent-light);
+    }
+
+    .sidebar-tab.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 0 3px 3px 0;
+    }
+
+    .tab-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      flex-shrink: 0;
+      transition: all var(--transition);
+    }
+
+    .sidebar-tab.active .tab-num {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .sidebar-tab.done .tab-num {
+      background: #DCFCE7;
+      border-color: #86EFAC;
+      color: #16A34A;
+      font-size: 12px;
+    }
+
+    .tab-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .tab-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar-tab:not(.active) .tab-title {
+      color: var(--muted);
+    }
+
+    .tab-sub {
+      font-size: 10px;
+      color: #B8B4AF;
+      letter-spacing: 0.01em;
+      margin-top: 1px;
+    }
+
+    .sidebar-tab.done .tab-title {
+      color: var(--muted);
+    }
+
+    .sidebar-save {
+      margin-top: auto;
+      padding: 16px 20px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-save {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      border: 1px solid rgba(107,93,184,.2);
+      border-radius: var(--radius-pill);
+      padding: 9px 16px;
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: -0.01em;
+    }
+
+    .btn-save:hover {
+      background: rgba(107,93,184,.15);
+      border-color: var(--accent);
+    }
+
+    .save-toast {
+      font-size: 10px;
+      color: #16A34A;
+      text-align: center;
+      margin-top: 6px;
+      opacity: 0;
+      transition: opacity .3s;
+      height: 14px;
+    }
+
+    .save-toast.visible {
+      opacity: 1;
+    }
+
+    /* ── RIGHT COLUMN: progress + steps + footer ── */
+    .form-right {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    /* ── MOBILE: sidebar becomes top strip ── */
+    @media (max-width: 768px) {
+      .form-sidebar {
+        grid-row: unset;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 16px 0 12px;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 0;
+        scrollbar-width: none;
+      }
+      .form-sidebar::-webkit-scrollbar { display: none; }
+
+      .sidebar-brand { display: none; }
+
+      .sidebar-tab {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 8px 14px;
+        flex-shrink: 0;
+        min-width: 72px;
+      }
+
+      .sidebar-tab.active::before {
+        left: 0;
+        right: 0;
+        top: auto;
+        bottom: 0;
+        width: auto;
+        height: 2px;
+        border-radius: 2px 2px 0 0;
+      }
+
+      .tab-info { display: none; }
+
+      .tab-num {
+        width: 28px;
+        height: 28px;
+      }
+
+      .sidebar-save {
+        display: none;
+      }
+    }
+    @media (min-width: 769px) {
+      .progress-wrap { display: none; }
+    }
+    #success-screen.visible ~ * { display: none; }
+    .form-card:has(#success-screen.visible) {
+      grid-template-columns: 1fr;
+    }
+    .form-card:has(#success-screen.visible) .form-sidebar {
+      display: none;
+    }
+    .form-card:has(#success-screen.visible) .form-right {
+      display: none;
+    }
+</style>
 </head>
 <body>
 
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- HEADER -->
@@ -821,6 +1068,66 @@
   <!-- FORM SECTION -->
   <section class="form-section">
     <div class="form-card" id="form-card">
+
+      <!-- SIDEBAR -->
+      <aside class="form-sidebar" id="form-sidebar">
+        <div class="sidebar-brand">
+          <div class="sidebar-brand-label">Brand Growth Audit™</div>
+          <div class="sidebar-brand-name">SQUARGRAPH™</div>
+        </div>
+        <div class="sidebar-tab active" id="tab-1" data-step="1">
+          <div class="tab-num">1</div>
+          <div class="tab-info">
+            <div class="tab-title">Your Details</div>
+            <div class="tab-sub">Contact info</div>
+          </div>
+        </div>
+        <div class="sidebar-tab" id="tab-2" data-step="2">
+          <div class="tab-num">2</div>
+          <div class="tab-info">
+            <div class="tab-title">Company Info</div>
+            <div class="tab-sub">Brand & website</div>
+          </div>
+        </div>
+        <div class="sidebar-tab" id="tab-3" data-step="3">
+          <div class="tab-num">3</div>
+          <div class="tab-info">
+            <div class="tab-title">Social Presence</div>
+            <div class="tab-sub">Active profiles</div>
+          </div>
+        </div>
+        <div class="sidebar-tab" id="tab-4" data-step="4">
+          <div class="tab-num">4</div>
+          <div class="tab-info">
+            <div class="tab-title">Competitors</div>
+            <div class="tab-sub">Who you're up against</div>
+          </div>
+        </div>
+        <div class="sidebar-tab" id="tab-5" data-step="5">
+          <div class="tab-num">5</div>
+          <div class="tab-info">
+            <div class="tab-title">Marketing Context</div>
+            <div class="tab-sub">Budget & challenge</div>
+          </div>
+        </div>
+        <div class="sidebar-tab" id="tab-6" data-step="6">
+          <div class="tab-num">6</div>
+          <div class="tab-info">
+            <div class="tab-title">Final Details</div>
+            <div class="tab-sub">Goals & source</div>
+          </div>
+        </div>
+        <div class="sidebar-save">
+          <button class="btn-save" onclick="saveProgress()" type="button">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save Progress
+          </button>
+          <div class="save-toast" id="save-toast">✓ Progress saved</div>
+        </div>
+      </aside>
+
+      <!-- RIGHT COLUMN -->
+      <div class="form-right">
 
       <!-- PROGRESS -->
       <div class="progress-wrap">
@@ -1113,6 +1420,8 @@
 
       <p class="privacy-note">🔒 Your data is kept private and never shared. By submitting, you agree to our terms.</p>
 
+      </div><!-- /form-right -->
+
       <!-- SUCCESS SCREEN -->
       <div id="success-screen">
         <div class="analysis-header">
@@ -1158,6 +1467,53 @@
     const TOTAL_STEPS = 6;
     let currentStep = 1;
 
+    /* ── Sidebar sync ── */
+    function syncSidebar(step) {
+      for (let i = 1; i <= TOTAL_STEPS; i++) {
+        const tab = document.getElementById('tab-' + i);
+        if (!tab) continue;
+        tab.className = 'sidebar-tab';
+        if (i < step) {
+          tab.classList.add('done', 'clickable');
+          tab.querySelector('.tab-num').textContent = '✓';
+        } else if (i === step) {
+          tab.classList.add('active');
+          tab.querySelector('.tab-num').textContent = String(i);
+        } else {
+          tab.querySelector('.tab-num').textContent = String(i);
+        }
+      }
+    }
+
+    /* ── Tab click (only done steps) ── */
+    document.getElementById('form-sidebar').addEventListener('click', function(e) {
+      const tab = e.target.closest('.sidebar-tab.clickable');
+      if (!tab) return;
+      const target = parseInt(tab.dataset.step);
+      if (target < currentStep) {
+        currentStep = target;
+        showStep(currentStep);
+        updateProgress();
+        syncSidebar(currentStep);
+      }
+    });
+
+    /* ── Save to localStorage ── */
+    window.saveProgress = function() {
+      const fields = document.getElementById('form-card').querySelectorAll('input, select');
+      const data = {};
+      fields.forEach(function(f) {
+        if (f.name) data[f.name] = f.value;
+      });
+      data.__step = currentStep;
+      try {
+        localStorage.setItem('sq_audit_progress', JSON.stringify(data));
+        const toast = document.getElementById('save-toast');
+        toast.classList.add('visible');
+        setTimeout(function() { toast.classList.remove('visible'); }, 2500);
+      } catch(e) {}
+    };
+
     const stepLabels = [
       'Your Details',
       'Company Info',
@@ -1202,6 +1558,7 @@
       stepFractionEl.textContent = pct + '%';
       stepLabelEl.textContent = `Step ${currentStep} of ${TOTAL_STEPS} — ${stepLabels[currentStep - 1]}`;
       updateDots();
+      syncSidebar(currentStep);
 
       // Prev button
       btnPrev.disabled = currentStep === 1;
@@ -1231,7 +1588,33 @@
       if (el) el.classList.add('active');
     }
 
-    /* ── VALIDATION ── */
+    /* ── Restore from localStorage ── */
+    (function restoreProgress() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('sq_audit_progress'));
+        if (!saved) return;
+        Object.keys(saved).forEach(function(key) {
+          if (key === '__step') return;
+          const el = document.querySelector('[name="' + key + '"]');
+          if (el) el.value = saved[key];
+        });
+        if (saved.budget) {
+          document.querySelectorAll('.budget-pill').forEach(function(p) {
+            if (p.dataset.value === saved.budget) p.classList.add('selected');
+          });
+        }
+        if (saved.goal) {
+          document.querySelectorAll('.goal-card').forEach(function(c) {
+            if (c.dataset.value === saved.goal) c.classList.add('selected');
+          });
+        }
+        if (saved.__step && saved.__step > 1) {
+          currentStep = saved.__step;
+          showStep(currentStep);
+        }
+      } catch(e) {}
+    })();
+
     function clearErrors(stepEl) {
       stepEl.querySelectorAll('input.error').forEach(i => i.classList.remove('error'));
     }
@@ -1438,6 +1821,7 @@ launchSuccessScreen();
       document.querySelector('.privacy-note').style.display = 'none';
 
       successScreen.classList.add('visible');
+      document.getElementById('form-sidebar').style.display = 'none';
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
       const items = document.querySelectorAll('.check-item');
@@ -1466,6 +1850,7 @@ launchSuccessScreen();
     /* ── INIT ── */
     buildDots();
     updateProgress();
+    syncSidebar(currentStep);
     trackEvent('audit_started');
   })();
 </script>
