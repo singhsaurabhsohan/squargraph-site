@@ -27,6 +27,7 @@
   <link rel="preload" href="/fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <!-- Fonts -->
   <style>
@@ -2265,10 +2266,33 @@ We work with businesses that are serious about their positioning, communication,
             <p class="field-error">Please enter your email id.</p>
           </div>
           <div>
-            <label class="form-label" for="company">Brand / Company</label>
-            <input type="text" id="company" name="company" required placeholder="Your brand name" class="form-input" autocomplete="organization"/>
-            <p class="field-error">Please enter your company name</p>
-          </div>
+  <label class="form-label" for="company">Brand / Company</label>
+  <input type="text" id="company" name="company" required placeholder="Your brand name" class="form-input" autocomplete="organization"/>
+  <p class="field-error">Please enter your company name</p>
+</div>
+<div>
+  <label class="form-label" for="city">City / Location</label>
+  <div style="display:flex;gap:8px;">
+    <div style="position:relative;flex:1;">
+      <select id="country-location" name="country" class="form-input" autocomplete="country">
+        <option value="">Country</option>
+        <option value="India" selected>🇮🇳 India</option>
+        <option value="USA">🇺🇸 USA</option>
+        <option value="UK">🇬🇧 UK</option>
+        <option value="UAE">🇦🇪 UAE</option>
+        <option value="Singapore">🇸🇬 Singapore</option>
+        <option value="Australia">🇦🇺 Australia</option>
+        <option value="Canada">🇨🇦 Canada</option>
+        <option value="Germany">🇩🇪 Germany</option>
+        <option value="France">🇫🇷 France</option>
+        <option value="Japan">🇯🇵 Japan</option>
+        <option value="Other">🌍 Other</option>
+      </select>
+      <svg style="position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5A5550" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </div>
+    <input type="text" id="city" name="city" placeholder="City" class="form-input" autocomplete="address-level2" style="flex:1;min-width:0;"/>
+  </div>
+</div>
           <div class="form-row">
             <div>
               <label class="form-label" for="service-select">What do you need?</label>
@@ -2314,7 +2338,9 @@ We work with businesses that are serious about their positioning, communication,
             <label class="form-label" for="reference">Reference links (optional)</label>
             <input type="text" id="reference" name="reference" placeholder="Paste a link, Drive, Notion, or any reference" class="form-input"/>
           </div>
-          <button type="submit" id="form-submit-btn" class="submit-btn">Send inquiry →</button>
+          <div class="g-recaptcha" data-sitekey="6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB" style="margin-bottom:4px;transform:scale(0.85);transform-origin:left top;"></div>
+            <p id="captcha-error" style="font-size:11px;color:#EF4444;display:none;margin-bottom:8px;">Please complete the captcha.</p>
+            <button type="submit" id="form-submit-btn" class="submit-btn">Send inquiry →</button>
           <p class="form-next" style="text-align: left;">Every brief reviewed within 48 hours. No follow-up sequence. No pitch deck.</p>
         </form>
       </div>
@@ -2717,7 +2743,7 @@ We work with businesses that are serious about their positioning, communication,
     var raw = Object.fromEntries(new FormData(formEl).entries());
     return {
       name:       raw.name      || null,
-      phone:      raw.phone     || null,
+      phone: ((raw.phone_country || '') + ' ' + (raw.phone || '')).trim() || null,
       email:      raw.email     || null,
       company:    raw.company   || null,
       service:    raw.service   || null,
@@ -2726,7 +2752,9 @@ We work with businesses that are serious about their positioning, communication,
       message:    raw.message   || null,
       reference:  raw.reference || null,
       created_at: new Date().toISOString(),
-      source_url: window.location.href
+      source_url: window.location.href,
+country: raw.country || null,
+city: raw.city || null
     };
   }
 
@@ -2777,8 +2805,14 @@ document.querySelectorAll('#contact-form .form-input').forEach(function(field) {
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     if (submitted) return;
-    if (!validateForm(form)) { setState('error', 'Please fill in all required fields.'); return; }
-    submitted = true;
+if (!validateForm(form)) { setState('error', 'Please fill in all required fields.'); return; }
+var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
+if (!captchaVal) {
+  document.getElementById('captcha-error').style.display = 'block';
+  return;
+}
+document.getElementById('captcha-error').style.display = 'none';
+submitted = true;
     setState('loading');
     try {
       await submitLead(getPayload(form));
