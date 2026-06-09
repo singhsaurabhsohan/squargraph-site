@@ -1028,10 +1028,48 @@
       .progress-wrap { display: none; }
     }
     #success-screen.visible ~ * { display: none; }
-    .iti { display: block; width: 100%; max-width: 100%; }
-    .iti__selected-flag { background: var(--surface); border-radius: 10px 0 0 10px; border: 1px solid var(--border); border-right: none; height: 44px; }
+    .iti {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: 44px;
+    }
+    .iti__flag-container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+    }
+    .iti__selected-flag {
+      height: 44px !important;
+      border-radius: 10px 0 0 10px !important;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-right: none;
+      padding: 0 10px 0 14px;
+      min-width: 72px;
+    }
     .iti__flag-container:hover .iti__selected-flag { background: var(--coolgray); }
-    .iti input#contact-phone { border-radius: 0 10px 10px 0 !important; border-left: none !important; width: 100% !important; box-sizing: border-box !important; }
+    .iti input#contact-phone {
+      border-radius: 0 10px 10px 0 !important;
+      border-left: none !important;
+      width: 100% !important;
+      height: 44px;
+      box-sizing: border-box !important;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 14px;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      padding-left: 80px !important;
+    }
+    .iti input#contact-phone:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(107,93,184,.12);
+    }
     .iti__country-list { border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(26,23,20,0.10); font-family: var(--font); font-size: 13px; }
     .iti__country.iti__highlight { background: var(--accent-light); }
     .iti__search-input { font-family: var(--font); font-size: 13px; border-radius: 8px; border: 1px solid var(--border); padding: 8px 12px; }
