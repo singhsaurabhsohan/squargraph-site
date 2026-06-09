@@ -27,7 +27,9 @@
   <link rel="preload" href="/fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
 
   <!-- Fonts -->
   <style>
@@ -1616,6 +1618,16 @@
 }
   </style>
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
+  <style>
+    .iti { width: 100%; }
+    .iti__selected-flag { background: var(--warmgray); border-radius: 999px 0 0 999px; border: 1px solid var(--bordergray); border-right: none; padding: 0 10px 0 14px; }
+    .iti__flag-container:hover .iti__selected-flag { background: var(--coolgray); }
+    .iti input#phone { border-radius: 0 999px 999px 0 !important; border-left: none !important; padding-left: 12px !important; }
+    .iti__country-list { border-radius: 12px; border: 1px solid var(--bordergray); box-shadow: 0 8px 32px rgba(26,23,20,0.10); font-family: 'Satoshi', sans-serif; font-size: 13px; }
+    .iti__country.iti__highlight { background: var(--accentlight); }
+    .iti__search-input { font-family: 'Satoshi', sans-serif; font-size: 13px; border-radius: 8px; border: 1px solid var(--bordergray); padding: 8px 12px; }
+    .iti__dial-code { color: var(--textsecondary); }
+  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -2231,34 +2243,10 @@ We work with businesses that are serious about their positioning, communication,
               <p class="field-error">Please enter your name.</p>
             </div>
             <div>
-  <label class="form-label" for="phone">Phone</label>
-  <div style="display:flex;gap:8px;align-items:stretch;">
-    <div style="position:relative;flex-shrink:0;">
-      <select id="phone-country" name="phone_country" class="form-input" style="padding-left:10px;padding-right:32px;width:auto;min-width:110px;appearance:none;-webkit-appearance:none;cursor:pointer;" autocomplete="tel-country-code">
-        <option value="+91" data-flag="🇮🇳">🇮🇳 +91</option>
-        <option value="+1" data-flag="🇺🇸">🇺🇸 +1</option>
-        <option value="+44" data-flag="🇬🇧">🇬🇧 +44</option>
-        <option value="+971" data-flag="🇦🇪">🇦🇪 +971</option>
-        <option value="+65" data-flag="🇸🇬">🇸🇬 +65</option>
-        <option value="+61" data-flag="🇦🇺">🇦🇺 +61</option>
-        <option value="+49" data-flag="🇩🇪">🇩🇪 +49</option>
-        <option value="+33" data-flag="🇫🇷">🇫🇷 +33</option>
-        <option value="+81" data-flag="🇯🇵">🇯🇵 +81</option>
-        <option value="+86" data-flag="🇨🇳">🇨🇳 +86</option>
-        <option value="+7" data-flag="🇷🇺">🇷🇺 +7</option>
-        <option value="+55" data-flag="🇧🇷">🇧🇷 +55</option>
-        <option value="+27" data-flag="🇿🇦">🇿🇦 +27</option>
-        <option value="+92" data-flag="🇵🇰">🇵🇰 +92</option>
-        <option value="+880" data-flag="🇧🇩">🇧🇩 +880</option>
-        <option value="+94" data-flag="🇱🇰">🇱🇰 +94</option>
-        <option value="+977" data-flag="🇳🇵">🇳🇵 +977</option>
-      </select>
-      <svg style="position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none;" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5A5550" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </div>
-    <input type="tel" id="phone" name="phone" required placeholder="XXXXX XXXXX" class="form-input" autocomplete="tel-national" style="flex:1;min-width:0;"/>
-  </div>
-  <p class="field-error">Please enter your phone number.</p>
-</div>
+              <label class="form-label" for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" required placeholder="98765 43210" autocomplete="tel"/>
+              <p class="field-error">Please enter your phone number.</p>
+            </div>
           </div>
           <div>
             <label class="form-label" for="email">Work Email</label>
@@ -2691,6 +2679,15 @@ We work with businesses that are serious about their positioning, communication,
 })();
 </script>
 
+<script>
+var iti = window.intlTelInput(document.getElementById('phone'), {
+  initialCountry: 'in',
+  preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
+  separateDialCode: true,
+  utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
+});
+</script>
+
 <!-- ══════════════
      FORM HANDLER
 ══════════════ -->
@@ -2743,7 +2740,7 @@ We work with businesses that are serious about their positioning, communication,
     var raw = Object.fromEntries(new FormData(formEl).entries());
     return {
       name:       raw.name      || null,
-      phone: ((raw.phone_country || '') + ' ' + (raw.phone || '')).trim() || null,
+      phone: (typeof iti !== 'undefined' ? iti.getNumber() : raw.phone) || null,
       email:      raw.email     || null,
       company:    raw.company   || null,
       service:    raw.service   || null,
