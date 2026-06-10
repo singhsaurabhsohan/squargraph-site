@@ -1712,22 +1712,6 @@
     background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important;
   }
 }
-
-.g-recaptcha {
-  display: block !important;
-  margin-left: 20px !important;
-  margin-top: 16px !important;
-  margin-bottom: 20px !important;
-}
-.g-recaptcha > div {
-  transform: scale(0.85);
-  transform-origin: left top;
-}
-@media (max-width: 600px) {
-  .g-recaptcha {
-    margin-left: 16px !important;
-  }
-}
   </style>
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
   <style>
@@ -2527,9 +2511,7 @@ We work with businesses that are serious about their positioning, communication,
             <label class="form-label" for="reference">Reference links (optional)</label>
             <input type="text" id="reference" name="reference" placeholder="Paste a link, Drive, Notion, or any reference" class="form-input"/>
           </div>
-          <div style="margin-left: 20px; margin-top: 16px; margin-bottom: 20px;">
-            <div class="g-recaptcha" data-sitekey="6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB"></div>
-          </div>
+          <div class="g-recaptcha" data-sitekey="6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB" style="margin-bottom:4px;transform:scale(0.85);transform-origin:left top;"></div>
             <p id="captcha-error" style="font-size:11px;color:#EF4444;display:none;margin-bottom:8px;">Please complete the captcha.</p>
             <button type="submit" id="form-submit-btn" class="submit-btn">Send inquiry →</button>
           <p class="form-next" style="text-align: left;">Every brief reviewed within 48 hours. No follow-up sequence. No pitch deck.</p>
