@@ -2908,6 +2908,18 @@ if (phoneEl) {
     nationalMode: true,
     placeholderNumberType: 'MOBILE'
   });
+
+  // Kill iOS tap highlight on flag button
+  var flagBtn = phoneEl.closest('.iti') && phoneEl.closest('.iti').querySelector('.iti__selected-flag');
+  if (flagBtn) {
+    flagBtn.addEventListener('touchstart', function(e) {
+      e.currentTarget.style.webkitTapHighlightColor = 'transparent';
+      e.currentTarget.style.backgroundColor = 'transparent';
+    }, { passive: true });
+    flagBtn.addEventListener('touchend', function(e) {
+      e.currentTarget.style.backgroundColor = 'transparent';
+    }, { passive: true });
+  }
 }
 </script>
 
