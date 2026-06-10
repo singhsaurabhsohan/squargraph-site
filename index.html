@@ -1810,6 +1810,25 @@
     .submit-btn {
       margin-top: 0 !important;
     }
+.iti__selected-flag:active,
+.iti__selected-flag:focus,
+.iti__selected-flag:focus-visible,
+.iti__selected-flag:active *,
+.iti__selected-flag:focus * {
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+.iti__flag-container:active,
+.iti__flag-container:focus {
+  background: transparent !important;
+  outline: none !important;
+}
+.iti__selected-flag::before,
+.iti__selected-flag::after {
+  display: none !important;
+}
     </style>
 </head>
 <body>
