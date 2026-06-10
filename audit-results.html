@@ -804,6 +804,13 @@
 <script>
  /* ── Supabase shim ── */
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
+  (function() {
+  var payload = null;
+  try { payload = JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
+  if (!payload || !payload.email) {
+    window.location.href = '/audit.html';
+  }
+})();
   window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
 
   async function fetchAIScores(payload) {
