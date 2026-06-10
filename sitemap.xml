@@ -21,6 +21,11 @@
     <priority>0.70</priority>
   </url>
   <url>
+    <loc>https://squargraph.com/blog/why-execution-matters</loc>
+    <lastmod>2026-06-10</lastmod>
+    <priority>0.60</priority>
+  </url>
+  <url>
     <loc>https://squargraph.com/privacy-policy</loc>
     <lastmod>2026-06-10</lastmod>
     <priority>0.30</priority>
