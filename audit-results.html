@@ -54,7 +54,16 @@
       justify-content: center;
       padding: 24px;
     }
-
+    .results-disclaimer{
+    margin:16px 0 20px;
+    padding:12px 14px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:8px;
+    font-size:11px;
+    line-height:1.6;
+    color:#8A8580;
+  }
     /* ── HEADER ── */
     .page-header {
       position: fixed;
@@ -712,6 +721,13 @@
 
         <!-- GROWTH -->
         <div class="growth-row">
+          <div class="results-disclaimer">
+          Brand Quotient™ scores are generated using proprietary frameworks, website analysis, AI-assisted evaluation, and publicly available information.
+
+          Results are intended for strategic benchmarking and directional guidance only.
+
+          Human review and strategic validation may be required before implementing recommendations or making business decisions.
+      </div>
           <div class="growth-label">Identifiable growth gaps</div>
           <div class="growth-badge">3 priority areas</div>
         </div>
@@ -739,7 +755,7 @@
         <div class="price-row">
           <div class="price-label">
             Brand Growth Audit™
-            <span>Delivered within 24 hours · PDF report</span>
+            <span>Executive report delivered within 24 hours of confirmation</span>
           </div>
           <div class="price-amount">₹9,999</div>
         </div>
@@ -874,14 +890,19 @@
       '  </div>',
       '</div>',
       '<div class="modal-divider"></div>',
-      '<div class="modal-cta">',
-      '  <div class="cta-headline">Unlock your full<br />Brand Quotient™ score.</div>',
-      '  <div class="cta-sub">The Brand Growth Audit™ delivers a complete executive report across eight dimensions — plus your actual scores, insights per dimension, and a 90-day roadmap.</div>',
-      '  <div class="price-row">',
+      '  <div class="modal-cta">',
+      '    <div class="cta-headline">Commission your complete<br />Brand Growth Audit™.</div>',
+      '    <div class="cta-sub">Go beyond the preliminary assessment with a comprehensive executive report covering strategic analysis, competitive review, growth opportunities, priority recommendations, and a practical 90-Day Action Roadmap.</div>',
+
+      '    <div style="margin-top:18px;padding:14px;border:1px solid var(--border);border-radius:10px;background:rgba(107,93,184,.04);font-size:12px;line-height:1.65;color:#8A8580;">',
+      '      Start with your complimentary Brand Quotient™ assessment. The full Brand Growth Audit™ includes deeper strategic analysis, recommendations, and a 90-Day Action Roadmap prepared using proprietary frameworks, AI-assisted research, and strategic review methodologies.',
+      '    </div>',
+
+      '    <div class="price-row">',
       '    <div class="price-label">Brand Growth Audit\u2122<span>Delivered within 24 hours \u00b7 PDF report</span></div>',
       '    <div class="price-amount">\u20b99,999</div>',
       '  </div>',
-      '  <button class="btn-unlock" onclick="unlockScores()">See My Full Score \u2192</button>',
+      '  <button class="btn-unlock" onclick="unlockScores()">Unlock My Strategic Report →</button>',
       '  <button class="btn-later" onclick="closeBrandQuotientModal()">I\'ll decide later</button>',
       '  <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">',
       '    <span style="font-size:11px;color:#8A8580;font-weight:500;">Payment secured by</span>',
@@ -974,6 +995,17 @@
       '    <li>90-Day Strategic Roadmap</li>',
       '  </ul>',
       '  <div class="price-row">',
+      '  <div style="margin-top:16px;">',
+      '    <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Included in your report</div>',
+      '    <div style="display:grid;gap:8px;font-size:13px;color:var(--text);">',
+      '      <div>✓ Strategic Brand Analysis</div>',
+      '      <div>✓ Competitive Review</div>',
+      '      <div>✓ Brand Quotient™ Score Breakdown</div>',
+      '      <div>✓ Growth Opportunities</div>',
+      '      <div>✓ Priority Recommendations</div>',
+            '      <div>✓ 90-Day Action Roadmap</div>',
+'    </div>',
+      '  </div>',
       '    <div class="price-label">Brand Growth Audit\u2122<span>Delivered within 24 hours \u00b7 PDF report</span></div>',
       '    <div class="price-amount">\u20b99,999</div>',
       '  </div>',
