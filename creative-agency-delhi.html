@@ -1714,56 +1714,50 @@
 }
   </style>
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
-  <style>
-    /* intl-tel-input overrides — phone field only */
- .iti {
-  display: block;
-  width: 100%;
-  position: relative;
-  border-radius: 999px;
-  background: var(--warmgray);
-  border: 1px solid var(--bordergray);
-  overflow: visible;
-  transition: border-color .2s;
-}
-.iti:focus-within {
-  border-color: var(--accentmuted);
-}
-.iti__flag-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  border-radius: 0;
-}
-.iti__selected-flag {
-  height: 48px !important;
-  background: transparent !important;
-  border: none !important;
-  padding: 0 10px 0 14px;
-  min-width: 72px;
-  display: flex;
-  align-items: center;
-}
-.iti input#phone {
-  border: none !important;
-  background: transparent !important;
-  height: 48px;
-  width: 100% !important;
-  padding-left: 86px !important;
-  font-family: 'Satoshi', sans-serif;
-  font-size: 14px;
-  color: var(--textprimary);
-  outline: none;
-  box-shadow: none !important;
-}
-.iti input#phone:focus {
-  box-shadow: none !important;
-}
-.iti__arrow {
-  border-top-color: var(--textsecondary);
-}
+ <style>
+    .iti {
+      display: block;
+      width: 100%;
+    }
+    .iti__selected-flag {
+      background: transparent !important;
+      -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+      outline: none !important;
+    }
+    .iti__flag-container {
+      -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    }
+    .iti input#phone {
+      border-radius: 999px !important;
+      border: 1px solid var(--bordergray) !important;
+      background: var(--warmgray) !important;
+      padding-left: 86px !important;
+      min-height: 48px;
+      width: 100% !important;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      color: var(--textprimary);
+      outline: none;
+    }
+    .iti input#phone:focus {
+      border-color: var(--accentmuted) !important;
+    }
+    .iti__country-list {
+      border-radius: 16px;
+      border: 1px solid var(--bordergray);
+      box-shadow: 0 12px 40px rgba(26,23,20,0.12);
+      font-family: 'Satoshi', sans-serif;
+      font-size: 13px;
+      z-index: 99999;
+      max-height: 280px;
+      overflow-y: auto;
+      background: #fff;
+      min-width: 280px;
+    }
+    .iti__country { padding: 10px 16px; }
     .iti__country.iti__highlight { background: var(--accentlight); }
+    .iti__country-name { color: var(--textprimary); font-weight: 500; }
+    .iti__dial-code { color: var(--textsecondary); font-size: 12px; margin-left: 8px; }
     .iti__search-input {
       font-family: 'Satoshi', sans-serif;
       font-size: 13px;
@@ -1774,68 +1768,17 @@
       margin: 8px 12px 4px;
       display: block;
     }
-    .iti__dial-code { color: var(--textsecondary); }
-    /* Prevent ITI from wrapping the country select */
-    #country-location + .iti,
-    #country-location ~ .iti,
-    .iti:has(#country-location) { display: none !important; }
-    /* Country select: fully self-contained styles, no .form-input inheritance */
-   #country-location {
-      width: 100%;
-      font-family: 'Satoshi', sans-serif;
-      font-size: 14px;
-      color: var(--textprimary);
-      background: var(--warmgray);
-      border: 1px solid var(--bordergray);
-      border-radius: 999px;
-      padding: 13px 44px 13px 20px;
-      min-height: 48px;
-      outline: none;
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 20px center;
-      transition: border-color .25s;
+    .iti__flag {
+      background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags.png") !important;
     }
-    #country-location:focus {
-      border-color: var(--accentmuted);
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .iti__flag {
+        background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important;
+      }
     }
-    #country-location option { background: #fff; }
-    #country-location + .iti,
-    #country-location ~ .iti,
-    .iti:has(#country-location) { display: none !important; }
-    .submit-btn {
-      margin-top: 0 !important;
-    }
-.iti__selected-flag,
-.iti__selected-flag:active,
-.iti__selected-flag:focus,
-.iti__selected-flag:focus-visible,
-.iti__selected-flag:active *,
-.iti__selected-flag:focus * {
-  background: transparent !important;
-  outline: none !important;
-  box-shadow: none !important;
-  -webkit-tap-highlight-color: transparent !important;
-  -webkit-touch-callout: none !important;
-  user-select: none !important;
-  -webkit-user-select: none !important;
-}
-.iti__flag-container,
-.iti__flag-container:active,
-.iti__flag-container:focus {
-  background: transparent !important;
-  outline: none !important;
-  -webkit-tap-highlight-color: transparent !important;
-}
-.iti__selected-flag::before,
-.iti__selected-flag::after {
-  display: none !important;
-}
-</style>
+    #country-location + .iti { display: none !important; }
+    * { -webkit-tap-highlight-color: rgba(0,0,0,0) !important; }
+  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
