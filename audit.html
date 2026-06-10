@@ -2104,26 +2104,38 @@ launchSuccessScreen();
   })();
 </script>
 <script>
-var itiAudit = window.intlTelInput(document.getElementById('contact-phone'), {
-  initialCountry: 'in',
-  preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
-  separateDialCode: false,
-  utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
-  nationalMode: true,
-  placeholderNumberType: 'MOBILE'
-});
+var phoneEl = document.getElementById('phone');
+var iti;
+if (phoneEl) {
+  iti = window.intlTelInput(phoneEl, {
+    initialCountry: 'in',
+    preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
+    separateDialCode: false,
+    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
+    nationalMode: true,
+    placeholderNumberType: 'MOBILE'
+  });
 
-// Kill iOS tap highlight on flag button
-var flagBtnAudit = document.getElementById('contact-phone').closest('.iti') &&
-  document.getElementById('contact-phone').closest('.iti').querySelector('.iti__selected-flag');
-if (flagBtnAudit) {
-  flagBtnAudit.addEventListener('touchstart', function(e) {
-    e.currentTarget.style.webkitTapHighlightColor = 'transparent';
-    e.currentTarget.style.backgroundColor = 'transparent';
-  }, { passive: true });
-  flagBtnAudit.addEventListener('touchend', function(e) {
-    e.currentTarget.style.backgroundColor = 'transparent';
-  }, { passive: true });
+  // Wait for ITI to render then kill iOS highlight at DOM level
+  setTimeout(function() {
+    var itiWrap = phoneEl.closest('.iti');
+    if (!itiWrap) return;
+    // Set on every element ITI creates
+    itiWrap.querySelectorAll('*').forEach(function(el) {
+      el.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+    });
+    itiWrap.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+    var flagBtn = itiWrap.querySelector('.iti__selected-flag');
+    if (flagBtn) {
+      flagBtn.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+      flagBtn.style.backgroundColor = 'transparent';
+      // Prevent default touch behaviour
+      flagBtn.addEventListener('touchstart', function() {
+        this.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+        this.style.backgroundColor = 'transparent';
+      }, { passive: true });
+    }
+  }, 300);
 }
 </script>
 
