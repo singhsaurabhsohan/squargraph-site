@@ -1171,6 +1171,20 @@
         var pidEl = document.getElementById('success-pid');
         if (pidEl) pidEl.textContent = 'Payment ID: ' + response.razorpay_payment_id;
         document.getElementById('modal').scrollTop = 0;
+
+        // Send AI scores + client data as notification
+        try {
+          var notifyPayload = JSON.parse(sessionStorage.getItem('sq_audit_payload') || '{}');
+          fetch('https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev/notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              payload: notifyPayload,
+              scores: _cachedScores || {},
+              payment_id: response.razorpay_payment_id
+            })
+          });
+        } catch(e) { console.error('Notify failed', e); }
       }
     };
     if (typeof Razorpay !== 'undefined') {
