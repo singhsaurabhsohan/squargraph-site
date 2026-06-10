@@ -28,8 +28,9 @@
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'"/>
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/></noscript>
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js" defer></script>
 
   <!-- Fonts -->
   <style>
@@ -1391,16 +1392,13 @@
       outline-offset: 2px;
       border-color: var(--accentmuted);
     }
-     @media (max-width: 99999px) {
-      #persistent-cta { display: none !important; }
-      #mobile-book-wrap { display: flex !important; }
-      #back-to-top {
-        left: 20px;
-        right: auto;
-        bottom: 32px;
-        width: 52px;
-        height: 52px;
-      }
+    #mobile-book-wrap { display: flex !important; }
+    #back-to-top {
+      left: 20px;
+      right: auto;
+      bottom: 32px;
+      width: 52px;
+      height: 52px;
     }
     #mobile-wa {
       display: none;
@@ -1833,7 +1831,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#capabilities">Capabilities</a>
       <a href="/blog">Thinking</a>
       <a href="#studio">Studio</a>
-      <a href="#" onclick="openRazorpay('discovery');return false;" class="nav-cta">Book Discovery Session</a>
+      <a href="/audit" class="nav-cta" style="margin-right:8px;border-color:var(--bordergray);">Brand Audit →</a>
+      <a href="#" onclick="openRazorpay('discovery');return false;" class="nav-cta" style="background:var(--textprimary);color:#fff;border-color:var(--textprimary);">Book Discovery</a>
     </div>
     <button type="button" class="hamburger" id="mob-toggle" aria-label="Open navigation menu" aria-expanded="false">
       <div class="pill-menu">
@@ -2278,8 +2277,8 @@ We work with businesses that are serious about their positioning, communication,
         <p class="small" style="padding-top:20px;border-top:1px solid var(--bordergray);color:var(--textsecondary);">The studio works with a core team and a network of specialist collaborators. Directors, writers, developers, and production partners, brought in based on the specific requirements of each engagement. You always work directly with senior thinking. The team around it is built for the brief.</p>
         <div class="studio-stats">
   <div>
-    <span class="studio-stat-num">Since 2026</span>
-    <span class="studio-stat-label">Studio founded in New Delhi</span>
+    <span class="studio-stat-num">New Delhi</span>
+    <span class="studio-stat-label">Independent studio, India</span>
   </div>
   <div>
     <span class="studio-stat-num">4 Sectors</span>
@@ -2565,13 +2564,15 @@ We work with businesses that are serious about their positioning, communication,
       <span class="footer-col-label">Company</span>
       <a href="#intelligence" class="footer-link">Brand Studies</a>
       <a href="#approach" class="footer-link">Our Approach</a>
+      <a href="/blog" class="footer-link">Thinking</a>
+      <a href="#studio" class="footer-link">Studio</a>
     </div>
     <div>
       <span class="footer-col-label">Engagements</span>
-      <a href="#capabilities" class="footer-link">Campaign Systems</a>
-      <a href="#capabilities" class="footer-link">Brand Communication</a>
-      <a href="#capabilities" class="footer-link">Social Platforms</a>
-      <a href="#capabilities" class="footer-link">CGI &amp; Motion</a>
+      <a href="#Engagements" class="footer-link">Discovery Session™</a>
+      <a href="/audit" class="footer-link">Brand Growth Audit™</a>
+      <a href="#Engagements" class="footer-link">Brand Foundation Sprint™</a>
+      <a href="#contact" class="footer-link">Start a Project</a>
     </div>
   </div>
   <div class="footer-bar" style="flex-direction:column;align-items:flex-start;gap:16px;">
@@ -2839,9 +2840,9 @@ We work with businesses that are serious about their positioning, communication,
   });
 
   var RAZORPAY_PRODUCTS = {
-    discovery: { name: 'Discovery Session™', amount: 299900, description: '60-min founder-led brand strategy session' },
-    audit:     { name: 'Brand Growth Audit™', amount: 999900, description: 'Full digital brand communication & growth audit' },
-    sprint:    { name: 'Brand Foundation Sprint™', amount: 4999900, description: 'Complete brand system in 3 weeks' }
+    discovery: { name: 'Discovery Session™', amount: 299900, description: '30-min founder-led brand strategy session' },
+    audit:     { name: 'Brand Growth Audit™', amount: 999900, description: 'Brand positioning, communication & digital audit' },
+    sprint:    { name: 'Brand Foundation Sprint™', amount: 0, description: 'Custom scope — contact for pricing' }
   };
   window.openRazorpay = function(productKey) {
     var product = RAZORPAY_PRODUCTS[productKey];
