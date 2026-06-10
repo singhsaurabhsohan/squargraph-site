@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: https://squargraph.com');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') exit;
 
 $body = file_get_contents('php://input');
 $decoded = json_decode($body, true);
-$prompt = $decoded['prompt'] ?? '';
+$prompt = isset($decoded['prompt']) ? substr(preg_replace('/[\x00-\x1F\x7F]/u', '', $decoded['prompt']), 0, 4000) : '';
 
 $apiKey = 'GEMINI_API_KEY';
 $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' . $apiKey;
