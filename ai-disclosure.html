@@ -1,1 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Disclosure · SQUARGRAPH™</title>
+  <meta name="description" content="How SQUARGRAPH™ uses AI in the Brand Growth Audit™ and Brand Quotient™ scoring system. What it can and can't tell you." />
+  <link rel="canonical" href="https://squargraph.com/ai-disclosure" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta property="og:title" content="AI Disclosure · SQUARGRAPH™" />
+  <meta property="og:description" content="How SQUARGRAPH™ uses AI in the Brand Growth Audit™ and Brand Quotient™ scoring system." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://squargraph.com/ai-disclosure" />
+  <meta property="og:image" content="https://squargraph.com/squargraph-brand-image.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Disclosure · SQUARGRAPH™" />
+  <meta name="twitter:description" content="How SQUARGRAPH™ uses AI in its audit and scoring system." />
+  <meta name="twitter:image" content="https://squargraph.com/squargraph-brand-image.webp" />
+  <style>
+    @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
+    @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
+    @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bordergray: #E5E3DF; --textmuted: #2A2623; --textsecondary: #3D3935;
+      --textprimary: #1A1714; --accent: #6B5DB8; --accentmuted: #7B6FB8; --accentlight: #EEECf7;
+      --warmgray: #F5F5F3;
+    }
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    body { font-family: 'Satoshi', -apple-system, sans-serif; background: #fff; color: var(--textprimary); line-height: 1.6; letter-spacing: -0.01em; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--bordergray); }
+    .header-inner { max-width: 1100px; margin: 0 auto; padding: 0 clamp(24px,4vw,64px); height: 72px; display: flex; align-items: center; justify-content: space-between; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: var(--textsecondary); text-decoration: none; transition: color .2s; }
+    .back-link:hover { color: var(--accent); }
+    .page-wrap { padding-top: 72px; max-width: 1100px; margin: 0 auto; }
+    .legal-hero { padding: clamp(56px,8vw,100px) clamp(24px,4vw,64px) clamp(40px,6vw,64px); max-width: 760px; }
+    .legal-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    .legal-h1 { font-size: clamp(32px,5vw,52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.06; color: var(--textprimary); margin-bottom: 16px; }
+    .legal-updated { font-size: 13px; color: var(--textmuted); margin-top: 8px; }
+    .legal-body { max-width: 760px; padding: 0 clamp(24px,4vw,64px) clamp(80px,12vw,140px); }
+    .legal-section { border-top: 1px solid var(--bordergray); padding: 40px 0 0; margin-bottom: 40px; }
+    .legal-section h2 { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; color: var(--textprimary); margin-bottom: 16px; }
+    .legal-section h3 { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: var(--textprimary); margin-bottom: 10px; margin-top: 24px; }
+    .legal-section p { font-size: 15px; color: var(--textsecondary); line-height: 1.75; margin-bottom: 14px; }
+    .legal-section ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .legal-section ul li { font-size: 15px; color: var(--textsecondary); line-height: 1.65; display: flex; align-items: flex-start; gap: 10px; }
+    .legal-section ul li::before { content: ''; display: block; width: 14px; height: 1px; background: var(--accentmuted); flex-shrink: 0; margin-top: 11px; }
+    .legal-section a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accentmuted); transition: opacity .2s; }
+    .legal-section a:hover { opacity: .75; }
+    .legal-callout { background: var(--accentlight); border: 1px solid rgba(107,93,184,.15); border-radius: 12px; padding: 20px 24px; margin: 20px 0; }
+    .legal-callout p { font-size: 14px; color: var(--textprimary); font-weight: 500; margin-bottom: 10px; line-height: 1.7; }
+    .legal-callout p:last-child { margin-bottom: 0; }
+    .legal-callout.warning { background: #FFF9ED; border-color: rgba(217,119,6,.2); }
+    .legal-callout.warning p { color: #92400E; }
 
+    /* HOW IT WORKS GRID */
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+    @media (max-width: 600px) { .how-grid { grid-template-columns: 1fr; } }
+    .how-card { background: var(--warmgray); border-radius: 12px; padding: 24px 20px; }
+    .how-card-num { font-size: 11px; font-weight: 600; letter-spacing: .1em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+    .how-card-title { font-size: 14px; font-weight: 500; color: var(--textprimary); margin-bottom: 8px; letter-spacing: -0.01em; }
+    .how-card-desc { font-size: 13px; color: var(--textsecondary); line-height: 1.65; }
+
+    .legal-footer { border-top: 1px solid var(--bordergray); padding: 32px clamp(24px,4vw,64px); display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; }
+    .legal-footer p { font-size: 12px; color: var(--textmuted); }
+    .legal-footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .legal-footer-links a { font-size: 12px; color: var(--textmuted); text-decoration: none; transition: color .2s; }
+    .legal-footer-links a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="back-link">← Back to SQUARGRAPH™</a>
+    <img src="/logo.webp" alt="SQUARGRAPH™" height="26" style="height:26px;width:auto;" />
+  </div>
+</header>
+
+<div class="page-wrap">
+  <div class="legal-hero">
+    <p class="legal-eyebrow">Transparency</p>
+    <h1 class="legal-h1">AI Disclosure</h1>
+    <p class="legal-updated">Last updated: June 2026 · SQUARGRAPH™, New Delhi, India</p>
+  </div>
+
+  <div class="legal-body">
+
+    <div class="legal-section">
+      <h2>What we use AI for</h2>
+      <p>At SQUARGRAPH™, AI is a tool in our process, not a replacement for strategic judgment. The Brand Growth Audit™ and Brand Quotient™ scoring system combine automated data collection, AI-assisted analysis, and our own evaluation frameworks to produce brand assessments quickly and consistently.</p>
+      <p>Here is what happens when you run an audit:</p>
+      <div class="how-grid">
+        <div class="how-card">
+          <div class="how-card-num">01</div>
+          <div class="how-card-title">Data Collection</div>
+          <div class="how-card-desc">Automated systems pull publicly available information from your website, social profiles, and the competitor URLs you provide in the audit form.</div>
+        </div>
+        <div class="how-card">
+          <div class="how-card-num">02</div>
+          <div class="how-card-title">AI Analysis</div>
+          <div class="how-card-desc">Google Gemini processes the collected data through SQUARGRAPH™'s proprietary scoring framework across three dimensions: web presence, communication quality, and competitive positioning.</div>
+        </div>
+        <div class="how-card">
+          <div class="how-card-num">03</div>
+          <div class="how-card-title">Brand Quotient™ Score</div>
+          <div class="how-card-desc">A weighted composite score is generated: 40% web presence, 30% communication, 30% competitive positioning. Human strategic review is available through follow-on engagements.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="legal-section">
+      <h2>What AI-generated analysis can tell you</h2>
+      <ul>
+        <li>How your digital presence stacks up against competitors based on observable signals</li>
+        <li>Communication patterns and consistency across publicly accessible touchpoints</li>
+        <li>Structural gaps in positioning, messaging, and content</li>
+        <li>Directional strategic opportunities based on what's available in the data</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2>What it cannot tell you</h2>
+      <div class="legal-callout warning">
+        <p>AI-generated insights are based on available data, analytical models, and automated systems.</p>
+        <p>They won't capture every business variable, market condition, or contextual nuance relevant to your situation. Treat these outputs as directional insights, not definitive business advice.</p>
+      </div>
+      <p>Specifically, the Brand Quotient™ scoring system can't account for:</p>
+      <ul>
+        <li>Internal operational realities not visible in public data</li>
+        <li>Offline brand perception, customer sentiment, or word-of-mouth standing</li>
+        <li>Financial constraints or business model specifics you haven't shared</li>
+        <li>Strategic context that exists only inside your organisation</li>
+        <li>Market events or changes that occur after data collection</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2>Our position on AI</h2>
+      <p>We think AI is genuinely useful for research and pattern recognition. What it isn't is a strategist. The Brand Growth Audit™ is built to give you a fast, structured baseline, the kind of diagnostic that typically takes a strategy team several days to produce by hand. It's a starting point, not the whole answer.</p>
+      <div class="legal-callout">
+        <p>Human validation and professional judgment are recommended before making business, financial, legal, branding, or operational decisions based on any AI-generated output from SQUARGRAPH™.</p>
+      </div>
+      <p>For decisions that matter, we recommend following up with a <a href="/#Engagements">Discovery Session™</a> where a human strategist can review the outputs in the context of your specific situation.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Data usage in AI processing</h2>
+      <p>Information you submit through the Brand Growth Audit™ form is used to run your assessment only. It is not used to train AI models. Your data is not shared with third-party AI providers beyond what's technically necessary to generate your report. See our <a href="/privacy-policy">Privacy Policy</a> for full details.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Questions</h2>
+      <p>If you have questions about how AI is used in a specific output or engagement, email us at <a href="mailto:hello@squargraph.com">hello@squargraph.com</a>.</p>
+    </div>
+
+  </div>
+
+  <footer class="legal-footer">
+    <p>© 2026 SQUARGRAPH™. All rights reserved.</p>
+    <div class="legal-footer-links">
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms-of-use">Terms of Use</a>
+      <a href="/refund-policy">Refund Policy</a>
+      <a href="/ai-disclosure">AI Disclosure</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
