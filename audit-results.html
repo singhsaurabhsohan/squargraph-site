@@ -1182,6 +1182,7 @@
               payload: notifyPayload,
               scores: _cachedScores || {},
               payment_id: response.razorpay_payment_id,
+              product: options.description,
               payment_platform: 'Razorpay',
               payment_amount: options.amount / 100,
               payment_currency: options.currency,
