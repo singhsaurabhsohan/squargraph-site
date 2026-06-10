@@ -27,7 +27,23 @@
   <link rel="preload" href="/fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+  var _rcLoaded = false;
+  function _loadRC() {
+    if (_rcLoaded) return; _rcLoaded = true;
+    var s = document.createElement('script');
+    s.src = 'https://www.google.com/recaptcha/api.js';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+  var _rcObs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) { _loadRC(); _rcObs.disconnect(); }
+  }, { rootMargin: '200px' });
+  document.addEventListener('DOMContentLoaded', function() {
+    var el = document.getElementById('contact');
+    if (el) _rcObs.observe(el); else _loadRC();
+  });
+  </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/>
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
 
