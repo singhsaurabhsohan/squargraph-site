@@ -2846,23 +2846,30 @@ if (phoneEl) {
     preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
     separateDialCode: false,
     utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
-    excludeCountries: [],
-    autoPlaceholder: 'polite',
     nationalMode: true,
     placeholderNumberType: 'MOBILE'
   });
 
-  // Kill iOS tap highlight on flag button
-  var flagBtn = phoneEl.closest('.iti') && phoneEl.closest('.iti').querySelector('.iti__selected-flag');
-  if (flagBtn) {
-    flagBtn.addEventListener('touchstart', function(e) {
-      e.currentTarget.style.webkitTapHighlightColor = 'transparent';
-      e.currentTarget.style.backgroundColor = 'transparent';
-    }, { passive: true });
-    flagBtn.addEventListener('touchend', function(e) {
-      e.currentTarget.style.backgroundColor = 'transparent';
-    }, { passive: true });
-  }
+  // Wait for ITI to render then kill iOS highlight at DOM level
+  setTimeout(function() {
+    var itiWrap = phoneEl.closest('.iti');
+    if (!itiWrap) return;
+    // Set on every element ITI creates
+    itiWrap.querySelectorAll('*').forEach(function(el) {
+      el.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+    });
+    itiWrap.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+    var flagBtn = itiWrap.querySelector('.iti__selected-flag');
+    if (flagBtn) {
+      flagBtn.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+      flagBtn.style.backgroundColor = 'transparent';
+      // Prevent default touch behaviour
+      flagBtn.addEventListener('touchstart', function() {
+        this.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+        this.style.backgroundColor = 'transparent';
+      }, { passive: true });
+    }
+  }, 300);
 }
 </script>
 
