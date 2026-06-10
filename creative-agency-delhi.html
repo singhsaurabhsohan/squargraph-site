@@ -27,6 +27,9 @@
   <link rel="preload" href="/fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
 
   <!-- Fonts -->
   <style>
@@ -1140,6 +1143,9 @@
       background-repeat: no-repeat;
       background-position: right 20px center;
       padding-right: 44px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
     }
     select.form-input option { background: #fff; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -1613,8 +1619,223 @@
 .contact-links {
   border-top: 1px solid var(--bordergray);
 }
+.iti__country-list {
+  border-radius: 16px;
+  border: 1px solid var(--bordergray);
+  box-shadow: 0 12px 40px rgba(26,23,20,0.12);
+  font-family: 'Satoshi', sans-serif;
+  font-size: 13px;
+  z-index: 99999;
+  position: fixed !important;
+  max-height: 280px;
+  overflow-y: auto;
+  background: #fff;
+  width: max-content;
+  min-width: 280px;
+  padding: 8px 0;
+  scrollbar-width: thin;
+}
+.iti__country-list::-webkit-scrollbar {
+  width: 4px;
+  background: var(--bordergray);
+}
+.iti__country-list::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+.iti__country {
+  padding: 10px 16px;
+  transition: background 0.2s;
+}
+.iti__country.iti__highlight {
+  background: var(--accentlight);
+}
+.iti__country-name {
+  color: var(--textprimary);
+  font-weight: 500;
+}
+.iti__dial-code {
+  color: var(--textsecondary);
+  font-size: 12px;
+  margin-left: 8px;
+}
+.iti__search-input {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 13px;
+  border-radius: 12px;
+  border: 1px solid var(--bordergray);
+  padding: 10px 14px;
+  margin: 8px 12px;
+  width: calc(100% - 24px);
+  background: var(--warmgray);
+  color: var(--textprimary);
+}
+.iti__search-input:focus {
+  border-color: var(--accentmuted);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(107,93,184,.2);
+}
+/* Force country list styling for phone input */
+.iti--container .iti__country-list,
+.iti__country-list {
+  border-radius: 16px !important;
+  border: 1px solid var(--border, #E5E3DF) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12) !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  max-height: 280px !important;
+  overflow-y: auto !important;
+  background: #fff !important;
+  padding: 8px 0 !important;
+}
+.iti__country {
+  padding: 10px 16px !important;
+  transition: background 0.2s !important;
+}
+.iti__country.iti__highlight {
+  background: var(--accentlight, #EEECf7) !important;
+}
+.iti__country-name {
+  font-weight: 500 !important;
+}
+.iti__dial-code {
+  font-size: 12px !important;
+  margin-left: 8px !important;
+  opacity: 0.7;
+}
+/* Ensure flags are visible */
+.iti__flag {
+  background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags.png") !important;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important;
+  }
+}
   </style>
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
+  <style>
+    /* intl-tel-input overrides — phone field only */
+ .iti {
+  display: block;
+  width: 100%;
+  position: relative;
+  border-radius: 999px;
+  background: var(--warmgray);
+  border: 1px solid var(--bordergray);
+  overflow: visible;
+  transition: border-color .2s;
+}
+.iti:focus-within {
+  border-color: var(--accentmuted);
+}
+.iti__flag-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 0;
+}
+.iti__selected-flag {
+  height: 48px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 10px 0 14px;
+  min-width: 72px;
+  display: flex;
+  align-items: center;
+}
+.iti input#phone {
+  border: none !important;
+  background: transparent !important;
+  height: 48px;
+  width: 100% !important;
+  padding-left: 86px !important;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  color: var(--textprimary);
+  outline: none;
+  box-shadow: none !important;
+}
+.iti input#phone:focus {
+  box-shadow: none !important;
+}
+.iti__arrow {
+  border-top-color: var(--textsecondary);
+}
+    .iti__country.iti__highlight { background: var(--accentlight); }
+    .iti__search-input {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 13px;
+      border-radius: 8px;
+      border: 1px solid var(--bordergray);
+      padding: 8px 12px;
+      width: calc(100% - 24px);
+      margin: 8px 12px 4px;
+      display: block;
+    }
+    .iti__dial-code { color: var(--textsecondary); }
+    /* Prevent ITI from wrapping the country select */
+    #country-location + .iti,
+    #country-location ~ .iti,
+    .iti:has(#country-location) { display: none !important; }
+    /* Country select: fully self-contained styles, no .form-input inheritance */
+   #country-location {
+      width: 100%;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      color: var(--textprimary);
+      background: var(--warmgray);
+      border: 1px solid var(--bordergray);
+      border-radius: 999px;
+      padding: 13px 44px 13px 20px;
+      min-height: 48px;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 20px center;
+      transition: border-color .25s;
+    }
+    #country-location:focus {
+      border-color: var(--accentmuted);
+    }
+    #country-location option { background: #fff; }
+    #country-location + .iti,
+    #country-location ~ .iti,
+    .iti:has(#country-location) { display: none !important; }
+    .submit-btn {
+      margin-top: 0 !important;
+    }
+.iti__selected-flag,
+.iti__selected-flag:active,
+.iti__selected-flag:focus,
+.iti__selected-flag:focus-visible,
+.iti__selected-flag:active *,
+.iti__selected-flag:focus * {
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+.iti__flag-container,
+.iti__flag-container:active,
+.iti__flag-container:focus {
+  background: transparent !important;
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+.iti__selected-flag::before,
+.iti__selected-flag::after {
+  display: none !important;
+}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -2223,17 +2444,17 @@ We work with businesses that are serious about their positioning, communication,
       <!-- Right: Form -->
       <div class="fade-up d2">
         <form id="contact-form" novalidate style="display:flex;flex-direction:column;gap:14px;">
-          <div class="form-row">
-            <div>
-              <label class="form-label" for="name">Name</label>
-              <input type="text" id="name" name="name" required placeholder="Full name" class="form-input" autocomplete="name"/>
-              <p class="field-error">Please enter your name.</p>
+          <div>
+            <label class="form-label" for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Full name" class="form-input" autocomplete="name"/>
+            <p class="field-error">Please enter your name.</p>
+          </div>
+          <div>
+            <label class="form-label" style="display:block;margin-bottom:7px;">Phone</label>
+            <div style="display:block;width:100%;">
+              <input type="tel" id="phone" name="phone" required placeholder="98765 43210" autocomplete="tel"/>
             </div>
-            <div>
-              <label class="form-label" for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXX XXXXX" class="form-input" autocomplete="tel"/>
-              <p class="field-error">Please enter your phone number.</p>
-            </div>
+            <p class="field-error">Please enter your phone number.</p>
           </div>
           <div>
             <label class="form-label" for="email">Work Email</label>
@@ -2241,10 +2462,38 @@ We work with businesses that are serious about their positioning, communication,
             <p class="field-error">Please enter your email id.</p>
           </div>
           <div>
-            <label class="form-label" for="company">Brand / Company</label>
-            <input type="text" id="company" name="company" required placeholder="Your brand name" class="form-input" autocomplete="organization"/>
-            <p class="field-error">Please enter your company name</p>
-          </div>
+  <label class="form-label" for="company">Brand / Company</label>
+  <input type="text" id="company" name="company" required placeholder="Your brand name" class="form-input" autocomplete="organization"/>
+  <p class="field-error">Please enter your company name</p>
+</div>
+<div>
+  <div>
+  <label class="form-label" for="city">City / Location</label>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:140px;">
+      <select id="country-location" name="country" autocomplete="off" class="form-input">
+        <option value="">Country</option>
+        <option value="India" selected>🇮🇳 India</option>
+        <option value="USA">🇺🇸 USA</option>
+        <option value="UK">🇬🇧 UK</option>
+        <option value="UAE">🇦🇪 UAE</option>
+        <option value="Singapore">🇸🇬 Singapore</option>
+        <option value="Australia">🇦🇺 Australia</option>
+        <option value="Canada">🇨🇦 Canada</option>
+        <option value="Germany">🇩🇪 Germany</option>
+        <option value="France">🇫🇷 France</option>
+        <option value="Japan">🇯🇵 Japan</option>
+        <option value="Other">🌍 Other</option>
+      </select>
+    </div>
+    <div style="flex:1;min-width:120px;position:relative;">
+      <select id="city" name="city" class="form-input" style="display:none;">
+        <option value="" disabled selected>Select city</option>
+      </select>
+      <input type="text" id="city-text" name="city_text" placeholder="Enter city" class="form-input" autocomplete="address-level2" style="display:block;"/>
+    </div>
+  </div>
+</div>
           <div class="form-row">
             <div>
               <label class="form-label" for="service-select">What do you need?</label>
@@ -2283,14 +2532,18 @@ We work with businesses that are serious about their positioning, communication,
           </div>
           <div>
             <label class="form-label" for="message">Project brief</label>
-            <textarea id="message" name="message" required placeholder="What are you trying to achieve? What's the current gap?" class="form-input" autocomplete="off" style="min-height:120px;border-radius:16px;resize:vertical;"></textarea>
+            <textarea id="message" name="message" required placeholder="Message or brief" class="form-input" autocomplete="off" style="min-height:120px;border-radius:16px;resize:vertical;"></textarea>
             <p class="field-error">Please describe your project briefly.</p>
           </div>
           <div>
             <label class="form-label" for="reference">Reference links (optional)</label>
             <input type="text" id="reference" name="reference" placeholder="Paste a link, Drive, Notion, or any reference" class="form-input"/>
           </div>
-          <button type="submit" id="form-submit-btn" class="submit-btn">Send inquiry →</button>
+          <div style="margin-top: 24px; margin-bottom: 24px;">
+            <div class="g-recaptcha" data-sitekey="6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB" style="transform:scale(0.85);transform-origin:left top;"></div>
+          </div>
+            <p id="captcha-error" style="font-size:11px;color:#EF4444;display:none;margin-bottom:8px;">Please complete the captcha.</p>
+            <button type="submit" id="form-submit-btn" class="submit-btn">Send inquiry →</button>
           <p class="form-next" style="text-align: left;">Every brief reviewed within 48 hours. No follow-up sequence. No pitch deck.</p>
         </form>
       </div>
@@ -2641,6 +2894,35 @@ We work with businesses that are serious about their positioning, communication,
 })();
 </script>
 
+<script>
+var phoneEl = document.getElementById('phone');
+var iti;
+if (phoneEl) {
+  iti = window.intlTelInput(phoneEl, {
+    initialCountry: 'in',
+    preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
+    separateDialCode: false,
+    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
+    excludeCountries: [],
+    autoPlaceholder: 'polite',
+    nationalMode: true,
+    placeholderNumberType: 'MOBILE'
+  });
+
+  // Kill iOS tap highlight on flag button
+  var flagBtn = phoneEl.closest('.iti') && phoneEl.closest('.iti').querySelector('.iti__selected-flag');
+  if (flagBtn) {
+    flagBtn.addEventListener('touchstart', function(e) {
+      e.currentTarget.style.webkitTapHighlightColor = 'transparent';
+      e.currentTarget.style.backgroundColor = 'transparent';
+    }, { passive: true });
+    flagBtn.addEventListener('touchend', function(e) {
+      e.currentTarget.style.backgroundColor = 'transparent';
+    }, { passive: true });
+  }
+}
+</script>
+
 <!-- ══════════════
      FORM HANDLER
 ══════════════ -->
@@ -2693,7 +2975,7 @@ We work with businesses that are serious about their positioning, communication,
     var raw = Object.fromEntries(new FormData(formEl).entries());
     return {
       name:       raw.name      || null,
-      phone:      raw.phone     || null,
+      phone: (typeof iti !== 'undefined' ? iti.getNumber() : raw.phone) || null,
       email:      raw.email     || null,
       company:    raw.company   || null,
       service:    raw.service   || null,
@@ -2702,7 +2984,9 @@ We work with businesses that are serious about their positioning, communication,
       message:    raw.message   || null,
       reference:  raw.reference || null,
       created_at: new Date().toISOString(),
-      source_url: window.location.href
+      source_url: window.location.href,
+country: raw.country || null,
+city: raw.city || null
     };
   }
 
@@ -2710,7 +2994,28 @@ We work with businesses that are serious about their positioning, communication,
     var required = formEl.querySelectorAll('[required]');
     var valid = true;
     required.forEach(function(field) {
-      var err = field.parentNode.querySelector('.field-error');
+      var errContainer = field.closest('form > div') || field.parentNode;
+      var err = errContainer.querySelector('.field-error');
+
+      // Special handling for phone field
+      if (field.id === 'phone' && typeof iti !== 'undefined') {
+        if (!field.value.trim()) {
+          field.classList.add('error');
+          if (err) { err.textContent = 'Please enter your phone number.'; err.classList.add('visible'); }
+          if (valid) field.focus();
+          valid = false;
+        } else if (!iti.isValidNumber()) {
+          field.classList.add('error');
+          if (err) { err.textContent = 'Please enter a valid ' + iti.getSelectedCountryData().name + ' phone number.'; err.classList.add('visible'); }
+          if (valid) field.focus();
+          valid = false;
+        } else {
+          field.classList.remove('error');
+          if (err) err.classList.remove('visible');
+        }
+        return;
+      }
+
       if (!field.value.trim()) {
         field.classList.add('error');
         if (err) err.classList.add('visible');
@@ -2753,8 +3058,14 @@ document.querySelectorAll('#contact-form .form-input').forEach(function(field) {
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     if (submitted) return;
-    if (!validateForm(form)) { setState('error', 'Please fill in all required fields.'); return; }
-    submitted = true;
+if (!validateForm(form)) { setState('error', 'Please fill in all required fields.'); return; }
+var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
+if (!captchaVal) {
+  document.getElementById('captcha-error').style.display = 'block';
+  return;
+}
+document.getElementById('captcha-error').style.display = 'none';
+submitted = true;
     setState('loading');
     try {
       await submitLead(getPayload(form));
@@ -2880,6 +3191,86 @@ document.addEventListener('click', function(e) {
   });
   setTimeout(loadGTM, 5000);
 })();
+</script>
+<script>
+var CITY_DATA = {
+  'India': ['Ahmedabad','Bengaluru','Chennai','Delhi','Hyderabad','Jaipur','Kochi','Kolkata','Lucknow','Mumbai','Noida','Pune','Surat'],
+  'USA': ['Atlanta','Austin','Boston','Chicago','Dallas','Houston','Los Angeles','Miami','New York','San Francisco','Seattle','Washington D.C.'],
+  'UK': ['Birmingham','Bristol','Edinburgh','Glasgow','Leeds','Liverpool','London','Manchester','Oxford'],
+  'UAE': ['Abu Dhabi','Ajman','Dubai','Ras Al Khaimah','Sharjah'],
+  'Singapore': ['Singapore'],
+  'Australia': ['Brisbane','Canberra','Melbourne','Perth','Sydney'],
+  'Canada': ['Calgary','Edmonton','Montreal','Ottawa','Toronto','Vancouver'],
+  'Germany': ['Berlin','Cologne','Frankfurt','Hamburg','Munich','Stuttgart'],
+  'France': ['Bordeaux','Lyon','Marseille','Nice','Paris','Toulouse'],
+  'Japan': ['Fukuoka','Kyoto','Nagoya','Osaka','Sapporo','Tokyo','Yokohama'],
+  'Other': []
+};
+
+function updateCityDropdown(countrySelectId, citySelectId) {
+  var countryEl = document.getElementById(countrySelectId);
+  var cityEl = document.getElementById(citySelectId);
+  if (!countryEl || !cityEl) return;
+
+  countryEl.addEventListener('change', function() {
+    var country = this.value;
+    var cities = CITY_DATA[country] || [];
+
+    // Reset city dropdown
+    cityEl.innerHTML = '';
+
+    if (!country || cities.length === 0) {
+      var opt = document.createElement('option');
+      opt.value = '';
+      opt.textContent = 'Enter city name';
+      cityEl.appendChild(opt);
+      cityEl.style.display = 'none';
+      // Show text input instead
+      var textInput = document.getElementById(citySelectId + '-text');
+      if (textInput) textInput.style.display = 'block';
+      return;
+    }
+
+    // Add placeholder
+    var placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = 'Select city';
+    cityEl.appendChild(placeholder);
+
+    // Add cities
+    cities.forEach(function(city) {
+      var opt = document.createElement('option');
+      opt.value = city;
+      opt.textContent = city;
+      cityEl.appendChild(opt);
+    });
+
+    // Add Other option
+    var other = document.createElement('option');
+    other.value = 'Other';
+    other.textContent = 'Other';
+    cityEl.appendChild(other);
+
+    cityEl.style.display = 'block';
+    var textInput = document.getElementById(citySelectId + '-text');
+    if (textInput) textInput.style.display = 'none';
+  });
+
+  // Handle "Other" city selection → show text input
+  cityEl.addEventListener('change', function() {
+    var textInput = document.getElementById(citySelectId + '-text');
+    if (!textInput) return;
+    if (this.value === 'Other') {
+      textInput.style.display = 'block';
+      textInput.focus();
+    } else {
+      textInput.style.display = 'none';
+      textInput.value = '';
+    }
+  });
+}
 </script>
 </body>
 </html>
