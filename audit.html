@@ -2112,6 +2112,19 @@ var itiAudit = window.intlTelInput(document.getElementById('contact-phone'), {
   nationalMode: true,
   placeholderNumberType: 'MOBILE'
 });
+
+// Kill iOS tap highlight on flag button
+var flagBtnAudit = document.getElementById('contact-phone').closest('.iti') &&
+  document.getElementById('contact-phone').closest('.iti').querySelector('.iti__selected-flag');
+if (flagBtnAudit) {
+  flagBtnAudit.addEventListener('touchstart', function(e) {
+    e.currentTarget.style.webkitTapHighlightColor = 'transparent';
+    e.currentTarget.style.backgroundColor = 'transparent';
+  }, { passive: true });
+  flagBtnAudit.addEventListener('touchend', function(e) {
+    e.currentTarget.style.backgroundColor = 'transparent';
+  }, { passive: true });
+}
 </script>
 
 <script>
