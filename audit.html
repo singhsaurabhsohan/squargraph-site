@@ -1193,31 +1193,6 @@ select:focus {
     background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important;
   }
 }
-.iti__selected-flag,
-.iti__selected-flag:active,
-.iti__selected-flag:focus,
-.iti__selected-flag:focus-visible,
-.iti__selected-flag:active *,
-.iti__selected-flag:focus * {
-  background: transparent !important;
-  outline: none !important;
-  box-shadow: none !important;
-  -webkit-tap-highlight-color: transparent !important;
-  -webkit-touch-callout: none !important;
-  user-select: none !important;
-  -webkit-user-select: none !important;
-}
-.iti__flag-container,
-.iti__flag-container:active,
-.iti__flag-container:focus {
-  background: transparent !important;
-  outline: none !important;
-  -webkit-tap-highlight-color: transparent !important;
-}
-.iti__selected-flag::before,
-.iti__selected-flag::after {
-  display: none !important;
-}
 </style>
 </head>
 <body>
@@ -2104,39 +2079,14 @@ launchSuccessScreen();
   })();
 </script>
 <script>
-var phoneEl = document.getElementById('phone');
-var iti;
-if (phoneEl) {
-  iti = window.intlTelInput(phoneEl, {
-    initialCountry: 'in',
-    preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
-    separateDialCode: false,
-    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
-    nationalMode: true,
-    placeholderNumberType: 'MOBILE'
-  });
-
-  // Wait for ITI to render then kill iOS highlight at DOM level
-  setTimeout(function() {
-    var itiWrap = phoneEl.closest('.iti');
-    if (!itiWrap) return;
-    // Set on every element ITI creates
-    itiWrap.querySelectorAll('*').forEach(function(el) {
-      el.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
-    });
-    itiWrap.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
-    var flagBtn = itiWrap.querySelector('.iti__selected-flag');
-    if (flagBtn) {
-      flagBtn.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
-      flagBtn.style.backgroundColor = 'transparent';
-      // Prevent default touch behaviour
-      flagBtn.addEventListener('touchstart', function() {
-        this.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
-        this.style.backgroundColor = 'transparent';
-      }, { passive: true });
-    }
-  }, 300);
-}
+var itiAudit = window.intlTelInput(document.getElementById('contact-phone'), {
+  initialCountry: 'in',
+  preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
+  separateDialCode: false,
+  utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
+  nationalMode: true,
+  placeholderNumberType: 'MOBILE'
+});
 </script>
 
 <script>
