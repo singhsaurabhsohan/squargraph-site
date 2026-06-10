@@ -965,7 +965,7 @@
     return ok;
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (!validate()) return;
 
     var btn = document.getElementById('btn-submit');
@@ -994,6 +994,27 @@
       product:        'Discovery Session\u2122'
     };
 
+    // Save to Supabase leads
+    try {
+      await window.__sb.from('leads').insert([{
+        name: payload.name,
+        email: payload.email,
+        phone: payload.phone,
+        company: payload.company,
+        website: payload.website,
+        industry: payload.industry,
+        country: payload.country,
+        city: payload.city,
+        challenge: payload.challenge,
+        goal: payload.goal,
+        reference: payload.reference_link,
+        source: 'Discovery Session™',
+        source_url: window.location.href,
+        created_at: new Date().toISOString()
+      }]);
+    } catch(e) { console.error('Leads insert failed', e); }
+
+    // Open Razorpay
     var options = {
       key:         'rzp_live_SvayEzczzvrE7f',
       amount:      299900,
@@ -1064,8 +1085,33 @@
     }
   }
 
-  // Track page view
   trackEvent('discovery_page_viewed');
+
+  // Supabase init
+  window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
+  window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
+  window.__sb = {
+    from: function(table) {
+      return {
+        insert: async function(rows) {
+          var res = await fetch(
+            window.__sbUrl + '/rest/v1/' + table,
+            {
+              method: 'POST',
+              headers: {
+                'apikey': window.__sbKey,
+                'Authorization': 'Bearer ' + window.__sbKey,
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal'
+              },
+              body: JSON.stringify(rows)
+            }
+          );
+          if (!res.ok) throw new Error('Insert failed');
+        }
+      };
+    }
+  };
 </script>
 </body>
 </html>
