@@ -1172,7 +1172,7 @@
         if (pidEl) pidEl.textContent = 'Payment ID: ' + response.razorpay_payment_id;
         document.getElementById('modal').scrollTop = 0;
 
-        // Send AI scores + client data as notification
+        // Send AI scores + client data as notification + save to Supabase
         try {
           var notifyPayload = JSON.parse(sessionStorage.getItem('sq_audit_payload') || '{}');
           fetch('https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev/notify', {
@@ -1181,7 +1181,11 @@
             body: JSON.stringify({
               payload: notifyPayload,
               scores: _cachedScores || {},
-              payment_id: response.razorpay_payment_id
+              payment_id: response.razorpay_payment_id,
+              payment_platform: 'Razorpay',
+              payment_amount: options.amount / 100,
+              payment_currency: options.currency,
+              payment_status: 'success'
             })
           });
         } catch(e) { console.error('Notify failed', e); }
