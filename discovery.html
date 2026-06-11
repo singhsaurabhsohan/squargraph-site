@@ -663,7 +663,7 @@
 <body>
 
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZK" height="0" width="0" style="display:none;visibility:visible"></iframe></noscript>
 
 <!-- HEADER -->
 <header class="site-header">
@@ -906,11 +906,10 @@
   function validate() {
     var ok = true;
 
-    function checkFieldValidation(wrapperId, condition) {
+    function checkFieldValidation(wrapperId, inputId, condition) {
       var wrap = document.getElementById(wrapperId);
-      if (!wrap) return;
-      var el = wrap.querySelector('input, select, textarea');
-      if (!el) return;
+      var el = document.getElementById(inputId);
+      if (!wrap || !el) return;
       if (condition(el.value)) {
         wrap.classList.remove('has-error');
       } else {
