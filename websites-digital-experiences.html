@@ -416,14 +416,15 @@
 
     /* ── ITI PHONE ── */
     .iti {
-      display: block;
-      width: 100%;
-      position: relative;
-      border-radius: 999px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      transition: border-color var(--transition), box-shadow var(--transition);
-    }
+  display: block;
+  width: 100%;
+  position: relative;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: visible;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
     .iti:focus-within {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(107,93,184,.12);
