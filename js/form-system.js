@@ -1,135 +1,82 @@
-/* 
-  SQUARGRAPH Form System 
-  Centralizes City mapping, ITI initialisation, and common form validations.
-*/
+/* ══════════════════════════════════════════════
+   SQUARGRAPH™ Form System — form-system.js
+   Provides: initRobustITI, initCountryCityMapping
+══════════════════════════════════════════════ */
 
-var CITY_DATA = {
-  'India': ['Ahmedabad','Bengaluru','Chennai','Delhi','Hyderabad','Jaipur','Kochi','Kolkata','Lucknow','Mumbai','Noida','Pune','Surat'],
-  'USA': ['Atlanta','Austin','Boston','Chicago','Dallas','Houston','Los Angeles','Miami','New York','San Francisco','Seattle','Washington D.C.'],
-  'UK': ['Birmingham','Bristol','Edinburgh','Glasgow','Leeds','Liverpool','London','Manchester','Oxford'],
-  'UAE': ['Abu Dhabi','Ajman','Dubai','Sharjah'],
+/* ── Country → City mapping ── */
+var COUNTRY_CITIES = {
+  'India':     ['Mumbai','Delhi','Bengaluru','Hyderabad','Chennai','Pune','Kolkata','Ahmedabad','Jaipur','Surat','Other'],
+  'UAE':       ['Dubai','Abu Dhabi','Sharjah','Ajman','Ras Al Khaimah','Other'],
+  'USA':       ['New York','Los Angeles','Chicago','Houston','San Francisco','Seattle','Austin','Other'],
+  'UK':        ['London','Manchester','Birmingham','Edinburgh','Bristol','Leeds','Other'],
   'Singapore': ['Singapore'],
-  'Australia': ['Adelaide','Brisbane','Melbourne','Perth','Sydney'],
-  'Canada': ['Calgary','Edmonton','Montreal','Ottawa','Toronto','Vancouver'],
-  'Germany': ['Berlin','Cologne','Frankfurt','Hamburg','Munich','Stuttgart'],
-  'France': ['Bordeaux','Lille','Lyon','Marseille','Paris','Toulouse'],
-  'Japan': ['Fukuoka','Kyoto','Nagoya','Osaka','Sapporo','Tokyo','Yokohama']
+  'Australia': ['Sydney','Melbourne','Brisbane','Perth','Adelaide','Other'],
+  'Canada':    ['Toronto','Vancouver','Montreal','Calgary','Ottawa','Other'],
+  'Germany':   ['Berlin','Munich','Hamburg','Frankfurt','Cologne','Other'],
+  'France':    ['Paris','Lyon','Marseille','Toulouse','Nice','Other'],
+  'Japan':     ['Tokyo','Osaka','Kyoto','Yokohama','Nagoya','Other'],
+  'Other':     ['Other']
 };
 
-/**
- * Initializes the dynamic country-to-city dropdown mapping.
- */
-function initCountryCityMapping(countrySelectId, citySelectId) {
-  var countrySelect = document.getElementById(countrySelectId);
-  var citySelect = document.getElementById(citySelectId);
-  var textInput = document.getElementById(citySelectId + '-text');
-  
-  if (!countrySelect || !citySelect || !textInput) return;
-  
-  // Clean up any existing listeners by cloning (if needed) but usually it's fine.
-  countrySelect.addEventListener('change', function() {
-    var country = this.value;
-    var cities = CITY_DATA[country] || [];
-    
-    if (!country || cities.length === 0) {
-      citySelect.style.display = 'none';
-      citySelect.required = false;
-      citySelect.innerHTML = '';
-      textInput.style.display = 'block';
-      textInput.required = true;
-      textInput.value = '';
-      return;
+function initCountryCityMapping(countryId, cityId) {
+  var countryEl = document.getElementById(countryId);
+  var cityEl    = document.getElementById(cityId);
+  if (!countryEl || !cityEl) return;
+
+  countryEl.addEventListener('change', function () {
+    var selected = this.value;
+    var cities   = COUNTRY_CITIES[selected] || ['Other'];
+
+    /* rebuild city options */
+    cityEl.innerHTML = '<option value="" disabled selected>Select city</option>';
+    cities.forEach(function (c) {
+      var opt = document.createElement('option');
+      opt.value = c; opt.textContent = c;
+      cityEl.appendChild(opt);
+    });
+
+    /* show city dropdown */
+    cityEl.style.display = 'block';
+
+    /* if there's a city-text fallback input, hide it */
+    var cityText = document.getElementById(cityId + '-text') ||
+                   document.getElementById('city-text');
+    if (cityText) cityText.style.display = 'none';
+  });
+}
+
+/* ── intl-tel-input robust init ── */
+function initRobustITI(phoneId) {
+  return new Promise(function (resolve, reject) {
+    var phoneEl = document.getElementById(phoneId);
+    if (!phoneEl) { reject(new Error('Phone element not found: ' + phoneId)); return; }
+
+    function doInit() {
+      if (typeof window.intlTelInput !== 'function') {
+        reject(new Error('intlTelInput not loaded')); return;
+      }
+      var instance = window.intlTelInput(phoneEl, {
+        initialCountry:      'in',
+        preferredCountries:  ['in', 'ae', 'gb', 'us', 'sg', 'au', 'ca'],
+        separateDialCode:    true,
+        utilsScript:         'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
+      });
+      resolve(instance);
     }
 
-    // Add cities
-    citySelect.innerHTML = '<option value="" disabled selected>Select city</option>';
-    cities.forEach(function(city) {
-      var opt = document.createElement('option');
-      opt.value = city;
-      opt.textContent = city;
-      citySelect.appendChild(opt);
-    });
-    
-    citySelect.style.display = 'block';
-    citySelect.required = true;
-    textInput.style.display = 'none';
-    textInput.value = '';
-    textInput.required = false;
-  });
-}
-
-/**
- * Robustly initializes intlTelInput, waiting for the CDN to load if necessary.
- * Returns a Promise that resolves with the ITI instance.
- */
-window._itiInstances = window._itiInstances || {};
-
-function initRobustITI(phoneId) {
-  return new Promise(function(resolve, reject) {
-    var phoneEl = document.getElementById(phoneId);
-    if (!phoneEl) return reject(new Error('Phone element not found'));
-
-    var attempts = 0;
-    var check = setInterval(function() {
-      if (typeof window.intlTelInput !== 'undefined') {
-        clearInterval(check);
-        var instance = window.intlTelInput(phoneEl, {
-          initialCountry: 'in',
-          preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
-          separateDialCode: false,
-          utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
-          nationalMode: true,
-          placeholderNumberType: 'MOBILE',
-          dropdownContainer: document.body
-        });
-        
-        window._itiInstances[phoneId] = instance;
-
-        // Fix tap highlight on mobile
-        setTimeout(function() {
-          var wrap = phoneEl.closest('.iti');
-          if (wrap) {
-            var flagBtn = wrap.querySelector('.iti__selected-flag');
-            if (flagBtn) {
-              flagBtn.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
-              flagBtn.style.backgroundColor = 'transparent';
-              flagBtn.addEventListener('touchstart', function() {
-                this.style.backgroundColor = 'transparent';
-              }, { passive: true });
-            }
-          }
-        }, 300);
-
-        resolve(instance);
-      } else {
+    if (typeof window.intlTelInput === 'function') {
+      doInit();
+    } else {
+      /* wait for ITI script to finish loading */
+      var attempts = 0;
+      var poll = setInterval(function () {
         attempts++;
-        if (attempts > 100) { // Timeout after ~10 seconds
-          clearInterval(check);
-          console.error('intlTelInput failed to load.');
-          reject(new Error('intlTelInput load timeout'));
+        if (typeof window.intlTelInput === 'function') {
+          clearInterval(poll); doInit();
+        } else if (attempts > 40) {
+          clearInterval(poll); reject(new Error('intlTelInput load timeout'));
         }
-      }
-    }, 100);
+      }, 100);
+    }
   });
-}
-
-/**
- * Generic field validation helper
- */
-function checkFieldValidation(inputId, condition) {
-  var el = document.getElementById(inputId);
-  if (!el) return true; // if field doesn't exist, don't fail validation
-  var wrap = el.parentNode;
-  
-  if (condition(el.value)) {
-    wrap.classList.remove('has-error');
-    var err = wrap.querySelector('.field-error') || wrap.querySelector('.error-msg');
-    if (err) err.classList.remove('visible');
-    return true;
-  } else {
-    wrap.classList.add('has-error');
-    var err = wrap.querySelector('.field-error') || wrap.querySelector('.error-msg');
-    if (err) err.classList.add('visible');
-    return false;
-  }
 }
