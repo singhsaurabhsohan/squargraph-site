@@ -42,6 +42,18 @@ function initCountryCityMapping(countryId, cityId) {
     var cityText = document.getElementById(cityId + '-text') ||
                    document.getElementById('city-text');
     if (cityText) cityText.style.display = 'none';
+
+    /* show text input when user picks Other from city dropdown */
+    cityEl.addEventListener('change', function () {
+      if (!cityText) return;
+      if (this.value === 'Other') {
+        cityText.style.display = 'block';
+        cityText.focus();
+      } else {
+        cityText.style.display = 'none';
+        cityText.value = '';
+      }
+    });
   });
 }
 
