@@ -1014,25 +1014,150 @@
   status: 'new',
   created_at: new Date().toISOString()
 }]);
-  try {
-  await fetch(
-    'https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev/notify',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        payload: payload,
-        product: 'Brand Foundation Sprint™',
-        payment_status: 'lead'
-      })
+      try {
+        await fetch(
+          'https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev/notify',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              payload: payload,
+              product: 'Brand Foundation Sprint™',
+              payment_status: 'lead'
+            })
+          }
+        );
+      } catch(e) { console.error(e); }
+
+          <!-- Consent -->
+          <label class="consent-wrap" for="disc-consent">
+            <input type="checkbox" id="disc-consent" />
+            <span class="consent-text">I consent to SQUARGRAPH™ Studios collecting and processing the information submitted here.</span>
+          </label>
+          <span class="error-msg" id="consent-error">Please accept to continue.</span>
+
+          <!-- Submit -->
+          <button class="btn-submit" id="btn-submit" type="button" onclick="handleSubmit()">
+            Submit Brand Brief →
+          </button>
+
+          <!-- Trust -->
+          <div class="trust-row">
+            <div class="trust-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8A8580" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Tailored strategic engagement
+            </div>
+            <div class="trust-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8A8580" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Response within 24 hours
+            </div>
+            <div class="trust-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8A8580" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              Founder-led engagement
+            </div>
+          </div>
+
+        </div><!-- /field-group -->
+      </div><!-- /form-body -->
+
+      <!-- SUCCESS SCREEN -->
+      <div id="success-screen">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="success-eyebrow">Brief Received</div>
+        <div class="success-title">We'll review your requirements<br />and prepare a tailored proposal.</div>
+        <p class="success-sub">Our team will review your submission and reach out within 24 hours.</p>
+        <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20just%20booked%20a%20Discovery%20Session%E2%84%A2." target="_blank" rel="noopener noreferrer" class="btn-wa">
+          <svg width="14" height="14" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Confirm on WhatsApp
+        </a>
+      </div>
+
+    </div><!-- /form-card -->
+  </section>
+
+</div><!-- /page-wrap -->
+
+<div class="privacy-note">
+  🔒 Your information is securely stored and never sold to third parties.
+  By submitting, you agree to our
+  <a href="/privacy-policy">Privacy Policy</a>,
+  <a href="/terms-of-use">Terms of Use</a>, and
+  <a href="/refund-policy">Refund Policy</a>.
+</div>
+
+<script>
+  var itiDisc;
+
+  function initITI() {
+    var phoneEl = document.getElementById('disc-phone');
+    if (!phoneEl || typeof window.intlTelInput === 'undefined') return;
+    itiDisc = window.intlTelInput(phoneEl, {
+      initialCountry: 'in',
+      preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
+      separateDialCode: false,
+      utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
+      nationalMode: true,
+      placeholderNumberType: 'MOBILE'
+    });
+    setTimeout(function() {
+      var wrap = phoneEl.closest('.iti');
+      if (!wrap) return;
+      var flagBtn = wrap.querySelector('.iti__selected-flag');
+      if (flagBtn) {
+        flagBtn.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+        flagBtn.style.backgroundColor = 'transparent';
+        flagBtn.addEventListener('touchstart', function() {
+          this.style.backgroundColor = 'transparent';
+        }, { passive: true });
+      }
+    }, 300);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initITI);
+  } else {
+    initITI();
+  }
+
+  function trackEvent(name, params) {
+    if (window.dataLayer) window.dataLayer.push(Object.assign({ event: name }, params || {}));
+  }
+
+  function validate() {
+    var ok = true;
+
+    function checkField(wrapperId, inputId, condition) {
+      var wrap = document.getElementById(wrapperId);
+      var el = document.getElementById(inputId);
+      if (!wrap || !el) return;
+      if (condition(el.value)) {
+        wrap.classList.remove('has-error');
+      } else {
+        wrap.classList.add('has-error');
+        ok = false;
+      }
     }
-  );
-} catch(e) {
-  console.error(e);
-}
-    } catch(e) { console.error('Leads insert failed', e); }
+
+    checkField('field-name',      'disc-name',      function(v) { return v.trim().length > 1; });
+    checkField('field-email',     'disc-email',     function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); });
+    checkField('field-phone',     'disc-phone',     function(v) { return v.trim().length > 5; });
+    checkField('field-company',   'disc-company',   function(v) { return v.trim().length > 1; });
+    checkField('field-challenge', 'disc-challenge', function(v) { return v.trim().length > 10; });
+    checkField('field-goal',      'disc-goal',      function(v) { return v.trim().length > 10; });
+
+    var consent = document.getElementById('disc-consent');
+    var consentErr = document.getElementById('consent-error');
+    if (!consent.checked) {
+      consentErr.style.display = 'block';
+      ok = false;
+    } else {
+      consentErr.style.display = 'none';
+    }
+
+    return ok;
+  }
 
   // Supabase init
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
@@ -1059,6 +1184,79 @@
       };
     }
   };
+
+  async function handleSubmit() {
+    if (!validate()) return;
+
+    var btn = document.getElementById('btn-submit');
+    btn.disabled = true;
+    btn.textContent = 'Processing…';
+
+    // Resolve full phone number with country code
+    var phone = document.getElementById('disc-phone').value.trim();
+    if (itiDisc) {
+      var fullNumber = itiDisc.getNumber();
+      if (fullNumber) phone = fullNumber;
+    }
+
+    var payload = {
+      name:           document.getElementById('disc-name').value.trim(),
+      email:          document.getElementById('disc-email').value.trim(),
+      phone:          phone,
+      company:        document.getElementById('disc-company').value.trim(),
+      website:        document.getElementById('disc-website').value.trim(),
+      industry:       document.getElementById('disc-industry').value,
+      country:        document.getElementById('disc-country').value,
+      city:           document.getElementById('disc-city').value.trim(),
+      challenge:      document.getElementById('disc-challenge').value.trim(),
+      goal:           document.getElementById('disc-goal').value.trim(),
+      reference_link: document.getElementById('disc-link').value.trim(),
+      product:        'Brand Foundation Sprint\u2122',
+      source_url:     window.location.href
+    };
+
+    // Save to Supabase leads
+    try {
+      await window.__sb.from('leads').insert([{
+  name: payload.name,
+  email: payload.email,
+  phone: payload.phone,
+  company: payload.company,
+  website: payload.website,
+  industry: payload.industry,
+  country: payload.country,
+  city: payload.city,
+  challenge: payload.challenge,
+  goal: payload.goal,
+  reference: payload.reference_link,
+  source: 'Brand Foundation Sprint™',
+  source_url: window.location.href,
+  service: 'Brand Foundation Sprint™',
+  status: 'new',
+  created_at: new Date().toISOString()
+}]);
+      try {
+        await fetch(
+          'https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev/notify',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              payload: payload,
+              product: 'Brand Foundation Sprint™',
+              payment_status: 'lead'
+            })
+          }
+        );
+      } catch(e) { console.error(e); }
+
+      // Show success screen
+      document.getElementById('form-body').style.display = 'none';
+      var ss = document.getElementById('success-screen');
+      if (ss) ss.classList.add('visible');
+
+    } catch(e) { console.error('Leads insert failed', e); }
+  }
 </script>
 </body>
 </html>

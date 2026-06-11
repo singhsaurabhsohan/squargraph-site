@@ -997,26 +997,6 @@
     // Save to Supabase leads
     try {
       await window.__sb.from('leads').insert([{
-        name: payload.name,
-        email: payload.email,
-        phone: payload.phone,
-        company: payload.company,
-        website: payload.website,
-        industry: payload.industry,
-        country: payload.country,
-        city: payload.city,
-        challenge: payload.challenge,
-        goal: payload.goal,
-        reference: payload.reference_link,
-        source: 'Websites & Digital Experiences',
-        source_url: window.location.href,
-        created_at: new Date().toISOString()
-      }]);
-    } catch(e) { console.error('Leads insert failed', e); }
-
-   // Save to Supabase leads
-    try {
-      await window.__sb.from('leads').insert([{
         name:             payload.name,
         email:            payload.email,
         phone:            payload.phone,
@@ -1032,29 +1012,33 @@
         message:          payload.challenge || payload.goal || '',
         source:           'Websites & Digital Experiences',
         source_url:       window.location.href,
+        status:           'new',
         created_at:       new Date().toISOString()
       }]);
+      
+      try {
+        await fetch(
+          'https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev/notify',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              payload:        payload,
+              product:        'Websites & Digital Experiences',
+              payment_status: 'lead'
+            })
+          }
+        );
+      } catch(e) { console.error(e); }
+
+      // Show success screen
+      document.getElementById('form-body').style.display = 'none';
+      var ss = document.getElementById('success-screen');
+      if (ss) ss.classList.add('visible');
+
     } catch(e) { console.error('Leads insert failed', e); }
+  }
 
-    try {
-      await fetch(
-        'https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev/notify',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            payload:        payload,
-            product:        'Websites & Digital Experiences',
-            payment_status: 'lead'
-          })
-        }
-      );
-    } catch(e) { console.error(e); }
-
-    // Show success screen
-    document.getElementById('form-body').style.display = 'none';
-    var ss = document.getElementById('success-screen');
-    ss.classList.add('visible');
   // Supabase init
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
   window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
