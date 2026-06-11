@@ -894,7 +894,7 @@
   
   document.addEventListener('DOMContentLoaded', function() {
     initCountryCityMapping('form-country', 'form-city');
-    initRobustITI('phone').then(function(instance) {
+    initRobustITI('form-phone').then(function(instance) {
       window.iti = instance;
     }).catch(function(e) { console.error('ITI Init failed', e); });
   });
