@@ -55,10 +55,12 @@ function initRobustITI(phoneId) {
       if (typeof window.intlTelInput !== 'function') {
         reject(new Error('intlTelInput not loaded')); return;
       }
-      var instance = window.intlTelInput(phoneEl, {
+     var instance = window.intlTelInput(phoneEl, {
         initialCountry:      'in',
         preferredCountries:  ['in', 'ae', 'gb', 'us', 'sg', 'au', 'ca'],
         separateDialCode:    true,
+        allowDropdown:       true,
+        showFlags:           true,
         utilsScript:         'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
       });
       resolve(instance);
