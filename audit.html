@@ -1175,9 +1175,27 @@
     border-color: var(--accent);
     outline: none;
     box-shadow: 0 0 0 2px rgba(107,93,184,.2);
-  }    .iti__country.iti__highlight { background: var(--accent-light); }
-      .iti__search-input { font-family: var(--font); font-size: 13px; border-radius: 8px; border: 1px solid var(--border); padding: 8px 12px; }
-      .iti__dial-code { color: var(--muted); }
+  }
+  .iti__country.iti__highlight { background: var(--accent-light); }
+  .iti__search-input { font-family: var(--font); font-size: 13px; border-radius: 8px; border: 1px solid var(--border); padding: 8px 12px; }
+  .iti__dial-code { color: var(--muted); }
+  .audit-select {
+    font-family: var(--font); font-size: 14px; padding: 13px 44px 13px 20px;
+    min-height: 48px; width: 100%; appearance: none; -webkit-appearance: none;
+    cursor: pointer; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 999px; color: var(--text); outline: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 20px center;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .audit-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(107,93,184,.12); }
+  .audit-text-input {
+    font-family: var(--font); font-size: 14px; padding: 13px 20px;
+    min-height: 48px; width: 100%; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 999px; color: var(--text); outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .audit-text-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(107,93,184,.12); }
       .form-card:has(#success-screen.visible) {
         grid-template-columns: 1fr;
       }
@@ -1359,15 +1377,15 @@
                 <span class="error-msg">Please enter a valid work email.</span>
               </div>
               <div class="field">
-    <label>City / Location</label>
-   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;">
-      <div style="width:100%;">
-        <select id="audit-country" name="country" style="font-family:var(--font);font-size:14px;padding:13px 44px 13px 20px;min-height:48px;width:100%;appearance:none;-webkit-appearance:none;-moz-appearance:none;cursor:pointer;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--text);outline:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2714%27 height=%278%27 viewBox=%270 0 14 8%27%3E%3Cpath fill=%27none%27 stroke=%27%235A5550%27 stroke-width=%271.5%27 d=%27M1 1l6 5 6-5%27/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 20px center;" autocomplete="country">
-          <option value="">Country</option>
-          <option value="India" selected>🇮🇳 India</option>
+    <label>Country &amp; City</label>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;">
+      <div>
+        <select id="audit-country" name="country" autocomplete="country" class="audit-select">
+          <option value="" disabled selected>Country</option>
+          <option value="India">🇮🇳 India</option>
+          <option value="UAE">🇦🇪 UAE</option>
           <option value="USA">🇺🇸 USA</option>
           <option value="UK">🇬🇧 UK</option>
-          <option value="UAE">🇦🇪 UAE</option>
           <option value="Singapore">🇸🇬 Singapore</option>
           <option value="Australia">🇦🇺 Australia</option>
           <option value="Canada">🇨🇦 Canada</option>
@@ -1377,19 +1395,17 @@
           <option value="Other">🌍 Other</option>
         </select>
       </div>
-      <div style="width:100%;position:relative;">
-        <select id="audit-city" name="city" style="display:none;font-family:var(--font);font-size:14px;padding:13px 44px 13px 20px;min-height:48px;width:100%;appearance:none;-webkit-appearance:none;-moz-appearance:none;cursor:pointer;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--text);outline:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2714%27 height=%278%27 viewBox=%270 0 14 8%27%3E%3Cpath fill=%27none%27 stroke=%27%235A5550%27 stroke-width=%271.5%27 d=%27M1 1l6 5 6-5%27/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 20px center;">
+      <div style="position:relative;">
+        <select id="audit-city" name="city" class="audit-select" style="display:none;">
           <option value="" disabled selected>Select city</option>
         </select>
-        <input type="text" id="audit-city-text" name="city_text" placeholder="Enter city" style="display:block;font-family:var(--font);font-size:14px;padding:13px 20px;min-height:48px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--text);outline:none;" autocomplete="address-level2"/>
+        <input type="text" id="audit-city-text" name="city_text" placeholder="Enter city" class="audit-text-input" autocomplete="address-level2" style="display:block;"/>
       </div>
     </div>
   </div>
   <div class="field">
-    <label for="contact-phone">WhatsApp / Phone Number</label>
-    <div style="display:block;max-width:100%;position:relative;overflow:visible;">
-      <input type="tel" id="contact-phone" name="contact_phone" required placeholder="98765 43210" autocomplete="tel" style="width:100%;"/>
-    </div>
+    <label for="contact-phone">WhatsApp / Phone</label>
+    <input type="tel" id="contact-phone" name="contact_phone" required placeholder="98765 43210" autocomplete="tel"/>
     <span class="error-msg">Please enter your phone number.</span>
   </div>
             </div>
@@ -2073,7 +2089,7 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
       industry: document.getElementById('industry').value,
       how_heard: document.getElementById('how-heard') ? document.getElementById('how-heard').value : '',
       country: document.getElementById('audit-country') ? document.getElementById('audit-country').value : '',
-      city: document.getElementById('audit-city') ? document.getElementById('audit-city').value : '',
+      city: (function(){ var s = document.getElementById('audit-city'); var t = document.getElementById('audit-city-text'); return (s && s.style.display !== 'none' ? s.value : '') || (t ? t.value : '') || ''; })(),
       designation: document.getElementById('designation') ? document.getElementById('designation').value : '',
       brand_description: document.getElementById('brand-desc') ? document.getElementById('brand-desc').value : '',
       revenue: document.getElementById('revenue') ? document.getElementById('revenue').value : '',
@@ -2153,6 +2169,7 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
     nationalMode: true,
     placeholderNumberType: 'MOBILE'
   });
+  updateCityDropdown('audit-country', 'audit-city');
   </script>
   
   <script>
