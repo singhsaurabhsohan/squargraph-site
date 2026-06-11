@@ -990,7 +990,8 @@
       challenge:      document.getElementById('disc-challenge').value.trim(),
       goal:           document.getElementById('disc-goal').value.trim(),
       reference_link: document.getElementById('disc-link').value.trim(),
-      product:        'Brand Foundation Sprint\u2122'
+      product:        'Brand Foundation Sprint\u2122',
+      source_url:     window.location.href
     };
 
     // Save to Supabase leads
@@ -1009,6 +1010,8 @@
   reference: payload.reference_link,
   source: 'Brand Foundation Sprint™',
   source_url: window.location.href,
+  service: 'Brand Foundation Sprint™',
+  status: 'new',
   created_at: new Date().toISOString()
 }]);
   try {
