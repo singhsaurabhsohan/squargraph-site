@@ -744,8 +744,8 @@
           </div>
 
           <div class="field">
-            <label for="form-phone">WhatsApp / Phone</label>
-            <input type="tel" id="form-phone" name="phone" placeholder="98765 43210" autocomplete="tel" />
+            <label for="phone">WhatsApp / Phone</label>
+            <input type="tel" id="phone" name="phone" required placeholder="98765 43210" autocomplete="tel" />
             <span class="error-msg">Please enter your phone number.</span>
           </div>
 
@@ -894,7 +894,7 @@
   
   document.addEventListener('DOMContentLoaded', function() {
     initCountryCityMapping('form-country', 'form-city');
-    initRobustITI('form-phone').then(function(instance) {
+    initRobustITI('phone').then(function(instance) {
       window.iti = instance;
     }).catch(function(e) { console.error('ITI Init failed', e); });
   });
