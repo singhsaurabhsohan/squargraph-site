@@ -1077,15 +1077,15 @@
       }
       #success-screen.visible ~ * { display: none; }
    .iti {
-    display: block;
-    width: 100%;
-    position: relative;
-    border-radius: 999px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    overflow: visible;
-    transition: border-color var(--transition), box-shadow var(--transition);
-  }
+  display: block;
+  width: 100%;
+  position: relative;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: visible;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
   .iti:focus-within {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(107,93,184,.12);
@@ -2065,7 +2065,7 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
     const payload = {
       name: document.getElementById('contact-name').value,
       email: document.getElementById('contact-email').value,
-      phone: (window.iti ? window.iti.getNumber() : "" : document.getElementById('contact-phone').value) || '',
+      phone: (window.iti ? window.iti.getNumber() : document.getElementById('contact-phone').value) || '',
       company: document.getElementById('company-name').value,
       service: 'Brand Growth Audit™',
       message: document.getElementById('challenge').value,
@@ -2166,9 +2166,14 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
     })();
   </script>
   <script>
-  
-  
-  </script>
+  document.addEventListener('DOMContentLoaded', function() {
+    initCountryCityMapping('audit-country', 'audit-city');
+    initRobustITI('contact-phone').then(function(instance) {
+      window.itiAudit = instance;
+      window.iti = instance;
+    }).catch(function(e) { console.error('ITI Init failed', e); });
+  });
+</script>
   
   <script>
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
