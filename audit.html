@@ -2092,12 +2092,6 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
       how_heard: document.getElementById('how-heard') ? document.getElementById('how-heard').value : '',
       country: document.getElementById('audit-country') ? document.getElementById('audit-country').value : '',
       city: (function(){ var s = document.getElementById('audit-city'); var t = document.getElementById('audit-city-text'); return (s && s.style.display !== 'none' ? s.value : '') || (t ? t.value : '') || ''; })(),
-      designation: document.getElementById('designation') ? document.getElementById('designation').value : '',
-      brand_description: document.getElementById('brand-desc') ? document.getElementById('brand-desc').value : '',
-      revenue: document.getElementById('revenue') ? document.getElementById('revenue').value : '',
-      website: document.getElementById('website-url') ? document.getElementById('website-url').value : '',
-      goal: document.getElementById('goal-value') ? document.getElementById('goal-value').value : '',
-      industry: document.getElementById('industry') ? document.getElementById('industry').value : '',
       source: 'Brand Growth Audit™',
       created_at: new Date().toISOString(),
       source_url: window.location.href
