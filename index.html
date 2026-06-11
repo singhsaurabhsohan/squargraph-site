@@ -1738,10 +1738,10 @@
   width: 100%;
   position: relative;
   border-radius: 999px;
-  background: var(--warmgray);
-  border: 1px solid var(--bordergray);
+  background: var(--surface);
+  border: 1px solid var(--border);
   overflow: visible;
-  transition: border-color .2s;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 .iti:focus-within {
   border-color: var(--accentmuted);
