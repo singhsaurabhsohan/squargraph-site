@@ -374,11 +374,14 @@
       }
   
       .field label {
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        color: var(--text);
-      }
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 7px;
+  }
   
       .field label span.optional {
         font-weight: 400;
@@ -2167,7 +2170,8 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
     separateDialCode: false,
     utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
     nationalMode: true,
-    placeholderNumberType: 'MOBILE'
+    placeholderNumberType: 'MOBILE',
+    dropdownContainer: document.body
   });
   updateCityDropdown('audit-country', 'audit-city');
   </script>

@@ -309,10 +309,13 @@
     }
 
     .field label {
-      font-size: 12px;
+      display: block;
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--text);
+      margin-bottom: 7px;
     }
 
     .field label .optional {
@@ -434,7 +437,7 @@
       align-items: center;
       -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
     }
-    .iti input#disc-phone {
+    .iti input#form-phone {
       border: none !important;
       background: transparent !important;
       height: 48px;
@@ -730,113 +733,101 @@
       <div class="form-body" id="form-body">
         <div class="field-group">
 
-          <!-- Name + Email -->
-          <div class="field-row">
-            <div class="field" id="field-name">
-              <label for="disc-name">Full Name</label>
-              <input type="text" id="disc-name" name="name" placeholder="Your name" autocomplete="name" />
-              <span class="error-msg">Please enter your name.</span>
-            </div>
-            <div class="field" id="field-email">
-              <label for="disc-email">Email</label>
-              <input type="email" id="disc-email" name="email" placeholder="you@company.com" autocomplete="email" />
-              <span class="error-msg">Please enter a valid email.</span>
-            </div>
+                    <!-- Standardized Top Half -->
+          <div class="field">
+            <label for="form-name">Name</label>
+            <input type="text" id="form-name" name="name" placeholder="Full name" autocomplete="name" />
+            <span class="error-msg">Please enter your name.</span>
           </div>
 
-          <!-- Phone -->
-          <div class="field" id="field-phone">
-            <label for="disc-phone">WhatsApp / Phone</label>
-            <input type="tel" id="disc-phone" name="phone" placeholder="98765 43210" autocomplete="tel" />
+          <div class="field">
+            <label for="form-phone">WhatsApp / Phone</label>
+            <input type="tel" id="form-phone" name="phone" placeholder="98765 43210" autocomplete="tel" />
             <span class="error-msg">Please enter your phone number.</span>
           </div>
 
-          <div class="section-divider"><span>Your Brand</span></div>
-
-          <!-- Company + Website -->
-          <div class="field-row">
-            <div class="field" id="field-company">
-              <label for="disc-company">Brand / Company Name</label>
-              <input type="text" id="disc-company" name="company" placeholder="Your brand name" autocomplete="organization" />
-              <span class="error-msg">Please enter your company name.</span>
-            </div>
-            <div class="field">
-              <label for="disc-website">Website <span class="optional">optional</span></label>
-              <input type="text" id="disc-website" name="website" placeholder="https://yourwebsite.com" autocomplete="url" />
-            </div>
-          </div>
-
-          <!-- Industry + Country -->
-          <div class="field-row">
-            <div class="field">
-              <label for="disc-industry">Industry</label>
-              <select id="disc-industry" name="industry">
-                <option value="" disabled selected>Select…</option>
-                <option>Technology &amp; SaaS</option>
-                <option>E-commerce &amp; Retail</option>
-                <option>Professional Services</option>
-                <option>Health &amp; Wellness</option>
-                <option>Finance &amp; Fintech</option>
-                <option>Automotive</option>
-                <option>Hospitality &amp; F&amp;B</option>
-                <option>Real Estate</option>
-                <option>D2C &amp; Consumer Brands</option>
-                <option>Luxury &amp; Lifestyle</option>
-                <option>Media &amp; Entertainment</option>
-                <option>Education &amp; EdTech</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="disc-country">Country</label>
-              <select id="disc-country" name="country">
-                <option value="" disabled selected>Select…</option>
-                <option value="India">🇮🇳 India</option>
-                <option value="UAE">🇦🇪 UAE</option>
-                <option value="USA">🇺🇸 USA</option>
-                <option value="UK">🇬🇧 UK</option>
-                <option value="Singapore">🇸🇬 Singapore</option>
-                <option value="Australia">🇦🇺 Australia</option>
-                <option value="Canada">🇨🇦 Canada</option>
-                <option value="Germany">🇩🇪 Germany</option>
-                <option value="France">🇫🇷 France</option>
-                <option value="Japan">🇯🇵 Japan</option>
-                <option value="Other">🌍 Other</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- City -->
           <div class="field">
-            <label for="disc-city">City</label>
-            <input type="text" id="disc-city" name="city" placeholder="New Delhi" autocomplete="address-level2" />
+            <label for="form-email">Work Email</label>
+            <input type="email" id="form-email" name="email" placeholder="name@company.com" autocomplete="email" />
+            <span class="error-msg">Please enter a valid email.</span>
           </div>
 
-          <div class="section-divider"><span>Your Brand</span></div>
+          <div class="field">
+            <label for="form-company">Brand / Company</label>
+            <input type="text" id="form-company" name="company" placeholder="Your brand name" autocomplete="organization" />
+            <span class="error-msg">Please enter your company name.</span>
+          </div>
 
-          <!-- Challenge -->
+          <div class="field">
+            <label for="form-industry">Industry</label>
+            <select id="form-industry" name="industry">
+              <option value="" disabled selected>Select...</option>
+              <option>Technology &amp; SaaS</option>
+              <option>E-commerce &amp; Retail</option>
+              <option>Professional Services</option>
+              <option>Health &amp; Wellness</option>
+              <option>Finance &amp; Fintech</option>
+              <option>Automotive</option>
+              <option>Hospitality &amp; F&amp;B</option>
+              <option>Real Estate</option>
+              <option>D2C &amp; Consumer Brands</option>
+              <option>Luxury &amp; Lifestyle</option>
+              <option>Media &amp; Entertainment</option>
+              <option>Education &amp; EdTech</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Country &amp; City</label>
+            <div class="field-row">
+              <div class="field-col" style="flex:1; min-width: 0;">
+                <select id="form-country" name="country">
+                  <option value="" disabled selected>Country</option>
+                  <option value="India">🇮🇳 India</option>
+                  <option value="UAE">🇦🇪 UAE</option>
+                  <option value="USA">🇺🇸 USA</option>
+                  <option value="UK">🇬🇧 UK</option>
+                  <option value="Singapore">🇸🇬 Singapore</option>
+                  <option value="Australia">🇦🇺 Australia</option>
+                  <option value="Canada">🇨🇦 Canada</option>
+                  <option value="Germany">🇩🇪 Germany</option>
+                  <option value="France">🇫🇷 France</option>
+                  <option value="Japan">🇯🇵 Japan</option>
+                  <option value="Other">🌍 Other</option>
+                </select>
+              </div>
+              <div class="field-col" style="flex:1; position:relative; min-width: 0;">
+                <select id="form-city" name="city" style="display:none;"></select>
+                <input type="text" id="form-city-text" name="city_text" placeholder="Enter city" />
+              </div>
+            </div>
+          </div>
+          <!-- End Standardized Top Half -->
+
+<!-- Challenge -->
           <div class="field" id="field-challenge">
-            <label for="disc-challenge">What is your biggest brand or business challenge right now?</label>
-            <textarea id="disc-challenge" name="challenge" rows="3" placeholder="e.g. We're struggling with low conversions, unclear messaging, difficulty standing out from competitors…"></textarea>
+            <label for="form-challenge">What is your biggest brand or business challenge right now?</label>
+            <textarea id="form-challenge" name="challenge" rows="3" placeholder="e.g. We're struggling with low conversions, unclear messaging, difficulty standing out from competitors…"></textarea>
             <span class="error-msg">Please describe your challenge.</span>
           </div>
 
           <!-- Goal -->
           <div class="field" id="field-goal">
-            <label for="disc-goal">What outcome are you looking for?</label>
-            <textarea id="disc-goal" name="goal" rows="3" placeholder="e.g. A clear direction on brand positioning and a practical roadmap for the next 90 days…"></textarea>
+            <label for="form-goal">What outcome are you looking for?</label>
+            <textarea id="form-goal" name="goal" rows="3" placeholder="e.g. A clear direction on brand positioning and a practical roadmap for the next 90 days…"></textarea>
             <span class="error-msg">Please describe your goal.</span>
           </div>
 
           <!-- Reference Link -->
           <div class="field">
-            <label for="disc-link">Paste a relevant link <span class="optional">optional</span></label>
-            <input type="text" id="disc-link" name="reference_link" placeholder="Social profile, campaign, portfolio, competitor — anything relevant" />
+            <label for="form-link">Paste a relevant link <span class="optional">optional</span></label>
+            <input type="text" id="form-link" name="reference_link" placeholder="Social profile, campaign, portfolio, competitor — anything relevant" />
           </div>
 
           <!-- Consent -->
-          <label class="consent-wrap" for="disc-consent">
-            <input type="checkbox" id="disc-consent" />
+          <label class="consent-wrap" for="form-consent">
+            <input type="checkbox" id="form-consent" />
             <span class="consent-text">I consent to SQUARGRAPH™ Studios collecting and processing the information submitted here.</span>
           </label>
           <span class="error-msg" id="consent-error">Please accept to continue.</span>
@@ -896,7 +887,7 @@
   var itiDisc;
 
   function initITI() {
-    var phoneEl = document.getElementById('disc-phone');
+    var phoneEl = document.getElementById('form-phone');
     if (!phoneEl || typeof window.intlTelInput === 'undefined') return;
     itiDisc = window.intlTelInput(phoneEl, {
       initialCountry: 'in',
@@ -904,7 +895,8 @@
       separateDialCode: false,
       utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
       nationalMode: true,
-      placeholderNumberType: 'MOBILE'
+      placeholderNumberType: 'MOBILE',
+      dropdownContainer: document.body
     });
     setTimeout(function() {
       var wrap = phoneEl.closest('.iti');
@@ -945,14 +937,14 @@
       }
     }
 
-    checkField('field-name',      'disc-name',      function(v) { return v.trim().length > 1; });
-    checkField('field-email',     'disc-email',     function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); });
-    checkField('field-phone',     'disc-phone',     function(v) { return v.trim().length > 5; });
-    checkField('field-company',   'disc-company',   function(v) { return v.trim().length > 1; });
-    checkField('field-challenge', 'disc-challenge', function(v) { return v.trim().length > 10; });
-    checkField('field-goal',      'disc-goal',      function(v) { return v.trim().length > 10; });
+    checkField('form-name',      function(v) { return v.trim().length > 1; });
+    checkField('form-email',     function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); });
+    checkField('form-phone',     function(v) { return v.trim().length > 5; });
+    checkField('form-company',   function(v) { return v.trim().length > 1; });
+    checkField('form-challenge', function(v) { return v.trim().length > 10; });
+    checkField('form-goal',      function(v) { return v.trim().length > 10; });
 
-    var consent = document.getElementById('disc-consent');
+    var consent = document.getElementById('form-consent');
     var consentErr = document.getElementById('consent-error');
     if (!consent.checked) {
       consentErr.style.display = 'block';
@@ -972,24 +964,24 @@
     btn.textContent = 'Processing…';
 
     // Resolve full phone number with country code
-    var phone = document.getElementById('disc-phone').value.trim();
+    var phone = document.getElementById('form-phone').value.trim();
     if (itiDisc) {
       var fullNumber = itiDisc.getNumber();
       if (fullNumber) phone = fullNumber;
     }
 
     var payload = {
-      name:           document.getElementById('disc-name').value.trim(),
-      email:          document.getElementById('disc-email').value.trim(),
+      name:           document.getElementById('form-name').value.trim(),
+      email:          document.getElementById('form-email').value.trim(),
       phone:          phone,
-      company:        document.getElementById('disc-company').value.trim(),
-      website:        document.getElementById('disc-website').value.trim(),
-      industry:       document.getElementById('disc-industry').value,
-      country:        document.getElementById('disc-country').value,
-      city:           document.getElementById('disc-city').value.trim(),
-      challenge:      document.getElementById('disc-challenge').value.trim(),
-      goal:           document.getElementById('disc-goal').value.trim(),
-      reference_link: document.getElementById('disc-link').value.trim(),
+      company:        document.getElementById('form-company').value.trim(),
+      website:        (document.getElementById('form-website') ? document.getElementById('form-website').value.trim() : ''),
+      industry:       document.getElementById('form-industry').value,
+      country:        document.getElementById('form-country').value,
+      city: (document.getElementById('form-city').value || document.getElementById('form-city-text').value).trim(),
+      challenge:      document.getElementById('form-challenge').value.trim(),
+      goal:           document.getElementById('form-goal').value.trim(),
+      reference_link: document.getElementById('form-link').value.trim(),
       product:        'Brand Foundation Sprint\u2122',
       source_url:     window.location.href
     };
@@ -1030,8 +1022,8 @@
       } catch(e) { console.error(e); }
 
           <!-- Consent -->
-          <label class="consent-wrap" for="disc-consent">
-            <input type="checkbox" id="disc-consent" />
+          <label class="consent-wrap" for="form-consent">
+            <input type="checkbox" id="form-consent" />
             <span class="consent-text">I consent to SQUARGRAPH™ Studios collecting and processing the information submitted here.</span>
           </label>
           <span class="error-msg" id="consent-error">Please accept to continue.</span>
@@ -1091,7 +1083,7 @@
   var itiDisc;
 
   function initITI() {
-    var phoneEl = document.getElementById('disc-phone');
+    var phoneEl = document.getElementById('form-phone');
     if (!phoneEl || typeof window.intlTelInput === 'undefined') return;
     itiDisc = window.intlTelInput(phoneEl, {
       initialCountry: 'in',
@@ -1099,7 +1091,8 @@
       separateDialCode: false,
       utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
       nationalMode: true,
-      placeholderNumberType: 'MOBILE'
+      placeholderNumberType: 'MOBILE',
+      dropdownContainer: document.body
     });
     setTimeout(function() {
       var wrap = phoneEl.closest('.iti');
@@ -1140,14 +1133,14 @@
       }
     }
 
-    checkField('field-name',      'disc-name',      function(v) { return v.trim().length > 1; });
-    checkField('field-email',     'disc-email',     function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); });
-    checkField('field-phone',     'disc-phone',     function(v) { return v.trim().length > 5; });
-    checkField('field-company',   'disc-company',   function(v) { return v.trim().length > 1; });
-    checkField('field-challenge', 'disc-challenge', function(v) { return v.trim().length > 10; });
-    checkField('field-goal',      'disc-goal',      function(v) { return v.trim().length > 10; });
+    checkField('form-name',      function(v) { return v.trim().length > 1; });
+    checkField('form-email',     function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); });
+    checkField('form-phone',     function(v) { return v.trim().length > 5; });
+    checkField('form-company',   function(v) { return v.trim().length > 1; });
+    checkField('form-challenge', function(v) { return v.trim().length > 10; });
+    checkField('form-goal',      function(v) { return v.trim().length > 10; });
 
-    var consent = document.getElementById('disc-consent');
+    var consent = document.getElementById('form-consent');
     var consentErr = document.getElementById('consent-error');
     if (!consent.checked) {
       consentErr.style.display = 'block';
@@ -1193,24 +1186,24 @@
     btn.textContent = 'Processing…';
 
     // Resolve full phone number with country code
-    var phone = document.getElementById('disc-phone').value.trim();
+    var phone = document.getElementById('form-phone').value.trim();
     if (itiDisc) {
       var fullNumber = itiDisc.getNumber();
       if (fullNumber) phone = fullNumber;
     }
 
     var payload = {
-      name:           document.getElementById('disc-name').value.trim(),
-      email:          document.getElementById('disc-email').value.trim(),
+      name:           document.getElementById('form-name').value.trim(),
+      email:          document.getElementById('form-email').value.trim(),
       phone:          phone,
-      company:        document.getElementById('disc-company').value.trim(),
-      website:        document.getElementById('disc-website').value.trim(),
-      industry:       document.getElementById('disc-industry').value,
-      country:        document.getElementById('disc-country').value,
-      city:           document.getElementById('disc-city').value.trim(),
-      challenge:      document.getElementById('disc-challenge').value.trim(),
-      goal:           document.getElementById('disc-goal').value.trim(),
-      reference_link: document.getElementById('disc-link').value.trim(),
+      company:        document.getElementById('form-company').value.trim(),
+      website:        (document.getElementById('form-website') ? document.getElementById('form-website').value.trim() : ''),
+      industry:       document.getElementById('form-industry').value,
+      country:        document.getElementById('form-country').value,
+      city: (document.getElementById('form-city').value || document.getElementById('form-city-text').value).trim(),
+      challenge:      document.getElementById('form-challenge').value.trim(),
+      goal:           document.getElementById('form-goal').value.trim(),
+      reference_link: document.getElementById('form-link').value.trim(),
       product:        'Brand Foundation Sprint\u2122',
       source_url:     window.location.href
     };
