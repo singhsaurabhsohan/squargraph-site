@@ -1008,39 +1008,42 @@
         );
       } catch(e) { console.error(e); }
 
-          <!-- Consent -->
-          <label class="consent-wrap" for="form-consent">
-            <input type="checkbox" id="form-consent" />
-            <span class="consent-text">I consent to SQUARGRAPH™ Studios collecting and processing the information submitted here.</span>
-          </label>
-          <span class="error-msg" id="consent-error">Please accept to continue.</span>
+      // Show success screen
+      document.getElementById('form-body').style.display = 'none';
+      var ss = document.getElementById('success-screen');
+      if (ss) ss.classList.add('visible');
 
-          <!-- Submit -->
-          <button class="btn-submit" id="btn-submit" type="button" onclick="handleSubmit()">
-            Submit Brand Brief →
-          </button>
+    } catch(e) { console.error('Leads insert failed', e); }
+  }
 
-          <!-- Trust -->
-          <div class="trust-row">
-            <div class="trust-item">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8A8580" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Tailored strategic engagement
-            </div>
-            <div class="trust-item">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8A8580" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Response within 24 hours
-            </div>
-            <div class="trust-item">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8A8580" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-              Founder-led engagement
-            </div>
-          </div>
-
-        </div><!-- /field-group -->
-      </div><!-- /form-body -->
-
-      <!-- SUCCESS SCREEN -->
-      <div id="success-screen">
+  // Supabase init
+  window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
+  window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
+  window.__sb = {
+    from: function(table) {
+      return {
+        insert: async function(rows) {
+          var res = await fetch(
+            window.__sbUrl + '/rest/v1/' + table,
+            {
+              method: 'POST',
+              headers: {
+                'apikey': window.__sbKey,
+                'Authorization': 'Bearer ' + window.__sbKey,
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal'
+              },
+              body: JSON.stringify(rows)
+            }
+          );
+          if (!res.ok) throw new Error('Insert failed');
+        }
+      };
+    }
+  };
+</script>
+</body>
+</html>
         <div class="success-icon">
           <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
