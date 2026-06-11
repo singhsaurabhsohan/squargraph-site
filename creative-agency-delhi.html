@@ -1757,6 +1757,7 @@
   color: var(--textprimary);
   outline: none;
   box-shadow: none !important;
+  border-radius: 999px !important;
 }
 .iti input#phone:focus {
   box-shadow: none !important;
@@ -2878,9 +2879,11 @@ We work with businesses that are serious about their positioning, communication,
 </script>
 
 <script>
-var phoneEl = document.getElementById('phone');
-if (phoneEl) {
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  initRobustITI('phone').then(function(instance) {
+    window.iti = instance;
+  }).catch(function(e) { console.error('ITI Init failed', e); });
+});
 </script>
 
 <!-- ══════════════
