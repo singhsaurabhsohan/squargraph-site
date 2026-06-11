@@ -30,6 +30,7 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/>
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
+  <script src="/js/form-system.js" defer></script>
 
   <!-- Fonts -->
   <style>
@@ -2682,6 +2683,9 @@ We work with businesses that are serious about their positioning, communication,
   </div>
 </div>
 <script>
+  
+  
+  });
 (function() {
   'use strict';
 
@@ -2874,20 +2878,8 @@ We work with businesses that are serious about their positioning, communication,
 
 <script>
 var phoneEl = document.getElementById('phone');
-var iti;
 if (phoneEl) {
-  iti = window.intlTelInput(phoneEl, {
-    initialCountry: 'in',
-    preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
-    separateDialCode: false,
-    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
-    excludeCountries: [],
-    autoPlaceholder: 'polite',
-    nationalMode: true,
-    placeholderNumberType: 'MOBILE',
-    dropdownContainer: document.body
-  });
-}
+  }
 </script>
 
 <!-- ══════════════
@@ -2938,11 +2930,18 @@ if (phoneEl) {
     }
   }
 
+  document.addEventListener('DOMContentLoaded', function() {
+    initCountryCityMapping('country-location', 'city');
+    initRobustITI('phone').then(function(instance) {
+      window.iti = instance;
+    }).catch(function(e) { console.error('ITI Init failed', e); });
+  });
+
   function getPayload(formEl) {
     var raw = Object.fromEntries(new FormData(formEl).entries());
     return {
       name:       raw.name      || null,
-      phone: (typeof iti !== 'undefined' ? iti.getNumber() : raw.phone) || null,
+      phone: (window.iti ? window.iti.getNumber() : raw.phone) || null,
       email:      raw.email     || null,
       company:    raw.company   || null,
       service:    raw.service   || null,
@@ -3160,85 +3159,8 @@ document.addEventListener('click', function(e) {
 })();
 </script>
 <script>
-var CITY_DATA = {
-  'India': ['Ahmedabad','Bengaluru','Chennai','Delhi','Hyderabad','Jaipur','Kochi','Kolkata','Lucknow','Mumbai','Noida','Pune','Surat'],
-  'USA': ['Atlanta','Austin','Boston','Chicago','Dallas','Houston','Los Angeles','Miami','New York','San Francisco','Seattle','Washington D.C.'],
-  'UK': ['Birmingham','Bristol','Edinburgh','Glasgow','Leeds','Liverpool','London','Manchester','Oxford'],
-  'UAE': ['Abu Dhabi','Ajman','Dubai','Ras Al Khaimah','Sharjah'],
-  'Singapore': ['Singapore'],
-  'Australia': ['Brisbane','Canberra','Melbourne','Perth','Sydney'],
-  'Canada': ['Calgary','Edmonton','Montreal','Ottawa','Toronto','Vancouver'],
-  'Germany': ['Berlin','Cologne','Frankfurt','Hamburg','Munich','Stuttgart'],
-  'France': ['Bordeaux','Lyon','Marseille','Nice','Paris','Toulouse'],
-  'Japan': ['Fukuoka','Kyoto','Nagoya','Osaka','Sapporo','Tokyo','Yokohama'],
-  'Other': []
-};
 
-function updateCityDropdown(countrySelectId, citySelectId) {
-  var countryEl = document.getElementById(countrySelectId);
-  var cityEl = document.getElementById(citySelectId);
-  if (!countryEl || !cityEl) return;
 
-  countryEl.addEventListener('change', function() {
-    var country = this.value;
-    var cities = CITY_DATA[country] || [];
-
-    // Reset city dropdown
-    cityEl.innerHTML = '';
-
-    if (!country || cities.length === 0) {
-      var opt = document.createElement('option');
-      opt.value = '';
-      opt.textContent = 'Enter city name';
-      cityEl.appendChild(opt);
-      cityEl.style.display = 'none';
-      // Show text input instead
-      var textInput = document.getElementById(citySelectId + '-text');
-      if (textInput) textInput.style.display = 'block';
-      return;
-    }
-
-    // Add placeholder
-    var placeholder = document.createElement('option');
-    placeholder.value = '';
-    placeholder.disabled = true;
-    placeholder.selected = true;
-    placeholder.textContent = 'Select city';
-    cityEl.appendChild(placeholder);
-
-    // Add cities
-    cities.forEach(function(city) {
-      var opt = document.createElement('option');
-      opt.value = city;
-      opt.textContent = city;
-      cityEl.appendChild(opt);
-    });
-
-    // Add Other option
-    var other = document.createElement('option');
-    other.value = 'Other';
-    other.textContent = 'Other';
-    cityEl.appendChild(other);
-
-    cityEl.style.display = 'block';
-    var textInput = document.getElementById(citySelectId + '-text');
-    if (textInput) textInput.style.display = 'none';
-  });
-
-  // Handle "Other" city selection → show text input
-  cityEl.addEventListener('change', function() {
-    var textInput = document.getElementById(citySelectId + '-text');
-    if (!textInput) return;
-    if (this.value === 'Other') {
-      textInput.style.display = 'block';
-      textInput.focus();
-    } else {
-      textInput.style.display = 'none';
-      textInput.value = '';
-    }
-  });
-}
-updateCityDropdown('country-location', 'city');
 </script>
 </body>
 </html>

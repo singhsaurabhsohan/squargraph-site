@@ -29,6 +29,9 @@
     </style>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <script>
+  
+  
+  });
     var _rcLoaded = false;
     function _loadRC() {
       if (_rcLoaded) return; _rcLoaded = true;
@@ -40,13 +43,11 @@
   var _rcObs = new IntersectionObserver(function(entries) {
     if (entries[0].isIntersecting) { _loadRC(); _rcObs.disconnect(); }
   }, { rootMargin: '200px' });
-  document.addEventListener('DOMContentLoaded', function() {
-    var el = document.getElementById('form-card');
-    if (el) _rcObs.observe(el); else _loadRC();
-  });
+  
   </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
+  <script src="/js/form-system.js" defer></script>
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
@@ -2063,7 +2064,7 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
     const payload = {
       name: document.getElementById('contact-name').value,
       email: document.getElementById('contact-email').value,
-      phone: (typeof itiAudit !== 'undefined' ? itiAudit.getNumber() : document.getElementById('contact-phone').value) || '',
+      phone: (window.iti ? window.iti.getNumber() : "" : document.getElementById('contact-phone').value) || '',
       company: document.getElementById('company-name').value,
       service: 'Brand Growth Audit™',
       message: document.getElementById('challenge').value,
@@ -2164,16 +2165,8 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
     })();
   </script>
   <script>
-  var itiAudit = window.intlTelInput(document.getElementById('contact-phone'), {
-    initialCountry: 'in',
-    preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
-    separateDialCode: false,
-    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
-    nationalMode: true,
-    placeholderNumberType: 'MOBILE',
-    dropdownContainer: document.body
-  });
-  updateCityDropdown('audit-country', 'audit-city');
+  
+  
   </script>
   
   <script>
@@ -2212,20 +2205,7 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
   };
   </script>
   <script>
-  var CITY_DATA = {
-    'India': ['Ahmedabad','Bengaluru','Chennai','Delhi','Hyderabad','Jaipur','Kochi','Kolkata','Lucknow','Mumbai','Noida','Pune','Surat'],
-    'USA': ['Atlanta','Austin','Boston','Chicago','Dallas','Houston','Los Angeles','Miami','New York','San Francisco','Seattle','Washington D.C.'],
-    'UK': ['Birmingham','Bristol','Edinburgh','Glasgow','Leeds','Liverpool','London','Manchester','Oxford'],
-    'UAE': ['Abu Dhabi','Ajman','Dubai','Ras Al Khaimah','Sharjah'],
-    'Singapore': ['Singapore'],
-    'Australia': ['Brisbane','Canberra','Melbourne','Perth','Sydney'],
-    'Canada': ['Calgary','Edmonton','Montreal','Ottawa','Toronto','Vancouver'],
-    'Germany': ['Berlin','Cologne','Frankfurt','Hamburg','Munich','Stuttgart'],
-    'France': ['Bordeaux','Lyon','Marseille','Nice','Paris','Toulouse'],
-    'Japan': ['Fukuoka','Kyoto','Nagoya','Osaka','Sapporo','Tokyo','Yokohama'],
-    'Other': []
-  };
-  
+    
   function updateCityDropdown(countrySelectId, citySelectId) {
     var countryEl = document.getElementById(countrySelectId);
     var cityEl = document.getElementById(citySelectId);

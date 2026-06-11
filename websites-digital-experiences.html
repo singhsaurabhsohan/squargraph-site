@@ -25,6 +25,7 @@
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'" />
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js" defer></script>
+  <script src="/js/form-system.js" defer></script>
   <style>
     @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
     @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
@@ -885,39 +886,16 @@
 </div>
 
 <script>
-  var itiDisc;
+  
+  
 
-  function initITI() {
-    var phoneEl = document.getElementById('form-phone');
-    if (!phoneEl || typeof window.intlTelInput === 'undefined') return;
-    itiDisc = window.intlTelInput(phoneEl, {
-      initialCountry: 'in',
-      preferredCountries: ['in', 'ae', 'us', 'gb', 'sg', 'au'],
-      separateDialCode: false,
-      utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
-      nationalMode: true,
-      placeholderNumberType: 'MOBILE',
-      dropdownContainer: document.body
-    });
-    setTimeout(function() {
-      var wrap = phoneEl.closest('.iti');
-      if (!wrap) return;
-      var flagBtn = wrap.querySelector('.iti__selected-flag');
-      if (flagBtn) {
-        flagBtn.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
-        flagBtn.style.backgroundColor = 'transparent';
-        flagBtn.addEventListener('touchstart', function() {
-          this.style.backgroundColor = 'transparent';
-        }, { passive: true });
-      }
-    }, 300);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initITI);
-  } else {
-    initITI();
-  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    initCountryCityMapping('form-country', 'form-city');
+    initRobustITI('form-phone').then(function(instance) {
+      window.iti = instance;
+    }).catch(function(e) { console.error('ITI Init failed', e); });
+  });
 
   function trackEvent(name, params) {
     if (window.dataLayer) window.dataLayer.push(Object.assign({ event: name }, params || {}));
@@ -926,7 +904,7 @@
   function validate() {
     var ok = true;
 
-    function checkField(wrapperId, inputId, condition) {
+    function checkFieldValidation(wrapperId, inputId, condition) {
       var wrap = document.getElementById(wrapperId);
       var el = document.getElementById(inputId);
       if (!wrap || !el) return;
@@ -938,12 +916,19 @@
       }
     }
 
-    checkField('form-name',      function(v) { return v.trim().length > 1; });
-    checkField('form-email',     function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); });
-    checkField('form-phone',     function(v) { return v.trim().length > 5; });
-    checkField('form-company',   function(v) { return v.trim().length > 1; });
-    checkField('form-challenge', function(v) { return v.trim().length > 10; });
-    checkField('form-goal',      function(v) { return v.trim().length > 10; });
+    checkFieldValidation('form-name',      function(v) { return v.trim().length > 1; });
+    checkFieldValidation('form-email',     function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); });
+    checkFieldValidation('form-phone',     function(v) { return v.trim().length > 5; });
+    checkFieldValidation('form-company',   function(v) { return v.trim().length > 1; });
+    checkFieldValidation('form-challenge', function(v) { return v.trim().length > 10; });
+    checkFieldValidation('form-goal',      function(v) { return v.trim().length > 10; });
+
+    checkFieldValidation('form-country', function(v) { return v.trim().length > 0; });
+    checkFieldValidation('form-city', function(v) { 
+      var el = document.getElementById('form-city');
+      if (el.style.display !== 'none') return v.trim().length > 0;
+      return document.getElementById('form-city-text').value.trim().length > 0;
+    });
 
     var consent = document.getElementById('form-consent');
     var consentErr = document.getElementById('consent-error');
@@ -966,8 +951,8 @@
 
     // Resolve full phone number with country code
     var phone = document.getElementById('form-phone').value.trim();
-    if (itiDisc) {
-      var fullNumber = itiDisc.getNumber();
+    if (window.iti) {
+      var fullNumber = window.iti.getNumber();
       if (fullNumber) phone = fullNumber;
     }
 
