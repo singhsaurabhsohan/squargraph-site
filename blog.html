@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thinking · SQUARGRAPH™ Studios</title>
+  <meta name="description" content="Strategy notes, brand observations, and thinking from SQUARGRAPH™ Studios. How we see brands, markets, and creative work." />
+  <link rel="canonical" href="https://squargraph.com/blog" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta property="og:title" content="Thinking · SQUARGRAPH™ Studios" />
+  <meta property="og:description" content="Strategy notes, brand observations, and thinking from SQUARGRAPH™ Studios." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://squargraph.com/blog" />
+  <meta property="og:image" content="https://squargraph.com/squargraph-brand-image.webp" />
+  <meta name="robots" content="index, follow" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Thinking · SQUARGRAPH™ Studios" />
+  <meta name="twitter:description" content="Strategy notes, brand observations, and thinking from SQUARGRAPH™ Studios." />
+  <meta name="twitter:image" content="https://squargraph.com/squargraph-brand-image.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Thinking · SQUARGRAPH™ Studios" />
+  <meta name="twitter:description" content="Strategy notes, brand observations, and thinking from SQUARGRAPH™ Studios." />
+  <meta name="twitter:image" content="https://squargraph.com/squargraph-brand-image.webp" />
+
+  <link rel="preload" href="/fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/Satoshi-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
+
+  <style>
+    @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
+    @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
+    @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --offwhite: #FAFAF9;
+      --warmgray: #F5F5F3;
+      --bordergray: #E5E3DF;
+      --textmuted: #2A2623;
+      --textsecondary: #3D3935;
+      --textprimary: #1A1714;
+      --accent: #6B5DB8;
+      --accentmuted: #7B6FB8;
+      --accentlight: #EEECf7;
+    }
+
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Satoshi', -apple-system, sans-serif;
+      background: #fff;
+      color: var(--textprimary);
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: rgba(139,126,200,.18); color: var(--textprimary); }
+    * { -webkit-tap-highlight-color: transparent; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    ::-webkit-scrollbar { width: 2px; }
+    ::-webkit-scrollbar-track { background: #fff; }
+    ::-webkit-scrollbar-thumb { background: var(--bordergray); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 103;
+      background: rgba(250,250,249,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--bordergray);
+    }
+    .nav-inner {
+      max-width: 1440px; margin: 0 auto;
+      padding: 0 clamp(24px, 4vw, 64px);
+      display: flex; align-items: center; justify-content: space-between;
+      height: 84px;
+    }
+    .nav-logo { display: flex; align-items: center; line-height: 1; }
+    .nav-links { display: flex; align-items: center; gap: 40px; }
+    .nav-links a {
+      font-size: 13px; font-weight: 500; color: var(--textsecondary);
+      transition: color .25s; letter-spacing: -0.01em;
+    }
+    .nav-links a:hover { color: var(--textprimary); }
+    .nav-links a.active {
+      color: var(--textprimary);
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+    }
+    .nav-cta {
+      font-size: 13px; font-weight: 500; color: var(--textprimary);
+      border: 1px solid var(--bordergray); border-radius: 999px;
+      padding: 10px 24px;
+      transition: background .25s, color .25s, border-color .25s;
+    }
+    .nav-cta:hover { background: var(--textprimary); color: #fff; border-color: var(--textprimary); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; align-items: center; justify-content: center;
+      width: 44px; height: 44px; background: none; border: none; cursor: pointer;
+      padding: 0; position: relative; z-index: 102;
+    }
+    .pill-menu { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .pill-line { width: 28px; height: 1.5px; background: var(--textprimary); border-radius: 999px; transition: transform .35s cubic-bezier(.77,0,.18,1), opacity .3s; }
+    .pill-body { width: 28px; height: 13px; border: 1.5px solid var(--textprimary); border-radius: 999px; background: transparent; transition: transform .35s cubic-bezier(.77,0,.18,1), opacity .3s; }
+    .hamburger.open .pill-line { transform: translateY(9px) rotate(45deg); }
+    .hamburger.open .pill-body { opacity: 0; transform: scaleX(0); }
+    @media (max-width: 768px) { .hamburger { display: flex; } }
+
+    /* Mobile menu */
+    #mob-menu {
+      display: flex; position: fixed; inset: 0; z-index: 101;
+      background: #fff; flex-direction: column; justify-content: center;
+      padding: clamp(32px, 8vw, 64px); padding-top: 100px;
+      opacity: 0; pointer-events: none; transition: opacity .3s;
+    }
+    #mob-menu.open { opacity: 1; pointer-events: all; }
+    #mob-menu a:not(.mob-contact) {
+      display: block; font-size: clamp(22px, 6vw, 32px); font-weight: 500;
+      letter-spacing: -0.03em; color: var(--textprimary);
+      padding: 16px 0; border-bottom: 1px solid var(--bordergray);
+      transition: color .2s;
+    }
+    #mob-menu a:hover { color: var(--accent); }
+    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+    #mob-menu .mob-contact { margin-top: 32px; font-size: 13px; color: var(--textmuted); border-bottom: none; display: block; }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .8s cubic-bezier(.25,.1,.25,1), transform .8s cubic-bezier(.25,.1,.25,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up.d1 { transition-delay: .1s; }
+    .fade-up.d2 { transition-delay: .2s; }
+    .fade-up.d3 { transition-delay: .3s; }
+
+    @keyframes heroFade {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-anim-1 { animation: heroFade .8s .1s both; }
+    .hero-anim-2 { animation: heroFade .8s .25s both; }
+    .hero-anim-3 { animation: heroFade .8s .4s both; }
+
+    /* ── PAGE WRAP ── */
+    .page-wrap { padding-top: 84px; }
+
+    /* ── BLOG HERO ── */
+    .blog-hero {
+      padding: clamp(64px, 9vw, 120px) clamp(24px, 4vw, 64px) 0;
+      max-width: 1440px; margin: 0 auto;
+      border-bottom: 1px solid var(--bordergray);
+      padding-bottom: clamp(48px, 6vw, 80px);
+    }
+    .blog-hero-inner { max-width: 720px; }
+    .blog-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .blog-eyebrow::after {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--accentmuted);
+    }
+    .blog-h1 {
+      font-size: clamp(38px, 5.5vw, 72px); font-weight: 500;
+      letter-spacing: -0.04em; line-height: 1.02;
+      color: var(--textprimary); margin-bottom: 24px;
+    }
+    .blog-h1 em { font-style: normal; color: var(--accent); }
+    .blog-desc {
+      font-size: clamp(15px, 1.4vw, 17px); color: var(--textsecondary);
+      line-height: 1.75; max-width: 52ch;
+    }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      max-width: 1440px; margin: 0 auto;
+      padding: 28px clamp(24px, 4vw, 64px);
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      border-bottom: 1px solid var(--bordergray);
+    }
+    .filter-btn {
+      font-size: 12px; font-weight: 500; letter-spacing: .04em;
+      color: var(--textsecondary); background: var(--warmgray);
+      border: 1px solid transparent; border-radius: 999px;
+      padding: 7px 16px; cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .filter-btn:hover { background: var(--accentlight); color: var(--accent); }
+    .filter-btn.active {
+      background: var(--textprimary); color: #fff;
+      border-color: var(--textprimary);
+    }
+
+    /* ── FEATURED POST ── */
+    .featured-wrap {
+      max-width: 1440px; margin: 0 auto;
+      padding: clamp(48px, 6vw, 80px) clamp(24px, 4vw, 64px);
+      border-bottom: 1px solid var(--bordergray);
+    }
+    .featured-label {
+      font-size: 10px; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 28px;
+    }
+    .featured-card {
+      display: grid; grid-template-columns: 5fr 7fr;
+      gap: clamp(32px, 5vw, 64px); align-items: center;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .featured-card { grid-template-columns: 1fr; }
+    }
+    .featured-img {
+      aspect-ratio: 4/3; overflow: hidden;
+      background: var(--warmgray); position: relative;
+    }
+    .featured-img-inner {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .8s cubic-bezier(.25,.1,.25,1);
+    }
+    .featured-card:hover .featured-img-inner { transform: scale(1.04); }
+    .featured-img-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--warmgray) 0%, var(--accentlight) 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .featured-content { padding: 8px 0; }
+    .post-meta {
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .post-category {
+      font-size: 10px; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent);
+      background: var(--accentlight); padding: 5px 12px;
+      border-radius: 999px;
+    }
+    .post-date {
+      font-size: 12px; color: var(--textmuted); letter-spacing: .02em;
+    }
+    .post-read {
+      font-size: 12px; color: var(--textmuted);
+    }
+    .featured-title {
+      font-size: clamp(24px, 3vw, 40px); font-weight: 500;
+      letter-spacing: -0.03em; line-height: 1.1;
+      color: var(--textprimary); margin-bottom: 18px;
+      transition: color .2s;
+    }
+    .featured-card:hover .featured-title { color: var(--accent); }
+    .featured-excerpt {
+      font-size: 15px; color: var(--textsecondary);
+      line-height: 1.75; max-width: 54ch; margin-bottom: 28px;
+    }
+    .read-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; color: var(--textprimary);
+      transition: color .2s, gap .2s;
+    }
+    .read-link:hover { color: var(--accent); gap: 12px; }
+    .read-link-arrow { transition: transform .2s; }
+    .read-link:hover .read-link-arrow { transform: translateX(4px); }
+
+    /* ── POST GRID ── */
+    .posts-wrap {
+      max-width: 1440px; margin: 0 auto;
+      padding: clamp(48px, 6vw, 80px) clamp(24px, 4vw, 64px);
+    }
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(32px, 4vw, 48px) clamp(20px, 3vw, 40px);
+    }
+    @media (max-width: 1000px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .posts-grid { grid-template-columns: 1fr; } }
+
+    .post-card {
+      cursor: pointer; display: flex; flex-direction: column; gap: 0;
+    }
+    .post-thumb {
+      aspect-ratio: 16/10; overflow: hidden;
+      background: var(--warmgray); margin-bottom: 20px;
+      position: relative;
+    }
+    .post-thumb-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .7s cubic-bezier(.25,.1,.25,1);
+    }
+    .post-card:hover .post-thumb-img { transform: scale(1.05); }
+    .post-thumb-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .post-card-title {
+      font-size: clamp(16px, 1.5vw, 19px); font-weight: 500;
+      letter-spacing: -0.025em; line-height: 1.2;
+      color: var(--textprimary); margin-bottom: 10px;
+      transition: color .2s;
+    }
+    .post-card:hover .post-card-title { color: var(--accent); }
+    .post-card-excerpt {
+      font-size: 14px; color: var(--textsecondary);
+      line-height: 1.7; margin-bottom: 16px; flex: 1;
+    }
+    .post-card-footer {
+      display: flex; justify-content: space-between;
+      align-items: center; padding-top: 16px;
+      border-top: 1px solid var(--bordergray);
+      margin-top: auto;
+    }
+    .post-card-author {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .author-avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      overflow: hidden; background: var(--accentlight);
+      flex-shrink: 0;
+    }
+    .author-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+    .author-name { font-size: 12px; font-weight: 500; color: var(--textsecondary); }
+    .post-card-read { font-size: 11px; color: var(--textmuted); }
+
+    /* ── DIVIDER SECTION ── */
+    .divider-pull {
+      max-width: 1440px; margin: 0 auto;
+      padding: clamp(64px, 9vw, 120px) clamp(24px, 4vw, 64px);
+      border-top: 1px solid var(--bordergray);
+      border-bottom: 1px solid var(--bordergray);
+    }
+    .pull-quote {
+      font-size: clamp(22px, 3vw, 40px); font-weight: 500;
+      letter-spacing: -0.03em; line-height: 1.2;
+      color: var(--textprimary); max-width: 780px;
+    }
+    .pull-quote em { font-style: normal; color: var(--accent); }
+
+    /* ── NEWSLETTER ── */
+    .newsletter-wrap {
+      max-width: 1440px; margin: 0 auto;
+      padding: clamp(64px, 9vw, 120px) clamp(24px, 4vw, 64px);
+    }
+    .newsletter-inner {
+      background: var(--warmgray); padding: clamp(40px, 6vw, 72px);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 64px); align-items: center;
+    }
+    @media (max-width: 720px) { .newsletter-inner { grid-template-columns: 1fr; } }
+    .newsletter-h2 {
+      font-size: clamp(24px, 3vw, 38px); font-weight: 500;
+      letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .newsletter-h2 em { font-style: normal; color: var(--accent); }
+    .newsletter-desc {
+      font-size: 14px; color: var(--textsecondary); line-height: 1.75;
+    }
+    .newsletter-form { display: flex; flex-direction: column; gap: 12px; }
+    .newsletter-input {
+      width: 100%; background: #fff;
+      border: 1px solid var(--bordergray);
+      color: var(--textprimary); padding: 13px 20px;
+      font-family: 'Satoshi', sans-serif; font-size: 14px;
+      border-radius: 999px; outline: none;
+      transition: border-color .25s;
+    }
+    .newsletter-input::placeholder { color: #8A8580; }
+    .newsletter-input:focus { border-color: var(--accentmuted); }
+    .newsletter-btn {
+      background: var(--textprimary); color: #fff;
+      border: none; border-radius: 999px;
+      padding: 14px 28px; font-family: 'Satoshi', sans-serif;
+      font-size: 14px; font-weight: 500;
+      letter-spacing: -0.01em; cursor: pointer;
+      transition: background .25s; align-self: flex-start;
+    }
+    .newsletter-btn:hover { background: var(--accent); }
+    .newsletter-note { font-size: 11px; color: var(--textmuted); margin-top: 4px; }
+
+    /* ══════════════════════════
+       FOOTER
+    ══════════════════════════ */
+    .site-footer {
+      border-top: 1px solid var(--bordergray);
+      padding: 40px clamp(24px, 4vw, 64px);
+    }
+    .footer-inner {
+      max-width: 1440px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.8fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+    }
+    @media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; } }
+    @media (max-width: 540px) { .footer-inner { grid-template-columns: 1fr; gap: 28px; padding-bottom: 32px; } }
+    @media (max-width: 768px) {
+      .site-footer { padding-bottom: 100px; }
+    }
+    .footer-logo {
+      display:flex;
+      align-items:center;
+      line-height:1;
+      font-size: 20px; font-weight: 600;
+      letter-spacing: -0.03em; color: var(--textprimary);
+      margin-bottom: 12px;
+    }
+    .footer-logo sup { font-size: 9px; color: var(--accent); vertical-align: super; }
+    .footer-tagline {
+      font-size: 15px; color: var(--textsecondary);
+      line-height: 1.7; max-width: 24ch; margin-bottom: 20px;
+    }
+    .social-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .social-link {
+      width: 44px; height: 44px;
+      border: none;
+      border-radius: 50%;
+      background: var(--warmgray);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--textsecondary);
+      transition: background .2s, color .2s;
+    }
+    .social-link:hover { background: var(--accentlight); color: var(--accent); }
+    .social-link[aria-label="FB / Facebook"] { color: #1877F2; }
+    .social-link[aria-label="Instagram"] { color: #E1306C; }
+    .social-link[aria-label="LinkedIn"] { color: #0A66C2; }
+    .social-link[aria-label="X / Twitter"] { color: #000000; }
+    .social-link[aria-label="YT / YouTube"] { color: #FF0000; }
+    .footer-col-label {
+      font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 18px; display: block;
+    }
+    .footer-link {
+      display: block; margin-bottom: 12px;
+      font-size: 13px; color: var(--textsecondary);
+      transition: color .2s;
+    }
+    .footer-link:hover { color: var(--textprimary); }
+    .footer-contact-label {
+      font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--textmuted); margin-bottom: 4px;
+    }
+    .footer-contact-val {
+      font-size: 13px; color: var(--textsecondary);
+      display: block; margin-bottom: 14px;
+      transition: color .2s;
+    }
+    .footer-contact-val:hover { color: var(--accent); }
+    .footer-bar {
+      max-width: 1440px; margin: 0 auto;
+      border-top: 1px solid var(--bordergray);
+      padding-top: 32px;
+      display: flex; justify-content: space-between;
+      align-items: flex-start; flex-wrap: wrap; gap: 10px;
+    }
+    .footer-bar p { font-size: 12px; color: var(--textmuted); }
+    .footer-philosophy{
+      font-family:'Satoshi', sans-serif;
+      font-weight: 500;
+      font-size:20px;
+      line-height:1.4;
+      letter-spacing:-0.02em;
+      color:var(--textprimary);
+      max-width:18ch;
+      margin-bottom:28px;
+    }
+
+
+    /* ── BTT ── */
+    #back-to-top {
+      position: fixed; bottom: 32px; left: 20px;
+      width: 52px; height: 52px;
+      background: var(--textprimary); border: none; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 9998;
+      opacity: 0; visibility: hidden;
+      transition: opacity .3s, visibility .3s, transform .2s;
+      color: white;
+    }
+    #back-to-top.visible { opacity: 1; visibility: visible; }
+    #back-to-top:hover { transform: translateY(-2px); }
+
+    /* Mobile WA */
+    #mobile-wa {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      #mobile-wa {
+        display: flex; align-items: center; justify-content: center;
+        position: fixed; bottom: 32px; right: 20px; z-index: 9996;
+        width: 52px; height: 52px; border-radius: 50%;
+        background: #1fad4e; box-shadow: 0 4px 16px rgba(31,173,78,.35);
+        border: none; cursor: pointer; transition: transform .2s, background .2s;
+      }
+    }
+    @media (min-width: 769px) {
+      #mobile-wa {
+        display: flex; align-items: center; justify-content: center;
+        position: fixed; bottom: 32px; right: 20px; z-index: 9996;
+        width: 52px; height: 52px; border-radius: 50%;
+        background: #1fad4e; box-shadow: 0 4px 16px rgba(31,173,78,.35);
+        border: none; cursor: pointer; transition: transform .2s, background .2s;
+      }
+    }
+    #mobile-wa:hover { transform: scale(1.08); }
+
+    /* Placeholder art ── abstract fill for cards without images */
+    .placeholder-art {
+      width: 100%; height: 100%; position: relative; overflow: hidden;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 3px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="SQUARGRAPH Studios">
+      <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" fetchpriority="high" decoding="sync" />
+    </a>
+    <div class="nav-links">
+      <a href="/#work">Work</a>
+      <a href="/#Engagements">Engagements</a>
+      <a href="/#capabilities">Capabilities</a>
+      <a href="/#studio">Studio</a>
+      <a href="/blog" class="active">Thinking</a>
+      <a href="/discovery" class="nav-cta">Book Discovery Session</a>
+    </div>
+    <button type="button" class="hamburger" id="mob-toggle" aria-label="Open navigation menu" aria-expanded="false">
+      <div class="pill-menu">
+        <div class="pill-line"></div>
+        <div class="pill-body"></div>
+      </div>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" aria-hidden="true" inert>
+  <span id="mob-menu-title" class="sr-only">Navigation Menu</span>
+  <a href="/#work" onclick="closeMob()">Work</a>
+  <a href="/#Engagements" onclick="closeMob()">Engagements</a>
+  <a href="/#capabilities" onclick="closeMob()">Capabilities</a>
+  <a href="/#studio" onclick="closeMob()">Studio</a>
+  <a href="/blog" onclick="closeMob()">Thinking</a>
+  <a href="/#contact" onclick="closeMob()">Contact</a>
+  <a href="/discovery" onclick="closeMob();" style="color: var(--accent); font-weight: 600;">Book Discovery — ₹2,999 →</a>
+  <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ── HERO ── -->
+  <div class="blog-hero">
+    <div class="blog-hero-inner">
+      <p class="blog-eyebrow hero-anim-1">Thinking</p>
+      <h1 class="blog-h1 hero-anim-2">How we see<br/><em>brands.</em></h1>
+      <p class="blog-desc hero-anim-3">Strategy notes and brand observations from the SQUARGRAPH™ studio. Written to show how we think, not to rank for keywords.</p>
+    </div>
+  </div>
+
+  <!-- ── FILTER BAR ── -->
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="brand-strategy">Brand Strategy</button>
+    <button class="filter-btn" data-filter="campaign">Campaign</button>
+    <button class="filter-btn" data-filter="digital">Digital</button>
+    <button class="filter-btn" data-filter="production">Production</button>
+    <button class="filter-btn" data-filter="industry">Industry</button>
+  </div>
+
+  <!-- ── FEATURED ── -->
+  <div class="featured-wrap fade-up">
+    <p class="featured-label">Featured</p>
+    <div class="featured-card" onclick="window.location.href='/blog/why-most-brand-audits-are-wrong'">
+      <div class="featured-img">
+        <div class="featured-img-placeholder">
+          <svg width="100%" height="100%" viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="560" height="420" fill="#F5F5F3"/>
+            <rect x="0" y="0" width="560" height="420" fill="url(#g1)"/>
+            <defs>
+              <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#EEECf7;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#F5F5F3;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <!-- Abstract grid lines -->
+            <line x1="0" y1="140" x2="560" y2="140" stroke="#E5E3DF" stroke-width="1"/>
+            <line x1="0" y1="280" x2="560" y2="280" stroke="#E5E3DF" stroke-width="1"/>
+            <line x1="186" y1="0" x2="186" y2="420" stroke="#E5E3DF" stroke-width="1"/>
+            <line x1="373" y1="0" x2="373" y2="420" stroke="#E5E3DF" stroke-width="1"/>
+            <!-- Accent element -->
+            <rect x="186" y="140" width="187" height="140" fill="rgba(107,93,184,0.07)"/>
+            <text x="280" y="218" font-family="sans-serif" font-size="11" font-weight="600" fill="#6B5DB8" letter-spacing="2" text-anchor="middle" opacity="0.5">SQUARGRAPH™</text>
+          </svg>
+        </div>
+      </div>
+      <div class="featured-content">
+        <div class="post-meta">
+          <span class="post-category">Brand Strategy</span>
+          <span class="post-date">June 2026</span>
+          <span class="post-read">8 min read</span>
+        </div>
+        <h2 class="featured-title">Why most brand audits measure the wrong things</h2>
+        <p class="featured-excerpt">A brand audit that only looks at your logo and colour palette is like a health check that only measures your height. The real diagnostic is about what you're communicating, to whom, and whether it's actually working at every touchpoint that matters.</p>
+        <span class="read-link">
+          Read the piece <span class="read-link-arrow">→</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── POST GRID ── -->
+  <div class="posts-wrap">
+    <div class="posts-grid" id="posts-grid">
+
+      <!-- Post 1 -->
+      <article class="post-card fade-up" data-category="brand-strategy">
+        <div class="post-thumb">
+          <div class="post-thumb-placeholder">
+            <svg width="100%" height="100%" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="250" fill="#F5F5F3"/>
+              <circle cx="200" cy="125" r="90" fill="rgba(107,93,184,0.06)" />
+              <circle cx="200" cy="125" r="55" fill="rgba(107,93,184,0.06)" />
+              <circle cx="200" cy="125" r="24" fill="rgba(107,93,184,0.1)" />
+            </svg>
+          </div>
+        </div>
+        <div class="post-meta">
+          <span class="post-category">Brand Strategy</span>
+          <span class="post-date">May 2026</span>
+        </div>
+        <h3 class="post-card-title">The positioning trap: why growing brands plateau</h3>
+        <p class="post-card-excerpt">Most brands plateau not because the product gets worse but because the positioning never evolves. They find a message that works, repeat it until it stops, and then wonder why the market has moved on without them.</p>
+        <div class="post-card-footer">
+          <div class="post-card-author">
+            <div class="author-avatar">
+              <img src="/founder.webp" alt="Saurabh Sohan Singh" />
+            </div>
+            <span class="author-name">Saurabh Sohan Singh</span>
+          </div>
+          <span class="post-card-read">6 min</span>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="post-card fade-up d1" data-category="digital">
+        <div class="post-thumb">
+          <div class="post-thumb-placeholder">
+            <svg width="100%" height="100%" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="250" fill="#F0EFED"/>
+              <rect x="40" y="40" width="320" height="170" rx="4" fill="none" stroke="#E5E3DF" stroke-width="1.5"/>
+              <rect x="56" y="60" width="120" height="8" rx="2" fill="#E5E3DF"/>
+              <rect x="56" y="80" width="200" height="6" rx="2" fill="#ECEAE6"/>
+              <rect x="56" y="96" width="160" height="6" rx="2" fill="#ECEAE6"/>
+              <rect x="56" y="130" width="80" height="32" rx="99" fill="rgba(107,93,184,0.15)"/>
+              <rect x="290" y="50" width="60" height="60" rx="4" fill="rgba(107,93,184,0.07)"/>
+            </svg>
+          </div>
+        </div>
+        <div class="post-meta">
+          <span class="post-category">Digital</span>
+          <span class="post-date">May 2026</span>
+        </div>
+        <h3 class="post-card-title">What a brand's website is actually communicating</h3>
+        <p class="post-card-excerpt">Before anyone reads your copy, they've already formed an impression. Load speed, visual hierarchy, image quality — these are not UX details. They are brand signals, and they speak louder than any headline you've written.</p>
+        <div class="post-card-footer">
+          <div class="post-card-author">
+            <div class="author-avatar">
+              <img src="/founder.webp" alt="Saurabh Sohan Singh" />
+            </div>
+            <span class="author-name">Saurabh Sohan Singh</span>
+          </div>
+          <span class="post-card-read">5 min</span>
+        </div>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="post-card fade-up d2" data-category="campaign">
+        <div class="post-thumb">
+          <div class="post-thumb-placeholder">
+            <svg width="100%" height="100%" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="250" fill="#F5F5F3"/>
+              <rect x="0" y="165" width="400" height="85" fill="#ECEAE6"/>
+              <polygon points="40,165 200,60 360,165" fill="rgba(107,93,184,0.08)"/>
+              <line x1="0" y1="165" x2="400" y2="165" stroke="#E5E3DF" stroke-width="1"/>
+              <circle cx="200" cy="60" r="8" fill="rgba(107,93,184,0.25)"/>
+            </svg>
+          </div>
+        </div>
+        <div class="post-meta">
+          <span class="post-category">Campaign</span>
+          <span class="post-date">April 2026</span>
+        </div>
+        <h3 class="post-card-title">Why campaign briefs fail before the work begins</h3>
+        <p class="post-card-excerpt">The brief is where most campaign problems are created. Vague objectives, unresolved audience questions, no clear single-minded proposition — by the time creative work begins, the foundation is already compromised.</p>
+        <div class="post-card-footer">
+          <div class="post-card-author">
+            <div class="author-avatar">
+              <img src="/founder.webp" alt="Saurabh Sohan Singh" />
+            </div>
+            <span class="author-name">Saurabh Sohan Singh</span>
+          </div>
+          <span class="post-card-read">7 min</span>
+        </div>
+      </article>
+
+      <!-- Post 4 -->
+      <article class="post-card fade-up" data-category="production">
+        <div class="post-thumb">
+          <div class="post-thumb-placeholder">
+            <svg width="100%" height="100%" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="250" fill="#ECEAE6"/>
+              <rect x="50" y="50" width="140" height="150" rx="2" fill="rgba(107,93,184,0.08)"/>
+              <rect x="210" y="80" width="140" height="120" rx="2" fill="rgba(107,93,184,0.05)"/>
+              <rect x="50" y="50" width="140" height="150" rx="2" fill="none" stroke="#E5E3DF" stroke-width="1"/>
+              <rect x="210" y="80" width="140" height="120" rx="2" fill="none" stroke="#E5E3DF" stroke-width="1"/>
+              <line x1="120" y1="125" x2="280" y2="140" stroke="rgba(107,93,184,0.2)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            </svg>
+          </div>
+        </div>
+        <div class="post-meta">
+          <span class="post-category">Production</span>
+          <span class="post-date">April 2026</span>
+        </div>
+        <h3 class="post-card-title">Shooting for social: what most production briefs get wrong</h3>
+        <p class="post-card-excerpt">Social content is not film content reformatted. It has different physics — different aspect ratios, attention windows, contexts of consumption. Briefs that ignore this produce work that looks expensive and performs poorly.</p>
+        <div class="post-card-footer">
+          <div class="post-card-author">
+            <div class="author-avatar">
+              <img src="/founder.webp" alt="Saurabh Sohan Singh" />
+            </div>
+            <span class="author-name">Saurabh Sohan Singh</span>
+          </div>
+          <span class="post-card-read">5 min</span>
+        </div>
+      </article>
+
+      <!-- Post 5 -->
+      <article class="post-card fade-up d1" data-category="industry">
+        <div class="post-thumb">
+          <div class="post-thumb-placeholder">
+            <svg width="100%" height="100%" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="250" fill="#F5F5F3"/>
+              <rect x="60" y="160" width="40" height="60" fill="rgba(107,93,184,0.12)"/>
+              <rect x="120" y="120" width="40" height="100" fill="rgba(107,93,184,0.10)"/>
+              <rect x="180" y="90" width="40" height="130" fill="rgba(107,93,184,0.15)"/>
+              <rect x="240" y="110" width="40" height="110" fill="rgba(107,93,184,0.08)"/>
+              <rect x="300" y="70" width="40" height="150" fill="rgba(107,93,184,0.18)"/>
+              <line x1="40" y1="220" x2="360" y2="220" stroke="#E5E3DF" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+        <div class="post-meta">
+          <span class="post-category">Industry</span>
+          <span class="post-date">March 2026</span>
+        </div>
+        <h3 class="post-card-title">The D2C attention problem, and why it's a brand problem</h3>
+        <p class="post-card-excerpt">Rising CAC is a symptom. The underlying condition is that most D2C brands are competing on offers rather than identity. When every brand sounds the same, the only differentiator left is the discount.</p>
+        <div class="post-card-footer">
+          <div class="post-card-author">
+            <div class="author-avatar">
+              <img src="/founder.webp" alt="Saurabh Sohan Singh" />
+            </div>
+            <span class="author-name">Saurabh Sohan Singh</span>
+          </div>
+          <span class="post-card-read">9 min</span>
+        </div>
+      </article>
+
+      <!-- Post 6 -->
+      <article class="post-card fade-up d2" data-category="brand-strategy">
+        <div class="post-thumb">
+          <div class="post-thumb-placeholder">
+            <svg width="100%" height="100%" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="250" fill="#F0EFED"/>
+              <circle cx="200" cy="125" r="100" fill="none" stroke="#E5E3DF" stroke-width="1"/>
+              <circle cx="200" cy="125" r="65" fill="none" stroke="#E5E3DF" stroke-width="1"/>
+              <circle cx="200" cy="125" r="32" fill="rgba(107,93,184,0.08)"/>
+              <line x1="100" y1="125" x2="300" y2="125" stroke="#E5E3DF" stroke-width="1"/>
+              <line x1="200" y1="25" x2="200" y2="225" stroke="#E5E3DF" stroke-width="1"/>
+              <circle cx="200" cy="125" r="5" fill="var(--accent)" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+        <div class="post-meta">
+          <span class="post-category">Brand Strategy</span>
+          <span class="post-date">March 2026</span>
+        </div>
+        <h3 class="post-card-title">Consistency is not the goal. Coherence is.</h3>
+        <p class="post-card-excerpt">Consistency means repeating the same thing. Coherence means everything you do connects back to the same underlying idea. One is a design rule. The other is a strategic principle. The difference shows up in how customers experience you over time.</p>
+        <div class="post-card-footer">
+          <div class="post-card-author">
+            <div class="author-avatar">
+              <img src="/founder.webp" alt="Saurabh Sohan Singh" />
+            </div>
+            <span class="author-name">Saurabh Sohan Singh</span>
+          </div>
+          <span class="post-card-read">4 min</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- ── PULL QUOTE ── -->
+  <div class="divider-pull fade-up">
+    <p class="pull-quote">A brand is not what you say it is.<br/>It's what <em>other people say</em> when you're not in the room.</p>
+  </div>
+
+  <!-- ── NEWSLETTER ── -->
+  <div class="newsletter-wrap fade-up">
+    <div class="newsletter-inner">
+      <div>
+        <h2 class="newsletter-h2">Strategy notes,<br/>when <em>we have something worth saying.</em></h2>
+        <p class="newsletter-desc">No newsletter cadence. No content calendar. We write when we've worked through something worth sharing. Typically once or twice a month.</p>
+      </div>
+      <div>
+        <form class="newsletter-form" id="newsletter-form" novalidate>
+          <input type="email" placeholder="Your email address" class="newsletter-input" id="nl-email" required autocomplete="email" />
+          <button type="submit" class="newsletter-btn">Subscribe →</button>
+          <p class="newsletter-note">No selling. No forwarding your address. Unsubscribe any time.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- ══════════════
+     FOOTER
+══════════════ -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+  <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" />
+</div>
+      <p class="footer-tagline">Brand strategy, campaign architecture, and digital experiences for businesses that take their market position seriously.</p>
+      <p class="footer-philosophy">
+  Perception shapes value.<br/>We build what controls it.
+</p>
+      <div class="social-links">
+        <a href="https://facebook.com/squargraphstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="FB / Facebook">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://instagram.com/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://linkedin.com/company/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X / Twitter">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://youtube.com/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YT / YouTube">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-label">Company</span>
+      <a href="#intelligence" class="footer-link">Brand Studies</a>
+      <a href="#approach" class="footer-link">Our Approach</a>
+    </div>
+    <div>
+      <span class="footer-col-label">Engagements</span>
+      <a href="#capabilities" class="footer-link">Campaign Systems</a>
+      <a href="#capabilities" class="footer-link">Brand Communication</a>
+      <a href="#capabilities" class="footer-link">Social Platforms</a>
+      <a href="#capabilities" class="footer-link">CGI &amp; Motion</a>
+    </div>
+  </div>
+  <div class="footer-bar" style="flex-direction:column;align-items:flex-start;gap:16px;">
+    <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;">
+  <a href="https://razorpay.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:6px;text-decoration:none;">
+  <span style="font-size:11px;color:var(--textmuted);">Payments Secured by</span>
+  <img src="https://cdn.razorpay.com/logo.svg" alt="Razorpay" height="16" width="80" loading="lazy" decoding="async" style="display:block;" />
+</a>
+</div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;width:100%;gap:12px;align-items:center;">
+      <p style="font-size:12px;color:var(--textmuted);">© 2026 SQUARGRAPH™ Studios. All rights reserved. New Delhi, India</p>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <a href="/terms-of-use" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Terms of Use</a>
+        <a href="/privacy-policy" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Privacy Policy</a>
+        <a href="/refund-policy" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Refund Policy</a>
+        <a href="/ai-disclosure" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">AI Disclosure</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Back to top -->
+<button id="back-to-top" type="button" aria-label="Back to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<!-- WA float -->
+<a id="mobile-wa"
+   href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project"
+   target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+(function() {
+  'use strict';
+
+  // Nav hamburger
+  var mobToggle = document.getElementById('mob-toggle');
+  var mobMenu   = document.getElementById('mob-menu');
+  var menuOpen  = false;
+
+  mobToggle.addEventListener('click', function() {
+    menuOpen = !menuOpen;
+    mobToggle.classList.toggle('open', menuOpen);
+    mobToggle.setAttribute('aria-expanded', String(menuOpen));
+    mobToggle.setAttribute('aria-label', menuOpen ? 'Close navigation menu' : 'Open navigation menu');
+    mobMenu.classList.toggle('open', menuOpen);
+    mobMenu.setAttribute('aria-hidden', String(!menuOpen));
+    if (menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert', ''); }
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+
+  window.closeMob = function() {
+    menuOpen = false;
+    mobToggle.classList.remove('open');
+    mobToggle.setAttribute('aria-expanded', 'false');
+    mobMenu.classList.remove('open');
+    mobMenu.setAttribute('aria-hidden', 'true');
+    mobMenu.setAttribute('inert', '');
+    document.body.style.overflow = '';
+  };
+
+  document.addEventListener('click', function(e) {
+    if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) closeMob();
+  });
+
+  // Back to top
+  var btt = document.getElementById('back-to-top');
+  btt.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  window.addEventListener('scroll', function() {
+    btt.classList.toggle('visible', window.scrollY > 300);
+  }, { passive: true });
+
+  // Scroll reveal
+  var revealObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -32px 0px' });
+  document.querySelectorAll('.fade-up').forEach(function(el) { revealObs.observe(el); });
+
+  // Filter
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var cards = document.querySelectorAll('.post-card');
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter');
+      cards.forEach(function(card) {
+        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Newsletter form
+  var nlForm = document.getElementById('newsletter-form');
+  if (nlForm) {
+    nlForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var emailEl = document.getElementById('nl-email');
+      if (!emailEl.value.trim() || !emailEl.value.includes('@')) {
+        emailEl.style.borderColor = '#EF4444';
+        return;
+      }
+      emailEl.style.borderColor = '';
+      var btn = nlForm.querySelector('.newsletter-btn');
+      btn.textContent = 'Subscribed ✓';
+      btn.style.background = '#1fad4e';
+      btn.disabled = true;
+      emailEl.disabled = true;
+    });
+  }
+
+  // Razorpay stub (loads on demand if ever triggered)
+  window.openRazorpay = function(productKey) {
+    var products = {
+      discovery: { name: 'Discovery Session™', amount: 299900, description: '60-min founder-led brand strategy session' }
+    };
+    var product = products[productKey];
+    if (!product) return;
+    var options = {
+      key: 'rzp_live_SvayEzczzvrE7f', amount: product.amount, currency: 'INR',
+      name: 'SQUARGRAPH™ Studios', description: product.description,
+      image: '/logo.webp', theme: { color: '#8B7EC8' },
+      handler: function() {}
+    };
+    if (typeof Razorpay !== 'undefined') {
+      new Razorpay(options).open();
+    } else {
+      var s = document.createElement('script');
+      s.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      s.onload = function() { new Razorpay(options).open(); };
+      document.head.appendChild(s);
+    }
+  };
+
+})();
+</script>
+
+<!-- Lazy GTM -->
+<script>
+(function(){
+  var loaded = false;
+  function loadGTM(){
+    if(loaded) return; loaded = true;
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');
+  }
+  ['mousemove','keydown','touchstart','scroll','click'].forEach(function(e){
+    window.addEventListener(e, loadGTM, {once:true, passive:true});
+  });
+  setTimeout(loadGTM, 5000);
+})();
+</script>
+
+</body>
+</html>
