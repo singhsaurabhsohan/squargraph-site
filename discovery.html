@@ -906,10 +906,11 @@
   function validate() {
     var ok = true;
 
-    function checkFieldValidation(wrapperId, inputId, condition) {
+    function checkFieldValidation(wrapperId, condition) {
       var wrap = document.getElementById(wrapperId);
-      var el = document.getElementById(inputId);
-      if (!wrap || !el) return;
+      if (!wrap) return;
+      var el = wrap.querySelector('input, select, textarea');
+      if (!el) return;
       if (condition(el.value)) {
         wrap.classList.remove('has-error');
       } else {
