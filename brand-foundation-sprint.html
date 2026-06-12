@@ -56,7 +56,7 @@
       --transition: 0.22s cubic-bezier(.4,0,.2,1);
     }
 
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: visible; }
 
     body {
       font-family: var(--font);
@@ -455,6 +455,7 @@
       color: var(--text);
       outline: none;
       box-shadow: none !important;
+      border-radius: 999px;
     }
     .iti__arrow { border-top-color: var(--muted); }
     .iti__country-list {
@@ -1020,7 +1021,7 @@
 
     checkFieldValidation('form-name',      function(v) { return v.trim().length > 1; });
     checkFieldValidation('form-email',     function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); });
-    checkFieldValidation('form-phone',     function(v) { return v.trim().length > 5; });
+    // phone validated via ITI below
     checkFieldValidation('form-company',   function(v) { return v.trim().length > 1; });
     checkFieldValidation('form-challenge', function(v) { return v.trim().length > 10; });
     checkFieldValidation('form-goal',      function(v) { return v.trim().length > 10; });
@@ -1059,10 +1060,15 @@
     // Resolve full phone number with country code
     var phone = document.getElementById('form-phone').value.trim();
     if (window.iti) {
-      var fullNumber = window.iti.getNumber();
-      if (fullNumber) phone = fullNumber;
+      if (!phone) {
+        document.getElementById('form-phone').closest('.field') && document.getElementById('form-phone').closest('.field').classList.add('has-error');
+        return;
+      } else if (!window.iti.isValidNumber()) {
+        document.getElementById('form-phone').closest('.field') && document.getElementById('form-phone').closest('.field').classList.add('has-error');
+        return;
+      }
+      phone = window.iti.getNumber();
     }
-
     var payload = {
       name:           document.getElementById('form-name').value.trim(),
       email:          document.getElementById('form-email').value.trim(),
