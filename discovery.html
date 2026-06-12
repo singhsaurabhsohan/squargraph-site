@@ -468,13 +468,13 @@
   box-shadow: 0 12px 40px rgba(26,23,20,0.12) !important;
   font-family: var(--font) !important;
   font-size: 13px !important;
-  z-index: 99999 !important;
-  position: fixed !important;
   max-height: 280px !important;
   overflow-y: auto !important;
+  overflow-x: hidden !important;
   background: #fff !important;
-  width: max-content !important;
+  width: auto !important;
   min-width: 280px !important;
+  max-width: 90vw !important;
   padding: 8px 0 !important;
   scrollbar-width: thin;
 }
@@ -496,6 +496,9 @@
 .iti__country-name {
   color: var(--text) !important;
   font-weight: 500 !important;
+}
+.form-body, .field-group, .field, .iti {
+  overflow: visible !important;
 }
 .iti__dial-code {
   color: var(--muted) !important;
