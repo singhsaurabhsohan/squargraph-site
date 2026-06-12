@@ -36,9 +36,7 @@
     s.async = true; s.defer = true;
     document.head.appendChild(s);
   }
-  var _rcObs = new IntersectionObserver(function(entries) {
-    if (entries[0].isIntersecting) { _loadRC(); _rcObs.disconnect(); }
-  }, { rootMargin: '200px' });
+  window.addEventListener('load', _loadRC);
   
   </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'" />
@@ -68,7 +66,7 @@
 
     /* ─── Reset ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: visible; font-weight: 400; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-weight: 400; }
 
     body {
       font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -76,7 +74,7 @@
       background: #FFFFFF;
       line-height: 1.5;
       letter-spacing: -0.01em;
-      overflow-x: visible;
+      overflow-x: hidden;
       font-weight: 400;
     }
 
