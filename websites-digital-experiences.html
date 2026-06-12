@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Websites & Digital Experiences — SQUARGRAPH™ Studios</title>
   <meta name="description" content="Build a high-performance website with SQUARGRAPH™ Studios. Brand-aligned design, conversion-focused architecture, and CMS handoff — scoped to your requirements." />
-  <link rel="canonical" href="https://squargraph.com/discovery" />
+  <link rel="canonical" href="https://squargraph.com/websites-digital-experiences" />
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Websites & Digital Experiences — SQUARGRAPH™ Studios" />
-  <meta property="og:description" content="A focused strategic session to identify opportunities, uncover communication gaps, and define the next best move for your business." />
+  <meta property="og:description" content="Build a high-performance website with SQUARGRAPH™ Studios. Brand-aligned design, conversion-focused architecture, and CMS handoff — scoped to your requirements." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://squargraph.com/discovery" />
+  <meta property="og:url" content="https://squargraph.com/websites-digital-experiences" />
   <meta property="og:image" content="https://squargraph.com/squargraph-brand-image.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Websites & Digital Experiences — SQUARGRAPH™ Studios" />
@@ -268,13 +268,16 @@
       border-radius: var(--radius-card);
       box-shadow: var(--shadow-lg);
       overflow: visible;
+      max-width: 740px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* ── CARD HEADER ── */
     .card-header {
-      padding: 24px 32px 22px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
+      padding: 32px 48px 0;
+      border-bottom: none;
+      background: transparent;
     }
 
     .card-label {
@@ -283,40 +286,41 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
     .card-title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.03em;
       color: var(--text);
+      margin-bottom: 4px;
     }
 
     /* ── FORM BODY ── */
-    .form-body { padding: 40px 48px; }
+    .form-body { padding: 40px 48px 48px; }
 
     /* ── FIELDS ── */
     .field-group {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 22px;
     }
 
     .field {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 0;
     }
 
     .field label {
       display: block;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 7px;
+      color: var(--muted);
+      margin-bottom: 8px;
     }
 
     .field label .optional {
@@ -340,29 +344,43 @@
       padding: 13px 20px;
       min-height: 48px;
       outline: none;
-      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
       appearance: none;
       -webkit-appearance: none;
+    }
+
+    .field input:hover,
+    .field select:hover,
+    .field textarea:hover {
+      border-color: #C8C4BE;
     }
 
     .field textarea {
       border-radius: 16px;
       resize: vertical;
-      min-height: 96px;
-      line-height: 1.6;
+      min-height: 112px;
+      line-height: 1.65;
     }
 
     .field input::placeholder,
-    .field textarea::placeholder { color: #B8B4AF; }
+    .field select::placeholder,
+    .field textarea::placeholder { color: #C0BAB4; }
 
     .field input:focus,
     .field select:focus,
     .field textarea:focus {
       border-color: var(--accent);
       background: #fff;
-      box-shadow: 0 0 0 3px rgba(107,93,184,.12);
+      box-shadow: 0 0 0 3px rgba(107,93,184,.16);
     }
 
+    .field input:disabled,
+    .field select:disabled,
+    .field textarea:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      background: #F5F4F2;
+    }
     .field select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
@@ -384,9 +402,9 @@
     .field.has-error .error-msg { display: block; }
 
     .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     /* ── SECTION DIVIDER ── */
@@ -493,6 +511,114 @@
       color: var(--text);
     }
     .iti__search-input:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 2px rgba(107,93,184,.2); }
+    .iti {
+  display: block;
+  width: 100%;
+  position: relative;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: visible;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.iti:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(107,93,184,.12);
+}
+.iti__flag-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 0;
+}
+.iti__selected-flag {
+  height: 48px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 10px 0 14px;
+  min-width: 72px;
+  display: flex;
+  align-items: center;
+}
+.iti input#form-phone {
+    border: none !important;
+    background: transparent !important;
+    height: 48px;
+    width: 100% !important;
+    padding-left: 86px !important;
+    font-family: var(--font);
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    box-shadow: none !important;
+    border-radius: 999px;
+  }
+.iti input#form-phone:focus {
+  box-shadow: none !important;
+}
+.iti__arrow {
+  border-top-color: var(--muted);
+}
+.iti__country-list {
+  border-radius: 16px !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 12px 40px rgba(26,23,20,0.12) !important;
+  font-family: var(--font) !important;
+  font-size: 13px !important;
+  max-height: 280px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  background: #fff !important;
+  width: auto !important;
+  min-width: 280px !important;
+  max-width: 90vw !important;
+  padding: 8px 0 !important;
+  scrollbar-width: thin;
+}
+.iti__country-list::-webkit-scrollbar {
+  width: 4px;
+  background: var(--border);
+}
+.iti__country-list::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+.form-body, .field-group, .field, .iti {
+  overflow: visible !important;
+}
+.iti__country {
+  padding: 10px 16px !important;
+  transition: background 0.2s !important;
+}
+.iti__country.iti__highlight {
+  background: var(--accent-light) !important;
+}
+.iti__country-name {
+  color: var(--text) !important;
+  font-weight: 500 !important;
+}
+.iti__dial-code {
+  color: var(--muted) !important;
+  font-size: 12px !important;
+  margin-left: 8px !important;
+}
+.iti__search-input {
+  font-family: var(--font);
+  font-size: 13px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  margin: 8px 12px;
+  width: calc(100% - 24px);
+  background: var(--surface);
+  color: var(--text);
+}
+.iti__search-input:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(107,93,184,.2);
+}
     .iti__flag { background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags.png") !important; }
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
       .iti__flag { background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important; }
@@ -570,30 +696,48 @@
     /* ── SUCCESS SCREEN ── */
     #success-screen {
       display: none;
-      padding: 56px 32px;
+      padding: 56px 48px 64px;
       text-align: center;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    #success-screen.visible { display: block; }
+    #success-screen.visible {
+      display: block;
+      animation: successIn 0.4s ease forwards;
+    }
+
+    @keyframes successIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
     .success-icon {
-      width: 60px; height: 60px;
+      width: 72px; height: 72px;
       border-radius: 50%;
-      background: rgba(22,163,74,.1);
-      border: 1px solid rgba(22,163,74,.25);
+      background: rgba(22,163,74,.08);
+      border: 1.5px solid rgba(22,163,74,.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 24px;
+      margin: 0 auto 28px;
     }
 
     .success-icon svg {
-      width: 24px; height: 24px;
+      width: 28px; height: 28px;
       stroke: #16A34A;
-      stroke-width: 2.5;
+      stroke-width: 2;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: drawCheck 0.5s ease 0.25s forwards;
+    }
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
     }
 
     .success-eyebrow {
@@ -602,31 +746,83 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .success-title {
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 700;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.035em;
       color: var(--text);
-      line-height: 1.2;
-      margin-bottom: 10px;
+      line-height: 1.15;
+      margin-bottom: 12px;
     }
 
     .success-sub {
       font-size: 14px;
       color: #8A8580;
-      line-height: 1.7;
-      max-width: 36ch;
-      margin: 0 auto 8px;
+      line-height: 1.75;
+      max-width: 38ch;
+      margin: 0 auto 28px;
     }
 
     .success-pid {
       font-size: 11px;
       color: #B8B4AF;
-      margin-bottom: 28px;
-      letter-spacing: 0.02em;
+      margin-bottom: 32px;
+      letter-spacing: 0.03em;
+    }
+
+    .success-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      text-align: left;
+      max-width: 360px;
+      margin: 0 auto 36px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .success-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .success-step:last-child { border-bottom: none; }
+
+    .success-step-num {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      border: 1px solid rgba(107,93,184,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 1px;
+    }
+
+    .success-step-text {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    .success-step-text span {
+      display: block;
+      font-size: 11.5px;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 2px;
     }
 
     .btn-wa {
@@ -662,9 +858,11 @@
       .deliverables { padding: 0 16px; }
       .deliverables-inner { grid-template-columns: 1fr; gap: 16px; }
       .form-section { padding: 0 16px; }
-      .form-body { padding: 24px 20px; }
-      .card-header { padding: 20px; }
-      .field-row { grid-template-columns: 1fr; }
+      .form-body { padding: 24px 20px 32px; }
+      .field-group { gap: 18px; }
+      .success-steps { max-width: 100%; }
+      #success-screen { padding: 40px 20px 48px; }
+      .card-header { padding: 24px 20px 0; }
       .privacy-note { padding: 0 20px 24px; }
       #success-screen { padding: 40px 20px; }
       .trust-row { gap: 12px; }
@@ -847,6 +1045,7 @@
           <span class="error-msg" id="consent-error">Please accept to continue.</span>
 
           <!-- Submit -->
+          <div class="error-msg" id="submit-error" style="display:none; text-align:center; margin-bottom:8px;"></div>
           <button class="btn-submit" id="btn-submit" type="button" onclick="handleSubmit()">
             Submit Project Brief →
           </button>
@@ -875,13 +1074,32 @@
         <div class="success-icon">
           <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <div class="success-eyebrow">Booking Confirmed</div>
-        <div class="success-title">Your session is<br />being scheduled.</div>
-        <p class="success-sub">You'll receive a confirmation with session details shortly. We'll be in touch within 2 hours.</p>
-        <p class="success-pid" id="success-pid"></p>
-        <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20just%20booked%20a%20Discovery%20Session%E2%84%A2." target="_blank" rel="noopener noreferrer" class="btn-wa">
+        <div class="success-eyebrow">Brief Received</div>
+        <div class="success-title">Your project brief<br />is with us.</div>
+        <p class="success-sub">We'll review your submission and reach out within 24 hours to discuss scope and next steps.</p>
+        <div class="success-steps">
+          <div class="success-step">
+            <div class="success-step-num">1</div>
+            <div class="success-step-text">Brief review
+              <span>We'll go through your project requirements and prepare initial thoughts on scope.</span>
+            </div>
+          </div>
+          <div class="success-step">
+            <div class="success-step-num">2</div>
+            <div class="success-step-text">Discovery call
+              <span>We'll reach out within 24 hours to schedule a scoping call before proposing.</span>
+            </div>
+          </div>
+          <div class="success-step">
+            <div class="success-step-num">3</div>
+            <div class="success-step-text">Proposal delivered
+              <span>A tailored proposal with timeline, scope, and investment is sent for your review.</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20just%20submitted%20a%20project%20brief%20for%20Websites%20%26%20Digital%20Experiences." target="_blank" rel="noopener noreferrer" class="btn-wa">
           <svg width="14" height="14" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Confirm on WhatsApp
+          Message us on WhatsApp
         </a>
       </div>
 
@@ -899,10 +1117,98 @@
 </div>
 
 <script>
-  
-  
 
-  
+var CITY_DATA = {
+    'India': ['Ahmedabad','Bengaluru','Chennai','Delhi','Gurugram','Hyderabad','Jaipur','Kolkata','Mumbai','Noida','Pune','Surat','Other'],
+    'UAE': ['Abu Dhabi','Dubai','Sharjah','Other'],
+    'USA': ['Austin','Chicago','Los Angeles','Miami','New York','San Francisco','Seattle','Other'],
+    'UK': ['Birmingham','Edinburgh','Leeds','London','Manchester','Other'],
+    'Singapore': ['Singapore'],
+    'Australia': ['Brisbane','Melbourne','Perth','Sydney','Other'],
+    'Canada': ['Calgary','Montreal','Toronto','Vancouver','Other'],
+    'Germany': ['Berlin','Frankfurt','Hamburg','Munich','Other'],
+    'France': ['Lyon','Marseille','Paris','Other'],
+    'Japan': ['Osaka','Tokyo','Other']
+  };
+
+  function initCountryCityMapping(countryId, cityId) {
+    var countryEl = document.getElementById(countryId);
+    var cityEl    = document.getElementById(cityId);
+    var textEl    = document.getElementById(cityId + '-text');
+    if (!countryEl || !cityEl) return;
+
+    countryEl.addEventListener('change', function() {
+      var country = this.value;
+      var cities  = CITY_DATA[country] || [];
+      cityEl.innerHTML = '';
+
+      if (!country || cities.length === 0) {
+        cityEl.style.display = 'none';
+        if (textEl) { textEl.style.display = 'block'; textEl.value = ''; }
+        return;
+      }
+
+      var ph = document.createElement('option');
+      ph.value = ''; ph.disabled = true; ph.selected = true;
+      ph.textContent = 'Select city';
+      cityEl.appendChild(ph);
+
+      cities.forEach(function(c) {
+        var o = document.createElement('option');
+        o.value = c; o.textContent = c;
+        cityEl.appendChild(o);
+      });
+
+      cityEl.style.display = 'block';
+      if (textEl) { textEl.style.display = 'none'; textEl.value = ''; }
+    });
+
+    cityEl.addEventListener('change', function() {
+      if (!textEl) return;
+      if (this.value === 'Other') {
+        textEl.style.display = 'block'; textEl.focus();
+      } else {
+        textEl.style.display = 'none'; textEl.value = '';
+      }
+    });
+  }
+
+  function initRobustITI(inputId) {
+    return new Promise(function(resolve, reject) {
+      var input = document.getElementById(inputId);
+      if (!input) return reject(new Error('Input not found: ' + inputId));
+
+      function tryInit() {
+        if (typeof window.intlTelInput !== 'function') {
+          return reject(new Error('intlTelInput not loaded'));
+        }
+        try {
+          var instance = window.intlTelInput(input, {
+            initialCountry: 'in',
+            separateDialCode: true,
+            preferredCountries: ['in', 'ae', 'us', 'gb', 'sg'],
+            utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
+          });
+          resolve(instance);
+        } catch(e) { reject(e); }
+      }
+
+      if (typeof window.intlTelInput === 'function') {
+        tryInit();
+      } else {
+        var waited = 0;
+        var poll = setInterval(function() {
+          waited += 50;
+          if (typeof window.intlTelInput === 'function') {
+            clearInterval(poll); tryInit();
+          } else if (waited > 5000) {
+            clearInterval(poll); reject(new Error('intlTelInput timeout'));
+          }
+        }, 50);
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     initCountryCityMapping('form-country', 'form-city');
     initRobustITI('form-phone').then(function(instance) {
@@ -914,13 +1220,13 @@
     if (window.dataLayer) window.dataLayer.push(Object.assign({ event: name }, params || {}));
   }
 
-  function validate() {
+ function validate() {
     var ok = true;
 
-    function checkFieldValidation(wrapperId, inputId, condition) {
-      var wrap = document.getElementById(wrapperId);
+    function checkFieldValidation(inputId, condition) {
       var el = document.getElementById(inputId);
-      if (!wrap || !el) return;
+      if (!el) return;
+      var wrap = el.closest('.field') || el;
       if (condition(el.value)) {
         wrap.classList.remove('has-error');
       } else {
@@ -937,11 +1243,22 @@
     checkFieldValidation('form-goal',      function(v) { return v.trim().length > 10; });
 
     checkFieldValidation('form-country', function(v) { return v.trim().length > 0; });
-    checkFieldValidation('form-city', function(v) { 
-      var el = document.getElementById('form-city');
-      if (el.style.display !== 'none') return v.trim().length > 0;
-      return document.getElementById('form-city-text').value.trim().length > 0;
-    });
+    (function() {
+      var citySel  = document.getElementById('form-city');
+      var cityText = document.getElementById('form-city-text');
+      var wrap = (citySel || cityText).closest('.field');
+      var valid;
+      if (citySel.style.display !== 'none') {
+        valid = citySel.value.trim().length > 0;
+      } else {
+        valid = cityText.value.trim().length > 0;
+      }
+      if (wrap) {
+        if (valid) wrap.classList.remove('has-error');
+        else wrap.classList.add('has-error');
+      }
+      if (!valid) ok = false;
+    })();
 
     var consent = document.getElementById('form-consent');
     var consentErr = document.getElementById('consent-error');
@@ -1005,30 +1322,38 @@
         status:           'new',
         created_at:       new Date().toISOString()
       }]);
-      
-      try {
-        await fetch(
-          'https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev/notify',
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              payload:        payload,
-              product:        'Websites & Digital Experiences',
-              payment_status: 'lead'
-            })
-          }
-        );
-      } catch(e) { console.error(e); }
+    } catch(e) {
+      console.error('Leads insert failed', e);
+      btn.disabled = false;
+      btn.textContent = 'Send Request →';
+      var errEl = document.getElementById('submit-error');
+      if (errEl) {
+        errEl.textContent = 'Something went wrong submitting your request. Please try again or WhatsApp us directly.';
+        errEl.style.display = 'block';
+      }
+      return;
+    }
 
-      // Show success screen
-      document.getElementById('form-body').style.display = 'none';
-      var ss = document.getElementById('success-screen');
-      if (ss) ss.classList.add('visible');
+    try {
+      await fetch(
+        'https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev/notify',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            payload:        payload,
+            product:        'Websites & Digital Experiences',
+            payment_status: 'lead'
+          })
+        }
+      );
+    } catch(e) { console.error(e); }
 
-    } catch(e) { console.error('Leads insert failed', e); }
+    // Show success screen
+    document.getElementById('form-body').style.display = 'none';
+    var ss = document.getElementById('success-screen');
+    if (ss) ss.classList.add('visible');
   }
-
   // Supabase init
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
   window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
