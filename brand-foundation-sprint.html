@@ -24,7 +24,7 @@
   <!-- End Google Tag Manager -->
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'" />
-  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
   <style>
     @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
     @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
@@ -656,8 +656,7 @@
       #success-screen { padding: 40px 20px; }
       .trust-row { gap: 12px; }
     }
-  </style>
-  <link rel="stylesheet" href="/css/forms.css" />
+</style>
 </head>
 <body>
 
@@ -1016,11 +1015,16 @@
     checkFieldValidation('form-goal',      function(v) { return v.trim().length > 10; });
 
     checkFieldValidation('form-country', function(v) { return v.trim().length > 0; });
-    checkFieldValidation('form-city', function(v) { 
-      var el = document.getElementById('form-city');
-      if (el.style.display !== 'none') return v.trim().length > 0;
-      return document.getElementById('form-city-text').value.trim().length > 0;
-    });
+    var citySelect = document.getElementById('form-city');
+    var cityText   = document.getElementById('form-city-text');
+    var cityVal    = (citySelect && citySelect.style.display !== 'none')
+                     ? citySelect.value.trim()
+                     : (cityText ? cityText.value.trim() : '');
+    if (!cityVal) {
+      var cityWrap = citySelect ? citySelect.closest('.field') || citySelect.parentNode : null;
+      if (cityWrap) cityWrap.classList.add('has-error');
+      ok = false;
+    }
 
     var consent = document.getElementById('form-consent');
     var consentErr = document.getElementById('consent-error');
