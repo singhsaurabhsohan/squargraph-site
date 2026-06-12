@@ -1325,6 +1325,28 @@
   align-items: flex-start; flex-wrap: wrap; gap: 10px;
 }
 .footer-bar p { font-size: 12px; color: var(--textmuted); }
+/* ── STICKY BOTTOM BANNER ── */
+#sticky-banner {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  z-index: 200; display: flex; align-items: center; gap: 0;
+  background: var(--textprimary); color: #fff;
+  border-radius: 999px; padding: 14px 20px 14px 28px;
+  box-shadow: 0 8px 32px rgba(26,23,20,.18);
+  font-family: var(--font); white-space: nowrap;
+  transition: opacity .3s, transform .3s;
+}
+#sticky-banner.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(12px); }
+.banner-text { display: flex; flex-direction: column; gap: 1px; margin-right: 16px; }
+.banner-title { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; color: #fff; }
+.banner-sub { font-size: 11px; color: rgba(255,255,255,.65); }
+.banner-cta { font-size: 12px; font-weight: 600; color: var(--textprimary); background: #fff; border-radius: 999px; padding: 8px 18px; text-decoration: none; transition: background .2s; white-space: nowrap; }
+.banner-cta:hover { background: var(--accentlight); color: var(--accent); }
+.banner-close { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.12); border: none; color: #fff; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-left: 10px; transition: background .2s; flex-shrink: 0; line-height: 1; }
+.banner-close:hover { background: rgba(255,255,255,.22); }
+@media (max-width: 540px) {
+  #sticky-banner { bottom: 16px; left: 16px; right: 16px; transform: none; white-space: normal; }
+  #sticky-banner.hidden { transform: translateY(12px); }
+}
 </style>
 </head>
   <body>
@@ -2622,6 +2644,16 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
     </div>
   </div>
 </footer>
+
+<!-- STICKY BANNER -->
+<div id="sticky-banner">
+  <div class="banner-text">
+    <span class="banner-title">Not sure where to start?</span>
+    <span class="banner-sub">A 30-min session with a clear action plan.</span>
+  </div>
+  <a href="/discovery" class="banner-cta">Book Discovery Session</a>
+  <button class="banner-close" onclick="document.getElementById('sticky-banner').classList.add('hidden')" aria-label="Close">&times;</button>
+</div>
 
 </body>
 </html>
