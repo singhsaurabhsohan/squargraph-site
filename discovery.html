@@ -26,6 +26,12 @@
 
   <!-- Razorpay -->
   <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+  <!-- reCAPTCHA -->
+  <script>
+  var _rcLoaded = false;
+  function _loadRC() { if(_rcLoaded) return; _rcLoaded=true; var s=document.createElement('script'); s.src='https://www.google.com/recaptcha/api.js'; s.async=true; s.defer=true; document.head.appendChild(s); }
+  var _rcObs = new IntersectionObserver(function(entries){ if(entries[0].isIntersecting){ _loadRC(); _rcObs.disconnect(); } },{ rootMargin:'200px' });
+  </script>
 
   <style>
     @font-face{font-family:'Satoshi';src:url('/fonts/Satoshi-Regular.woff2') format('woff2');font-weight:400;font-display:swap;}
@@ -487,6 +493,10 @@
               <label for="d-consent">I agree to the <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>, and consent to being contacted by SQUARGRAPH™ Studios regarding this enquiry.</label>
             </div>
             <span class="field-error" id="consent-err" style="margin-top:-6px;">Please accept the terms to continue.</span>
+            <div id="discovery-captcha-wrap" style="margin-top:4px;">
+              <div class="g-recaptcha" data-sitekey="6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB" style="transform:scale(0.85);transform-origin:left top;"></div>
+              <p id="discovery-captcha-error" style="font-size:11px;color:#EF4444;display:none;margin-top:6px;">Please complete the captcha.</p>
+            </div>
             <button type="submit" class="submit-btn" id="discovery-submit">Pay ₹2,999 &amp; Book Session →</button>
             <p style="font-size:11px;color:var(--textmuted);text-align:center;line-height:1.6;">Secured by Razorpay · GST invoice provided · 100% refund if we can't find a slot</p>
           </div>
@@ -764,6 +774,8 @@
   document.addEventListener('DOMContentLoaded', function(){
     initCountryCityMapping('discovery-country', 'discovery-city');
     initITI();
+    var rc = document.querySelector('#discovery-captcha-wrap .g-recaptcha');
+    if(rc) _rcObs.observe(rc);
   });
 
   /* ── Supabase insert ── */
@@ -844,6 +856,9 @@
     form.addEventListener('submit', async function(e){
       e.preventDefault();
       if(!validateDiscovery()) return;
+      var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
+      if(!captchaVal){ document.getElementById('discovery-captcha-error').style.display='block'; return; }
+      document.getElementById('discovery-captcha-error').style.display='none';
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span class="spinner"></span>&nbsp;Saving your brief…';
       var cityEl = document.getElementById('discovery-city');
