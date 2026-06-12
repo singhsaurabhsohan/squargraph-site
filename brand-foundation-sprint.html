@@ -451,18 +451,16 @@
     }
     .iti__flag-container { -webkit-tap-highlight-color: rgba(0,0,0,0) !important; position: relative; }
     .iti__country-list {
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  box-shadow: 0 12px 40px rgba(26,23,20,0.12);
-  font-family: var(--font);
-  font-size: 13px;
-  z-index: 99999;
-  position: absolute !important;
-  max-height: 280px;
-  overflow-y: auto;
-  background: #fff;
-  min-width: 280px;
-}
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 40px rgba(26,23,20,0.12);
+      font-family: var(--font);
+      font-size: 13px;
+      max-height: 280px;
+      overflow-y: auto;
+      background: #fff;
+      min-width: 280px;
+    }
     .iti__country { padding: 10px 16px; }
     .iti__country.iti__highlight { background: var(--accent-light); }
     .iti__country-name { color: var(--text); font-weight: 500; }
@@ -957,6 +955,7 @@
             initialCountry: 'in',
             separateDialCode: true,
             preferredCountries: ['in', 'ae', 'us', 'gb', 'sg'],
+            dropdownContainer: document.body,
             utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
           });
           resolve(instance);
