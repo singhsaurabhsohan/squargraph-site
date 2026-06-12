@@ -155,8 +155,12 @@
     .btn-wa:hover { background: #1a9e45; transform: translateY(-1px); }
 
     /* ── FOOTER ── */
-    .site-footer { border-top: 1px solid var(--bordergray); padding: 40px clamp(24px,4vw,64px); }
-    .footer-inner { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 48px; padding-bottom: 48px; }
+    .site-footer { border-top: 1px solid var(--bordergray); padding: 40px clamp(24px, 4vw, 64px); }
+    .footer-inner {
+      max-width: 1440px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.8fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+    }
     @media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; } }
     @media (max-width: 540px) { .footer-inner { grid-template-columns: 1fr; gap: 28px; padding-bottom: 32px; } }
     @media (max-width: 768px) { .site-footer { padding-bottom: 100px; } }
@@ -164,7 +168,11 @@
     .footer-tagline { font-size: 15px; color: var(--textsecondary); line-height: 1.7; max-width: 24ch; margin-bottom: 20px; }
     .footer-philosophy { font-family: 'Satoshi', sans-serif; font-weight: 500; font-size: 20px; line-height: 1.4; letter-spacing: -0.02em; color: var(--textprimary); max-width: 18ch; margin-bottom: 28px; }
     .social-links { display: flex; gap: 8px; flex-wrap: wrap; }
-    .social-link { width: 44px; height: 44px; border: none; border-radius: 50%; background: var(--warmgray); display: inline-flex; align-items: center; justify-content: center; color: var(--textsecondary); transition: background .2s, color .2s; }
+    .social-link {
+      width: 44px; height: 44px; border: none; border-radius: 50%;
+      background: var(--warmgray); display: inline-flex; align-items: center; justify-content: center;
+      color: var(--textsecondary); transition: background .2s, color .2s;
+    }
     .social-link:hover { background: var(--accentlight); color: var(--accent); }
     .social-link[aria-label="FB / Facebook"] { color: #1877F2; }
     .social-link[aria-label="Instagram"] { color: #E1306C; }
@@ -174,7 +182,11 @@
     .footer-col-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; display: block; }
     .footer-link { display: block; margin-bottom: 12px; font-size: 13px; color: var(--textsecondary); transition: color .2s; }
     .footer-link:hover { color: var(--textprimary); }
-    .footer-bar { max-width: 1440px; margin: 0 auto; border-top: 1px solid var(--bordergray); padding-top: 32px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; }
+    .footer-bar {
+      max-width: 1440px; margin: 0 auto;
+      border-top: 1px solid var(--bordergray); padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;
+    }
     .footer-bar p { font-size: 12px; color: var(--textmuted); }
 
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -255,10 +267,13 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div>
-        <div class="footer-logo"><img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" /></div>
+        <div class="footer-logo">
+          <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" />
+        </div>
         <p class="footer-tagline">Brand strategy, campaign architecture, and digital experiences for businesses that take their market position seriously.</p>
         <p class="footer-philosophy">Perception shapes value.<br/>We build what controls it.</p>
         <div class="social-links">
