@@ -3,923 +3,316 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brand Foundation Sprint™ — SQUARGRAPH™ Studios</title>
-  <meta name="description" content="Build the strategic and visual foundation your brand deserves with SQUARGRAPH™ Studios. Positioning, messaging, identity systems, and growth direction — custom scoped for ambitious businesses." />
+  <title>Brand Foundation Sprint™ – SQUARGRAPH™ Studios</title>
+  <meta name="description" content="A complete strategic and visual foundation for businesses preparing to scale, reposition, or build stronger market presence. Scoped per project." />
   <link rel="canonical" href="https://squargraph.com/brand-foundation-sprint" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Brand Foundation Sprint™ — SQUARGRAPH™ Studios" />
-  <meta property="og:description" content="A complete strategic and visual brand foundation. Positioning, messaging, identity, and systems — custom scoped for your business." />
+  <meta property="og:title" content="Brand Foundation Sprint™ – SQUARGRAPH™ Studios" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://squargraph.com/brand-foundation-sprint" />
-  <meta property="og:image" content="https://squargraph.com/squargraph-brand-image.webp" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Brand Foundation Sprint™ — SQUARGRAPH™ Studios" />
-  <meta name="twitter:description" content="A complete strategic and visual brand foundation. Positioning, messaging, identity, and systems — custom scoped for your business." />
-  <meta name="twitter:image" content="https://squargraph.com/squargraph-brand-image.webp" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+
+  <!-- GTM Head -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZK');</script>
+
   <link rel="preload" href="/fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/Satoshi-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZK');</script>
-  <!-- End Google Tag Manager -->
-  <link rel="icon" type="image/png" href="/favicon.png" />
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'" />
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js" defer></script>
-  <style>
-    @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
-    @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
-    @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <style>
+    @font-face{font-family:'Satoshi';src:url('/fonts/Satoshi-Regular.woff2') format('woff2');font-weight:400;font-display:swap;}
+    @font-face{font-family:'Satoshi';src:url('/fonts/Satoshi-Medium.woff2') format('woff2');font-weight:500;font-display:swap;}
+    @font-face{font-family:'Satoshi';src:url('/fonts/Satoshi-Bold.woff2') format('woff2');font-weight:700;font-display:swap;}
 
     :root {
-      --bg: #FFFFFF;
-      --offwhite: #FAFAF9;
-      --warmgray: #F5F5F3;
-      --coolgray: #F0EFED;
-      --bordergray: #E5E3DF;
-      --textsecondary: #3D3935;
-      --textprimary: #1A1714;
-      --accent: #6B5DB8;
-      --accentmuted: #7B6FB8;
+      --offwhite: #FAFAF9; --warmgray: #F5F5F3; --coolgray: #F0EFED;
+      --bordergray: #E5E3DF; --textmuted: #2A2623; --textsecondary: #3D3935;
+      --textprimary: #1A1714; --accent: #6B5DB8; --accentmuted: #7B6FB8;
       --accentlight: #EEECf7;
-      --text: #1A1714;
-      --border: #E5E3DF;
-      --muted: #3D3935;
-      --surface: #F5F5F3;
-      --success: #16A34A;
-      --accent-light: #EEECf7;
-      --font: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-      --radius-pill: 999px;
-      --radius-card: 16px;
-      --shadow-lg: 0 12px 40px rgba(26,23,20,.1), 0 4px 12px rgba(26,23,20,.06);
-      --transition: 0.22s cubic-bezier(.4,0,.2,1);
+      --surface: #F5F5F3; --border: #E5E3DF; --radius-pill: 999px;
+      --radius-card: 16px; --transition: 0.22s cubic-bezier(.4,0,.2,1);
     }
 
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: visible; }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
     body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: visible;
-      letter-spacing: -0.01em;
+      font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--textprimary); background: #fff;
+      line-height: 1.5; letter-spacing: -0.01em; overflow-x: hidden;
     }
+    ::selection { background: rgba(107,93,184,.15); }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
 
-    /* ── HEADER ── */
-    .site-header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      border-bottom: 1px solid var(--border);
-      background: rgba(255,255,255,0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-
-    .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 32px;
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-      transition: color var(--transition);
-    }
-    .back-link:hover { color: var(--text); }
-    .back-link .arrow { font-size: 15px; transition: transform var(--transition); }
-    .back-link:hover .arrow { transform: translateX(-3px); }
-
-    .header-logo img { height: 26px; width: auto; display: block; }
-
-    /* ── PAGE LAYOUT ── */
-    .page-wrap {
-      padding-top: 72px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    /* ── NAV ── */
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; transition:background .4s,border-color .4s,backdrop-filter .4s; }
+    nav.scrolled { background:rgba(250,250,249,0.92); backdrop-filter:blur(16px); border-bottom:1px solid var(--bordergray); }
+    .nav-inner { max-width:1440px; margin:0 auto; padding:0 clamp(24px,4vw,64px); display:flex; align-items:center; justify-content:space-between; height:72px; }
+    .nav-logo { font-size:18px; font-weight:600; letter-spacing:-0.03em; display:flex; align-items:center; }
+    .nav-logo sup { font-size:9px; color:var(--accent); vertical-align:super; margin-left:1px; }
+    .nav-links { display:flex; align-items:center; gap:36px; }
+    .nav-links a { font-size:13px; font-weight:500; color:var(--textsecondary); transition:color .2s; }
+    .nav-links a:hover { color:var(--textprimary); }
+    .nav-cta { font-size:13px; font-weight:500; color:var(--textprimary); border:1px solid var(--bordergray); border-radius:999px; padding:9px 22px; transition:background .25s,color .25s,border-color .25s; }
+    .nav-cta:hover { background:var(--textprimary); color:#fff; border-color:var(--textprimary); }
+    @media (max-width:768px) { .nav-links { display:none; } }
+    .hamburger { display:none; flex-direction:column; align-items:center; justify-content:center; width:44px; height:44px; background:none; border:none; cursor:pointer; padding:0; }
+    .pill-menu { display:flex; flex-direction:column; align-items:center; gap:5px; }
+    .pill-line { width:28px; height:1.5px; background:var(--textprimary); border-radius:999px; transition:transform .35s,opacity .3s; }
+    .pill-body { width:28px; height:13px; border:1.5px solid var(--textprimary); border-radius:999px; background:transparent; transition:transform .35s,opacity .3s; }
+    .hamburger.open .pill-line { transform:translateY(9px) rotate(45deg); }
+    .hamburger.open .pill-body { opacity:0; transform:scaleX(0); }
+    @media (max-width:768px) { .hamburger { display:flex; } }
+    #mob-menu { display:flex; position:fixed; inset:0; z-index:201; background:#fff; flex-direction:column; justify-content:center; padding:clamp(32px,8vw,64px); padding-top:100px; opacity:0; pointer-events:none; transition:opacity .3s; }
+    #mob-menu.open { opacity:1; pointer-events:all; }
+    #mob-menu a { display:block; font-size:clamp(20px,6vw,30px); font-weight:500; letter-spacing:-0.03em; color:var(--textprimary); padding:14px 0; border-bottom:1px solid var(--bordergray); transition:color .2s; }
+    #mob-menu a:hover { color:var(--accent); }
 
     /* ── HERO ── */
-    .hero {
-      text-align: center;
-      padding: clamp(56px, 8vw, 88px) 32px clamp(40px, 5vw, 56px);
-      max-width: 720px;
-      margin: 0 auto;
+    .page-hero {
+      background: var(--textprimary);
+      padding: clamp(120px,15vw,180px) clamp(24px,5vw,80px) clamp(80px,10vw,120px);
+      position: relative; overflow: hidden;
     }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: var(--accent-light);
-      border: 1px solid rgba(107,93,184,.18);
-      border-radius: var(--radius-pill);
-      padding: 5px 14px;
-      margin-bottom: 28px;
+    .hero-bg-accent { position:absolute; top:-20vw; right:-10vw; width:50vw; height:50vw; border-radius:50%; background:var(--accent); opacity:.08; filter:blur(80px); pointer-events:none; }
+    .hero-bg-accent-2 { position:absolute; bottom:-20vw; left:-10vw; width:40vw; height:40vw; border-radius:50%; background:var(--accentmuted); opacity:.06; filter:blur(80px); pointer-events:none; }
+    .hero-grid { position:relative; z-index:1; }
+    .hero-grid svg { opacity:.04; }
+    .hero-inner {
+      max-width: 1440px; margin: 0 auto; position: relative; z-index:2;
+      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(60px,8vw,120px); align-items: start;
     }
-    .hero-eyebrow::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2s ease-in-out infinite;
-    }
+    @media (max-width:900px) { .hero-inner { grid-template-columns:1fr; gap:52px; } }
+    .hero-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accentmuted); margin-bottom:20px; }
+    .hero-eyebrow-dot { width:5px; height:5px; border-radius:50%; background:var(--accentmuted); }
+    .hero-h1 { font-weight:500; font-size:clamp(2.2rem,5vw,4.5rem); line-height:1.06; letter-spacing:-0.04em; color:#F5F3F0; margin-bottom:20px; }
+    .hero-h1 sup { font-size:0.45em; color:var(--accentmuted); vertical-align:super; letter-spacing:0; }
+    .hero-price-pill { display:inline-flex; align-items:center; gap:10px; background:rgba(107,93,184,.2); border:1px solid rgba(139,126,200,.3); border-radius:999px; padding:8px 18px; font-size:14px; font-weight:500; color:#B8AEED; margin-bottom:28px; }
+    .hero-sub { font-size:clamp(15px,1.5vw,17px); color:rgba(245,243,240,.6); line-height:1.75; max-width:44ch; margin-bottom:36px; }
+    .hero-checklist { display:flex; flex-direction:column; gap:12px; }
+    .hero-check-item { display:flex; align-items:center; gap:12px; font-size:14px; color:rgba(245,243,240,.75); }
+    .hero-check-icon { width:20px; height:20px; border-radius:50%; background:rgba(31,173,78,.2); border:1px solid rgba(31,173,78,.4); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: .5; transform: scale(.8); }
-    }
-
-    .hero h1 {
-      font-size: clamp(30px, 5vw, 50px);
-      font-weight: 700;
-      letter-spacing: -0.035em;
-      line-height: 1.08;
-      color: var(--text);
-      margin-bottom: 20px;
-    }
-
-    .hero h1 em { font-style: normal; color: var(--accent); }
-
-    .hero-sub {
-      font-size: 16px;
-      line-height: 1.65;
-      color: var(--muted);
-      font-weight: 400;
-      max-width: 480px;
-      margin: 0 auto 28px;
-    }
-
-    .hero-price-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-pill);
-      padding: 10px 22px;
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    .hero-price-pill strong {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.03em;
-    }
-
-    .hero-price-pill .dot {
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--border);
-      flex-shrink: 0;
-    }
-
-    /* ── WHAT YOU GET ── */
-    .deliverables {
-      max-width: 1100px;
-      margin: 0 auto 36px;
-      padding: 0 clamp(16px, 3vw, 40px);
-      width: 100%;
-    }
-
-    .deliverables-inner {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-card);
-      padding: 24px 28px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .del-item {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .del-icon {
-      width: 32px; height: 32px;
-      border-radius: 8px;
-      background: var(--accent-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 4px;
-    }
-
-    .del-icon svg {
-      width: 16px; height: 16px;
-      stroke: var(--accent);
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .del-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.01em;
-    }
-
-    .del-desc {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    /* ── FORM CARD ── */
-    .form-section {
-      max-width: 1100px;
-      margin: 0 auto 80px;
-      padding: 0 clamp(16px, 3vw, 40px);
-      width: 100%;
-    }
-
+    /* ── FORM CARD (dark bg) ── */
     .form-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-lg);
-      overflow: visible;
-      max-width: 740px;
-      margin-left: auto;
-      margin-right: auto;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px; padding: clamp(28px,4vw,44px);
+      backdrop-filter: blur(10px);
     }
+    .form-card-title { font-size:15px; font-weight:600; color:#F5F3F0; margin-bottom:6px; }
+    .form-card-sub { font-size:13px; color:rgba(245,243,240,.5); margin-bottom:28px; }
 
-    /* ── CARD HEADER ── */
-    .card-header {
-      padding: 32px 48px 0;
-      border-bottom: none;
-      background: transparent;
+    /* ── SUCCESS CARD ── */
+    #sprint-success {
+      display: none; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px; padding: clamp(40px,5vw,56px); text-align: center;
     }
+    .success-check-icon { width:64px; height:64px; border-radius:50%; background:rgba(31,173,78,.15); border:1px solid rgba(31,173,78,.35); display:flex; align-items:center; justify-content:center; margin:0 auto 24px; }
+    .success-title { font-size:clamp(24px,3.5vw,36px); font-weight:500; letter-spacing:-0.03em; color:#F5F3F0; margin-bottom:12px; }
+    .success-sub { font-size:14px; color:rgba(245,243,240,.55); line-height:1.75; max-width:40ch; margin:0 auto 32px; }
+    .success-steps-list { text-align:left; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:28px; margin-bottom:28px; }
+    .success-steps-label-s { font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--accentmuted); margin-bottom:18px; }
+    .sprint-step { display:flex; align-items:flex-start; gap:14px; margin-bottom:16px; }
+    .sprint-step:last-child { margin-bottom:0; }
+    .sprint-step-num { width:26px; height:26px; border-radius:50%; background:rgba(107,93,184,.2); border:1px solid rgba(107,93,184,.4); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:11px; font-weight:600; color:var(--accentmuted); }
+    .sprint-step-title { font-size:13px; font-weight:500; color:#F5F3F0; margin-bottom:2px; }
+    .sprint-step-desc { font-size:12px; color:rgba(245,243,240,.45); line-height:1.6; }
+    .btn-wa-sprint { display:inline-flex; align-items:center; gap:8px; background:#1fad4e; color:#fff; border:none; border-radius:999px; padding:13px 24px; font-size:13px; font-weight:500; cursor:pointer; text-decoration:none; }
 
-    .card-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
+    /* ── FORM ELEMENTS ── */
+    .field { display:flex; flex-direction:column; gap:6px; }
+    .form-label { font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(245,243,240,.5); }
+    .form-input {
+      width:100%; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
+      color:#F5F3F0; padding:12px 18px; min-height:48px;
+      font-family:'Satoshi',sans-serif; font-size:14px;
+      border-radius:999px; outline:none; transition:border-color .25s, box-shadow .25s;
     }
+    .form-input::placeholder { color:rgba(245,243,240,.3); }
+    .form-input:focus { border-color:var(--accentmuted); box-shadow:0 0 0 3px rgba(107,93,184,.15); }
+    .form-input.has-error { border-color:#EF4444; }
+    .form-input option { background:#1A1714; }
+    textarea.form-input { border-radius:14px; resize:vertical; min-height:100px; }
+    select.form-input { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%23888' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 18px center; padding-right:42px; cursor:pointer; }
+    .field-error { font-size:11px; color:#F87171; display:none; padding-left:4px; }
+    .field-error.show { display:block; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    @media (max-width:540px) { .form-row { grid-template-columns:1fr; } }
+    .form-stack { display:flex; flex-direction:column; gap:14px; }
 
-    .card-title {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
+    /* intl-tel-input on dark bg */
+    .iti { display:block; width:100%; position:relative; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); overflow:visible; transition:border-color .25s,box-shadow .25s; }
+    .iti:focus-within { border-color:var(--accentmuted); box-shadow:0 0 0 3px rgba(107,93,184,.15); }
+    .iti__selected-flag { height:48px !important; background:transparent !important; border:none !important; padding:0 10px 0 14px; display:flex; align-items:center; }
+    .iti input#sprint-phone { border:none !important; background:transparent !important; height:48px; width:100% !important; padding-left:86px !important; font-family:'Satoshi',sans-serif; font-size:14px; color:#F5F3F0; outline:none; box-shadow:none !important; }
+    .iti input#sprint-phone::placeholder { color:rgba(245,243,240,.3); }
+    .iti__country-list { border-radius:14px !important; border:1px solid var(--bordergray) !important; box-shadow:0 12px 40px rgba(0,0,0,.2) !important; font-family:'Satoshi',sans-serif !important; font-size:13px !important; max-height:260px !important; overflow-y:auto !important; background:#2A2623 !important; padding:8px 0 !important; position:fixed !important; z-index:9999; }
+    .iti__country { padding:9px 16px !important; }
+    .iti__country.iti__highlight { background:rgba(107,93,184,.2) !important; }
+    .iti__country-name { color:#F5F3F0 !important; }
+    .iti__dial-code { color:rgba(245,243,240,.5) !important; }
+    .iti__flag { background-image:url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags.png") !important; }
+    @media (-webkit-min-device-pixel-ratio:2),(min-resolution:192dpi) { .iti__flag { background-image:url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important; } }
 
-    /* ── FORM BODY ── */
-    .form-body { padding: 40px 48px 48px; }
+    /* Consent */
+    .consent-row { display:flex; align-items:flex-start; gap:10px; }
+    .consent-row input[type=checkbox] { flex-shrink:0; width:18px; height:18px; margin-top:2px; accent-color:var(--accent); cursor:pointer; }
+    .consent-row label { font-size:12px; color:rgba(245,243,240,.5); line-height:1.6; cursor:pointer; }
+    .consent-row a { color:var(--accentmuted); border-bottom:1px solid rgba(123,111,184,.4); }
 
-    /* ── FIELDS ── */
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
+    /* Submit */
+    .submit-btn { width:100%; background:var(--accent); color:#fff; border:none; border-radius:999px; padding:15px 24px; font-family:'Satoshi',sans-serif; font-size:14px; font-weight:500; letter-spacing:-0.01em; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; transition:background .25s,transform .2s; }
+    .submit-btn:hover:not(:disabled) { background:#5a4da0; transform:translateY(-1px); }
+    .submit-btn:disabled { opacity:.65; cursor:not-allowed; }
+    .spinner { display:inline-block; width:16px; height:16px; border:2px solid rgba(255,255,255,.3); border-radius:50%; border-top-color:#fff; animation:spin .6s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
 
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
+    /* ── PROCESS SECTION ── */
+    .process-section { padding:clamp(80px,10vw,120px) clamp(24px,4vw,64px); }
+    .process-inner { max-width:1440px; margin:0 auto; }
+    .section-eyebrow { font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; display:block; }
+    .section-h2 { font-size:clamp(24px,3vw,40px); font-weight:500; letter-spacing:-0.03em; color:var(--textprimary); margin-bottom:clamp(40px,6vw,64px); }
+    .process-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+    @media (max-width:900px) { .process-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:540px) { .process-grid { grid-template-columns:1fr; } }
+    .process-card { background:var(--warmgray); border-radius:14px; padding:32px 24px; }
+    .process-week { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
+    .process-name { font-size:16px; font-weight:500; letter-spacing:-0.02em; color:var(--textprimary); margin-bottom:8px; }
+    .process-desc { font-size:13px; color:var(--textsecondary); line-height:1.7; }
 
-    .field label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
+    /* ── DELIVERABLES ── */
+    .deliverables-section { background:var(--warmgray); padding:clamp(80px,10vw,120px) clamp(24px,4vw,64px); }
+    .deliverables-inner { max-width:1440px; margin:0 auto; }
+    .deliverables-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    @media (max-width:640px) { .deliverables-grid { grid-template-columns:1fr; } }
+    .deliverable-card { background:#fff; border-radius:14px; padding:28px 24px; box-shadow:0 2px 8px rgba(26,23,20,.05); display:flex; align-items:flex-start; gap:16px; }
+    .deliverable-icon { width:40px; height:40px; border-radius:10px; background:var(--accentlight); border:1px solid rgba(107,93,184,.15); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .deliverable-name { font-size:15px; font-weight:500; color:var(--textprimary); margin-bottom:4px; }
+    .deliverable-desc { font-size:13px; color:var(--textsecondary); line-height:1.65; }
 
-    .field label .optional {
-      font-weight: 400;
-      color: #B8B4AF;
-      font-size: 11px;
-      margin-left: 4px;
-    }
+    /* ── FOOTER ── */
+    .site-footer { border-top:1px solid var(--bordergray); padding:40px clamp(24px,4vw,64px); }
+    .footer-inner { max-width:1440px; margin:0 auto; display:grid; grid-template-columns:1.8fr 1fr 1fr; gap:48px; padding-bottom:48px; }
+    @media (max-width:900px) { .footer-inner { grid-template-columns:1fr 1fr; gap:32px; } }
+    @media (max-width:540px) { .footer-inner { grid-template-columns:1fr; gap:24px; padding-bottom:32px; } }
+    .footer-logo { font-size:19px; font-weight:600; letter-spacing:-0.03em; color:var(--textprimary); margin-bottom:10px; display:flex; align-items:center; }
+    .footer-logo sup { font-size:9px; color:var(--accent); vertical-align:super; margin-left:1px; }
+    .footer-tagline { font-size:14px; color:var(--textsecondary); line-height:1.7; max-width:26ch; margin-bottom:20px; }
+    .social-links { display:flex; gap:8px; flex-wrap:wrap; }
+    .social-link { width:40px; height:40px; border-radius:50%; background:var(--warmgray); display:inline-flex; align-items:center; justify-content:center; color:var(--textsecondary); transition:background .2s,color .2s; }
+    .social-link:hover { background:var(--accentlight); color:var(--accent); }
+    .footer-col-label { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; display:block; }
+    .footer-link { display:block; margin-bottom:10px; font-size:13px; color:var(--textsecondary); transition:color .2s; }
+    .footer-link:hover { color:var(--textprimary); }
+    .footer-bar { max-width:1440px; margin:0 auto; border-top:1px solid var(--bordergray); padding-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+    .footer-bar p { font-size:12px; color:var(--textmuted); }
+    .footer-bar-links { display:flex; gap:18px; flex-wrap:wrap; }
+    .footer-bar-links a { font-size:11px; color:var(--textmuted); transition:color .2s; }
+    .footer-bar-links a:hover { color:var(--accent); }
 
-    .field input,
-    .field select,
-    .field textarea {
-      width: 100%;
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--text);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-pill);
-      padding: 13px 20px;
-      min-height: 48px;
-      outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-
-    .field input:hover,
-    .field select:hover,
-    .field textarea:hover {
-      border-color: #C8C4BE;
-    }
-
-    .field textarea {
-      border-radius: 16px;
-      resize: vertical;
-      min-height: 112px;
-      line-height: 1.65;
-    }
-
-    .field input::placeholder,
-    .field select::placeholder,
-    .field textarea::placeholder { color: #C0BAB4; }
-
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-color: var(--accent);
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(107,93,184,.16);
-    }
-
-    .field input:disabled,
-    .field select:disabled,
-    .field textarea:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-      background: #F5F4F2;
-    }
-    .field select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 20px center;
-      padding-right: 44px;
-      cursor: pointer;
-    }
-
-    .error-msg {
-      font-size: 11px;
-      color: #E53E3E;
-      font-weight: 500;
-      display: none;
-    }
-
-    .field.has-error input,
-    .field.has-error select,
-    .field.has-error textarea { border-color: #E53E3E; }
-    .field.has-error .error-msg { display: block; }
-
-    .field-row {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    /* ── SECTION DIVIDER ── */
-    .section-divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 4px 0;
-    }
-
-    .section-divider span {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #B8B4AF;
-      white-space: nowrap;
-    }
-
-    .section-divider::before,
-    .section-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── ITI PHONE (full audit.html style) ── */
-.iti {
-  display: block;
-  width: 100%;
-  position: relative;
-  border-radius: 999px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  overflow: visible;
-  transition: border-color var(--transition), box-shadow var(--transition);
-}
-.iti:focus-within {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(107,93,184,.12);
-}
-.iti__flag-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  border-radius: 0;
-}
-.iti__selected-flag {
-  height: 48px !important;
-  background: transparent !important;
-  border: none !important;
-  padding: 0 10px 0 14px;
-  min-width: 72px;
-  display: flex;
-  align-items: center;
-}
-.iti input#form-phone {
-    border: none !important;
-    background: transparent !important;
-    height: 48px;
-    width: 100% !important;
-    padding-left: 86px !important;
-    font-family: var(--font);
-    font-size: 14px;
-    color: var(--text);
-    outline: none;
-    box-shadow: none !important;
-    border-radius: 999px;
-  }
-.iti input#form-phone:focus {
-  box-shadow: none !important;
-}
-.iti__arrow {
-  border-top-color: var(--muted);
-}
-.iti__country-list {
-  border-radius: 16px !important;
-  border: 1px solid var(--border) !important;
-  box-shadow: 0 12px 40px rgba(26,23,20,0.12) !important;
-  font-family: var(--font) !important;
-  font-size: 13px !important;
-  max-height: 280px !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  background: #fff !important;
-  width: auto !important;
-  min-width: 280px !important;
-  max-width: 90vw !important;
-  padding: 8px 0 !important;
-  scrollbar-width: thin;
-}
-.iti__country-list::-webkit-scrollbar {
-  width: 4px;
-  background: var(--border);
-}
-.iti__country-list::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 4px;
-}
-.form-body, .field-group, .field, .iti {
-  overflow: visible !important;
-}
-.iti__country {
-  padding: 10px 16px !important;
-  transition: background 0.2s !important;
-}
-.iti__country.iti__highlight {
-  background: var(--accent-light) !important;
-}
-.iti__country-name {
-  color: var(--text) !important;
-  font-weight: 500 !important;
-}
-.iti__dial-code {
-  color: var(--muted) !important;
-  font-size: 12px !important;
-  margin-left: 8px !important;
-}
-.iti__search-input {
-  font-family: var(--font);
-  font-size: 13px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  padding: 10px 14px;
-  margin: 8px 12px;
-  width: calc(100% - 24px);
-  background: var(--surface);
-  color: var(--text);
-}
-.iti__search-input:focus {
-  border-color: var(--accent);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(107,93,184,.2);
-}
-.iti__flag {
-  background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags.png") !important;
-}
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .iti__flag {
-    background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important;
-  }
-}
-    /* ── CONSENT ── */
-    .consent-wrap {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      cursor: pointer;
-      margin-top: 4px;
-    }
-    .consent-wrap input[type="checkbox"] {
-      margin-top: 3px;
-      accent-color: var(--accent);
-      flex-shrink: 0;
-      width: 15px;
-      height: 15px;
-      cursor: pointer;
-    }
-    .consent-text {
-      font-size: 13px;
-      color: var(--text);
-      font-weight: 500;
-      line-height: 1.6;
-      user-select: none;
-    }
-
-    /* ── SUBMIT BUTTON ── */
-    .btn-submit {
-      display: flex;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-family: var(--font);
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      color: #fff;
-      background: var(--text);
-      border: none;
-      border-radius: var(--radius-pill);
-      padding: 15px 28px;
-      cursor: pointer;
-      transition: background var(--transition), transform .15s;
-      margin-top: 8px;
-    }
-
-    .btn-submit:hover { background: var(--accent); transform: translateY(-1px); }
-    .btn-submit:active { transform: translateY(0); }
-    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-    /* ── TRUST ROW ── */
-    .trust-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 11px;
-      color: #8A8580;
-      font-weight: 500;
-    }
-
-   /* ── SUCCESS SCREEN ── */
-    #success-screen {
-      display: none;
-      padding: 56px 48px 64px;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    #success-screen.visible {
-      display: block;
-      animation: successIn 0.4s ease forwards;
-    }
-
-    @keyframes successIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .success-icon {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      background: rgba(22,163,74,.08);
-      border: 1.5px solid rgba(22,163,74,.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 28px;
-    }
-
-    .success-icon svg {
-      width: 28px; height: 28px;
-      stroke: #16A34A;
-      stroke-width: 2;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 60;
-      stroke-dashoffset: 60;
-      animation: drawCheck 0.5s ease 0.25s forwards;
-    }
-
-    @keyframes drawCheck {
-      to { stroke-dashoffset: 0; }
-    }
-
-    .success-eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .success-title {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.035em;
-      color: var(--text);
-      line-height: 1.15;
-      margin-bottom: 12px;
-    }
-
-    .success-sub {
-      font-size: 14px;
-      color: #8A8580;
-      line-height: 1.75;
-      max-width: 38ch;
-      margin: 0 auto 28px;
-    }
-
-    .success-pid {
-      font-size: 11px;
-      color: #B8B4AF;
-      margin-bottom: 32px;
-      letter-spacing: 0.03em;
-    }
-
-    .success-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      text-align: left;
-      max-width: 360px;
-      margin: 0 auto 36px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .success-step {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .success-step:last-child { border-bottom: none; }
-
-    .success-step-num {
-      flex-shrink: 0;
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      background: var(--accent-light);
-      border: 1px solid rgba(107,93,184,.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-top: 1px;
-    }
-
-    .success-step-text {
-      font-size: 13px;
-      color: var(--text);
-      line-height: 1.55;
-      font-weight: 500;
-    }
-
-    .success-step-text span {
-      display: block;
-      font-size: 11.5px;
-      color: var(--muted);
-      font-weight: 400;
-      margin-top: 2px;
-    }
-    .btn-wa {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #1fad4e;
-      color: #fff;
-      border: none;
-      border-radius: var(--radius-pill);
-      padding: 12px 24px;
-      font-family: var(--font);
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background .2s, transform .15s;
-    }
-    .btn-wa:hover { background: #1a9e45; transform: translateY(-1px); }
-
-    /* ── PRIVACY ── */
-    .privacy-note {
-      font-size: 12px;
-      color: var(--muted);
-      padding: 0 32px 28px;
-      line-height: 1.65;
-    }
-    .privacy-note a { color: var(--accent); text-decoration: none; }
-
-    @media (max-width: 600px) {
-      .header-inner { padding: 0 20px; }
-      .hero { padding: 52px 20px 36px; }
-      .deliverables { padding: 0 16px; }
-      .deliverables-inner { grid-template-columns: 1fr; gap: 16px; }
-      .form-section { padding: 0 16px; }
-      .form-body { padding: 24px 20px 32px; }
-      .field-group { gap: 18px; }
-      .success-steps { max-width: 100%; }
-      #success-screen { padding: 40px 20px 48px; }
-      .card-header { padding: 24px 20px 0; }
-      .privacy-note { padding: 0 20px 24px; }
-      #success-screen { padding: 40px 20px; }
-      .trust-row { gap: 12px; }
-    }
-</style>
+    /* Animations */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    .fade-up { animation:fadeUp .8s both; }
+    .fade-up.d1 { animation-delay:.15s; }
+    .fade-up.d2 { animation-delay:.3s; }
+    .scroll-reveal { opacity:0; transform:translateY(24px); transition:opacity .8s,transform .8s cubic-bezier(.25,.1,.25,1); }
+    .scroll-reveal.visible { opacity:1; transform:none; }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
+  </style>
 </head>
 <body>
 
-<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- HEADER -->
-<header class="site-header">
-  <div class="header-inner">
-    <a href="/" class="back-link">
-      <span class="arrow">←</span>
-      Back to SQUARGRAPH
+<!-- ── NAV ── -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/logo.webp" alt="SQUARGRAPH Studios" height="26" style="height:26px;width:auto;" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+      <span style="display:none;">SQUARGRAPH<sup>™</sup></span>
     </a>
-    <div class="header-logo">
-      <a href="/"><img src="/logo.webp" alt="SQUARGRAPH™ Studios" /></a>
+    <div class="nav-links">
+      <a href="/#work">Work</a>
+      <a href="/#Engagements">Engagements</a>
+      <a href="/#capabilities">Capabilities</a>
+      <a href="/blog">Thinking</a>
+      <a href="/#studio">Studio</a>
+      <a href="/discovery" class="nav-cta">Book Discovery →</a>
     </div>
+    <button class="hamburger" id="mob-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <div class="pill-menu"><div class="pill-line"></div><div class="pill-body"></div></div>
+    </button>
   </div>
-</header>
+</nav>
+<div id="mob-menu">
+  <a href="/#work" onclick="closeMob()">Work</a>
+  <a href="/#Engagements" onclick="closeMob()">Engagements</a>
+  <a href="/#capabilities" onclick="closeMob()">Capabilities</a>
+  <a href="/blog">Thinking</a>
+  <a href="/#studio" onclick="closeMob()">Studio</a>
+  <a href="/discovery" style="color:var(--accent);font-weight:600;">Book Discovery →</a>
+</div>
 
-<!-- PAGE -->
-<div class="page-wrap">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-eyebrow">Entry Point</div>
-    <h1>Build the foundation your<br /><em>brand deserves.</em></h1>
-    <p class="hero-sub">A focused strategic engagement designed to define positioning, messaging, identity systems, and growth direction for ambitious businesses.</p>
-    <div class="hero-price-pill">
-      <span>Brand Foundation Sprint™</span>
-      <span class="dot"></span>
-      <strong>Custom Scope</strong>
-      <span class="dot"></span>
-      <span>Strategy · Positioning · Identity · Systems</span>
-    </div>
-  </section>
-
-  <!-- DELIVERABLES -->
-  <div class="deliverables">
-    <div class="deliverables-inner">
-      <div class="del-item">
-        <div class="del-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <div class="del-label">Brand Positioning</div>
-        <div class="del-desc">Clear market positioning, differentiation, audience definition, and strategic narrative.</div>
-      </div>
-      <div class="del-item">
-        <div class="del-icon">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
-        <div class="del-label">Messaging Framework</div>
-        <div class="del-desc">Core messaging architecture, communication pillars, and brand voice direction.</div>
-      </div>
-      <div class="del-item">
-        <div class="del-icon">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
-        </div>
-        <div class="del-label">Identity Direction</div>
-        <div class="del-desc">Visual identity foundations and creative direction aligned with long-term growth.</div>
-      </div>
-    </div>
+<!-- ── HERO ── -->
+<section class="page-hero">
+  <div class="hero-bg-accent"></div>
+  <div class="hero-bg-accent-2"></div>
+  <!-- subtle grid -->
+  <div style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:.04;"><defs><pattern id="g" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M 48 0 L 0 0 0 48" fill="none" stroke="#fff" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>
   </div>
-
-  <!-- FORM SECTION -->
-  <section class="form-section">
-    <div class="form-card" id="form-card">
-
-      <!-- CARD HEADER -->
-      <div class="card-header">
-        <div class="card-label">Brand Foundation Sprint™</div>
-        <div class="card-title">Tell us about your project and goals</div>
+  <div class="hero-inner">
+    <!-- Left -->
+    <div class="fade-up">
+      <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div>Sprint</div>
+      <h1 class="hero-h1">Brand Foundation<br/>Sprint<sup>™</sup></h1>
+      <div class="hero-price-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Custom scope · Delivered in 3 weeks
       </div>
+      <p class="hero-sub">A complete strategic and visual foundation for businesses preparing to scale, reposition, or build stronger market presence. One brief, one team, three weeks.</p>
+      <div class="hero-checklist">
+        <div class="hero-check-item"><div class="hero-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1fad4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Positioning Framework &amp; Messaging Architecture</div>
+        <div class="hero-check-item"><div class="hero-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1fad4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Visual Identity System</div>
+        <div class="hero-check-item"><div class="hero-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1fad4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Brand Asset Kit</div>
+        <div class="hero-check-item"><div class="hero-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1fad4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Scoped for your specific stage</div>
+      </div>
+    </div>
 
-      <!-- FORM BODY -->
-      <div class="form-body" id="form-body">
-        <div class="field-group">
-
-                    <!-- Standardized Top Half -->
-          <div class="field">
-            <label for="form-name">Name</label>
-            <input type="text" id="form-name" name="name" placeholder="Full name" autocomplete="name" />
-            <span class="error-msg">Please enter your name.</span>
-          </div>
-
-          <div class="field">
-            <label for="form-phone">WhatsApp / Phone</label>
-            <input type="tel" id="form-phone" name="phone" placeholder="98765 43210" autocomplete="tel" />
-            <span class="error-msg">Please enter your phone number.</span>
-          </div>
-
-          <div class="field">
-            <label for="form-email">Work Email</label>
-            <input type="email" id="form-email" name="email" placeholder="name@company.com" autocomplete="email" />
-            <span class="error-msg">Please enter a valid email.</span>
-          </div>
-
-          <div class="field">
-            <label for="form-company">Brand / Company</label>
-            <input type="text" id="form-company" name="company" placeholder="Your brand name" autocomplete="organization" />
-            <span class="error-msg">Please enter your company name.</span>
-          </div>
-
-          <div class="field">
-            <label for="form-industry">Industry</label>
-            <select id="form-industry" name="industry">
-              <option value="" disabled selected>Select...</option>
-              <option>Technology &amp; SaaS</option>
-              <option>E-commerce &amp; Retail</option>
-              <option>Professional Services</option>
-              <option>Health &amp; Wellness</option>
-              <option>Finance &amp; Fintech</option>
-              <option>Automotive</option>
-              <option>Hospitality &amp; F&amp;B</option>
-              <option>Real Estate</option>
-              <option>D2C &amp; Consumer Brands</option>
-              <option>Luxury &amp; Lifestyle</option>
-              <option>Media &amp; Entertainment</option>
-              <option>Education &amp; EdTech</option>
-              <option>Other</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>Country &amp; City</label>
-            <div class="field-row">
-              <div class="field-col" style="flex:1; min-width: 0;">
-                <select id="form-country" name="country">
-                  <option value="" disabled selected>Country</option>
+    <!-- Right: form or success -->
+    <div class="fade-up d2">
+      <div class="form-card" id="sprint-form-card">
+        <div class="form-card-title">Submit your brand brief</div>
+        <div class="form-card-sub">Tell us where you are and where you need to be. We'll respond within 48 hours with a proposed scope.</div>
+        <form id="sprint-form" novalidate>
+          <div class="form-stack">
+            <div class="field">
+              <label class="form-label" for="s-name">Name</label>
+              <input type="text" id="s-name" name="name" required placeholder="Full name" class="form-input" autocomplete="name" />
+              <span class="field-error">Please enter your name.</span>
+            </div>
+            <div class="field">
+              <label class="form-label">WhatsApp / Phone</label>
+              <input type="tel" id="sprint-phone" name="phone" required placeholder="98765 43210" autocomplete="tel" />
+              <span class="field-error" id="sprint-phone-err">Please enter a valid phone number.</span>
+            </div>
+            <div class="field">
+              <label class="form-label" for="s-email">Work Email</label>
+              <input type="email" id="s-email" name="email" required placeholder="name@company.com" class="form-input" autocomplete="email" />
+              <span class="field-error">Please enter a valid email.</span>
+            </div>
+            <div class="field">
+              <label class="form-label" for="s-company">Brand / Company</label>
+              <input type="text" id="s-company" name="company" required placeholder="Your brand name" class="form-input" autocomplete="organization" />
+              <span class="field-error">Please enter your brand name.</span>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label class="form-label" for="sprint-country">Country</label>
+                <select id="sprint-country" name="country" class="form-input" autocomplete="off">
+                  <option value="" disabled selected>Select…</option>
                   <option value="India">🇮🇳 India</option>
                   <option value="UAE">🇦🇪 UAE</option>
                   <option value="USA">🇺🇸 USA</option>
@@ -933,367 +326,280 @@
                   <option value="Other">🌍 Other</option>
                 </select>
               </div>
-              <div class="field-col" style="flex:1; position:relative; min-width: 0;">
-                <select id="form-city" name="city" style="display:none;"></select>
-                <input type="text" id="form-city-text" name="city_text" placeholder="Enter city" />
+              <div class="field">
+                <label class="form-label" for="sprint-city">City</label>
+                <select id="sprint-city" name="city" class="form-input" style="display:none;"></select>
+                <input type="text" id="sprint-city-text" name="city_text" placeholder="Enter city" class="form-input" autocomplete="address-level2" />
               </div>
             </div>
-          </div>
-          <!-- End Standardized Top Half -->
-
-<!-- Challenge -->
-          <div class="field" id="field-challenge">
-            <label for="form-challenge">What is your biggest brand or business challenge right now?</label>
-            <textarea id="form-challenge" name="challenge" rows="3" placeholder="e.g. We're struggling with low conversions, unclear messaging, difficulty standing out from competitors…"></textarea>
-            <span class="error-msg">Please describe your challenge.</span>
-          </div>
-
-          <!-- Goal -->
-          <div class="field" id="field-goal">
-            <label for="form-goal">What outcome are you looking for?</label>
-            <textarea id="form-goal" name="goal" rows="3" placeholder="e.g. A clear direction on brand positioning and a practical roadmap for the next 90 days…"></textarea>
-            <span class="error-msg">Please describe your goal.</span>
-          </div>
-
-          <!-- Reference Link -->
-          <div class="field">
-            <label for="form-link">Paste a relevant link <span class="optional">optional</span></label>
-            <input type="text" id="form-link" name="reference_link" placeholder="Social profile, campaign, portfolio, competitor — anything relevant" />
-          </div>
-
-          <!-- Consent -->
-          <label class="consent-wrap" for="form-consent">
-            <input type="checkbox" id="form-consent" />
-            <span class="consent-text">I consent to SQUARGRAPH™ Studios collecting and processing the information submitted here.</span>
-          </label>
-          <span class="error-msg" id="consent-error">Please accept to continue.</span>
-
-          <!-- Submit -->
-          <button class="btn-submit" id="btn-submit" type="button" onclick="handleSubmit()">
-            Submit Brand Brief →
-          </button>
-
-          <!-- Trust -->
-          <div class="trust-row">
-            <div class="trust-item">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8A8580" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Tailored strategic engagement
+            <div class="field">
+              <label class="form-label" for="s-challenge">What's your biggest brand challenge right now?</label>
+              <textarea id="s-challenge" name="challenge" required placeholder="Be specific — unclear positioning, inconsistent communication, weak digital presence, entering a new market…" class="form-input"></textarea>
+              <span class="field-error">Please describe your challenge.</span>
             </div>
-            <div class="trust-item">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8A8580" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Response within 24 hours
+            <div class="field">
+              <label class="form-label" for="s-goal">Where do you need to be after the Sprint?</label>
+              <textarea id="s-goal" name="goal" required placeholder="Launch-ready, repositioned for a new audience, consistent brand identity across channels…" class="form-input"></textarea>
+              <span class="field-error">Please describe your goal.</span>
             </div>
-            <div class="trust-item">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8A8580" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-              Founder-led engagement
+            <div class="consent-row">
+              <input type="checkbox" id="s-consent" name="consent" />
+              <label for="s-consent">I agree to the <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>, and consent to being contacted by SQUARGRAPH™ Studios regarding this enquiry.</label>
             </div>
+            <span class="field-error" id="sprint-consent-err" style="margin-top:-6px;">Please accept the terms to continue.</span>
+            <button type="submit" class="submit-btn" id="sprint-submit">Submit Your Brief →</button>
+            <p style="font-size:11px;color:rgba(245,243,240,.3);text-align:center;line-height:1.6;">We respond within 48 hours with a proposed scope. No pitch decks.</p>
           </div>
-
-        </div><!-- /field-group -->
-      </div><!-- /form-body -->
-
-      <!-- SUCCESS SCREEN -->
-      <div id="success-screen">
-        <div class="success-icon">
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div class="success-eyebrow">Brief Received</div>
-        <div class="success-title">Your Sprint brief<br />is with us.</div>
-        <p class="success-sub">Payment confirmed. We'll review your requirements and be in touch within 24 hours to kick things off.</p>
-        <div class="success-steps">
-          <div class="success-step">
-            <div class="success-step-num">1</div>
-            <div class="success-step-text">Brief review
-              <span>We'll review your submission and identify the right starting point.</span>
-            </div>
-          </div>
-          <div class="success-step">
-            <div class="success-step-num">2</div>
-            <div class="success-step-text">Kick-off call scheduled
-              <span>Within 24 hours we'll confirm your Sprint start date and share what to prepare.</span>
-            </div>
-          </div>
-          <div class="success-step">
-            <div class="success-step-num">3</div>
-            <div class="success-step-text">Sprint delivery
-              <span>Your Brand Foundation is delivered within the agreed Sprint window.</span>
-            </div>
-          </div>
-        </div>
-        <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20just%20submitted%20a%20Brand%20Foundation%20Sprint%E2%84%A2%20brief." target="_blank" rel="noopener noreferrer" class="btn-wa">
-          Confirm on WhatsApp
-        </a>
+        </form>
       </div>
 
-    </div><!-- /form-card -->
-  </section>
+      <!-- Success state (replaces form on submit) -->
+      <div id="sprint-success">
+        <div class="success-check-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1fad4e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <p class="success-title">Brief Received</p>
+        <p class="success-sub">We'll review your brief and come back within 48 hours with a clear proposed scope — no deck, no runaround.</p>
+        <div class="success-steps-list">
+          <p class="success-steps-label-s">What happens next</p>
+          <div class="sprint-step"><div class="sprint-step-num">1</div><div><div class="sprint-step-title">Brief Review</div><div class="sprint-step-desc">Saurabh reviews your submission personally and maps it against our sprint framework.</div></div></div>
+          <div class="sprint-step"><div class="sprint-step-num">2</div><div><div class="sprint-step-title">Proposed Scope</div><div class="sprint-step-desc">We send a clear scope document — what's included, how we'll work, and what the output looks like.</div></div></div>
+          <div class="sprint-step"><div class="sprint-step-num">3</div><div><div class="sprint-step-title">Kickoff &amp; Sprint Begins</div><div class="sprint-step-desc">Once aligned, we start within 5 business days. Three weeks to a complete brand foundation.</div></div></div>
+        </div>
+        <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20just%20submitted%20a%20Brand%20Foundation%20Sprint%20brief." target="_blank" rel="noopener noreferrer" class="btn-wa-sprint">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Say hi on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-</div><!-- /page-wrap -->
+<!-- ── PROCESS ── -->
+<section class="process-section">
+  <div class="process-inner">
+    <span class="section-eyebrow">How it works</span>
+    <h2 class="section-h2 scroll-reveal">Three weeks. One foundation.</h2>
+    <div class="process-grid">
+      <div class="process-card scroll-reveal"><div class="process-week">Week 1</div><div class="process-name">Discover &amp; Define</div><div class="process-desc">Brand audit, competitive landscape, positioning workshop. We understand who you are, who you're talking to, and what makes you distinct.</div></div>
+      <div class="process-card scroll-reveal"><div class="process-week">Week 1–2</div><div class="process-name">Strategy &amp; Messaging</div><div class="process-desc">Positioning framework, brand narrative, messaging architecture. Every key claim, value statement, and communication built from the ground up.</div></div>
+      <div class="process-card scroll-reveal"><div class="process-week">Week 2–3</div><div class="process-name">Visual Identity</div><div class="process-desc">Logo, colour, type, pattern, and visual language. Built to work across every channel your brand needs to operate in.</div></div>
+      <div class="process-card scroll-reveal"><div class="process-week">Week 3</div><div class="process-name">Handoff &amp; Brand Kit</div><div class="process-desc">Complete asset delivery, usage guidelines, and a brand standards document your team can actually use without needing us in the room.</div></div>
+    </div>
+  </div>
+</section>
 
-<div class="privacy-note">
-  🔒 Your information is securely stored and never sold to third parties.
-  By submitting, you agree to our
-  <a href="/privacy-policy">Privacy Policy</a>,
-  <a href="/terms-of-use">Terms of Use</a>, and
-  <a href="/refund-policy">Refund Policy</a>.
-</div>
+<!-- ── DELIVERABLES ── -->
+<section class="deliverables-section">
+  <div class="deliverables-inner">
+    <span class="section-eyebrow scroll-reveal">Deliverables</span>
+    <h2 class="section-h2 scroll-reveal">Everything you walk away with</h2>
+    <div class="deliverables-grid">
+      <div class="deliverable-card scroll-reveal"><div class="deliverable-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="deliverable-name">Positioning Framework</div><div class="deliverable-desc">Where you sit in the market, what makes you different, and why that difference matters to your customer.</div></div></div>
+      <div class="deliverable-card scroll-reveal"><div class="deliverable-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div><div class="deliverable-name">Messaging Architecture</div><div class="deliverable-desc">Your brand voice, key messages, and communication hierarchy — so every piece of content sounds like it comes from the same place.</div></div></div>
+      <div class="deliverable-card scroll-reveal"><div class="deliverable-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></div><div><div class="deliverable-name">Visual Identity System</div><div class="deliverable-desc">Logo, colour palette, typography system, and visual language. Everything needed to build consistent brand presence.</div></div></div>
+      <div class="deliverable-card scroll-reveal"><div class="deliverable-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><div><div class="deliverable-name">Brand Asset Kit</div><div class="deliverable-desc">All files in every format — print, digital, social — packaged and labelled for immediate use by your team or agency.</div></div></div>
+    </div>
+  </div>
+</section>
 
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <img src="/logo.webp" alt="SQUARGRAPH Studios" height="26" style="height:26px;width:auto;" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+        <span style="display:none;">SQUARGRAPH<sup>™</sup></span>
+      </div>
+      <p class="footer-tagline">Brand strategy, campaign architecture, and digital experiences for businesses that take their market position seriously.</p>
+      <div class="social-links">
+        <a href="https://facebook.com/squargraphstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://instagram.com/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://linkedin.com/company/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://x.com/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X / Twitter"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://youtube.com/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-label">Company</span>
+      <a href="/#intelligence" class="footer-link">Brand Studies</a>
+      <a href="/#approach" class="footer-link">Our Approach</a>
+      <a href="/#studio" class="footer-link">The Studio</a>
+    </div>
+    <div>
+      <span class="footer-col-label">Engagements</span>
+      <a href="/#capabilities" class="footer-link">Campaign Systems</a>
+      <a href="/#capabilities" class="footer-link">Brand Communication</a>
+      <a href="/#capabilities" class="footer-link">Social Platforms</a>
+      <a href="/#capabilities" class="footer-link">CGI &amp; Motion</a>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <p>© 2026 SQUARGRAPH™ Studios. All rights reserved. New Delhi, India</p>
+    <div class="footer-bar-links">
+      <a href="/terms-of-use">Terms of Use</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/refund-policy">Refund Policy</a>
+      <a href="/ai-disclosure">AI Disclosure</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ── SUPABASE CONFIG ── -->
 <script>
-  
-  
-
-  
-  var CITY_DATA = {
-    'India': ['Ahmedabad','Bengaluru','Chennai','Delhi','Gurugram','Hyderabad','Jaipur','Kolkata','Mumbai','Noida','Pune','Surat','Other'],
-    'UAE': ['Abu Dhabi','Dubai','Sharjah','Other'],
-    'USA': ['Austin','Chicago','Los Angeles','Miami','New York','San Francisco','Seattle','Other'],
-    'UK': ['Birmingham','Edinburgh','Leeds','London','Manchester','Other'],
-    'Singapore': ['Singapore'],
-    'Australia': ['Brisbane','Melbourne','Perth','Sydney','Other'],
-    'Canada': ['Calgary','Montreal','Toronto','Vancouver','Other'],
-    'Germany': ['Berlin','Frankfurt','Hamburg','Munich','Other'],
-    'France': ['Lyon','Marseille','Paris','Other'],
-    'Japan': ['Osaka','Tokyo','Other']
-  };
-
-  function initCountryCityMapping(countryId, cityId) {
-    var countryEl = document.getElementById(countryId);
-    var cityEl    = document.getElementById(cityId);
-    var textEl    = document.getElementById(cityId + '-text');
-    if (!countryEl || !cityEl) return;
-
-    countryEl.addEventListener('change', function() {
-      var country = this.value;
-      var cities  = CITY_DATA[country] || [];
-      cityEl.innerHTML = '';
-
-      if (!country || cities.length === 0) {
-        cityEl.style.display = 'none';
-        if (textEl) { textEl.style.display = 'block'; textEl.value = ''; }
-        return;
-      }
-
-      var ph = document.createElement('option');
-      ph.value = ''; ph.disabled = true; ph.selected = true;
-      ph.textContent = 'Select city';
-      cityEl.appendChild(ph);
-
-      cities.forEach(function(c) {
-        var o = document.createElement('option');
-        o.value = c; o.textContent = c;
-        cityEl.appendChild(o);
-      });
-
-      cityEl.style.display = 'block';
-      if (textEl) { textEl.style.display = 'none'; textEl.value = ''; }
-    });
-
-    cityEl.addEventListener('change', function() {
-      if (!textEl) return;
-      if (this.value === 'Other') {
-        textEl.style.display = 'block'; textEl.focus();
-      } else {
-        textEl.style.display = 'none'; textEl.value = '';
-      }
-    });
-  }
-
-  function initRobustITI(inputId) {
-    return new Promise(function(resolve, reject) {
-      var input = document.getElementById(inputId);
-      if (!input) return reject(new Error('Input not found: ' + inputId));
-
-      function tryInit() {
-        if (typeof window.intlTelInput !== 'function') {
-          return reject(new Error('intlTelInput not loaded'));
-        }
-        try {
-          var instance = window.intlTelInput(input, {
-            initialCountry: 'in',
-            separateDialCode: true,
-            preferredCountries: ['in', 'ae', 'us', 'gb', 'sg'],
-            utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
-          });
-          resolve(instance);
-        } catch(e) { reject(e); }
-      }
-
-      if (typeof window.intlTelInput === 'function') {
-        tryInit();
-      } else {
-        var waited = 0;
-        var poll = setInterval(function() {
-          waited += 50;
-          if (typeof window.intlTelInput === 'function') {
-            clearInterval(poll); tryInit();
-          } else if (waited > 5000) {
-            clearInterval(poll); reject(new Error('intlTelInput timeout'));
-          }
-        }, 50);
-      }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    initCountryCityMapping('form-country', 'form-city');
-    initRobustITI('form-phone').then(function(instance) {
-      window.iti = instance;
-    }).catch(function(e) { console.error('ITI Init failed', e); });
-  });
-
-  function trackEvent(name, params) {
-    if (window.dataLayer) window.dataLayer.push(Object.assign({ event: name }, params || {}));
-  }
-
-  function validate() {
-    var ok = true;
-
-    function checkFieldValidation(inputId, condition) {
-      var el = document.getElementById(inputId);
-      if (!el) return;
-      var wrap = el.closest('.field') || el;
-      if (condition(el.value)) {
-        wrap.classList.remove('has-error');
-      } else {
-        wrap.classList.add('has-error');
-        ok = false;
-      }
-    }
-
-    checkFieldValidation('form-name',      function(v) { return v.trim().length > 1; });
-    checkFieldValidation('form-email',     function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); });
-    checkFieldValidation('form-phone',     function(v) { return v.trim().length > 5; });
-    checkFieldValidation('form-company',   function(v) { return v.trim().length > 1; });
-    checkFieldValidation('form-challenge', function(v) { return v.trim().length > 10; });
-    checkFieldValidation('form-goal',      function(v) { return v.trim().length > 10; });
-
-    checkFieldValidation('form-country', function(v) { return v.trim().length > 0; });
-    var citySelect = document.getElementById('form-city');
-    var cityText   = document.getElementById('form-city-text');
-    var cityVal    = (citySelect && citySelect.style.display !== 'none')
-                     ? citySelect.value.trim()
-                     : (cityText ? cityText.value.trim() : '');
-    if (!cityVal) {
-      var cityWrap = citySelect ? citySelect.closest('.field') || citySelect.parentNode : null;
-      if (cityWrap) cityWrap.classList.add('has-error');
-      ok = false;
-    }
-
-    var consent = document.getElementById('form-consent');
-    var consentErr = document.getElementById('consent-error');
-    if (!consent.checked) {
-      consentErr.style.display = 'block';
-      ok = false;
-    } else {
-      consentErr.style.display = 'none';
-    }
-
-    return ok;
-  }
-
-  async function handleSubmit() {
-    if (!validate()) return;
-
-    var btn = document.getElementById('btn-submit');
-    btn.disabled = true;
-    btn.textContent = 'Processing…';
-
-    // Resolve full phone number with country code
-    var phone = document.getElementById('form-phone').value.trim();
-    if (window.iti) {
-      if (!phone) {
-        document.getElementById('form-phone').closest('.field') && document.getElementById('form-phone').closest('.field').classList.add('has-error');
-        return;
-      } else if (!window.iti.isValidNumber()) {
-        document.getElementById('form-phone').closest('.field') && document.getElementById('form-phone').closest('.field').classList.add('has-error');
-        return;
-      }
-      phone = window.iti.getNumber();
-    }
-    var payload = {
-      name:           document.getElementById('form-name').value.trim(),
-      email:          document.getElementById('form-email').value.trim(),
-      phone:          phone,
-      company:        document.getElementById('form-company').value.trim(),
-      website:        (document.getElementById('form-website') ? document.getElementById('form-website').value.trim() : ''),
-      industry:       document.getElementById('form-industry').value,
-      country:        document.getElementById('form-country').value,
-      city: (document.getElementById('form-city').value || document.getElementById('form-city-text').value).trim(),
-      challenge:      document.getElementById('form-challenge').value.trim(),
-      goal:           document.getElementById('form-goal').value.trim(),
-      reference_link: document.getElementById('form-link').value.trim(),
-      product:        'Brand Foundation Sprint\u2122',
-      source_url:     window.location.href
-    };
-
-    // Save to Supabase leads
-    try {
-      await window.__sb.from('leads').insert([{
-  name: payload.name,
-  email: payload.email,
-  phone: payload.phone,
-  company: payload.company,
-  website: payload.website,
-  industry: payload.industry,
-  country: payload.country,
-  city: payload.city,
-  challenge: payload.challenge,
-  goal: payload.goal,
-  reference: payload.reference_link,
-  source: 'Brand Foundation Sprint™',
-  source_url: window.location.href,
-  service: 'Brand Foundation Sprint™',
-  status: 'new',
-  created_at: new Date().toISOString()
-}]);
-      try {
-        await fetch(
-          'https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev/notify',
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              payload: payload,
-              product: 'Brand Foundation Sprint™',
-              payment_status: 'lead'
-            })
-          }
-        );
-      } catch(e) { console.error(e); }
-
-      // Show success screen
-      document.getElementById('form-body').style.display = 'none';
-      var ss = document.getElementById('success-screen');
-      if (ss) ss.classList.add('visible');
-
-    } catch(e) { console.error('Leads insert failed', e); }
-  }
-
-  // Supabase init
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
   window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
   window.__sb = {
     from: function(table) {
       return {
         insert: async function(rows) {
-          var res = await fetch(
-            window.__sbUrl + '/rest/v1/' + table,
-            {
-              method: 'POST',
-              headers: {
-                'apikey': window.__sbKey,
-                'Authorization': 'Bearer ' + window.__sbKey,
-                'Content-Type': 'application/json',
-                'Prefer': 'return=minimal'
-              },
-              body: JSON.stringify(rows)
-            }
-          );
-          if (!res.ok) throw new Error('Insert failed');
+          const res = await fetch(window.__sbUrl + '/rest/v1/' + table, {
+            method: 'POST',
+            headers: {
+              'apikey': window.__sbKey,
+              'Authorization': 'Bearer ' + window.__sbKey,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(rows)
+          });
+          if (!res.ok) throw new Error('Insert failed: ' + res.status);
+          return { error: null };
         }
       };
     }
   };
+</script>
+
+<script>
+(function(){
+  'use strict';
+
+  /* Nav */
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive:true });
+
+  /* Mobile menu */
+  var mobToggle = document.getElementById('mob-toggle');
+  var mobMenu = document.getElementById('mob-menu');
+  var menuOpen = false;
+  mobToggle.addEventListener('click', function(){
+    menuOpen = !menuOpen;
+    mobToggle.classList.toggle('open', menuOpen);
+    mobToggle.setAttribute('aria-expanded', String(menuOpen));
+    mobMenu.classList.toggle('open', menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  window.closeMob = function(){ menuOpen=false; mobToggle.classList.remove('open'); mobMenu.classList.remove('open'); document.body.style.overflow=''; };
+
+  /* Scroll reveal */
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold:.1, rootMargin:'0px 0px -40px 0px' });
+  document.querySelectorAll('.scroll-reveal').forEach(function(el){ obs.observe(el); });
+
+  /* City data */
+  var CITY_DATA = {
+    'India':['Ahmedabad','Bengaluru','Chennai','Delhi','Gurugram','Hyderabad','Jaipur','Kolkata','Mumbai','Noida','Pune','Surat','Other'],
+    'UAE':['Abu Dhabi','Dubai','Sharjah','Other'],'USA':['Austin','Chicago','Los Angeles','Miami','New York','San Francisco','Seattle','Other'],
+    'UK':['Birmingham','Edinburgh','Leeds','London','Manchester','Other'],'Singapore':['Singapore'],
+    'Australia':['Brisbane','Melbourne','Perth','Sydney','Other'],'Canada':['Calgary','Montreal','Toronto','Vancouver','Other'],
+    'Germany':['Berlin','Frankfurt','Hamburg','Munich','Other'],'France':['Lyon','Marseille','Paris','Other'],'Japan':['Osaka','Tokyo','Other']
+  };
+  function initCountryCityMapping(countryId, cityId){
+    var countryEl=document.getElementById(countryId), cityEl=document.getElementById(cityId), textEl=document.getElementById(cityId+'-text');
+    if(!countryEl||!cityEl) return;
+    countryEl.addEventListener('change',function(){
+      var country=this.value, cities=CITY_DATA[country]||[];
+      cityEl.innerHTML='';
+      if(!country||!cities.length){ cityEl.style.display='none'; if(textEl){ textEl.style.display='block'; textEl.value=''; } return; }
+      var ph=document.createElement('option'); ph.value=''; ph.disabled=true; ph.selected=true; ph.textContent='Select city'; cityEl.appendChild(ph);
+      cities.forEach(function(c){ var o=document.createElement('option'); o.value=c; o.textContent=c; cityEl.appendChild(o); });
+      cityEl.style.display='block'; if(textEl){ textEl.style.display='none'; textEl.value=''; }
+    });
+    if(cityEl) cityEl.addEventListener('change',function(){ if(!textEl) return; if(this.value==='Other'){ textEl.style.display='block'; textEl.focus(); } else { textEl.style.display='none'; textEl.value=''; } });
+  }
+
+  /* ITI */
+  var sprintIti = null;
+  function initITI(){
+    if(typeof window.intlTelInput!=='function') return setTimeout(initITI,100);
+    var input=document.getElementById('sprint-phone');
+    if(!input) return;
+    sprintIti=window.intlTelInput(input,{ initialCountry:'in', separateDialCode:true, preferredCountries:['in','ae','us','gb','sg'], utilsScript:'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js' });
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){
+    initCountryCityMapping('sprint-country','sprint-city');
+    initITI();
+  });
+
+  /* Validate */
+  function getVal(id){ return (document.getElementById(id)||{}).value||''; }
+  function showErr(input, show){ input.classList.toggle('has-error',show); var err=input.closest('.field')&&input.closest('.field').querySelector('.field-error'); if(err) err.classList.toggle('show',show); }
+  function validateSprint(){
+    var valid=true;
+    [['s-name',function(v){return v.trim().length>0;}],['s-email',function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}],['s-company',function(v){return v.trim().length>0;}],['s-challenge',function(v){return v.trim().length>0;}],['s-goal',function(v){return v.trim().length>0;}]].forEach(function(pair){
+      var el=document.getElementById(pair[0]); if(!el) return; var ok=pair[1](el.value); showErr(el,!ok); if(!ok) valid=false;
+    });
+    var phoneInput=document.getElementById('sprint-phone');
+    var phoneOk=phoneInput&&phoneInput.value.trim().length>0&&(!sprintIti||sprintIti.isValidNumber());
+    if(phoneInput){ phoneInput.classList.toggle('has-error',!phoneOk); }
+    var phoneErr=document.getElementById('sprint-phone-err'); if(phoneErr) phoneErr.classList.toggle('show',!phoneOk);
+    if(!phoneOk) valid=false;
+    var consent=document.getElementById('s-consent');
+    var consentOk=consent&&consent.checked;
+    var consentErr=document.getElementById('sprint-consent-err'); if(consentErr) consentErr.classList.toggle('show',!consentOk);
+    if(!consentOk) valid=false;
+    return valid;
+  }
+
+  /* Submit */
+  var form=document.getElementById('sprint-form');
+  var submitBtn=document.getElementById('sprint-submit');
+  if(form){
+    form.addEventListener('submit',async function(e){
+      e.preventDefault();
+      if(!validateSprint()) return;
+      submitBtn.disabled=true;
+      submitBtn.innerHTML='<span class="spinner"></span>&nbsp;Submitting brief…';
+      var cityEl=document.getElementById('sprint-city'), cityTextEl=document.getElementById('sprint-city-text');
+      var cityVal=(cityEl&&cityEl.style.display!=='none')?cityEl.value:(cityTextEl?cityTextEl.value:'');
+      var payload={
+        name:getVal('s-name'),
+        phone:sprintIti?sprintIti.getNumber():getVal('sprint-phone'),
+        email:getVal('s-email'),
+        company:getVal('s-company'),
+        country:getVal('sprint-country'),
+        city:cityVal,
+        challenge:getVal('s-challenge'),
+        goal:getVal('s-goal'),
+        service:'Brand Foundation Sprint',
+        status:'new',
+        source_url:window.location.href,
+        created_at:new Date().toISOString(),
+        message:(getVal('s-challenge')+'\n\nGoal: '+getVal('s-goal')).trim()
+      };
+      try {
+        await window.__sb.from('leads').insert([payload]);
+        var formCard=document.getElementById('sprint-form-card');
+        var successCard=document.getElementById('sprint-success');
+        if(formCard){ formCard.style.opacity='0'; formCard.style.transition='opacity .4s'; setTimeout(function(){ formCard.style.display='none'; if(successCard){ successCard.style.display='block'; successCard.style.animation='fadeUp .6s both'; } },400); }
+        window.dataLayer=window.dataLayer||[];
+        window.dataLayer.push({ event:'sprint_brief_submitted' });
+      } catch(err){
+        console.error('[SQUARGRAPH]',err);
+        submitBtn.disabled=false;
+        submitBtn.innerHTML='Error — try again';
+        submitBtn.style.background='#EF4444';
+        setTimeout(function(){ submitBtn.innerHTML='Submit Your Brief →'; submitBtn.style.background=''; },4000);
+      }
+    });
+    form.querySelectorAll('.form-input').forEach(function(el){
+      el.addEventListener('input',function(){ el.classList.remove('has-error'); var err=el.closest('.field')&&el.closest('.field').querySelector('.field-error'); if(err) err.classList.remove('show'); });
+    });
+  }
+})();
 </script>
 </body>
 </html>
