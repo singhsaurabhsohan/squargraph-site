@@ -1402,7 +1402,6 @@
       border-color: var(--accentmuted);
     }
      @media (max-width: 99999px) {
-      #persistent-cta { display: none !important; }
       #mobile-book-wrap { display: flex !important; }
       #back-to-top {
         left: 20px;
@@ -1866,8 +1865,6 @@
 .submit-btn {
   margin-top: 0 !important;
 }
-</style>
-<style>
 /* ── STICKY BOTTOM BANNER ── */
 #sticky-banner {
   position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
@@ -1890,6 +1887,7 @@
   #sticky-banner { bottom: 16px; left: 16px; right: 16px; transform: none; white-space: normal; }
   #sticky-banner.hidden { transform: translateY(12px); }
 }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -2779,8 +2777,6 @@ We work with businesses that are serious about their positioning, communication,
   'use strict';
 
   var nav = document.getElementById('nav');
-  var persistCta = document.getElementById('persistent-cta');
-  var ctaDismissed = false;
   var btt = document.getElementById('back-to-top');
   btt.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
   var ticking = false;
@@ -2788,9 +2784,6 @@ We work with businesses that are serious about their positioning, communication,
     if (!ticking) {
       requestAnimationFrame(function() {
         nav.classList.toggle('scrolled', window.scrollY > 60);
-        if (!ctaDismissed && persistCta && window.scrollY > 600) {
-          persistCta.style.transform = 'translateY(0)';
-        }
         btt.classList.toggle('visible', window.scrollY > 300);
         setActiveNav();
         ticking = false;
@@ -2844,16 +2837,6 @@ We work with businesses that are serious about their positioning, communication,
     }, { threshold: 0.2 });
     divObs.observe(divider);
   }
-  if (persistCta) {
-  var dismissBtn = persistCta.querySelector('button[aria-label="Dismiss"]');
-  if (dismissBtn) {
-    dismissBtn.addEventListener('click', function() {
-      ctaDismissed = true;
-      persistCta.style.transform = 'translateY(100%)';
-    });
-  }
-}
-
   function addDrag(el) {
     if (!el) return;
     var isDown = false, startX, scrollLeft;
