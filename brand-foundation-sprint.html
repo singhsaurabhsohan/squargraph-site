@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brand Foundation Sprint™ — SQUARGRAPH™ Studios</title>
   <meta name="description" content="Build the strategic and visual foundation your brand deserves with SQUARGRAPH™ Studios. Positioning, messaging, identity systems, and growth direction — custom scoped for ambitious businesses." />
-  <link rel="canonical" href="https://squargraph.com/discovery" />
+  <link rel="canonical" href="https://squargraph.com/brand-foundation-sprint" />
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Brand Foundation Sprint™ — SQUARGRAPH™ Studios" />
   <meta property="og:description" content="A complete strategic and visual brand foundation. Positioning, messaging, identity, and systems — custom scoped for your business." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://squargraph.com/discovery" />
+  <meta property="og:url" content="https://squargraph.com/brand-foundation-sprint" />
   <meta property="og:image" content="https://squargraph.com/squargraph-brand-image.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Brand Foundation Sprint™ — SQUARGRAPH™ Studios" />
@@ -267,13 +267,16 @@
       border-radius: var(--radius-card);
       box-shadow: var(--shadow-lg);
       overflow: visible;
+      max-width: 740px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* ── CARD HEADER ── */
     .card-header {
-      padding: 24px 32px 22px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
+      padding: 32px 48px 0;
+      border-bottom: none;
+      background: transparent;
     }
 
     .card-label {
@@ -282,40 +285,41 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
     .card-title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.03em;
       color: var(--text);
+      margin-bottom: 4px;
     }
 
     /* ── FORM BODY ── */
-    .form-body { padding: 40px 48px; }
+    .form-body { padding: 40px 48px 48px; }
 
     /* ── FIELDS ── */
     .field-group {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 22px;
     }
 
     .field {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 0;
     }
 
     .field label {
       display: block;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 7px;
+      color: var(--muted);
+      margin-bottom: 8px;
     }
 
     .field label .optional {
@@ -339,29 +343,43 @@
       padding: 13px 20px;
       min-height: 48px;
       outline: none;
-      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
       appearance: none;
       -webkit-appearance: none;
+    }
+
+    .field input:hover,
+    .field select:hover,
+    .field textarea:hover {
+      border-color: #C8C4BE;
     }
 
     .field textarea {
       border-radius: 16px;
       resize: vertical;
-      min-height: 96px;
-      line-height: 1.6;
+      min-height: 112px;
+      line-height: 1.65;
     }
 
     .field input::placeholder,
-    .field textarea::placeholder { color: #B8B4AF; }
+    .field select::placeholder,
+    .field textarea::placeholder { color: #C0BAB4; }
 
     .field input:focus,
     .field select:focus,
     .field textarea:focus {
       border-color: var(--accent);
       background: #fff;
-      box-shadow: 0 0 0 3px rgba(107,93,184,.12);
+      box-shadow: 0 0 0 3px rgba(107,93,184,.16);
     }
 
+    .field input:disabled,
+    .field select:disabled,
+    .field textarea:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      background: #F5F4F2;
+    }
     .field select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
@@ -383,9 +401,9 @@
     .field.has-error .error-msg { display: block; }
 
     .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     /* ── SECTION DIVIDER ── */
@@ -566,33 +584,51 @@
       font-weight: 500;
     }
 
-    /* ── SUCCESS SCREEN ── */
+   /* ── SUCCESS SCREEN ── */
     #success-screen {
       display: none;
-      padding: 56px 32px;
+      padding: 56px 48px 64px;
       text-align: center;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    #success-screen.visible { display: block; }
+    #success-screen.visible {
+      display: block;
+      animation: successIn 0.4s ease forwards;
+    }
+
+    @keyframes successIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
     .success-icon {
-      width: 60px; height: 60px;
+      width: 72px; height: 72px;
       border-radius: 50%;
-      background: rgba(22,163,74,.1);
-      border: 1px solid rgba(22,163,74,.25);
+      background: rgba(22,163,74,.08);
+      border: 1.5px solid rgba(22,163,74,.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 24px;
+      margin: 0 auto 28px;
     }
 
     .success-icon svg {
-      width: 24px; height: 24px;
+      width: 28px; height: 28px;
       stroke: #16A34A;
-      stroke-width: 2.5;
+      stroke-width: 2;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: drawCheck 0.5s ease 0.25s forwards;
+    }
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
     }
 
     .success-eyebrow {
@@ -601,33 +637,84 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .success-title {
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 700;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.035em;
       color: var(--text);
-      line-height: 1.2;
-      margin-bottom: 10px;
+      line-height: 1.15;
+      margin-bottom: 12px;
     }
 
     .success-sub {
       font-size: 14px;
       color: #8A8580;
-      line-height: 1.7;
-      max-width: 36ch;
-      margin: 0 auto 8px;
+      line-height: 1.75;
+      max-width: 38ch;
+      margin: 0 auto 28px;
     }
 
     .success-pid {
       font-size: 11px;
       color: #B8B4AF;
-      margin-bottom: 28px;
-      letter-spacing: 0.02em;
+      margin-bottom: 32px;
+      letter-spacing: 0.03em;
     }
 
+    .success-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      text-align: left;
+      max-width: 360px;
+      margin: 0 auto 36px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .success-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .success-step:last-child { border-bottom: none; }
+
+    .success-step-num {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      border: 1px solid rgba(107,93,184,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 1px;
+    }
+
+    .success-step-text {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    .success-step-text span {
+      display: block;
+      font-size: 11.5px;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 2px;
+    }
     .btn-wa {
       display: inline-flex;
       align-items: center;
@@ -661,9 +748,11 @@
       .deliverables { padding: 0 16px; }
       .deliverables-inner { grid-template-columns: 1fr; gap: 16px; }
       .form-section { padding: 0 16px; }
-      .form-body { padding: 24px 20px; }
-      .card-header { padding: 20px; }
-      .field-row { grid-template-columns: 1fr; }
+      .form-body { padding: 24px 20px 32px; }
+      .field-group { gap: 18px; }
+      .success-steps { max-width: 100%; }
+      #success-screen { padding: 40px 20px 48px; }
+      .card-header { padding: 24px 20px 0; }
       .privacy-note { padding: 0 20px 24px; }
       #success-screen { padding: 40px 20px; }
       .trust-row { gap: 12px; }
@@ -875,10 +964,29 @@
           <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <div class="success-eyebrow">Brief Received</div>
-        <div class="success-title">We'll review your requirements<br />and prepare a tailored proposal.</div>
-        <p class="success-sub">Our team will review your submission and reach out within 24 hours.</p>
-        <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20just%20booked%20a%20Discovery%20Session%E2%84%A2." target="_blank" rel="noopener noreferrer" class="btn-wa">
-          <svg width="14" height="14" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <div class="success-title">Your Sprint brief<br />is with us.</div>
+        <p class="success-sub">Payment confirmed. We'll review your requirements and be in touch within 24 hours to kick things off.</p>
+        <div class="success-steps">
+          <div class="success-step">
+            <div class="success-step-num">1</div>
+            <div class="success-step-text">Brief review
+              <span>We'll review your submission and identify the right starting point.</span>
+            </div>
+          </div>
+          <div class="success-step">
+            <div class="success-step-num">2</div>
+            <div class="success-step-text">Kick-off call scheduled
+              <span>Within 24 hours we'll confirm your Sprint start date and share what to prepare.</span>
+            </div>
+          </div>
+          <div class="success-step">
+            <div class="success-step-num">3</div>
+            <div class="success-step-text">Sprint delivery
+              <span>Your Brand Foundation is delivered within the agreed Sprint window.</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20just%20submitted%20a%20Brand%20Foundation%20Sprint%E2%84%A2%20brief." target="_blank" rel="noopener noreferrer" class="btn-wa">
           Confirm on WhatsApp
         </a>
       </div>
@@ -1006,11 +1114,10 @@
   function validate() {
     var ok = true;
 
-    function checkFieldValidation(wrapperId, condition) {
-      var wrap = document.getElementById(wrapperId);
-      if (!wrap) return;
-      var el = wrap.querySelector('input, select, textarea');
+    function checkFieldValidation(inputId, condition) {
+      var el = document.getElementById(inputId);
       if (!el) return;
+      var wrap = el.closest('.field') || el;
       if (condition(el.value)) {
         wrap.classList.remove('has-error');
       } else {
@@ -1021,7 +1128,7 @@
 
     checkFieldValidation('form-name',      function(v) { return v.trim().length > 1; });
     checkFieldValidation('form-email',     function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); });
-    // phone validated via ITI below
+    checkFieldValidation('form-phone',     function(v) { return v.trim().length > 5; });
     checkFieldValidation('form-company',   function(v) { return v.trim().length > 1; });
     checkFieldValidation('form-challenge', function(v) { return v.trim().length > 10; });
     checkFieldValidation('form-goal',      function(v) { return v.trim().length > 10; });
