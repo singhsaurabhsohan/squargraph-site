@@ -41,8 +41,8 @@
   }, { rootMargin: '200px' });
   
   </script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'" />
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js" defer></script>
   
   <!-- Fonts -->
   <style>
@@ -2952,13 +2952,103 @@ We work with businesses that are serious about their positioning, communication,
     }
   }
 
+  var CITY_DATA = {
+    'India': ['Ahmedabad','Bengaluru','Chennai','Delhi','Gurugram','Hyderabad','Jaipur','Kolkata','Mumbai','Noida','Pune','Surat','Other'],
+    'UAE': ['Abu Dhabi','Dubai','Sharjah','Other'],
+    'USA': ['Austin','Chicago','Los Angeles','Miami','New York','San Francisco','Seattle','Other'],
+    'UK': ['Birmingham','Edinburgh','Leeds','London','Manchester','Other'],
+    'Singapore': ['Singapore'],
+    'Australia': ['Brisbane','Melbourne','Perth','Sydney','Other'],
+    'Canada': ['Calgary','Montreal','Toronto','Vancouver','Other'],
+    'Germany': ['Berlin','Frankfurt','Hamburg','Munich','Other'],
+    'France': ['Lyon','Marseille','Paris','Other'],
+    'Japan': ['Osaka','Tokyo','Other']
+  };
+
+  function initCountryCityMapping(countryId, cityId) {
+    var countryEl = document.getElementById(countryId);
+    var cityEl    = document.getElementById(cityId);
+    var textEl    = document.getElementById(cityId + '-text');
+    if (!countryEl || !cityEl) return;
+
+    countryEl.addEventListener('change', function() {
+      var country = this.value;
+      var cities  = CITY_DATA[country] || [];
+      cityEl.innerHTML = '';
+
+      if (!country || cities.length === 0) {
+        cityEl.style.display = 'none';
+        if (textEl) { textEl.style.display = 'block'; textEl.value = ''; }
+        return;
+      }
+
+      var ph = document.createElement('option');
+      ph.value = ''; ph.disabled = true; ph.selected = true;
+      ph.textContent = 'Select city';
+      cityEl.appendChild(ph);
+
+      cities.forEach(function(c) {
+        var o = document.createElement('option');
+        o.value = c; o.textContent = c;
+        cityEl.appendChild(o);
+      });
+
+      cityEl.style.display = 'block';
+      if (textEl) { textEl.style.display = 'none'; textEl.value = ''; }
+    });
+
+    cityEl.addEventListener('change', function() {
+      if (!textEl) return;
+      if (this.value === 'Other') {
+        textEl.style.display = 'block'; textEl.focus();
+      } else {
+        textEl.style.display = 'none'; textEl.value = '';
+      }
+    });
+  }
+
+  function initRobustITI(inputId) {
+    return new Promise(function(resolve, reject) {
+      var input = document.getElementById(inputId);
+      if (!input) return reject(new Error('Input not found: ' + inputId));
+
+      function tryInit() {
+        if (typeof window.intlTelInput !== 'function') {
+          return reject(new Error('intlTelInput not loaded'));
+        }
+        try {
+          var instance = window.intlTelInput(input, {
+            initialCountry: 'in',
+            separateDialCode: true,
+            preferredCountries: ['in', 'ae', 'us', 'gb', 'sg'],
+            utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
+          });
+          resolve(instance);
+        } catch(e) { reject(e); }
+      }
+
+      if (typeof window.intlTelInput === 'function') {
+        tryInit();
+      } else {
+        var waited = 0;
+        var poll = setInterval(function() {
+          waited += 50;
+          if (typeof window.intlTelInput === 'function') {
+            clearInterval(poll); tryInit();
+          } else if (waited > 5000) {
+            clearInterval(poll); reject(new Error('intlTelInput timeout'));
+          }
+        }, 50);
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     initCountryCityMapping('country-location', 'city');
     initRobustITI('phone').then(function(instance) {
       window.iti = instance;
     }).catch(function(e) { console.error('ITI Init failed', e); });
   });
-
   function getPayload(formEl) {
     var raw = Object.fromEntries(new FormData(formEl).entries());
     return {
