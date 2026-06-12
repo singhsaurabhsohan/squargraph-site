@@ -468,12 +468,15 @@
   box-shadow: 0 12px 40px rgba(26,23,20,0.12) !important;
   font-family: var(--font) !important;
   font-size: 13px !important;
+  z-index: 99999 !important;
+  position: fixed !important;
   max-height: 280px !important;
   overflow-y: auto !important;
   background: #fff !important;
+  width: max-content !important;
+  min-width: 280px !important;
   padding: 8px 0 !important;
-  width: max-content;
-  min-width: 280px;
+  scrollbar-width: thin;
 }
 .iti__country-list::-webkit-scrollbar {
   width: 4px;
