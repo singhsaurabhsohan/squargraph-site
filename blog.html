@@ -524,23 +524,24 @@
       }
     }
   </style>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
 <!-- ── NAV ── -->
-<nav id="nav" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a href="/" class="nav-logo" aria-label="SQUARGRAPH Studios">
-      <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" fetchpriority="high" decoding="sync" />
-    </a>
-    <div class="nav-links">
-      <a href="/#work">Work</a>
-      <a href="/#Engagements">Engagements</a>
-      <a href="/#capabilities">Capabilities</a>
-      <a href="/#studio">Studio</a>
-      <a href="/blog" class="active">Thinking</a>
-      <a href="/discovery" class="nav-cta">Book Discovery Session</a>
-    </div>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="SQUARGRAPH Studios" class="nav-logo" href="/">
+<img alt="SQUARGRAPH Studios" decoding="sync" fetchpriority="high" height="28" src="/logo.webp" style="height:28px;width:auto;" width="120"/>
+</a>
+<div class="nav-links">
+<a href="/#work">Work</a>
+<a href="/#Engagements">Engagements</a>
+<a href="/#capabilities">Capabilities</a>
+<a href="/blog">Thinking</a>
+<a href="/#studio">Studio</a>
+<a class="nav-cta" href="/discovery">Book Discovery Session</a>
+</div>
     <button type="button" class="hamburger" id="mob-toggle" aria-label="Open navigation menu" aria-expanded="false">
       <div class="pill-menu">
         <div class="pill-line"></div>
@@ -833,7 +834,9 @@
       <div>
         <form class="newsletter-form" id="newsletter-form" novalidate>
           <input type="email" placeholder="Your email address" class="newsletter-input" id="nl-email" required autocomplete="email" />
-          <button type="submit" class="newsletter-btn">Subscribe →</button>
+          <div class="g-recaptcha" data-sitekey="6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB" style="transform:scale(0.85);transform-origin:left top;margin-bottom:8px;"></div>
+          <p id="nl-captcha-error" style="font-size:11px;color:#EF4444;display:none;margin-top:6px;">Please complete the captcha.</p>
+          <button class="newsletter-btn" type="submit">Subscribe →</button>
           <p class="newsletter-note">No selling. No forwarding your address. Unsubscribe any time.</p>
         </form>
       </div>
