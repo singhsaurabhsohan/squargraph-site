@@ -9,51 +9,27 @@
   <title>Your Brand Growth Audit™ Results — SQUARGRAPH™ Studios</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/png" href="/favicon.png" />
-  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZK');</script>
-  <!-- End Google Tag Manager -->
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --offwhite: #FAFAF9;
-      --warmgray: #F5F5F3;
-      --coolgray: #F0EFED;
-      --bordergray: #E5E3DF;
-      --textmuted: #2A2623;
-      --textsecondary: #3D3935;
-      --textprimary: #1A1714;
-      --accent: #6B5DB8;
-      --accentmuted: #7B6FB8;
+      --offwhite: #FAFAF9; --warmgray: #F5F5F3; --coolgray: #F0EFED;
+      --bordergray: #E5E3DF; --textmuted: #2A2623; --textsecondary: #3D3935;
+      --textprimary: #1A1714; --accent: #6B5DB8; --accentmuted: #7B6FB8;
       --accentlight: #EEECf7;
-      /* aliases used in modal JS */
-      --text: #1A1714;
-      --muted: #3D3935;
-      --border: #E5E3DF;
-      --surface: #F5F5F3;
-      --bg: #FAFAF9;
-      --accent-dim: rgba(107,93,184,.1);
-      --accent-glow: rgba(107,93,184,.18);
+      --text: #1A1714; --muted: #3D3935; --border: #E5E3DF;
+      --surface: #F5F5F3; --bg: #FAFAF9;
+      --accent-dim: rgba(107,93,184,.1); --accent-glow: rgba(107,93,184,.18);
       --accent-light: #EEECf7;
       --font: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-      --pill: 999px;
-      --ease: cubic-bezier(.4,0,.2,1);
+      --pill: 999px; --ease: cubic-bezier(.4,0,.2,1);
     }
-
     @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
     @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
     @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
 
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-weight: 400; }
-    body {
-      font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--textprimary);
-      background: #FFFFFF;
-      line-height: 1.5;
-      letter-spacing: -0.01em;
-      overflow-x: hidden;
-      font-weight: 400;
-    }
+    body { font-family: var(--font); color: var(--textprimary); background: #fff; line-height: 1.5; letter-spacing: -0.01em; overflow-x: hidden; font-weight: 400; }
     ::selection { background: rgba(139,126,200,.18); color: var(--textprimary); }
     * { -webkit-tap-highlight-color: transparent; }
     img { display: block; max-width: 100%; }
@@ -63,297 +39,124 @@
     ::-webkit-scrollbar-thumb { background: var(--bordergray); }
 
     /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 103;
-      transition: background .4s, border-color .4s, backdrop-filter .4s;
-    }
-    nav.scrolled {
-      background: rgba(250,250,249,0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--bordergray);
-    }
-    .nav-inner {
-      max-width: 1440px; margin: 0 auto;
-      padding: 0 clamp(24px, 4vw, 64px);
-      display: flex; align-items: center; justify-content: space-between;
-      height: 84px;
-    }
-    .nav-logo {
-      display: flex; align-items: center; line-height: 1;
-      font-size: 19px; font-weight: 600;
-      letter-spacing: -0.03em; color: var(--textprimary);
-    }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 103; transition: background .4s, border-color .4s, backdrop-filter .4s; }
+    nav.scrolled { background: rgba(250,250,249,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--bordergray); }
+    .nav-inner { max-width: 1440px; margin: 0 auto; padding: 0 clamp(24px,4vw,64px); display: flex; align-items: center; justify-content: space-between; height: 84px; }
+    .nav-logo { display: flex; align-items: center; line-height: 1; font-size: 19px; font-weight: 600; letter-spacing: -0.03em; color: var(--textprimary); }
     .nav-links { display: flex; align-items: center; gap: 40px; }
-    .nav-links a {
-      font-size: 13px; font-weight: 500;
-      color: var(--textsecondary);
-      transition: color .25s; letter-spacing: -0.01em;
-    }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--textsecondary); transition: color .25s; letter-spacing: -0.01em; }
     .nav-links a:hover { color: var(--textprimary); }
-    .nav-cta {
-      font-size: 13px; font-weight: 500; color: var(--textprimary);
-      border: 1px solid var(--bordergray); border-radius: 999px;
-      padding: 10px 24px;
-      transition: background .25s, color .25s, border-color .25s;
-    }
+    .nav-cta { font-size: 13px; font-weight: 500; color: var(--textprimary); border: 1px solid var(--bordergray); border-radius: 999px; padding: 10px 24px; transition: background .25s, color .25s, border-color .25s; }
     .nav-cta:hover { background: var(--textprimary); color: #fff; border-color: var(--textprimary); }
     @media (max-width: 768px) { .nav-links { display: none; } .nav-cta { display: none; } }
-    @media (min-width: 480px) and (max-width: 768px) {
-      .nav-cta { display: inline-flex; font-size: 12px; padding: 9px 16px; margin-right: 8px; }
-    }
-    .hamburger {
-      display: none; flex-direction: column; align-items: center; justify-content: center;
-      width: 44px; height: 44px; background: none; border: none; cursor: pointer;
-      padding: 0; position: relative; z-index: 102;
-    }
+    @media (min-width: 480px) and (max-width: 768px) { .nav-cta { display: inline-flex; font-size: 12px; padding: 9px 16px; margin-right: 8px; } }
+    .hamburger { display: none; flex-direction: column; align-items: center; justify-content: center; width: 44px; height: 44px; background: none; border: none; cursor: pointer; padding: 0; position: relative; z-index: 102; }
     .pill-menu { display: flex; flex-direction: column; align-items: center; gap: 5px; }
-    .pill-line {
-      width: 28px; height: 1.5px; background: var(--textprimary);
-      border-radius: 999px; transition: transform .35s cubic-bezier(.77,0,.18,1), opacity .3s;
-    }
-    .pill-body {
-      width: 28px; height: 13px; border: 1.5px solid var(--textprimary);
-      border-radius: 999px; transition: transform .35s cubic-bezier(.77,0,.18,1), opacity .3s;
-    }
+    .pill-line { width: 28px; height: 1.5px; background: var(--textprimary); border-radius: 999px; transition: transform .35s cubic-bezier(.77,0,.18,1), opacity .3s; }
+    .pill-body { width: 28px; height: 13px; border: 1.5px solid var(--textprimary); border-radius: 999px; transition: transform .35s cubic-bezier(.77,0,.18,1), opacity .3s; }
     .hamburger.open .pill-line { opacity: 0; transform: scaleX(0); }
     .hamburger.open .pill-body { transform: rotate(45deg) scale(1.1); }
     @media (max-width: 768px) { .hamburger { display: flex; } }
     @media (min-width: 769px) { .hamburger { display: none !important; } }
-    #mob-menu {
-      display: flex; position: fixed; inset: 0; z-index: 101;
-      background: #fff; flex-direction: column; justify-content: center;
-      padding: clamp(32px, 8vw, 64px); padding-top: 100px;
-      opacity: 0; pointer-events: none; transition: opacity .3s;
-    }
+    #mob-menu { display: flex; position: fixed; inset: 0; z-index: 101; background: #fff; flex-direction: column; justify-content: center; padding: clamp(32px,8vw,64px); padding-top: 100px; opacity: 0; pointer-events: none; transition: opacity .3s; }
     #mob-menu.open { opacity: 1; pointer-events: all; }
-    #mob-menu a:not(.mob-contact) {
-      display: block; font-size: clamp(22px, 6vw, 32px); font-weight: 500;
-      letter-spacing: -0.03em; color: var(--textprimary);
-      padding: 16px 0; border-bottom: 1px solid var(--bordergray); transition: color .2s;
-    }
+    #mob-menu a:not(.mob-contact) { display: block; font-size: clamp(22px,6vw,32px); font-weight: 500; letter-spacing: -0.03em; color: var(--textprimary); padding: 16px 0; border-bottom: 1px solid var(--bordergray); transition: color .2s; }
     #mob-menu a:hover { color: var(--accent); }
     .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
-    #mob-menu .mob-contact {
-      margin-top: 32px; font-size: 13px; color: var(--textmuted); border-bottom: none; display: block;
-    }
+    #mob-menu .mob-contact { margin-top: 32px; font-size: 13px; color: var(--textmuted); border-bottom: none; display: block; }
 
-    /* ── PAGE LAYOUT ── */
-    .page-wrap {
-      min-height: 100vh;
-      background: var(--warmgray);
-      padding-top: 84px;
-    }
-
-    .results-section {
-      padding: clamp(48px, 8vw, 96px) clamp(24px, 4vw, 64px);
-      max-width: 1440px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .results-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: var(--accentlight);
-      border: 1px solid rgba(107,93,184,.18);
-      border-radius: var(--pill);
-      padding: 4px 12px;
-      margin-bottom: 20px;
-    }
-
-    .results-heading {
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      color: var(--textprimary);
-      text-align: center;
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    .results-heading em {
-      font-style: normal;
-      color: var(--accent);
-    }
-
-    .results-subhead {
-      font-size: 15px;
-      color: var(--textsecondary);
-      text-align: center;
-      max-width: 44ch;
-      line-height: 1.7;
-      margin-bottom: 48px;
-    }
+    /* ── PAGE ── */
+    .page-wrap { min-height: 100vh; background: var(--warmgray); padding-top: 84px; }
+    .results-section { padding: clamp(48px,8vw,80px) clamp(24px,4vw,64px); max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+    .results-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--accentlight); border: 1px solid rgba(107,93,184,.18); border-radius: var(--pill); padding: 4px 12px; margin-bottom: 20px; }
+    .results-heading { font-size: clamp(28px,4vw,44px); font-weight: 500; letter-spacing: -0.03em; color: var(--textprimary); text-align: center; line-height: 1.1; margin-bottom: 12px; }
+    .results-heading em { font-style: normal; color: var(--accent); }
+    .results-subhead { font-size: 15px; color: var(--textsecondary); text-align: center; max-width: 44ch; line-height: 1.7; margin-bottom: 48px; }
 
     /* ── CARD ── */
-    .results-card {
-      background: #fff;
-      border: 1px solid var(--bordergray);
-      border-radius: 20px;
-      width: 100%;
-      max-width: 560px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(26,23,20,.04), 0 16px 48px rgba(26,23,20,.08);
+    .results-card { background: #fff; border: 1px solid var(--bordergray); border-radius: 20px; width: 100%; max-width: 960px; overflow: hidden; box-shadow: 0 2px 8px rgba(26,23,20,.04), 0 16px 48px rgba(26,23,20,.08); }
+    .card-stripe { height: 3px; background: linear-gradient(90deg, var(--accent) 0%, #9B8AE0 100%); }
+
+    /* ── TWO-COL LAYOUT ── */
+    .card-cols { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; }
+    .card-left { padding: 32px; border-right: 1px solid var(--bordergray); overflow: hidden; }
+    .card-right { padding: 32px; background: var(--warmgray); display: flex; flex-direction: column; }
+    @media (max-width: 720px) {
+      .card-cols { grid-template-columns: 1fr; }
+      .card-left { border-right: none; border-bottom: 1px solid var(--bordergray); padding: 24px 20px; }
+      .card-right { padding: 24px 20px; }
     }
 
-    .card-stripe {
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent) 0%, #9B8AE0 100%);
-    }
-
-    .card-body { padding: 32px; }
-    @media (max-width: 480px) { .card-body { padding: 24px 20px; } }
-
-    /* ── SCORE RING ── */
-    .bq-eyebrow {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--accent); background: var(--accentlight);
-      border: 1px solid rgba(107,93,184,.18); border-radius: var(--pill);
-      padding: 4px 12px; margin-bottom: 20px;
-    }
-
+    /* ── SHARED INNER COMPONENTS ── */
+    .bq-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--accentlight); border: 1px solid rgba(107,93,184,.18); border-radius: var(--pill); padding: 4px 12px; margin-bottom: 20px; }
     .score-row { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; }
     .ring-wrap { position: relative; width: 88px; height: 88px; flex-shrink: 0; }
     .ring-wrap svg { transform: rotate(-90deg); width: 88px; height: 88px; }
     .ring-track { fill: none; stroke: var(--accent-dim); stroke-width: 5; }
-    .ring-fill {
-      fill: none; stroke: url(#ringGrad); stroke-width: 5; stroke-linecap: round;
-      stroke-dasharray: 244; stroke-dashoffset: 244;
-      transition: stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1) .3s;
-    }
-    .ring-center {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-    }
+    .ring-fill { fill: none; stroke: url(#ringGrad); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 244; stroke-dashoffset: 244; transition: stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1) .3s; }
+    .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .ring-num { font-size: 24px; font-weight: 700; letter-spacing: -0.04em; color: var(--textprimary); line-height: 1; }
     .ring-denom { font-size: 10px; font-weight: 500; color: #8A8580; letter-spacing: 0.02em; }
-    .score-meta { flex: 1; }
+    .score-meta { flex: 1; min-width: 0; }
     .score-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #8A8580; margin-bottom: 4px; }
-    .score-title { font-size: 20px; font-weight: 500; letter-spacing: -0.03em; color: var(--textprimary); line-height: 1.2; margin-bottom: 8px; }
+    .score-title { font-size: 17px; font-weight: 500; letter-spacing: -0.03em; color: var(--textprimary); line-height: 1.2; margin-bottom: 8px; }
     .score-title em { font-style: normal; color: var(--accent); font-weight: 600; }
-    .score-grade {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 11px; font-weight: 600; color: #16A34A;
-      background: #DCFCE7; border: 1px solid #86EFAC;
-      border-radius: var(--pill); padding: 3px 10px; letter-spacing: 0.01em;
-    }
-
-    /* ── METRICS ── */
-    .metrics-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .score-grade { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: #16A34A; background: #DCFCE7; border: 1px solid #86EFAC; border-radius: var(--pill); padding: 3px 10px; letter-spacing: 0.01em; }
+    .metrics-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
     .metric { display: flex; align-items: center; gap: 10px; }
-    .metric-label { font-size: 12px; font-weight: 500; color: #8A8580; width: 170px; flex-shrink: 0; }
+    .metric-label { font-size: 12px; font-weight: 500; color: #8A8580; width: 150px; flex-shrink: 0; }
     .metric-bar-wrap { flex: 1; height: 4px; background: var(--accent-dim); border-radius: var(--pill); overflow: hidden; }
     .metric-bar { height: 100%; border-radius: var(--pill); background: linear-gradient(90deg, var(--accent), #9B8AE0); width: 0; transition: width 1.2s cubic-bezier(.2,.8,.2,1); }
-    .metric-val { font-size: 12px; font-weight: 600; color: var(--textprimary); letter-spacing: -0.02em; width: 40px; text-align: right; flex-shrink: 0; }
-    @media (max-width: 480px) { .metric-label { width: 140px; } }
-
-    /* ── DATA ROWS ── */
-    .data-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 14px;
-      background: var(--warmgray);
-      border: 1px solid var(--bordergray);
-      border-radius: 8px; margin-bottom: 10px;
-    }
+    .metric-val { font-size: 12px; font-weight: 600; color: var(--textprimary); letter-spacing: -0.02em; width: 36px; text-align: right; flex-shrink: 0; }
+    @media (max-width: 480px) { .metric-label { width: 120px; } }
+    .data-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; background: var(--warmgray); border: 1px solid var(--bordergray); border-radius: 8px; margin-bottom: 8px; }
     .data-label { font-size: 12px; font-weight: 500; color: #8A8580; }
-    .data-badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 11px; font-weight: 600; color: var(--accent);
-      background: var(--accentlight); border: 1px solid rgba(107,93,184,.18);
-      border-radius: var(--pill); padding: 3px 10px; letter-spacing: 0.01em;
-    }
+    .data-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accentlight); border: 1px solid rgba(107,93,184,.18); border-radius: var(--pill); padding: 3px 10px; letter-spacing: 0.01em; }
+    .results-disclaimer { margin: 12px 0 0; padding: 10px 12px; background: var(--warmgray); border: 1px solid var(--bordergray); border-radius: 8px; font-size: 11px; line-height: 1.6; color: #8A8580; }
+    .insights-block { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--bordergray); border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
+    .insight-row { padding: 11px 14px; border-bottom: 1px solid var(--bordergray); }
+    .insight-row:last-child { border-bottom: none; }
+    .insight-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8A8580; margin-bottom: 3px; }
+    .insight-text { font-size: 13px; color: var(--textprimary); line-height: 1.5; }
 
-    /* ── DISCLAIMER ── */
-    .results-disclaimer {
-      margin: 16px 0 20px; padding: 12px 14px;
-      background: var(--warmgray); border: 1px solid var(--bordergray);
-      border-radius: 8px; font-size: 11px; line-height: 1.6; color: #8A8580;
-    }
-
-    /* ── CARD DIVIDER ── */
-    .card-divider { height: 1px; background: var(--bordergray); margin: 4px 0 24px; }
-
-    /* ── CTA ── */
+    /* ── CTA side ── */
     .cta-headline { font-size: 18px; font-weight: 500; letter-spacing: -0.025em; color: var(--textprimary); line-height: 1.3; margin-bottom: 6px; }
-    .cta-sub { font-size: 13px; color: #8A8580; margin-bottom: 20px; line-height: 1.6; }
-
-    .deliverables { list-style: none; display: flex; flex-direction: column; gap: 7px; border-top: 1px solid var(--bordergray); padding-top: 14px; margin-bottom: 20px; }
+    .cta-sub { font-size: 13px; color: #8A8580; margin-bottom: 16px; line-height: 1.6; }
+    .deliverables { list-style: none; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--bordergray); padding-top: 12px; margin-bottom: 16px; }
     .deliverables li { font-size: 13px; color: var(--textsecondary); display: flex; align-items: center; gap: 10px; }
     .deliverables li::before { content: ''; display: block; width: 14px; height: 1px; background: var(--accentmuted); flex-shrink: 0; }
-
-    .price-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 16px; background: var(--warmgray);
-      border: 1px solid var(--bordergray); border-radius: 8px; margin-bottom: 12px;
-    }
+    .price-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: #fff; border: 1px solid var(--bordergray); border-radius: 8px; margin-bottom: 10px; }
     .price-label { font-size: 13px; font-weight: 500; color: var(--textprimary); }
     .price-label span { display: block; font-size: 11px; font-weight: 400; color: #8A8580; margin-top: 2px; }
     .price-amount { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; color: var(--textprimary); }
-
-    .btn-unlock {
-      display: flex; width: 100%; align-items: center; justify-content: center; gap: 8px;
-      font-family: var(--font); font-size: 14px; font-weight: 500; letter-spacing: -0.01em;
-      color: #fff; background: var(--textprimary); border: none; border-radius: var(--pill);
-      padding: 14px 28px; cursor: pointer;
-      transition: background .25s var(--ease), transform .15s var(--ease); margin-bottom: 8px;
-    }
+    .btn-unlock { display: flex; width: 100%; align-items: center; justify-content: center; gap: 8px; font-family: var(--font); font-size: 14px; font-weight: 500; letter-spacing: -0.01em; color: #fff; background: var(--textprimary); border: none; border-radius: var(--pill); padding: 14px 28px; cursor: pointer; transition: background .25s var(--ease), transform .15s var(--ease); margin-bottom: 8px; }
     .btn-unlock:hover { background: var(--accent); transform: translateY(-1px); }
     .btn-unlock:active { transform: translateY(0); }
-
-    .btn-later {
-      display: block; width: 100%; font-family: var(--font);
-      font-size: 13px; font-weight: 500; color: #8A8580;
-      background: transparent; border: none; cursor: pointer;
-      padding: 8px; transition: color .2s; text-align: center; letter-spacing: -0.01em;
-    }
+    .btn-later { display: block; width: 100%; font-family: var(--font); font-size: 13px; font-weight: 500; color: #8A8580; background: transparent; border: none; cursor: pointer; padding: 8px; transition: color .2s; text-align: center; letter-spacing: -0.01em; }
     .btn-later:hover { color: var(--textprimary); }
-
-    .trust-row {
-      display: flex; align-items: center; justify-content: center; gap: 20px;
-      padding-top: 12px; border-top: 1px solid var(--bordergray); margin-top: 12px;
-    }
+    .trust-row { display: flex; align-items: center; justify-content: center; gap: 16px; padding-top: 12px; border-top: 1px solid var(--bordergray); margin-top: 10px; flex-wrap: wrap; }
     .trust-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #8A8580; font-weight: 500; }
     .trust-item svg { width: 12px; height: 12px; stroke: #8A8580; stroke-width: 2; fill: none; }
-    @media (max-width: 480px) { .trust-row { gap: 12px; } }
+    .cta-spacer { flex: 1; }
+
+    /* ── LOADING (full-width centered) ── */
+    .card-loading { padding: 64px 32px; text-align: center; }
 
     /* ── PAYMENT SUCCESS ── */
-    #payment-success { display: none; padding: 40px 32px; text-align: center; }
+    #payment-success { display: none; padding: 48px 32px; text-align: center; }
     #payment-success.visible { display: block; }
-    .success-icon {
-      width: 56px; height: 56px; border-radius: 50%;
-      background: rgba(22,163,74,.1); border: 1px solid rgba(22,163,74,.25);
-      display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
-    }
+    .success-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(22,163,74,.1); border: 1px solid rgba(22,163,74,.25); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
     .success-icon svg { width: 22px; height: 22px; stroke: #16A34A; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
     .success-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
     .success-title { font-size: 22px; font-weight: 500; letter-spacing: -0.03em; color: var(--textprimary); line-height: 1.2; margin-bottom: 8px; }
     .success-sub { font-size: 14px; color: #8A8580; line-height: 1.7; max-width: 34ch; margin: 0 auto 28px; }
     .success-pid { font-size: 11px; color: #B8B4AF; margin-bottom: 20px; letter-spacing: 0.02em; }
-    .btn-wa {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: #1fad4e; color: #fff; border: none; border-radius: var(--pill);
-      padding: 12px 24px; font-family: var(--font); font-size: 13px; font-weight: 500;
-      letter-spacing: -0.01em; cursor: pointer; text-decoration: none;
-      transition: background .2s, transform .15s;
-    }
+    .btn-wa { display: inline-flex; align-items: center; gap: 8px; background: #1fad4e; color: #fff; border: none; border-radius: var(--pill); padding: 12px 24px; font-family: var(--font); font-size: 13px; font-weight: 500; letter-spacing: -0.01em; cursor: pointer; text-decoration: none; transition: background .2s, transform .15s; }
     .btn-wa:hover { background: #1a9e45; transform: translateY(-1px); }
 
     /* ── FOOTER ── */
-    .site-footer { border-top: 1px solid var(--bordergray); padding: 40px clamp(24px, 4vw, 64px); }
-    .footer-inner {
-      max-width: 1440px; margin: 0 auto;
-      display: grid; grid-template-columns: 1.8fr 1fr 1fr;
-      gap: 48px; padding-bottom: 48px;
-    }
+    .site-footer { border-top: 1px solid var(--bordergray); padding: 40px clamp(24px,4vw,64px); }
+    .footer-inner { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 48px; padding-bottom: 48px; }
     @media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; } }
     @media (max-width: 540px) { .footer-inner { grid-template-columns: 1fr; gap: 28px; padding-bottom: 32px; } }
     @media (max-width: 768px) { .site-footer { padding-bottom: 100px; } }
@@ -361,11 +164,7 @@
     .footer-tagline { font-size: 15px; color: var(--textsecondary); line-height: 1.7; max-width: 24ch; margin-bottom: 20px; }
     .footer-philosophy { font-family: 'Satoshi', sans-serif; font-weight: 500; font-size: 20px; line-height: 1.4; letter-spacing: -0.02em; color: var(--textprimary); max-width: 18ch; margin-bottom: 28px; }
     .social-links { display: flex; gap: 8px; flex-wrap: wrap; }
-    .social-link {
-      width: 44px; height: 44px; border: none; border-radius: 50%;
-      background: var(--warmgray); display: inline-flex; align-items: center; justify-content: center;
-      color: var(--textsecondary); transition: background .2s, color .2s;
-    }
+    .social-link { width: 44px; height: 44px; border: none; border-radius: 50%; background: var(--warmgray); display: inline-flex; align-items: center; justify-content: center; color: var(--textsecondary); transition: background .2s, color .2s; }
     .social-link:hover { background: var(--accentlight); color: var(--accent); }
     .social-link[aria-label="FB / Facebook"] { color: #1877F2; }
     .social-link[aria-label="Instagram"] { color: #E1306C; }
@@ -375,23 +174,15 @@
     .footer-col-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; display: block; }
     .footer-link { display: block; margin-bottom: 12px; font-size: 13px; color: var(--textsecondary); transition: color .2s; }
     .footer-link:hover { color: var(--textprimary); }
-    .footer-bar {
-      max-width: 1440px; margin: 0 auto;
-      border-top: 1px solid var(--bordergray); padding-top: 32px;
-      display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;
-    }
+    .footer-bar { max-width: 1440px; margin: 0 auto; border-top: 1px solid var(--bordergray); padding-top: 32px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; }
     .footer-bar p { font-size: 12px; color: var(--textmuted); }
 
-    /* ── ANIMATIONS ── */
     @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
-
-<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- NAV -->
 <nav id="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="SQUARGRAPH Studios">
@@ -406,15 +197,11 @@
       <a href="/discovery" class="nav-cta">Book Discovery Session</a>
     </div>
     <button type="button" class="hamburger" id="mob-toggle" aria-label="Open navigation menu" aria-expanded="false">
-      <div class="pill-menu">
-        <div class="pill-line"></div>
-        <div class="pill-body"></div>
-      </div>
+      <div class="pill-menu"><div class="pill-line"></div><div class="pill-body"></div></div>
     </button>
   </div>
 </nav>
 
-<!-- MOBILE MENU -->
 <div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" aria-visible="true" inert>
   <span id="mob-menu-title" class="sr-only">Navigation Menu</span>
   <a href="/#work" onclick="closeMob()">Work</a>
@@ -422,49 +209,39 @@
   <a href="/#capabilities" onclick="closeMob()">Capabilities</a>
   <a href="/blog">Thinking</a>
   <a href="/#studio" onclick="closeMob()">Studio</a>
-  <a href="/discovery" onclick="closeMob();" style="color: var(--accent); font-weight: 600;">Book Discovery - ₹2,999 →</a>
+  <a href="/discovery" onclick="closeMob();" style="color:var(--accent);font-weight:600;">Book Discovery - ₹2,999 →</a>
   <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
 </div>
 
-<!-- PAGE -->
 <div class="page-wrap">
   <main>
     <section class="results-section">
-
       <div class="results-eyebrow">Brand Growth Audit™</div>
       <h1 class="results-heading">Your preliminary<br /><em>assessment is ready.</em></h1>
       <p class="results-subhead">We've analysed your brand across three key dimensions. Review your Brand Quotient™ score below.</p>
 
-      <!-- CARD -->
       <div class="results-card" id="results-card">
-
         <div class="card-stripe"></div>
 
-        <!-- SVG DEFS -->
         <svg width="0" height="0" style="position:absolute" aria-hidden="true">
           <defs>
             <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#6B5DB8"/>
-              <stop offset="100%" stop-color="#9B8AE0"/>
+              <stop offset="0%" stop-color="#6B5DB8"/><stop offset="100%" stop-color="#9B8AE0"/>
             </linearGradient>
           </defs>
         </svg>
 
-        <!-- CARD CONTENT (swapped by JS) -->
-        <div id="modal-content" class="card-body">
-          <!-- Loading state shown immediately, replaced by JS -->
-          <div style="padding:40px 0;text-align:center;">
+        <!-- JS renders into modal-content; loading state shown first -->
+        <div id="modal-content">
+          <div class="card-loading">
             <div style="width:48px;height:48px;border:3px solid rgba(107,93,184,.15);border-top-color:#6B5DB8;border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 24px;"></div>
             <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#6B5DB8;margin-bottom:10px;">Analysing your brand</div>
             <div style="font-size:14px;color:#8A8580;line-height:1.6;max-width:28ch;margin:0 auto;">Reviewing your digital presence, communication, and competitive positioning.</div>
           </div>
         </div>
 
-        <!-- PAYMENT SUCCESS (hidden until payment) -->
         <div id="payment-success">
-          <div class="success-icon">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
+          <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div class="success-eyebrow">Payment Confirmed</div>
           <div class="success-title">Your audit is in<br />production.</div>
           <p class="success-sub">You'll receive the Brand Growth Audit™ report at your registered email within 24 business hours.</p>
@@ -474,19 +251,14 @@
             Confirm on WhatsApp
           </a>
         </div>
-
-      </div><!-- /results-card -->
-
+      </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div>
-        <div class="footer-logo">
-          <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" />
-        </div>
+        <div class="footer-logo"><img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" /></div>
         <p class="footer-tagline">Brand strategy, campaign architecture, and digital experiences for businesses that take their market position seriously.</p>
         <p class="footer-philosophy">Perception shapes value.<br/>We build what controls it.</p>
         <div class="social-links">
@@ -528,35 +300,23 @@
       </div>
     </div>
   </footer>
-</div><!-- /page-wrap -->
+</div>
 
 <script>
-  /* ── Guard: redirect if no session payload ── */
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
   window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
   (function() {
-    var payload = null;
-    try { payload = JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
-    if (!payload || !payload.email) { window.location.href = '/audit.html'; }
+    var p = null;
+    try { p = JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
+    if (!p || !p.email) { window.location.href = '/audit.html'; }
   })();
 
-  /* ── Nav scroll ── */
-  var nav = document.getElementById('nav');
-  var ticking = false;
+  var nav = document.getElementById('nav'), ticking = false;
   window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(function() {
-        nav.classList.toggle('scrolled', window.scrollY > 60);
-        ticking = false;
-      });
-      ticking = true;
-    }
+    if (!ticking) { requestAnimationFrame(function() { nav.classList.toggle('scrolled', window.scrollY > 60); ticking = false; }); ticking = true; }
   }, { passive: true });
 
-  /* ── Hamburger ── */
-  var mobToggle = document.getElementById('mob-toggle');
-  var mobMenu   = document.getElementById('mob-menu');
-  var menuOpen  = false;
+  var mobToggle = document.getElementById('mob-toggle'), mobMenu = document.getElementById('mob-menu'), menuOpen = false;
   mobToggle.addEventListener('click', function() {
     menuOpen = !menuOpen;
     mobToggle.classList.toggle('open', menuOpen);
@@ -567,25 +327,16 @@
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   });
   window.closeMob = function() {
-    menuOpen = false;
-    mobToggle.classList.remove('open');
-    mobToggle.setAttribute('aria-expanded', 'false');
-    mobMenu.classList.remove('open');
-    mobMenu.setAttribute('inert', '');
-    document.body.style.overflow = '';
+    menuOpen = false; mobToggle.classList.remove('open'); mobToggle.setAttribute('aria-expanded', 'false');
+    mobMenu.classList.remove('open'); mobMenu.setAttribute('inert', ''); document.body.style.overflow = '';
   };
-  document.addEventListener('click', function(e) {
-    if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) closeMob();
-  });
+  document.addEventListener('click', function(e) { if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) closeMob(); });
 
-  /* ── AI fetch ── */
+  /* ── unchanged functions ── */
   async function fetchAIScores(payload) {
     var firstName = payload.name ? payload.name.split(' ')[0] : 'the client';
     var prompt = 'You are a senior brand strategist doing a paid audit. Return raw JSON only. No markdown, no code fences, no explanation.\n\n=== BRAND ===\nCompany: ' + (payload.company || 'Unknown') + '\nIndustry: ' + (payload.industry || 'Not provided') + '\nWhat they do: ' + (payload.brand_description || 'Not provided') + '\nWebsite: ' + (payload.website || 'Not provided') + '\n\n=== SOCIAL ===\nInstagram: ' + (payload.instagram || 'Not provided') + '\nFacebook: ' + (payload.facebook || 'Not provided') + '\nLinkedIn: ' + (payload.linkedin || 'Not provided') + '\nYouTube: ' + (payload.youtube || 'Not provided') + '\nTwitter: ' + (payload.twitter || 'Not provided') + '\n\n=== COMPETITORS ===\nCompetitor 1: ' + (payload.competitor1 || 'Not provided') + '\nCompetitor 2: ' + (payload.competitor2 || 'Not provided') + '\nCompetitor 3: ' + (payload.competitor3 || 'Not provided') + '\n\n=== CONTEXT ===\nChallenge: ' + (payload.challenge || 'Not provided') + '\nBudget: ' + (payload.budget || 'Not provided') + '\nRevenue: ' + (payload.revenue || 'Not provided') + '\nGoal: ' + (payload.goal || 'Not provided') + '\n\n=== SCORING ===\nWeb (0-100): Evaluate website URL and brand description. Unknown site = 40-55.\nComm (0-100): Count active social platforms. 0=below 35. 1=below 50. 2=up to 60. 3+=up to 80.\nComp (0-100): Use your knowledge of the named competitors. If fewer than 2 competitors are provided, cap this score at 52 and note limited data. Small vs established = below 55.\nOverall: web 40% + comm 30% + comp 30%.\n\nReturn exactly this JSON:\n{"web":<integer>,"comm":<integer>,"comp":<integer>,"overall":<integer>,"confidence":<integer 0-100, lower if fewer than 2 competitors provided>,"web_insight":"<one sentence>","comm_insight":"<one sentence naming platforms>","comp_insight":"<one sentence naming competitors>","headline":"<5-8 words>","summary":"<4 sentences addressing ' + firstName + ' directly>"}';
-    var response = await fetch('https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: prompt })
-    });
+    var response = await fetch('https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt: prompt }) });
     var data = await response.json();
     var raw = (data.text || '').replace(/```json|```/g, '').trim();
     var jsonMatch = raw.match(/\{[\s\S]*\}/);
@@ -595,108 +346,116 @@
     return parsed;
   }
 
-  function gradeLabel(score) {
-    if (score >= 80) return 'Strong positioning';
-    if (score >= 65) return 'Growth potential identified';
-    if (score >= 50) return 'Gaps identified';
-    return 'Significant gaps found';
+  function gradeLabel(s) { return s>=80?'Strong positioning':s>=65?'Growth potential identified':s>=50?'Gaps identified':'Significant gaps found'; }
+  function ringOffset(s) { return Math.round(244*(1-s/100)); }
+  function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  /* ── LEFT column HTML (shared by summary & scores) ── */
+  function leftLoading() {
+    return '<div class="card-left"><div style="padding:40px 0;text-align:center;"><div style="width:40px;height:40px;border:3px solid rgba(107,93,184,.15);border-top-color:#6B5DB8;border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 20px;"></div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#6B5DB8;">Analysing your brand</div></div></div>';
   }
 
-  function ringOffset(score) { return Math.round(244 * (1 - score / 100)); }
-
-  function escHtml(str) {
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  /* ── Stage 1: Summary with blurred scores ── */
-  function renderSummary(scores, payload) {
-    var companyName = (payload && payload.company) ? payload.company : 'your brand';
-    var content = document.getElementById('modal-content');
-    content.innerHTML = [
+  function leftSummary(scores, companyName) {
+    var conf = scores.confidence !== undefined ? scores.confidence : 85;
+    var gaps = [scores.web,scores.comm,scores.comp].filter(function(s){return s<65;}).length;
+    return [
+      '<div class="card-left">',
       '<div class="bq-eyebrow">Research Complete</div>',
-      '<div style="font-size:11px;color:#8A8580;line-height:1.6;margin-bottom:16px;padding:10px 14px;background:var(--warmgray);border:1px solid var(--bordergray);border-radius:8px;">AI-Powered Strategic Assessment &nbsp;·&nbsp; Generated using website, social and market signals. Reviewed by SQUARGRAPH methodology.</div>',
-      '<div style="margin-bottom:20px;">',
-      '  <div style="font-size:19px;font-weight:500;letter-spacing:-0.03em;color:var(--textprimary);line-height:1.25;margin-bottom:12px;">Here\'s what we found<br/>about <em style="color:var(--accent);font-style:normal;">' + escHtml(companyName) + '</em></div>',
-      '  <div style="font-size:13px;line-height:1.75;color:#5A5550;background:var(--warmgray);border:1px solid var(--bordergray);border-radius:10px;padding:16px 18px;">' + escHtml(scores.summary || 'Our analysis is complete. Your Brand Quotient™ score and dimension breakdown are ready.') + '</div>',
+      '<div style="font-size:11px;color:#8A8580;line-height:1.6;margin-bottom:16px;padding:10px 12px;background:var(--warmgray);border:1px solid var(--bordergray);border-radius:8px;">AI-Powered Assessment · Website, social &amp; market signals. SQUARGRAPH methodology.</div>',
+      '<div style="font-size:17px;font-weight:500;letter-spacing:-0.03em;color:var(--textprimary);line-height:1.25;margin-bottom:12px;">Here\'s what we found about <em style="color:var(--accent);font-style:normal;">' + escHtml(companyName) + '</em></div>',
+      '<div style="font-size:13px;line-height:1.75;color:#5A5550;background:var(--warmgray);border:1px solid var(--bordergray);border-radius:10px;padding:14px 16px;margin-bottom:16px;">' + escHtml(scores.summary || 'Analysis complete.') + '</div>',
+      '<div style="position:relative;margin-bottom:12px;">',
+      '<div style="filter:blur(6px);pointer-events:none;user-select:none;"><div class="metrics-grid">',
+      '<div class="metric"><div class="metric-label">Website &amp; Digital</div><div class="metric-bar-wrap"><div class="metric-bar" style="width:'+scores.web+'%"></div></div><div class="metric-val">'+(scores.web/10).toFixed(1)+'<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
+      '<div class="metric"><div class="metric-label">Brand Communication</div><div class="metric-bar-wrap"><div class="metric-bar" style="width:'+scores.comm+'%"></div></div><div class="metric-val">'+(scores.comm/10).toFixed(1)+'<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
+      '<div class="metric"><div class="metric-label">Competitive Position</div><div class="metric-bar-wrap"><div class="metric-bar" style="width:'+scores.comp+'%"></div></div><div class="metric-val">'+(scores.comp/10).toFixed(1)+'<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
+      '</div></div>',
+      '<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;"><div style="background:var(--textprimary);color:#fff;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:6px 16px;border-radius:999px;">Scores locked</div><div style="font-size:12px;color:#8A8580;">Commission the full audit to unlock</div></div>',
       '</div>',
-      '<div style="position:relative;margin-bottom:10px;">',
-      '  <div style="filter:blur(6px);pointer-events:none;user-select:none;">',
-      '    <div class="metrics-grid">',
-      '      <div class="metric"><div class="metric-label">Website &amp; Digital</div><div class="metric-bar-wrap"><div class="metric-bar" style="width:' + scores.web + '%"></div></div><div class="metric-val">' + (scores.web/10).toFixed(1) + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
-      '      <div class="metric"><div class="metric-label">Brand Communication</div><div class="metric-bar-wrap"><div class="metric-bar" style="width:' + scores.comm + '%"></div></div><div class="metric-val">' + (scores.comm/10).toFixed(1) + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
-      '      <div class="metric"><div class="metric-label">Competitive Position</div><div class="metric-bar-wrap"><div class="metric-bar" style="width:' + scores.comp + '%"></div></div><div class="metric-val">' + (scores.comp/10).toFixed(1) + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
-      '    </div>',
-      '  </div>',
-      '  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">',
-      '    <div style="background:var(--textprimary);color:#fff;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:6px 16px;border-radius:999px;">Scores locked</div>',
-      '    <div style="font-size:12px;color:#8A8580;">Commission the full audit to unlock</div>',
-      '  </div>',
-      '</div>',
-      '<div class="data-row"><div class="data-label">Priority areas identified</div><div class="data-badge">' + [scores.web,scores.comm,scores.comp].filter(function(s){return s<65;}).length + ' dimension' + ([scores.web,scores.comm,scores.comp].filter(function(s){return s<65;}).length!==1?'s':'') + ' need work</div></div>',
-      '<div class="data-row"><div class="data-label">Analysis confidence</div><div class="data-badge" style="' + ((scores.confidence||100)<70?'color:#92400E;background:#FEF3C7;border-color:#FCD34D;':'') + '">' + (scores.confidence!==undefined?scores.confidence:85) + '%' + ((scores.confidence||100)<70?' · add more competitor data':'') + '</div></div>',
-      '<div class="results-disclaimer">Brand Quotient™ scores are generated using proprietary frameworks, website analysis, AI-assisted evaluation, and publicly available information.<br><br>Results are intended for strategic benchmarking and directional guidance only.<br><br>Human review and strategic validation may be required before implementing recommendations or making business decisions.</div>',
-      '<div class="card-divider"></div>',
-      '<div class="cta-headline">Commission your complete<br />Brand Growth Audit™.</div>',
-      '<div class="cta-sub">Go beyond the preliminary assessment with a comprehensive executive report covering strategic analysis, competitive review, growth opportunities, priority recommendations, and a practical 90-Day Action Roadmap.</div>',
-      '<div style="margin-bottom:16px;padding:14px;border:1px solid var(--bordergray);border-radius:10px;background:rgba(107,93,184,.04);font-size:12px;line-height:1.65;color:#8A8580;">Start with your complimentary Brand Quotient™ assessment. The full Brand Growth Audit™ includes deeper strategic analysis, recommendations, and a 90-Day Action Roadmap prepared using proprietary frameworks, AI-assisted research, and strategic review methodologies.</div>',
-      '<div class="price-row"><div class="price-label">Brand Growth Audit™<span>Delivered within 24 hours · PDF report</span></div><div class="price-amount">₹9,999</div></div>',
-      '<button class="btn-unlock" onclick="unlockScores()">Unlock My Strategic Report →</button>',
-      '<button class="btn-later" onclick="window.location.href=\'/\'">I\'ll decide later</button>',
-      '<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--bordergray);">',
-      '  <span style="font-size:11px;color:#8A8580;font-weight:500;">Payment secured by</span>',
-      '  <img src="https://cdn.razorpay.com/logo.svg" alt="Razorpay" style="height:18px;width:auto;opacity:0.75;" />',
+      '<div class="data-row"><div class="data-label">Priority areas identified</div><div class="data-badge">'+gaps+' dimension'+(gaps!==1?'s':'')+' need work</div></div>',
+      '<div class="data-row"><div class="data-label">Analysis confidence</div><div class="data-badge" style="'+(conf<70?'color:#92400E;background:#FEF3C7;border-color:#FCD34D;':'')+'">'+conf+'%'+(conf<70?' · add more competitor data':'')+'</div></div>',
+      '<div class="results-disclaimer">Brand Quotient™ scores are generated using proprietary frameworks, website analysis, AI-assisted evaluation, and publicly available information.<br><br>Results are intended for strategic benchmarking and directional guidance only. Human review may be required before making business decisions.</div>',
       '</div>'
     ].join('');
   }
 
-  /* ── Stage 2: Full scores ── */
-  function renderScores(scores) {
+  function leftScores(scores) {
+    var conf = scores.confidence !== undefined ? scores.confidence : 85;
     var gaps = [scores.web,scores.comm,scores.comp].filter(function(s){return s<65;}).length;
-    var content = document.getElementById('modal-content');
-    content.innerHTML = [
+    return [
+      '<div class="card-left">',
       '<div class="bq-eyebrow">Preliminary Assessment</div>',
-      '<div style="font-size:11px;color:#8A8580;line-height:1.6;margin-bottom:16px;padding:10px 14px;background:var(--warmgray);border:1px solid var(--bordergray);border-radius:8px;">AI-Powered Strategic Assessment &nbsp;·&nbsp; Generated using website, social and market signals. Reviewed by SQUARGRAPH methodology.</div>',
+      '<div style="font-size:11px;color:#8A8580;line-height:1.6;margin-bottom:16px;padding:10px 12px;background:var(--warmgray);border:1px solid var(--bordergray);border-radius:8px;">AI-Powered Assessment · Website, social &amp; market signals. SQUARGRAPH methodology.</div>',
       '<div class="score-row">',
-      '  <div class="ring-wrap">',
-      '    <svg viewBox="0 0 88 88"><circle class="ring-track" cx="44" cy="44" r="39"/><circle class="ring-fill" id="ring-fill" cx="44" cy="44" r="39" style="stroke-dashoffset:244;"/></svg>',
-      '    <div class="ring-center"><div class="ring-num" id="ring-num">0</div><div class="ring-denom">/ 100</div></div>',
-      '  </div>',
-      '  <div class="score-meta">',
-      '    <div class="score-label">Brand Quotient™</div>',
-      '    <div class="score-title">' + escHtml(scores.headline || 'Initial assessment complete.') + '</div>',
-      '    <div class="score-grade">' + gradeLabel(scores.overall) + '</div>',
-      '  </div>',
+      '<div class="ring-wrap"><svg viewBox="0 0 88 88"><circle class="ring-track" cx="44" cy="44" r="39"/><circle class="ring-fill" id="ring-fill" cx="44" cy="44" r="39" style="stroke-dashoffset:244;"/></svg><div class="ring-center"><div class="ring-num" id="ring-num">0</div><div class="ring-denom">/ 100</div></div></div>',
+      '<div class="score-meta"><div class="score-label">Brand Quotient™</div><div class="score-title">'+escHtml(scores.headline||'Initial assessment complete.')+'</div><div class="score-grade">'+gradeLabel(scores.overall)+'</div></div>',
       '</div>',
       '<div class="metrics-grid">',
-      '  <div class="metric"><div class="metric-label">Website &amp; Digital</div><div class="metric-bar-wrap"><div class="metric-bar" id="bar-web" style="width:0"></div></div><div class="metric-val">' + (scores.web/10).toFixed(1) + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
-      '  <div class="metric"><div class="metric-label">Brand Communication</div><div class="metric-bar-wrap"><div class="metric-bar" id="bar-comm" style="width:0"></div></div><div class="metric-val">' + (scores.comm/10).toFixed(1) + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
-      '  <div class="metric"><div class="metric-label">Competitive Position</div><div class="metric-bar-wrap"><div class="metric-bar" id="bar-comp" style="width:0"></div></div><div class="metric-val">' + (scores.comp/10).toFixed(1) + '<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
+      '<div class="metric"><div class="metric-label">Website &amp; Digital</div><div class="metric-bar-wrap"><div class="metric-bar" id="bar-web" style="width:0"></div></div><div class="metric-val">'+(scores.web/10).toFixed(1)+'<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
+      '<div class="metric"><div class="metric-label">Brand Communication</div><div class="metric-bar-wrap"><div class="metric-bar" id="bar-comm" style="width:0"></div></div><div class="metric-val">'+(scores.comm/10).toFixed(1)+'<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
+      '<div class="metric"><div class="metric-label">Competitive Position</div><div class="metric-bar-wrap"><div class="metric-bar" id="bar-comp" style="width:0"></div></div><div class="metric-val">'+(scores.comp/10).toFixed(1)+'<span style="font-weight:400;color:#8A8580;font-size:10px"> /10</span></div></div>',
       '</div>',
-      '<div class="data-row"><div class="data-label">Priority areas identified</div><div class="data-badge">' + gaps + ' dimension' + (gaps!==1?'s':'') + ' need work</div></div>',
-      '<div class="data-row"><div class="data-label">Analysis confidence</div><div class="data-badge" style="' + ((scores.confidence||100)<70?'color:#92400E;background:#FEF3C7;border-color:#FCD34D;':'') + '">' + (scores.confidence!==undefined?scores.confidence:85) + '%' + ((scores.confidence||100)<70?' · add more competitor data':'') + '</div></div>',
-      '<div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--bordergray);border-radius:10px;overflow:hidden;margin-bottom:20px;">',
-      '  <div style="padding:12px 16px;border-bottom:1px solid var(--bordergray);"><div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8A8580;margin-bottom:3px;">Website &amp; Digital</div><div style="font-size:13px;color:var(--textprimary);line-height:1.5;">' + escHtml(scores.web_insight||'') + '</div></div>',
-      '  <div style="padding:12px 16px;border-bottom:1px solid var(--bordergray);"><div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8A8580;margin-bottom:3px;">Brand Communication</div><div style="font-size:13px;color:var(--textprimary);line-height:1.5;">' + escHtml(scores.comm_insight||'') + '</div></div>',
-      '  <div style="padding:12px 16px;"><div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8A8580;margin-bottom:3px;">Competitive Position</div><div style="font-size:13px;color:var(--textprimary);line-height:1.5;">' + escHtml(scores.comp_insight||'') + '</div></div>',
+      '<div class="data-row"><div class="data-label">Priority areas identified</div><div class="data-badge">'+gaps+' dimension'+(gaps!==1?'s':'')+' need work</div></div>',
+      '<div class="data-row"><div class="data-label">Analysis confidence</div><div class="data-badge" style="'+(conf<70?'color:#92400E;background:#FEF3C7;border-color:#FCD34D;':'')+'">'+conf+'%'+(conf<70?' · add more competitor data':'')+'</div></div>',
+      '<div class="insights-block">',
+      '<div class="insight-row"><div class="insight-label">Website &amp; Digital</div><div class="insight-text">'+escHtml(scores.web_insight||'')+'</div></div>',
+      '<div class="insight-row"><div class="insight-label">Brand Communication</div><div class="insight-text">'+escHtml(scores.comm_insight||'')+'</div></div>',
+      '<div class="insight-row"><div class="insight-label">Competitive Position</div><div class="insight-text">'+escHtml(scores.comp_insight||'')+'</div></div>',
       '</div>',
-      '<div class="card-divider"></div>',
+      '</div>'
+    ].join('');
+  }
+
+  /* ── RIGHT column HTML ── */
+  function rightSummary() {
+    return [
+      '<div class="card-right">',
+      '<div class="cta-headline">Commission your complete<br />Brand Growth Audit™.</div>',
+      '<div class="cta-sub">Go beyond the preliminary assessment with a comprehensive executive report covering strategic analysis, competitive review, growth opportunities, and a practical 90-Day Action Roadmap.</div>',
+      '<div style="margin-bottom:16px;padding:14px;border:1px solid var(--bordergray);border-radius:10px;background:rgba(107,93,184,.04);font-size:12px;line-height:1.65;color:#8A8580;">The full Brand Growth Audit™ includes deeper strategic analysis, recommendations, and a 90-Day Action Roadmap prepared using proprietary frameworks, AI-assisted research, and strategic review methodologies.</div>',
+      '<div class="cta-spacer"></div>',
+      '<div class="price-row"><div class="price-label">Brand Growth Audit™<span>Delivered within 24 hours · PDF report</span></div><div class="price-amount">₹9,999</div></div>',
+      '<button class="btn-unlock" onclick="unlockScores()">Unlock My Strategic Report →</button>',
+      '<button class="btn-later" onclick="window.location.href=\'/\'">I\'ll decide later</button>',
+      '<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--bordergray);">',
+      '<span style="font-size:11px;color:#8A8580;font-weight:500;">Payment secured by</span>',
+      '<img src="https://cdn.razorpay.com/logo.svg" alt="Razorpay" style="height:18px;width:auto;opacity:0.75;" />',
+      '</div>',
+      '</div>'
+    ].join('');
+  }
+
+  function rightScores() {
+    return [
+      '<div class="card-right">',
       '<div class="cta-headline">The full picture requires<br />the complete audit.</div>',
       '<div class="cta-sub">The Brand Growth Audit™ delivers a structured executive report across eight dimensions:</div>',
       '<ul class="deliverables"><li>Executive Summary</li><li>Website &amp; Digital Experience Analysis</li><li>Brand Positioning Review</li><li>Competitive Landscape</li><li>Social Media Assessment</li><li>Communication Gap Analysis</li><li>Growth Opportunities</li><li>90-Day Strategic Roadmap</li></ul>',
+      '<div class="cta-spacer"></div>',
       '<div class="price-row"><div class="price-label">Brand Growth Audit™<span>Delivered within 24 hours · PDF report</span></div><div class="price-amount">₹9,999</div></div>',
       '<button class="btn-unlock" onclick="handleUnlock()">Commission the Audit →</button>',
       '<button class="btn-later" onclick="window.location.href=\'/\'">I\'ll decide later</button>',
       '<div class="trust-row">',
-      '  <div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Secure payment</div>',
-      '  <div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>24-hour delivery</div>',
-      '  <div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Founder-reviewed</div>',
+      '<div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Secure payment</div>',
+      '<div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>24-hour delivery</div>',
+      '<div class="trust-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Founder-reviewed</div>',
       '</div>',
-      '<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--bordergray);">',
-      '  <span style="font-size:11px;color:#8A8580;font-weight:500;">Payment secured by</span>',
-      '  <img src="https://cdn.razorpay.com/logo.svg" alt="Razorpay" style="height:18px;width:auto;opacity:0.75;" />',
+      '<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--bordergray);">',
+      '<span style="font-size:11px;color:#8A8580;font-weight:500;">Payment secured by</span>',
+      '<img src="https://cdn.razorpay.com/logo.svg" alt="Razorpay" style="height:18px;width:auto;opacity:0.75;" />',
+      '</div>',
       '</div>'
     ].join('');
+  }
 
+  /* ── Render functions ── */
+  function renderSummary(scores, payload) {
+    var companyName = (payload && payload.company) ? payload.company : 'your brand';
+    document.getElementById('modal-content').innerHTML = '<div class="card-cols">' + leftSummary(scores, companyName) + rightSummary() + '</div>';
+  }
+
+  function renderScores(scores) {
+    document.getElementById('modal-content').innerHTML = '<div class="card-cols">' + leftScores(scores) + rightScores() + '</div>';
     setTimeout(function() {
       var ring = document.getElementById('ring-fill');
       if (ring) { ring.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)'; ring.style.strokeDashoffset = String(ringOffset(scores.overall)); }
@@ -704,115 +463,80 @@
     animateCount(0, scores.overall, 1400, document.getElementById('ring-num'));
     setTimeout(function() {
       ['bar-web','bar-comm','bar-comp'].forEach(function(id,i) {
-        setTimeout(function() {
-          var b = document.getElementById(id);
-          if (b) b.style.width = [scores.web,scores.comm,scores.comp][i] + '%';
-        }, i * 160);
+        setTimeout(function() { var b=document.getElementById(id); if(b) b.style.width=[scores.web,scores.comm,scores.comp][i]+'%'; }, i*160);
       });
     }, 300);
   }
 
   var _cachedScores = null;
-  function unlockScores() {
-    if (_cachedScores) { renderScores(_cachedScores); } else { handleUnlock(); }
-  }
+  function unlockScores() { if (_cachedScores) { renderScores(_cachedScores); } else { handleUnlock(); } }
 
   function fallbackScores(payload) {
-    var web=55, comm=50, comp=48;
-    var company = (payload && payload.company) ? payload.company : 'Your brand';
-    if (payload && payload.website) web+=10;
-    if (payload && payload.instagram) web+=8;
-    if (payload && payload.competitor1) comp+=12;
-    if (payload && payload.goal) comm+=12;
+    var web=55,comm=50,comp=48, company=(payload&&payload.company)?payload.company:'Your brand';
+    if(payload&&payload.website)web+=10; if(payload&&payload.instagram)web+=8;
+    if(payload&&payload.competitor1)comp+=12; if(payload&&payload.goal)comm+=12;
     web=Math.min(85,web); comm=Math.min(82,comm); comp=Math.min(80,comp);
-    var overall = Math.round((web*.40)+(comm*.30)+(comp*.30));
-    return { web:web, comm:comm, comp:comp, overall:overall,
+    var overall=Math.round((web*.40)+(comm*.30)+(comp*.30));
+    return { web:web,comm:comm,comp:comp,overall:overall,
       web_insight:'Your digital footprint shows room for stronger positioning.',
       comm_insight:'Brand communication could be more consistent across channels.',
       comp_insight:'Competitive differentiation needs to be made more explicit.',
       headline:'Early-stage brand with clear growth potential.',
-      summary: company + ' shows early-stage brand signals with identifiable gaps across digital presence and competitive positioning. Based on the information provided, there is room to sharpen the core value proposition and establish clearer differentiation in the market. Communication consistency across channels needs attention. The full audit will diagnose each dimension in detail.'
+      summary:company+' shows early-stage brand signals with identifiable gaps across digital presence and competitive positioning. Based on the information provided, there is room to sharpen the core value proposition and establish clearer differentiation in the market. Communication consistency across channels needs attention. The full audit will diagnose each dimension in detail.'
     };
   }
 
   async function initResults() {
-    var raw = null;
-    try { raw = JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
+    var raw=null;
+    try { raw=JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
     var scores;
     try {
-      scores = await fetchAIScores(raw || {});
-      ['web','comm','comp','overall'].forEach(function(k) {
-        var v = Number(scores[k]);
-        scores[k] = (!isNaN(v) && v>0) ? Math.min(100,Math.max(0,Math.round(v))) : 50;
-      });
-      if (scores.confidence!==undefined) scores.confidence = Math.min(100,Math.max(0,Math.round(Number(scores.confidence)||75)));
-      if (!scores.overall||scores.overall===0) scores.overall = Math.round((scores.web*.40)+(scores.comm*.30)+(scores.comp*.30));
+      scores = await fetchAIScores(raw||{});
+      ['web','comm','comp','overall'].forEach(function(k){var v=Number(scores[k]);scores[k]=(!isNaN(v)&&v>0)?Math.min(100,Math.max(0,Math.round(v))):50;});
+      if(scores.confidence!==undefined)scores.confidence=Math.min(100,Math.max(0,Math.round(Number(scores.confidence)||75)));
+      if(!scores.overall||scores.overall===0)scores.overall=Math.round((scores.web*.40)+(scores.comm*.30)+(scores.comp*.30));
     } catch(e) {
-      console.warn('AI scoring failed, using fallback:', e);
-      scores = fallbackScores(raw);
-      scores.summary = (raw&&raw.company?raw.company:'Your brand') + ' — our AI is currently experiencing high demand. Your audit request has been received and our team will review it shortly. The preliminary scores below are indicative and will be refined in your full report.';
+      console.warn('AI scoring failed, using fallback:',e);
+      scores=fallbackScores(raw);
+      scores.summary=(raw&&raw.company?raw.company:'Your brand')+' — our AI is currently experiencing high demand. Your audit request has been received and our team will review it shortly. The preliminary scores below are indicative and will be refined in your full report.';
     }
-    _cachedScores = scores;
+    _cachedScores=scores;
     trackEvent('ai_analysis_generated');
     renderSummary(scores, raw);
   }
 
-  function animateCount(from, to, duration, el) {
-    if (!el) return;
-    var start = performance.now();
-    function step(now) {
-      var progress = Math.min((now-start)/duration, 1);
-      var eased = 1 - Math.pow(1-progress, 3);
-      el.textContent = Math.round(from+(to-from)*eased);
-      if (progress<1) requestAnimationFrame(step);
-    }
+  function animateCount(from,to,duration,el) {
+    if(!el)return;
+    var start=performance.now();
+    function step(now){var p=Math.min((now-start)/duration,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(from+(to-from)*e);if(p<1)requestAnimationFrame(step);}
     requestAnimationFrame(step);
   }
 
   function handleUnlock() {
     trackEvent('unlock_clicked');
     var options = {
-      key: 'rzp_live_SvayEzczzvrE7f',
-      amount: 999900, currency: 'INR',
-      name: 'SQUARGRAPH™ Studios',
-      description: 'Brand Growth Audit™',
-      image: '/logo.webp',
-      notes: { product: 'Brand Growth Audit™' },
-      theme: { color: '#6B5DB8' },
+      key:'rzp_live_SvayEzczzvrE7f', amount:999900, currency:'INR',
+      name:'SQUARGRAPH™ Studios', description:'Brand Growth Audit™',
+      image:'/logo.webp', notes:{product:'Brand Growth Audit™'}, theme:{color:'#6B5DB8'},
       handler: function(response) {
-        trackEvent('payment_success', { payment_id: response.razorpay_payment_id });
-        document.getElementById('modal-content').style.display = 'none';
-        var ps = document.getElementById('payment-success');
-        ps.classList.add('visible');
-        var pidEl = document.getElementById('success-pid');
-        if (pidEl) pidEl.textContent = 'Payment ID: ' + response.razorpay_payment_id;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        trackEvent('payment_success',{payment_id:response.razorpay_payment_id});
+        document.getElementById('modal-content').style.display='none';
+        var ps=document.getElementById('payment-success'); ps.classList.add('visible');
+        var pidEl=document.getElementById('success-pid'); if(pidEl)pidEl.textContent='Payment ID: '+response.razorpay_payment_id;
+        window.scrollTo({top:0,behavior:'smooth'});
         try {
-          var notifyPayload = JSON.parse(sessionStorage.getItem('sq_audit_payload') || '{}');
-          fetch('https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev/notify', {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ payload: notifyPayload, scores: _cachedScores||{}, payment_id: response.razorpay_payment_id, product: options.description, payment_platform: 'Razorpay', payment_amount: options.amount/100, payment_currency: options.currency, payment_status: 'success' })
-          });
-        } catch(e) { console.error('Notify failed', e); }
+          var np=JSON.parse(sessionStorage.getItem('sq_audit_payload')||'{}');
+          fetch('https://morning-resonance-0ad8.singhsaurabhsohan.workers.dev/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({payload:np,scores:_cachedScores||{},payment_id:response.razorpay_payment_id,product:options.description,payment_platform:'Razorpay',payment_amount:options.amount/100,payment_currency:options.currency,payment_status:'success'})});
+        } catch(e){console.error('Notify failed',e);}
       }
     };
-    if (typeof Razorpay!=='undefined') { new Razorpay(options).open(); }
-    else {
-      var s = document.createElement('script');
-      s.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      s.onload = function() { new Razorpay(options).open(); };
-      document.head.appendChild(s);
-    }
+    if(typeof Razorpay!=='undefined'){new Razorpay(options).open();}
+    else{var s=document.createElement('script');s.src='https://checkout.razorpay.com/v1/checkout.js';s.onload=function(){new Razorpay(options).open();};document.head.appendChild(s);}
   }
 
-  function trackEvent(name, params) {
-    if (window.dataLayer) window.dataLayer.push(Object.assign({ event: name }, params||{}));
-  }
+  function trackEvent(name,params){if(window.dataLayer)window.dataLayer.push(Object.assign({event:name},params||{}));}
 
-  window.addEventListener('load', function() {
-    trackEvent('preview_viewed');
-    initResults();
-  });
+  window.addEventListener('load', function() { trackEvent('preview_viewed'); initResults(); });
 </script>
 </body>
 </html>
