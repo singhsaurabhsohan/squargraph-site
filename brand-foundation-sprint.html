@@ -24,7 +24,7 @@
   <!-- End Google Tag Manager -->
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'" />
-  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js" defer></script>
   <style>
     @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
     @font-face { font-family:'Satoshi'; src:url('/fonts/Satoshi-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
@@ -428,6 +428,13 @@
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(107,93,184,.12);
     }
+    .iti__flag-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      border-radius: 0;
+    }
     .iti__selected-flag {
       height: 48px !important;
       background: transparent !important;
@@ -436,7 +443,6 @@
       min-width: 72px;
       display: flex;
       align-items: center;
-      -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
     }
     .iti input#form-phone {
       border: none !important;
@@ -450,24 +456,26 @@
       outline: none;
       box-shadow: none !important;
     }
-    .iti__flag-container {
-      -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
-      right: auto !important;
-      left: 0 !important;
-    }
+    .iti__arrow { border-top-color: var(--muted); }
     .iti__country-list {
       border-radius: 16px;
       border: 1px solid var(--border);
       box-shadow: 0 12px 40px rgba(26,23,20,0.12);
       font-family: var(--font);
       font-size: 13px;
+      z-index: 99999;
+      position: fixed !important;
       max-height: 280px;
       overflow-y: auto;
       background: #fff;
+      width: max-content;
       min-width: 280px;
-      z-index: 999;
+      padding: 8px 0;
+      scrollbar-width: thin;
     }
-    .iti__country { padding: 10px 16px; }
+    .iti__country-list::-webkit-scrollbar { width: 4px; background: var(--border); }
+    .iti__country-list::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+    .iti__country { padding: 10px 16px; transition: background 0.2s; }
     .iti__country.iti__highlight { background: var(--accent-light); }
     .iti__country-name { color: var(--text); font-weight: 500; }
     .iti__dial-code { color: var(--muted); font-size: 12px; margin-left: 8px; }
@@ -482,11 +490,11 @@
       background: var(--surface);
       color: var(--text);
     }
+    .iti__search-input:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 2px rgba(107,93,184,.2); }
     .iti__flag { background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags.png") !important; }
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
       .iti__flag { background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important; }
     }
-
     /* ── CONSENT ── */
     .consent-wrap {
       display: flex;
