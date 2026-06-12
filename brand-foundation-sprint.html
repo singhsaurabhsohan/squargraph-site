@@ -457,19 +457,17 @@
     }
     .iti__country-list {
       border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 40px rgba(26,23,20,0.12);
       font-family: var(--font);
       font-size: 13px;
+      max-height: 280px;
+      overflow-y: auto;
       background: #fff;
       min-width: 280px;
-    }
-    .iti__dropdown-content {
-      border-radius: 16px;
-      border: 1px solid var(--border) !important;
-      box-shadow: 0 12px 40px rgba(26,23,20,0.12) !important;
-      max-height: 280px;
-      overflow-y: auto !important;
       z-index: 999;
     }
+    .iti__dropdown-content { overflow: hidden; }
     .iti__country { padding: 10px 16px; }
     .iti__country.iti__highlight { background: var(--accent-light); }
     .iti__country-name { color: var(--text); font-weight: 500; }
