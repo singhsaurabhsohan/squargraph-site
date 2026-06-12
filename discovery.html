@@ -56,7 +56,7 @@
       --transition: 0.22s cubic-bezier(.4,0,.2,1);
     }
 
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: visible; }
 
     body {
       font-family: var(--font);
@@ -445,17 +445,18 @@
   align-items: center;
 }
 .iti input#form-phone {
-  border: none !important;
-  background: transparent !important;
-  height: 48px;
-  width: 100% !important;
-  padding-left: 86px !important;
-  font-family: var(--font);
-  font-size: 14px;
-  color: var(--text);
-  outline: none;
-  box-shadow: none !important;
-}
+    border: none !important;
+    background: transparent !important;
+    height: 48px;
+    width: 100% !important;
+    padding-left: 86px !important;
+    font-family: var(--font);
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    box-shadow: none !important;
+    border-radius: 999px;
+  }
 .iti input#form-phone:focus {
   box-shadow: none !important;
 }
