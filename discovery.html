@@ -1101,6 +1101,9 @@
       }
     });
   }
+  countrySelect.addEventListener('change', function() {
+    console.log('Country Changed:', this.value);
+});
 
   function initRobustITI(inputId) {
     return new Promise(function(resolve, reject) {
