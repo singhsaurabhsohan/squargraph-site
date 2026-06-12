@@ -1728,19 +1728,20 @@
   </style>
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
   <style>
-    /* intl-tel-input overrides — phone field only */
- .iti {
+ /* intl-tel-input overrides – keep dropdown & field style */
+.iti {
   display: block;
   width: 100%;
   position: relative;
   border-radius: 999px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--warmgray);
+  border: 1px solid var(--bordergray);
   overflow: visible;
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 .iti:focus-within {
   border-color: var(--accentmuted);
+  box-shadow: 0 0 0 3px rgba(107,93,184,.12);
 }
 .iti__flag-container {
   position: absolute;
@@ -1769,7 +1770,6 @@
   color: var(--textprimary);
   outline: none;
   box-shadow: none !important;
-  border-radius: 999px !important;
 }
 .iti input#phone:focus {
   box-shadow: none !important;
@@ -1777,53 +1777,98 @@
 .iti__arrow {
   border-top-color: var(--textsecondary);
 }
-    .iti__country.iti__highlight { background: var(--accentlight); }
-    .iti__search-input {
-      font-family: 'Satoshi', sans-serif;
-      font-size: 13px;
-      border-radius: 8px;
-      border: 1px solid var(--bordergray);
-      padding: 8px 12px;
-      width: calc(100% - 24px);
-      margin: 8px 12px 4px;
-      display: block;
-    }
-    .iti__dial-code { color: var(--textsecondary); }
-    /* Prevent ITI from wrapping the country select */
-    #country-location + .iti,
-    #country-location ~ .iti,
-    .iti:has(#country-location) { display: none !important; }
-    /* Country select: fully self-contained styles, no .form-input inheritance */
-   #country-location {
-      width: 100%;
-      font-family: 'Satoshi', sans-serif;
-      font-size: 14px;
-      color: var(--textprimary);
-      background: var(--warmgray);
-      border: 1px solid var(--bordergray);
-      border-radius: 999px;
-      padding: 13px 44px 13px 20px;
-      min-height: 48px;
-      outline: none;
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 20px center;
-      transition: border-color .25s;
-    }
-    #country-location:focus {
-      border-color: var(--accentmuted);
-    }
-    #country-location option { background: #fff; }
-    #country-location + .iti,
-    #country-location ~ .iti,
-    .iti:has(#country-location) { display: none !important; }
-    .submit-btn {
-      margin-top: 0 !important;
-    }
+.iti__country-list {
+  border-radius: 16px !important;
+  border: 1px solid var(--bordergray) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12) !important;
+  font-family: 'Satoshi', sans-serif !important;
+  font-size: 13px !important;
+  max-height: 280px !important;
+  overflow-y: auto !important;
+  background: #fff !important;
+  padding: 8px 0 !important;
+  width: max-content;
+  min-width: 280px;
+}
+.iti__country-list::-webkit-scrollbar {
+  width: 4px;
+  background: var(--bordergray);
+}
+.iti__country-list::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+.iti__country {
+  padding: 10px 16px !important;
+  transition: background 0.2s !important;
+}
+.iti__country.iti__highlight {
+  background: var(--accentlight) !important;
+}
+.iti__country-name {
+  font-weight: 500 !important;
+  color: var(--textprimary);
+}
+.iti__dial-code {
+  font-size: 12px !important;
+  margin-left: 8px !important;
+  opacity: 0.7;
+  color: var(--textsecondary);
+}
+.iti__search-input {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 13px;
+  border-radius: 12px;
+  border: 1px solid var(--bordergray);
+  padding: 10px 14px;
+  margin: 8px 12px;
+  width: calc(100% - 24px);
+  background: var(--warmgray);
+  color: var(--textprimary);
+}
+.iti__search-input:focus {
+  border-color: var(--accentmuted);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(107,93,184,.2);
+}
+.iti__flag {
+  background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags.png") !important;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important;
+  }
+}
+/* Prevent ITI from wrapping the country select */
+#country-location + .iti,
+#country-location ~ .iti,
+.iti:has(#country-location) { display: none !important; }
+/* Country select: fully self-contained styles */
+#country-location {
+  width: 100%;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  color: var(--textprimary);
+  background: var(--warmgray);
+  border: 1px solid var(--bordergray);
+  border-radius: 999px;
+  padding: 13px 44px 13px 20px;
+  min-height: 48px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  transition: border-color .25s;
+}
+#country-location:focus {
+  border-color: var(--accentmuted);
+}
+#country-location option { background: #fff; }
+.submit-btn {
+  margin-top: 0 !important;
+}
     </style>
   <link rel="stylesheet" href="/css/forms.css" />
 </head>
