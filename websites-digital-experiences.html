@@ -71,7 +71,7 @@
       max-width: 1440px; margin: 0 auto;
       padding: 0 clamp(24px,4vw,64px);
       display: flex; align-items: center; justify-content: space-between;
-      height: 72px;
+      height: 84px;
     }
     .nav-logo { font-size: 18px; font-weight: 600; letter-spacing: -0.03em; display:flex; align-items:center; }
     .nav-logo sup { font-size: 9px; color: var(--accent); vertical-align: super; margin-left:1px; }
@@ -287,8 +287,13 @@
     .footer-logo sup { font-size:9px; color:var(--accent); vertical-align:super; margin-left:1px; }
     .footer-tagline { font-size:14px; color:var(--textsecondary); line-height:1.7; max-width:26ch; margin-bottom:20px; }
     .social-links { display:flex; gap:8px; flex-wrap:wrap; }
-    .social-link { width:40px; height:40px; border-radius:50%; background:var(--warmgray); display:inline-flex; align-items:center; justify-content:center; color:var(--textsecondary); transition:background .2s, color .2s; }
+    .social-link { width:44px; height:44px; border-radius:50%; background:var(--warmgray); display:inline-flex; align-items:center; justify-content:center; color:var(--textsecondary); transition:background .2s, color .2s; }
     .social-link:hover { background:var(--accentlight); color:var(--accent); }
+    .social-link[aria-label="FB / Facebook"] { color: #1877F2; }
+    .social-link[aria-label="Instagram"] { color: #E1306C; }
+    .social-link[aria-label="LinkedIn"] { color: #0A66C2; }
+    .social-link[aria-label="X / Twitter"] { color: #000000; }
+    .social-link[aria-label="YT / YouTube"] { color: #FF0000; }
     .footer-col-label { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; display:block; }
     .footer-link { display:block; margin-bottom:10px; font-size:13px; color:var(--textsecondary); transition:color .2s; }
     .footer-link:hover { color:var(--textprimary); }
