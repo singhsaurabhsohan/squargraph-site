@@ -495,7 +495,6 @@
   min-width: 280px !important;
   max-width: 90vw !important;
   padding: 8px 0 !important;
-  position: fixed !important;
   z-index: 99999;
   scrollbar-width: thin;
 }
@@ -1119,7 +1118,8 @@ var CITY_DATA = {
             initialCountry: 'in',
             separateDialCode: true,
             preferredCountries: ['in', 'ae', 'us', 'gb', 'sg'],
-            utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
+            utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
+            dropdownContainer: document.body
           });
           resolve(instance);
         } catch(e) { reject(e); }
