@@ -30,18 +30,46 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <script>
   var _rcLoaded = false;
-    function _loadRC() {
-      if (_rcLoaded) return; _rcLoaded = true;
-      var s = document.createElement('script');
-      s.src = 'https://www.google.com/recaptcha/api.js';
-      s.async = true; s.defer = true;
-      document.head.appendChild(s);
+  var _rcLoading = false;
+  function _loadRC(callback) {
+    if (typeof grecaptcha !== 'undefined') {
+      if (callback) callback();
+      return;
     }
-  var _rcObs = new IntersectionObserver(function(entries) {
-    if (entries[0].isIntersecting) { _loadRC(); _rcObs.disconnect(); }
-  }, { rootMargin: '200px' });
-  
-  </script>
+    if (_rcLoading) {
+      var check = setInterval(function() {
+        if (typeof grecaptcha !== 'undefined') {
+          clearInterval(check);
+          if (callback) callback();
+        }
+      }, 100);
+      return;
+    }
+    _rcLoading = true;
+    var s = document.createElement('script');
+    s.src = 'https://www.google.com/recaptcha/api.js';
+    s.async = true;
+    s.defer = true;
+    s.onload = function() {
+      _rcLoaded = true;
+      _rcLoading = false;
+      if (callback) callback();
+    };
+    document.head.appendChild(s);
+  }
+
+  function renderRecaptcha() {
+    var wrap = document.getElementById('audit-captcha-wrap');
+    if (!wrap) return;
+    // avoid rendering twice
+    if (wrap.querySelector('iframe')) return;
+    _loadRC(function() {
+      grecaptcha.render(wrap.querySelector('.g-recaptcha'), {
+        sitekey: '6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB'
+      });
+    });
+  }
+</script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js" defer></script>
     <style>
@@ -2003,6 +2031,7 @@
     btnNext.style.display = 'none';
     btnSubmit.style.display = 'inline-flex';
     document.getElementById('audit-captcha-wrap').style.display = 'block';
+    renderRecaptcha();
   } else {
     btnNext.style.display = 'inline-flex';
     btnSubmit.style.display = 'none';
