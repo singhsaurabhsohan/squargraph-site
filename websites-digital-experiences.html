@@ -57,7 +57,7 @@
       --transition: 0.22s cubic-bezier(.4,0,.2,1);
     }
 
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: visible; }
 
     body {
       font-family: var(--font);
@@ -456,6 +456,7 @@
       color: var(--text);
       outline: none;
       box-shadow: none !important;
+      border-radius: 999px;
     }
     .iti__arrow { border-top-color: var(--muted); }
     .iti__country-list {
@@ -668,8 +669,7 @@
       #success-screen { padding: 40px 20px; }
       .trust-row { gap: 12px; }
     }
-  </style>
-  <link rel="stylesheet" href="/css/forms.css" />
+</style>
 </head>
 <body>
 
