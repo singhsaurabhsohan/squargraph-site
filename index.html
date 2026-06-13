@@ -1908,11 +1908,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Mobile menu -->
 <div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" inert>
   <span id="mob-menu-title" class="sr-only">Navigation Menu</span>
-  <a href="/">Home</a>
-  <a href="/#Engagements">Engagements</a>
-  <a href="/#capabilities">Capabilities</a>
-  <a href="/blog">Thinking</a>
-  <a href="/#studio">Studio</a>
+  <a href="/" onclick="closeMob()">Home</a>
+  <a href="/#Engagements" onclick="closeMob()">Engagements</a>
+  <a href="/#capabilities" onclick="closeMob()">Capabilities</a>
+  <a href="/blog" onclick="closeMob()">Thinking</a>
+  <a href="/#studio" onclick="closeMob()">Studio</a>
   <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
 </div>
 
@@ -2791,8 +2791,8 @@ We work with businesses that are serious about their positioning, communication,
     menuOpen = false;
     mobToggle.classList.remove('open');
     mobToggle.setAttribute('aria-expanded', 'false');
+    mobToggle.setAttribute('aria-label', 'Open navigation menu');
     mobMenu.classList.remove('open');
-    mobMenu.setAttribute('aria-visible', 'true');
     mobMenu.setAttribute('inert', '');
     document.body.style.overflow = '';
   };
