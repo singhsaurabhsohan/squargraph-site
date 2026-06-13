@@ -267,8 +267,8 @@
       markFieldVerified(state.currentType);
 
       // Check if both verified
-      if (state.emailVerified && state.phoneVerified) {
-        document.getElementById('sq-otp-success-msg').textContent = 'Both email and phone verified. You\'re all set!';
+      if (state.emailVerified) {
+        document.getElementById('sq-otp-success-msg').textContent = 'Email verified. You\'re all set!';
         if (typeof state.onBothVerified === 'function') state.onBothVerified();
       }
 
@@ -425,7 +425,7 @@
       /* Disable submit until both verified */
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.title = 'Please verify your email and phone first';
+        submitBtn.title = 'Please verify your email first';
       }
       /* Safety fallback — re-enable after 5 mins if something goes wrong */
       setTimeout(function() {
@@ -494,7 +494,7 @@
 
       /* ── Watch both verified → unlock submit ── */
       var pollInterval = setInterval(function () {
-        if (state.emailVerified && state.phoneVerified) {
+        if (state.emailVerified) {
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.title = '';
@@ -510,7 +510,7 @@
 
     isEmailVerified: function () { return state.emailVerified; },
     isPhoneVerified: function () { return state.phoneVerified; },
-    isBothVerified: function () { return state.emailVerified && state.phoneVerified; }
+    isBothVerified: function () { return state.emailVerified; }
   };
 
 })();
