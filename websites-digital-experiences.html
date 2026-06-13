@@ -448,7 +448,7 @@
           <div class="form-stack">
             <div class="field">
               <label class="form-label" for="d-name">Name</label>
-              <<input type="text" id="w-name" name="name" required placeholder="Full name" class="form-input" autocomplete="name" />
+              <input type="text" id="w-name" name="name" required placeholder="Full name" class="form-input" autocomplete="name" />
               <span class="field-error">Please enter your name.</span>
             </div>
             <div class="field">
@@ -770,7 +770,7 @@
         closeMob();
       }
     });
-  }
+  })();
   /* ── Scroll reveal ── */
   var obs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
