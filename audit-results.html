@@ -321,7 +321,8 @@
   (function() {
     var p = null;
     try { p = JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
-    if (!p || !p.email) { window.location.href = '/audit.html'; }
+    var _urlHasId = new URLSearchParams(window.location.search).get('id');
+    if (!_urlHasId && (!p || !p.email)) { window.location.href = '/audit.html'; }
   })();
 
   var nav = document.getElementById('nav'), ticking = false;
@@ -512,7 +513,32 @@
     };
   }
 
+  var AUDIT_RESULTS_WORKER = 'https://squargraph-audit-results.singhsaurabhsohan.workers.dev';
+
   async function initResults() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var paymentId = urlParams.get('id');
+
+    if (paymentId) {
+      // Shareable URL flow — fetch saved record from Worker
+      try {
+        var res = await fetch(AUDIT_RESULTS_WORKER + '?payment_id=' + encodeURIComponent(paymentId));
+        if (!res.ok) throw new Error('Not found');
+        var saved = await res.json();
+        var scores = {
+          web: saved.score_web, comm: saved.score_comm, comp: saved.score_comp,
+          overall: saved.score_overall, confidence: saved.score_confidence,
+          headline: saved.headline, summary: saved.summary,
+          web_insight: saved.web_insight, comm_insight: saved.comm_insight, comp_insight: saved.comp_insight
+        };
+        _cachedScores = scores;
+        renderSummary(scores, { company: saved.company });
+      } catch(e) {
+        document.getElementById('modal-content').innerHTML = '<div class="card-loading"><div style="font-size:14px;color:#8A8580;">Results not found. This link may have expired.</div></div>';
+      }
+      return;
+    }
+
     var raw=null;
     try { raw=JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
     var scores;
@@ -548,7 +574,7 @@
         trackEvent('payment_success',{payment_id:response.razorpay_payment_id});
         document.getElementById('modal-content').style.display='none';
         var ps=document.getElementById('payment-success'); ps.classList.add('visible');
-        var pidEl=document.getElementById('success-pid'); if(pidEl)pidEl.textContent='Payment ID: '+response.razorpay_payment_id;
+        var pidEl=document.getElementById('success-pid'); if(pidEl)pidEl.innerHTML='Payment ID: '+response.razorpay_payment_id+'<br><span style="font-size:12px;color:#6B5DB8;">Your results link: <a href="/audit-results?id='+response.razorpay_payment_id+'" style="color:#6B5DB8;text-decoration:underline;">/audit-results?id='+response.razorpay_payment_id+'</a></span>';
         window.scrollTo({top:0,behavior:'smooth'});
         try {
           var np=JSON.parse(sessionStorage.getItem('sq_audit_payload')||'{}');
