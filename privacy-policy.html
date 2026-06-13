@@ -127,6 +127,7 @@
     }
     #mob-menu a:hover { color: var(--accent); }
     #mob-menu a:active { color: var(--accent); }
+    #mob-menu a.finger-active { color: var(--accent); }
     #mob-menu .mob-contact { margin-top: 32px; font-size: 13px; color: var(--textmuted); border-bottom: none; display: block; text-decoration: none; }
     /* ── SITE FOOTER ── */
     .site-footer { border-top: 1px solid var(--bordergray); padding: 40px clamp(24px, 4vw, 64px); }
@@ -366,6 +367,17 @@
       mobMenu.setAttribute('inert', '');
       document.body.style.overflow = '';
     };
+    mobMenu.addEventListener('touchmove', function(e) {
+      var touch = e.touches[0];
+      var el = document.elementFromPoint(touch.clientX, touch.clientY);
+      mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
+      if (el && el.tagName === 'A' && mobMenu.contains(el)) {
+        el.classList.add('finger-active');
+      }
+    }, { passive: true });
+    mobMenu.addEventListener('touchend', function() {
+      mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
+    }, { passive: true });
     document.addEventListener('click', function(e) {
       if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
         closeMob();
