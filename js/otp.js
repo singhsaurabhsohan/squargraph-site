@@ -40,7 +40,7 @@
   }
 
   async function sendPhoneOtp(phone) {
-    return sbRequest('/auth/v1/otp', { phone: phone, channel: 'sms', create_user: false });
+    return sbRequest('/auth/v1/otp', { phone: phone, channel: 'whatsapp', create_user: false });
   }
 
   async function verifyEmailOtp(email, token) {
@@ -186,7 +186,7 @@
     document.getElementById('sq-otp-icon-phone').style.display = isEmail ? 'none' : 'block';
     document.getElementById('sq-otp-eyebrow').textContent = isEmail ? 'Verify Email' : 'Verify Phone';
     document.getElementById('sq-otp-heading').textContent = isEmail ? 'Confirm your email' : 'Confirm your phone';
-    document.getElementById('sq-otp-subtext').innerHTML = 'We\'ll send a 6-digit code to <strong>' + value + '</strong>';
+    document.getElementById('sq-otp-subtext').innerHTML = (type === 'phone' ? 'We\'ll send a 6-digit code via <strong>WhatsApp</strong> to <strong>' + value + '</strong>' : 'We\'ll send a 6-digit code to <strong>' + value + '</strong>');
     document.getElementById('sq-otp-send-err').style.display = 'none';
 
     showScreen('send');
@@ -469,7 +469,7 @@
         phoneVerifyBtn.type = 'button';
         phoneVerifyBtn.id = 'sq-verify-phone-btn';
         phoneVerifyBtn.className = 'sq-verify-btn';
-        phoneVerifyBtn.textContent = 'Verify';
+        phoneVerifyBtn.textContent = 'Verify via WhatsApp';
         phoneWrapper.appendChild(phoneVerifyBtn);
 
         phoneVerifyBtn.addEventListener('click', function () {
