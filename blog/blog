@@ -1,7 +1,0 @@
-document.addEventListener('click', function(e) {
-      if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
-        closeMob();
-      }
-    });
-
-  /* ── Scroll reveal ── */
