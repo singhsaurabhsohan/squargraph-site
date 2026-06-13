@@ -30,6 +30,7 @@
       --textprimary: #1A1714; --accent: #6B5DB8; --accentmuted: #7B6FB8; --accentlight: #EEECf7;
       --warmgray: #F5F5F3;
     }
+    * { -webkit-tap-highlight-color: transparent; }
     html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
     body { font-family: 'Satoshi', -apple-system, sans-serif; background: #fff; color: var(--textprimary); line-height: 1.6; letter-spacing: -0.01em; }
     .page-wrap { padding-top: 84px; max-width: 1440px; margin: 0 auto; }
@@ -130,7 +131,8 @@
       padding: 16px 0; border-bottom: 1px solid var(--bordergray); transition: color .2s;
     }
     #mob-menu a:hover { color: var(--accent); }
-    #mob-menu .mob-contact { margin-top: 32px; font-size: 13px; color: var(--textmuted); border-bottom: none; display: block; }
+    #mob-menu a:active { color: var(--accent); }
+    #mob-menu .mob-contact { margin-top: 32px; font-size: 13px; color: var(--textmuted); border-bottom: none; display: block; text-decoration: none; }
     /* ── SITE FOOTER ── */
     .site-footer { border-top: 1px solid var(--bordergray); padding: 40px clamp(24px, 4vw, 64px); }
     .footer-inner { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 48px; padding-bottom: 48px; }
@@ -180,8 +182,7 @@
 </nav>
 
 <!-- Mobile menu -->
-<div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" inert>
-  <span id="mob-menu-title" class="sr-only">Navigation Menu</span>
+<div id="mob-menu" role="dialog" aria-modal="true" inert>
   <a href="/" onclick="closeMob()">Home</a>
   <a href="/#work" onclick="closeMob()">Work</a>
   <a href="/#Engagements" onclick="closeMob()">Engagements</a>
@@ -355,14 +356,18 @@
       if (menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert', ''); }
       document.body.style.overflow = menuOpen ? 'hidden' : '';
     });
+    window.closeMob = function() {
+      menuOpen = false;
+      mobToggle.classList.remove('open');
+      mobToggle.setAttribute('aria-expanded', 'false');
+      mobToggle.setAttribute('aria-label', 'Open navigation menu');
+      mobMenu.classList.remove('open');
+      mobMenu.setAttribute('inert', '');
+      document.body.style.overflow = '';
+    };
     document.addEventListener('click', function(e) {
       if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
-        menuOpen = false;
-        mobToggle.classList.remove('open');
-        mobToggle.setAttribute('aria-expanded', 'false');
-        mobMenu.classList.remove('open');
-        mobMenu.setAttribute('inert', '');
-        document.body.style.overflow = '';
+        closeMob();
       }
     });
   }
