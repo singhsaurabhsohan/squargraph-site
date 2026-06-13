@@ -144,6 +144,20 @@
     }
     .nav-cta:hover { background: var(--textprimary); color: #fff; border-color: var(--textprimary); } nav a { text-decoration: none; }
     @media (max-width: 768px) { .nav-links { display: none; } }
+.hamburger { display:none; flex-direction:column; align-items:center; justify-content:center; width:44px; height:44px; background:none; border:none; cursor:pointer; padding:0; position:relative; z-index:102; }
+.pill-menu { display:flex; flex-direction:column; align-items:center; gap:5px; }
+.pill-line { width:28px; height:1.5px; background:var(--textprimary); border-radius:999px; transition:transform .35s cubic-bezier(.77,0,.18,1), opacity .3s; }
+.pill-body { width:28px; height:13px; border:1.5px solid var(--textprimary); border-radius:999px; background:transparent; transition:transform .35s cubic-bezier(.77,0,.18,1), opacity .3s; }
+.hamburger.open .pill-line { transform:translateY(9px) rotate(45deg); }
+.hamburger.open .pill-body { opacity:0; transform:scaleX(0); }
+@media (max-width: 768px) { .hamburger { display:flex; } }
+@media (min-width: 769px) { .hamburger { display:none !important; } }
+#mob-menu { display:flex; position:fixed; inset:0; z-index:101; background:#fff; flex-direction:column; justify-content:center; padding:clamp(32px,8vw,64px); padding-top:100px; opacity:0; pointer-events:none; transition:opacity .3s; }
+#mob-menu.open { opacity:1; pointer-events:all; }
+#mob-menu a:not(.mob-contact) { display:block; font-size:clamp(22px,6vw,32px); font-weight:500; letter-spacing:-0.03em; color:var(--textprimary); padding:16px 0; border-bottom:1px solid var(--bordergray); transition:color .2s; text-decoration:none; }
+#mob-menu a:hover { color:var(--accent); }
+#mob-menu .mob-contact { margin-top:32px; font-size:13px; color:var(--textmuted); border-bottom:none; display:block; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
   
       /* ── PAGE LAYOUT ── */
       .page-wrap {
@@ -1360,6 +1374,21 @@
     </button>
   </div>
 </nav>
+
+<!-- Mobile menu -->
+<div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" inert>
+  <span id="mob-menu-title" class="sr-only">Navigation Menu</span>
+  <a href="/">Home</a>
+  <a href="/#Engagements">Engagements</a>
+  <a href="/#capabilities">Capabilities</a>
+  <a href="/blog">Thinking</a>
+  <a href="/#studio">Studio</a>
+  <a href="/discovery" style="color:var(--accent);font-weight:600;">Book Discovery - ₹2,999 →</a>
+  <a href="/audit">Brand Growth Audit™</a>
+  <a href="/brand-foundation-sprint">Brand Foundation Sprint™</a>
+  <a href="/websites-digital-experiences">Websites & Digital</a>
+  <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
+</div>
   
   <!-- PAGE -->
   <div class="page-wrap">
@@ -1934,6 +1963,29 @@
     /* ── Nav scroll ── */
     var nav = document.getElementById('nav');
     if(nav) window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive:true });
+
+    var mobToggle = document.getElementById('mob-toggle');
+    var mobMenu = document.getElementById('mob-menu');
+    var menuOpen = false;
+    if(mobToggle) {
+      mobToggle.addEventListener('click', function() {
+        menuOpen = !menuOpen;
+        mobToggle.classList.toggle('open', menuOpen);
+        mobToggle.setAttribute('aria-expanded', String(menuOpen));
+        mobMenu.classList.toggle('open', menuOpen);
+        if(menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert',''); }
+        document.body.style.overflow = menuOpen ? 'hidden' : '';
+      });
+      document.addEventListener('click', function(e) {
+        if(menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
+          menuOpen = false;
+          mobToggle.classList.remove('open');
+          mobMenu.classList.remove('open');
+          mobMenu.setAttribute('inert','');
+          document.body.style.overflow = '';
+        }
+      });
+    }
 
     (function () {
       const TOTAL_STEPS = 6;
