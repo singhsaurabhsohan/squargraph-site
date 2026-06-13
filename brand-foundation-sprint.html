@@ -494,6 +494,7 @@
     </div>
   </div>
 </footer>
+<script src="/js/otp.js"></script>
 <!-- ── SUPABASE CONFIG ── -->
 <script>
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
@@ -603,6 +604,12 @@
     var input=document.getElementById('sprint-phone');
     if(!input) return;
     sprintIti=window.intlTelInput(input,{ initialCountry:'in', separateDialCode:true, preferredCountries:['in','ae','us','gb','sg'], utilsScript:'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js' });
+    window.iti = sprintIti;
+    SQOtp.init({
+      emailInputId: 's-email',
+      phoneInputId:  'sprint-phone',
+      submitBtnId:   'sprint-submit'
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function(){
@@ -639,6 +646,12 @@
     form.addEventListener('submit',async function(e){
       e.preventDefault();
       if(!validateSprint()) return;
+      if(window.SQOtp && !window.SQOtp.isBothVerified()){
+        submitBtn.style.background = '#EF4444';
+        submitBtn.textContent = 'Please verify your email & phone first';
+        setTimeout(function(){ submitBtn.style.background=''; submitBtn.innerHTML='Submit Your Brief →'; }, 3000);
+        return;
+      }
       var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
       if(!captchaVal){ document.getElementById('sprint-captcha-error').style.display='block'; return; }
       document.getElementById('sprint-captcha-error').style.display='none';
