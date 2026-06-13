@@ -341,7 +341,7 @@
   var mobToggle = document.getElementById('mob-toggle');
   var mobMenu = document.getElementById('mob-menu');
   var menuOpen = false;
-
+  mobMenu.addEventListener('touchstart', function(){}, {passive: true});
   window.addEventListener('scroll', function() {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
