@@ -187,7 +187,6 @@
     document.getElementById('sq-otp-eyebrow').textContent = isEmail ? 'Verify Email' : 'Verify Phone';
     document.getElementById('sq-otp-heading').textContent = isEmail ? 'Confirm your email' : 'Confirm your phone';
     document.getElementById('sq-otp-subtext').innerHTML = 'We\'ll send a 6-digit code to <strong>' + value + '</strong>';
-    document.getElementById('sq-otp-value-display').textContent = value;
     document.getElementById('sq-otp-send-err').style.display = 'none';
 
     showScreen('send');
