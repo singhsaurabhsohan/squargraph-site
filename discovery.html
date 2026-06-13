@@ -697,6 +697,7 @@
   </div>
 </div>
 
+<script src="/js/otp.js"></script>
 <!-- ── SUPABASE CONFIG ── -->
 <script>
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
@@ -824,6 +825,11 @@
       utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
     });
     window.iti = discoveryIti;
+    SQOtp.init({
+      emailInputId: 'd-email',
+      phoneInputId:  'discovery-phone',
+      submitBtnId:   'discovery-submit'
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function(){
@@ -910,7 +916,13 @@
   if(form){
     form.addEventListener('submit', async function(e){
       e.preventDefault();
-      if(!validateDiscovery()) return;
+     if(!validateDiscovery()) return;
+      if(window.SQOtp && !window.SQOtp.isBothVerified()){
+        submitBtn.style.background = '#EF4444';
+        submitBtn.textContent = 'Please verify your email & phone first';
+        setTimeout(function(){ submitBtn.style.background=''; submitBtn.innerHTML='Pay ₹2,999 &amp; Book Session →'; }, 3000);
+        return;
+      }
       var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
       if(!captchaVal){ document.getElementById('discovery-captcha-error').style.display='block'; return; }
       document.getElementById('discovery-captcha-error').style.display='none';
