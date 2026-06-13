@@ -27,8 +27,18 @@
   <link rel="preload" href="/fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/>
+  <script>
+  var _rcLoaded = false;
+  function _loadRC() {
+    if (_rcLoaded) return; _rcLoaded = true;
+    var s = document.createElement('script');
+    s.src = 'https://www.google.com/recaptcha/api.js';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', _loadRC);
+</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'" />
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
 
   <!-- Fonts -->
@@ -55,7 +65,7 @@
 
     /* ─── Reset ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: visible; font-weight: 400; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-weight: 400; }
 
     body {
       font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -63,7 +73,7 @@
       background: #FFFFFF;
       line-height: 1.5;
       letter-spacing: -0.01em;
-      overflow-x: visible;
+      overflow-x: hidden;
       font-weight: 400;
     }
 
@@ -1393,8 +1403,7 @@
       border-color: var(--accentmuted);
     }
      @media (max-width: 99999px) {
-      #persistent-cta { display: none !important; }
-      #mobile-book-wrap { display: flex !important; }
+      #mobile-book-wrap { display: none !important; }
       #back-to-top {
         left: 20px;
         right: auto;
@@ -1812,6 +1821,33 @@
     .submit-btn {
       margin-top: 0 !important;
     }
+/* ── STICKY BOTTOM BANNER ── */
+#sticky-banner {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  z-index: 9999; display: flex; align-items: center; gap: 0;
+  background: var(--textprimary); color: #fff;
+  border-radius: 999px; padding: 14px 20px 14px 28px;
+  box-shadow: 0 8px 32px rgba(26,23,20,.18);
+  font-family: 'Satoshi', sans-serif; white-space: nowrap;
+  transition: opacity .3s, transform .3s;
+}
+#sticky-banner.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(12px); }
+.banner-text { display: flex; flex-direction: column; gap: 1px; margin-right: 16px; }
+.banner-title { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; color: #fff; }
+.banner-sub { font-size: 11px; color: rgba(255,255,255,.65); }
+.banner-cta { font-size: 12px; font-weight: 600; color: var(--textprimary); background: #fff; border-radius: 999px; padding: 8px 18px; text-decoration: none; transition: background .2s; white-space: nowrap; }
+.banner-cta:hover { background: var(--accentlight); color: var(--accent); }
+.banner-close { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.12); border: none; color: #fff; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-left: 10px; transition: background .2s; flex-shrink: 0; line-height: 1; }
+.banner-close:hover { background: rgba(255,255,255,.22); }
+@media (max-width: 540px) {
+  #sticky-banner { bottom: 12px; left: 12px; right: 12px; transform: none; white-space: normal; padding: 10px 12px 10px 16px; border-radius: 16px; gap: 0; }
+  #sticky-banner.hidden { transform: translateY(12px); }
+  .banner-text { margin-right: 10px; }
+  .banner-title { font-size: 12px; }
+  .banner-sub { font-size: 10px; }
+  .banner-cta { font-size: 11px; padding: 6px 13px; }
+  .banner-close { width: 24px; height: 24px; font-size: 14px; margin-left: 8px; }
+}
 </style>
 </head>
 <body>
@@ -2042,7 +2078,7 @@ We work with businesses that are serious about their positioning, communication,
           <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Visual Identity System</li>
           <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Brand Asset Kit</li>
         </ul>
-        <button type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="btn-primary" style="margin-top:8px;">Build Your Foundation →</button>
+        <button type="button" onclick="window.location.href='/brand-foundation-sprint.html'" class="btn-primary" style="margin-top:8px;">Build Your Foundation →</button>
       </div>
 
       <!-- Card 4 -->
@@ -2058,7 +2094,7 @@ We work with businesses that are serious about their positioning, communication,
           <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>CMS & dev handoff included</li>
           <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Scoped to your requirements</li>
         </ul>
-        <a href="#contact" class="btn-outline" style="margin-top:8px;">Start Project →</a>
+        <a href="/websites-digital-experiences.html" class="btn-outline" style="margin-top:8px;">Start Project →</a>
       </div>
 
     </div>
@@ -2240,7 +2276,7 @@ We work with businesses that are serious about their positioning, communication,
 <section style="padding:clamp(80px,12vw,160px) clamp(24px,4vw,64px);background:var(--warmgray);">
   <div class="section-inner">
     <div style="display:grid;grid-template-columns:1fr 2fr;gap:clamp(40px,6vw,80px);align-items:center;" class="fade-up founder-grid">
-            <div style="aspect-ratio:1/1;overflow:visible;border-radius:50%;max-width:280px;width:100%;margin:0 auto;">
+            <div style="aspect-ratio:1/1;overflow:hidden;border-radius:50%;max-width:280px;width:100%;margin:0 auto;">
   <img src="/founder.webp" alt="Saurabh Sohan Singh, Founder &amp; Creative Strategist, SQUARGRAPH Studios"
     width="380" height="507" loading="eager" fetchpriority="high" decoding="sync"
     style="width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;aspect-ratio:1/1;" />
@@ -2670,29 +2706,19 @@ We work with businesses that are serious about their positioning, communication,
 
   </div>
 </div>
-<!-- ══════════════
-     PERSISTENT CTA
-══════════════ -->
-<div id="persistent-cta" style="position:fixed;bottom:0;left:0;right:0;z-index:9997;background:var(--textprimary);padding:12px clamp(12px,4vw,64px);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:nowrap;transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.1,.25,1);border-top:1px solid rgba(255,255,255,.08);">
-  <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
-    <span style="font-size:13px;font-weight:500;color:#fff;letter-spacing:-0.01em;">Not sure where to start?</span>
-    <span style="font-size:12px;color:rgba(255,255,255,.5);">A 30-min session that comes with a clear action plan.</span>
+<div id="sticky-banner">
+  <div class="banner-text">
+    <span class="banner-title">Not sure where to start?</span>
+    <span class="banner-sub">A 30-min session with a clear action plan.</span>
   </div>
-  <div style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
-    <a href="/discovery" style="background:var(--accent);color:#fff;border:none;border-radius:999px;padding:11px 24px;font-size:13px;font-weight:500;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;transition:opacity .2s;text-decoration:none;display:inline-flex;align-items:center;">Book Discovery Session →</a>
-    <button type="button" aria-label="Dismiss" style="background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;padding:4px;line-height:1;">✕</button>
-  </div>
+  <a href="/discovery" class="banner-cta">Book Discovery Session</a>
+  <button class="banner-close" onclick="document.getElementById('sticky-banner').classList.add('hidden')" aria-label="Close">&times;</button>
 </div>
 <script>
-  
-  
-  });
 (function() {
   'use strict';
 
   var nav = document.getElementById('nav');
-  var persistCta = document.getElementById('persistent-cta');
-  var ctaDismissed = false;
   var btt = document.getElementById('back-to-top');
   btt.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
   var ticking = false;
@@ -2700,9 +2726,6 @@ We work with businesses that are serious about their positioning, communication,
     if (!ticking) {
       requestAnimationFrame(function() {
         nav.classList.toggle('scrolled', window.scrollY > 60);
-        if (!ctaDismissed && persistCta && window.scrollY > 600) {
-          persistCta.style.transform = 'translateY(0)';
-        }
         btt.classList.toggle('visible', window.scrollY > 300);
         setActiveNav();
         ticking = false;
@@ -2756,16 +2779,7 @@ We work with businesses that are serious about their positioning, communication,
     }, { threshold: 0.2 });
     divObs.observe(divider);
   }
-  if (persistCta) {
-  var dismissBtn = persistCta.querySelector('button[aria-label="Dismiss"]');
-  if (dismissBtn) {
-    dismissBtn.addEventListener('click', function() {
-      ctaDismissed = true;
-      persistCta.style.transform = 'translateY(100%)';
-    });
-  }
-}
-
+  
   function addDrag(el) {
     if (!el) return;
     var isDown = false, startX, scrollLeft;
@@ -2922,6 +2936,80 @@ We work with businesses that are serious about their positioning, communication,
         submitBtn.innerHTML = originalLabel;
         submitBtn.style.background = '';
     }
+  }
+
+  var CITY_DATA = {
+    'India': ['Ahmedabad','Bengaluru','Chennai','Delhi','Gurugram','Hyderabad','Jaipur','Kolkata','Mumbai','Noida','Pune','Surat','Other'],
+    'UAE': ['Abu Dhabi','Dubai','Sharjah','Other'],
+    'USA': ['Austin','Chicago','Los Angeles','Miami','New York','San Francisco','Seattle','Other'],
+    'UK': ['Birmingham','Edinburgh','Leeds','London','Manchester','Other'],
+    'Singapore': ['Singapore'],
+    'Australia': ['Brisbane','Melbourne','Perth','Sydney','Other'],
+    'Canada': ['Calgary','Montreal','Toronto','Vancouver','Other'],
+    'Germany': ['Berlin','Frankfurt','Hamburg','Munich','Other'],
+    'France': ['Lyon','Marseille','Paris','Other'],
+    'Japan': ['Osaka','Tokyo','Other']
+  };
+
+  function initCountryCityMapping(countryId, cityId) {
+    var countryEl = document.getElementById(countryId);
+    var cityEl    = document.getElementById(cityId);
+    var textEl    = document.getElementById(cityId + '-text');
+    if (!countryEl || !cityEl) return;
+    countryEl.addEventListener('change', function() {
+      var country = this.value;
+      var cities  = CITY_DATA[country] || [];
+      cityEl.innerHTML = '';
+      if (!country || cities.length === 0) {
+        cityEl.style.display = 'none';
+        if (textEl) { textEl.style.display = 'block'; textEl.value = ''; }
+        return;
+      }
+      var ph = document.createElement('option');
+      ph.value = ''; ph.disabled = true; ph.selected = true;
+      ph.textContent = 'Select city';
+      cityEl.appendChild(ph);
+      cities.forEach(function(c) {
+        var o = document.createElement('option');
+        o.value = c; o.textContent = c;
+        cityEl.appendChild(o);
+      });
+      cityEl.style.display = 'block';
+      if (textEl) { textEl.style.display = 'none'; textEl.value = ''; }
+    });
+    cityEl.addEventListener('change', function() {
+      if (!textEl) return;
+      if (this.value === 'Other') { textEl.style.display = 'block'; textEl.focus(); }
+      else { textEl.style.display = 'none'; textEl.value = ''; }
+    });
+  }
+
+  function initRobustITI(inputId) {
+    return new Promise(function(resolve, reject) {
+      var input = document.getElementById(inputId);
+      if (!input) return reject(new Error('Input not found: ' + inputId));
+      function tryInit() {
+        if (typeof window.intlTelInput !== 'function') return reject(new Error('intlTelInput not loaded'));
+        try {
+          var instance = window.intlTelInput(input, {
+            initialCountry: 'in',
+            separateDialCode: true,
+            preferredCountries: ['in', 'ae', 'us', 'gb', 'sg'],
+            utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
+          });
+          resolve(instance);
+        } catch(e) { reject(e); }
+      }
+      if (typeof window.intlTelInput === 'function') { tryInit(); }
+      else {
+        var waited = 0;
+        var poll = setInterval(function() {
+          waited += 50;
+          if (typeof window.intlTelInput === 'function') { clearInterval(poll); tryInit(); }
+          else if (waited > 5000) { clearInterval(poll); reject(new Error('intlTelInput timeout')); }
+        }, 50);
+      }
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function() {
