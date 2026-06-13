@@ -404,6 +404,7 @@
 <div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" inert>
   <span id="mob-menu-title" class="sr-only">Navigation Menu</span>
   <a href="/" onclick="closeMob()">Home</a>
+  <a href="/#work" onclick="closeMob()">Work</a>
   <a href="/#Engagements" onclick="closeMob()">Engagements</a>
   <a href="/#capabilities" onclick="closeMob()">Capabilities</a>
   <a href="/blog" onclick="closeMob()">Thinking</a>
@@ -731,9 +732,9 @@
 
   /* ── Mobile menu ── */
   var mobToggle = document.getElementById('mob-toggle');
-  var mobMenu = document.getElementById('mob-menu');
-  var menuOpen = false;
-  mobToggle.addEventListener('click', function(){
+  var mobMenu   = document.getElementById('mob-menu');
+  var menuOpen  = false;
+  mobToggle.addEventListener('click', function() {
     menuOpen = !menuOpen;
     mobToggle.classList.toggle('open', menuOpen);
     mobToggle.setAttribute('aria-expanded', String(menuOpen));
@@ -751,7 +752,11 @@
     mobMenu.setAttribute('inert', '');
     document.body.style.overflow = '';
   };
-
+  document.addEventListener('click', function(e) {
+    if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
+      closeMob();
+    }
+  });
   /* ── Scroll reveal ── */
   var obs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
