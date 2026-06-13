@@ -357,20 +357,28 @@
       }
       .sq-verify-btn:disabled { opacity: .5; pointer-events: none; }
       .sq-field-with-btn {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        width: 100%;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+        flex-wrap: nowrap !important;
       }
       .sq-field-with-btn > .iti {
-        flex: 1;
-        min-width: 0;
+        flex: 1 !important;
+        min-width: 0 !important;
         border-radius: 999px !important;
         overflow: visible !important;
+        background: transparent !important;
       }
       .sq-field-with-btn > input {
-        flex: 1;
-        min-width: 0;
+        flex: 1 !important;
+        min-width: 0 !important;
+        border-radius: 999px !important;
+      }
+      .sq-field-with-btn input:-webkit-autofill,
+      .sq-field-with-btn input:-webkit-autofill:hover,
+      .sq-field-with-btn input:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 1000px var(--warmgray, #F5F5F3) inset !important;
         border-radius: 999px !important;
       }
     `;
