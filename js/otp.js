@@ -36,11 +36,11 @@
   }
 
   async function sendEmailOtp(email) {
-    return sbRequest('/auth/v1/otp', { email: email, create_user: true });
+    return sbRequest('/auth/v1/otp', { email: email, create_user: false });
   }
 
   async function sendPhoneOtp(phone) {
-  return sbRequest('/auth/v1/otp', { phone: phone, channel: 'sms', create_user: true });
+    return sbRequest('/auth/v1/otp', { phone: phone, channel: 'sms', create_user: false });
   }
 
   async function verifyEmailOtp(email, token) {
