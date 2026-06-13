@@ -71,10 +71,10 @@
     .nav-cta { font-size:13px; font-weight:500; color:var(--textprimary); border:1px solid var(--bordergray); border-radius:999px; padding:9px 22px; transition:background .25s,color .25s,border-color .25s; }
     .nav-cta:hover { background:var(--textprimary); color:#fff; border-color:var(--textprimary); }
     @media (max-width:768px) { .nav-links { display:none; } }
-    .hamburger { display:none; flex-direction:column; align-items:center; justify-content:center; width:44px; height:44px; background:none; border:none; cursor:pointer; padding:0; }
+    .hamburger { display:none; flex-direction:column; align-items:center; justify-content:center; width:44px; height:44px; background:none; border:none; cursor:pointer; padding:0; position:relative; z-index:102; }
     .pill-menu { display:flex; flex-direction:column; align-items:center; gap:5px; }
-    .pill-line { width:28px; height:1.5px; background:var(--textprimary); border-radius:999px; transition:transform .35s,opacity .3s; }
-    .pill-body { width:28px; height:13px; border:1.5px solid var(--textprimary); border-radius:999px; background:transparent; transition:transform .35s,opacity .3s; }
+    .pill-line { width:28px; height:1.5px; background:var(--textprimary); border-radius:999px; transition:transform .35s cubic-bezier(.77,0,.18,1),opacity .3s; }
+    .pill-body { width:28px; height:13px; border:1.5px solid var(--textprimary); border-radius:999px; background:transparent; transition:transform .35s cubic-bezier(.77,0,.18,1),opacity .3s; }
     .hamburger.open .pill-line { transform:translateY(9px) rotate(45deg); }
     .hamburger.open .pill-body { opacity:0; transform:scaleX(0); }
     @media (max-width:768px) { .hamburger { display:flex; } }
@@ -533,6 +533,7 @@
   mobToggle.addEventListener('click', function(){
     menuOpen = !menuOpen;
     mobToggle.classList.toggle('open', menuOpen);
+    if (menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert', ''); }
     mobToggle.setAttribute('aria-expanded', String(menuOpen));
     mobMenu.classList.toggle('open', menuOpen);
     document.body.style.overflow = menuOpen ? 'hidden' : '';
