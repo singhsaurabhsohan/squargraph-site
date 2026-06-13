@@ -87,7 +87,7 @@
       border: 1px solid var(--bordergray); border-radius: 999px; padding: 10px 24px;
       transition: background .25s, color .25s, border-color .25s;
     }
-    .nav-cta:hover { background: var(--textprimary); color: #fff; border-color: var(--textprimary); }
+    .nav-cta:hover { background: var(--accent) !important; color: #fff !important; border-color: var(--accent); }
     @media (max-width: 768px) { .nav-links { display: none; } .nav-cta { display: none; } }
     @media (min-width: 480px) and (max-width: 768px) { .nav-cta { display: inline-flex; font-size: 12px; padding: 9px 16px; margin-right: 8px; } }
     .hamburger {
@@ -157,7 +157,7 @@
       <a href="/#capabilities">Capabilities</a>
       <a href="/blog">Thinking</a>
       <a href="/#studio">Studio</a>
-      <a href="/discovery" class="nav-cta">Book Discovery Session</a>
+      <a href="/#contact" class="nav-cta">Let's Talk</a>
     </div>
     <button type="button" class="hamburger" id="mob-toggle" aria-label="Open navigation menu" aria-expanded="false">
       <div class="pill-menu">
@@ -176,6 +176,7 @@
   <a href="/#capabilities" onclick="closeMob()">Capabilities</a>
   <a href="/blog" onclick="closeMob()">Thinking</a>
   <a href="/#studio" onclick="closeMob()">Studio</a>
+  <a href="/#contact" onclick="closeMob()">Let's Talk</a>
   <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
 </div>
 
