@@ -235,6 +235,8 @@
       transition: color .2s;
     }
     #mob-menu a:hover { color: var(--accent); }
+    #mob-menu a:active { color: var(--accent); }
+    #mob-menu a.finger-active { color: var(--accent); }
     .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:visible;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
     #mob-menu .mob-contact {
       margin-top: 32px;
@@ -242,6 +244,7 @@
       color: var(--textmuted);
       border-bottom: none;
       display: block;
+      text-decoration: none;
     }
     /* ══════════════════════════
        ANIMATIONS
@@ -1906,8 +1909,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <!-- Mobile menu -->
-<div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" inert>
-  <span id="mob-menu-title" class="sr-only">Navigation Menu</span>
+<div id="mob-menu" role="dialog" aria-modal="true" inert>
   <a href="/" onclick="closeMob()">Home</a>
   <a href="/#work" onclick="closeMob()">Work</a>
   <a href="/#Engagements" onclick="closeMob()">Engagements</a>
@@ -2798,6 +2800,19 @@ We work with businesses that are serious about their positioning, communication,
     mobMenu.setAttribute('inert', '');
     document.body.style.overflow = '';
   };
+
+  mobMenu.addEventListener('touchmove', function(e) {
+    var touch = e.touches[0];
+    var el = document.elementFromPoint(touch.clientX, touch.clientY);
+    mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
+    if (el && el.tagName === 'A' && mobMenu.contains(el)) {
+      el.classList.add('finger-active');
+    }
+  }, { passive: true });
+
+  mobMenu.addEventListener('touchend', function() {
+    mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
+  }, { passive: true });
 
   document.addEventListener('click', function(e) {
     if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
