@@ -20,7 +20,8 @@
     <link rel="preload" href="/fonts/Satoshi-Regular.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="/fonts/Satoshi-Medium.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="/fonts/Satoshi-Bold.woff" as="font" type="font/woff" crossorigin />
-    <!-- Google Tag Manager -->
+    <script src="/js/otp.js"></script>
+<!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZK');</script>
     <!-- End Google Tag Manager -->
     <style>
@@ -2315,6 +2316,11 @@
   
     if (!validateStep(TOTAL_STEPS)) return;
 
+    if (window.SQOtp && !window.SQOtp.isBothVerified()) {
+      alert('Please verify your email and phone number before submitting.');
+      return;
+    }
+
     const consentEl = document.getElementById('audit-consent');
     if (consentEl && !consentEl.checked) {
       const consentLabel = consentEl.closest('label');
@@ -2531,6 +2537,11 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
     initRobustITI('contact-phone').then(function(instance) {
       window.itiAudit = instance;
       window.iti = instance;
+      SQOtp.init({
+        emailInputId: 'contact-email',
+        phoneInputId:  'contact-phone',
+        submitBtnId:   'btn-submit'
+      });
     }).catch(function(e) { console.error('ITI Init failed', e); });
   });
 </script>
