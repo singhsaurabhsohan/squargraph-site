@@ -555,11 +555,11 @@
 <!-- Mobile menu -->
 <div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" inert>
   <span id="mob-menu-title" class="sr-only">Navigation Menu</span>
-  <a href="/">Home</a>
-  <a href="/#Engagements">Engagements</a>
-  <a href="/#capabilities">Capabilities</a>
-  <a href="/blog">Thinking</a>
-  <a href="/#studio">Studio</a>
+  <a href="/" onclick="closeMob()">Home</a>
+  <a href="/#Engagements" onclick="closeMob()">Engagements</a>
+  <a href="/#capabilities" onclick="closeMob()">Capabilities</a>
+  <a href="/blog" onclick="closeMob()">Thinking</a>
+  <a href="/#studio" onclick="closeMob()">Studio</a>
   <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
 </div>
 
@@ -936,7 +936,6 @@
     mobToggle.setAttribute('aria-expanded', String(menuOpen));
     mobToggle.setAttribute('aria-label', menuOpen ? 'Close navigation menu' : 'Open navigation menu');
     mobMenu.classList.toggle('open', menuOpen);
-    mobMenu.setAttribute('aria-hidden', String(!menuOpen));
     if (menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert', ''); }
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   });
@@ -945,8 +944,8 @@
     menuOpen = false;
     mobToggle.classList.remove('open');
     mobToggle.setAttribute('aria-expanded', 'false');
+    mobToggle.setAttribute('aria-label', 'Open navigation menu');
     mobMenu.classList.remove('open');
-    mobMenu.setAttribute('aria-hidden', 'true');
     mobMenu.setAttribute('inert', '');
     document.body.style.overflow = '';
   };
