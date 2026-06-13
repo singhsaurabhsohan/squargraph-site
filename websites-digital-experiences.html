@@ -116,8 +116,9 @@
     #mob-menu.open { opacity:1; pointer-events:all; }
     #mob-menu a:not(.mob-contact) { display:block; font-size:clamp(22px,6vw,32px); font-weight:500; letter-spacing:-0.03em; color:var(--textprimary); padding:16px 0; border-bottom:1px solid var(--bordergray); transition:color .2s; text-decoration:none; }
     #mob-menu a:hover { color:var(--accent); }
-    #mob-menu a:active { color:var(--accent); }
-    #mob-menu .mob-contact { margin-top:32px; font-size:13px; color:var(--textmuted); border-bottom:none; display:block; }
+    #mob-menu a:active { color: var(--accent); }
+    #mob-menu a.finger-active { color: var(--accent); }
+    #mob-menu .mob-contact { margin-top: 32px; font-size: 13px; color: var(--textmuted); border-bottom: none; display: block; text-decoration: none; }
 
     /* ── HERO ── */
     .page-hero {
@@ -745,19 +746,31 @@
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   });
   window.closeMob = function() {
-    menuOpen = false;
-    mobToggle.classList.remove('open');
-    mobToggle.setAttribute('aria-expanded', 'false');
-    mobToggle.setAttribute('aria-label', 'Open navigation menu');
-    mobMenu.classList.remove('open');
-    mobMenu.setAttribute('inert', '');
-    document.body.style.overflow = '';
-  };
-  document.addEventListener('click', function(e) {
-    if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
-      closeMob();
-    }
-  });
+      menuOpen = false;
+      mobToggle.classList.remove('open');
+      mobToggle.setAttribute('aria-expanded', 'false');
+      mobToggle.setAttribute('aria-label', 'Open navigation menu');
+      mobMenu.classList.remove('open');
+      mobMenu.setAttribute('inert', '');
+      document.body.style.overflow = '';
+    };
+    mobMenu.addEventListener('touchmove', function(e) {
+      var touch = e.touches[0];
+      var el = document.elementFromPoint(touch.clientX, touch.clientY);
+      mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
+      if (el && el.tagName === 'A' && mobMenu.contains(el)) {
+        el.classList.add('finger-active');
+      }
+    }, { passive: true });
+    mobMenu.addEventListener('touchend', function() {
+      mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
+    }, { passive: true });
+    document.addEventListener('click', function(e) {
+      if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
+        closeMob();
+      }
+    });
+  }
   /* ── Scroll reveal ── */
   var obs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
