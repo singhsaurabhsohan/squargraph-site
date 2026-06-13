@@ -2903,6 +2903,7 @@ We work with businesses that are serious about their positioning, communication,
 
 })();
 </script>
+<script src="/js/otp.js"></script>
 <!-- ══════════════
      FORM HANDLER
 ══════════════ -->
@@ -3029,6 +3030,11 @@ We work with businesses that are serious about their positioning, communication,
     initCountryCityMapping('country-location', 'city');
     initRobustITI('phone').then(function(instance) {
       window.iti = instance;
+      SQOtp.init({
+        emailInputId: 'email',
+        phoneInputId:  'phone',
+        submitBtnId:   'form-submit-btn'
+      });
     }).catch(function(e) { console.error('ITI Init failed', e); });
   });
 
@@ -3120,6 +3126,10 @@ document.querySelectorAll('#contact-form .form-input').forEach(function(field) {
     e.preventDefault();
     if (submitted) return;
 if (!validateForm(form)) { setState('error', 'Please fill in all required fields.'); return; }
+if (window.SQOtp && !window.SQOtp.isBothVerified()) {
+  setState('error', 'Please verify your email and phone number before submitting.');
+  return;
+}
 var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
 if (!captchaVal) {
   document.getElementById('captcha-error').style.display = 'block';
