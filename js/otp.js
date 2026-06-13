@@ -36,7 +36,7 @@
   }
 
   async function sendEmailOtp(email) {
-    return sbRequest('/auth/v1/otp', { email: email, create_user: false });
+    return sbRequest('/auth/v1/otp', { email: email, create_user: true });
   }
 
   async function sendPhoneOtp(phone) {
