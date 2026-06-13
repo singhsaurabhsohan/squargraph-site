@@ -694,6 +694,7 @@
   </div>
 </div>
 
+<script src="/js/otp.js"></script>
 <!-- ── SUPABASE CONFIG ── -->
 <script>
   window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
@@ -820,6 +821,11 @@
       utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
     });
     window.iti = webIti;
+    SQOtp.init({
+      emailInputId: 'w-email',
+      phoneInputId:  'web-phone',
+      submitBtnId:   'web-submit'
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function(){
@@ -873,6 +879,12 @@
     form.addEventListener('submit', async function(e){
       e.preventDefault();
       if(!validateWeb()) return;
+      if(window.SQOtp && !window.SQOtp.isBothVerified()){
+        submitBtn.style.background = '#EF4444';
+        submitBtn.textContent = 'Please verify your email & phone first';
+        setTimeout(function(){ submitBtn.style.background=''; submitBtn.innerHTML='Submit Your Brief →'; }, 3000);
+        return;
+      }
       var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
       if(!captchaVal){ document.getElementById('web-captcha-error').style.display='block'; return; }
       document.getElementById('web-captcha-error').style.display='none';
