@@ -53,9 +53,9 @@
     .hamburger { display: none; flex-direction: column; align-items: center; justify-content: center; width: 44px; height: 44px; background: none; border: none; cursor: pointer; padding: 0; position: relative; z-index: 102; }
     .pill-menu { display: flex; flex-direction: column; align-items: center; gap: 5px; }
     .pill-line { width: 28px; height: 1.5px; background: var(--textprimary); border-radius: 999px; transition: transform .35s cubic-bezier(.77,0,.18,1), opacity .3s; }
-    .pill-body { width: 28px; height: 13px; border: 1.5px solid var(--textprimary); border-radius: 999px; transition: transform .35s cubic-bezier(.77,0,.18,1), opacity .3s; }
-    .hamburger.open .pill-line { opacity: 0; transform: scaleX(0); }
-    .hamburger.open .pill-body { transform: rotate(45deg) scale(1.1); }
+    .pill-body { width: 28px; height: 13px; border: 1.5px solid var(--textprimary); border-radius: 999px; background: transparent; transition: transform .35s cubic-bezier(.77,0,.18,1), opacity .3s; }
+    .hamburger.open .pill-line { transform: translateY(9px) rotate(45deg); }
+    .hamburger.open .pill-body { opacity: 0; transform: scaleX(0); }
     @media (max-width: 768px) { .hamburger { display: flex; } }
     @media (min-width: 769px) { .hamburger { display: none !important; } }
     #mob-menu { display: flex; position: fixed; inset: 0; z-index: 101; background: #fff; flex-direction: column; justify-content: center; padding: clamp(32px,8vw,64px); padding-top: 100px; opacity: 0; pointer-events: none; transition: opacity .3s; }
