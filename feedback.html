@@ -545,50 +545,93 @@
     @media (max-width: 768px) { #back-to-top { bottom: 20px; right: 16px; } }
 
     /* ══════════════════════════
-       FOOTER (exact copy)
+       FOOTER
     ══════════════════════════ */
     .site-footer {
-      padding: clamp(60px,8vw,100px) clamp(24px,4vw,64px) 0;
       border-top: 1px solid var(--bordergray);
+      padding: 40px clamp(24px, 4vw, 64px);
     }
     .footer-inner {
       max-width: 1440px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr;
-      gap: 60px; padding-bottom: 60px;
+      display: grid; grid-template-columns: 1.8fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
     }
     @media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; } }
     @media (max-width: 540px) { .footer-inner { grid-template-columns: 1fr; gap: 28px; padding-bottom: 32px; } }
-    @media (max-width: 768px) { .site-footer { padding-bottom: 100px; } }
-    .footer-logo { margin-bottom: 16px; }
-    .footer-logo sup { font-size: 9px; color: var(--accent); vertical-align: super; }
-    .footer-tagline { font-size: 13px; color: var(--textsecondary); line-height: 1.7; margin-bottom: 8px; max-width: 34ch; }
-    .footer-philosophy { font-size: 12px; color: var(--textmuted); line-height: 1.6; margin-bottom: 24px; max-width: 34ch; }
-    .social-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
-    .social-link {
-      width: 36px; height: 36px; border-radius: 50%;
-      border: 1px solid var(--bordergray); display: flex;
-      align-items: center; justify-content: center;
-      color: var(--textsecondary);
-      transition: border-color .2s, color .2s;
+    @media (max-width: 768px) {
+      .site-footer { padding-bottom: 100px; }
     }
-    .social-link:hover { border-color: var(--textprimary); color: var(--textprimary); }
+    .footer-logo {
+      display:flex;
+      align-items:center;
+      line-height:1;
+      font-size: 20px; font-weight: 600;
+      letter-spacing: -0.03em; color: var(--textprimary);
+      margin-bottom: 12px;
+    }
+    .footer-logo sup { font-size: 9px; color: var(--accent); vertical-align: super; }
+    .footer-tagline {
+      font-size: 15px; color: var(--textsecondary);
+      line-height: 1.7; max-width: 24ch; margin-bottom: 20px;
+    }
+    .social-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .social-link {
+      width: 44px; height: 44px;
+      border: none;
+      border-radius: 50%;
+      background: var(--warmgray);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--textsecondary);
+      transition: background .2s, color .2s;
+    }
+    .social-link:hover { background: var(--accentlight); color: var(--accent); }
+    .social-link[aria-label="FB / Facebook"] { color: #1877F2; }
+    .social-link[aria-label="Instagram"] { color: #E1306C; }
+    .social-link[aria-label="LinkedIn"] { color: #0A66C2; }
+    .social-link[aria-label="X / Twitter"] { color: #000000; }
+    .social-link[aria-label="YT / YouTube"] { color: #FF0000; }
     .footer-col-label {
-      display: block; font-size: 10px; font-weight: 600;
-      letter-spacing: .1em; text-transform: uppercase;
-      color: var(--textmuted); margin-bottom: 18px;
+      font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 18px; display: block;
     }
     .footer-link {
-      display: block; font-size: 13px; color: var(--textsecondary);
-      margin-bottom: 14px; transition: color .2s;
+      display: block; margin-bottom: 12px;
+      font-size: 13px; color: var(--textsecondary);
+      transition: color .2s;
     }
     .footer-link:hover { color: var(--textprimary); }
+    .footer-contact-label {
+      font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--textmuted); margin-bottom: 4px;
+    }
+    .footer-contact-val {
+      font-size: 13px; color: var(--textsecondary);
+      display: block; margin-bottom: 14px;
+      transition: color .2s;
+    }
+    .footer-contact-val:hover { color: var(--accent); }
     .footer-bar {
       max-width: 1440px; margin: 0 auto;
-      padding: 24px 0 40px;
       border-top: 1px solid var(--bordergray);
-      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 32px;
+      display: flex; justify-content: space-between;
+      align-items: flex-start; flex-wrap: wrap; gap: 10px;
     }
     .footer-bar p { font-size: 12px; color: var(--textmuted); }
+    .footer-philosophy{
+      font-family:'Satoshi', sans-serif;
+      font-weight: 500;
+      font-size:20px;
+      line-height:1.4;
+      letter-spacing:-0.02em;
+      color:var(--textprimary);
+      max-width:18ch;
+      margin-bottom:28px;
+    }
+    .footer-bar {
+      border-top: 1px solid var(--bordergray) !important;
+      padding-top: 24px;
+    }
 
     /* ── noscript fallback ── */
     @media (prefers-reduced-motion: reduce) {
@@ -959,12 +1002,14 @@
   <div class="footer-inner">
     <div>
       <div class="footer-logo">
-        <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" />
-      </div>
+  <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" />
+</div>
       <p class="footer-tagline">Brand strategy, campaign architecture, and digital experiences for businesses that take their market position seriously.</p>
-      <p class="footer-philosophy">Perception shapes value.<br/>We build what controls it.</p>
+      <p class="footer-philosophy">
+  Perception shapes value.<br/>We build what controls it.
+</p>
       <div class="social-links">
-        <a href="https://facebook.com/squargraphstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+        <a href="https://facebook.com/squargraphstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="FB / Facebook">
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
         <a href="https://instagram.com/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
@@ -976,25 +1021,31 @@
         <a href="https://x.com/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X / Twitter">
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <a href="https://youtube.com/@squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+        <a href="https://youtube.com/@squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YT / YouTube">
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         </a>
       </div>
     </div>
     <div>
       <span class="footer-col-label">Company</span>
-      <a href="/#intelligence" class="footer-link">Brand Studies</a>
-      <a href="/#approach" class="footer-link">Our Approach</a>
+      <a href="#intelligence" class="footer-link">Brand Studies</a>
+      <a href="#approach" class="footer-link">Our Approach</a>
     </div>
     <div>
       <span class="footer-col-label">Engagements</span>
-      <a href="/#capabilities" class="footer-link">Campaign Systems</a>
-      <a href="/#capabilities" class="footer-link">Brand Communication</a>
-      <a href="/#capabilities" class="footer-link">Social Platforms</a>
-      <a href="/#capabilities" class="footer-link">CGI &amp; Motion</a>
+      <a href="#capabilities" class="footer-link">Campaign Systems</a>
+      <a href="#capabilities" class="footer-link">Brand Communication</a>
+      <a href="#capabilities" class="footer-link">Social Platforms</a>
+      <a href="#capabilities" class="footer-link">CGI &amp; Motion</a>
     </div>
   </div>
   <div class="footer-bar" style="flex-direction:column;align-items:flex-start;gap:16px;">
+    <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;">
+  <a href="https://razorpay.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:6px;text-decoration:none;">
+  <span style="font-size:11px;color:var(--textmuted);">Payments Secured by</span>
+  <img src="https://cdn.razorpay.com/logo.svg" alt="Razorpay" height="16" width="80" loading="lazy" decoding="async" style="display:block;" />
+</a>
+</div>
     <div style="display:flex;flex-wrap:wrap;justify-content:space-between;width:100%;gap:12px;align-items:center;">
       <p style="font-size:12px;color:var(--textmuted);">© 2026 SQUARGRAPH™ Studios. All rights reserved. New Delhi, India</p>
       <div style="display:flex;gap:20px;flex-wrap:wrap;">
