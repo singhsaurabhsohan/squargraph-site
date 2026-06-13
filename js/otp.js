@@ -478,6 +478,7 @@
         phoneVerifyBtn.id = 'sq-verify-phone-btn';
         phoneVerifyBtn.className = 'sq-verify-btn';
         phoneVerifyBtn.textContent = 'Verify via WhatsApp';
+        phoneVerifyBtn.style.display = 'none';
         phoneWrapper.appendChild(phoneVerifyBtn);
 
         phoneVerifyBtn.addEventListener('click', function () {
