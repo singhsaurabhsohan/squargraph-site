@@ -55,6 +55,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { -webkit-tap-highlight-color: transparent; }
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
     body {
       font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -119,6 +120,7 @@
     #mob-menu.open { opacity:1; pointer-events:all; }
     #mob-menu a:not(.mob-contact) { display:block; font-size:clamp(22px,6vw,32px); font-weight:500; letter-spacing:-0.03em; color:var(--textprimary); padding:16px 0; border-bottom:1px solid var(--bordergray); transition:color .2s; text-decoration:none; }
     #mob-menu a:hover { color:var(--accent); }
+    #mob-menu a:active { color:var(--accent); }
     #mob-menu .mob-contact { margin-top:32px; font-size:13px; color:var(--textmuted); border-bottom:none; display:block; }
 
     /* ── HERO ── */
@@ -403,8 +405,7 @@
 </nav>
 
 <!-- Mobile menu -->
-<div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" inert>
-  <span id="mob-menu-title" class="sr-only">Navigation Menu</span>
+<div id="mob-menu" role="dialog" aria-modal="true" inert>
   <a href="/" onclick="closeMob()">Home</a>
   <a href="/#work" onclick="closeMob()">Work</a>
   <a href="/#Engagements" onclick="closeMob()">Engagements</a>
