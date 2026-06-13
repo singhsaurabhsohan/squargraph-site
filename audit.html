@@ -1965,6 +1965,7 @@
     var mobToggle = document.getElementById('mob-toggle');
     var mobMenu = document.getElementById('mob-menu');
     var menuOpen = false;
+    mobMenu.addEventListener('touchstart', function(){}, {passive: true});
     if(mobToggle) {
       mobToggle.addEventListener('click', function() {
         menuOpen = !menuOpen;
