@@ -1427,8 +1427,8 @@
         width: 52px;
         height: 52px;
         border-radius: 50%;
-        background: #1fad4e;
-        box-shadow: 0 4px 16px rgba(31,173,78,.35);
+        background: var(--accent);
+        box-shadow: 0 4px 16px rgba(107,93,184,.35);
         border: none;
         cursor: pointer;
         transition: transform .2s, background .2s;
@@ -1533,8 +1533,8 @@
         width: 52px;
         height: 52px;
         border-radius: 50%;
-        background: #1fad4e;
-        box-shadow: 0 4px 16px rgba(31,173,78,.35);
+        background: var(--accent);
+        box-shadow: 0 4px 16px rgba(107,93,184,.35);
         border: none;
         cursor: pointer;
         transition: transform .2s, background .2s;
@@ -1871,6 +1871,58 @@
   .banner-close { width: 24px; height: 24px; font-size: 14px; margin-left: 8px; }
   #mobile-wa { bottom: 20px !important; }
   #back-to-top { bottom: 20px !important; }
+}
+#ai-chat-panel {
+  display: none;
+  position: fixed;
+  bottom: 96px;
+  right: 20px;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  height: 420px;
+  max-height: calc(100vh - 140px);
+  background: #111;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.4);
+  z-index: 9997;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: inherit;
+}
+#ai-chat-panel.open { display: flex; }
+#ai-chat-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; background: #1a1a1a; color: #fff;
+  font-size: 14px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,.06);
+}
+#ai-chat-close { background: none; border: none; color: #999; font-size: 14px; cursor: pointer; }
+#ai-chat-close:hover { color: #fff; }
+#ai-chat-messages {
+  flex: 1; overflow-y: auto; padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 10px;
+  font-size: 13px; line-height: 1.5; color: #ddd;
+}
+.ai-msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; word-wrap: break-word; }
+.ai-msg.user { align-self: flex-end; background: var(--accent); color: #fff; }
+.ai-msg.bot { align-self: flex-start; background: #222; color: #eee; }
+.ai-msg.bot.loading { color: #888; font-style: italic; }
+#ai-chat-input-row { display: flex; border-top: 1px solid rgba(255,255,255,.06); }
+#ai-chat-input {
+  flex: 1; background: #1a1a1a; border: none; color: #fff;
+  padding: 12px; font-size: 13px; outline: none;
+}
+#ai-chat-send {
+  background: var(--accent); border: none; color: #fff; width: 44px;
+  font-size: 16px; cursor: pointer;
+}
+#ai-chat-send:hover { background: var(--accentmuted); }
+#ai-chat-wa-fallback {
+  display: block; text-align: center; padding: 8px; font-size: 11px;
+  color: var(--accentmuted); text-decoration: none; border-top: 1px solid rgba(255,255,255,.06);
+}
+@media (max-width: 768px) {
+  #ai-chat-panel { bottom: 84px; right: 12px; left: 12px; width: auto; }
 }
 </style>
 </head>
@@ -3301,13 +3353,25 @@ document.addEventListener('click', function(e) {
   <button id="mobile-book" type="button" onclick="window.location.href='/discovery'">Book Discovery →</button>
   <button id="mobile-book-close" type="button" aria-label="Dismiss" onclick="document.getElementById('mobile-book-wrap').style.display='none'">✕</button>
 </div>
-<a id="mobile-wa"
-   href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="Chat on WhatsApp">
-  <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
+<button id="mobile-wa" type="button" aria-label="Chat with SQUARGRAPH AI" onclick="toggleAIChat()">
+<svg width="24" height="24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+    <path d="M21 11.5a8.5 8.5 0 01-12.5 7.5L3 20l1.2-4.8A8.5 8.5 0 1121 11.5z" fill="none"/>
+    <path d="M16.5 4.5l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7z" fill="#fff" stroke="none"/>
+  </svg>
+</button>
+
+<div id="ai-chat-panel" aria-hidden="true">
+  <div id="ai-chat-header">
+    <span>SQUARGRAPH AI</span>
+    <button id="ai-chat-close" type="button" aria-label="Close chat" onclick="toggleAIChat()">✕</button>
+  </div>
+  <div id="ai-chat-messages"></div>
+  <div id="ai-chat-input-row">
+    <input id="ai-chat-input" type="text" placeholder="Ask about services, pricing…" autocomplete="off" />
+    <button id="ai-chat-send" type="button" aria-label="Send">→</button>
+  </div>
+  <a id="ai-chat-wa-fallback" href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer">Prefer WhatsApp? Chat with us →</a>
+</div>
 <script>
 (function(){
   var loaded = false;
@@ -3322,8 +3386,61 @@ document.addEventListener('click', function(e) {
 })();
 </script>
 <script>
+const AI_CHAT_ENDPOINT = "https://squargraph-chat.singhsaurabhsohan.workers.dev";
+let aiChatHistory = [];
+let aiChatOpened = false;
 
+function toggleAIChat() {
+  const panel = document.getElementById('ai-chat-panel');
+  const open = panel.classList.toggle('open');
+  panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  if (open && !aiChatOpened) {
+    aiChatOpened = true;
+    addAIMessage('bot', "Hi! I'm SQUARGRAPH's AI assistant. Ask me about our services, pricing, or how to get started.");
+  }
+}
 
+function addAIMessage(role, text) {
+  const wrap = document.getElementById('ai-chat-messages');
+  const div = document.createElement('div');
+  div.className = 'ai-msg ' + role;
+  div.textContent = text;
+  wrap.appendChild(div);
+  wrap.scrollTop = wrap.scrollHeight;
+  return div;
+}
+
+async function sendAIMessage() {
+  const input = document.getElementById('ai-chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addAIMessage('user', text);
+  aiChatHistory.push({ role: 'user', content: text });
+
+  const loadingEl = addAIMessage('bot loading', 'Typing…');
+
+  try {
+    const res = await fetch(AI_CHAT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: aiChatHistory })
+    });
+    const data = await res.json();
+    loadingEl.remove();
+    const reply = data.reply || "Sorry, something went wrong. Try WhatsApp below.";
+    addAIMessage('bot', reply);
+    aiChatHistory.push({ role: 'assistant', content: reply });
+  } catch (e) {
+    loadingEl.remove();
+    addAIMessage('bot', "Connection error. Try WhatsApp below.");
+  }
+}
+
+document.getElementById('ai-chat-send').addEventListener('click', sendAIMessage);
+document.getElementById('ai-chat-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') sendAIMessage();
+});
 </script>
 </body>
 </html>
