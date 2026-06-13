@@ -2743,7 +2743,7 @@ We work with businesses that are serious about their positioning, communication,
     mobMenu.classList.toggle('open', menuOpen);
     mobMenu.setAttribute('aria-visible', String(!menuOpen));
     if (menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert', ''); }
-    document.body.style.overflow = menuOpen ? 'visible' : '';
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
   });
   window.closeMob = function() {
     menuOpen = false;
