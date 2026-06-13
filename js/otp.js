@@ -325,6 +325,18 @@
     style.id = 'sq-otp-styles';
     style.textContent = `
       @keyframes sq-shake {
+      .sq-field-with-btn {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+      }
+      .sq-field-with-btn > .iti,
+      .sq-field-with-btn > input {
+        flex: 1 !important;
+        min-width: 0 !important;
+        width: 100% !important;
+      }
         0%,100%{transform:translateX(0)}
         20%{transform:translateX(-6px)}
         40%{transform:translateX(6px)}
