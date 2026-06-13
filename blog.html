@@ -556,6 +556,7 @@
 <div id="mob-menu" role="dialog" aria-modal="true" aria-labelledby="mob-menu-title" inert>
   <span id="mob-menu-title" class="sr-only">Navigation Menu</span>
   <a href="/" onclick="closeMob()">Home</a>
+  <a href="/#work" onclick="closeMob()">Work</a>
   <a href="/#Engagements" onclick="closeMob()">Engagements</a>
   <a href="/#capabilities" onclick="closeMob()">Capabilities</a>
   <a href="/blog" onclick="closeMob()">Thinking</a>
@@ -929,7 +930,6 @@
   var mobToggle = document.getElementById('mob-toggle');
   var mobMenu   = document.getElementById('mob-menu');
   var menuOpen  = false;
-
   mobToggle.addEventListener('click', function() {
     menuOpen = !menuOpen;
     mobToggle.classList.toggle('open', menuOpen);
@@ -939,7 +939,6 @@
     if (menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert', ''); }
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   });
-
   window.closeMob = function() {
     menuOpen = false;
     mobToggle.classList.remove('open');
@@ -949,11 +948,11 @@
     mobMenu.setAttribute('inert', '');
     document.body.style.overflow = '';
   };
-
   document.addEventListener('click', function(e) {
-    if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) closeMob();
+    if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
+      closeMob();
+    }
   });
-
   // Back to top
   var btt = document.getElementById('back-to-top');
   btt.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
