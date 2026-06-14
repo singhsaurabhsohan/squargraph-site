@@ -190,9 +190,9 @@
        HERO SECTION
     ══════════════════════════ */
     #hero {
-      min-height: 100vh;
+      min-height: min(100vh, 720px);
       display: flex; flex-direction: column; justify-content: center;
-      padding: 80px clamp(24px, 5vw, 80px) 80px;
+      padding: 80px clamp(24px, 5vw, 80px) clamp(40px, 6vw, 80px);
       position: relative;
     }
     .hero-bg-grid {
@@ -413,7 +413,9 @@
     }
     .star-btn {
       background: none; border: none; cursor: pointer;
-      padding: 4px; font-size: 28px; line-height: 1;
+      padding: 8px; font-size: 28px; line-height: 1;
+      min-width: 44px; min-height: 44px;
+      display: inline-flex; align-items: center; justify-content: center;
       color: var(--bordergray); transition: color .2s, transform .2s;
       font-family: inherit;
     }
@@ -858,25 +860,8 @@
             </div>
 
             <div>
-              <label class="form-label">Was the positioning of SQUARGRAPH clear?</label>
-              <div class="radio-group" id="rg-clarity" role="radiogroup">
-                <label class="radio-option">
-                  <input type="radio" name="clarity" value="Very Clear" />
-                  <span class="radio-dot"></span>
-                  Very Clear
-                </label>
-                <label class="radio-option">
-                  <input type="radio" name="clarity" value="Somewhat Clear" />
-                  <span class="radio-dot"></span>
-                  Somewhat Clear
-                </label>
-                <label class="radio-option">
-                  <input type="radio" name="clarity" value="Not Clear" />
-                  <span class="radio-dot"></span>
-                  Not Clear
-                </label>
-              </div>
-              <p class="field-error" id="fb-clarity-error">Please select an option.</p>
+              <label class="form-label" for="fb-positioning">After 30 seconds on the site, what did you understand SQUARGRAPH™ to be?</label>
+              <textarea id="fb-positioning" name="positioning_understood" placeholder="In their own words — what did you actually take away?" class="form-input"></textarea>
             </div>
 
             <div>
@@ -931,25 +916,8 @@
           <div class="step-fields">
 
             <div>
-              <label class="form-label">Would you recommend SQUARGRAPH to someone looking for branding, strategy, or digital experiences?</label>
-              <div class="radio-group" id="rg-recommend" role="radiogroup">
-                <label class="radio-option">
-                  <input type="radio" name="recommend" value="Yes" />
-                  <span class="radio-dot"></span>
-                  Yes
-                </label>
-                <label class="radio-option">
-                  <input type="radio" name="recommend" value="Maybe" />
-                  <span class="radio-dot"></span>
-                  Maybe
-                </label>
-                <label class="radio-option">
-                  <input type="radio" name="recommend" value="No" />
-                  <span class="radio-dot"></span>
-                  No
-                </label>
-              </div>
-              <p class="field-error" id="fb-recommend-error">Please select an option.</p>
+              <label class="form-label" for="fb-refer">Who specifically would you send to SQUARGRAPH™ — and why?</label>
+              <textarea id="fb-refer" name="referral_context" placeholder="Think of a specific person or situation — what would you tell them?" class="form-input"></textarea>
             </div>
 
             <div>
@@ -968,12 +936,15 @@
             </svg>
           </div>
           <p class="success-eyebrow">Received</p>
-          <h2 class="success-h2">Thank You</h2>
-          <p class="success-body">Your feedback has been received and will help shape future versions of SQUARGRAPH™.</p>
-          <p class="success-note">Every insight matters.</p>
-          <a href="/" class="btn-primary" style="margin: 0 auto;">
-            Return to Homepage
-          </a>
+          <h2 class="success-h2">Received.<br/><em style="font-style:normal;color:var(--accent);">Noted.</em></h2>
+          <p class="success-body">Your response is read personally — not parsed by an algorithm. If v2.2 ships in the next 6 weeks, something you said influenced it.</p>
+          <p class="success-note" style="font-style:normal;font-size:13px;color:var(--textmuted);">— The SQUARGRAPH™ Studio</p>
+          <div style="margin-top:32px;padding:24px;background:var(--warmgray);border:1px solid var(--bordergray);border-radius:16px;text-align:left;max-width:400px;margin-left:auto;margin-right:auto;">
+            <p style="font-size:13px;font-weight:500;color:var(--textprimary);margin-bottom:8px;">Want to see what SQUARGRAPH™ could do for your brand?</p>
+            <p style="font-size:13px;color:var(--textsecondary);line-height:1.65;margin-bottom:16px;">The Brand Growth Audit™ takes 15 minutes and tells you exactly where your positioning is leaving money on the table.</p>
+            <a href="/audit" class="btn-primary" style="font-size:13px;padding:11px 24px;">Start the Audit →</a>
+        </div>
+        <a href="/" class="btn-outline" style="margin:20px auto 0;">Return to Homepage</a>
         </div>
 
         <!-- ── Step navigation ── -->
@@ -1265,8 +1236,6 @@
     if (step === 2) {
       if (!rating) { showError('fb-rating-error', 'Please select a rating.'); ok = false; }
       else { clearError('fb-rating-error'); }
-      if (!getRadioValue('clarity')) { showError('fb-clarity-error', 'Please select an option.'); ok = false; }
-      else { clearError('fb-clarity-error'); }
     }
 
     if (step === 3) {
@@ -1275,8 +1244,6 @@
     }
 
     if (step === 4) {
-      if (!getRadioValue('recommend')) { showError('fb-recommend-error', 'Please select an option.'); ok = false; }
-      else { clearError('fb-recommend-error'); }
     }
 
     return ok;
