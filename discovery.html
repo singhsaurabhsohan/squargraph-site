@@ -224,6 +224,16 @@
     .iti:focus-within { border-color:var(--accentmuted); box-shadow:0 0 0 3px rgba(107,93,184,.1); }
     .iti__selected-flag { height:48px !important; background:transparent !important; border:none !important; padding:0 10px 0 14px; display:flex; align-items:center; }
     .iti input#discovery-phone { border:none !important; background:transparent !important; height:48px; width:100% !important; padding-left:86px !important; font-family:'Satoshi',sans-serif; font-size:14px; color:var(--textprimary); outline:none; box-shadow:none !important; }
+    .iti input#discovery-phone:-webkit-autofill,
+    .iti input#discovery-phone:-webkit-autofill:hover,
+    .iti input#discovery-phone:-webkit-autofill:focus,
+    .iti input#discovery-phone:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 1000px var(--warmgray) inset !important;
+      -webkit-border-radius: 0 999px 999px 0 !important;
+      border-radius: 0 999px 999px 0 !important;
+      -webkit-text-fill-color: var(--textprimary) !important;
+    }
+    .iti { overflow: hidden; }
     .iti__country-list { border-radius:14px !important; border:1px solid var(--bordergray) !important; box-shadow:0 12px 40px rgba(0,0,0,.12) !important; font-family:'Satoshi',sans-serif !important; font-size:13px !important; max-height:260px !important; overflow-y:auto !important; background:#fff !important; padding:8px 0 !important; position:fixed !important; z-index:9999; }
     .iti__country { padding:9px 16px !important; }
     .iti__country.iti__highlight { background:var(--accentlight) !important; }
@@ -826,11 +836,7 @@
       utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
     });
     window.iti = discoveryIti;
-    SQOtp.init({
-      emailInputId: 'd-email',
-      phoneInputId:  'discovery-phone',
-      submitBtnId:   'discovery-submit'
-    });
+    /* OTP auto-triggered on submit — no manual verify button needed */
   }
 
   document.addEventListener('DOMContentLoaded', function(){
@@ -918,10 +924,9 @@
     form.addEventListener('submit', async function(e){
       e.preventDefault();
      if(!validateDiscovery()) return;
-      if(window.SQOtp && !window.SQOtp.isBothVerified()){
-        submitBtn.style.background = '#EF4444';
-        submitBtn.textContent = 'Please verify your email & phone first';
-        setTimeout(function(){ submitBtn.style.background=''; submitBtn.innerHTML='Pay ₹2,999 &amp; Book Session →'; }, 3000);
+      var emailVal = document.getElementById('d-email').value.trim();
+      if (emailVal && window.SQOtp && !window.SQOtp.isEmailVerified()) {
+        window.SQOtp.verifyEmail(emailVal);
         return;
       }
       var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
