@@ -1143,7 +1143,11 @@
     .form-input:-webkit-autofill,
     .form-input:-webkit-autofill:hover,
     .form-input:-webkit-autofill:focus,
-    .form-input:-webkit-autofill:active {
+    .form-input:-webkit-autofill:active,
+    .iti input:-webkit-autofill,
+    .iti input:-webkit-autofill:hover,
+    .iti input:-webkit-autofill:focus,
+    .iti input:-webkit-autofill:active {
       -webkit-box-shadow: 0 0 0 1000px var(--warmgray) inset !important;
       -webkit-border-radius: 999px !important;
       border-radius: 999px !important;
@@ -1756,6 +1760,15 @@
 }
 .iti input#phone:focus {
   box-shadow: none !important;
+}
+.iti input#phone:-webkit-autofill,
+.iti input#phone:-webkit-autofill:hover,
+.iti input#phone:-webkit-autofill:focus,
+.iti input#phone:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--warmgray) inset !important;
+  -webkit-border-radius: 0 999px 999px 0 !important;
+  border-radius: 0 999px 999px 0 !important;
+  -webkit-text-fill-color: var(--textprimary) !important;
 }
 .iti__arrow {
   border-top-color: var(--textsecondary);
