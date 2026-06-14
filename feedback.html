@@ -13,6 +13,18 @@
   <link rel="preload" href="/fonts/Satoshi-Regular.woff" as="font" type="font/woff" crossorigin />
   <link rel="preload" href="/fonts/Satoshi-Medium.woff" as="font" type="font/woff" crossorigin />
   <link rel="preload" href="/fonts/Satoshi-Bold.woff" as="font" type="font/woff" crossorigin />
+  <script>
+  var _rcLoaded = false;
+  function _loadRC() {
+    if (_rcLoaded) return; _rcLoaded = true;
+    var s = document.createElement('script');
+    s.src = 'https://www.google.com/recaptcha/api.js';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', _loadRC);
+  </script>
+  <script src="/js/otp.js" defer></script>
 
   <style>
     /* ─── CSS Variables (identical to main site) ─── */
@@ -947,6 +959,12 @@
         <a href="/" class="btn-outline" style="margin:20px auto 0;">Return to Homepage</a>
         </div>
 
+        <!-- ── reCAPTCHA ── -->
+        <div id="recaptcha-wrap" style="display:none;padding:20px 40px 0;">
+          <div class="g-recaptcha" data-sitekey="6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB" style="transform:scale(0.85);transform-origin:left top;"></div>
+          <p id="captcha-error" style="display:none;color:#EF4444;font-size:12px;margin-top:6px;">Please complete the CAPTCHA.</p>
+        </div>
+
         <!-- ── Step navigation ── -->
         <div class="step-nav" id="step-nav">
           <button type="button" class="step-back" id="btn-back" hidden>
@@ -1037,6 +1055,30 @@
   </svg>
 </button>
 
+<script>
+  window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
+  window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
+  window.__sb = {
+    from: function(table) {
+      return {
+        insert: async function(rows) {
+          const res = await fetch(window.__sbUrl + '/rest/v1/' + table, {
+            method: 'POST',
+            headers: {
+              'apikey': window.__sbKey,
+              'Authorization': 'Bearer ' + window.__sbKey,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(rows)
+          });
+          if (!res.ok) throw new Error('Insert failed');
+          return { error: null };
+        }
+      };
+    }
+  };
+</script>
 <script>
 (function () {
   'use strict';
@@ -1189,6 +1231,7 @@
     document.querySelectorAll('.form-step').forEach(function (el) { el.classList.remove('active'); });
     var target = document.getElementById('step-' + step);
     if (target) target.classList.add('active');
+    document.getElementById('recaptcha-wrap').style.display = step === totalSteps ? 'block' : 'none';
     btnBack.hidden = step === 1;
     btnNext.textContent = step === totalSteps ? 'Send It' : 'Continue';
     if (step === totalSteps) {
@@ -1283,13 +1326,7 @@
     var payload = getPayload();
 
     try {
-      /* Pipedream webhook — replace URL with your actual endpoint */
-      var webhookUrl = 'https://eokuvlpfuv4c7pk.m.pipedream.net';
-      await fetch(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+      await window.__sb.from('feedback').insert([payload]);
     } catch (err) {
       console.warn('Feedback submission warning:', err);
       /* Fail silently — still show success to user */
@@ -1321,12 +1358,32 @@
   }
 
   /* Next / Back */
-  btnNext.addEventListener('click', function () {
+  btnNext.addEventListener('click', async function () {
     if (!validateStep(currentStep)) return;
     if (currentStep < totalSteps) {
+      /* Trigger email OTP after Step 1 if email provided */
+      if (currentStep === 1) {
+        var emailVal = document.getElementById('fb-email').value.trim();
+        if (emailVal && window.SQOtp) {
+          window.SQOtp.verifyEmail(emailVal);
+        }
+      }
       currentStep++;
       showStep(currentStep);
     } else {
+      /* reCAPTCHA check */
+      var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
+      if (!captchaVal) {
+        document.getElementById('captcha-error').style.display = 'block';
+        return;
+      }
+      document.getElementById('captcha-error').style.display = 'none';
+      /* Email OTP check — only if email was provided */
+      var emailVal = document.getElementById('fb-email').value.trim();
+      if (emailVal && window.SQOtp && !window.SQOtp.isEmailVerified()) {
+        window.SQOtp.verifyEmail(emailVal);
+        return;
+      }
       submitFeedback();
     }
   });
