@@ -511,7 +511,12 @@
 
     isEmailVerified: function () { return state.emailVerified; },
     isPhoneVerified: function () { return state.phoneVerified; },
-    isBothVerified: function () { return state.emailVerified; }
+    isBothVerified: function () { return state.emailVerified; },
+    verifyEmail: function (email) {
+      injectStyles();
+      injectModal();
+      openModal('email', email);
+    }
   };
 
 })();
