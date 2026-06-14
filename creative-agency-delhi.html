@@ -1773,6 +1773,16 @@
 .iti input#phone:focus {
   box-shadow: none !important;
 }
+.iti input#phone:-webkit-autofill,
+.iti input#phone:-webkit-autofill:hover,
+.iti input#phone:-webkit-autofill:focus,
+.iti input#phone:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--warmgray) inset !important;
+  -webkit-border-radius: 0 999px 999px 0 !important;
+  border-radius: 0 999px 999px 0 !important;
+  -webkit-text-fill-color: var(--textprimary) !important;
+}
+.iti { overflow: hidden; }
 .iti__arrow {
   border-top-color: var(--textsecondary);
 }
@@ -3083,11 +3093,7 @@ We work with businesses that are serious about their positioning, communication,
     initCountryCityMapping('country-location', 'city');
     initRobustITI('phone').then(function(instance) {
       window.iti = instance;
-      SQOtp.init({
-        emailInputId: 'email',
-        phoneInputId:  'phone',
-        submitBtnId:   'form-submit-btn'
-      });
+      /* OTP auto-triggered on submit — no manual verify button needed */
     }).catch(function(e) { console.error('ITI Init failed', e); });
   });
 
@@ -3179,8 +3185,9 @@ document.querySelectorAll('#contact-form .form-input').forEach(function(field) {
     e.preventDefault();
     if (submitted) return;
 if (!validateForm(form)) { setState('error', 'Please fill in all required fields.'); return; }
-if (window.SQOtp && !window.SQOtp.isBothVerified()) {
-  setState('error', 'Please verify your email and phone number before submitting.');
+var emailVal = document.getElementById('email').value.trim();
+if (emailVal && window.SQOtp && !window.SQOtp.isEmailVerified()) {
+  window.SQOtp.verifyEmail(emailVal);
   return;
 }
 var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
