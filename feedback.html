@@ -1245,15 +1245,16 @@
     }
     updateProgress(step);
 
-    /* Smooth scroll to form card on step change */
-    var card = document.getElementById('form-card');
-    if (card) {
-      var top = card.getBoundingClientRect().top + window.scrollY - 140;
-      window.scrollTo({ top: top, behavior: 'smooth' });
+    /* Smooth scroll to form card on step change (skip on initial load) */
+    if (step > 1 || currentStep > 1) {
+      var card = document.getElementById('form-card');
+      if (card) {
+        var top = card.getBoundingClientRect().top + window.scrollY - 140;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
     }
   }
 
-  /* Validation helpers */
   function showError(id, msg) {
     var el = document.getElementById(id);
     if (el) { el.textContent = msg || el.textContent; el.classList.add('visible'); }
