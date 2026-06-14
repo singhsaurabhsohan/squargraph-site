@@ -1140,6 +1140,15 @@
     .form-input::placeholder {
       color: #8A8580;
     }
+    .form-input:-webkit-autofill,
+    .form-input:-webkit-autofill:hover,
+    .form-input:-webkit-autofill:focus,
+    .form-input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 1000px var(--warmgray) inset !important;
+      -webkit-border-radius: 999px !important;
+      border-radius: 999px !important;
+      -webkit-text-fill-color: var(--textprimary) !important;
+    }
     .form-input:focus { border-color: var(--accentmuted); }
     .form-input.error { border-color: #EF4444; }
     .field-error {
