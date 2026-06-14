@@ -43,7 +43,7 @@
 
     /* ─── Reset ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-weight: 400; }
+    html { -webkit-font-smoothing: antialiased; overflow-x: hidden; font-weight: 400; }
     body {
       font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--textprimary);
@@ -657,6 +657,9 @@
       .hero-anim-1, .hero-anim-2, .hero-anim-3, .hero-anim-4 { animation: none; opacity: 1; transform: none; }
       .hero-accent-line { animation: none; transform: none; }
     }
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
   </style>
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');</script>
 </head>
@@ -1086,6 +1089,10 @@
 <script>
 (function () {
   'use strict';
+
+  /* ── Force scroll to top on load ── */
+  if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
+  window.scrollTo(0, 0);
 
   /* ── Nav scroll ── */
   var nav = document.getElementById('nav');
