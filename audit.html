@@ -1148,6 +1148,16 @@
   .iti input#contact-phone:focus {
     box-shadow: none !important;
   }
+  .iti input#contact-phone:-webkit-autofill,
+  .iti input#contact-phone:-webkit-autofill:hover,
+  .iti input#contact-phone:-webkit-autofill:focus,
+  .iti input#contact-phone:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--surface) inset !important;
+    -webkit-border-radius: 0 999px 999px 0 !important;
+    border-radius: 0 999px 999px 0 !important;
+    -webkit-text-fill-color: var(--text) !important;
+  }
+  .iti { overflow: hidden; }
   .iti__arrow {
     border-top-color: var(--muted);
   }
@@ -2317,8 +2327,9 @@
   
     if (!validateStep(TOTAL_STEPS)) return;
 
-    if (window.SQOtp && !window.SQOtp.isBothVerified()) {
-      alert('Please verify your email and phone number before submitting.');
+    var emailVal = document.getElementById('contact-email').value.trim();
+    if (emailVal && window.SQOtp && !window.SQOtp.isEmailVerified()) {
+      window.SQOtp.verifyEmail(emailVal);
       return;
     }
 
@@ -2538,11 +2549,7 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
     initRobustITI('contact-phone').then(function(instance) {
       window.itiAudit = instance;
       window.iti = instance;
-      SQOtp.init({
-        emailInputId: 'contact-email',
-        phoneInputId:  'contact-phone',
-        submitBtnId:   'btn-submit'
-      });
+      /* OTP auto-triggered on submit — no manual verify button needed */
     }).catch(function(e) { console.error('ITI Init failed', e); });
   });
 </script>
