@@ -360,6 +360,10 @@
     .sidebar-stat-label {
       font-size: 13px; color: var(--textsecondary); line-height: 1.4;
     }
+    @media (max-width: 540px) {
+      .sidebar-stat { flex-direction: column; gap: 6px; align-items: flex-start; }
+      .sidebar-stat-num { min-width: unset; word-break: break-word; }
+    }
 
     /* ── Form card ── */
     .form-card {
