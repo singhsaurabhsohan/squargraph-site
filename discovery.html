@@ -32,15 +32,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'" />
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js" defer></script>
 
-  <!-- Razorpay -->
-  <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
-  <!-- reCAPTCHA -->
-  <script>
-  var _rcLoaded = false;
-  function _loadRC() { if(_rcLoaded) return; _rcLoaded=true; var s=document.createElement('script'); s.src='https://www.google.com/recaptcha/api.js'; s.async=true; s.defer=true; document.head.appendChild(s); }
-  var _rcObs = new IntersectionObserver(function(entries){ if(entries[0].isIntersecting){ _loadRC(); _rcObs.disconnect(); } },{ rootMargin:'200px' });
-  </script>
-
   <link rel="stylesheet" href="/assets/css/pages/discovery.css">
 </head>
 <body>
@@ -365,174 +356,22 @@
 </div>
 
 <script src="/js/otp.js"></script>
-<!-- ── SUPABASE CONFIG ── -->
-<script>
-  window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
-  window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
-  window.__sb = {
-    from: function(table) {
-      return {
-        insert: async function(rows) {
-          const res = await fetch(window.__sbUrl + '/rest/v1/' + table, {
-            method: 'POST',
-            headers: {
-              'apikey': window.__sbKey,
-              'Authorization': 'Bearer ' + window.__sbKey,
-              'Content-Type': 'application/json',
-              'Prefer': 'return=minimal'
-            },
-            body: JSON.stringify(rows)
-          });
-          if (!res.ok) throw new Error('Insert failed: ' + res.status);
-          return { error: null };
-        }
-      };
-    }
-  };
-</script>
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/animations.js"></script>
+<script src="/assets/js/interactions.js"></script>
+<script src="/assets/js/forms.js"></script>
 
 <script>
 (function(){
   'use strict';
 
-  /* ── Nav scroll ── */
-  var nav = document.getElementById('nav');
-  window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive:true });
-
-  /* ── Mobile menu ── */
-  var mobToggle = document.getElementById('mob-toggle');
-  var mobMenu   = document.getElementById('mob-menu');
-  var menuOpen  = false;
-  mobMenu.addEventListener('touchstart', function(){}, {passive: true});
-  mobToggle.addEventListener('click', function() {
-    menuOpen = !menuOpen;
-    mobToggle.classList.toggle('open', menuOpen);
-    mobToggle.setAttribute('aria-expanded', String(menuOpen));
-    mobToggle.setAttribute('aria-label', menuOpen ? 'Close navigation menu' : 'Open navigation menu');
-    mobMenu.classList.toggle('open', menuOpen);
-    if (menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert', ''); }
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-  });
-  window.closeMob = function() {
-    menuOpen = false;
-    mobToggle.classList.remove('open');
-    mobToggle.setAttribute('aria-expanded', 'false');
-    mobToggle.setAttribute('aria-label', 'Open navigation menu');
-    mobMenu.classList.remove('open');
-    mobMenu.setAttribute('inert', '');
-    document.body.style.overflow = '';
-  };
-
-  mobMenu.addEventListener('touchmove', function(e) {
-    var touch = e.touches[0];
-    var el = document.elementFromPoint(touch.clientX, touch.clientY);
-    mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
-    if (el && el.tagName === 'A' && mobMenu.contains(el)) {
-      el.classList.add('finger-active');
-    }
-  }, { passive: true });
-
-  mobMenu.addEventListener('touchend', function() {
-    mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
-  }, { passive: true });
-  document.addEventListener('click', function(e) {
-    if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
-      closeMob();
-    }
-  });
-  /* ── Scroll reveal ── */
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold:.1, rootMargin:'0px 0px -40px 0px' });
-  document.querySelectorAll('.scroll-reveal').forEach(function(el){ obs.observe(el); });
-
-  /* ── City data ── */
-  var CITY_DATA = {
-    'India':['Ahmedabad','Bengaluru','Chennai','Delhi','Gurugram','Hyderabad','Jaipur','Kolkata','Mumbai','Noida','Pune','Surat','Other'],
-    'UAE':['Abu Dhabi','Dubai','Sharjah','Other'],
-    'USA':['Austin','Chicago','Los Angeles','Miami','New York','San Francisco','Seattle','Other'],
-    'UK':['Birmingham','Edinburgh','Leeds','London','Manchester','Other'],
-    'Singapore':['Singapore'],
-    'Australia':['Brisbane','Melbourne','Perth','Sydney','Other'],
-    'Canada':['Calgary','Montreal','Toronto','Vancouver','Other'],
-    'Germany':['Berlin','Frankfurt','Hamburg','Munich','Other'],
-    'France':['Lyon','Marseille','Paris','Other'],
-    'Japan':['Osaka','Tokyo','Other']
-  };
-  function initCountryCityMapping(countryId, cityId){
-    var countryEl = document.getElementById(countryId);
-    var cityEl = document.getElementById(cityId);
-    var textEl = document.getElementById(cityId + '-text');
-    if(!countryEl || !cityEl) return;
-    countryEl.addEventListener('change', function(){
-      var country = this.value;
-      var cities = CITY_DATA[country] || [];
-      cityEl.innerHTML = '';
-      if(!country || !cities.length){ cityEl.style.display='none'; if(textEl){ textEl.style.display='block'; textEl.value=''; } return; }
-      var ph = document.createElement('option'); ph.value=''; ph.disabled=true; ph.selected=true; ph.textContent='Select city'; cityEl.appendChild(ph);
-      cities.forEach(function(c){ var o=document.createElement('option'); o.value=c; o.textContent=c; cityEl.appendChild(o); });
-      cityEl.style.display='block'; if(textEl){ textEl.style.display='none'; textEl.value=''; }
-    });
-    if(cityEl){ cityEl.addEventListener('change', function(){
-      if(!textEl) return;
-      if(this.value==='Other'){ textEl.style.display='block'; textEl.focus(); } else { textEl.style.display='none'; textEl.value=''; }
-    }); }
-  }
-
-  /* ── ITI init ── */
-  var discoveryIti = null;
-  function initITI(){
-    if(typeof window.intlTelInput !== 'function') return setTimeout(initITI, 100);
-    var input = document.getElementById('discovery-phone');
-    if(!input) return;
-    discoveryIti = window.intlTelInput(input, {
-      initialCountry: 'in',
-      separateDialCode: true,
-      preferredCountries: ['in','ae','us','gb','sg'],
-      utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
-    });
-    window.iti = discoveryIti;
-    /* OTP auto-triggered on submit — no manual verify button needed */
-  }
-
   document.addEventListener('DOMContentLoaded', function(){
-    initCountryCityMapping('discovery-country', 'discovery-city');
-    initITI();
+    window.SQ.initCountryCity('discovery-country', 'discovery-city');
+    window.SQ.initITI('discovery-phone').then(function(inst){ window.iti = inst; });
     var rc = document.querySelector('#discovery-captcha-wrap .g-recaptcha');
-    if(rc) _rcObs.observe(rc);
+    if(rc){ var rcObs=new IntersectionObserver(function(entries){ if(entries[0].isIntersecting){ window.SQ.loadRecaptcha(); rcObs.disconnect(); } },{rootMargin:'200px'}); rcObs.observe(rc); }
   });
-
-  /* ── Supabase insert ── */
-  async function insertLead(payload){
-    if(!window.__sb) throw new Error('Supabase not ready');
-    var result = await window.__sb.from('leads').insert([payload]);
-    if(result.error) throw result.error;
-    return true;
-  }
-
-  /* ── Razorpay ── */
-  function openRazorpay(leadName, leadEmail, leadPhone, onSuccess){
-    var options = {
-      key: 'rzp_live_SvayEzczzvrE7f',
-      amount: 299900,
-      currency: 'INR',
-      name: 'SQUARGRAPH™ Studios',
-      description: 'Discovery Session™ – 30-min founder-led strategy session',
-      image: '/logo.webp',
-      prefill: { name: leadName, email: leadEmail, contact: leadPhone },
-      notes: { product: 'Discovery Session™' },
-      theme: { color: '#6B5DB8' },
-      handler: function(response){ onSuccess(response); }
-    };
-    function launch(){
-      try { new Razorpay(options).open(); }
-      catch(e){ console.error('Razorpay error', e); alert('Payment window could not open. Please try again.'); }
-    }
-    if(typeof Razorpay !== 'undefined'){ launch(); }
-    else {
-      var s = document.createElement('script'); s.src='https://checkout.razorpay.com/v1/checkout.js'; s.onload=launch; document.head.appendChild(s);
-    }
-  }
 
   /* ── Form validation ── */
   function getVal(id){ return (document.getElementById(id)||{}).value || ''; }
@@ -559,7 +398,7 @@
     });
     // Phone
     var phoneInput = document.getElementById('discovery-phone');
-    var phoneOk = phoneInput && phoneInput.value.trim().length > 0 && (!discoveryIti || discoveryIti.isValidNumber());
+    var phoneOk = phoneInput && phoneInput.value.trim().length > 0 && (!window.iti || window.iti.isValidNumber());
     if(phoneInput){ phoneInput.classList.toggle('has-error', !phoneOk); }
     var phoneErr = document.getElementById('phone-err');
     if(phoneErr){ phoneErr.classList.toggle('show', !phoneOk); }
@@ -595,7 +434,7 @@
       var cityVal = (cityEl && cityEl.style.display !== 'none') ? cityEl.value : (cityTextEl ? cityTextEl.value : '');
       var payload = {
         name: getVal('d-name'),
-        phone: discoveryIti ? discoveryIti.getNumber() : getVal('discovery-phone'),
+        phone: window.iti ? window.iti.getNumber() : getVal('discovery-phone'),
         email: getVal('d-email'),
         company: getVal('d-company'),
         country: getVal('discovery-country'),
@@ -609,20 +448,13 @@
         message: (getVal('d-challenge') + '\n\nGoal: ' + getVal('d-goal')).trim()
       };
       try {
-        await insertLead(payload);
+        await window.__sb.from('leads').insert([payload]);
         submitBtn.innerHTML = 'Opening payment…';
-        openRazorpay(payload.name, payload.email, payload.phone, function(response){
-          var overlay = document.getElementById('payment-success-overlay');
-          var pidEl = document.getElementById('success-payment-id');
-          if(pidEl) pidEl.textContent = 'Payment ID: ' + response.razorpay_payment_id;
-          if(overlay){ overlay.style.display='flex'; document.body.style.overflow='hidden'; overlay.scrollTop=0; }
-          submitBtn.innerHTML = '✓ Payment confirmed';
-          submitBtn.disabled = true;
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({ event:'discovery_payment_success', payment_id: response.razorpay_payment_id });
-        });
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Pay ₹2,999 &amp; Book Session →';
+        window.SQ.openRazorpay('discovery');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event:'discovery_payment_success' });
+        submitBtn.innerHTML = '✓ Payment confirmed';
+        submitBtn.disabled = true;
       } catch(err){
         console.error('[SQUARGRAPH] Error:', err);
         submitBtn.disabled = false;
@@ -631,19 +463,7 @@
         setTimeout(function(){ submitBtn.innerHTML='Pay ₹2,999 &amp; Book Session →'; submitBtn.style.background=''; }, 4000);
       }
     });
-    // Clear errors on input
-    form.querySelectorAll('.form-input').forEach(function(el){
-      el.addEventListener('input', function(){ el.classList.remove('has-error'); var err=el.closest('.field')&&el.closest('.field').querySelector('.field-error'); if(err) err.classList.remove('show'); });
-    });
   }
-
-  // Close overlay on Escape
-  document.addEventListener('keydown', function(e){
-    if(e.key==='Escape'){
-      var overlay = document.getElementById('payment-success-overlay');
-      if(overlay && overlay.style.display!=='none'){ overlay.style.display='none'; document.body.style.overflow=''; }
-    }
-  });
 })();
 </script>
 </body>
