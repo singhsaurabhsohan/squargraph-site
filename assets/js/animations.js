@@ -9,7 +9,7 @@ window.SQ.initReveal = function () {
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.fade-up').forEach(function (el) { revealObs.observe(el); });
+  document.querySelectorAll('.fade-up, .scroll-reveal').forEach(function (el) { revealObs.observe(el); });
 };
 
 window.SQ.initDivider = function () {
