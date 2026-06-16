@@ -1,7 +1,6 @@
 (function() {
   'use strict';
 
-  // Filter
   var filterBtns = document.querySelectorAll('.filter-btn');
   var cards = document.querySelectorAll('.post-card');
 
@@ -23,7 +22,6 @@
   var nlCaptcha = document.querySelector('#newsletter-form .g-recaptcha');
   if(nlCaptcha){ var rcObs=new IntersectionObserver(function(entries){ if(entries[0].isIntersecting){ window.SQ.loadRecaptcha(); rcObs.disconnect(); } },{rootMargin:'200px'}); rcObs.observe(nlCaptcha); }
 
-  // Newsletter form
   var nlForm = document.getElementById('newsletter-form');
   if (nlForm) {
     nlForm.addEventListener('submit', function(e) {
