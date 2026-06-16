@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="/fonts/fonts.css" />
+
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+
   <link rel="stylesheet" href="/assets/css/pages/blog.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thinking · SQUARGRAPH™</title>
@@ -52,13 +59,13 @@
 
 <!-- Mobile menu -->
 <div id="mob-menu" role="dialog" aria-modal="true" inert>
-  <a href="/" onclick="closeMob()">Home</a>
-  <a href="/#work" onclick="closeMob()">Work</a>
-  <a href="/#Engagements" onclick="closeMob()">Engagements</a>
-  <a href="/#capabilities" onclick="closeMob()">Capabilities</a>
-  <a href="/blog" onclick="closeMob()">Thinking</a>
-  <a href="/#studio" onclick="closeMob()">Studio</a>
-  <a href="/#contact" onclick="closeMob()">Let's Talk</a>
+  <a href="/" data-close-menu>Home</a>
+  <a href="/#work" data-close-menu>Work</a>
+  <a href="/#Engagements" data-close-menu>Engagements</a>
+  <a href="/#capabilities" data-close-menu>Capabilities</a>
+  <a href="/blog" data-close-menu>Thinking</a>
+  <a href="/#studio" data-close-menu>Studio</a>
+  <a href="/#contact" data-close-menu>Let's Talk</a>
   <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
 </div>
 
@@ -352,7 +359,7 @@
       <div class="footer-logo">
   <img src="/logo.webp" alt="SQUARGRAPH Studios" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" />
 </div>
-      <p class="footer-tagline">Brand strategy, campaign architecture, and digital experiences for businesses that take their market position seriously.</p>
+      <p class="footer-tagline">An Independent Creative Intelligence Hub™ helping ambitious brands build perception, competitive advantage, and enduring value.</p>
       <p class="footer-philosophy">
   Perception shapes value.<br/>We build what controls it.
 </p>
@@ -426,53 +433,7 @@
 <script src="/assets/js/interactions.js"></script>
 <script src="/assets/js/forms.js"></script>
 
-<script>
-(function() {
-  'use strict';
-
-  // Filter
-  var filterBtns = document.querySelectorAll('.filter-btn');
-  var cards = document.querySelectorAll('.post-card');
-
-  filterBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      filterBtns.forEach(function(b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      var filter = btn.getAttribute('data-filter');
-      cards.forEach(function(card) {
-        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  var nlCaptcha = document.querySelector('#newsletter-form .g-recaptcha');
-  if(nlCaptcha){ var rcObs=new IntersectionObserver(function(entries){ if(entries[0].isIntersecting){ window.SQ.loadRecaptcha(); rcObs.disconnect(); } },{rootMargin:'200px'}); rcObs.observe(nlCaptcha); }
-
-  // Newsletter form
-  var nlForm = document.getElementById('newsletter-form');
-  if (nlForm) {
-    nlForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var emailEl = document.getElementById('nl-email');
-      if (!emailEl.value.trim() || !emailEl.value.includes('@')) {
-        emailEl.style.borderColor = '#EF4444';
-        return;
-      }
-      emailEl.style.borderColor = '';
-      var btn = nlForm.querySelector('.newsletter-btn');
-      btn.textContent = 'Subscribed ✓';
-      btn.style.background = '#1fad4e';
-      btn.disabled = true;
-      emailEl.disabled = true;
-    });
-  }
-
-})();
-</script>
+<script src="/assets/js/blog.js"></script>
 
 <!-- Lazy GTM -->
 <script>
