@@ -24,8 +24,7 @@
 <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');</script>
     <!-- End Google Tag Manager -->
-    <style>
-    </style>
+   
     <link rel="icon" type="image/png" href="/favicon.png" />
     <script>
   var _rcLoaded = false;
@@ -1263,109 +1262,9 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
     }).catch(function(e) { console.error('ITI Init failed', e); });
   });
 </script>
-  
-  <script>
-  window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
-  
-  window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
-  
-  window.__sb = {
-    from: function(table){
-      return {
-        insert: async function(rows){
-  
-          const res = await fetch(
-            window.__sbUrl + '/rest/v1/' + table,
-            {
-              method: 'POST',
-              headers: {
-                'apikey': window.__sbKey,
-                'Authorization': 'Bearer ' + window.__sbKey,
-                'Content-Type': 'application/json',
-                'Prefer': 'return=minimal'
-              },
-              body: JSON.stringify(rows)
-            }
-          );
-  
-          if(!res.ok){
-            throw new Error('Insert failed');
-          }
-  
-          return { error:null };
-  
-        }
-      };
-    }
-  };
-  </script>
-  <script>
-    
-  function updateCityDropdown(countrySelectId, citySelectId) {
-    var countryEl = document.getElementById(countrySelectId);
-    var cityEl = document.getElementById(citySelectId);
-    if (!countryEl || !cityEl) return;
-  
-    countryEl.addEventListener('change', function() {
-      var country = this.value;
-      var cities = CITY_DATA[country] || [];
-  
-      // Reset city dropdown
-      cityEl.innerHTML = '';
-  
-      if (!country || cities.length === 0) {
-        var opt = document.createElement('option');
-        opt.value = '';
-        opt.textContent = 'Enter city name';
-        cityEl.appendChild(opt);
-        cityEl.style.display = 'none';
-        // Show text input instead
-        var textInput = document.getElementById(citySelectId + '-text');
-        if (textInput) textInput.style.display = 'block';
-        return;
-      }
-  
-      // Add placeholder
-      var placeholder = document.createElement('option');
-      placeholder.value = '';
-      placeholder.disabled = true;
-      placeholder.selected = true;
-      placeholder.textContent = 'Select city';
-      cityEl.appendChild(placeholder);
-  
-      // Add cities
-      cities.forEach(function(city) {
-        var opt = document.createElement('option');
-        opt.value = city;
-        opt.textContent = city;
-        cityEl.appendChild(opt);
-      });
-  
-      // Add Other option
-      var other = document.createElement('option');
-      other.value = 'Other';
-      other.textContent = 'Other';
-      cityEl.appendChild(other);
-  
-      cityEl.style.display = 'block';
-      var textInput = document.getElementById(citySelectId + '-text');
-      if (textInput) textInput.style.display = 'none';
-    });
-  
-    // Handle "Other" city selection → show text input
-    cityEl.addEventListener('change', function() {
-      var textInput = document.getElementById(citySelectId + '-text');
-      if (!textInput) return;
-      if (this.value === 'Other') {
-        textInput.style.display = 'block';
-        textInput.focus();
-      } else {
-        textInput.style.display = 'none';
-        textInput.value = '';
-      }
-    });
-  }
-  </script>
+
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/core.js"></script>
 <!-- ══════════════
      FOOTER
 ══════════════ -->
