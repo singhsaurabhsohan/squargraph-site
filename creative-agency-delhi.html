@@ -42,59 +42,37 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'" />
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js"></script>
 
-  <!-- Fonts -->
-  <style>
-  </style>
-
   <link rel="stylesheet" href="/assets/css/pages/creative-agency-delhi.css">
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
   <style>
-    /* intl-tel-input overrides — phone field only */
- .iti {
-  display: block;
-  width: 100%;
-  position: relative;
-  border-radius: 999px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  overflow: visible;
-  transition: border-color var(--transition), box-shadow var(--transition);
-}
-.iti:focus-within {
-  border-color: var(--accentmuted);
-}
+/* Page-specific ITI overrides */
 .iti__flag-container {
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
+  top: 0; left: 0; bottom: 0;
   border-radius: 0;
 }
-.iti__selected-flag {
-  height: 48px !important;
-  background: transparent !important;
-  border: none !important;
-  padding: 0 10px 0 14px;
-  min-width: 72px;
-  display: flex;
-  align-items: center;
+.iti__country-list {
+  border-radius: 16px !important;
+  border: 1px solid var(--bordergray) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12) !important;
+  font-family: 'Satoshi', sans-serif !important;
+  font-size: 13px !important;
+  max-height: 280px !important;
+  overflow-y: auto !important;
+  background: #fff !important;
+  padding: 8px 0 !important;
+  width: max-content;
+  min-width: 280px;
 }
+.iti__country-name { font-weight: 500 !important; color: var(--textprimary); }
+.iti__dial-code { font-size: 12px !important; margin-left: 8px !important; opacity: 0.7; color: var(--textsecondary); }
 .iti input#phone {
-  border: none !important;
-  background: transparent !important;
-  height: 48px;
-  width: 100% !important;
-  padding-left: 86px !important;
-  font-family: 'Satoshi', sans-serif;
-  font-size: 14px;
-  color: var(--textprimary);
-  outline: none;
-  box-shadow: none !important;
-  border-radius: 999px !important;
+  border: none !important; background: transparent !important;
+  height: 48px; width: 100% !important; padding-left: 86px !important;
+  font-family: 'Satoshi', sans-serif; font-size: 14px;
+  color: var(--textprimary); outline: none; box-shadow: none !important;
 }
-.iti input#phone:focus {
-  box-shadow: none !important;
-}
+.iti input#phone:focus { box-shadow: none !important; }
 .iti input#phone:-webkit-autofill,
 .iti input#phone:-webkit-autofill:hover,
 .iti input#phone:-webkit-autofill:focus,
@@ -104,136 +82,22 @@
   border-radius: 0 999px 999px 0 !important;
   -webkit-text-fill-color: var(--textprimary) !important;
 }
-.iti { overflow: hidden; }
-.iti__arrow {
-  border-top-color: var(--textsecondary);
+#country-location + .iti,
+#country-location ~ .iti,
+.iti:has(#country-location) { display: none !important; }
+#country-location {
+  width: 100%; font-family: 'Satoshi', sans-serif; font-size: 14px;
+  color: var(--textprimary); background: var(--warmgray);
+  border: 1px solid var(--bordergray); border-radius: 999px;
+  padding: 13px 44px 13px 20px; min-height: 48px;
+  outline: none; cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 20px center;
+  transition: border-color .25s;
 }
-    .iti__country.iti__highlight { background: var(--accentlight); }
-    .iti__search-input {
-      font-family: 'Satoshi', sans-serif;
-      font-size: 13px;
-      border-radius: 8px;
-      border: 1px solid var(--bordergray);
-      padding: 8px 12px;
-      width: calc(100% - 24px);
-      margin: 8px 12px 4px;
-      display: block;
-    }
-    .iti__dial-code { color: var(--textsecondary); }
-    /* Prevent ITI from wrapping the country select */
-    #country-location + .iti,
-    #country-location ~ .iti,
-    .iti:has(#country-location) { display: none !important; }
-    /* Country select: fully self-contained styles, no .form-input inheritance */
-   #country-location {
-      width: 100%;
-      font-family: 'Satoshi', sans-serif;
-      font-size: 14px;
-      color: var(--textprimary);
-      background: var(--warmgray);
-      border: 1px solid var(--bordergray);
-      border-radius: 999px;
-      padding: 13px 44px 13px 20px;
-      min-height: 48px;
-      outline: none;
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 20px center;
-      transition: border-color .25s;
-    }
-    #country-location:focus {
-      border-color: var(--accentmuted);
-    }
-    #country-location option { background: #fff; }
-    #country-location + .iti,
-    #country-location ~ .iti,
-    .iti:has(#country-location) { display: none !important; }
-    .submit-btn {
-      margin-top: 0 !important;
-    }
-/* ── STICKY BOTTOM BANNER ── */
-#sticky-banner {
-  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-  z-index: 9999; display: flex; align-items: center; gap: 0;
-  background: var(--textprimary); color: #fff;
-  border-radius: 999px; padding: 14px 20px 14px 28px;
-  box-shadow: 0 8px 32px rgba(26,23,20,.18);
-  font-family: 'Satoshi', sans-serif; white-space: nowrap;
-  transition: opacity .3s, transform .3s;
-}
-#sticky-banner.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(12px); }
-.banner-text { display: flex; flex-direction: column; gap: 1px; margin-right: 16px; }
-.banner-title { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; color: #fff; }
-.banner-sub { font-size: 11px; color: rgba(255,255,255,.65); }
-.banner-cta { font-size: 12px; font-weight: 600; color: var(--textprimary); background: #fff; border-radius: 999px; padding: 8px 18px; text-decoration: none; transition: background .2s; white-space: nowrap; }
-.banner-cta:hover { background: var(--accentlight); color: var(--accent); }
-.banner-close { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.12); border: none; color: #fff; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-left: 10px; transition: background .2s; flex-shrink: 0; line-height: 1; }
-.banner-close:hover { background: rgba(255,255,255,.22); }
-@media (max-width: 540px) {
-  #sticky-banner { bottom: 12px; left: 12px; right: 12px; transform: none; white-space: normal; padding: 10px 12px 10px 16px; border-radius: 16px; gap: 0; }
-  #sticky-banner.hidden { transform: translateY(12px); }
-  .banner-text { margin-right: 10px; }
-  .banner-title { font-size: 12px; }
-  .banner-sub { font-size: 10px; }
-  .banner-cta { font-size: 11px; padding: 6px 13px; }
-  .banner-close { width: 24px; height: 24px; font-size: 14px; margin-left: 8px; }
-}
-#ai-chat-panel {
-  display: none;
-  position: fixed;
-  bottom: 96px;
-  right: 20px;
-  width: 320px;
-  max-width: calc(100vw - 40px);
-  height: 420px;
-  max-height: calc(100vh - 140px);
-  background: #111;
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 16px;
-  box-shadow: 0 12px 40px rgba(0,0,0,.4);
-  z-index: 9997;
-  flex-direction: column;
-  overflow: hidden;
-  font-family: inherit;
-}
-#ai-chat-panel.open { display: flex; }
-#ai-chat-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 16px; background: #1a1a1a; color: #fff;
-  font-size: 14px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,.06);
-}
-#ai-chat-close { background: none; border: none; color: #999; font-size: 14px; cursor: pointer; }
-#ai-chat-close:hover { color: #fff; }
-#ai-chat-messages {
-  flex: 1; overflow-y: auto; padding: 12px 14px;
-  display: flex; flex-direction: column; gap: 10px;
-  font-size: 13px; line-height: 1.5; color: #ddd;
-}
-.ai-msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; word-wrap: break-word; }
-.ai-msg.user { align-self: flex-end; background: var(--accent); color: #fff; }
-.ai-msg.bot { align-self: flex-start; background: #222; color: #eee; }
-.ai-msg.bot.loading { color: #888; font-style: italic; }
-#ai-chat-input-row { display: flex; border-top: 1px solid rgba(255,255,255,.06); }
-#ai-chat-input {
-  flex: 1; background: #1a1a1a; border: none; color: #fff;
-  padding: 12px; font-size: 13px; outline: none;
-}
-#ai-chat-send {
-  background: var(--accent); border: none; color: #fff; width: 44px;
-  font-size: 16px; cursor: pointer;
-}
-#ai-chat-send:hover { background: var(--accentmuted); }
-#ai-chat-wa-fallback {
-  display: block; text-align: center; padding: 8px; font-size: 11px;
-  color: var(--accentmuted); text-decoration: none; border-top: 1px solid rgba(255,255,255,.06);
-}
-@media (max-width: 768px) {
-  #ai-chat-panel { bottom: 84px; right: 12px; left: 12px; width: auto; }
-}
+#country-location:focus { border-color: var(--accentmuted); }
+#country-location option { background: #fff; }
+.submit-btn { margin-top: 0 !important; }
 </style>
 </head>
 <body>
@@ -1099,489 +963,8 @@ We work with businesses that are serious about their positioning, communication,
   <a href="/discovery" class="banner-cta">Book Discovery Session</a>
   <button class="banner-close" onclick="document.getElementById('sticky-banner').classList.add('hidden')" aria-label="Close">&times;</button>
 </div>
-<script>
-(function() {
-  'use strict';
-
-  var nav = document.getElementById('nav');
-  var btt = document.getElementById('back-to-top');
-  btt.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-  var ticking = false;
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(function() {
-        nav.classList.toggle('scrolled', window.scrollY > 60);
-        btt.classList.toggle('visible', window.scrollY > 300);
-        setActiveNav();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-
-  var mobToggle = document.getElementById('mob-toggle');
-  var mobMenu = document.getElementById('mob-menu');
-  var menuOpen = false;
-  mobMenu.addEventListener('touchstart', function(){}, {passive: true});
-  mobToggle.addEventListener('click', function() {
-    menuOpen = !menuOpen;
-    mobToggle.classList.toggle('open', menuOpen);
-    mobToggle.setAttribute('aria-expanded', String(menuOpen));
-    mobToggle.setAttribute('aria-label', menuOpen ? 'Close navigation menu' : 'Open navigation menu');
-    mobMenu.classList.toggle('open', menuOpen);
-    mobMenu.setAttribute('aria-visible', String(!menuOpen));
-    if (menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert', ''); }
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-  });
-  window.closeMob = function() {
-    menuOpen = false;
-    mobToggle.classList.remove('open');
-    mobToggle.setAttribute('aria-expanded', 'false');
-    mobToggle.setAttribute('aria-label', 'Open navigation menu');
-    mobMenu.classList.remove('open');
-    mobMenu.setAttribute('inert', '');
-    document.body.style.overflow = '';
-  };
-
-  mobMenu.addEventListener('touchmove', function(e) {
-    var touch = e.touches[0];
-    var el = document.elementFromPoint(touch.clientX, touch.clientY);
-    mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
-    if (el && el.tagName === 'A' && mobMenu.contains(el)) {
-      el.classList.add('finger-active');
-    }
-  }, { passive: true });
-  mobMenu.addEventListener('touchend', function() {
-    mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
-  }, { passive: true });
-
-  document.addEventListener('click', function(e) {
-    if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
-      closeMob();
-    }
-  });
-
-  var revealObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.fade-up').forEach(function(el) { revealObs.observe(el); });
-
-  var divider = document.getElementById('approach-divider');
-  if (divider) {
-    var divObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { divider.classList.add('visible'); divObs.unobserve(e.target); }
-      });
-    }, { threshold: 0.2 });
-    divObs.observe(divider);
-  }
-  
-  function addDrag(el) {
-    if (!el) return;
-    var isDown = false, startX, scrollLeft;
-    el.addEventListener('mousedown', function(e) {
-      isDown = true; el.style.cursor = 'grabbing';
-      startX = e.pageX - el.getBoundingClientRect().left; scrollLeft = el.scrollLeft;
-    });
-    document.addEventListener('mouseup', function() { isDown = false; el.style.cursor = 'grab'; });
-    el.addEventListener('mousemove', function(e) {
-      if (!isDown) return; e.preventDefault();
-      var x = e.pageX - el.getBoundingClientRect().left;
-      el.scrollLeft = scrollLeft - (x - startX);
-    });
-  }
-  addDrag(document.getElementById('films-strip'));
-  addDrag(document.getElementById('reels-strip'));
-
-  var navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
-  var sections = [];
-  navAnchors.forEach(function(a) {
-    var id = a.getAttribute('href').replace('#', '');
-    var sec = document.getElementById(id);
-    if (sec) sections.push({ el: sec, link: a, top: 0 });
-  });
-  function recalcTops() {
-    sections.forEach(function(s) { s.top = s.el.getBoundingClientRect().top + window.scrollY; });
-  }
-  recalcTops();
-  window.addEventListener('resize', recalcTops, { passive: true });
- function setActiveNav() {
-    var scrollY = window.scrollY + 120;
-    var current = null;
-    sections.forEach(function(s) {
-      if (s.top <= scrollY) current = s;
-    });
-    sections.forEach(function(s) {
-      s.link.classList.toggle('active', s === current);
-    });
-  }
-  setActiveNav();
-
- window.loadVideo = function(posterEl, src) {
-    var iframe = document.createElement('iframe');
-    iframe.src = src;
-    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;display:block;';
-    iframe.allow = 'accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen';
-    iframe.referrerPolicy = 'origin';
-    posterEl.parentNode.appendChild(iframe);
-    posterEl.classList.add('visible');
-  };
-
-  document.querySelectorAll('.intel-card').forEach(function(card) {
-    function open() {
-      var id = 'modal-' + card.getAttribute('data-exploration');
-      var m = document.getElementById(id);
-      if (m) { m.classList.add('open'); document.body.style.overflow = 'visible'; }
-    }
-    card.addEventListener('click', open);
-    card.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
-    });
-  });
-  window.closeModal = function() {
-    document.querySelectorAll('.modal-overlay').forEach(function(m) { m.classList.remove('open'); });
-    document.body.style.overflow = '';
-  };
-  document.querySelectorAll('.modal-overlay').forEach(function(m) {
-    m.addEventListener('click', function(e) { if (e.target === m) window.closeModal(); });
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      window.closeModal();
-      var overlay = document.getElementById('payment-success-overlay');
-      if (overlay) { overlay.style.display = 'none'; document.body.style.overflow = ''; }
-    }
-  });
-
-  var RAZORPAY_PRODUCTS = {
-    discovery: { name: 'Discovery Session™', amount: 299900, description: '30-min founder-led brand strategy session' },
-    audit:     { name: 'Brand Growth Audit™', amount: 999900, description: 'Full digital brand communication & growth audit' },
-    sprint:    { name: 'Brand Foundation Sprint™', amount: 4999900, description: 'Complete brand system in 3 weeks' }
-  };
-  window.openRazorpay = function(productKey) {
-    var product = RAZORPAY_PRODUCTS[productKey];
-    if (!product) return;
-    var RAZORPAY_KEY = 'rzp_live_SvayEzczzvrE7f';
-    var options = {
-      key: RAZORPAY_KEY, amount: product.amount, currency: 'INR',
-      name: 'SQUARGRAPH™ Studios', description: product.description,
-      image: '/logo.webp', prefill: {}, notes: { product: product.name },
-      theme: { color: '#8B7EC8' }, modal: { ondismiss: function() {}, animation: true },
-      handler: function(response) {
-        var overlay = document.getElementById('payment-success-overlay');
-        var pidEl   = document.getElementById('success-payment-id');
-        if (pidEl) pidEl.textContent = 'Payment ID: ' + response.razorpay_payment_id;
-        if (overlay) { overlay.style.display = 'flex'; document.body.style.overflow = 'visible'; overlay.scrollTop = 0; }
-      }
-    };
-    if (typeof Razorpay !== 'undefined') {
-      new Razorpay(options).open();
-    } else {
-      var script = document.createElement('script');
-      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      script.onload = function() { new Razorpay(options).open(); };
-      document.head.appendChild(script);
-    }
-  };
-
-})();
-</script>
 <script src="/js/otp.js"></script>
-<!-- ══════════════
-     FORM HANDLER
-══════════════ -->
-<script>
-(function () {
-  'use strict';
 
-  var SUPABASE_TABLE = 'leads';
-  var form      = document.getElementById('contact-form');
-  var submitBtn = document.getElementById('form-submit-btn');
-  if (!form || !submitBtn) return;
-
-  var submitted = false;
-  var originalLabel = submitBtn.innerHTML;
-
-  function setState(state, message) {
-    switch (state) {
-      case 'loading':
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="spinner"></span>';
-        submitBtn.style.background = '';
-        break;
-      case 'success':
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = message || '✓ Brief received, we\u2019ll respond within 48 hours.';
-        submitBtn.style.background = '#1fad4e';
-        break;
-      case 'error':
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = message || 'Something went wrong, please try again.';
-        submitBtn.style.background = '#EF4444';
-        submitted = false;
-        var formNext = document.querySelector('.form-next');
-        if (formNext) {
-          formNext.innerHTML = 'Having trouble? <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" style="color:var(--accent);border-bottom:1px solid var(--accentmuted);">Send us a WhatsApp instead →</a>';
-        }
-        setTimeout(function () {
-          submitBtn.innerHTML = originalLabel;
-          submitBtn.style.background = '';
-        }, 5000);
-        break;
-      default:
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalLabel;
-        submitBtn.style.background = '';
-    }
-  }
-
-  var CITY_DATA = {
-    'India': ['Ahmedabad','Bengaluru','Chennai','Delhi','Gurugram','Hyderabad','Jaipur','Kolkata','Mumbai','Noida','Pune','Surat','Other'],
-    'UAE': ['Abu Dhabi','Dubai','Sharjah','Other'],
-    'USA': ['Austin','Chicago','Los Angeles','Miami','New York','San Francisco','Seattle','Other'],
-    'UK': ['Birmingham','Edinburgh','Leeds','London','Manchester','Other'],
-    'Singapore': ['Singapore'],
-    'Australia': ['Brisbane','Melbourne','Perth','Sydney','Other'],
-    'Canada': ['Calgary','Montreal','Toronto','Vancouver','Other'],
-    'Germany': ['Berlin','Frankfurt','Hamburg','Munich','Other'],
-    'France': ['Lyon','Marseille','Paris','Other'],
-    'Japan': ['Osaka','Tokyo','Other']
-  };
-
-  function initCountryCityMapping(countryId, cityId) {
-    var countryEl = document.getElementById(countryId);
-    var cityEl    = document.getElementById(cityId);
-    var textEl    = document.getElementById(cityId + '-text');
-    if (!countryEl || !cityEl) return;
-    countryEl.addEventListener('change', function() {
-      var country = this.value;
-      var cities  = CITY_DATA[country] || [];
-      cityEl.innerHTML = '';
-      if (!country || cities.length === 0) {
-        cityEl.style.display = 'none';
-        if (textEl) { textEl.style.display = 'block'; textEl.value = ''; }
-        return;
-      }
-      var ph = document.createElement('option');
-      ph.value = ''; ph.disabled = true; ph.selected = true;
-      ph.textContent = 'Select city';
-      cityEl.appendChild(ph);
-      cities.forEach(function(c) {
-        var o = document.createElement('option');
-        o.value = c; o.textContent = c;
-        cityEl.appendChild(o);
-      });
-      cityEl.style.display = 'block';
-      if (textEl) { textEl.style.display = 'none'; textEl.value = ''; }
-    });
-    cityEl.addEventListener('change', function() {
-      if (!textEl) return;
-      if (this.value === 'Other') { textEl.style.display = 'block'; textEl.focus(); }
-      else { textEl.style.display = 'none'; textEl.value = ''; }
-    });
-  }
-
-  function initRobustITI(inputId) {
-    return new Promise(function(resolve, reject) {
-      var input = document.getElementById(inputId);
-      if (!input) return reject(new Error('Input not found: ' + inputId));
-      function tryInit() {
-        if (typeof window.intlTelInput !== 'function') return reject(new Error('intlTelInput not loaded'));
-        try {
-          var instance = window.intlTelInput(input, {
-            initialCountry: 'in',
-            separateDialCode: true,
-            preferredCountries: ['in', 'ae', 'us', 'gb', 'sg'],
-            utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
-          });
-          resolve(instance);
-        } catch(e) { reject(e); }
-      }
-      if (typeof window.intlTelInput === 'function') { tryInit(); }
-      else {
-        var waited = 0;
-        var poll = setInterval(function() {
-          waited += 50;
-          if (typeof window.intlTelInput === 'function') { clearInterval(poll); tryInit(); }
-          else if (waited > 5000) { clearInterval(poll); reject(new Error('intlTelInput timeout')); }
-        }, 50);
-      }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    initCountryCityMapping('country-location', 'city');
-    initRobustITI('phone').then(function(instance) {
-      window.iti = instance;
-      /* OTP auto-triggered on submit — no manual verify button needed */
-    }).catch(function(e) { console.error('ITI Init failed', e); });
-  });
-
-  function getPayload(formEl) {
-    var raw = Object.fromEntries(new FormData(formEl).entries());
-    return {
-      name:       raw.name      || null,
-      phone: (window.iti ? window.iti.getNumber() : raw.phone) || null,
-      email:      raw.email     || null,
-      company:    raw.company   || null,
-      service:    raw.service   || null,
-      budget:     raw.budget    || null,
-      timeline:   raw.timeline  || null,
-      message:    raw.message   || null,
-      reference:  raw.reference || null,
-      created_at: new Date().toISOString(),
-      source_url: window.location.href,
-country: raw.country || null,
-city: raw.city || null
-    };
-  }
-
-  function validateForm(formEl) {
-    var required = formEl.querySelectorAll('[required]');
-    var valid = true;
-    required.forEach(function(field) {
-      var errContainer = field.closest('form > div') || field.parentNode;
-      var err = errContainer.querySelector('.field-error');
-
-      // Special handling for phone field
-      if (field.id === 'phone' && typeof iti !== 'undefined') {
-        if (!field.value.trim()) {
-          field.classList.add('error');
-          if (err) { err.textContent = 'Please enter your phone number.'; err.classList.add('visible'); }
-          if (valid) field.focus();
-          valid = false;
-        } else if (!iti.isValidNumber()) {
-          field.classList.add('error');
-          if (err) { err.textContent = 'Please enter a valid ' + iti.getSelectedCountryData().name + ' phone number.'; err.classList.add('visible'); }
-          if (valid) field.focus();
-          valid = false;
-        } else {
-          field.classList.remove('error');
-          if (err) err.classList.remove('visible');
-        }
-        return;
-      }
-
-      if (!field.value.trim()) {
-        field.classList.add('error');
-        if (err) err.classList.add('visible');
-        if (valid) field.focus();
-        valid = false;
-      } else {
-        field.classList.remove('error');
-        if (err) err.classList.remove('visible');
-      }
-    });
-    return valid;
-  }
-document.querySelectorAll('#contact-form .form-input').forEach(function(field) {
-    field.addEventListener('input', function() {
-      field.classList.remove('error');
-      var err = field.parentNode.querySelector('.field-error');
-      if (err) err.classList.remove('visible');
-    });
-  });
-  async function submitLead(payload) {
-  if (!window.__sb) {
-    await new Promise(function(resolve, reject) {
-      var waited = 0;
-      var check = setInterval(function() {
-        waited += 100;
-        if (window.__sb) { clearInterval(check); resolve(); }
-        if (waited >= 5000) { clearInterval(check); reject(new Error('Supabase timeout')); }
-      }, 100);
-    });
-  }
-
-  const { error } = await window.__sb
-    .from(SUPABASE_TABLE)
-    .insert([payload]);
-
-  if (error) throw new Error('Insert failed');
-
-  return true;
-}
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    if (submitted) return;
-if (!validateForm(form)) { setState('error', 'Please fill in all required fields.'); return; }
-var emailVal = document.getElementById('email').value.trim();
-if (emailVal && window.SQOtp && !window.SQOtp.isEmailVerified()) {
-  window.SQOtp.verifyEmail(emailVal);
-  return;
-}
-var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
-if (!captchaVal) {
-  document.getElementById('captcha-error').style.display = 'block';
-  return;
-}
-document.getElementById('captcha-error').style.display = 'none';
-submitted = true;
-    setState('loading');
-    try {
-      await submitLead(getPayload(form));
-      console.info('[SQUARGRAPH] Lead inserted successfully.');
-      setState('success');
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'form_submission_success' });
-      form.reset();
-    } catch (err) {
-      console.error('[SQUARGRAPH] Form error:', err.message);
-      setState('error', 'Submission failed, please try WhatsApp or email directly.');
-    }
-  });
-
-})();
-</script>
-
-<!-- ══════════════
-     SUPABASE — must be last
-══════════════ -->
-<script>
-  window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
-  window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
-  window.__sb = {
-    from: function(table) {
-      return {
-        insert: async function(rows) {
-          const res = await fetch(window.__sbUrl + '/rest/v1/' + table, {
-            method: 'POST',
-            headers: {
-              'apikey': window.__sbKey,
-              'Authorization': 'Bearer ' + window.__sbKey,
-              'Content-Type': 'application/json',
-              'Prefer': 'return=minimal'
-            },
-            body: JSON.stringify(rows)
-          });
-          if (!res.ok) throw new Error('Insert failed');
-          return { error: null };
-        }
-      };
-    }
-  };
-</script>
-<script>
-document.addEventListener('click', function(e) {
-  var poster = e.target.closest('.reel-poster');
-  if (!poster) return;
-  var src = poster.getAttribute('data-src');
-  var loading = document.createElement('div');
-  loading.className = 'reel-poster-loading';
-  loading.innerHTML = '<div class="reel-spinner"></div>';
-  poster.parentNode.appendChild(loading);
-  poster.remove();
-  var iframe = document.createElement('iframe');
-  iframe.src = src;
-  iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;display:block;';
-  iframe.allow = 'accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen';
-  iframe.referrerPolicy = 'origin';
-  iframe.onload = function() { loading.remove(); };
-  poster.parentNode ? poster.parentNode.appendChild(iframe) : loading.parentNode.appendChild(iframe);
-});
-</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1625,7 +1008,7 @@ document.addEventListener('click', function(e) {
   <button id="mobile-book" type="button" onclick="window.location.href='/discovery'">Book Discovery →</button>
   <button id="mobile-book-close" type="button" aria-label="Dismiss" onclick="document.getElementById('mobile-book-wrap').style.display='none'">✕</button>
 </div>
-<button id="mobile-wa" type="button" aria-label="Chat with SQUARGRAPH AI" onclick="toggleAIChat()">
+<button id="mobile-wa" type="button" aria-label="Chat with SQUARGRAPH AI">
   <svg width="24" height="24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
     <path d="M21 11.5a8.5 8.5 0 01-12.5 7.5L3 20l1.2-4.8A8.5 8.5 0 1121 11.5z" fill="none"/>
     <path d="M16.5 4.5l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7z" fill="#fff" stroke="none"/>
@@ -1657,62 +1040,10 @@ document.addEventListener('click', function(e) {
   setTimeout(loadGTM, 5000);
 })();
 </script>
-<script>
-const AI_CHAT_ENDPOINT = "https://squargraph-chat.singhsaurabhsohan.workers.dev";
-let aiChatHistory = [];
-let aiChatOpened = false;
-
-function toggleAIChat() {
-  const panel = document.getElementById('ai-chat-panel');
-  const open = panel.classList.toggle('open');
-  panel.setAttribute('aria-hidden', open ? 'false' : 'true');
-  if (open && !aiChatOpened) {
-    aiChatOpened = true;
-    addAIMessage('bot', "Hi! I'm SQUARGRAPH's AI assistant. Ask me about our services, pricing, or how to get started.");
-  }
-}
-
-function addAIMessage(role, text) {
-  const wrap = document.getElementById('ai-chat-messages');
-  const div = document.createElement('div');
-  div.className = 'ai-msg ' + role;
-  div.textContent = text;
-  wrap.appendChild(div);
-  wrap.scrollTop = wrap.scrollHeight;
-  return div;
-}
-
-async function sendAIMessage() {
-  const input = document.getElementById('ai-chat-input');
-  const text = input.value.trim();
-  if (!text) return;
-  input.value = '';
-  addAIMessage('user', text);
-  aiChatHistory.push({ role: 'user', content: text });
-
-  const loadingEl = addAIMessage('bot loading', 'Typing…');
-
-  try {
-    const res = await fetch(AI_CHAT_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: aiChatHistory })
-    });
-    const data = await res.json();
-    loadingEl.remove();
-    const reply = data.reply || "Sorry, something went wrong. Try WhatsApp below.";
-    addAIMessage('bot', reply);
-    aiChatHistory.push({ role: 'assistant', content: reply });
-  } catch (e) {
-    loadingEl.remove();
-    addAIMessage('bot', "Connection error. Try WhatsApp below.");
-  }
-}
-
-document.getElementById('ai-chat-send').addEventListener('click', sendAIMessage);
-document.getElementById('ai-chat-input').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') sendAIMessage();
-});
-</script>
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/animations.js"></script>
+<script src="/assets/js/interactions.js"></script>
+<script src="/assets/js/forms.js"></script>
 </body>
 </html>
