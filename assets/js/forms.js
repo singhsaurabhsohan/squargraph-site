@@ -141,9 +141,15 @@ window.SQ.initContactForm = function () {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  window.SQ.initContactForm();
-  window.SQ.initITI('phone').then(function (instance) {
-    window.iti = instance;
-  }).catch(function (e) { console.error('ITI init failed', e); });
-  window.SQ.initCountryCity('country-location', 'city');
+  if (document.getElementById('contact-form')) {
+    window.SQ.initContactForm();
+  }
+  if (document.getElementById('phone')) {
+    window.SQ.initITI('phone').then(function (instance) {
+      window.iti = instance;
+    }).catch(function (e) { console.error('ITI init failed', e); });
+  }
+  if (document.getElementById('country-location')) {
+    window.SQ.initCountryCity('country-location', 'city');
+  }
 });
