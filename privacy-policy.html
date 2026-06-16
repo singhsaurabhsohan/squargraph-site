@@ -336,53 +336,10 @@
   </div>
 </footer>
 </div>
-<script>
-(function() {
-  var nav = document.getElementById('nav');
-  var mobToggle = document.getElementById('mob-toggle');
-  var mobMenu = document.getElementById('mob-menu');
-  var menuOpen = false;
-  mobMenu.addEventListener('touchstart', function(){}, {passive: true});
-  window.addEventListener('scroll', function() {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
-  if (mobToggle && mobMenu) {
-    mobToggle.addEventListener('click', function() {
-      menuOpen = !menuOpen;
-      mobToggle.classList.toggle('open', menuOpen);
-      mobToggle.setAttribute('aria-expanded', String(menuOpen));
-      mobToggle.setAttribute('aria-label', menuOpen ? 'Close navigation menu' : 'Open navigation menu');
-      mobMenu.classList.toggle('open', menuOpen);
-      if (menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert', ''); }
-      document.body.style.overflow = menuOpen ? 'hidden' : '';
-    });
-    window.closeMob = function() {
-      menuOpen = false;
-      mobToggle.classList.remove('open');
-      mobToggle.setAttribute('aria-expanded', 'false');
-      mobToggle.setAttribute('aria-label', 'Open navigation menu');
-      mobMenu.classList.remove('open');
-      mobMenu.setAttribute('inert', '');
-      document.body.style.overflow = '';
-    };
-    mobMenu.addEventListener('touchmove', function(e) {
-      var touch = e.touches[0];
-      var el = document.elementFromPoint(touch.clientX, touch.clientY);
-      mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
-      if (el && el.tagName === 'A' && mobMenu.contains(el)) {
-        el.classList.add('finger-active');
-      }
-    }, { passive: true });
-    mobMenu.addEventListener('touchend', function() {
-      mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
-    }, { passive: true });
-    document.addEventListener('click', function(e) {
-      if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
-        closeMob();
-      }
-    });
-  }
-})();
-</script>
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/animations.js"></script>
+<script src="/assets/js/interactions.js"></script>
+<script src="/assets/js/forms.js"></script>
 </body>
 </html>
