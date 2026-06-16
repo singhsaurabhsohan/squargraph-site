@@ -31,11 +31,6 @@
   <!-- intl-tel-input -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'" />
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js" defer></script>
-  <script>
-  var _rcLoaded = false;
-  function _loadRC() { if(_rcLoaded) return; _rcLoaded=true; var s=document.createElement('script'); s.src='https://www.google.com/recaptcha/api.js'; s.async=true; s.defer=true; document.head.appendChild(s); }
-  var _rcObs = new IntersectionObserver(function(entries){ if(entries[0].isIntersecting){ _loadRC(); _rcObs.disconnect(); } },{ rootMargin:'200px' });
-  </script>
 
   <link rel="stylesheet" href="/assets/css/pages/website.css">
 </head>
@@ -360,140 +355,21 @@
 </div>
 
 <script src="/js/otp.js"></script>
-<!-- ── SUPABASE CONFIG ── -->
-<script>
-  window.__sbUrl = 'https://jzlupkvgizfdwwbofzmu.supabase.co';
-  window.__sbKey = 'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl';
-  window.__sb = {
-    from: function(table) {
-      return {
-        insert: async function(rows) {
-          const res = await fetch(window.__sbUrl + '/rest/v1/' + table, {
-            method: 'POST',
-            headers: {
-              'apikey': window.__sbKey,
-              'Authorization': 'Bearer ' + window.__sbKey,
-              'Content-Type': 'application/json',
-              'Prefer': 'return=minimal'
-            },
-            body: JSON.stringify(rows)
-          });
-          if (!res.ok) throw new Error('Insert failed: ' + res.status);
-          return { error: null };
-        }
-      };
-    }
-  };
-</script>
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/animations.js"></script>
+<script src="/assets/js/interactions.js"></script>
+<script src="/assets/js/forms.js"></script>
 
 <script>
 (function(){
   'use strict';
 
-  /* ── Nav scroll ── */
-  var nav = document.getElementById('nav');
-  window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive:true });
-
-  /* ── Mobile menu ── */
-  var mobToggle = document.getElementById('mob-toggle');
-  var mobMenu = document.getElementById('mob-menu');
-  var menuOpen = false;
-  mobMenu.addEventListener('touchstart', function(){}, {passive: true});
-  mobToggle.addEventListener('click', function() {
-    menuOpen = !menuOpen;
-    mobToggle.classList.toggle('open', menuOpen);
-    mobToggle.setAttribute('aria-expanded', String(menuOpen));
-    mobToggle.setAttribute('aria-label', menuOpen ? 'Close navigation menu' : 'Open navigation menu');
-    mobMenu.classList.toggle('open', menuOpen);
-    if (menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert', ''); }
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-  });
-  window.closeMob = function() {
-      menuOpen = false;
-      mobToggle.classList.remove('open');
-      mobToggle.setAttribute('aria-expanded', 'false');
-      mobToggle.setAttribute('aria-label', 'Open navigation menu');
-      mobMenu.classList.remove('open');
-      mobMenu.setAttribute('inert', '');
-      document.body.style.overflow = '';
-    };
-    mobMenu.addEventListener('touchmove', function(e) {
-      var touch = e.touches[0];
-      var el = document.elementFromPoint(touch.clientX, touch.clientY);
-      mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
-      if (el && el.tagName === 'A' && mobMenu.contains(el)) {
-        el.classList.add('finger-active');
-      }
-    }, { passive: true });
-    mobMenu.addEventListener('touchend', function() {
-      mobMenu.querySelectorAll('a').forEach(function(a){ a.classList.remove('finger-active'); });
-    }, { passive: true });
-    document.addEventListener('click', function(e) {
-      if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
-        closeMob();
-      }
-    });
-
-  /* ── Scroll reveal ── */
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold:.1, rootMargin:'0px 0px -40px 0px' });
-  document.querySelectorAll('.scroll-reveal').forEach(function(el){ obs.observe(el); });
-
-  /* ── City data ── */
-  var CITY_DATA = {
-    'India':['Ahmedabad','Bengaluru','Chennai','Delhi','Gurugram','Hyderabad','Jaipur','Kolkata','Mumbai','Noida','Pune','Surat','Other'],
-    'UAE':['Abu Dhabi','Dubai','Sharjah','Other'],
-    'USA':['Austin','Chicago','Los Angeles','Miami','New York','San Francisco','Seattle','Other'],
-    'UK':['Birmingham','Edinburgh','Leeds','London','Manchester','Other'],
-    'Singapore':['Singapore'],
-    'Australia':['Brisbane','Melbourne','Perth','Sydney','Other'],
-    'Canada':['Calgary','Montreal','Toronto','Vancouver','Other'],
-    'Germany':['Berlin','Frankfurt','Hamburg','Munich','Other'],
-    'France':['Lyon','Marseille','Paris','Other'],
-    'Japan':['Osaka','Tokyo','Other']
-  };
-  function initCountryCityMapping(countryId, cityId){
-    var countryEl = document.getElementById(countryId);
-    var cityEl = document.getElementById(cityId);
-    var textEl = document.getElementById(cityId + '-text');
-    if(!countryEl || !cityEl) return;
-    countryEl.addEventListener('change', function(){
-      var country = this.value;
-      var cities = CITY_DATA[country] || [];
-      cityEl.innerHTML = '';
-      if(!country || !cities.length){ cityEl.style.display='none'; if(textEl){ textEl.style.display='block'; textEl.value=''; } return; }
-      var ph = document.createElement('option'); ph.value=''; ph.disabled=true; ph.selected=true; ph.textContent='Select city'; cityEl.appendChild(ph);
-      cities.forEach(function(c){ var o=document.createElement('option'); o.value=c; o.textContent=c; cityEl.appendChild(o); });
-      cityEl.style.display='block'; if(textEl){ textEl.style.display='none'; textEl.value=''; }
-    });
-    if(cityEl){ cityEl.addEventListener('change', function(){
-      if(!textEl) return;
-      if(this.value==='Other'){ textEl.style.display='block'; textEl.focus(); } else { textEl.style.display='none'; textEl.value=''; }
-    }); }
-  }
-
-  /* ── ITI init ── */
-  var webIti = null;
-  function initITI(){
-    if(typeof window.intlTelInput !== 'function') return setTimeout(initITI, 100);
-    var input = document.getElementById('web-phone');
-    if(!input) return;
-    webIti = window.intlTelInput(input, {
-      initialCountry: 'in',
-      separateDialCode: true,
-      preferredCountries: ['in','ae','us','gb','sg'],
-      utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
-    });
-    window.iti = webIti;
-    /* OTP auto-triggered on submit — no manual verify button needed */
-  }
-
   document.addEventListener('DOMContentLoaded', function(){
-    initCountryCityMapping('web-country', 'web-city');
-    initITI();
+    window.SQ.initCountryCity('web-country', 'web-city');
+    window.SQ.initITI('web-phone').then(function(inst){ window.iti = inst; });
     var rc = document.querySelector('#web-captcha-wrap .g-recaptcha');
-    if(rc) _rcObs.observe(rc);
+    if(rc){ var rcObs = new IntersectionObserver(function(entries){ if(entries[0].isIntersecting){ window.SQ.loadRecaptcha(); rcObs.disconnect(); } },{ rootMargin:'200px' }); rcObs.observe(rc); }
   });
 
   /* ── Form validation ── */
@@ -520,7 +396,7 @@
       if(!ok) valid = false;
     });
     var phoneInput = document.getElementById('web-phone');
-    var phoneOk = phoneInput && phoneInput.value.trim().length > 0 && (!webIti || webIti.isValidNumber());
+    var phoneOk = phoneInput && phoneInput.value.trim().length > 0 && (!window.iti || window.iti.isValidNumber());
     if(phoneInput){ phoneInput.classList.toggle('has-error', !phoneOk); }
     var phoneErr = document.getElementById('web-phone-err');
     if(phoneErr){ phoneErr.classList.toggle('show', !phoneOk); }
@@ -555,7 +431,7 @@
       var cityVal = (cityEl && cityEl.style.display !== 'none') ? cityEl.value : (cityTextEl ? cityTextEl.value : '');
       var payload = {
         name: getVal('w-name'),
-        phone: webIti ? webIti.getNumber() : getVal('web-phone'),
+        phone: window.iti ? window.iti.getNumber() : getVal('web-phone'),
         email: getVal('w-email'),
         company: getVal('w-company'),
         country: getVal('web-country'),
@@ -584,17 +460,7 @@
         setTimeout(function(){ submitBtn.innerHTML='Submit Your Brief →'; submitBtn.style.background=''; }, 4000);
       }
     });
-    form.querySelectorAll('.form-input').forEach(function(el){
-      el.addEventListener('input', function(){ el.classList.remove('has-error'); var err=el.closest('.field')&&el.closest('.field').querySelector('.field-error'); if(err) err.classList.remove('show'); });
-    });
   }
-
-  document.addEventListener('keydown', function(e){
-    if(e.key==='Escape'){
-      var overlay = document.getElementById('web-success-overlay');
-      if(overlay && overlay.style.display!=='none'){ overlay.style.display='none'; document.body.style.overflow=''; }
-    }
-  });
 })();
 </script>
 </body>
