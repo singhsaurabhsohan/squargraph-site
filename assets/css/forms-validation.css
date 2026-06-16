@@ -1,0 +1,37 @@
+.field-error {
+  font-size: 11px;
+  color: #EF4444;
+  display: none;
+  padding-left: 4px;
+}
+.field-error.show { display: block; }
+.field-error.visible { display: block; }
+
+.form-input.has-error { border-color: #EF4444; }
+.form-input.error,
+input.error { border-color: #EF4444; }
+
+/* Consent block — Discovery / Sprint / Websites */
+.consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.consent-row input[type=checkbox] {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.consent-row label {
+  font-size: 12px;
+  color: var(--textsecondary);
+  line-height: 1.6;
+  cursor: pointer;
+}
+.consent-row a {
+  color: var(--accent);
+  border-bottom: 1px solid var(--accentmuted);
+}
