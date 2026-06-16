@@ -1,0 +1,102 @@
+.iti {
+  display: block;
+  width: 100%;
+  position: relative;
+  border-radius: 999px;
+  background: var(--warmgray);
+  border: 1px solid var(--bordergray);
+  overflow: visible;
+  transition: border-color .25s, box-shadow .25s;
+}
+.iti:focus-within {
+  border-color: var(--accentmuted);
+  box-shadow: 0 0 0 3px rgba(107,93,184,.1);
+}
+
+.iti__selected-flag {
+  height: 48px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 10px 0 14px;
+  display: flex;
+  align-items: center;
+}
+
+.iti__tel-input,
+.iti > input {
+  border: none !important;
+  background: transparent !important;
+  height: 48px;
+  width: 100% !important;
+  padding-left: 86px !important;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  color: var(--textprimary);
+  outline: none;
+  box-shadow: none !important;
+}
+
+.iti__tel-input:-webkit-autofill,
+.iti__tel-input:-webkit-autofill:hover,
+.iti__tel-input:-webkit-autofill:focus,
+.iti__tel-input:-webkit-autofill:active,
+.iti > input:-webkit-autofill,
+.iti > input:-webkit-autofill:hover,
+.iti > input:-webkit-autofill:focus,
+.iti > input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--warmgray) inset !important;
+  -webkit-border-radius: 0 999px 999px 0 !important;
+  border-radius: 0 999px 999px 0 !important;
+  -webkit-text-fill-color: var(--textprimary) !important;
+}
+
+/* Intentional override of overflow:visible above — keep this order. */
+.iti { overflow: hidden; }
+
+.iti__country-list {
+  border-radius: 14px !important;
+  border: 1px solid var(--bordergray) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,.12) !important;
+  font-family: 'Satoshi', sans-serif !important;
+  font-size: 13px !important;
+  max-height: 260px !important;
+  overflow-y: auto !important;
+  background: #fff !important;
+  padding: 8px 0 !important;
+  position: fixed !important;
+  z-index: 9999;
+}
+.iti__country { padding: 9px 16px !important; }
+.iti__country.iti__highlight { background: var(--accentlight) !important; }
+.iti__country-name { font-weight: 500 !important; }
+.iti__dial-code {
+  font-size: 12px !important;
+  margin-left: 8px !important;
+  opacity: 0.7;
+}
+
+.iti__search-input {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 13px;
+  border-radius: 12px;
+  border: 1px solid var(--bordergray);
+  padding: 10px 14px;
+  margin: 8px 12px;
+  width: calc(100% - 24px);
+  background: var(--warmgray);
+  color: var(--textprimary);
+}
+.iti__search-input:focus {
+  border-color: var(--accentmuted);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(107,93,184,.2);
+}
+
+.iti__flag {
+  background-image: url("[cdn.jsdelivr.net](https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags.png)") !important;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url("[cdn.jsdelivr.net](https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png)") !important;
+  }
+}
