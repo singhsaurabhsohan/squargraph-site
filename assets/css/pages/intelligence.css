@@ -16,8 +16,9 @@
   content: ''; display: block; width: 40px; height: 1px; background: var(--accentmuted);
 }
 .intel-page-h1 {
-  font-size: clamp(38px, 5.5vw, 72px); font-weight: 500;
-  letter-spacing: -0.04em; line-height: 1.02;
+  font-family: 'Domine', Georgia, 'Times New Roman', serif;
+  font-size: clamp(38px, 5.5vw, 72px); font-weight: 700;
+  letter-spacing: -0.01em; line-height: 1.04;
   color: var(--textprimary); margin-bottom: 24px;
 }
 .intel-page-h1 em { font-style: italic; color: var(--accent); }
@@ -49,9 +50,10 @@
   text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
 }
 .intel-page-section-title {
-  font-family: var(--font); font-weight: 500;
-  font-size: clamp(24px, 3vw, 40px); line-height: 1.1;
-  letter-spacing: -0.03em; color: var(--textprimary);
+  font-family: 'Domine', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: clamp(24px, 3vw, 40px); line-height: 1.12;
+  letter-spacing: -0.01em; color: var(--textprimary);
 }
 .intel-page-section-desc {
   font-size: 14px; color: var(--textsecondary);
@@ -208,8 +210,9 @@
 }
 .intel-page-closing-inner { max-width: 1440px; margin: 0 auto; }
 .intel-page-closing-quote {
-  font-family: var(--font); font-weight: 500;
-  font-size: clamp(22px, 3vw, 40px); letter-spacing: -0.03em;
+  font-family: 'Domine', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: clamp(22px, 3vw, 40px); letter-spacing: -0.01em;
   line-height: 1.2; color: var(--textprimary);
   max-width: 680px; margin-bottom: 32px;
 }
