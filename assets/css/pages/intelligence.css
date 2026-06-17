@@ -20,7 +20,7 @@
   letter-spacing: -0.04em; line-height: 1.02;
   color: var(--textprimary); margin-bottom: 24px;
 }
-.intel-page-h1 em { font-style: normal; color: var(--accent); }
+.intel-page-h1 em { font-style: italic; color: var(--accent); }
 .intel-page-desc {
   font-size: clamp(15px, 1.4vw, 17px); color: var(--textsecondary);
   line-height: 1.75; max-width: 52ch; margin-bottom: 16px;
