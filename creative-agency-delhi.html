@@ -104,6 +104,17 @@
 <link rel="stylesheet" href="/assets/css/layout.css">
 <link rel="stylesheet" href="/assets/css/components.css">
 <link rel="stylesheet" href="/assets/css/animations.css">
+<style>
+  #sticky-banner { opacity: 0 !important; pointer-events: none !important; transform: translateX(-50%) translateY(12px) !important; }
+  #sticky-banner.sg-show { opacity: 1 !important; pointer-events: auto !important; transform: translateX(-50%) !important; }
+  #sticky-banner.sg-dismissed { display: none !important; }
+  @media (max-width: 540px) {
+    #sticky-banner.sg-show { transform: none !important; }
+  }
+  #mobile-book-wrap { display: none !important; }
+  #mobile-book-wrap.sg-show { display: flex !important; }
+  #mobile-book-wrap.sg-dismissed { display: none !important; }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -192,7 +203,7 @@ We work with businesses that are serious about their positioning, communication,
   <span>Production</span>
 </div>
       <div class="hero-ctas hero-anim-4">
-  <a href="/discovery" class="btn-primary" style="border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;">Book Discovery Session</a>
+  <a href="/audit" class="btn-primary" style="border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;">Start Brand Growth Audit</a>
   <a href="#Engagements" class="btn-outline">Explore Engagements</a>
   </div>
     </div>
@@ -522,10 +533,10 @@ We work with businesses that are serious about their positioning, communication,
         <p class="section-eyebrow" style="margin-bottom:16px;">The Founder</p>
         <h2 style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3.5vw,48px);line-height:1.08;letter-spacing:-0.03em;margin-bottom:20px;">Saurabh Sohan Singh</h2>
         <div style="font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;">Founder & Creative Strategist</div>
-        <p style="font-size:clamp(16px,1.6vw,18px);color:var(--textsecondary);line-height:1.75;margin-bottom:20px;">Saurabh founded SQUARGRAPH™ on the belief that most brand problems are not creative problems, they are structural ones.</p>
-        <p style="font-size:15px;color:var(--textsecondary);line-height:1.75;margin-bottom:32px;">His work spans brand communication, campaign development, content direction, digital experiences, and large-scale product launches. He leads every engagement directly, which means the person who builds your strategy is the same person who oversees its execution. No briefing chains. No account managers in between. The specialist network around each project changes. The strategic lead does not.</p>
+        <p style="font-size:clamp(16px,1.6vw,18px);color:var(--textsecondary);line-height:1.75;margin-bottom:20px;">Saurabh founded SQUARGRAPH™ on a single conviction: perception is the most underinvested lever in any brand's growth strategy.</p>
+        <p style="font-size:15px;color:var(--textsecondary);line-height:1.75;margin-bottom:32px;">His work spans brand strategy, campaign architecture, content direction, digital experiences, and product launches across automotive, hospitality, D2C, and lifestyle. He leads every engagement directly. The team assembled around each project changes. The strategic thinking behind it does not.</p>
         <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
-          <a href="/discovery" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;">Book a Discovery Session →</a>
+          <a href="/audit" class="btn-primary" style="display:inline-block;text-decoration:none;">Start a Brand Growth Audit →</a>
           <a href="https://linkedin.com/in/saurabhsohansingh" target="_blank" rel="noopener noreferrer" style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:6px;transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textsecondary)'">
             <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             LinkedIn
@@ -951,6 +962,46 @@ We work with businesses that are serious about their positioning, communication,
   <button class="banner-close" onclick="document.getElementById('sticky-banner').classList.add('hidden')" aria-label="Close">&times;</button>
 </div>
 <script src="/js/otp.js"></script>
+<script>
+(function(){
+  var trigger = document.getElementById('Engagements');
+  var banner = document.getElementById('sticky-banner');
+  var mobileBar = document.getElementById('mobile-book-wrap');
+  if (!trigger) return;
+
+  var bannerCloseBtn = banner ? banner.querySelector('.banner-close') : null;
+  if (bannerCloseBtn) {
+    bannerCloseBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      banner.classList.add('sg-dismissed');
+      banner.classList.remove('sg-show');
+    });
+  }
+  var mobileCloseBtn = document.getElementById('mobile-book-close');
+  if (mobileCloseBtn) {
+    mobileCloseBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      mobileBar.classList.add('sg-dismissed');
+      mobileBar.classList.remove('sg-show');
+    });
+  }
+
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var pastTrigger = entry.boundingClientRect.top < 0;
+      if (banner && !banner.classList.contains('sg-dismissed')) {
+        banner.classList.toggle('sg-show', pastTrigger);
+      }
+      if (mobileBar && !mobileBar.classList.contains('sg-dismissed')) {
+        mobileBar.classList.toggle('sg-show', pastTrigger);
+      }
+    });
+  }, { threshold: 0 });
+
+  obs.observe(trigger);
+})();
+</script>
 
 <script type="application/ld+json">
 {
