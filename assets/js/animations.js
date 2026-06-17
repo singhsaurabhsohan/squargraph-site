@@ -86,8 +86,7 @@ window.SQ.initHeroWeight = function () {
   anchor.style.letterSpacing = '0.02em';
 
   requestAnimationFrame(function () {
-    requestAnimationFrame(function () {
-
+    setTimeout(function () {
       anchor.style.transition =
         'font-weight 1.1s cubic-bezier(0.16,1,0.3,1),' +
         'color 1.0s cubic-bezier(0.16,1,0.3,1),' +
@@ -95,9 +94,8 @@ window.SQ.initHeroWeight = function () {
       anchor.style.fontWeight    = '500';
       anchor.style.color         = 'var(--accent)';
       anchor.style.letterSpacing = '-0.04em';
-
+      anchor.style.fontStyle     = 'normal';
       setTimeout(function () {
-
         allInline.forEach(function (w) {
           if (w === anchor || anchor.contains(w)) return;
           var isRest = w.classList.contains('sq-hw--rest');
@@ -109,12 +107,10 @@ window.SQ.initHeroWeight = function () {
           w.style.color         = isRest ? 'var(--textsecondary)' : 'var(--textprimary)';
           w.style.letterSpacing = '-0.04em';
         });
-
-      }, 420);
-    });
+      }, 280);
+    }, 32);
   });
 };
-
 document.addEventListener('DOMContentLoaded', function () {
   window.SQ.initReveal();
   window.SQ.initDivider();
