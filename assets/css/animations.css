@@ -46,6 +46,12 @@
 .hero-anim-2 { animation: heroFade .9s .35s both; }
 .hero-anim-3 { animation: heroFade .8s .55s both; }
 .hero-anim-4 { animation: heroFade .8s .7s both; }
+
+[data-hero] .hero-anim-2,
+[data-hero] .hero-h1 {
+  animation: none;
+  opacity: 1;
+}
 .hero-anim-5 { animation: heroFade 1s 1.2s both; }
 .hero-anim-6 { animation: heroFade 1s 1.6s both; }
 
