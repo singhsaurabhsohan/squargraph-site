@@ -10,7 +10,6 @@
       "status": "published",
       "published": true,
       "featured": true,
-      "author": "Saurabh Sohan Singh",
       "readingTime": "4 min read",
       "brandName": "boAt",
       "brandLogo": "/boat-logo.png",
@@ -28,7 +27,6 @@
       "status": "published",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": "3 min read",
       "brandName": "The Whole Truth",
       "brandLogo": "/thewholetruth-logo.svg",
@@ -46,7 +44,6 @@
       "status": "in-progress",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": null,
       "brandName": null,
       "brandLogo": null,
@@ -62,7 +59,6 @@
       "date": "2026-06-01",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": "1 min read",
       "excerpt": "AI is reducing the cost of execution across every creative category. When execution becomes cheap, perception becomes the primary differentiator. Brands that have invested in positioning will outperform brands that invested only in production.",
       "tags": ["AI", "Positioning"]
@@ -75,7 +71,6 @@
       "date": "2026-06-01",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": "1 min read",
       "excerpt": "Rising customer acquisition costs in D2C are not primarily a media problem. They are a brand problem. When every brand in a category sounds the same, the only remaining differentiator is the offer. Discounting follows. Margin follows that.",
       "tags": ["D2C", "Brand Strategy"]
@@ -88,7 +83,6 @@
       "date": "2026-05-01",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": "1 min read",
       "excerpt": "Most brand audits measure the wrong things. Logo consistency and colour compliance are easy to audit. The harder diagnostic — what is the brand actually communicating at every touchpoint, and is it working — rarely gets asked.",
       "tags": ["Brand Audit", "Perception"]
@@ -101,7 +95,6 @@
       "date": "2026-05-01",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": "1 min read",
       "excerpt": "Consistency is not the goal. Coherence is. Consistency means repeating the same thing. Coherence means everything connects back to the same underlying idea. One is a design rule. The other is a strategic principle.",
       "tags": ["Brand Systems"]
@@ -114,7 +107,6 @@
       "date": "2026-04-01",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": "1 min read",
       "excerpt": "A website is not a brochure. Before anyone reads the copy, they have already formed an impression from load speed, visual hierarchy, and image quality. These are not UX details. They are brand signals.",
       "tags": ["Digital", "Perception"]
@@ -127,7 +119,6 @@
       "date": "2026-04-01",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": "1 min read",
       "excerpt": "The brief is where most campaign problems are created. Vague objectives, unresolved audience questions, no clear single-minded proposition. By the time creative work begins, the foundation is already compromised.",
       "tags": ["Campaign", "Strategy"]
@@ -142,7 +133,6 @@
       "status": "published",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": "6 min read",
       "excerpt": "A brand audit that only looks at your logo and colour palette is like a health check that only measures your height. The real diagnostic is about what you're communicating, to whom, and whether it's actually working.",
       "url": "/blog/why-execution-matters"
@@ -157,7 +147,6 @@
       "status": "in-progress",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": null,
       "excerpt": "What it costs a brand to be technically present but perceptually absent in its category.",
       "url": null
@@ -169,7 +158,6 @@
       "date": "2026-06-17",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": "1 min read",
       "excerpt": "The brands that scale without losing themselves are not more disciplined about guidelines. They are more disciplined about the single idea at the centre. Guidelines are downstream of that."
     },
@@ -180,7 +168,6 @@
       "date": "2026-06-12",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": "1 min read",
       "excerpt": "Positioning is not a statement. It is a decision about what you will not say, not do, not be. Most brands treat it as addition. The ones that hold their ground treat it as subtraction."
     },
@@ -191,7 +178,6 @@
       "date": "2026-06-04",
       "published": true,
       "featured": false,
-      "author": "Saurabh Sohan Singh",
       "readingTime": "1 min read",
       "excerpt": "Social content is not film content reformatted. It has different physics — different aspect ratios, attention windows, contexts of consumption. Briefs that ignore this produce work that looks expensive and performs poorly."
     }
