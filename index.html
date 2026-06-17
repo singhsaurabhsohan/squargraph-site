@@ -135,7 +135,19 @@
 <link rel="stylesheet" href="/assets/css/base.css">
 <link rel="stylesheet" href="/assets/css/layout.css">
 <link rel="stylesheet" href="/assets/css/components.css">
-<link rel="stylesheet" href="/assets/css/animations.css"></head>
+<link rel="stylesheet" href="/assets/css/animations.css">
+<style>
+  #sticky-banner { opacity: 0 !important; pointer-events: none !important; transform: translateX(-50%) translateY(12px) !important; }
+  #sticky-banner.sg-show { opacity: 1 !important; pointer-events: auto !important; transform: translateX(-50%) !important; }
+  #sticky-banner.sg-dismissed { display: none !important; }
+  @media (max-width: 540px) {
+    #sticky-banner.sg-show { transform: none !important; }
+  }
+  #mobile-book-wrap { display: none !important; }
+  #mobile-book-wrap.sg-show { display: flex !important; }
+  #mobile-book-wrap.sg-dismissed { display: none !important; }
+</style>
+</head>
 <body>
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZD"
@@ -886,44 +898,46 @@ We help ambitious brands strengthen perception, build competitive advantage, and
   <button class="banner-close" onclick="document.getElementById('sticky-banner').classList.add('hidden')" aria-label="Close">&times;</button>
 </div>
 <script src="/js/otp.js"></script>
-<style>
-  #sticky-banner { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(12px); }
-  #sticky-banner.sg-show { opacity: 1; pointer-events: auto; transform: translateX(-50%); }
-  @media (max-width: 540px) {
-    #sticky-banner.sg-show { transform: none; }
-  }
-  #mobile-book-wrap.sg-show { display: flex !important; }
-</style>
 <script>
 (function(){
   var trigger = document.getElementById('Engagements');
   var banner = document.getElementById('sticky-banner');
   var mobileBar = document.getElementById('mobile-book-wrap');
   if (!trigger) return;
-  var bannerDismissed = false;
-  var mobileBarDismissed = false;
 
   var bannerCloseBtn = banner ? banner.querySelector('.banner-close') : null;
   if (bannerCloseBtn) {
-    bannerCloseBtn.addEventListener('click', function(){ bannerDismissed = true; });
+    bannerCloseBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      banner.classList.add('sg-dismissed');
+      banner.classList.remove('sg-show');
+    });
   }
   var mobileCloseBtn = document.getElementById('mobile-book-close');
   if (mobileCloseBtn) {
-    mobileCloseBtn.addEventListener('click', function(){ mobileBarDismissed = true; });
+    mobileCloseBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      mobileBar.classList.add('sg-dismissed');
+      mobileBar.classList.remove('sg-show');
+    });
   }
 
   var obs = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       var pastTrigger = entry.boundingClientRect.top < 0;
-      if (banner && !bannerDismissed) banner.classList.toggle('sg-show', pastTrigger);
-      if (mobileBar && !mobileBarDismissed) mobileBar.classList.toggle('sg-show', pastTrigger);
+      if (banner && !banner.classList.contains('sg-dismissed')) {
+        banner.classList.toggle('sg-show', pastTrigger);
+      }
+      if (mobileBar && !mobileBar.classList.contains('sg-dismissed')) {
+        mobileBar.classList.toggle('sg-show', pastTrigger);
+      }
     });
   }, { threshold: 0 });
 
   obs.observe(trigger);
 })();
 </script>
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
