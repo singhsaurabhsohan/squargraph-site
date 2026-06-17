@@ -1,0 +1,104 @@
+/* ============================================================
+   Intelligence — Media blocks (v2 addition)
+   Append to: /assets/css/pages/intelligence-additions.css
+
+   All media rendering is driven by intelligence.json.
+   No HTML changes are required to add, remove, or change media.
+   ============================================================ */
+
+/* ── Base: shared across all media types and contexts ── */
+.intel-media { display: block; overflow: hidden; }
+
+/* ── Image ── */
+.intel-media--image .intel-media__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Video: embed (YouTube / Vimeo) ──
+   Intrinsic 16:9 using the padding-bottom trick.
+   The wrapping div holds the height; iframe fills it absolutely. */
+.intel-media--embed {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  background: #000;
+}
+.intel-media--embed .intel-media__iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ── Video: native file ── */
+.intel-media--native .intel-media__video {
+  display: block;
+  width: 100%;
+  background: #000;
+}
+
+/* ============================================================
+   Context: study
+   Sits between .bq-card-header and .bq-card-body.
+   Full-bleed to the card edges; 16:9 aspect ratio for images.
+   ============================================================ */
+.intel-media--study {
+  border-top: 1px solid var(--bordergray);
+  border-bottom: 1px solid var(--bordergray);
+}
+.intel-media--study.intel-media--image {
+  aspect-ratio: 16 / 9;
+}
+
+/* ============================================================
+   Context: signal
+   Full-bleed above the card body content.
+   Signal cards have 28px padding; negate it so media is edge-to-edge.
+   The modifier class .signal-card--has-media removes top padding
+   so there is no gap between the card top and the media.
+   ============================================================ */
+.signal-card--has-media {
+  padding-top: 0;
+}
+.intel-media--signal {
+  margin: 0 -28px;    /* negate the signal-card padding */
+  margin-bottom: 20px;
+}
+.intel-media--signal.intel-media--image {
+  aspect-ratio: 16 / 9;
+}
+
+/* ============================================================
+   Context: article (study-row)
+   Sits inside .study-row-content, above the title.
+   Constrained width within the content column; subtle bottom margin.
+   ============================================================ */
+.intel-media--article {
+  margin-bottom: 16px;
+  border: 1px solid var(--bordergray);
+}
+.intel-media--article.intel-media--image {
+  aspect-ratio: 16 / 9;
+}
+
+/* ── Hover effect: image zoom on interactive cards ── */
+.bq-card:hover .intel-media--image .intel-media__img,
+.study-row:hover .intel-media--image .intel-media__img {
+  transform: scale(1.02);
+  transition: transform 0.35s ease;
+}
+.intel-media--image .intel-media__img {
+  transition: transform 0.35s ease;
+}
+
+/* ── Responsive: signal margin adjustment on small screens ── */
+@media (max-width: 560px) {
+  .intel-media--signal {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
