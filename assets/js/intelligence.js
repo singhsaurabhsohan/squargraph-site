@@ -13,6 +13,12 @@
    Brand Studies and Strategic Studies are deliberately kept
    as separate content types and separate filters. They are
    not merged into one generic "Studies" bucket.
+
+   Media support (v2):
+     Each entry may optionally include a media field:
+       media: { type: "image"|"video"|"none", url: "", alt: "" }
+     Omitting the field is equivalent to media.type = "none".
+     Media renders automatically — no HTML edits required.
    ============================================================ */
 
 (function () {
@@ -85,7 +91,58 @@
   }
 
   /* ============================================================
+     MEDIA — shared renderer
+     Handles image, video (embed + native), and none/absent.
+
+     Placement:
+       - study:       above the three-column bq-card-body
+       - signal:      above the card body, full-bleed to card edge
+       - article:     above the row content (16:9, constrained width)
+       - observation: not rendered (observations stay text-only)
+     ============================================================ */
+  function mediaHTML(item, context) {
+    var m = item.media;
+    if (!m || !m.type || m.type === "none") return "";
+    if (m.type === "image") return mediaImage(m, context);
+    if (m.type === "video") return mediaVideo(m, context);
+    return "";
+  }
+
+  function mediaImage(m, context) {
+    return (
+      '<div class="intel-media intel-media--image intel-media--' + context + '">' +
+        '<img src="' + esc(m.url) + '" alt="' + esc(m.alt || "") + '" loading="lazy" decoding="async" class="intel-media__img" />' +
+      '</div>'
+    );
+  }
+
+  function mediaVideo(m, context) {
+    var url = m.url || "";
+    var isEmbed = url.indexOf("youtube.com/embed") !== -1 ||
+                  url.indexOf("youtu.be") !== -1 ||
+                  url.indexOf("vimeo.com") !== -1;
+
+    if (isEmbed) {
+      return (
+        '<div class="intel-media intel-media--video intel-media--embed intel-media--' + context + '">' +
+          '<iframe src="' + esc(url) + '" title="' + esc(m.alt || "Video") + '" ' +
+            'frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
+            'allowfullscreen loading="lazy" class="intel-media__iframe"></iframe>' +
+        '</div>'
+      );
+    }
+
+    return (
+      '<div class="intel-media intel-media--video intel-media--native intel-media--' + context + '">' +
+        '<video src="' + esc(url) + '" title="' + esc(m.alt || "Video") + '" ' +
+          'controls preload="metadata" class="intel-media__video"></video>' +
+      '</div>'
+    );
+  }
+
+  /* ============================================================
      BRAND STUDIES  (type: "study")
+     Media sits between the card header and the three-column body.
      ============================================================ */
   function renderStudies() {
     var root = document.getElementById("studies-feed");
@@ -122,6 +179,7 @@
           "</div>" +
           brandHTML +
         "</div>" +
+        mediaHTML(item, "study") +
         '<div class="bq-card-body">' + blocks + "</div>" +
         byline(item, !isProgress) +
       "</article>"
@@ -140,6 +198,7 @@
 
   /* ============================================================
      MARKET SIGNALS  (type: "signal")
+     Media sits above the signal number/date, full-bleed to card edge.
      ============================================================ */
   function renderSignals() {
     var root = document.getElementById("signals-feed");
@@ -157,7 +216,8 @@
     }).join("");
 
     return (
-      '<div class="signal-card fade-up" data-entry-type="signal">' +
+      '<div class="signal-card' + (item.media && item.media.type && item.media.type !== "none" ? " signal-card--has-media" : "") + ' fade-up" data-entry-type="signal">' +
+        mediaHTML(item, "signal") +
         '<p class="signal-num">' + num + "</p>" +
         '<p class="signal-date">' + formatDate(item.date, "month-year") + "</p>" +
         '<p class="signal-text">' + esc(item.excerpt) + "</p>" +
@@ -169,6 +229,8 @@
 
   /* ============================================================
      STRATEGIC STUDIES  (type: "article")
+     Media sits between the meta column and the text content,
+     spanning the content column only.
      ============================================================ */
   function renderArticles() {
     var root = document.getElementById("articles-feed");
@@ -205,6 +267,7 @@
           '<span class="study-row-date">' + dateLabel + "</span>" +
         "</div>" +
         '<div class="study-row-content">' +
+          mediaHTML(item, "article") +
           '<h3 class="study-row-title">' + esc(item.title) + "</h3>" +
           '<p class="study-row-excerpt">' + esc(item.excerpt) + "</p>" +
           byline(item, false) +
@@ -216,6 +279,7 @@
 
   /* ============================================================
      OBSERVATIONS  (type: "observation")
+     Observations are field notes — text only, no media rendered.
      ============================================================ */
   function renderObservations() {
     var root = document.getElementById("observations-feed");
