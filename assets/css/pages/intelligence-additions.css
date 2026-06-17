@@ -1,0 +1,66 @@
+.intel-filter-wrap {
+  padding: 0 clamp(24px, 4vw, 64px);
+  max-width: 1440px; margin: 0 auto;
+}
+.intel-filter-wrap-inner { padding-top: clamp(32px, 5vw, 56px); }
+
+/* ── FILTER BAR ── */
+.intel-filter-bar {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+.intel-filter-btn {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 12px; font-weight: 500; letter-spacing: .02em;
+  color: var(--textsecondary); background: #fff;
+  border: 1px solid var(--bordergray);
+  padding: 9px 20px; border-radius: 999px;
+  cursor: pointer; transition: all .2s;
+}
+.intel-filter-btn:hover {
+  border-color: var(--accentmuted); color: var(--textprimary);
+}
+.intel-filter-btn.intel-filter-active {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+}
+
+/* ── BYLINE (author · reading time) ── */
+.intel-byline {
+  font-size: 11px; color: var(--textmuted);
+  letter-spacing: .02em; margin-top: 14px;
+}
+.intel-byline--bordered {
+  padding: 18px 32px; margin: 0;
+  border-top: 1px solid var(--bordergray);
+  grid-column: 1 / -1;
+}
+/* signal cards: byline sits inside the tag row area */
+.signal-card .intel-byline {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid var(--bordergray);
+}
+/* observation entries: byline directly under text, no border (entry already has one) */
+.observation-entry .intel-byline { margin-top: 8px; }
+
+/* ── FEED STATES ── */
+.intel-feed-empty,
+.intel-feed-error {
+  font-size: 13px; color: var(--textmuted);
+  padding: 32px 0; font-style: italic;
+}
+.intel-feed-error { color: var(--textsecondary); }
+
+/* ── LOADING SKELETON (shown briefly before JS renders) ── */
+.intel-feed-loading {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.intel-feed-loading .skeleton-bar {
+  height: 88px; border-radius: 4px;
+  background: linear-gradient(90deg, var(--warmgray) 25%, #f3f1ee 37%, var(--warmgray) 63%);
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+}
+@keyframes skeleton-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
