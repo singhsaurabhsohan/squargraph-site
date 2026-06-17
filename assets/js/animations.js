@@ -114,5 +114,4 @@ window.SQ.initHeroWeight = function () {
 document.addEventListener('DOMContentLoaded', function () {
   window.SQ.initReveal();
   window.SQ.initDivider();
-  window.SQ.initHeroWeight();
 });
