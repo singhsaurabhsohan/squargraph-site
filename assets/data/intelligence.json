@@ -1,4 +1,20 @@
 {
+  "_schema": {
+    "version": "2.0",
+    "media": {
+      "description": "Optional media attachment for any content entry.",
+      "type": "'image' | 'video' | 'none'",
+      "url": "string — path or full URL to the media asset",
+      "alt": "string — alt text for images; caption/label for videos"
+    },
+    "notes": [
+      "media is optional on every entry type (study, signal, article, observation).",
+      "Omitting the media field is equivalent to media.type = 'none'.",
+      "Images: place files under /assets/images/intelligence/ and set url accordingly.",
+      "Videos: url may be a YouTube/Vimeo embed URL or a direct .mp4 path.",
+      "The renderer derives behaviour solely from intelligence.json — no HTML edits required."
+    ]
+  },
   "entries": [
     {
       "id": 1,
@@ -15,7 +31,12 @@
       "brandLogo": "/boat-logo.png",
       "tension": "boAt built the most successful youth electronics brand in India by making noise the strategy. Now the noise is the problem.",
       "observation": "boAt's early positioning was structurally sound: affordable hardware plus cultural energy plus consistent visual identity. That worked when the audience was 18 to 24 and the category was aspirational. But boAt's first cohort has aged. They are now 26 to 32, comparing boAt to Sony, to Nothing, to Bose. The brand still speaks at full volume to a demographic that has quietly started listening for something else. Meanwhile, the next generation of 18-year-olds has JBL, Nothing, and CMF competing for exactly the same energy that boAt once owned exclusively.",
-      "implication": "boAt has a narrow window to execute a tonal evolution before the brand becomes associated primarily with entry-level hardware rather than cultural identity. This is not a rebranding problem. It is a communication maturity problem. The visual system can largely stay intact. What needs to change is the emotional register: from loud and proud to confident and considered."
+      "implication": "boAt has a narrow window to execute a tonal evolution before the brand becomes associated primarily with entry-level hardware rather than cultural identity. This is not a rebranding problem. It is a communication maturity problem. The visual system can largely stay intact. What needs to change is the emotional register: from loud and proud to confident and considered.",
+      "media": {
+        "type": "image",
+        "url": "/assets/images/intelligence/boat-brand-quotient.jpg",
+        "alt": "boAt brand identity — loud colour palette against a dark background"
+      }
     },
     {
       "id": 2,
@@ -32,7 +53,10 @@
       "brandLogo": "/thewholetruth-logo.svg",
       "tension": "Trust was never the problem. Emotional depth might become the next opportunity.",
       "observation": "In a category flooded with \"clean\" and \"natural\", The Whole Truth built real credibility through radical ingredient transparency. That credibility is now table stakes. The brand has earned the right to mean something beyond the label — but the communication has not yet made that move. The emotional register remains functional when the audience has outgrown purely functional motivation.",
-      "implication": "The next unlock is not another variant. It is permission to feel seen. The brand that first moves from ingredient honesty to emotional honesty in this category will own a position that is significantly harder to replicate than a clean label."
+      "implication": "The next unlock is not another variant. It is permission to feel seen. The brand that first moves from ingredient honesty to emotional honesty in this category will own a position that is significantly harder to replicate than a clean label.",
+      "media": {
+        "type": "none"
+      }
     },
     {
       "id": 3,
@@ -61,7 +85,12 @@
       "featured": false,
       "readingTime": "1 min read",
       "excerpt": "AI is reducing the cost of execution across every creative category. When execution becomes cheap, perception becomes the primary differentiator. Brands that have invested in positioning will outperform brands that invested only in production.",
-      "tags": ["AI", "Positioning"]
+      "tags": ["AI", "Positioning"],
+      "media": {
+        "type": "video",
+        "url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "alt": "Signal 001 — AI & execution cost explainer"
+      }
     },
     {
       "id": 5,
@@ -135,7 +164,12 @@
       "featured": false,
       "readingTime": "6 min read",
       "excerpt": "A brand audit that only looks at your logo and colour palette is like a health check that only measures your height. The real diagnostic is about what you're communicating, to whom, and whether it's actually working.",
-      "url": "/blog/why-execution-matters"
+      "url": "/blog/why-execution-matters",
+      "media": {
+        "type": "image",
+        "url": "/assets/images/intelligence/why-execution-matters.jpg",
+        "alt": "Abstract graphic representing brand audit diagnostics"
+      }
     },
     {
       "id": 11,
