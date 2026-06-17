@@ -6,9 +6,11 @@
 .hero-inner { max-width: 1440px; margin: 0 auto; width: 100%; }
 .hero-content { max-width: 1040px; margin: 0 auto; text-align: left; position: relative; z-index: 1; }
 .hero-eyebrow {
-  font-size: 13px; font-weight: 500; color: var(--textsecondary);
+  font-size: 13px; font-weight: 700;
+  color: var(--textsecondary);
   letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: clamp(28px, 4vw, 40px); text-align: left;
+  margin-bottom: clamp(28px, 4vw, 40px);
+  text-align: left;
 }
 .hero-bg-shapes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
 .shape { position: absolute; background: var(--accent); border-radius: 50%; filter: blur(60px); opacity: 0.08; }
@@ -34,12 +36,20 @@
 @media (max-width: 1000px) { .hero-edge-left, .hero-edge-right { display: none; } }
 
 .hero-h1 {
-  font-family: var(--font); font-weight: 500;
-  font-size: clamp(2.2rem, 5.5vw, 4.8rem); line-height: 1.08;
-  letter-spacing: -0.04em; color: var(--textprimary);
-  margin-bottom: clamp(24px, 3vw, 36px); contain: layout style;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5.5vw, 4.8rem);
+  line-height: 1.0;
+  letter-spacing: -0.045em;
+  color: var(--textprimary);
+  margin-bottom: clamp(24px, 3vw, 36px);
+  contain: layout style;
 }
-.hero-h1 em { font-style: normal; font-weight: 600; color: var(--accent); }
+.hero-h1 em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--accent);
+}
 .hero-sub {
   font-size: clamp(16px, 1.5vw, 20px); color: var(--textsecondary);
   font-weight: 400; line-height: 1.65; max-width: 52ch;
