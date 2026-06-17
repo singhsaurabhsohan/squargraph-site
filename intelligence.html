@@ -21,12 +21,16 @@
   <link rel="preload" href="/fonts/Satoshi-Regular.woff" as="font" type="font/woff" crossorigin />
   <link rel="preload" href="/fonts/Satoshi-Medium.woff" as="font" type="font/woff" crossorigin />
   <link rel="preload" href="/fonts/Satoshi-Bold.woff" as="font" type="font/woff" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/base.css">
   <link rel="stylesheet" href="/assets/css/layout.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/animations.css">
   <link rel="stylesheet" href="/assets/css/pages/intelligence.css">
+  <link rel="stylesheet" href="/assets/css/pages/intelligence-additions.css">
 </head>
 <body data-page="intelligence">
 
@@ -77,8 +81,21 @@
     </div>
   </div>
 
-  <!-- ── BRAND QUOTIENT ANALYSES ── -->
-  <div class="intel-page-section" id="brand-quotient">
+  <!-- ── FILTER BAR ── -->
+  <div class="intel-filter-wrap">
+    <div class="intel-filter-wrap-inner">
+      <div class="intel-filter-bar" id="intel-filter-bar" role="tablist" aria-label="Filter intelligence content">
+        <button type="button" class="intel-filter-btn intel-filter-active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button type="button" class="intel-filter-btn" data-filter="study" role="tab" aria-selected="false">Studies</button>
+        <button type="button" class="intel-filter-btn" data-filter="article" role="tab" aria-selected="false">Articles</button>
+        <button type="button" class="intel-filter-btn" data-filter="signal" role="tab" aria-selected="false">Signals</button>
+        <button type="button" class="intel-filter-btn" data-filter="observation" role="tab" aria-selected="false">Observations</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BRAND QUOTIENT ANALYSES (dynamic — type: "study") ── -->
+  <div class="intel-page-section" id="brand-quotient" data-feed-section="study">
     <div class="intel-page-section-inner">
       <div class="intel-page-section-header fade-up">
         <div>
@@ -88,87 +105,16 @@
         <p class="intel-page-section-desc">A structured analysis of how a brand is perceived, where it holds competitive ground, and where perception and reality have drifted apart. Output: Tension, Observation, Implication.</p>
       </div>
 
-      <!-- boAt study — published -->
-      <article class="bq-card fade-up" id="study-boat">
-        <div class="bq-card-header">
-          <div class="bq-card-meta">
-            <span class="bq-card-type">Brand Quotient Analysis</span>
-            <span class="bq-card-sector">Electronics · Youth Culture</span>
-            <span class="bq-card-status bq-card-status--published">Published · June 2026</span>
-          </div>
-          <div class="bq-card-brand">
-            <img src="/boat-logo.png" alt="boAt" height="20" style="max-width:80px;object-fit:contain;filter:brightness(0);opacity:0.6;" loading="lazy" />
-          </div>
-        </div>
-        <div class="bq-card-body">
-          <div class="bq-card-block">
-            <p class="bq-card-label">Tension</p>
-            <p class="bq-card-text">boAt built the most successful youth electronics brand in India by making noise the strategy. Now the noise is the problem.</p>
-          </div>
-          <div class="bq-card-block">
-            <p class="bq-card-label">Observation</p>
-            <p class="bq-card-text">boAt's early positioning was structurally sound: affordable hardware plus cultural energy plus consistent visual identity. That worked when the audience was 18 to 24 and the category was aspirational. But boAt's first cohort has aged. They are now 26 to 32, comparing boAt to Sony, to Nothing, to Bose. The brand still speaks at full volume to a demographic that has quietly started listening for something else. Meanwhile, the next generation of 18-year-olds has JBL, Nothing, and CMF competing for exactly the same energy that boAt once owned exclusively.</p>
-          </div>
-          <div class="bq-card-block">
-            <p class="bq-card-label">Implication</p>
-            <p class="bq-card-text">boAt has a narrow window to execute a tonal evolution before the brand becomes associated primarily with entry-level hardware rather than cultural identity. This is not a rebranding problem. It is a communication maturity problem. The visual system can largely stay intact. What needs to change is the emotional register: from loud and proud to confident and considered.</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- The Whole Truth study — published -->
-      <article class="bq-card fade-up" id="study-twt">
-        <div class="bq-card-header">
-          <div class="bq-card-meta">
-            <span class="bq-card-type">Brand Quotient Analysis</span>
-            <span class="bq-card-sector">D2C · Wellness</span>
-            <span class="bq-card-status bq-card-status--published">Published · June 2026</span>
-          </div>
-          <div class="bq-card-brand">
-            <img src="/thewholetruth-logo.svg" alt="The Whole Truth" height="20" style="max-width:130px;filter:brightness(0);opacity:0.6;" loading="lazy" />
-          </div>
-        </div>
-        <div class="bq-card-body">
-          <div class="bq-card-block">
-            <p class="bq-card-label">Tension</p>
-            <p class="bq-card-text">Trust was never the problem. Emotional depth might become the next opportunity.</p>
-          </div>
-          <div class="bq-card-block">
-            <p class="bq-card-label">Observation</p>
-            <p class="bq-card-text">In a category flooded with "clean" and "natural", The Whole Truth built real credibility through radical ingredient transparency. That credibility is now table stakes. The brand has earned the right to mean something beyond the label — but the communication has not yet made that move. The emotional register remains functional when the audience has outgrown purely functional motivation.</p>
-          </div>
-          <div class="bq-card-block">
-            <p class="bq-card-label">Implication</p>
-            <p class="bq-card-text">The next unlock is not another variant. It is permission to feel seen. The brand that first moves from ingredient honesty to emotional honesty in this category will own a position that is significantly harder to replicate than a clean label.</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- In Progress card -->
-      <article class="bq-card bq-card--progress fade-up" id="study-automotive">
-        <div class="bq-card-header">
-          <div class="bq-card-meta">
-            <span class="bq-card-type">Brand Quotient Analysis</span>
-            <span class="bq-card-sector">Automotive · Luxury</span>
-            <span class="bq-card-status bq-card-status--progress">
-              <span class="bq-progress-dot"></span>
-              Analysis in progress
-            </span>
-          </div>
-        </div>
-        <div class="bq-card-body">
-          <div class="bq-card-block">
-            <p class="bq-card-label">Tension</p>
-            <p class="bq-card-text bq-card-text--muted">Perception premium under pressure in a category where specifications have converged and brand distinction has become the last defensible advantage.</p>
-          </div>
-        </div>
-      </article>
+      <div id="studies-feed" class="intel-feed-loading">
+        <div class="skeleton-bar"></div>
+        <div class="skeleton-bar"></div>
+      </div>
 
     </div>
   </div>
 
-  <!-- ── MARKET SIGNALS ── -->
-  <div class="intel-page-section intel-page-section--alt" id="market-signals">
+  <!-- ── MARKET SIGNALS (dynamic — type: "signal") ── -->
+  <div class="intel-page-section intel-page-section--alt" id="market-signals" data-feed-section="signal">
     <div class="intel-page-section-inner">
       <div class="intel-page-section-header fade-up">
         <div>
@@ -178,73 +124,14 @@
         <p class="intel-page-section-desc">Single observations on brand, market, and perception — written when something is worth noting. Not a newsletter. Not a content calendar.</p>
       </div>
 
-      <div class="signals-grid">
-
-        <div class="signal-card fade-up">
-          <p class="signal-num">Signal 001</p>
-          <p class="signal-date">June 2026</p>
-          <p class="signal-text">AI is reducing the cost of execution across every creative category. When execution becomes cheap, perception becomes the primary differentiator. Brands that have invested in positioning will outperform brands that invested only in production.</p>
-          <div class="signal-tags">
-            <span class="signal-tag">AI</span>
-            <span class="signal-tag">Positioning</span>
-          </div>
-        </div>
-
-        <div class="signal-card fade-up d1">
-          <p class="signal-num">Signal 002</p>
-          <p class="signal-date">June 2026</p>
-          <p class="signal-text">Rising customer acquisition costs in D2C are not primarily a media problem. They are a brand problem. When every brand in a category sounds the same, the only remaining differentiator is the offer. Discounting follows. Margin follows that.</p>
-          <div class="signal-tags">
-            <span class="signal-tag">D2C</span>
-            <span class="signal-tag">Brand Strategy</span>
-          </div>
-        </div>
-
-        <div class="signal-card fade-up d2">
-          <p class="signal-num">Signal 003</p>
-          <p class="signal-date">May 2026</p>
-          <p class="signal-text">Most brand audits measure the wrong things. Logo consistency and colour compliance are easy to audit. The harder diagnostic — what is the brand actually communicating at every touchpoint, and is it working — rarely gets asked.</p>
-          <div class="signal-tags">
-            <span class="signal-tag">Brand Audit</span>
-            <span class="signal-tag">Perception</span>
-          </div>
-        </div>
-
-        <div class="signal-card fade-up">
-          <p class="signal-num">Signal 004</p>
-          <p class="signal-date">May 2026</p>
-          <p class="signal-text">Consistency is not the goal. Coherence is. Consistency means repeating the same thing. Coherence means everything connects back to the same underlying idea. One is a design rule. The other is a strategic principle.</p>
-          <div class="signal-tags">
-            <span class="signal-tag">Brand Systems</span>
-          </div>
-        </div>
-
-        <div class="signal-card fade-up d1">
-          <p class="signal-num">Signal 005</p>
-          <p class="signal-date">April 2026</p>
-          <p class="signal-text">A website is not a brochure. Before anyone reads the copy, they have already formed an impression from load speed, visual hierarchy, and image quality. These are not UX details. They are brand signals.</p>
-          <div class="signal-tags">
-            <span class="signal-tag">Digital</span>
-            <span class="signal-tag">Perception</span>
-          </div>
-        </div>
-
-        <div class="signal-card fade-up d2">
-          <p class="signal-num">Signal 006</p>
-          <p class="signal-date">April 2026</p>
-          <p class="signal-text">The brief is where most campaign problems are created. Vague objectives, unresolved audience questions, no clear single-minded proposition. By the time creative work begins, the foundation is already compromised.</p>
-          <div class="signal-tags">
-            <span class="signal-tag">Campaign</span>
-            <span class="signal-tag">Strategy</span>
-          </div>
-        </div>
-
+      <div class="signals-grid" id="signals-feed">
+        <div class="intel-feed-loading"><div class="skeleton-bar"></div><div class="skeleton-bar"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- ── STRATEGIC STUDIES ── -->
-  <div class="intel-page-section" id="strategic-studies">
+  <!-- ── STRATEGIC STUDIES (dynamic — type: "article") ── -->
+  <div class="intel-page-section" id="strategic-studies" data-feed-section="article">
     <div class="intel-page-section-inner">
       <div class="intel-page-section-header fade-up">
         <div>
@@ -254,38 +141,14 @@
         <p class="intel-page-section-desc">Extended analysis on brand, positioning, and perception problems that do not resolve in a paragraph.</p>
       </div>
 
-      <div class="studies-list">
-
-        <a href="/blog/why-execution-matters" class="study-row fade-up">
-          <div class="study-row-meta">
-            <span class="study-row-cat">Brand Strategy</span>
-            <span class="study-row-date">June 2026</span>
-          </div>
-          <div class="study-row-content">
-            <h3 class="study-row-title">Why most brand audits measure the wrong things</h3>
-            <p class="study-row-excerpt">A brand audit that only looks at your logo and colour palette is like a health check that only measures your height. The real diagnostic is about what you're communicating, to whom, and whether it's actually working.</p>
-          </div>
-          <span class="study-row-arrow">→</span>
-        </a>
-
-        <div class="study-row study-row--progress fade-up">
-          <div class="study-row-meta">
-            <span class="study-row-cat">Positioning</span>
-            <span class="study-row-date">Coming</span>
-          </div>
-          <div class="study-row-content">
-            <h3 class="study-row-title" style="color:var(--textmuted);">The cost of invisible positioning</h3>
-            <p class="study-row-excerpt" style="color:var(--textmuted);">What it costs a brand to be technically present but perceptually absent in its category.</p>
-          </div>
-          <span class="study-row-arrow" style="color:var(--bordergray);">→</span>
-        </div>
-
+      <div class="studies-list" id="articles-feed">
+        <div class="intel-feed-loading"><div class="skeleton-bar"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- ── OBSERVATIONS ── -->
-  <div class="intel-page-section intel-page-section--alt" id="observations">
+  <!-- ── OBSERVATIONS (dynamic — type: "observation") ── -->
+  <div class="intel-page-section intel-page-section--alt" id="observations" data-feed-section="observation">
     <div class="intel-page-section-inner">
       <div class="intel-page-section-header fade-up">
         <div>
@@ -295,28 +158,13 @@
         <p class="intel-page-section-desc">Short entries. Written close to the work. No editorial polish. No argument being made — just something noticed.</p>
       </div>
 
-      <div class="observations-list">
-
-        <div class="observation-entry fade-up">
-          <p class="observation-date">17 June 2026</p>
-          <p class="observation-text">The brands that scale without losing themselves are not more disciplined about guidelines. They are more disciplined about the single idea at the centre. Guidelines are downstream of that.</p>
-        </div>
-
-        <div class="observation-entry fade-up">
-          <p class="observation-date">12 June 2026</p>
-          <p class="observation-text">Positioning is not a statement. It is a decision about what you will not say, not do, not be. Most brands treat it as addition. The ones that hold their ground treat it as subtraction.</p>
-        </div>
-
-        <div class="observation-entry fade-up">
-          <p class="observation-date">4 June 2026</p>
-          <p class="observation-text">Social content is not film content reformatted. It has different physics — different aspect ratios, attention windows, contexts of consumption. Briefs that ignore this produce work that looks expensive and performs poorly.</p>
-        </div>
-
+      <div class="observations-list" id="observations-feed">
+        <div class="intel-feed-loading"><div class="skeleton-bar"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- ── METHODOLOGY ── -->
+  <!-- ── METHODOLOGY (static) ── -->
   <div class="intel-page-section" id="methodology">
     <div class="intel-page-section-inner">
       <div class="intel-page-section-header fade-up">
@@ -351,7 +199,7 @@
     </div>
   </div>
 
-  <!-- ── CLOSING SIGNAL ── -->
+  <!-- ── CLOSING SIGNAL (static) ── -->
   <div class="intel-page-closing fade-up">
     <div class="intel-page-closing-inner">
       <p class="intel-page-closing-quote">A brand is not what you say it is.<br/>It is what other people say when you are not in the room.</p>
@@ -452,7 +300,7 @@
   var loaded = false;
   function loadGTM(){
     if(loaded) return; loaded = true;
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZK');
   }
   ['mousemove','keydown','touchstart','scroll','click'].forEach(function(e){
     window.addEventListener(e, loadGTM, {once:true, passive:true});
@@ -465,6 +313,7 @@
 <script src="/assets/js/core.js"></script>
 <script src="/assets/js/animations.js"></script>
 <script src="/assets/js/interactions.js"></script>
+<script src="/assets/js/intelligence.js"></script>
 
 </body>
 </html>
