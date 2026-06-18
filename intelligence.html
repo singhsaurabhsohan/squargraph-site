@@ -118,7 +118,13 @@
     <div class="intel-page-section-inner">
       <div class="intel-page-section-header fade-up">
         <div>
-          <p class="intel-page-section-eyebrow">Market Signals</p>
+          <div class="intel-page-section-eyebrow-row">
+            <p class="intel-page-section-eyebrow">Market Signals</p>
+            <details class="intel-method-disclosure">
+              <summary class="intel-method-icon" aria-label="Status methodology">ⓘ</summary>
+              <p class="intel-method-tooltip">Status reflects how many independent engagements have surfaced the same pattern: Emerging (one), Accelerating (two), Confirmed (three or more, no contradicting case), Declining (a Confirmed pattern recent engagements no longer support).</p>
+            </details>
+          </div>
           <h2 class="intel-page-section-title">Short observations.<br/>Longer implications.</h2>
         </div>
         <p class="intel-page-section-desc">Single observations on brand, market, and perception — written when something is worth noting. Not a newsletter. Not a content calendar.</p>
@@ -300,7 +306,7 @@
   var loaded = false;
   function loadGTM(){
     if(loaded) return; loaded = true;
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZK');
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');
   }
   ['mousemove','keydown','touchstart','scroll','click'].forEach(function(e){
     window.addEventListener(e, loadGTM, {once:true, passive:true});
