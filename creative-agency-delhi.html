@@ -242,17 +242,180 @@ We help ambitious brands strengthen perception, build competitive advantage, and
   </div>
 </section>
 
+<style>
+.eng-tabs { display:flex; gap:0; border-bottom:1px solid var(--bordergray); margin-top:48px; overflow-x:auto; scrollbar-width:none; }
+.eng-tabs::-webkit-scrollbar { display:none; }
+.eng-tab {
+  font-family:'Satoshi',sans-serif; font-size:12px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--textmuted);
+  background:none; border:none; border-bottom:2px solid transparent;
+  padding:14px 28px; cursor:pointer; white-space:nowrap;
+  transition:color .2s, border-color .2s; margin-bottom:-1px;
+}
+.eng-tab:hover { color:var(--textprimary); }
+.eng-tab.active { color:var(--textprimary); border-bottom-color:var(--textprimary); }
+.eng-panel { display:none; padding-top:40px; }
+.eng-panel.active { display:block; }
+.eng-panel-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr)); gap:16px; align-items:start; }
+.eng-context {
+  display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,5vw,80px);
+  align-items:start; padding-bottom:40px; border-bottom:1px solid var(--bordergray); margin-bottom:40px;
+}
+@media(max-width:640px){ .eng-context { grid-template-columns:1fr; gap:16px; } }
+.eng-context-step { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:10px; }
+.eng-context-title { font-family:'Satoshi',sans-serif; font-size:clamp(20px,2.5vw,28px); font-weight:500; letter-spacing:-0.03em; color:var(--textprimary); margin-bottom:14px; }
+.eng-context-desc { font-size:14px; color:var(--textsecondary); line-height:1.8; }
+.eng-context-logic { font-size:13px; color:var(--textmuted); line-height:1.75; padding-top:20px; border-top:1px solid var(--bordergray); }
+</style>
+
 <section id="Engagements" class="engagements-section">
   <div class="section-inner">
     <div class="Engagements-header fade-up">
-  <p class="section-eyebrow">Engagement Models</p>
-
-  <h2 class="section-title">Choose Your Starting Point</h2>
+      <p class="section-eyebrow">Engagement Models</p>
+      <h2 class="section-title">How We Work Together</h2>
       <p style="margin-top:14px;max-width:620px;font-size:14px;line-height:1.8;color:var(--textsecondary);">
-        Every engagement begins the same way: we understand the business before we touch the brief.
+        Every engagement follows the same logic: understand the position first, then build everything else around it.
       </p>
-</div>
-    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:16px;align-items:start;">
+    </div>
+
+    <div class="eng-tabs" role="tablist" aria-label="Engagement stages">
+      <button class="eng-tab active" role="tab" aria-selected="true"  data-eng="start">Start Here</button>
+      <button class="eng-tab"        role="tab" aria-selected="false" data-eng="assess">Assess</button>
+      <button class="eng-tab"        role="tab" aria-selected="false" data-eng="build">Build</button>
+      <button class="eng-tab"        role="tab" aria-selected="false" data-eng="scale">Scale</button>
+    </div>
+
+    <!-- START HERE -->
+    <div class="eng-panel active" id="eng-start" role="tabpanel">
+      <div class="eng-context">
+        <div>
+          <p class="eng-context-step">Stage 01 · Entry Point</p>
+          <h3 class="eng-context-title">Not sure where to begin?<br/>Start here.</h3>
+          <p class="eng-context-desc">Before any brief, any scope, any decision — a focused 30-minute session to understand where you are, where you need to be, and what's standing in the way.</p>
+        </div>
+        <p class="eng-context-logic">Most brands come to us with a feeling that something isn't working — the positioning feels off, the digital presence doesn't match the product, the communication isn't landing. This session is designed to turn that feeling into a clear direction.</p>
+      </div>
+      <div class="eng-panel-grid">
+        <div class="engagement-card">
+          <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;">Entry Point</div>
+          <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);">Discovery Session™</div>
+          <div style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">₹2,999</div>
+          <p style="font-size:14px;color:var(--textsecondary);line-height:1.7;flex:1;">A focused strategic session designed to identify opportunities, uncover communication gaps, and define the next best move for your business. You'll leave with a clear roadmap and practical direction.</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--bordergray);padding-top:16px;">
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Strategic Consultation</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Brand & Digital Review</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Opportunity & Gap Analysis</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Action Roadmap PDF</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Session Recording</li>
+          </ul>
+          <a href="/discovery" class="btn-primary" style="margin-top:8px;text-decoration:none;display:inline-flex;align-items:center;">Book Discovery →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASSESS -->
+    <div class="eng-panel" id="eng-assess" role="tabpanel">
+      <div class="eng-context">
+        <div>
+          <p class="eng-context-step">Stage 02 · Assessment</p>
+          <h3 class="eng-context-title">Know exactly where<br/>you stand.</h3>
+          <p class="eng-context-desc">A structured diagnostic of how your brand is perceived, communicated, and experienced — with competitor benchmarking and clear strategic recommendations.</p>
+        </div>
+        <p class="eng-context-logic">You can't fix a positioning problem by guessing. The Audit maps the gap between what you think you're communicating and what your market is actually receiving — then tells you precisely what to do about it.</p>
+      </div>
+      <div class="eng-panel-grid">
+        <div class="engagement-card">
+          <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;">Audit</div>
+          <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);">Brand Growth Audit™</div>
+          <div style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">₹9,999</div>
+          <p style="font-size:14px;color:var(--textsecondary);line-height:1.7;flex:1;">A comprehensive evaluation of how your business is positioned, communicated, and experienced across every major touchpoint, supported by competitor benchmarking and strategic recommendations.</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--bordergray);padding-top:16px;">
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Brand Positioning Assessment</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Competitor Benchmarking</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Communication Review</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Digital Experience Audit</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Executive Report</li>
+          </ul>
+          <button type="button" onclick="window.location.href='/audit.html';" class="btn-primary" style="margin-top:8px;">Start the Audit →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUILD -->
+    <div class="eng-panel" id="eng-build" role="tabpanel">
+      <div class="eng-context">
+        <div>
+          <p class="eng-context-step">Stage 03 · Build</p>
+          <h3 class="eng-context-title">Build the foundation.<br/>Then the presence.</h3>
+          <p class="eng-context-desc">Strategy, identity, and digital experience — developed together, not handed off in sequence. The brand and the platform it lives on, built to the same standard.</p>
+        </div>
+        <p class="eng-context-logic">Most brands separate identity work from digital work. We build them together because the decisions are the same decisions — how you look, what you say, and how that translates into every surface a customer encounters.</p>
+      </div>
+      <div class="eng-panel-grid">
+        <div class="engagement-card engagement-card--dark">
+          <div style="font-size:11px;letter-spacing:.12em;color:#B8AEED;font-weight:600;text-transform:uppercase;">Sprint</div>
+          <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:#fff;">Brand Foundation Sprint™</div>
+          <div style="margin:0 0 4px 0;">
+            <div style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:28px;color:#fff;letter-spacing:-0.02em;">Custom scope</div>
+            <div style="font-size:13px;font-weight:400;color:rgba(255,255,255,.6);">Priced per project</div>
+          </div>
+          <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.5;margin:0;flex:1;">A complete strategic and visual foundation designed for businesses preparing to scale, reposition, or build stronger market presence.</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;">
+            <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Positioning Framework</li>
+            <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Messaging Architecture</li>
+            <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Visual Identity System</li>
+            <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Brand Asset Kit</li>
+          </ul>
+          <button type="button" onclick="window.location.href='/brand-foundation-sprint.html'" class="btn-primary" style="margin-top:8px;">Build Your Foundation →</button>
+        </div>
+        <div class="engagement-card">
+          <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;">Digital</div>
+          <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);">Websites & Digital Experiences</div>
+          <div style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">Custom scope</div>
+          <div style="font-size:13px;font-weight:400;color:var(--textsecondary);">Priced per project.</div>
+          <p style="font-size:14px;color:var(--textsecondary);line-height:1.7;flex:1;">A strategy-led website build for brands that need their digital presence to reflect the same standard as their positioning — not just their visual identity.</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--bordergray);padding-top:16px;">
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Brand-aligned UX & design</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Conversion-focused architecture</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>CMS & dev handoff included</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Scoped to your requirements</li>
+          </ul>
+          <a href="/websites-digital-experiences.html" class="btn-outline" style="margin-top:8px;">Start Project →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCALE -->
+    <div class="eng-panel" id="eng-scale" role="tabpanel">
+      <div class="eng-context">
+        <div>
+          <p class="eng-context-step">Stage 04 · Scale</p>
+          <h3 class="eng-context-title">Ongoing strategy<br/>and execution.</h3>
+          <p class="eng-context-desc">For businesses that have the foundation in place and need a thinking partner for ongoing communication, campaigns, and content — without the overhead of a full agency retainer.</p>
+        </div>
+        <p class="eng-context-logic">Growth at scale requires consistent creative intelligence, not just production capacity. We work alongside brand teams and founders as a strategic execution partner — briefed once, aligned on everything.</p>
+      </div>
+      <div class="eng-panel-grid">
+        <div class="engagement-card" style="grid-column:1/-1;max-width:480px;">
+          <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;">Ongoing</div>
+          <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);">Growth Partnership™</div>
+          <div style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">Custom scope</div>
+          <div style="font-size:13px;font-weight:400;color:var(--textsecondary);">Scoped per engagement.</div>
+          <p style="font-size:14px;color:var(--textsecondary);line-height:1.7;flex:1;">Campaign strategy, content systems, and always-on execution — structured as one programme, not a series of separate projects.</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--bordergray);padding-top:16px;">
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Campaign Architecture & Rollout</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Content Programme Strategy</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Always-on Execution</li>
+            <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Monthly Strategic Review</li>
+          </ul>
+          <a href="/#contact" class="btn-primary" style="margin-top:8px;text-decoration:none;display:inline-flex;align-items:center;">Start the Conversation →</a>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:28px;font-size:11px;color:var(--textmuted);letter-spacing:.02em;line-height:1.7;text-align:center;padding-left:16px;padding-right:16px;">*All prices are exclusive of applicable taxes. Deliverables, timelines and engagement terms are governed by the respective project scope and Terms &amp; Conditions.</p>
+  </div>
+</section>
 
       <div class="engagement-card">
         <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;">Entry Point</div>
