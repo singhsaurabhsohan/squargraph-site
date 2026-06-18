@@ -5,6 +5,7 @@ html {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   font-weight: 400;
+  scrollbar-gutter: stable;
 }
 
 body {
