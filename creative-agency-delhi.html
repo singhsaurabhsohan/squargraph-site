@@ -247,19 +247,10 @@ We help ambitious brands strengthen perception, build competitive advantage, and
     <div class="Engagements-header fade-up">
   <p class="section-eyebrow">Engagement Models</p>
 
-  <h2 class="section-title">
-    How We Work Together
-  </h2>
-
-  <p style="
-    margin-top:14px;
-    max-width:620px;
-    font-size:14px;
-    line-height:1.8;
-    color:var(--textsecondary);
-  ">
-    Every engagement starts with the same question: what does your brand need to be in your market, and what is currently in the way of that?
-  </p>
+  <h2 class="section-title">Choose Your Starting Point</h2>
+      <p style="margin-top:14px;max-width:620px;font-size:14px;line-height:1.8;color:var(--textsecondary);">
+        Every engagement begins the same way: we understand the business before we touch the brief.
+      </p>
 </div>
     <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:16px;align-items:start;">
 
@@ -870,6 +861,20 @@ We help ambitious brands strengthen perception, build competitive advantage, and
   <button class="banner-close" onclick="document.getElementById('sticky-banner').classList.add('hidden')" aria-label="Close">&times;</button>
 </div>
 <script src="/js/otp.js"></script>
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.eng-tab');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      document.querySelectorAll('.eng-panel').forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      document.getElementById('eng-' + tab.dataset.eng).classList.add('active');
+    });
+  });
+})();
+</script>
 <script>
 (function(){
   var trigger = document.getElementById('Engagements');
