@@ -44,6 +44,22 @@
   margin-bottom: clamp(48px, 7vw, 80px);
 }
 @media (max-width: 768px) { .intel-page-section-header { grid-template-columns: 1fr; gap: 20px; } }
+.intel-page-section-eyebrow-row { display: flex; align-items: center; gap: 6px; }
+.intel-method-disclosure { display: inline-block; position: relative; }
+.intel-method-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%;
+  font-size: 11px; font-weight: 600; color: var(--textmuted);
+  background: var(--warmgray); border: 1px solid var(--bordergray);
+  cursor: pointer; list-style: none; user-select: none;
+}
+.intel-method-icon::-webkit-details-marker { display: none; }
+.intel-method-tooltip {
+  position: absolute; top: 26px; left: 0; z-index: 5;
+  width: min(300px, 80vw); background: #fff; border: 1px solid var(--bordergray);
+  border-radius: 8px; box-shadow: var(--shadow-md);
+  padding: 14px 16px; font-size: 12px; color: var(--textsecondary); line-height: 1.6;
+}
 .intel-page-section-eyebrow {
   font-size: 10px; font-weight: 600; letter-spacing: .14em;
   text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
@@ -180,7 +196,9 @@
 }
 .observation-entry:first-child { border-top: 1px solid var(--bordergray); }
 @media (max-width: 640px) { .observation-entry { grid-template-columns: 1fr; gap: 8px; } }
-.observation-date { font-size: 12px; color: var(--textmuted); padding-top: 3px; }
+.observation-meta { display: flex; flex-direction: column; gap: 4px; padding-top: 3px; }
+.observation-date { font-size: 12px; color: var(--textmuted); }
+.observation-id { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
 .observation-text { font-size: 15px; color: var(--textprimary); line-height: 1.75; }
 
 /* ── METHODOLOGY ── */
