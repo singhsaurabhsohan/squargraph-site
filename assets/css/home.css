@@ -228,3 +228,6 @@
   background: rgba(26,23,20,.97); overflow-y: auto;
   padding: 60px 5vw; align-items: center; justify-content: center;
 }
+@media (max-width: 768px) {
+  .intel-home-grid { grid-template-columns: 1fr !important; }
+}
