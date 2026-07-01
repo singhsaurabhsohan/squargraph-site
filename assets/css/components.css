@@ -149,7 +149,7 @@ textarea.form-input:focus {
   display: block; width: 100%; position: relative;
   border-radius: 999px; background: var(--warmgray);
   border: 1px solid var(--bordergray);
-  overflow: hidden;
+  overflow: visible;
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 .iti:focus-within { border-color: var(--accentmuted); box-shadow: 0 0 0 3px rgba(107,93,184,.12); }
