@@ -254,7 +254,7 @@ textarea.form-input:focus {
   height: 420px; max-height: calc(100vh - 140px);
   background: #111; border: 1px solid rgba(255,255,255,.08);
   border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,.4);
-  z-index: 9997; flex-direction: column; overflow: hidden;
+  z-index: 9997; flex-direction: column; overflow: visible;
   font-family: inherit;
 }
 #ai-chat-panel.open { display: flex; }
