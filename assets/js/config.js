@@ -19,7 +19,8 @@ window.SQ.config = {
     initialCountry: 'in',
     separateDialCode: true,
     preferredCountries: ['in', 'ae', 'us', 'gb', 'sg'],
-    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
+    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
+    dropdownContainer: document.body
   },
 
   cityData: {
