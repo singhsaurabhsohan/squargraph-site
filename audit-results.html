@@ -543,15 +543,23 @@
     var raw=null;
     try { raw=JSON.parse(sessionStorage.getItem('sq_audit_payload')); } catch(e) {}
     var scores;
-    try {
-      scores = await fetchAIScores(raw||{});
-      ['web','comm','comp','overall'].forEach(function(k){var v=Number(scores[k]);scores[k]=(!isNaN(v)&&v>0)?Math.min(100,Math.max(0,Math.round(v))):50;});
-      if(scores.confidence!==undefined)scores.confidence=Math.min(100,Math.max(0,Math.round(Number(scores.confidence)||75)));
-      if(!scores.overall||scores.overall===0)scores.overall=Math.round((scores.web*.40)+(scores.comm*.30)+(scores.comp*.30));
-    } catch(e) {
-      console.warn('AI scoring failed, using fallback:',e);
-      scores=fallbackScores(raw);
-      scores.summary=(raw&&raw.company?raw.company:'Your brand')+' — our AI is currently experiencing high demand. Your audit request has been received and our team will review it shortly. The preliminary scores below are indicative and will be refined in your full report.';
+    var payloadKey = JSON.stringify(raw||{});
+    var cached = null;
+    try { cached = JSON.parse(sessionStorage.getItem('sq_audit_scores_cache')); } catch(e) {}
+    if (cached && cached.payloadKey === payloadKey && cached.scores) {
+      scores = cached.scores;
+    } else {
+      try {
+        scores = await fetchAIScores(raw||{});
+        ['web','comm','comp','overall'].forEach(function(k){var v=Number(scores[k]);scores[k]=(!isNaN(v)&&v>0)?Math.min(100,Math.max(0,Math.round(v))):50;});
+        if(scores.confidence!==undefined)scores.confidence=Math.min(100,Math.max(0,Math.round(Number(scores.confidence)||75)));
+        if(!scores.overall||scores.overall===0)scores.overall=Math.round((scores.web*.40)+(scores.comm*.30)+(scores.comp*.30));
+      } catch(e) {
+        console.warn('AI scoring failed, using fallback:',e);
+        scores=fallbackScores(raw);
+        scores.summary=(raw&&raw.company?raw.company:'Your brand')+' — our AI is currently experiencing high demand. Your audit request has been received and our team will review it shortly. The preliminary scores below are indicative and will be refined in your full report.';
+      }
+      try { sessionStorage.setItem('sq_audit_scores_cache', JSON.stringify({ payloadKey: payloadKey, scores: scores })); } catch(e) {}
     }
     _cachedScores=scores;
     trackEvent('ai_analysis_generated');
