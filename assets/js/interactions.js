@@ -164,7 +164,7 @@ window.SQ.openRazorpay = function (productKey) {
 
   var options = {
     key: cfg.razorpayKey, amount: product.amount, currency: 'INR',
-    name: 'SQUARGRAPH™ Studios', description: product.description,
+    name: 'SQUARGRAPH™', description: product.description,
     image: '/logo.webp', prefill: {}, notes: { product: product.name },
     theme: { color: '#8B7EC8' }, modal: { ondismiss: function () {}, animation: true },
     handler: function (response) {
