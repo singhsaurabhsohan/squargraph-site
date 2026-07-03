@@ -19,10 +19,8 @@ window.SQ.config = {
     initialCountry: 'in',
     separateDialCode: true,
     preferredCountries: ['in', 'ae', 'us', 'gb', 'sg'],
-    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js',
-    dropdownContainer: document.body
+    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
   },
-
   cityData: {
     'India':     ['Ahmedabad','Bengaluru','Chennai','Delhi','Gurugram','Hyderabad','Jaipur','Kolkata','Mumbai','Noida','Pune','Surat','Other'],
     'UAE':       ['Abu Dhabi','Dubai','Sharjah','Other'],
