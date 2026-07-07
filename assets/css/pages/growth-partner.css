@@ -345,3 +345,96 @@
     .scroll-reveal { opacity:0; transform:translateY(24px); transition:opacity .8s,transform .8s cubic-bezier(.25,.1,.25,1); }
     .scroll-reveal.visible { opacity:1; transform:none; }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
+
+    /* Growth Partner card polish */
+    .problem-grid {
+      gap: 16px !important;
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      overflow: visible !important;
+    }
+    .problem-section .problem-item {
+      border: 0 !important;
+      text-align: center !important;
+      box-shadow: 0 10px 30px rgba(26,23,20,.06) !important;
+    }
+    .problem-section .problem-item-num {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    .pillar-card,
+    .deliv-group,
+    .plan-card,
+    .why-grid > .scroll-reveal {
+      text-align: center !important;
+    }
+    .pillar-icon {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .deliv-list-item,
+    .plan-feature {
+      justify-content: center !important;
+      text-align: center !important;
+    }
+
+    .flow-steps {
+      gap: 18px !important;
+    }
+    .flow-section .flow-step {
+      background: #fff !important;
+      border: 0 !important;
+      border-radius: 8px !important;
+      box-shadow: 0 10px 30px rgba(26,23,20,.06) !important;
+      padding: 34px 28px !important;
+      text-align: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+    .flow-step:not(:last-child)::after {
+      display: none !important;
+    }
+    .flow-step-num {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .flow-step-desc {
+      max-width: 30ch !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    .plans-section .plan-card {
+      align-items: center !important;
+      text-align: center !important;
+    }
+    .plans-section .plan-badge.accent {
+      background: var(--accent) !important;
+      border-color: var(--accent) !important;
+      color: #fff !important;
+      box-shadow: 0 10px 24px rgba(57,69,54,.18) !important;
+    }
+    .plans-section .plan-for,
+    .plans-section .plan-features {
+      width: 100%;
+    }
+    .plans-section .plan-feature svg,
+    .deliv-list-item svg {
+      flex-shrink: 0 !important;
+    }
+
+    @media (max-width: 560px) {
+      .problem-grid,
+      .flow-steps,
+      .plans-grid,
+      .why-grid {
+        gap: 14px !important;
+      }
+      .problem-section .problem-item,
+      .flow-section .flow-step {
+        padding: 28px 22px !important;
+      }
+    }
