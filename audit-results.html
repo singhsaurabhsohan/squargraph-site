@@ -7,7 +7,7 @@
   <link rel="preload" href="/fonts/Satoshi-Medium.woff" as="font" type="font/woff" crossorigin />
   <link rel="preload" href="/fonts/Satoshi-Bold.woff" as="font" type="font/woff" crossorigin />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Brand Growth Audit™ Results — SQUARGRAPH™</title>
+  <title>Your Brand Growth Audit™ Results - SQUARGRAPH™</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');</script>
@@ -229,7 +229,7 @@
   <main>
     <section class="results-section">
       <div class="results-eyebrow">Brand Growth Audit™</div>
-      <h1 class="results-heading">Your preliminary<br /><em>assessment is ready.</em></h1>
+      <h1 class="results-heading">Your preliminary<br />assessment is ready.</h1>
       <p class="results-subhead">We've analysed your brand across three key dimensions. Review your Brand Quotient™ score below.</p>
 
       <div class="results-card" id="results-card">
@@ -391,7 +391,7 @@
       '<div class="card-left">',
       '<div class="bq-eyebrow">Research Complete</div>',
       '<div style="font-size:11px;color:#8A8580;line-height:1.6;margin-bottom:16px;padding:10px 12px;background:var(--warmgray);border:1px solid var(--bordergray);border-radius:8px;">AI-Powered Assessment · Website, social &amp; market signals. SQUARGRAPH methodology.</div>',
-      '<div style="font-size:17px;font-weight:500;letter-spacing:-0.03em;color:var(--textprimary);line-height:1.25;margin-bottom:12px;">Here\'s what we found about <em style="color:var(--accent);font-style:normal;">' + escHtml(companyName) + '</em></div>',
+      '<div style="font-size:17px;font-weight:500;letter-spacing:-0.03em;color:var(--textprimary);line-height:1.25;margin-bottom:12px;">Here\'s what we found about ' + escHtml(companyName) + '</div>',
       '<div style="font-size:13px;line-height:1.75;color:#5A5550;background:var(--warmgray);border:1px solid var(--bordergray);border-radius:10px;padding:14px 16px;margin-bottom:16px;">' + escHtml(scores.summary || 'Analysis complete.') + '</div>',
       '<div style="position:relative;margin-bottom:12px;">',
       '<div style="filter:blur(6px);pointer-events:none;user-select:none;"><div class="metrics-grid">',
@@ -522,7 +522,7 @@
     var paymentId = urlParams.get('id');
 
     if (paymentId) {
-      // Shareable URL flow — fetch saved record from Worker
+      // Shareable URL flow - fetch saved record from Worker
       try {
         var res = await fetch(AUDIT_RESULTS_WORKER + '?payment_id=' + encodeURIComponent(paymentId));
         if (!res.ok) throw new Error('Not found');
@@ -558,7 +558,7 @@
       } catch(e) {
         console.warn('AI scoring failed, using fallback:',e);
         scores=fallbackScores(raw);
-        scores.summary=(raw&&raw.company?raw.company:'Your brand')+' — our AI is currently experiencing high demand. Your audit request has been received and our team will review it shortly. The preliminary scores below are indicative and will be refined in your full report.';
+        scores.summary=(raw&&raw.company?raw.company:'Your brand')+' - our AI is currently experiencing high demand. Your audit request has been received and our team will review it shortly. The preliminary scores below are indicative and will be refined in your full report.';
       }
       try { sessionStorage.setItem('sq_audit_scores_cache', JSON.stringify({ payloadKey: payloadKey, scores: scores })); } catch(e) {}
     }

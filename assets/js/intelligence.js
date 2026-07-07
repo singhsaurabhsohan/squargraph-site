@@ -1,5 +1,5 @@
 /* ============================================================
-   SQUARGRAPH™ Intelligence — Content Engine
+   SQUARGRAPH™ Intelligence - Content Engine
    Fetches assets/data/intelligence.json and renders:
      - Brand Studies      (type: "study")
      - Market Signals     (type: "signal")
@@ -8,7 +8,7 @@
 
    Single source of truth: intelligence.json
    Adding/editing an entry there is the only thing required
-   to change what appears on the page — no HTML edits.
+   to change what appears on the page - no HTML edits.
 
    Brand Studies and Strategic Studies are deliberately kept
    as separate content types and separate filters. They are
@@ -18,7 +18,7 @@
      Each entry may optionally include a media field:
        media: { type: "image"|"video"|"none", url: "", alt: "" }
      Omitting the field is equivalent to media.type = "none".
-     Media renders automatically — no HTML edits required.
+     Media renders automatically - no HTML edits required.
    ============================================================ */
 
 (function () {
@@ -45,7 +45,7 @@
         return res.json();
       })
       .then(function (data) {
-        // published:false entries are drafts — excluded entirely, at the source.
+        // published:false entries are drafts - excluded entirely, at the source.
         var all = (data.entries || []).filter(function (e) { return e.published !== false; });
         state.entries = sortEntries(all);
         renderAll();
@@ -91,7 +91,7 @@
   }
 
   /* ============================================================
-     MEDIA — shared renderer
+     MEDIA - shared renderer
      Handles image, video (embed + native), and none/absent.
 
      Placement:
@@ -279,7 +279,7 @@
 
   /* ============================================================
      OBSERVATIONS  (type: "observation")
-     Observations are field notes — text only, no media rendered.
+     Observations are field notes - text only, no media rendered.
      ============================================================ */
   function renderObservations() {
     var root = document.getElementById("observations-feed");
@@ -302,7 +302,7 @@
   }
 
   /* ============================================================
-     BYLINE — shared author / reading-time strip
+     BYLINE - shared author / reading-time strip
      ============================================================ */
   function byline(item, withTopBorder) {
     if (!item.author && !item.readingTime) return "";
@@ -317,7 +317,7 @@
   }
 
   /* ============================================================
-     FILTERS — All / Studies / Articles / Signals / Observations
+     FILTERS - All / Studies / Articles / Signals / Observations
      ============================================================ */
   function bindFilters() {
     var bar = document.getElementById("intel-filter-bar");

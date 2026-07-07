@@ -427,7 +427,7 @@
         submitBtn.disabled = true;
         submitBtn.title = 'Please verify your email first';
       }
-      /* Safety fallback — re-enable after 5 mins if something goes wrong */
+      /* Safety fallback - re-enable after 5 mins if something goes wrong */
       setTimeout(function() {
         if (submitBtn && submitBtn.disabled) {
           submitBtn.disabled = false;
@@ -465,7 +465,7 @@
 
       /* ── Wrap phone field ── */
       if (phoneInput) {
-        /* ITI wraps the input in a div — find the outermost ITI container or the input itself */
+        /* ITI wraps the input in a div - find the outermost ITI container or the input itself */
         var phoneWrapper = document.createElement('div');
         phoneWrapper.className = 'sq-field-with-btn';
         var phoneContainer = phoneInput.closest('.iti') || phoneInput;

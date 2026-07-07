@@ -46,7 +46,7 @@
 .intel-feed-empty,
 .intel-feed-error {
   font-size: 13px; color: var(--textmuted);
-  padding: 32px 0; font-style: italic;
+  padding: 32px 0; font-style: normal;
 }
 .intel-feed-error { color: var(--textsecondary); }
 

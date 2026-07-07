@@ -278,7 +278,7 @@ textarea.form-input:focus {
 .ai-msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; word-wrap: break-word; }
 .ai-msg.user { align-self: flex-end; background: var(--accent); color: #fff; }
 .ai-msg.bot { align-self: flex-start; background: #222; color: #eee; }
-.ai-msg.bot.loading { color: #888; font-style: italic; }
+.ai-msg.bot.loading { color: #888; font-style: normal; }
 #ai-chat-input-row { display: flex; border-top: 1px solid rgba(255,255,255,.06); }
 #ai-chat-input {
   flex: 1; background: #1a1a1a; border: none; color: #fff;

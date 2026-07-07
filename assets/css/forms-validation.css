@@ -11,7 +11,7 @@
 .form-input.error,
 input.error { border-color: #EF4444; }
 
-/* Consent block — Discovery / Sprint / Websites */
+/* Consent block - Discovery / Sprint / Websites */
 .consent-row {
   display: flex;
   align-items: flex-start;

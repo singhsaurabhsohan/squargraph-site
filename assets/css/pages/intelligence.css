@@ -20,7 +20,7 @@
   letter-spacing: -0.04em; line-height: 1.02;
   color: var(--textprimary); margin-bottom: 24px;
 }
-.intel-page-h1 em { font-style: italic; color: var(--accent); }
+.intel-page-h1 em { font-style: normal; color: var(--accent); }
 .intel-page-desc {
   font-size: clamp(15px, 1.4vw, 17px); color: var(--textsecondary);
   line-height: 1.75; max-width: 52ch; margin-bottom: 16px;
@@ -122,9 +122,9 @@
   text-transform: uppercase; color: var(--textmuted); margin-bottom: 12px;
 }
 .bq-card-text {
-  font-size: 14px; color: var(--textprimary); line-height: 1.75;
+  font-size: 14px; color: var(--textprimary); line-height: 1.75; font-style: normal;
 }
-.bq-card-text--muted { color: var(--textsecondary); font-style: italic; }
+.bq-card-text--muted { color: var(--textsecondary); font-style: normal; }
 
 /* ── MARKET SIGNALS ── */
 .signals-grid {

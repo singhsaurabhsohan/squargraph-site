@@ -170,13 +170,27 @@ nav:not(.scrolled) .pill-body {
   z-index: -2;
 }
 
-.hero-media img {
+.hero-media img,
+.hero-media iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+}
+
+.hero-media img {
   object-fit: cover;
   object-position: center;
   filter: saturate(.92) contrast(1.05);
   transform: scale(1.02);
+}
+
+.hero-media iframe {
+  border: 0;
+  display: block;
+  pointer-events: none;
+  transform: scale(1.16);
+  transform-origin: center;
 }
 
 .hero-scrim {

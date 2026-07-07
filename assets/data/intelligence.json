@@ -4,15 +4,15 @@
     "media": {
       "description": "Optional media attachment for any content entry.",
       "type": "'image' | 'video' | 'none'",
-      "url": "string — path or full URL to the media asset",
-      "alt": "string — alt text for images; caption/label for videos"
+      "url": "string - path or full URL to the media asset",
+      "alt": "string - alt text for images; caption/label for videos"
     },
     "notes": [
       "media is optional on every entry type (study, signal, article, observation).",
       "Omitting the media field is equivalent to media.type = 'none'.",
       "Images: place files under /assets/images/intelligence/ and set url accordingly.",
       "Videos: url may be a YouTube/Vimeo embed URL or a direct .mp4 path.",
-      "The renderer derives behaviour solely from intelligence.json — no HTML edits required."
+      "The renderer derives behaviour solely from intelligence.json - no HTML edits required."
     ]
   },
   "entries": [
@@ -35,7 +35,7 @@
       "media": {
         "type": "image",
         "url": "/assets/images/intelligence/boat-brand-quotient.jpg",
-        "alt": "boAt brand identity — loud colour palette against a dark background"
+        "alt": "boAt brand identity - loud colour palette against a dark background"
       }
     },
     {
@@ -52,7 +52,7 @@
       "brandName": "The Whole Truth",
       "brandLogo": "/thewholetruth-logo.svg",
       "tension": "Trust was never the problem. Emotional depth might become the next opportunity.",
-      "observation": "In a category flooded with \"clean\" and \"natural\", The Whole Truth built real credibility through radical ingredient transparency. That credibility is now table stakes. The brand has earned the right to mean something beyond the label — but the communication has not yet made that move. The emotional register remains functional when the audience has outgrown purely functional motivation.",
+      "observation": "In a category flooded with \"clean\" and \"natural\", The Whole Truth built real credibility through radical ingredient transparency. That credibility is now table stakes. The brand has earned the right to mean something beyond the label - but the communication has not yet made that move. The emotional register remains functional when the audience has outgrown purely functional motivation.",
       "implication": "The next unlock is not another variant. It is permission to feel seen. The brand that first moves from ingredient honesty to emotional honesty in this category will own a position that is significantly harder to replicate than a clean label.",
       "media": {
         "type": "none"
@@ -89,7 +89,7 @@
       "media": {
         "type": "none",
         "url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        "alt": "Signal 001 — AI & execution cost explainer"
+        "alt": "Signal 001 - AI & execution cost explainer"
       }
     },
     {
@@ -113,7 +113,7 @@
       "published": true,
       "featured": false,
       "readingTime": "1 min read",
-      "excerpt": "Most brand audits measure the wrong things. Logo consistency and colour compliance are easy to audit. The harder diagnostic — what is the brand actually communicating at every touchpoint, and is it working — rarely gets asked.",
+      "excerpt": "Most brand audits measure the wrong things. Logo consistency and colour compliance are easy to audit. The harder diagnostic - what is the brand actually communicating at every touchpoint, and is it working - rarely gets asked.",
       "tags": ["Brand Audit", "Perception"]
     },
     {
@@ -213,7 +213,7 @@
       "published": true,
       "featured": false,
       "readingTime": "1 min read",
-      "excerpt": "Social content is not film content reformatted. It has different physics — different aspect ratios, attention windows, contexts of consumption. Briefs that ignore this produce work that looks expensive and performs poorly."
+      "excerpt": "Social content is not film content reformatted. It has different physics - different aspect ratios, attention windows, contexts of consumption. Briefs that ignore this produce work that looks expensive and performs poorly."
     }
   ]
 }
