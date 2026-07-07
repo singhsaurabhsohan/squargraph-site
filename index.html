@@ -42,111 +42,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'" />
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js" defer></script>
 
-  <link rel="stylesheet" href="/assets/css/pages/home.css">
   <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
- <style>
-/* Page-specific ITI overrides not covered by components.css */
-.iti__flag-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  border-radius: 0;
-}
-.iti__country-list {
-  border-radius: 16px !important;
-  border: 1px solid var(--bordergray) !important;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.12) !important;
-  font-family: 'Satoshi', sans-serif !important;
-  font-size: 13px !important;
-  max-height: 280px !important;
-  overflow-y: auto !important;
-  background: #fff !important;
-  padding: 8px 0 !important;
-  width: max-content;
-  min-width: 280px;
-}
-.iti__country-name {
-  font-weight: 500 !important;
-  color: var(--textprimary);
-}
-.iti__dial-code {
-  font-size: 12px !important;
-  margin-left: 8px !important;
-  opacity: 0.7;
-  color: var(--textsecondary);
-}
-.iti input#phone {
-  border: none !important;
-  background: transparent !important;
-  height: 48px;
-  width: 100% !important;
-  padding-left: 86px !important;
-  font-family: 'Satoshi', sans-serif;
-  font-size: 14px;
-  color: var(--textprimary);
-  outline: none;
-  box-shadow: none !important;
-}
-.iti input#phone:focus {
-  box-shadow: none !important;
-}
-.iti input#phone:-webkit-autofill,
-.iti input#phone:-webkit-autofill:hover,
-.iti input#phone:-webkit-autofill:focus,
-.iti input#phone:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px var(--warmgray) inset !important;
-  -webkit-border-radius: 0 999px 999px 0 !important;
-  border-radius: 0 999px 999px 0 !important;
-  -webkit-text-fill-color: var(--textprimary) !important;
-}
-/* Prevent ITI from wrapping the country select */
-#country-location + .iti,
-#country-location ~ .iti,
-.iti:has(#country-location) { display: none !important; }
-/* Country select */
-#country-location {
-  width: 100%;
-  font-family: 'Satoshi', sans-serif;
-  font-size: 14px;
-  color: var(--textprimary);
-  background: var(--warmgray);
-  border: 1px solid var(--bordergray);
-  border-radius: 999px;
-  padding: 13px 44px 13px 20px;
-  min-height: 48px;
-  outline: none;
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='none' stroke='%235A5550' stroke-width='1.5' d='M1 1l6 5 6-5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 20px center;
-  transition: border-color .25s;
-}
-#country-location:focus {
-  border-color: var(--accentmuted);
-}
-#country-location option { background: #fff; }
-.submit-btn {
-  margin-top: 0 !important;
-}
-</style>
-<link rel="stylesheet" href="/assets/css/tokens.css">
-<link rel="stylesheet" href="/assets/css/base.css">
-<link rel="stylesheet" href="/assets/css/layout.css">
-<link rel="stylesheet" href="/assets/css/components.css">
-<link rel="stylesheet" href="/assets/css/animations.css">
-<style>
-  #sticky-banner { opacity: 0 !important; pointer-events: none !important; transform: translateX(-50%) translateY(12px) !important; }
-  #sticky-banner.sg-show { opacity: 1 !important; pointer-events: auto !important; transform: translateX(-50%) !important; }
-  #sticky-banner.sg-dismissed { display: none !important; }
-  @media (max-width: 540px) {
-    #sticky-banner.sg-show { transform: none !important; }
-  }
-  #mobile-book-wrap { display: none !important; }
-  #mobile-book-wrap.sg-show { display: flex !important; }
-  #mobile-book-wrap.sg-dismissed { display: none !important; }
-</style>
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+  <link rel="stylesheet" href="/assets/css/pages/home.css">
 </head>
 <body>
 
@@ -158,7 +60,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav id="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="SQUARGRAPH™">
-  <img src="/logo.webp" alt="SQUARGRAPH™" width="120" height="28" style="height:28px;width:auto;" fetchpriority="high" decoding="sync" />
+  <img src="/logo.webp" alt="SQUARGRAPH™" width="120" height="28" class="brand-mark" fetchpriority="high" decoding="sync" />
 </a>
     <div class="nav-links">
       <a href="#work">Work</a>
@@ -190,514 +92,463 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main id="main-content" role="main">
 
-<section id="hero" data-hero>
- 
-  <div class="hero-lines" aria-visible="true">
-    <div class="line-vert"></div>
-    <div class="line-vert"></div>
-    <div class="line-horiz"></div>
-    <div class="line-horiz"></div>
+<section id="hero" class="hero-section" data-hero>
+  <div class="hero-media" aria-hidden="true">
+    <img src="/film1.webp" alt="" width="1920" height="1080" fetchpriority="high" decoding="async" />
   </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
 
-  <div class="hero-edge-left" aria-visible="true"></div>
-  <div class="hero-edge-right" aria-visible="true"></div>
-
-  <div aria-visible="true" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:visible; z-index:0;">
-  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:.035;">
-    <defs>
-      <pattern id="sq-grid" width="48" height="48" patternUnits="userSpaceOnUse">
-        <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#1A1714" stroke-width="1"/>
-      </pattern>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#sq-grid)"/>
-  </svg>
-</div>
   <div class="hero-inner">
     <div class="hero-content">
-      <p class="hero-eyebrow hero-anim-1">SQUARGRAPH™ · Strategy, Creative & Digital</p>
-<div class="hero-anim-2" aria-visible="true" style="width:72px;height:1px;background:var(--accent);margin:0 0 clamp(20px,2.5vw,28px) 0;"></div>
-      <h1 class="hero-h1 hero-anim-2">
-  Stronger brands.<br>Built <em>on purpose.</em>
-</h1>
-<p class="hero-sub hero-anim-2">
-SQUARGRAPH™ is a strategy-led creative and digital partner helping businesses build, improve, and scale brands through strategy, identity, campaigns, content, and digital experiences.
-</p>
-<div class="hero-ctas hero-anim-4">
-  <a href="#Engagements" class="btn-primary" style="border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;">Work With SQUARGRAPH</a>
-  <a href="#what-we-build" class="btn-outline">Explore Services</a>
-  </div>
-  <p class="hero-proof hero-anim-5" style="margin-top:24px;margin-bottom:0;font-size:13px;line-height:1.7;color:var(--textsecondary);max-width:52ch;">
-  Based in New Delhi. Working across Automotive, D2C, Hospitality, and Lifestyle. Entry point from &#8377;2,999.
-</p>
+      <p class="hero-eyebrow hero-anim-1">Strategy-led creative and digital studio</p>
+      <h1 class="hero-h1 hero-anim-2">SQUARGRAPH builds stronger brands on purpose.</h1>
+      <p class="hero-sub hero-anim-3">We help ambitious businesses sharpen perception, build competitive advantage, and turn strategy into identity, campaigns, content, and digital experiences.</p>
+      <div class="hero-ctas hero-anim-4">
+        <a href="#Engagements" class="btn-primary">Work With SQUARGRAPH</a>
+        <a href="#work" class="btn-outline">See The Work</a>
+      </div>
     </div>
-  </div>
-</section>
 
-<style>
-.hw-section { padding: clamp(72px,10vw,120px) clamp(24px,4vw,64px) clamp(80px,12vw,140px); background:#fff; }
-.hw-inner { max-width:1200px; margin:0 auto; }
-.hw-pillars { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--textmuted); margin-bottom:14px; }
-.hw-h2 { font-family:'Satoshi',sans-serif; font-weight:500; font-size:clamp(26px,3vw,40px); letter-spacing:-0.03em; color:var(--textprimary); margin-bottom:14px; }
-.hw-sub { font-size:14px; color:var(--textsecondary); line-height:1.8; max-width:60ch; margin-bottom:clamp(40px,5vw,56px); }
-.hw-card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-@media (max-width:900px) { .hw-card-grid { grid-template-columns:repeat(2,1fr); } }
-@media (max-width:480px) { .hw-card-grid { grid-template-columns:1fr; } }
-.hw-card { background:var(--warmgray); padding:28px 24px; display:flex; flex-direction:column; gap:8px; }
-.hw-card-name { font-size:15px; font-weight:500; letter-spacing:-0.02em; color:var(--textprimary); }
-.hw-card-desc { font-size:13px; color:var(--textsecondary); line-height:1.6; }
-</style>
-
-<section id="what-we-build" class="hw-section">
-  <div class="hw-inner">
-    <p class="hw-pillars">Strategy · Creative · Digital · Campaigns · Performance · Intelligence</p>
-    <h2 class="hw-h2">One partner across your brand ecosystem.</h2>
-    <p class="hw-sub">A strategic brand partner, not a project vendor. Everything below is built as one connected system, not a checklist of separate services.</p>
-
-    <div class="hw-card-grid">
-      <div class="hw-card">
-        <div class="hw-card-name">Brand Strategy</div>
-        <div class="hw-card-desc">Positioning, market research, and brand architecture that give every decision a foundation.</div>
+    <div class="hero-signal-grid hero-anim-5" aria-label="Studio highlights">
+      <div>
+        <span>Base</span>
+        <strong>New Delhi</strong>
       </div>
-      <div class="hw-card">
-        <div class="hw-card-name">Identity &amp; Creative</div>
-        <div class="hw-card-desc">Naming, visual systems, and storytelling that make the strategy tangible.</div>
+      <div>
+        <span>Focus</span>
+        <strong>Strategy &middot; Creative &middot; Digital</strong>
       </div>
-      <div class="hw-card">
-        <div class="hw-card-name">Web &amp; Digital Experiences</div>
-        <div class="hw-card-desc">Websites, UX/UI, and conversion architecture built to perform, not just look good.</div>
-      </div>
-      <div class="hw-card">
-        <div class="hw-card-name">Campaigns &amp; Content</div>
-        <div class="hw-card-desc">Creative direction, production, and social systems that keep the brand consistent in market.</div>
-      </div>
-      <div class="hw-card">
-        <div class="hw-card-name">Performance Marketing</div>
-        <div class="hw-card-desc">Paid media, funnel strategy, and conversion tracking built to turn attention into measurable growth.</div>
-      </div>
-      <div class="hw-card">
-        <div class="hw-card-name">Growth Intelligence</div>
-        <div class="hw-card-desc">Audits, competitive analysis, and Brand Quotient™ diagnostics that show exactly where you stand.</div>
+      <div>
+        <span>Entry Point</span>
+        <strong>Discovery from &#8377;2,999</strong>
       </div>
     </div>
   </div>
 </section>
 
-<style>
-.eng-panel-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; align-items:stretch; margin-top:40px; }
-@media (max-width:1000px) { .eng-panel-grid { grid-template-columns:repeat(2,1fr); } }
-@media (max-width:560px) { .eng-panel-grid { grid-template-columns:1fr; } }
-</style>
-
-<section id="Engagements" class="engagements-section">
+<section id="what-we-build" class="home-section build-section">
   <div class="section-inner">
-    <div class="Engagements-header fade-up">
-      <p class="section-eyebrow">Engagement Models</p>
-      <h2 class="section-title">Choose How We Work Together</h2>
-      <p style="margin-top:14px;max-width:620px;font-size:14px;line-height:1.8;color:var(--textsecondary);">
-        Different stages need different levels of involvement. Every engagement follows the same logic: understand the position first, then build everything else around it.
-      </p>
+    <div class="section-kicker fade-up">Brand ecosystem</div>
+    <div class="split-heading fade-up">
+      <h2>One partner across the surfaces that shape perception.</h2>
+      <p>A strategic brand partner, not a project vendor. Each discipline works from the same positioning logic so the brand feels coherent everywhere it shows up.</p>
     </div>
 
-    <div class="eng-panel-grid">
-      <!-- 01 DISCOVERY SESSION -->
-      <div class="engagement-card">
-        <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;">01 · Entry Point</div>
-        <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);">Discovery Session™</div>
-        <div style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">₹2,999</div>
-        <p style="font-size:13px;font-weight:500;color:var(--textmuted);">Best for: early conversations, strategic direction, finding gaps.</p>
-        <p style="font-size:14px;color:var(--textsecondary);line-height:1.7;flex:1;">A focused strategic session designed to identify opportunities, uncover communication gaps, and define the next best move for your business. You'll leave with a clear roadmap and practical direction.</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--bordergray);padding-top:16px;">
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Strategic Consultation</li>
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Brand & Digital Review</li>
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Opportunity & Gap Analysis</li>
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Action Roadmap PDF</li>
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Session Recording</li>
-        </ul>
-        <a href="/discovery" class="btn-primary" style="margin-top:8px;text-decoration:none;display:inline-flex;align-items:center;align-self:flex-start;width:fit-content;">Book Discovery →</a>
-      </div>
-
-      <!-- 02 BRAND GROWTH AUDIT -->
-      <div class="engagement-card">
-        <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;">02 · Audit</div>
-        <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);">Brand Growth Audit™</div>
-        <div style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">₹9,999</div>
-        <p style="font-size:13px;font-weight:500;color:var(--textmuted);">Best for: existing businesses, repositioning, growth blockers.</p>
-        <p style="font-size:14px;color:var(--textsecondary);line-height:1.7;flex:1;">A comprehensive evaluation of how your business is positioned, communicated, and experienced across every major touchpoint, supported by competitor benchmarking and strategic recommendations.</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--bordergray);padding-top:16px;">
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Brand Positioning Assessment</li>
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Competitor Benchmarking</li>
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Communication Review</li>
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Digital Experience Audit</li>
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Executive Report</li>
-        </ul>
-        <button type="button" onclick="window.location.href='/audit.html';" class="btn-primary" style="margin-top:8px;align-self:flex-start;width:fit-content;">Start the Audit →</button>
-      </div>
-
-      <!-- 03 BRAND FOUNDATION SPRINT -->
-      <div class="engagement-card engagement-card--dark">
-        <div style="font-size:11px;letter-spacing:.12em;color:#B8AEED;font-weight:600;text-transform:uppercase;">03 · Sprint</div>
-        <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:#fff;">Brand Foundation Sprint™</div>
-        <div style="margin:0 0 4px 0;">
-          <div style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:28px;color:#fff;letter-spacing:-0.02em;">Custom scope</div>
-          <div style="font-size:13px;font-weight:400;color:rgba(255,255,255,.6);">Priced per project</div>
-        </div>
-        <p style="font-size:13px;font-weight:500;color:rgba(255,255,255,.75);">Best for: startups, new launches, rebrands.</p>
-        <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.5;margin:0;flex:1;">A complete strategic and visual foundation designed for businesses preparing to scale, reposition, or build stronger market presence.</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;">
-          <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Positioning Framework</li>
-          <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Messaging Architecture</li>
-          <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Visual Identity System</li>
-          <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Brand Asset Kit</li>
-        </ul>
-        <button type="button" onclick="window.location.href='/brand-foundation-sprint.html'" class="btn-primary" style="margin-top:8px;align-self:flex-start;width:fit-content;">Build Your Foundation →</button>
-      </div>
-
-      <!-- 04 WEBSITES & DIGITAL EXPERIENCES -->
-      <div class="engagement-card">
-        <div style="font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase;">04 · Digital</div>
-        <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);">Websites & Digital Experiences™</div>
-        <div style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:28px;color:var(--textprimary);letter-spacing:-0.02em;">Custom scope</div>
-        <div style="font-size:13px;font-weight:400;color:var(--textsecondary);">Priced per project.</div>
-        <p style="font-size:13px;font-weight:500;color:var(--textmuted);">Best for: website builds, platforms, conversion.</p>
-        <p style="font-size:14px;color:var(--textsecondary);line-height:1.7;flex:1;">A strategy-led website build for brands that need their digital presence to reflect the same standard as their positioning — not just their visual identity.</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--bordergray);padding-top:16px;">
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Brand-aligned UX & design</li>
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Conversion-focused architecture</li>
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>CMS & dev handoff included</li>
-          <li style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Scoped to your requirements</li>
-        </ul>
-        <a href="/websites-digital-experiences.html" class="btn-outline" style="margin-top:8px;align-self:flex-start;width:fit-content;">Start Project →</a>
-      </div>
-
-      <!-- 05 GROWTH PARTNER (FEATURED) -->
-      <div class="engagement-card engagement-card--dark" style="grid-column:1/-1;">
-        <div style="font-size:11px;letter-spacing:.12em;color:#B8AEED;font-weight:600;text-transform:uppercase;">05 · Ongoing</div>
-        <div style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:#fff;">Growth Partner™</div>
-        <div style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:28px;color:#fff;letter-spacing:-0.02em;">Monthly Partnership</div>
-        <div style="font-size:13px;font-weight:400;color:rgba(255,255,255,.6);">Scoped per engagement.</div>
-        <p style="font-size:13px;font-weight:500;color:rgba(255,255,255,.75);">Best for: growing businesses, no internal marketing team, continuous execution.</p>
-        <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.7;flex:1;max-width:60ch;">Your external brand team. Campaign strategy, content systems, and always-on execution — structured as one programme, not a series of separate projects.</p>
-        <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;">
-          <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Campaign Architecture & Rollout</li>
-          <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Content Programme Strategy</li>
-          <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Always-on Execution</li>
-          <li style="font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:10px;"><span style="display:block;width:14px;height:1px;background:var(--accentmuted);flex-shrink:0;"></span>Monthly Strategic Review</li>
-        </ul>
-        <a href="/growth-partner" class="btn-primary" style="margin-top:8px;text-decoration:none;display:inline-flex;align-items:center;align-self:flex-start;width:fit-content;">Start the Conversation →</a>
-      </div>
+    <div class="service-grid fade-up d1">
+      <article class="service-card">
+        <span>01</span>
+        <h3>Brand Strategy</h3>
+        <p>Positioning, market research, and brand architecture that give every decision a foundation.</p>
+      </article>
+      <article class="service-card">
+        <span>02</span>
+        <h3>Identity &amp; Creative</h3>
+        <p>Naming, visual systems, and storytelling that make strategy tangible and memorable.</p>
+      </article>
+      <article class="service-card">
+        <span>03</span>
+        <h3>Web &amp; Digital</h3>
+        <p>UX, UI, and conversion architecture built to perform while staying true to the brand.</p>
+      </article>
+      <article class="service-card">
+        <span>04</span>
+        <h3>Campaigns &amp; Content</h3>
+        <p>Creative direction, production, and social systems that keep the brand consistent in market.</p>
+      </article>
+      <article class="service-card">
+        <span>05</span>
+        <h3>Performance Marketing</h3>
+        <p>Paid media, funnel strategy, and measurement built to turn attention into durable growth.</p>
+      </article>
+      <article class="service-card">
+        <span>06</span>
+        <h3>Growth Intelligence</h3>
+        <p>Audits, competitive analysis, and Brand Quotient&trade; diagnostics that reveal where the brand stands.</p>
+      </article>
     </div>
-
-    <p style="margin-top:28px;font-size:11px;color:var(--textmuted);letter-spacing:.02em;line-height:1.7;text-align:center;padding-left:16px;padding-right:16px;">*All prices are exclusive of applicable taxes.
   </div>
 </section>
 
-<section id="work" class="work-section">
+<section id="Engagements" class="home-section engagements-section">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <div>
+        <p class="section-eyebrow">Engagement Models</p>
+        <h2 class="section-title">Choose the right depth of work.</h2>
+      </div>
+      <span class="section-count">From first diagnosis to ongoing execution</span>
+    </div>
+    <p class="section-lead fade-up">Different stages need different levels of involvement. Every engagement follows the same logic: understand the position first, then build everything else around it.</p>
+
+    <div class="engagement-grid">
+      <article class="engagement-card fade-up">
+        <p class="eng-kicker">01 &middot; Entry Point</p>
+        <h3>Discovery Session&trade;</h3>
+        <p class="eng-price">&#8377;2,999</p>
+        <p class="eng-fit">Best for: early conversations, strategic direction, finding gaps.</p>
+        <p class="eng-desc">A focused strategic session to identify opportunities, uncover communication gaps, and define the next best move for your business.</p>
+        <ul class="lined-list">
+          <li>Strategic consultation</li>
+          <li>Brand and digital review</li>
+          <li>Opportunity and gap analysis</li>
+          <li>Action roadmap PDF</li>
+          <li>Session recording</li>
+        </ul>
+        <a href="/discovery" class="btn-primary">Book Discovery</a>
+      </article>
+
+      <article class="engagement-card fade-up d1">
+        <p class="eng-kicker">02 &middot; Audit</p>
+        <h3>Brand Growth Audit&trade;</h3>
+        <p class="eng-price">&#8377;9,999</p>
+        <p class="eng-fit">Best for: existing businesses, repositioning, growth blockers.</p>
+        <p class="eng-desc">A comprehensive evaluation of positioning, communication, and experience across major touchpoints, supported by competitor benchmarking.</p>
+        <ul class="lined-list">
+          <li>Brand positioning assessment</li>
+          <li>Competitor benchmarking</li>
+          <li>Communication review</li>
+          <li>Digital experience audit</li>
+          <li>Executive report</li>
+        </ul>
+        <button type="button" onclick="window.location.href='/audit.html';" class="btn-primary">Start the Audit</button>
+      </article>
+
+      <article class="engagement-card engagement-card--dark fade-up d2">
+        <p class="eng-kicker">03 &middot; Sprint</p>
+        <h3>Brand Foundation Sprint&trade;</h3>
+        <p class="eng-price">Custom scope</p>
+        <p class="eng-note">Priced per project</p>
+        <p class="eng-fit">Best for: startups, new launches, rebrands.</p>
+        <p class="eng-desc">A complete strategic and visual foundation for businesses preparing to scale, reposition, or build stronger market presence.</p>
+        <ul class="lined-list">
+          <li>Positioning framework</li>
+          <li>Messaging architecture</li>
+          <li>Visual identity system</li>
+          <li>Brand asset kit</li>
+        </ul>
+        <button type="button" onclick="window.location.href='/brand-foundation-sprint.html'" class="btn-primary">Build Your Foundation</button>
+      </article>
+
+      <article class="engagement-card fade-up">
+        <p class="eng-kicker">04 &middot; Digital</p>
+        <h3>Websites &amp; Digital Experiences&trade;</h3>
+        <p class="eng-price">Custom scope</p>
+        <p class="eng-note">Priced per project</p>
+        <p class="eng-fit">Best for: website builds, platforms, conversion.</p>
+        <p class="eng-desc">Strategy-led website design and build for brands that need their digital presence to match the standard of their positioning.</p>
+        <ul class="lined-list">
+          <li>Brand-aligned UX and design</li>
+          <li>Conversion-focused architecture</li>
+          <li>CMS and dev handoff included</li>
+          <li>Scoped to requirements</li>
+        </ul>
+        <a href="/websites-digital-experiences.html" class="btn-outline">Start Project</a>
+      </article>
+
+      <article class="engagement-card engagement-card--wide engagement-card--dark fade-up d1">
+        <p class="eng-kicker">05 &middot; Ongoing</p>
+        <h3>Growth Partner&trade;</h3>
+        <p class="eng-price">Monthly Partnership</p>
+        <p class="eng-note">Scoped per engagement</p>
+        <p class="eng-fit">Best for: growing businesses, no internal marketing team, continuous execution.</p>
+        <p class="eng-desc">Your external brand team. Campaign strategy, content systems, and always-on execution structured as one programme.</p>
+        <ul class="lined-list lined-list--inline">
+          <li>Campaign architecture and rollout</li>
+          <li>Content programme strategy</li>
+          <li>Always-on execution</li>
+          <li>Monthly strategic review</li>
+        </ul>
+        <a href="/growth-partner" class="btn-primary">Start the Conversation</a>
+      </article>
+    </div>
+
+    <p class="pricing-note">All prices are exclusive of applicable taxes.</p>
+  </div>
+</section>
+
+<section id="work" class="home-section work-section">
   <div class="section-inner">
     <div class="section-header fade-up">
       <div>
         <p class="section-eyebrow">Evidence</p>
-        <p class="section-manifesto">
-  Perception is not an accident. It is built.
-</p>
-        <h2 class="section-title">Systems In Motion</h2>
+        <p class="section-manifesto">Perception is not an accident. It is built.</p>
+        <h2 class="section-title">Systems in motion</h2>
       </div>
-      <span class="section-count">Automotive · Hospitality · D2C · Lifestyle</span>
+      <span class="section-count">Automotive &middot; Hospitality &middot; D2C &middot; Lifestyle</span>
     </div>
+  </div>
 
+  <div class="work-strip-group">
     <p class="work-strip-label fade-up">Campaign Films</p>
     <div class="scroll-strip" id="films-strip">
-      <div class="film-card"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/film1.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);pointer-events:none;"></div><div style="position:relative;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="film-card"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/film2.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);pointer-events:none;"></div><div style="position:relative;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="film-card">
+        <div class="reel-poster media-poster media-poster--film-1" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e6?autoplay=true&muted=true&loop=true&disable_player_controls=true" role="button" tabindex="0" aria-label="Play campaign film"></div>
+      </div>
+      <div class="film-card">
+        <div class="reel-poster media-poster media-poster--film-2" data-src="https://play.gumlet.io/embed/6a08955d0ed6988dba1990e1?autoplay=true&muted=true&loop=true&disable_player_controls=true" role="button" tabindex="0" aria-label="Play campaign film"></div>
+      </div>
     </div>
+  </div>
 
-    <p class="work-strip-label fade-up" style="margin-top:40px;">Reels</p>
+  <div class="work-strip-group">
+    <p class="work-strip-label fade-up">Reels</p>
     <div class="scroll-strip" id="reels-strip">
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel1.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel2.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel3.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel4.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel5.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20aee640fe2ab62837d2c7?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel6.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20b11240fe2ab62837f6ce?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel7.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20b4f340fe2ab628383a81?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel8.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
-      <div class="reel-wrap"><div class="reel-poster" data-src="https://play.gumlet.io/embed/6a20ba6b40fe2ab6283896e4?autoplay=true&muted=true&loop=true&disable_player_controls=true" style="position:absolute;inset:0;background:url('/reel9.webp') center/cover no-repeat;cursor:pointer;"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);pointer-events:none;"></div><div style="position:relative;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1A1714" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
+      <div class="reel-wrap"><div class="reel-poster media-poster media-poster--reel-1" data-src="https://play.gumlet.io/embed/6a0896763a5246215d47a7fd?autoplay=true&muted=true&loop=true&disable_player_controls=true" role="button" tabindex="0" aria-label="Play reel"></div></div>
+      <div class="reel-wrap"><div class="reel-poster media-poster media-poster--reel-2" data-src="https://play.gumlet.io/embed/6a08955d3a5246215d479670?autoplay=true&muted=true&loop=true&disable_player_controls=true" role="button" tabindex="0" aria-label="Play reel"></div></div>
+      <div class="reel-wrap"><div class="reel-poster media-poster media-poster--reel-3" data-src="https://play.gumlet.io/embed/6a08955d0143a2000b232aad?autoplay=true&muted=true&loop=true&disable_player_controls=true" role="button" tabindex="0" aria-label="Play reel"></div></div>
+      <div class="reel-wrap"><div class="reel-poster media-poster media-poster--reel-4" data-src="https://play.gumlet.io/embed/6a0896160ed6988dba199c1a?autoplay=true&muted=true&loop=true&disable_player_controls=true" role="button" tabindex="0" aria-label="Play reel"></div></div>
+      <div class="reel-wrap"><div class="reel-poster media-poster media-poster--reel-5" data-src="https://play.gumlet.io/embed/6a0896760143a2000b233c09?autoplay=true&muted=true&loop=true&disable_player_controls=true" role="button" tabindex="0" aria-label="Play reel"></div></div>
+      <div class="reel-wrap"><div class="reel-poster media-poster media-poster--reel-6" data-src="https://play.gumlet.io/embed/6a20aee640fe2ab62837d2c7?autoplay=true&muted=true&loop=true&disable_player_controls=true" role="button" tabindex="0" aria-label="Play reel"></div></div>
+      <div class="reel-wrap"><div class="reel-poster media-poster media-poster--reel-7" data-src="https://play.gumlet.io/embed/6a20b11240fe2ab62837f6ce?autoplay=true&muted=true&loop=true&disable_player_controls=true" role="button" tabindex="0" aria-label="Play reel"></div></div>
+      <div class="reel-wrap"><div class="reel-poster media-poster media-poster--reel-8" data-src="https://play.gumlet.io/embed/6a20b4f340fe2ab628383a81?autoplay=true&muted=true&loop=true&disable_player_controls=true" role="button" tabindex="0" aria-label="Play reel"></div></div>
+      <div class="reel-wrap"><div class="reel-poster media-poster media-poster--reel-9" data-src="https://play.gumlet.io/embed/6a20ba6b40fe2ab6283896e4?autoplay=true&muted=true&loop=true&disable_player_controls=true" role="button" tabindex="0" aria-label="Play reel"></div></div>
     </div>
-    <div class="work-attr fade-up" style="padding: 0 clamp(24px, 4vw, 64px);">
-      <span>In collaboration with <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer">Films By Jones</a></span>
-    </div>
+  </div>
+
+  <div class="section-inner">
+    <p class="work-attr fade-up">In collaboration with <a href="https://www.instagram.com/filmsbyjones/" target="_blank" rel="noopener noreferrer">Films By Jones</a></p>
   </div>
 </section>
 
-<section id="approach" class="approach-section">
+<section id="approach" class="home-section approach-section">
   <div class="section-inner">
-    <div class="fade-up" style="max-width:1000px;">
-      <p class="section-eyebrow" style="margin-bottom:36px;">Our Approach</p>
-      <p class="approach-quote">
-        Perception shapes value.<br/>The question is who shapes perception.
-      </p>
+    <div class="approach-grid">
+      <div class="approach-copy fade-up">
+        <p class="section-eyebrow">Our Approach</p>
+        <h2>Perception shapes value. The question is who shapes perception.</h2>
+      </div>
+      <div class="approach-pillars fade-up d1">
+        <article>
+          <h3>Intelligence first</h3>
+          <p>We understand the market before we touch the work.</p>
+        </article>
+        <article>
+          <h3>Creativity as advantage</h3>
+          <p>The work earns attention because it is built to.</p>
+        </article>
+        <article>
+          <h3>Built to compound</h3>
+          <p>Every decision strengthens what came before it.</p>
+        </article>
+      </div>
     </div>
+
     <div class="approach-divider fade-up" id="approach-divider"></div>
-    <div class="approach-pillars fade-up d2">
-      <div>
-        <h3 class="approach-pillar-name">Intelligence First</h3>
-        <p class="approach-pillar-text">We understand the market before we touch the work.</p>
-      </div>
-      <div>
-        <h3 class="approach-pillar-name">Creativity as Advantage</h3>
-        <p class="approach-pillar-text">The work earns attention because it is built to.</p>
-      </div>
-      <div>
-        <h3 class="approach-pillar-name">Built to Compound</h3>
-        <p class="approach-pillar-text">Every decision strengthens what came before it.</p>
-      </div>
+
+    <div class="process-grid howwework-grid fade-up d2">
+      <article class="process-card">
+        <span>01</span>
+        <h3>Discover</h3>
+        <p>We start with a structured session to understand your brand, category, competitive landscape, and growth objectives.</p>
+        <a href="/discovery">Book a Discovery Session</a>
+      </article>
+      <article class="process-card">
+        <span>02</span>
+        <h3>Define</h3>
+        <p>Positioning, messaging architecture, and campaign frameworks are documented and aligned before a single pixel is designed.</p>
+      </article>
+      <article class="process-card">
+        <span>03</span>
+        <h3>Create</h3>
+        <p>Design, production, content, and digital development move in parallel around one brief and one strategic direction.</p>
+      </article>
+      <article class="process-card">
+        <span>04</span>
+        <h3>Grow</h3>
+        <p>Performance review, content iteration, and communication optimisation help the brand compound over time.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<section style="padding:clamp(80px,12vw,160px) clamp(24px,4vw,64px);background:#fff;">
-  <div class="section-inner">
-    <div class="fade-up" style="margin-bottom:clamp(48px,8vw,80px);">
-      <p class="section-eyebrow" style="margin-bottom:10px;">Process</p>
-      <h2 class="section-title" style="font-size:clamp(22px,2.5vw,28px);font-weight:500;letter-spacing:-0.03em;">The Process</h2>
-    </div>
-    <div class="fade-up howwework-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
-
-      <div style="background:var(--warmgray);padding:40px 32px;">
-        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">01</div>
-        <h3 style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Discover</h3>
-        <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">We start with a structured session to understand your brand, category, competitive landscape, and growth objectives.</p>
-        <div style="margin-top:20px;">
-          <a href="/discovery" style="font-size:12px;color:var(--accent);font-weight:500;letter-spacing:.02em;border-bottom:1px solid var(--accentmuted);text-decoration:none;">Book a Discovery Session →</a>
-        </div>
-      </div>
-
-      <div style="background:var(--warmgray);padding:40px 32px;">
-        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">02</div>
-        <h3 style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Define</h3>
-        <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Positioning, messaging architecture, and campaign frameworks, documented and aligned before a single pixel is designed.</p>
-      </div>
-
-      <div style="background:var(--warmgray);padding:40px 32px;">
-        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">03</div>
-        <h3 style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Create</h3>
-        <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Design, production, content, and digital. Developed in parallel by a specialist team built around your brief. One input. Everything moves at once.</p>
-      </div>
-
-      <div style="background:var(--warmgray);padding:40px 32px;">
-        <div style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:48px;color:var(--bordergray);line-height:1;margin-bottom:20px;">04</div>
-        <h3 style="font-size:16px;font-weight:500;letter-spacing:-0.02em;color:var(--textprimary);margin-bottom:10px;">Grow</h3>
-        <p style="font-size:13px;color:var(--textsecondary);line-height:1.75;">Ongoing performance review, content iteration, and communication optimisation, so your brand compounds over time, not just at launch.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="capabilities" class="capabilities-section" style="content-visibility:auto;contain-intrinsic-size:0 1200px;">
+<section id="capabilities" class="home-section capabilities-section">
   <div class="section-inner">
     <div class="cap-intro">
-      <h2 class="cap-intro-h2 fade-up">
-        Intelligence applied.<br/><em>At every layer.</em>
-      </h2>
+      <h2 class="cap-intro-h2 fade-up">Intelligence applied.<br><em>At every layer.</em></h2>
       <div class="cap-intro-right fade-up d1">
-        <p>Every system here is built on the same analytical foundation we apply before any creative work begins. Perception first. Then positioning. Then everything else. One brief. One team. No briefing chains between them.</p>
+        <p>Every system is built on the same analytical foundation we apply before creative work begins. Perception first. Then positioning. Then everything else.</p>
       </div>
     </div>
 
     <div class="cap-grid">
-      <div class="cap-card fade-up">
+      <article class="cap-card fade-up">
         <span class="cap-num">01</span>
-        <div class="cap-name">Perception Architecture</div>
-        <p class="cap-def">How a brand is seen, remembered, and valued in its market. We map the gap between current perception and the position a brand needs to hold, then build the system to close it.</p>
+        <h3 class="cap-name">Perception Architecture</h3>
+        <p class="cap-def">How a brand is seen, remembered, and valued in its market. We map the gap between current perception and the position the brand needs to hold.</p>
         <ul class="cap-outputs">
           <li>Perception gap analysis</li>
           <li>Competitive positioning mapping</li>
           <li>Brand Quotient analysis</li>
         </ul>
-      </div>
-      <div class="cap-card fade-up d1">
+      </article>
+      <article class="cap-card fade-up d1">
         <span class="cap-num">02</span>
-        <div class="cap-name">Positioning Systems</div>
-        <p class="cap-def">The strategic foundation that determines what a brand stands for, who it speaks to, and how it creates distance from competitors. Built to hold under pressure and scale without drift.</p>
+        <h3 class="cap-name">Positioning Systems</h3>
+        <p class="cap-def">The strategic foundation that determines what a brand stands for, who it speaks to, and how it creates distance from competitors.</p>
         <ul class="cap-outputs">
           <li>Positioning framework development</li>
           <li>Messaging architecture</li>
           <li>Category strategy</li>
         </ul>
-      </div>
-      <div class="cap-card fade-up d2">
+      </article>
+      <article class="cap-card fade-up d2">
         <span class="cap-num">03</span>
-        <div class="cap-name">Communication Architecture</div>
-        <p class="cap-def">The system that governs how a brand communicates across every surface — campaigns, content, launches, partnerships, and founder presence. One coherent programme, not a series of separate decisions.</p>
+        <h3 class="cap-name">Communication Architecture</h3>
+        <p class="cap-def">The system that governs campaigns, content, launches, partnerships, and founder presence as one coherent programme.</p>
         <ul class="cap-outputs">
           <li>Campaign architecture and rollout</li>
           <li>Launch communication strategy</li>
           <li>Founder and leadership narrative</li>
         </ul>
-      </div>
-      <div class="cap-card fade-up">
+      </article>
+      <article class="cap-card fade-up">
         <span class="cap-num">04</span>
-        <div class="cap-name">Experience Systems</div>
-        <p class="cap-def">Every touchpoint a brand controls is a perception event. We design the digital and physical experience layer so that what people encounter matches what the brand is positioned to be.</p>
+        <h3 class="cap-name">Experience Systems</h3>
+        <p class="cap-def">Every touchpoint is a perception event. We align the digital and physical experience layer with the position the brand needs to own.</p>
         <ul class="cap-outputs">
           <li>Digital experience strategy</li>
           <li>Website design and build</li>
           <li>Touchpoint audit and alignment</li>
         </ul>
-      </div>
-      <div class="cap-card fade-up d1">
+      </article>
+      <article class="cap-card fade-up d1">
         <span class="cap-num">05</span>
-        <div class="cap-name">Growth Systems</div>
-        <p class="cap-def">Content, social, and always-on execution built around a single intelligence framework. Platform-specific, calendar-driven, and designed to compound — not reset with every campaign.</p>
+        <h3 class="cap-name">Growth Systems</h3>
+        <p class="cap-def">Content, social, and always-on execution built around one intelligence framework rather than disconnected calendar activity.</p>
         <ul class="cap-outputs">
           <li>Content programme strategy</li>
           <li>Platform-specific creative systems</li>
           <li>Always-on execution and iteration</li>
         </ul>
-      </div>
-      <div class="cap-card fade-up d2">
+      </article>
+      <article class="cap-card fade-up d2">
         <span class="cap-num">06</span>
-        <div class="cap-name">Visual Intelligence</div>
-        <p class="cap-def">Production, CGI, motion, and identity work that carries strategic intent in every frame. The visual layer is not decoration — it is the most immediate perception signal a brand sends.</p>
+        <h3 class="cap-name">Visual Intelligence</h3>
+        <p class="cap-def">Production, CGI, motion, and identity work that carries strategic intent in every frame.</p>
         <ul class="cap-outputs">
           <li>Visual identity systems</li>
           <li>Production and direction</li>
           <li>CGI, motion, and digital film</li>
         </ul>
-      </div>
-      <div class="cap-card fade-up">
+      </article>
+      <article class="cap-card fade-up">
         <span class="cap-num">07</span>
-        <div class="cap-name">Performance Systems</div>
-        <p class="cap-def">Paid media, funnel design, and measurement built on the same positioning logic as everything else — so performance spend reinforces the brand instead of working against it.</p>
+        <h3 class="cap-name">Performance Systems</h3>
+        <p class="cap-def">Paid media, funnel design, and measurement built on the same positioning logic as the brand system.</p>
         <ul class="cap-outputs">
           <li>Paid media strategy and buying</li>
           <li>Funnel and conversion tracking</li>
           <li>Performance reporting and iteration</li>
         </ul>
-      </div>
+      </article>
     </div>
 
     <div class="built-for fade-up">
       <article class="built-for-card">
-       <div class="built-for-label">Enterprise Brands</div>
-        <p class="built-for-text">Established brand teams that need a thinking partner who can operate at the level of their strategy, not just their production schedule.</p>
+        <div class="built-for-label">Enterprise Brands</div>
+        <p class="built-for-text">Established brand teams that need a thinking partner who can operate at the level of their strategy.</p>
       </article>
       <article class="built-for-card">
         <div class="built-for-label">Category Challengers</div>
-        <p class="built-for-text">Brands in competitive markets where perception is the primary lever — and where generic creative is not a strategy.</p>
+        <p class="built-for-text">Brands in competitive markets where perception is the primary lever and generic creative is not a strategy.</p>
       </article>
       <article class="built-for-card">
         <div class="built-for-label">Emerging Brands</div>
-        <p class="built-for-text">Businesses building their position from scratch — where the founding decisions about perception, messaging, and identity will determine how much ground they can hold.</p>
+        <p class="built-for-text">Businesses building their position from scratch where founding decisions shape how much ground they can hold.</p>
       </article>
     </div>
   </div>
 </section>
 
-<section style="padding:clamp(80px,12vw,160px) clamp(24px,4vw,64px);background:var(--warmgray);">
+<section class="home-section founder-section">
   <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 2fr;gap:clamp(40px,6vw,80px);align-items:center;" class="fade-up founder-grid">
-            <div style="aspect-ratio:1/1;overflow:hidden;border-radius:50%;max-width:280px;width:100%;margin:0 auto;">
-  <img src="/founder.webp" alt="Saurabh Sohan Singh, Founder &amp; Creative Strategist, SQUARGRAPH™"
-    width="380" height="507" loading="eager" fetchpriority="high" decoding="sync"
-    style="width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;aspect-ratio:1/1;" />
-</div>
-
-      <div>
-        <p class="section-eyebrow" style="margin-bottom:16px;">The Founder</p>
-        <h2 style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3.5vw,48px);line-height:1.08;letter-spacing:-0.03em;margin-bottom:20px;">Saurabh Sohan Singh</h2>
-        <div style="font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;">Founder & Creative Strategist</div>
-        <p style="font-size:clamp(16px,1.6vw,18px);color:var(--textsecondary);line-height:1.75;margin-bottom:20px;">Saurabh founded SQUARGRAPH™ on a single conviction: perception is the most underinvested lever in any brand's growth strategy.</p>
-        <p style="font-size:15px;color:var(--textsecondary);line-height:1.75;margin-bottom:32px;">His work spans brand strategy, campaign architecture, content direction, digital experiences, and product launches across automotive, hospitality, D2C, and lifestyle. He leads every engagement directly. The team assembled around each project changes. The strategic thinking behind it does not.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
-          <a href="/audit" class="btn-primary" style="display:inline-block;text-decoration:none;">Start a Brand Growth Audit →</a>
-          <a href="https://linkedin.com/in/saurabhsohansingh" target="_blank" rel="noopener noreferrer" style="font-size:13px;color:var(--textsecondary);display:flex;align-items:center;gap:6px;transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textsecondary)'">
-            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
-          </a>
+    <div class="founder-grid fade-up">
+      <figure class="founder-portrait">
+        <img src="/founder.webp" alt="Saurabh Sohan Singh, Founder and Creative Strategist, SQUARGRAPH" width="380" height="507" loading="lazy" decoding="async" />
+      </figure>
+      <div class="founder-copy">
+        <p class="section-eyebrow">The Founder</p>
+        <h2>Saurabh Sohan Singh</h2>
+        <p class="founder-role">Founder &amp; Creative Strategist</p>
+        <p>Saurabh founded SQUARGRAPH&trade; on a single conviction: perception is the most underinvested lever in any brand's growth strategy.</p>
+        <p>His work spans brand strategy, campaign architecture, content direction, digital experiences, and product launches across automotive, hospitality, D2C, and lifestyle. He leads every engagement directly.</p>
+        <div class="inline-actions">
+          <a href="/audit" class="btn-primary">Start a Brand Growth Audit</a>
+          <a href="https://linkedin.com/in/saurabhsohansingh" target="_blank" rel="noopener noreferrer" class="text-link">LinkedIn</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="studio" class="studio-section">
+<section id="studio" class="home-section studio-section">
   <div class="section-inner">
     <div class="studio-grid fade-up">
       <div>
-        <p class="section-eyebrow" style="margin-bottom:10px;">The Studio</p>
-        <h2 class="section-title" style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(26px,3vw,40px);letter-spacing:-0.03em;">What We Believe</h2>
+        <p class="section-eyebrow">The Studio</p>
+        <h2 class="section-title section-title--large">What we believe</h2>
       </div>
       <div class="studio-main">
-        <p>SQUARGRAPH™ is a strategy-led creative studio based in New Delhi, built to help ambitious brands strengthen perception, build competitive advantage, and create enduring value. We exist for one purpose: to help ambitious brands build the kind of perception that creates real competitive advantage. Every engagement is led by a senior strategist and built around a specialist network of writers, directors, designers, and technologists assembled for the specific challenge.</p>
-        <p class="small">We work across Automotive, Hospitality, D2C, and Lifestyle. The sectors change. The commitment to perception-led thinking does not.</p>
-        <p class="small" style="padding-top:20px;border-top:1px solid var(--bordergray);color:var(--textsecondary);">SQUARGRAPH™ operates with a core team and a network of specialist collaborators — directors, writers, developers, and production partners brought in around the specific demands of each engagement. The strategic lead on your work is the same person from brief to delivery.</p>
+        <p>SQUARGRAPH&trade; is a strategy-led creative studio based in New Delhi, built to help ambitious brands strengthen perception, build competitive advantage, and create enduring value.</p>
+        <p class="small">Every engagement is led by a senior strategist and built around a specialist network of writers, directors, designers, and technologists assembled for the specific challenge.</p>
+        <p class="small studio-rule">We work across Automotive, Hospitality, D2C, and Lifestyle. The sectors change. The commitment to perception-led thinking does not.</p>
         <div class="studio-stats">
-  <div>
-    <span class="studio-stat-num">Since 2026</span>
-    <span class="studio-stat-label">Studio founded in New Delhi</span>
-  </div>
-  <div>
-    <span class="studio-stat-num">4 Sectors</span>
-    <span class="studio-stat-label">Automotive · D2C · Hospitality · Lifestyle</span>
-  </div>
-  <div>
-    <span class="studio-stat-num">One brief.</span>
-    <span class="studio-stat-label">Every discipline moves in parallel</span>
-  </div>
-</div>      </div>
+          <div>
+            <span class="studio-stat-num">Since 2026</span>
+            <span class="studio-stat-label">Studio founded in New Delhi</span>
+          </div>
+          <div>
+            <span class="studio-stat-num">4 Sectors</span>
+            <span class="studio-stat-label">Automotive &middot; D2C &middot; Hospitality &middot; Lifestyle</span>
+          </div>
+          <div>
+            <span class="studio-stat-num">One brief</span>
+            <span class="studio-stat-label">Every discipline moves in parallel</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="intelligence" style="padding:clamp(80px,12vw,160px) clamp(24px,4vw,64px);background:var(--warmgray);">
+<section id="intelligence" class="home-section intelligence-home-section">
   <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,8vw,100px);align-items:start;" class="fade-up intel-home-grid">
+    <div class="intel-home-grid fade-up">
       <div>
-        <p class="section-eyebrow" style="margin-bottom:16px;">Intelligence</p>
-        <h2 style="font-family:var(--font);font-weight:500;font-size:clamp(28px,3.5vw,48px);line-height:1.08;letter-spacing:-0.03em;color:var(--textprimary);margin-bottom:20px;">Perception<br/>leaves <em style="font-style:normal;color:var(--accent);">clues.</em></h2>
-        <p style="font-size:15px;color:var(--textsecondary);line-height:1.8;max-width:44ch;margin-bottom:32px;">We study brands, markets, and competitive positioning through the lens of Creative Intelligence. Published analyses, strategic studies, and market signals built to show how we think, not to generate leads.</p>
-        <a href="/intelligence" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--textprimary);border-bottom:1px solid var(--bordergray);padding-bottom:2px;text-decoration:none;transition:color .2s,border-color .2s;" onmouseenter="this.style.color='var(--accent)';this.style.borderColor='var(--accentmuted)'" onmouseleave="this.style.color='var(--textprimary)';this.style.borderColor='var(--bordergray)'">Explore Intelligence →</a>
+        <p class="section-eyebrow">Intelligence</p>
+        <h2>Perception leaves <em>clues.</em></h2>
+        <p>We study brands, markets, and competitive positioning through the lens of Creative Intelligence. Published analyses and strategic studies show how we think.</p>
+        <a href="/intelligence" class="text-link">Explore Intelligence</a>
       </div>
-      <div style="display:flex;flex-direction:column;gap:1px;border:1px solid var(--bordergray);">
-        <div style="background:#fff;padding:24px 28px;border-bottom:1px solid var(--bordergray);">
-          <p style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--textmuted);margin-bottom:8px;">Brand Quotient Analysis · D2C</p>
-          <p style="font-size:14px;color:var(--textprimary);line-height:1.6;font-weight:400;">boAt built the most successful youth electronics brand in India by making noise the strategy. Now the noise is the problem.</p>
-        </div>
-        <div style="background:#fff;padding:24px 28px;border-bottom:1px solid var(--bordergray);">
-          <p style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--textmuted);margin-bottom:8px;">Strategic Study · Hospitality</p>
-          <p style="font-size:14px;color:var(--textprimary);line-height:1.6;font-weight:400;">The pause between sips is more valuable than the coffee itself. Blue Tokai has not yet charged for it.</p>
-        </div>
-        <div style="background:#fff;padding:24px 28px;">
-          <p style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--textmuted);margin-bottom:8px;">Analysis in Progress · Automotive</p>
-          <p style="font-size:14px;color:var(--textsecondary);line-height:1.6;font-weight:400;font-style:italic;">Perception premium under pressure in a category where specifications have converged.</p>
-        </div>
+      <div class="intel-list">
+        <article>
+          <span>Brand Quotient Analysis &middot; D2C</span>
+          <p>boAt built the most successful youth electronics brand in India by making noise the strategy. Now the noise is the problem.</p>
+        </article>
+        <article>
+          <span>Strategic Study &middot; Hospitality</span>
+          <p>The pause between sips is more valuable than the coffee itself. Blue Tokai has not yet charged for it.</p>
+        </article>
+        <article>
+          <span>Analysis in Progress &middot; Automotive</span>
+          <p>Perception premium under pressure in a category where specifications have converged.</p>
+        </article>
       </div>
     </div>
   </div>
 </section>
 
-<section id="contact" class="contact-section">
+<section id="contact" class="home-section contact-section">
   <div class="section-inner">
     <p class="section-eyebrow fade-up">Start the Brief</p>
     <div class="contact-grid">
- 
-      <div class="fade-up">
-        <h2 class="contact-h2">
-          Start the<br/>conversation.<br/><em>No pitch decks.</em>
-        </h2>
+      <div class="contact-copy fade-up">
+        <h2 class="contact-h2">Start the conversation.<br><em>No pitch decks.</em></h2>
         <p class="contact-sub">Send us a brief. We'll respond with a clear direction within 48 hours, not a deck.</p>
-        <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" class="wa-btn">
-          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Message on WhatsApp
-        </a>
+        <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" class="wa-btn">Message on WhatsApp</a>
         <p class="wa-note">Fastest response, usually within the hour.</p>
-        <a href="tel:+918588897488" class="phone-link">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          +91 85888 97488
-        </a>
-
-        <div class="contact-links" style="margin-top:36px;">
+        <a href="tel:+918588897488" class="phone-link">+91 85888 97488</a>
+        <div class="contact-links">
           <a href="mailto:hello@squargraph.com" class="contact-link-row">
             <span class="contact-link-label">Email</span>
             <span class="contact-link-value">hello@squargraph.com</span>
@@ -705,129 +556,119 @@ SQUARGRAPH™ is a strategy-led creative and digital partner helping businesses 
         </div>
       </div>
 
-      <div class="fade-up d2">
-        <form id="contact-form" novalidate style="display:flex;flex-direction:column;gap:14px;">
-          <div>
-            <label class="form-label" for="name">Name</label>
-            <input type="text" id="name" name="name" required placeholder="Full name" class="form-input" autocomplete="name"/>
-            <p class="field-error">Please enter your name.</p>
-          </div>
-          <div>
-            <label class="form-label" style="display:block;margin-bottom:7px;">WhatsApp / Phone</label>
-            <div style="display:block;width:100%;">
-              <input type="tel" id="phone" name="phone" required placeholder="98765 43210" autocomplete="tel"/>
-            </div>
-            <p class="field-error">Please enter your phone number.</p>
-          </div>
-          <div>
-            <label class="form-label" for="email">Work Email</label>
-            <input type="email" id="email" name="email" required placeholder="name@company.com" class="form-input" autocomplete="email"/>
-            <p class="field-error">Please enter your email id.</p>
-          </div>
-          <div>
-            <label class="form-label" for="company">Brand / Company</label>
-            <input type="text" id="company" name="company" required placeholder="Your brand name" class="form-input" autocomplete="organization"/>
-            <p class="field-error">Please enter your company name</p>
-          </div>
-          <div>
-            <label class="form-label" for="industry-contact">Industry</label>
-            <select id="industry-contact" name="industry" class="form-input" autocomplete="off">
-              <option value="">Select…</option>
-              <option>Technology &amp; SaaS</option>
-              <option>E-commerce &amp; Retail</option>
-              <option>Professional Services</option>
-              <option>Health &amp; Wellness</option>
-              <option>Finance &amp; Fintech</option>
-              <option>Automotive</option>
-              <option>Hospitality &amp; F&amp;B</option>
-              <option>Real Estate</option>
-              <option>D2C &amp; Consumer Brands</option>
-              <option>Luxury &amp; Lifestyle</option>
-              <option>Media &amp; Entertainment</option>
-              <option>Education &amp; EdTech</option>
-              <option>Other</option>
+      <form id="contact-form" class="contact-form fade-up d2" novalidate>
+        <div class="form-field">
+          <label class="form-label" for="name">Name</label>
+          <input type="text" id="name" name="name" required placeholder="Full name" class="form-input" autocomplete="name" />
+          <p class="field-error">Please enter your name.</p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="phone">WhatsApp / Phone</label>
+          <input type="tel" id="phone" name="phone" required placeholder="98765 43210" autocomplete="tel" />
+          <p class="field-error">Please enter your phone number.</p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="email">Work Email</label>
+          <input type="email" id="email" name="email" required placeholder="name@company.com" class="form-input" autocomplete="email" />
+          <p class="field-error">Please enter your email id.</p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="company">Brand / Company</label>
+          <input type="text" id="company" name="company" required placeholder="Your brand name" class="form-input" autocomplete="organization" />
+          <p class="field-error">Please enter your company name.</p>
+        </div>
+        <div class="form-field form-field--span-2">
+          <label class="form-label" for="industry-contact">Industry</label>
+          <select id="industry-contact" name="industry" class="form-input" autocomplete="off">
+            <option value="">Select</option>
+            <option>Technology &amp; SaaS</option>
+            <option>E-commerce &amp; Retail</option>
+            <option>Professional Services</option>
+            <option>Health &amp; Wellness</option>
+            <option>Finance &amp; Fintech</option>
+            <option>Automotive</option>
+            <option>Hospitality &amp; F&amp;B</option>
+            <option>Real Estate</option>
+            <option>D2C &amp; Consumer Brands</option>
+            <option>Luxury &amp; Lifestyle</option>
+            <option>Media &amp; Entertainment</option>
+            <option>Education &amp; EdTech</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field form-field--span-2">
+          <label class="form-label">Country &amp; City</label>
+          <div class="location-grid">
+            <select id="country-location" name="country" autocomplete="off" class="form-input">
+              <option value="" disabled selected>Country</option>
+              <option value="India">India</option>
+              <option value="UAE">UAE</option>
+              <option value="USA">USA</option>
+              <option value="UK">UK</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Australia">Australia</option>
+              <option value="Canada">Canada</option>
+              <option value="Germany">Germany</option>
+              <option value="France">France</option>
+              <option value="Japan">Japan</option>
+              <option value="Other">Other</option>
             </select>
-          </div>
-          <div>
-            <label class="form-label">Country &amp; City</label>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-              <div>
-                <select id="country-location" name="country" autocomplete="off" class="form-input">
-                  <option value="" disabled selected>Country</option>
-                  <option value="India">🇮🇳 India</option>
-                  <option value="UAE">🇦🇪 UAE</option>
-                  <option value="USA">🇺🇸 USA</option>
-                  <option value="UK">🇬🇧 UK</option>
-                  <option value="Singapore">🇸🇬 Singapore</option>
-                  <option value="Australia">🇦🇺 Australia</option>
-                  <option value="Canada">🇨🇦 Canada</option>
-                  <option value="Germany">🇩🇪 Germany</option>
-                  <option value="France">🇫🇷 France</option>
-                  <option value="Japan">🇯🇵 Japan</option>
-                  <option value="Other">🌍 Other</option>
-                </select>
-              </div>
-              <div style="position:relative;">
-                <select id="city" name="city" class="form-input" style="display:none;">
-                  <option value="" disabled selected>Select city</option>
-                </select>
-                <input type="text" id="city-text" name="city_text" placeholder="Enter city" class="form-input" autocomplete="address-level2" style="display:block;"/>
-              </div>
-            </div>
-          </div>
-          <div class="form-row">
-            <div>
-              <label class="form-label" for="service-select">What do you need?</label>
-              <select name="service" id="service-select" required class="form-input" autocomplete="off">
-                <option value="">Select</option>
-                <option>Full campaign — strategy through delivery</option>
-                <option>Content &amp; social media</option>
-                <option>Branding / identity</option>
-                <option>Conversion-focused creative</option>
-                <option>Something else</option>
-              </select>
-                <p class="field-error">Please select a service.</p>
-            </div>
-            <div>
-              <label class="form-label" for="budget">Budget range</label>
-              <select id="budget" name="budget" required class="form-input" autocomplete="off">
-                <option value="">Select</option>
-                <option>₹50K – ₹1L</option>
-                <option>₹1L – ₹3L</option>
-                <option>₹3L – ₹7L</option>
-                <option>₹7L+</option>
-              </select>
-                <p class="field-error">Please select a budget range.</p>
-            </div>
-          </div>
-          <div>
-            <label class="form-label" for="timeline">Timeline</label>
-            <select id="timeline" name="timeline" required class="form-input" autocomplete="off">
-              <option value="">Select</option>
-              <option>ASAP</option>
-              <option>2–4 weeks</option>
-              <option>1–2 months</option>
-              <option>Just exploring</option>
+            <select id="city" name="city" class="form-input city-select">
+              <option value="" disabled selected>Select city</option>
             </select>
-              <p class="field-error">Please select a timeline.</p>
+            <input type="text" id="city-text" name="city_text" placeholder="Enter city" class="form-input city-text" autocomplete="address-level2" />
           </div>
-          <div>
-            <label class="form-label" for="message">Project brief</label>
-            <textarea id="message" name="message" required placeholder="Message or brief" class="form-input" autocomplete="off" style="min-height:120px;border-radius:16px;resize:vertical;"></textarea>
-            <p class="field-error">Please describe your project briefly.</p>
-          </div>
-          <div>
-            <label class="form-label" for="reference">Reference links (optional)</label>
-            <input type="text" id="reference" name="reference" placeholder="Paste a link, Drive, Notion, or any reference" class="form-input"/>
-          </div>
-          <div style="margin-top: 24px; margin-bottom: 24px;">
-            <div class="g-recaptcha" data-sitekey="6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB" style="transform:scale(0.85);transform-origin:left top;"></div>
-          </div>
-            <p id="captcha-error" style="font-size:11px;color:#EF4444;display:none;margin-bottom:8px;">Please complete the captcha.</p>
-            <button type="submit" id="form-submit-btn" class="submit-btn">Send inquiry →</button>
-          <p class="form-next" style="text-align: left;">Every brief reviewed within 48 hours. No follow-up sequence. No pitch deck.</p>
-        </form>
-      </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="service-select">What do you need?</label>
+          <select name="service" id="service-select" required class="form-input" autocomplete="off">
+            <option value="">Select</option>
+            <option>Full campaign - strategy through delivery</option>
+            <option>Content &amp; social media</option>
+            <option>Branding / identity</option>
+            <option>Conversion-focused creative</option>
+            <option>Something else</option>
+          </select>
+          <p class="field-error">Please select a service.</p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="budget">Budget range</label>
+          <select id="budget" name="budget" required class="form-input" autocomplete="off">
+            <option value="">Select</option>
+            <option>&#8377;50K - &#8377;1L</option>
+            <option>&#8377;1L - &#8377;3L</option>
+            <option>&#8377;3L - &#8377;7L</option>
+            <option>&#8377;7L+</option>
+          </select>
+          <p class="field-error">Please select a budget range.</p>
+        </div>
+        <div class="form-field form-field--span-2">
+          <label class="form-label" for="timeline">Timeline</label>
+          <select id="timeline" name="timeline" required class="form-input" autocomplete="off">
+            <option value="">Select</option>
+            <option>ASAP</option>
+            <option>2-4 weeks</option>
+            <option>1-2 months</option>
+            <option>Just exploring</option>
+          </select>
+          <p class="field-error">Please select a timeline.</p>
+        </div>
+        <div class="form-field form-field--span-2">
+          <label class="form-label" for="message">Project brief</label>
+          <textarea id="message" name="message" required placeholder="Message or brief" class="form-input form-textarea" autocomplete="off"></textarea>
+          <p class="field-error">Please describe your project briefly.</p>
+        </div>
+        <div class="form-field form-field--span-2">
+          <label class="form-label" for="reference">Reference links (optional)</label>
+          <input type="text" id="reference" name="reference" placeholder="Paste a link, Drive, Notion, or any reference" class="form-input" />
+        </div>
+        <div class="captcha-wrap form-field--span-2">
+          <div class="g-recaptcha" data-sitekey="6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB"></div>
+        </div>
+        <p id="captcha-error" class="captcha-error form-field--span-2">Please complete the captcha.</p>
+        <button type="submit" id="form-submit-btn" class="submit-btn">Send inquiry</button>
+        <p class="form-next form-field--span-2">Every brief reviewed within 48 hours. No follow-up sequence. No pitch deck.</p>
+      </form>
     </div>
   </div>
 </section>
@@ -838,7 +679,7 @@ SQUARGRAPH™ is a strategy-led creative and digital partner helping businesses 
   <div class="footer-inner">
     <div>
       <div class="footer-logo">
-  <img src="/logo.webp" alt="SQUARGRAPH™" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" />
+  <img src="/logo.webp" alt="SQUARGRAPH™" width="120" height="28" class="brand-mark" decoding="async" loading="lazy" />
 </div>
       <p class="footer-tagline">Strategy. Creative. Digital. Built on intelligence. helping ambitious brands build perception, competitive advantage, and enduring value.</p>
       <p class="footer-philosophy">
@@ -875,21 +716,21 @@ SQUARGRAPH™ is a strategy-led creative and digital partner helping businesses 
       <a href="/#capabilities" class="footer-link">Visual Intelligence</a>
     </div>
   </div>
-  <div class="footer-bar" style="flex-direction:column;align-items:flex-start;gap:16px;">
-    <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;">
-  <a href="https://razorpay.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:6px;text-decoration:none;">
-  <span style="font-size:11px;color:var(--textmuted);">Payments Secured by</span>
-  <img src="https://cdn.razorpay.com/logo.svg" alt="Razorpay" height="16" width="80" loading="lazy" decoding="async" style="display:block;" />
-</a>
-</div>
-    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;width:100%;gap:12px;align-items:center;">
-      <p style="font-size:12px;color:var(--textmuted);">© 2026 SQUARGRAPH™. All rights reserved. New Delhi, India</p>
-      <div style="display:flex;gap:20px;flex-wrap:wrap;">
-        <a href="/terms-of-use" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Terms of Use</a>
-        <a href="/privacy-policy" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Privacy Policy</a>
-        <a href="/refund-policy" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Refund Policy</a>
-        <a href="/ai-disclosure" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">AI Disclosure</a>
-        <a href="/feedback" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Shape SQUARGRAPH™</a>
+  <div class="footer-bar footer-bar--stack">
+    <div class="payment-row">
+      <a href="https://razorpay.com" target="_blank" rel="noopener noreferrer" class="payment-link">
+        <span class="payment-label">Payments Secured by</span>
+        <img src="https://cdn.razorpay.com/logo.svg" alt="Razorpay" height="16" width="80" loading="lazy" decoding="async" class="payment-logo" />
+      </a>
+    </div>
+    <div class="footer-legal-row">
+      <p>© 2026 SQUARGRAPH™. All rights reserved. New Delhi, India</p>
+      <div class="footer-legal-links">
+        <a href="/terms-of-use">Terms of Use</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/refund-policy">Refund Policy</a>
+        <a href="/ai-disclosure">AI Disclosure</a>
+        <a href="/feedback">Shape SQUARGRAPH™</a>
       </div>
     </div>
   </div>
@@ -901,62 +742,61 @@ SQUARGRAPH™ is a strategy-led creative and digital partner helping businesses 
   </svg>
 </button>
 
-<div id="payment-success-overlay" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(26,23,20,.97);overflow-y:auto;padding:60px 5vw;align-items:center;justify-content:center;" aria-modal="true" role="dialog" aria-label="Payment confirmed">
-  <div style="max-width:620px;margin:0 auto;text-align:center;">
+<div id="payment-success-overlay" class="payment-success-overlay" aria-modal="true" role="dialog" aria-label="Payment confirmed">
+  <div class="payment-success-card">
 
-    <div style="width:72px;height:72px;border-radius:50%;background:rgba(31,173,78,.12);border:1px solid rgba(31,173,78,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 32px;">
+    <div class="payment-success-icon">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1fad4e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
 
-    <p style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accentmuted);margin-bottom:14px;">Payment Confirmed</p>
-    <h2 style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(30px,5vw,52px);letter-spacing:-0.03em;color:#F5F3F0;line-height:1.05;margin-bottom:20px;">Welcome to<br/>SQUARGRAPH™</h2>
-    <p style="font-size:16px;color:rgba(245,243,240,.55);line-height:1.75;margin-bottom:16px;max-width:46ch;margin-left:auto;margin-right:auto;">Your onboarding has started. Within <strong style="color:rgba(245,243,240,.85);">24 business hours</strong> you will receive everything you need to prepare for your session.</p>
-<p style="font-size:13px;color:rgba(245,243,240,.3);line-height:1.7;margin-bottom:48px;max-width:46ch;margin-left:auto;margin-right:auto;">A GST invoice will be shared on your registered email address after confirmation of your booking.</p>
+    <p class="payment-success-eyebrow">Payment Confirmed</p>
+    <h2 class="payment-success-title">Welcome to<br>SQUARGRAPH™</h2>
+    <p class="payment-success-lead">Your onboarding has started. Within <strong>24 business hours</strong> you will receive everything you need to prepare for your session.</p>
+    <p class="payment-success-note">A GST invoice will be shared on your registered email address after confirmation of your booking.</p>
 
-    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:36px;text-align:left;margin-bottom:36px;">
-      <p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accentmuted);margin-bottom:24px;">What happens next</p>
-      <div style="display:flex;flex-direction:column;gap:20px;">
-        <div style="display:flex;align-items:flex-start;gap:16px;">
-          <div style="width:28px;height:28px;border-radius:50%;background:rgba(139,126,200,.15);border:1px solid rgba(139,126,200,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:600;color:var(--accentmuted);">1</div>
+    <div class="payment-success-next">
+      <p class="payment-success-next-label">What happens next</p>
+      <div class="payment-success-steps">
+        <div class="payment-success-step">
+          <div class="payment-success-step-num">1</div>
           <div>
-            <div style="font-size:14px;font-weight:500;color:#F5F3F0;margin-bottom:3px;">Discovery Questionnaire</div>
-            <div style="font-size:13px;color:rgba(245,243,240,.45);line-height:1.6;">A short pre-session form so we can hit the ground running, no time wasted on basics during your session.</div>
+            <div class="payment-success-step-title">Discovery Questionnaire</div>
+            <div class="payment-success-step-text">A short pre-session form so we can hit the ground running, no time wasted on basics during your session.</div>
           </div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:16px;">
-          <div style="width:28px;height:28px;border-radius:50%;background:rgba(139,126,200,.15);border:1px solid rgba(139,126,200,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:600;color:var(--accentmuted);">2</div>
+        <div class="payment-success-step">
+          <div class="payment-success-step-num">2</div>
           <div>
-            <div style="font-size:14px;font-weight:500;color:#F5F3F0;margin-bottom:3px;">Calendly Scheduling Link</div>
-            <div style="font-size:13px;color:rgba(245,243,240,.45);line-height:1.6;">Pick a time that works, we're available Monday to Saturday, 10am to 7pm IST.</div>
+            <div class="payment-success-step-title">Calendly Scheduling Link</div>
+            <div class="payment-success-step-text">Pick a time that works, we're available Monday to Saturday, 10am to 7pm IST.</div>
           </div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:16px;">
-          <div style="width:28px;height:28px;border-radius:50%;background:rgba(139,126,200,.15);border:1px solid rgba(139,126,200,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:600;color:var(--accentmuted);">3</div>
+        <div class="payment-success-step">
+          <div class="payment-success-step-num">3</div>
           <div>
-            <div style="font-size:14px;font-weight:500;color:#F5F3F0;margin-bottom:3px;">Project Intake Form</div>
-            <div style="font-size:13px;color:rgba(245,243,240,.45);line-height:1.6;">A deeper brief form to help Saurabh prepare a tailored strategy for your specific situation.</div>
+            <div class="payment-success-step-title">Project Intake Form</div>
+            <div class="payment-success-step-text">A deeper brief form to help Saurabh prepare a tailored strategy for your specific situation.</div>
           </div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:16px;">
-          <div style="width:28px;height:28px;border-radius:50%;background:rgba(139,126,200,.15);border:1px solid rgba(139,126,200,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:600;color:var(--accentmuted);">4</div>
+        <div class="payment-success-step">
+          <div class="payment-success-step-num">4</div>
           <div>
-            <div style="font-size:14px;font-weight:500;color:#F5F3F0;margin-bottom:3px;">Your 30-Minute Session</div>
-            <div style="font-size:13px;color:rgba(245,243,240,.45);line-height:1.6;">Founder-led. Recorded. Followed by your Action Plan PDF within 24 hours of the call.</div>
+            <div class="payment-success-step-title">Your 30-Minute Session</div>
+            <div class="payment-success-step-text">Founder-led. Recorded. Followed by your Action Plan PDF within 24 hours of the call.</div>
           </div>
         </div>
       </div>
     </div>
 
-    <p id="success-payment-id" style="font-size:12px;color:rgba(245,243,240,.25);margin-bottom:32px;"></p>
+    <p id="success-payment-id" class="payment-success-id"></p>
 
-    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
-      <a href="https://wa.me/918588897488?text=Hi%20Saurabh%2C%20I%20just%20booked%20a%20Discovery%20Session%20and%20wanted%20to%20introduce%20myself." target="_blank" rel="noopener noreferrer"
-  style="display:inline-flex;align-items:center;gap:8px;background:#1fad4e;color:#fff;border:none;border-radius:999px;padding:14px 24px;font-size:13px;font-weight:500;letter-spacing:-0.01em;cursor:pointer;text-decoration:none;">
+    <div class="payment-success-actions">
+      <a href="https://wa.me/918588897488?text=Hi%20Saurabh%2C%20I%20just%20booked%20a%20Discovery%20Session%20and%20wanted%20to%20introduce%20myself." target="_blank" rel="noopener noreferrer" class="payment-success-wa">
         <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Say hi on WhatsApp
       </a>
       <button type="button" onclick="document.getElementById('payment-success-overlay').style.display='none';document.body.style.overflow='';"
-  style="display:inline-flex;align-items:center;background:transparent;color:rgba(245,243,240,.4);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:13px 24px;font-size:13px;font-weight:500;cursor:pointer;letter-spacing:-0.01em;">
+        class="payment-success-back">
         Back to site
       </button>
     </div>
@@ -1051,7 +891,7 @@ SQUARGRAPH™ is a strategy-led creative and digital partner helping businesses 
 <div id="mobile-book-wrap">
   <div id="mobile-book-label" onclick="window.location.href='/discovery'">
     <span id="mobile-book-title">Start with a Discovery Session.</span>
-    <span id="mobile-book-sub" style="color:#fff;">30 minutes. A clear strategic direction.</span>
+    <span id="mobile-book-sub">30 minutes. A clear strategic direction.</span>
   </div>
   <button id="mobile-book" type="button" onclick="window.location.href='/discovery'">Book Discovery →</button>
   <button id="mobile-book-close" type="button" aria-label="Dismiss" onclick="document.getElementById('mobile-book-wrap').style.display='none'">✕</button>
