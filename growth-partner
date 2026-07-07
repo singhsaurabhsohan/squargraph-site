@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="/fonts/fonts.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Growth Partner™ – Your External Brand Growth Team | SQUARGRAPH™</title>
+  <meta name="description" content="A monthly partnership where SQUARGRAPH™ operates as your external brand office — strategy, creative direction, content systems, digital growth, and execution. For founders who need senior brand thinking without hiring an internal team." />
+  <link rel="canonical" href="https://squargraph.com/growth-partner" />
+  <meta property="og:title" content="Growth Partner™ – Your External Brand Growth Team | SQUARGRAPH™" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://squargraph.com/growth-partner" />
+  <meta property="og:description" content="A monthly partnership where SQUARGRAPH™ operates as your external brand office — strategy, creative direction, content systems, digital growth, and execution." />
+  <meta property="og:image" content="https://squargraph.com/squargraph-brand-image.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Growth Partner™ – Your External Brand Growth Team | SQUARGRAPH™" />
+  <meta name="twitter:description" content="A monthly partnership where SQUARGRAPH™ operates as your external brand office — strategy, creative direction, content systems, digital growth, and execution." />
+  <meta name="twitter:image" content="https://squargraph.com/squargraph-brand-image.webp" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+
+  <!-- GTM Head -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');</script>
+
+  <link rel="preload" href="/fonts/Satoshi-Regular.woff" as="font" type="font/woff" crossorigin />
+  <link rel="preload" href="/fonts/Satoshi-Medium.woff" as="font" type="font/woff" crossorigin />
+  <link rel="preload" href="/fonts/Satoshi-Bold.woff" as="font" type="font/woff" crossorigin />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css" media="print" onload="this.media='all'" />
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js" defer></script>
+
+  <link rel="stylesheet" href="/assets/css/pages/growth-partner.css">
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- ── NAV ── -->
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="SQUARGRAPH™" class="nav-logo" href="/">
+<img alt="SQUARGRAPH™" decoding="sync" fetchpriority="high" height="28" src="/logo.webp" style="height:28px;width:auto;" width="120"/>
+</a>
+<div class="nav-links">
+<a href="/#work">Work</a>
+<a href="/#Engagements?tab=build">Engagements</a>
+<a href="/#capabilities">Capabilities</a>
+<a href="/intelligence">Intelligence</a>
+<a href="/#studio">Studio</a>
+      <a href="#apply" class="nav-cta">Apply Now</a>
+    </div>
+    <button class="hamburger" id="mob-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <div class="pill-menu"><div class="pill-line"></div><div class="pill-body"></div></div>
+    </button>
+  </div>
+</nav>
+<div id="mob-menu" role="dialog" aria-modal="true" inert>
+  <a href="/" onclick="closeMob()">Home</a>
+  <a href="/#work" onclick="closeMob()">Work</a>
+  <a href="/#Engagements?tab=build" onclick="closeMob()">Engagements</a>
+  <a href="/#capabilities" onclick="closeMob()">Capabilities</a>
+  <a href="/intelligence" onclick="closeMob()">Intelligence</a>
+  <a href="/#studio" onclick="closeMob()">Studio</a>
+  <a href="#apply" onclick="closeMob()">Apply Now</a>
+  <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="page-hero" data-hero>
+  <div class="hero-bg">
+    <div class="hero-bg-blob hero-bg-blob-1"></div>
+    <div class="hero-bg-blob hero-bg-blob-2"></div>
+    <svg xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M 48 0 L 0 0 0 48" fill="none" stroke="#1A1714" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>
+  </div>
+  <div class="hero-inner">
+    <div class="fade-up">
+      <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div>Growth Partner™</div>
+      <h1 class="hero-h1">Your Brand Team.<br/>Without <em>Building One.</em></h1>
+      <p class="hero-sub">A recurring monthly partnership for ambitious businesses that need senior-level brand strategy, creative direction, and execution — without hiring an entire internal team.</p>
+    </div>
+    <div class="hero-cta-row fade-up d1">
+      <a href="#apply" class="btn-primary">Apply for Growth Partnership →</a>
+      <a href="/discovery" class="btn-secondary">Schedule Discovery Call</a>
+    </div>
+    <div class="hero-checklist fade-up d2">
+      <div class="hero-check-item"><div class="hero-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1fad4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>One external brand office</div>
+      <div class="hero-check-item"><div class="hero-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1fad4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Strategy, creative &amp; execution — unified</div>
+      <div class="hero-check-item"><div class="hero-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1fad4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>No pitch decks. No vendor sprawl.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEM ── -->
+<section class="problem-section">
+  <div class="problem-inner">
+    <span class="section-eyebrow scroll-reveal">The Real Problem</span>
+    <h2 class="problem-quote scroll-reveal">Growth doesn't break because of effort. It breaks because of <em>disconnected execution.</em></h2>
+    <div class="problem-grid">
+      <div class="problem-item scroll-reveal">
+        <span class="problem-item-num">01</span>
+        <div class="problem-item-title">Designers without strategy</div>
+        <div class="problem-item-desc">Creative gets produced, but nothing ties it back to a positioning that's actually been thought through.</div>
+      </div>
+      <div class="problem-item scroll-reveal">
+        <span class="problem-item-num">02</span>
+        <div class="problem-item-title">Agencies chasing deliverables</div>
+        <div class="problem-item-desc">Posts go out, campaigns run — but no one owns whether any of it is building the brand.</div>
+      </div>
+      <div class="problem-item scroll-reveal">
+        <span class="problem-item-num">03</span>
+        <div class="problem-item-title">Too many vendors, no owner</div>
+        <div class="problem-item-desc">A designer here, a marketer there, a developer somewhere else — founders end up managing people instead of building the business.</div>
+      </div>
+      <div class="problem-item scroll-reveal">
+        <span class="problem-item-num">04</span>
+        <div class="problem-item-title">No senior brand thinking</div>
+        <div class="problem-item-desc">The hardest calls — positioning, message, trust — get made by whoever's available, not by someone who's done it before.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INTRODUCE GROWTH PARTNER ── -->
+<section class="intro-section">
+  <div class="intro-inner">
+    <div class="intro-top">
+      <div>
+        <span class="section-eyebrow scroll-reveal">Introducing Growth Partner™</span>
+        <h2 class="section-h2 scroll-reveal">Your external brand office, on retainer.</h2>
+      </div>
+      <p class="section-sub scroll-reveal" style="margin-bottom:0;">A monthly partnership where SQUARGRAPH™ operates as the brand function you don't have in-house — thinking, building, and executing across every layer of how your business is perceived.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card scroll-reveal">
+        <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="pillar-name">Strategy</div>
+        <div class="pillar-desc">Positioning, messaging, and the decisions that determine how the market sees you.</div>
+      </div>
+      <div class="pillar-card scroll-reveal">
+        <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div class="pillar-name">Creative Direction</div>
+        <div class="pillar-desc">A consistent visual and verbal language applied across every asset you put out.</div>
+      </div>
+      <div class="pillar-card scroll-reveal">
+        <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <div class="pillar-name">Content Systems</div>
+        <div class="pillar-desc">A direction for what gets said, in what order, and why — not content for content's sake.</div>
+      </div>
+      <div class="pillar-card scroll-reveal">
+        <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="pillar-name">Digital Experience</div>
+        <div class="pillar-desc">A website and digital presence built to earn trust, not just look presentable.</div>
+      </div>
+      <div class="pillar-card scroll-reveal">
+        <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+        <div class="pillar-name">Campaign Planning</div>
+        <div class="pillar-desc">Moments planned in advance and built on a strategy — not decided the week they launch.</div>
+      </div>
+      <div class="pillar-card scroll-reveal">
+        <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg></div>
+        <div class="pillar-name">Growth Intelligence</div>
+        <div class="pillar-desc">A monthly read on what's working, what isn't, and where the next opportunity sits.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="flow-section">
+  <div class="flow-inner">
+    <span class="section-eyebrow scroll-reveal">How It Works</span>
+    <h2 class="section-h2 scroll-reveal">An operating system for your brand.</h2>
+    <div class="flow-steps">
+      <div class="flow-step scroll-reveal">
+        <div class="flow-step-num">1</div>
+        <div class="flow-step-name">Discover</div>
+        <div class="flow-step-desc">We audit where your brand stands today — positioning, perception, and every channel currently representing you.</div>
+      </div>
+      <div class="flow-step scroll-reveal">
+        <div class="flow-step-num">2</div>
+        <div class="flow-step-name">Build</div>
+        <div class="flow-step-desc">We build or sharpen the strategic and creative foundation your growth will run on.</div>
+      </div>
+      <div class="flow-step scroll-reveal">
+        <div class="flow-step-num">3</div>
+        <div class="flow-step-name">Execute</div>
+        <div class="flow-step-desc">Every month, that foundation turns into shipped work — content, campaigns, digital experiences, and communication.</div>
+      </div>
+      <div class="flow-step scroll-reveal">
+        <div class="flow-step-num">4</div>
+        <div class="flow-step-name">Optimize</div>
+        <div class="flow-step-desc">We review what moved the needle, report it plainly, and sharpen direction for the month ahead.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DELIVERABLES ── -->
+<section class="deliverables-section">
+  <div class="deliverables-inner">
+    <span class="section-eyebrow scroll-reveal">What's Included</span>
+    <h2 class="section-h2 scroll-reveal">Four pillars. One accountable partner.</h2>
+    <div class="deliv-groups">
+      <div class="deliv-group scroll-reveal">
+        <div class="deliv-group-name">Brand Intelligence</div>
+        <div class="deliv-list">
+          <div class="deliv-list-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Monthly brand roadmap</div>
+          <div class="deliv-list-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Competitive analysis</div>
+          <div class="deliv-list-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Monthly growth opportunities</div>
+        </div>
+      </div>
+      <div class="deliv-group scroll-reveal">
+        <div class="deliv-group-name">Creative Systems</div>
+        <div class="deliv-list">
+          <div class="deliv-list-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Campaign concepts</div>
+          <div class="deliv-list-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Content direction</div>
+          <div class="deliv-list-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Visual communication</div>
+        </div>
+      </div>
+      <div class="deliv-group scroll-reveal">
+        <div class="deliv-group-name">Digital Growth</div>
+        <div class="deliv-list">
+          <div class="deliv-list-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Website improvements</div>
+          <div class="deliv-list-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Landing pages</div>
+          <div class="deliv-list-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Conversion thinking</div>
+        </div>
+      </div>
+      <div class="deliv-group scroll-reveal">
+        <div class="deliv-group-name">Execution</div>
+        <div class="deliv-list">
+          <div class="deliv-list-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Creatives, shipped monthly</div>
+          <div class="deliv-list-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Content, produced and reviewed</div>
+          <div class="deliv-list-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Partner &amp; vendor coordination</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PLANS ── -->
+<section class="plans-section" id="plans">
+  <div class="plans-inner">
+    <span class="section-eyebrow scroll-reveal">Partnership Tiers</span>
+    <h2 class="section-h2 scroll-reveal">Built for where you are, not a fixed package.</h2>
+    <div class="plans-grid">
+      <div class="plan-card scroll-reveal">
+        <div class="plan-name">Growth Foundation</div>
+        <div class="plan-for">For early-stage brands establishing their first real strategic footing.</div>
+        <div class="plan-features">
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Positioning &amp; messaging foundation</div>
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Core creative direction</div>
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Monthly content direction</div>
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Quarterly strategy review</div>
+        </div>
+        <a href="#apply" class="plan-cta" onclick="window.SQGP && window.SQGP.setTier('Growth Foundation')">Discuss Partnership</a>
+      </div>
+      <div class="plan-card featured scroll-reveal">
+        <span class="plan-badge accent">Recommended</span>
+        <div class="plan-name">Growth Partner</div>
+        <div class="plan-for">For scaling businesses that need a full brand office running month over month.</div>
+        <div class="plan-features">
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Everything in Growth Foundation</div>
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Full campaign planning &amp; execution</div>
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Ongoing digital experience improvements</div>
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Monthly growth intelligence reporting</div>
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Direct line to senior brand strategy</div>
+        </div>
+        <a href="#apply" class="plan-cta" onclick="window.SQGP && window.SQGP.setTier('Growth Partner')">Discuss Partnership</a>
+      </div>
+      <div class="plan-card scroll-reveal">
+        <div class="plan-name">Brand Office</div>
+        <div class="plan-for">For companies that need a complete external brand team across every function.</div>
+        <div class="plan-features">
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Everything in Growth Partner</div>
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Dedicated senior strategist</div>
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Full partner &amp; vendor coordination</div>
+          <div class="plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Priority scope &amp; turnaround</div>
+        </div>
+        <a href="#apply" class="plan-cta" onclick="window.SQGP && window.SQGP.setTier('Brand Office')">Discuss Partnership</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY SQUARGRAPH ── -->
+<section class="why-section">
+  <div class="why-inner">
+    <span class="section-eyebrow scroll-reveal">Why SQUARGRAPH™</span>
+    <h2 class="section-h2 scroll-reveal">Strategic thinking. Creative execution. One team.</h2>
+    <div class="why-grid">
+      <div class="scroll-reveal">
+        <span class="why-item-num">01</span>
+        <div class="why-item-title">Strategic brand thinking</div>
+        <div class="why-item-desc">Every deliverable is built on a positioning decision, not produced in isolation.</div>
+      </div>
+      <div class="scroll-reveal">
+        <span class="why-item-num">02</span>
+        <div class="why-item-title">Creative execution</div>
+        <div class="why-item-desc">Strategy that actually gets made — designed, written, and shipped by the same team that thought it through.</div>
+      </div>
+      <div class="scroll-reveal">
+        <span class="why-item-num">03</span>
+        <div class="why-item-title">Digital systems</div>
+        <div class="why-item-desc">Websites and digital experiences built to hold up under scrutiny, not just look good in a deck.</div>
+      </div>
+      <div class="scroll-reveal">
+        <span class="why-item-num">04</span>
+        <div class="why-item-title">Cross-category experience</div>
+        <div class="why-item-desc">Work across automotive, lifestyle, consumer, and emerging brands — patterns that transfer.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL CTA ── -->
+<section class="final-cta-section">
+  <div class="hero-bg">
+    <div class="hero-bg-blob hero-bg-blob-1"></div>
+  </div>
+  <div class="final-cta-inner">
+    <span class="section-eyebrow scroll-reveal" style="justify-content:center;display:block;">Get Started</span>
+    <h2 class="final-cta-h2 scroll-reveal">Build your brand like the <em>companies you admire.</em></h2>
+    <a href="#apply" class="btn-primary scroll-reveal">Start Growth Partnership →</a>
+  </div>
+</section>
+
+<!-- ── APPLY ── -->
+<section class="apply-section" id="apply">
+  <div class="apply-inner">
+    <div class="apply-head">
+      <span class="section-eyebrow scroll-reveal">Apply</span>
+      <h2 class="section-h2 scroll-reveal" style="margin-bottom:12px;">Apply for Growth Partnership</h2>
+      <p class="section-sub scroll-reveal" style="margin:0 auto;">Tell us where your brand is today. We'll respond within 48 hours with a proposed scope and partnership tier.</p>
+    </div>
+    <div class="form-card scroll-reveal" id="gp-form-card">
+      <div class="form-card-title">Tell us about your business</div>
+      <div class="form-card-sub">No pitch decks. Just a clear next step.</div>
+      <form id="gp-form" novalidate>
+        <div class="form-stack">
+          <div class="field">
+            <label class="form-label" for="gp-name">Name</label>
+            <input type="text" id="gp-name" name="name" required placeholder="Full name" class="form-input" autocomplete="name" />
+            <span class="field-error">Please enter your name.</span>
+          </div>
+          <div class="field">
+            <label class="form-label">WhatsApp / Phone</label>
+            <input type="tel" id="gp-phone" name="phone" required placeholder="98765 43210" autocomplete="tel" />
+            <span class="field-error" id="gp-phone-err">Please enter a valid phone number.</span>
+          </div>
+          <div class="field">
+            <label class="form-label" for="gp-email">Work Email</label>
+            <input type="email" id="gp-email" name="email" required placeholder="name@company.com" class="form-input" autocomplete="email" />
+            <span class="field-error">Please enter a valid email.</span>
+          </div>
+          <div class="field">
+            <label class="form-label" for="gp-company">Brand / Company</label>
+            <input type="text" id="gp-company" name="company" required placeholder="Your brand name" class="form-input" autocomplete="organization" />
+            <span class="field-error">Please enter your brand name.</span>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label class="form-label" for="gp-country">Country</label>
+              <select id="gp-country" name="country" class="form-input" autocomplete="off">
+                <option value="" disabled selected>Select…</option>
+                <option value="India">🇮🇳 India</option>
+                <option value="UAE">🇦🇪 UAE</option>
+                <option value="USA">🇺🇸 USA</option>
+                <option value="UK">🇬🇧 UK</option>
+                <option value="Singapore">🇸🇬 Singapore</option>
+                <option value="Australia">🇦🇺 Australia</option>
+                <option value="Canada">🇨🇦 Canada</option>
+                <option value="Germany">🇩🇪 Germany</option>
+                <option value="France">🇫🇷 France</option>
+                <option value="Japan">🇯🇵 Japan</option>
+                <option value="Other">🌍 Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="form-label" for="gp-city">City</label>
+              <select id="gp-city" name="city" class="form-input" style="display:none;"></select>
+              <input type="text" id="gp-city-text" name="city_text" placeholder="Enter city" class="form-input" autocomplete="address-level2" />
+            </div>
+          </div>
+          <div class="field">
+            <label class="form-label" for="gp-tier">Which tier fits best?</label>
+            <select id="gp-tier" name="tier" class="form-input">
+              <option value="Not sure" selected>Not sure yet</option>
+              <option value="Growth Foundation">Growth Foundation</option>
+              <option value="Growth Partner">Growth Partner</option>
+              <option value="Brand Office">Brand Office</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="form-label" for="gp-challenge">What's the biggest gap in your brand right now?</label>
+            <textarea id="gp-challenge" name="challenge" required placeholder="Unclear positioning, inconsistent communication, no internal brand ownership, weak digital presence…" class="form-input"></textarea>
+            <span class="field-error">Please describe your challenge.</span>
+          </div>
+          <div class="consent-row">
+            <input type="checkbox" id="gp-consent" name="consent" />
+            <label for="gp-consent">I agree to the <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>, and consent to being contacted by SQUARGRAPH™ regarding this enquiry.</label>
+          </div>
+          <span class="field-error" id="gp-consent-err" style="margin-top:-6px;">Please accept the terms to continue.</span>
+          <div id="gp-captcha-wrap" style="margin-top:4px;">
+            <div class="g-recaptcha" data-sitekey="6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB" style="transform:scale(0.85);transform-origin:left top;"></div>
+            <p id="gp-captcha-error" style="font-size:11px;color:#EF4444;display:none;margin-top:6px;">Please complete the captcha.</p>
+          </div>
+          <button type="submit" class="submit-btn" id="gp-submit">Apply for Growth Partnership →</button>
+          <p style="font-size:11px;color:var(--textmuted);text-align:center;line-height:1.6;">We respond within 48 hours with a proposed scope. No pitch decks.</p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Success state (replaces form on submit) -->
+    <div id="gp-success">
+      <div class="success-check-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1fad4e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <p class="success-title">Application Received</p>
+      <p class="success-sub">We'll review your brand and come back within 48 hours with a clear proposed scope and partnership tier.</p>
+      <div class="success-steps-list">
+        <p class="success-steps-label-s">What happens next</p>
+        <div class="gp-step"><div class="gp-step-num">1</div><div><div class="gp-step-title">Application Review</div><div class="gp-step-desc">Saurabh reviews your submission personally and maps it against the right partnership tier.</div></div></div>
+        <div class="gp-step"><div class="gp-step-num">2</div><div><div class="gp-step-title">Proposed Scope</div><div class="gp-step-desc">We send a clear scope document — what's included, how we'll work, and what the monthly cadence looks like.</div></div></div>
+        <div class="gp-step"><div class="gp-step-num">3</div><div><div class="gp-step-title">Kickoff &amp; Onboarding</div><div class="gp-step-desc">Once aligned, we begin the Discover phase and set up the first month's roadmap.</div></div></div>
+      </div>
+      <a href="https://wa.me/918588897488?text=Hi%20SQUARGRAPH%2C%20I%20just%20applied%20for%20Growth%20Partnership." target="_blank" rel="noopener noreferrer" class="btn-wa-gp">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Say hi on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+  <img src="/logo.webp" alt="SQUARGRAPH™" width="120" height="28" style="height:28px;width:auto;" decoding="async" loading="lazy" />
+</div>
+      <p class="footer-tagline">Strategy. Creative. Digital. Built on intelligence. helping ambitious brands build perception, competitive advantage, and enduring value.</p>
+      <p class="footer-philosophy">
+  Perception shapes value.<br/>We build what controls it.
+</p>
+      <div class="social-links">
+        <a href="https://facebook.com/squargraphstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="FB / Facebook">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://instagram.com/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://linkedin.com/company/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com/squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X / Twitter">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://youtube.com/@squargraph" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YT / YouTube">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-label">Company</span>
+      <a href="/#intelligence" class="footer-link">Brand Studies</a>
+      <a href="/#approach" class="footer-link">Our Approach</a>
+    </div>
+    <div>
+      <span class="footer-col-label">Engagements</span>
+      <a href="/growth-partner" class="footer-link">Growth Partner™</a>
+      <a href="/#capabilities" class="footer-link">Perception Architecture</a>
+      <a href="/#capabilities" class="footer-link">Positioning Systems</a>
+      <a href="/#capabilities" class="footer-link">Communication Architecture</a>
+    </div>
+  </div>
+  <div class="footer-bar" style="flex-direction:column;align-items:flex-start;gap:16px;">
+    <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;">
+  <a href="https://razorpay.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:6px;text-decoration:none;">
+  <span style="font-size:11px;color:var(--textmuted);">Payments Secured by</span>
+  <img src="https://cdn.razorpay.com/logo.svg" alt="Razorpay" height="16" width="80" loading="lazy" decoding="async" style="display:block;" />
+</a>
+</div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;width:100%;gap:12px;align-items:center;">
+      <p style="font-size:12px;color:var(--textmuted);">© 2026 SQUARGRAPH™. All rights reserved. New Delhi, India</p>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <a href="/terms-of-use" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Terms of Use</a>
+        <a href="/privacy-policy" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Privacy Policy</a>
+        <a href="/refund-policy" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Refund Policy</a>
+        <a href="/ai-disclosure" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">AI Disclosure</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/otp.js"></script>
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/animations.js"></script>
+<script src="/assets/js/interactions.js"></script>
+<script src="/assets/js/forms.js"></script>
+
+<script>
+(function(){
+  'use strict';
+
+  window.SQGP = window.SQGP || {};
+  window.SQGP.setTier = function(tier){
+    var sel = document.getElementById('gp-tier');
+    if (sel) sel.value = tier;
+  };
+
+  document.addEventListener('DOMContentLoaded', function(){
+    window.SQ.initCountryCity('gp-country', 'gp-city');
+    window.SQ.initITI('gp-phone').then(function(inst){ window.iti = inst; });
+    var rc = document.querySelector('#gp-captcha-wrap .g-recaptcha');
+    if(rc){ var rcObs=new IntersectionObserver(function(entries){ if(entries[0].isIntersecting){ window.SQ.loadRecaptcha(); rcObs.disconnect(); } },{rootMargin:'200px'}); rcObs.observe(rc); }
+  });
+
+  /* Validate */
+  function getVal(id){ return (document.getElementById(id)||{}).value||''; }
+  function showErr(input, show){ input.classList.toggle('has-error',show); var err=input.closest('.field')&&input.closest('.field').querySelector('.field-error'); if(err) err.classList.toggle('show',show); }
+  function validateGP(){
+    var valid=true;
+    [['gp-name',function(v){return v.trim().length>0;}],['gp-email',function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}],['gp-company',function(v){return v.trim().length>0;}],['gp-challenge',function(v){return v.trim().length>0;}]].forEach(function(pair){
+      var el=document.getElementById(pair[0]); if(!el) return; var ok=pair[1](el.value); showErr(el,!ok); if(!ok) valid=false;
+    });
+    var phoneInput=document.getElementById('gp-phone');
+    var phoneOk=phoneInput&&phoneInput.value.trim().length>0&&(!window.iti||window.iti.isValidNumber());
+    if(phoneInput){ phoneInput.classList.toggle('has-error',!phoneOk); }
+    var phoneErr=document.getElementById('gp-phone-err'); if(phoneErr) phoneErr.classList.toggle('show',!phoneOk);
+    if(!phoneOk) valid=false;
+    var consent=document.getElementById('gp-consent');
+    var consentOk=consent&&consent.checked;
+    var consentErr=document.getElementById('gp-consent-err'); if(consentErr) consentErr.classList.toggle('show',!consentOk);
+    if(!consentOk) valid=false;
+    return valid;
+  }
+
+  /* Submit */
+  var form=document.getElementById('gp-form');
+  var submitBtn=document.getElementById('gp-submit');
+  if(form){
+    form.addEventListener('submit',async function(e){
+      e.preventDefault();
+      if(!validateGP()) return;
+      var emailVal = document.getElementById('gp-email').value.trim();
+      if (emailVal && window.SQOtp && !window.SQOtp.isEmailVerified()) {
+        window.SQOtp.verifyEmail(emailVal);
+        return;
+      }
+      var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
+      if(!captchaVal){ document.getElementById('gp-captcha-error').style.display='block'; return; }
+      document.getElementById('gp-captcha-error').style.display='none';
+      submitBtn.disabled=true;
+      submitBtn.innerHTML='<span class="spinner"></span>&nbsp;Submitting application…';
+      var cityEl=document.getElementById('gp-city'), cityTextEl=document.getElementById('gp-city-text');
+      var cityVal=(cityEl&&cityEl.style.display!=='none')?cityEl.value:(cityTextEl?cityTextEl.value:'');
+      var payload={
+        name:getVal('gp-name'),
+        phone:window.iti?window.iti.getNumber():getVal('gp-phone'),
+        email:getVal('gp-email'),
+        company:getVal('gp-company'),
+        country:getVal('gp-country'),
+        city:cityVal,
+        challenge:getVal('gp-challenge'),
+        service:'Growth Partner',
+        status:'new',
+        source_url:window.location.href,
+        created_at:new Date().toISOString(),
+        message:('Tier interest: '+getVal('gp-tier')+'\n\n'+getVal('gp-challenge')).trim()
+      };
+      try {
+        await window.__sb.from('leads').insert([payload]);
+        var formCard=document.getElementById('gp-form-card');
+        var successCard=document.getElementById('gp-success');
+        if(formCard){ formCard.style.opacity='0'; formCard.style.transition='opacity .4s'; setTimeout(function(){ formCard.style.display='none'; if(successCard){ successCard.style.display='block'; successCard.style.animation='fadeUp .6s both'; } },400); }
+        window.dataLayer=window.dataLayer||[];
+        window.dataLayer.push({ event:'growth_partner_applied' });
+      } catch(err){
+        console.error('[SQUARGRAPH]',err);
+        submitBtn.disabled=false;
+        submitBtn.innerHTML='Error — try again';
+        submitBtn.style.background='#EF4444';
+        setTimeout(function(){ submitBtn.innerHTML='Apply for Growth Partnership →'; submitBtn.style.background=''; },4000);
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
