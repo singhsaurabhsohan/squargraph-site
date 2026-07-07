@@ -77,8 +77,7 @@ window.SQ.initModals = function () {
 };
 
 window.SQ.initVideoPosters = function () {
-  document.addEventListener('click', function (e) {
-    var poster = e.target.closest('.reel-poster');
+  function loadPoster(poster) {
     if (!poster) return;
     var src = poster.getAttribute('data-src');
     var loading = document.createElement('div');
@@ -93,6 +92,18 @@ window.SQ.initVideoPosters = function () {
     iframe.onload = function () { loading.remove(); };
     poster.parentNode.appendChild(iframe);
     poster.remove();
+  }
+
+  document.addEventListener('click', function (e) {
+    loadPoster(e.target.closest('.reel-poster'));
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var poster = e.target.closest('.reel-poster');
+    if (!poster) return;
+    e.preventDefault();
+    loadPoster(poster);
   });
 };
 
