@@ -977,9 +977,73 @@ body:not(.home) .audit-card:hover {
 
 body:not(.home) .form-card,
 body:not(.home) .contact-form,
+body:not(.home) form[id*="contact-form"],
+body:not(.home) .newsletter-form,
 body:not(.home) #gp-success,
 body:not(.home) .success-card {
   box-shadow: 0 14px 38px rgba(26, 23, 20, .08) !important;
+}
+
+.form-card,
+.contact-form,
+form[id*="contact-form"],
+.newsletter-form {
+  border-radius: 8px !important;
+}
+
+.form-input,
+.audit-input,
+.audit-select,
+.newsletter-form input,
+.feedback-form input,
+.feedback-form select,
+.feedback-form textarea {
+  min-height: 46px !important;
+}
+
+.submit-btn,
+.step-next,
+.step-back,
+.btn-save,
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-outline,
+.btn-unlock {
+  min-height: 44px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-back,
+.btn-save {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.hero-price-pill,
+.price-pill,
+.hero-meta-pill,
+.budget-pill,
+.filter-btn,
+.pill {
+  min-height: 36px !important;
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero-chip {
+  min-height: 30px !important;
+  display: inline-flex;
+  align-items: center;
+}
+
+.social-link {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
 }
 
 body:not(.home) .problem-grid,
