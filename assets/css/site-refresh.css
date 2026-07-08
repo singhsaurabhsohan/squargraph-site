@@ -913,3 +913,221 @@ textarea:focus {
     min-height: 48px;
   }
 }
+
+body:not(.home) .problem-inner,
+body:not(.home) .intro-inner,
+body:not(.home) .flow-inner,
+body:not(.home) .deliverables-inner,
+body:not(.home) .plans-inner,
+body:not(.home) .why-inner,
+body:not(.home) .trust-inner,
+body:not(.home) .wyg-inner,
+body:not(.home) .section-inner,
+body:not(.home) .work-inner,
+body:not(.home) .studio-inner,
+body:not(.home) .contact-inner,
+body:not(.home) .intel-page-section-inner,
+body:not(.home) .featured-wrap,
+body:not(.home) .filter-bar {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+body:not(.home) .cost-inner,
+body:not(.home) .qualify-inner,
+body:not(.home) .apply-inner,
+body:not(.home) .final-cta-inner,
+body:not(.home) .founder-strip-inner {
+  width: min(100%, 960px) !important;
+  max-width: 960px !important;
+}
+
+body:not(.home) .problem-item,
+body:not(.home) .pillar-card,
+body:not(.home) .flow-step,
+body:not(.home) .cost-card,
+body:not(.home) .why-item,
+body:not(.home) .trust-card,
+body:not(.home) .deliverable-card,
+body:not(.home) .timeline-card,
+body:not(.home) .faq-card,
+body:not(.home) .intel-card,
+body:not(.home) .blog-card,
+body:not(.home) .article-card,
+body:not(.home) .audit-card {
+  box-shadow: none !important;
+}
+
+body:not(.home) .problem-item:hover,
+body:not(.home) .pillar-card:hover,
+body:not(.home) .flow-step:hover,
+body:not(.home) .cost-card:hover,
+body:not(.home) .why-item:hover,
+body:not(.home) .trust-card:hover,
+body:not(.home) .deliverable-card:hover,
+body:not(.home) .timeline-card:hover,
+body:not(.home) .faq-card:hover,
+body:not(.home) .intel-card:hover,
+body:not(.home) .blog-card:hover,
+body:not(.home) .article-card:hover,
+body:not(.home) .audit-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+body:not(.home) .form-card,
+body:not(.home) .contact-form,
+body:not(.home) #gp-success,
+body:not(.home) .success-card {
+  box-shadow: 0 14px 38px rgba(26, 23, 20, .08) !important;
+}
+
+body:not(.home) .problem-grid,
+body:not(.home) .pillars-grid,
+body:not(.home) .flow-steps,
+body:not(.home) .deliv-groups,
+body:not(.home) .deliverables-grid,
+body:not(.home) .trust-grid,
+body:not(.home) .wyg-grid,
+body:not(.home) .plans-grid,
+body:not(.home) .why-grid,
+body:not(.home) .posts-grid,
+body:not(.home) .article-grid {
+  width: 100% !important;
+}
+
+@media (min-width: 901px) {
+  .page-hero .form-card,
+  .page-hero form,
+  .page-hero [id$="-form-card"] {
+    justify-self: end !important;
+    max-width: 560px !important;
+  }
+
+  body:not(.home) .deliverables-grid,
+  body:not(.home) .wyg-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  body:not(.home) .trust-grid,
+  body:not(.home) .pillars-grid,
+  body:not(.home) .plans-grid,
+  body:not(.home) .why-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 901px) and (max-height: 820px) {
+  .page-hero {
+    min-height: 100svh !important;
+    padding-top: 112px !important;
+    padding-bottom: 56px !important;
+  }
+
+  .page-hero .hero-inner {
+    min-height: calc(100svh - 168px) !important;
+  }
+
+  .page-hero .hero-inner > :first-child {
+    padding-top: clamp(28px, 6vh, 56px) !important;
+  }
+
+  .page-hero .form-card {
+    max-height: calc(100svh - 168px) !important;
+    overflow-y: auto !important;
+    padding: 28px !important;
+    scrollbar-width: thin;
+  }
+
+  .page-hero .form-card::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .page-hero .form-card::-webkit-scrollbar-thumb {
+    background: rgba(26, 23, 20, .18);
+    border-radius: 999px;
+  }
+
+  .page-hero .form-card-sub {
+    margin-bottom: 18px !important;
+  }
+
+  .page-hero .form-stack {
+    gap: 10px !important;
+  }
+
+  .page-hero .form-input {
+    min-height: 44px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .page-hero textarea.form-input {
+    min-height: 82px !important;
+  }
+
+  .page-hero .iti {
+    min-height: 44px !important;
+  }
+
+  .page-hero .iti__selected-flag {
+    height: 44px !important;
+  }
+
+  .page-hero .iti input[type="tel"] {
+    height: 44px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body:not(.home) .problem-grid,
+  body:not(.home) .pillars-grid,
+  body:not(.home) .flow-steps,
+  body:not(.home) .deliv-groups,
+  body:not(.home) .deliverables-grid,
+  body:not(.home) .trust-grid,
+  body:not(.home) .wyg-grid,
+  body:not(.home) .plans-grid,
+  body:not(.home) .why-grid,
+  body:not(.home) .qualify-grid,
+  body:not(.home) .posts-grid,
+  body:not(.home) .article-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  body:not(.home) .problem-item,
+  body:not(.home) .pillar-card,
+  body:not(.home) .flow-step,
+  body:not(.home) .cost-card,
+  body:not(.home) .why-item,
+  body:not(.home) .trust-card,
+  body:not(.home) .deliverable-card,
+  body:not(.home) .timeline-card,
+  body:not(.home) .faq-card,
+  body:not(.home) .intel-card,
+  body:not(.home) .blog-card,
+  body:not(.home) .article-card,
+  body:not(.home) .audit-card,
+  body:not(.home) .plan-card {
+    min-height: auto !important;
+    padding: 20px !important;
+  }
+
+  body:not(.home) .section-h2,
+  body:not(.home) .section-title,
+  body:not(.home) .final-cta-h2 {
+    margin-bottom: 18px !important;
+  }
+
+  body:not(.home) .section-sub,
+  body:not(.home) .problem-quote {
+    margin-bottom: 30px !important;
+  }
+}
+
+html body *,
+html body *::before,
+html body *::after {
+  letter-spacing: 0 !important;
+}
