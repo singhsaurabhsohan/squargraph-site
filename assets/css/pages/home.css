@@ -1307,33 +1307,6 @@ nav:not(.scrolled) .pill-body {
   padding-top: 22px;
 }
 
-.studio-stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 42px;
-}
-
-.studio-stats > div {
-  border-top: 1px solid var(--home-line);
-  padding-top: 18px;
-}
-
-.studio-stat-num {
-  display: block;
-  color: var(--home-ink);
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 8px;
-}
-
-.studio-stat-label {
-  color: var(--textmuted);
-  font-size: 13px;
-  line-height: 1.5;
-}
-
 .intel-home-grid {
   display: grid;
   grid-template-columns: minmax(0, .9fr) minmax(360px, 1fr);
@@ -2025,7 +1998,6 @@ nav:not(.scrolled) .pill-body {
   .cap-grid,
   .built-for,
   .process-grid,
-  .studio-stats,
   .contact-form,
   .location-grid {
     grid-template-columns: 1fr;
