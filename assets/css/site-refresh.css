@@ -395,6 +395,12 @@ textarea:focus {
   opacity: 1 !important;
 }
 
+#back-to-top.visible.sg-contact-hidden,
+#mobile-wa.sg-contact-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 #back-to-top:hover {
   transform: translateY(-2px);
 }

@@ -861,6 +861,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var trigger = document.getElementById('Engagements');
   var banner = document.getElementById('sticky-banner');
   var mobileBar = document.getElementById('mobile-book-wrap');
+  var contact = document.getElementById('contact');
+  var mobileWa = document.getElementById('mobile-wa');
+  var backToTop = document.getElementById('back-to-top');
   if (!trigger) return;
 
   var bannerCloseBtn = banner ? banner.querySelector('.banner-close') : null;
@@ -894,6 +897,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }, { threshold: 0 });
 
   obs.observe(trigger);
+
+  if (contact) {
+    var contactObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (banner) {
+          banner.classList.toggle('sg-contact-hidden', entry.isIntersecting);
+        }
+        mobileBar = mobileBar || document.getElementById('mobile-book-wrap');
+        mobileWa = mobileWa || document.getElementById('mobile-wa');
+        backToTop = backToTop || document.getElementById('back-to-top');
+        if (mobileBar) {
+          mobileBar.classList.toggle('sg-contact-hidden', entry.isIntersecting);
+        }
+        if (mobileWa) {
+          mobileWa.classList.toggle('sg-contact-hidden', entry.isIntersecting);
+        }
+        if (backToTop) {
+          backToTop.classList.toggle('sg-contact-hidden', entry.isIntersecting);
+        }
+      });
+    }, { rootMargin: '-18% 0px -12% 0px', threshold: 0 });
+
+    contactObs.observe(contact);
+  }
 })();
 </script>
 <script type="application/ld+json">
