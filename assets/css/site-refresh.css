@@ -330,7 +330,54 @@ textarea:focus {
 }
 
 .iti {
+  border-radius: 999px !important;
+  outline: 0 !important;
   overflow: visible !important;
+}
+
+.iti:focus-within {
+  border-color: var(--sg-forest, #394536) !important;
+  box-shadow: 0 0 0 2px rgba(57, 69, 54, .12) !important;
+}
+
+.iti__flag-container {
+  border-radius: 999px 0 0 999px !important;
+  outline: 0 !important;
+}
+
+.iti__selected-flag,
+.iti__selected-flag:hover,
+.iti__selected-flag:focus,
+.iti__selected-flag:focus-visible {
+  height: 100% !important;
+  min-height: 44px !important;
+  min-width: 88px !important;
+  padding: 0 10px 0 16px !important;
+  border: 0 !important;
+  border-radius: 999px 0 0 999px !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.iti__selected-dial-code {
+  color: var(--textprimary, #1A1714) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  margin-left: 8px !important;
+}
+
+.iti__arrow {
+  margin-left: 6px !important;
+  border-top-color: var(--textsecondary, #5A5550) !important;
+}
+
+.iti input[type="tel"],
+.iti .iti__tel-input {
+  padding-left: 104px !important;
+  border-radius: 999px !important;
+  outline: 0 !important;
+  box-shadow: none !important;
 }
 
 .iti:not(.iti--fullscreen-popup) .iti__country-list {

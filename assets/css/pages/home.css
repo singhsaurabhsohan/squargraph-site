@@ -1469,7 +1469,7 @@ nav:not(.scrolled) .pill-body {
   font-family: var(--font);
   font-size: 13px;
   outline: none;
-  padding-left: 82px !important;
+  padding-left: 104px !important;
 }
 
 #contact-form .submit-btn {
