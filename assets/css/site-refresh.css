@@ -511,7 +511,83 @@ textarea:focus {
 }
 
 .site-footer {
-  background: #fff;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  border-top: 1px solid var(--bordergray) !important;
+  padding: 40px clamp(24px, 4vw, 64px) !important;
+  background: #fff !important;
+  text-align: left !important;
+}
+
+.footer-inner {
+  display: grid !important;
+  grid-template-columns: 1.8fr 1fr 1fr !important;
+  gap: 48px !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+  padding-bottom: 48px !important;
+}
+
+.footer-tagline {
+  max-width: 24ch !important;
+  margin-bottom: 20px !important;
+  color: var(--textsecondary) !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+}
+
+.footer-philosophy {
+  max-width: 18ch !important;
+  margin-bottom: 28px !important;
+  color: var(--textprimary) !important;
+  font-family: var(--font, 'Satoshi', sans-serif) !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0 !important;
+}
+
+.social-links {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+.footer-col-label {
+  display: block !important;
+  margin-bottom: 18px !important;
+  color: var(--accent) !important;
+  font-size: 11px !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+.footer-link {
+  display: block !important;
+  margin-bottom: 12px !important;
+  color: var(--textsecondary) !important;
+  font-size: 13px !important;
+  text-decoration: none !important;
+  transition: color .2s !important;
+}
+
+.footer-link:hover {
+  color: var(--textprimary) !important;
+}
+
+@media (max-width: 900px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 36px !important;
+  }
+}
+
+@media (max-width: 540px) {
+  .footer-inner {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding-bottom: 32px !important;
+  }
 }
 
 .nav-inner,
@@ -1040,10 +1116,102 @@ form[id*="contact-form"],
 }
 
 .social-link {
+  display: inline-flex !important;
+  flex: 0 0 44px !important;
+  align-items: center !important;
+  justify-content: center !important;
   width: 44px !important;
   height: 44px !important;
   min-width: 44px !important;
   min-height: 44px !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  color: var(--textsecondary) !important;
+  background: var(--warmgray) !important;
+  text-decoration: none !important;
+  transition: background .2s, color .2s !important;
+}
+
+.social-link:hover {
+  background: var(--accentlight) !important;
+}
+
+.social-link[aria-label="FB / Facebook"]:hover {
+  color: #1877F2 !important;
+}
+
+.social-link[aria-label="Instagram"]:hover {
+  color: #E1306C !important;
+}
+
+.social-link[aria-label="LinkedIn"]:hover {
+  color: #0A66C2 !important;
+}
+
+.social-link[aria-label="X / Twitter"]:hover {
+  color: #000000 !important;
+}
+
+.social-link[aria-label="YT / YouTube"]:hover {
+  color: #FF0000 !important;
+}
+
+.footer-bar--stack {
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 16px !important;
+}
+
+.payment-row,
+.footer-legal-row,
+.footer-legal-links {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+}
+
+.payment-row {
+  gap: 12px 24px !important;
+}
+
+.payment-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  text-decoration: none !important;
+}
+
+.payment-label,
+.footer-legal-links a {
+  color: var(--textmuted) !important;
+  font-size: 11px !important;
+}
+
+.payment-logo {
+  display: block !important;
+}
+
+.footer-legal-row {
+  width: 100% !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+.footer-legal-row p {
+  color: var(--textmuted) !important;
+  font-size: 12px !important;
+}
+
+.footer-legal-links {
+  gap: 20px !important;
+}
+
+.footer-legal-links a {
+  transition: color .2s !important;
+}
+
+.footer-legal-links a:hover {
+  color: var(--accent) !important;
 }
 
 body:not(.home) .problem-grid,
