@@ -149,8 +149,8 @@
     .iti__country-list { border-radius:14px !important; border:1px solid var(--bordergray) !important; box-shadow:0 12px 40px rgba(0,0,0,.12) !important; font-family:'Satoshi',sans-serif !important; font-size:13px !important; max-height:260px !important; overflow-y:auto !important; background:#fff !important; padding:8px 0 !important; position:fixed !important; z-index:9999; }
     .iti__country { padding:9px 16px !important; }
     .iti__country.iti__highlight { background:var(--accentlight) !important; }
-    .iti__flag { background-image:url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags.png") !important; }
-    @media (-webkit-min-device-pixel-ratio:2),(min-resolution:192dpi) { .iti__flag { background-image:url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important; } }
+    .iti__flag { background-image:url("/assets/vendor/intl-tel-input/img/flags.png") !important; }
+    @media (-webkit-min-device-pixel-ratio:2),(min-resolution:192dpi) { .iti__flag { background-image:url("/assets/vendor/intl-tel-input/img/flags@2x.png") !important; } }
 
     /* Consent */
     .consent-row { display:flex; align-items:flex-start; gap:10px; }

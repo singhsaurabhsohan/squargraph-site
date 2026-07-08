@@ -355,7 +355,7 @@ textarea:focus {
 }
 
 .iti__flag {
-  background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags.png") !important;
+  background-image: url("/assets/vendor/intl-tel-input/img/flags.png") !important;
   display: block !important;
   width: 20px !important;
   height: 15px !important;
@@ -365,7 +365,7 @@ textarea:focus {
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .iti__flag {
-    background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important;
+    background-image: url("/assets/vendor/intl-tel-input/img/flags@2x.png") !important;
   }
 }
 

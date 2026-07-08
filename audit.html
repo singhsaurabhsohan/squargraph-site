@@ -68,8 +68,8 @@
     });
   }
 </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/css/intlTelInput.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/intlTelInput.min.js" defer></script>
+    <link rel="stylesheet" href="/assets/vendor/intl-tel-input/css/intlTelInput.css"/>
+    <script src="/assets/vendor/intl-tel-input/js/intlTelInput.min.js" defer></script>
     <link rel="stylesheet" href="/assets/css/pages/audit.css">
   <link rel="stylesheet" href="/assets/css/site-refresh.css" />
 </head>
@@ -1231,7 +1231,7 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
             initialCountry: 'in',
             separateDialCode: true,
             preferredCountries: ['in', 'ae', 'us', 'gb', 'sg'],
-            utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
+            utilsScript: '/assets/vendor/intl-tel-input/js/utils.js'
           });
           resolve(instance);
         } catch(e) { reject(e); }

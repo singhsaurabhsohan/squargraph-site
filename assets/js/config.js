@@ -19,7 +19,7 @@ window.SQ.config = {
     initialCountry: 'in',
     separateDialCode: true,
     preferredCountries: ['in', 'ae', 'us', 'gb', 'sg'],
-    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/js/utils.js'
+    utilsScript: '/assets/vendor/intl-tel-input/js/utils.js'
   },
   cityData: {
     'India':     ['Ahmedabad','Bengaluru','Chennai','Delhi','Gurugram','Hyderabad','Jaipur','Kolkata','Mumbai','Noida','Pune','Surat','Other'],

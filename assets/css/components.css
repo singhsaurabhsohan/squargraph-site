@@ -189,11 +189,11 @@ textarea.form-input:focus {
 }
 .iti__search-input:focus { border-color: var(--accentmuted); outline: none; box-shadow: 0 0 0 2px rgba(107,93,184,.2); }
 .iti__flag {
-  background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags.png") !important;
+  background-image: url("/assets/vendor/intl-tel-input/img/flags.png") !important;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .iti__flag {
-    background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18/build/img/flags@2x.png") !important;
+    background-image: url("/assets/vendor/intl-tel-input/img/flags@2x.png") !important;
   }
 }
 
