@@ -219,22 +219,22 @@ nav:not(.scrolled) .pill-body {
   position: absolute;
   z-index: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(248,246,241,.34), transparent);
+  background: linear-gradient(90deg, transparent, rgba(248,246,241,.07), transparent);
   transform-origin: center;
   pointer-events: none;
 }
 
 .ecosystem-connector--one {
-  right: 8%;
-  top: 44%;
-  width: 42vw;
+  right: 9%;
+  top: 38%;
+  width: 37vw;
   transform: rotate(-10deg);
 }
 
 .ecosystem-connector--two {
   right: 12%;
-  bottom: 27%;
-  width: 34vw;
+  bottom: 36%;
+  width: 30vw;
   transform: rotate(14deg);
 }
 
@@ -271,12 +271,12 @@ nav:not(.scrolled) .pill-body {
 }
 
 .hero-system-panel--command {
-  right: clamp(42px, 5vw, 88px);
-  top: 10%;
+  right: clamp(50px, 5.4vw, 100px);
+  top: 7%;
   z-index: 2;
-  width: min(39vw, 610px);
+  width: min(35.5vw, 552px);
   aspect-ratio: 16 / 9;
-  padding: 20px;
+  padding: 18px;
   color: rgba(255,255,255,.86);
   background:
     radial-gradient(circle at 70% 20%, rgba(180,138,74,.24), transparent 28%),
@@ -308,9 +308,9 @@ nav:not(.scrolled) .pill-body {
   display: grid;
   grid-template-columns: 1.18fr .9fr .86fr;
   grid-template-rows: 1fr .78fr;
-  gap: 10px;
-  height: calc(100% - 30px);
-  margin-top: 14px;
+  gap: 9px;
+  height: calc(100% - 28px);
+  margin-top: 12px;
 }
 
 .command-module {
@@ -426,12 +426,12 @@ nav:not(.scrolled) .pill-body {
 }
 
 .hero-system-panel--digital {
-  right: clamp(104px, 12vw, 202px);
-  bottom: 18%;
+  right: clamp(112px, 12vw, 210px);
+  bottom: 25%;
   z-index: 4;
-  width: min(33vw, 442px);
-  min-height: 278px;
-  padding: 20px;
+  width: min(30vw, 398px);
+  min-height: 246px;
+  padding: 18px;
 }
 
 .system-browser-bar {
@@ -468,7 +468,7 @@ nav:not(.scrolled) .pill-body {
 .hero-system-panel--digital strong {
   display: block;
   color: var(--home-ink);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.08;
   margin-bottom: 14px;
@@ -493,8 +493,8 @@ nav:not(.scrolled) .pill-body {
 
 .system-campaign-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 116px;
-  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) 96px;
+  gap: 12px;
   align-items: stretch;
 }
 
@@ -502,8 +502,8 @@ nav:not(.scrolled) .pill-body {
   display: grid;
   align-content: start;
   gap: 9px;
-  min-height: 94px;
-  padding: 16px;
+  min-height: 78px;
+  padding: 14px;
   border-radius: 8px;
   background: rgba(21,20,17,.06);
 }
@@ -522,14 +522,14 @@ nav:not(.scrolled) .pill-body {
 .system-campaign-proof {
   display: grid;
   gap: 8px;
-  padding: 12px;
+  padding: 10px;
   border-radius: 8px;
   background: var(--home-ink);
 }
 
 .system-campaign-proof b {
   display: block;
-  height: 38px;
+  height: 30px;
   border-radius: 6px;
   background: linear-gradient(135deg, var(--home-gold), rgba(248,246,241,.82));
 }
@@ -546,8 +546,8 @@ nav:not(.scrolled) .pill-body {
   grid-template-columns: 1.45fr repeat(3, minmax(0, .72fr));
   gap: 8px;
   align-items: center;
-  margin-top: 14px;
-  padding-top: 14px;
+  margin-top: 12px;
+  padding-top: 12px;
   border-top: 1px solid rgba(21,20,17,.10);
 }
 
@@ -555,7 +555,7 @@ nav:not(.scrolled) .pill-body {
 .system-strategy-layer span {
   display: flex;
   align-items: center;
-  min-height: 36px;
+  min-height: 32px;
   border-radius: 8px;
   font-size: 11px;
   font-weight: 700;
@@ -575,11 +575,11 @@ nav:not(.scrolled) .pill-body {
 }
 
 .hero-system-panel--social {
-  right: clamp(24px, 4vw, 70px);
-  top: 39%;
+  right: clamp(32px, 4.4vw, 82px);
+  top: 35%;
   z-index: 5;
-  width: min(15vw, 210px);
-  padding: 16px;
+  width: min(14vw, 194px);
+  padding: 14px;
   background: rgba(246,242,232,.96);
   box-shadow:
     0 28px 70px rgba(0,0,0,.34),
@@ -638,18 +638,18 @@ nav:not(.scrolled) .pill-body {
 }
 
 .hero-system-panel--performance {
-  right: min(39vw, 585px);
-  bottom: 15%;
+  right: min(39vw, 570px);
+  bottom: 26%;
   z-index: 3;
-  width: 230px;
-  padding: 18px;
+  width: 210px;
+  padding: 16px;
 }
 
 .hero-system-panel--performance strong {
   display: block;
   margin-top: 10px;
   color: var(--home-ink);
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.12;
 }
 
@@ -657,9 +657,9 @@ nav:not(.scrolled) .pill-body {
   display: flex;
   align-items: end;
   gap: 9px;
-  height: 88px;
-  margin-top: 18px;
-  padding: 12px;
+  height: 74px;
+  margin-top: 14px;
+  padding: 10px;
   border-radius: 8px;
   background: rgba(21,20,17,.06);
 }
@@ -678,18 +678,18 @@ nav:not(.scrolled) .pill-body {
 .system-performance-chart i:nth-child(4) { height: 92%; background: var(--home-gold); }
 
 .hero-system-panel--identity {
-  right: min(44vw, 650px);
-  top: 37%;
+  right: min(42vw, 620px);
+  top: 32%;
   z-index: 3;
-  width: 220px;
-  padding: 18px;
+  width: 198px;
+  padding: 16px;
 }
 
 .hero-system-panel--film {
-  right: clamp(26px, 4vw, 72px);
-  bottom: 10%;
+  right: clamp(32px, 4.4vw, 82px);
+  bottom: 21%;
   z-index: 5;
-  width: min(14vw, 196px);
+  width: min(15vw, 210px);
   padding: 16px;
   color: rgba(255,255,255,.88);
   background:
@@ -706,7 +706,7 @@ nav:not(.scrolled) .pill-body {
 
 .film-system-frame {
   position: relative;
-  height: 92px;
+  height: 98px;
   margin-top: 12px;
   border: 1px solid rgba(255,255,255,.18);
   border-radius: 8px;
@@ -813,7 +813,7 @@ nav:not(.scrolled) .pill-body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: clamp(48px, 10vh, 92px);
+  gap: clamp(64px, 12vh, 112px);
 }
 
 .hero-content {
@@ -877,6 +877,8 @@ nav:not(.scrolled) .pill-body {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid rgba(255, 255, 255, .22);
+  position: relative;
+  z-index: 2;
 }
 
 .hero-signal-grid div {
