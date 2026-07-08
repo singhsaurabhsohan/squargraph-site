@@ -142,6 +142,19 @@ section {
   padding-bottom: clamp(56px, 8vw, 96px) !important;
 }
 
+body.home .hero-section {
+  min-height: 100svh !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+@media (min-width: 901px) and (max-height: 860px) {
+  body.home .hero-inner {
+    padding-top: 96px !important;
+    gap: clamp(44px, 7vh, 64px) !important;
+  }
+}
+
 .hero-bg-blob {
   display: none !important;
 }

@@ -126,7 +126,7 @@ nav a { text-decoration: none; }
 .footer-tagline { font-size: 15px; color: var(--textsecondary); line-height: 1.7; max-width: 24ch; margin-bottom: 20px; }
 .footer-philosophy {
   font-family: var(--font); font-weight: 500;
-  font-size: 20px; line-height: 1.4; letter-spacing: -0.02em;
+  font-size: 20px; line-height: 1.4; letter-spacing: 0;
   color: var(--textprimary); max-width: 18ch; margin-bottom: 28px;
 }
 .social-links { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -137,11 +137,11 @@ nav a { text-decoration: none; }
   color: var(--textsecondary); transition: background .2s, color .2s;
 }
 .social-link:hover { background: var(--accentlight); color: var(--accent); }
-.social-link[aria-label="FB / Facebook"] { color: #1877F2; }
-.social-link[aria-label="Instagram"] { color: #E1306C; }
-.social-link[aria-label="LinkedIn"] { color: #0A66C2; }
-.social-link[aria-label="X / Twitter"] { color: #000000; }
-.social-link[aria-label="YT / YouTube"] { color: #FF0000; }
+.social-link[aria-label="FB / Facebook"]:hover { color: #1877F2; }
+.social-link[aria-label="Instagram"]:hover { color: #E1306C; }
+.social-link[aria-label="LinkedIn"]:hover { color: #0A66C2; }
+.social-link[aria-label="X / Twitter"]:hover { color: #000000; }
+.social-link[aria-label="YT / YouTube"]:hover { color: #FF0000; }
 
 .footer-col-label {
   font-size: 11px; letter-spacing: .1em; text-transform: uppercase;

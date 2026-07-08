@@ -1216,6 +1216,14 @@ nav:not(.scrolled) .pill-body {
   text-transform: uppercase;
 }
 
+.work-strategy-line {
+  max-width: 640px;
+  margin-top: 12px;
+  color: var(--textsecondary);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
 .work-strip-group + .work-strip-group {
   margin-top: 42px;
 }
@@ -1503,24 +1511,33 @@ nav:not(.scrolled) .pill-body {
 
 .cap-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .cap-card {
   background: #fff;
   border: 1px solid rgba(26, 23, 20, .08) !important;
   padding: 30px;
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 0 24px;
+  align-items: start;
   box-shadow: none !important;
 }
 
 .cap-card:hover {
   border-color: rgba(57, 69, 54, .28) !important;
-  transform: translateY(-3px);
+  transform: none;
 }
 
 .cap-card-top {
-  margin-bottom: 26px;
+  grid-row: 1 / span 3;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 18px;
+  margin: 0;
 }
 
 .cap-card-top .cap-num {
@@ -1536,11 +1553,29 @@ nav:not(.scrolled) .pill-body {
   margin-bottom: 12px;
 }
 
+.cap-card .cap-name,
+.cap-card .cap-def,
+.cap-card .cap-outputs {
+  grid-column: 2;
+}
+
 .cap-def {
   color: var(--textsecondary);
   font-size: 14px;
   line-height: 1.75;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
+}
+
+.cap-outputs {
+  border-top-color: rgba(26, 23, 20, .08);
+  gap: 8px;
+  padding-top: 14px;
+}
+
+.cap-outputs li::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
 }
 
 .built-for {
@@ -1781,8 +1816,16 @@ nav:not(.scrolled) .pill-body {
 .captcha-wrap,
 .captcha-error,
 .form-next,
+.form-purpose-line,
 #contact-form .submit-btn {
   grid-column: 1 / -1;
+}
+
+.form-purpose-line {
+  margin: 0 0 6px;
+  color: var(--textsecondary);
+  font-size: 13px;
+  line-height: 1.65;
 }
 
 .location-grid {
@@ -2432,7 +2475,8 @@ nav:not(.scrolled) .pill-body {
   .form-field--span-2,
   .captcha-wrap,
   .captcha-error,
-  .form-next {
+  .form-next,
+  .form-purpose-line {
     grid-column: auto;
   }
 
@@ -2453,6 +2497,24 @@ nav:not(.scrolled) .pill-body {
     min-height: auto;
     gap: 12px;
     justify-content: flex-start;
+  }
+
+  .cap-card {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .cap-card-top {
+    grid-row: auto;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 22px;
+  }
+
+  .cap-card .cap-name,
+  .cap-card .cap-def,
+  .cap-card .cap-outputs {
+    grid-column: 1;
   }
 
   .service-card h3 {
