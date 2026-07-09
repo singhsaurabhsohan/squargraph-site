@@ -508,6 +508,12 @@ textarea:focus {
   pointer-events: none !important;
 }
 
+#back-to-top.sg-hero-hidden,
+#mobile-wa.sg-hero-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 #back-to-top:hover {
   transform: translateY(-2px);
 }
@@ -770,6 +776,95 @@ textarea:focus {
     border-color: var(--sg-ink) !important;
   }
 
+  body.home .hero-section {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: auto !important;
+    padding: 88px 0 34px !important;
+    background: #fff !important;
+    color: var(--sg-ink) !important;
+    overflow: visible !important;
+  }
+
+  body.home .hero-inner {
+    order: 1 !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  body.home .hero-content {
+    padding: 24px 20px 18px !important;
+    background: #fff !important;
+  }
+
+  body.home .hero-media {
+    order: 2 !important;
+    position: relative !important;
+    inset: auto !important;
+    width: calc(100% - 40px) !important;
+    height: clamp(178px, 48vw, 232px) !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 4px 20px 0 !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    box-shadow: 0 18px 42px rgba(26, 23, 20, .16) !important;
+    z-index: 0 !important;
+  }
+
+  body.home .hero-scrim,
+  body.home .hero-signal-grid {
+    display: none !important;
+  }
+
+  body.home .hero-eyebrow {
+    color: var(--sg-forest) !important;
+    max-width: 32ch !important;
+    margin-bottom: 14px !important;
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+    letter-spacing: .1em !important;
+  }
+
+  body.home .hero-h1 {
+    color: var(--sg-ink) !important;
+    max-width: 10.8ch !important;
+    margin-bottom: 18px !important;
+    font-size: clamp(38px, 10.8vw, 46px) !important;
+    line-height: 1.02 !important;
+  }
+
+  body.home .hero-sub {
+    color: var(--textsecondary) !important;
+    max-width: 34ch !important;
+    margin-bottom: 0 !important;
+    font-size: 16px !important;
+    line-height: 1.58 !important;
+  }
+
+  body.home .hero-ctas {
+    width: 100% !important;
+    margin-top: 24px !important;
+    margin-bottom: 0 !important;
+    gap: 10px !important;
+  }
+
+  body.home .hero-ctas .btn-primary {
+    width: min(100%, 340px) !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    min-height: 54px !important;
+    border-radius: 999px !important;
+    font-size: 14px !important;
+  }
+
+  body.home .hero-ctas .btn-outline {
+    display: none !important;
+  }
+
   .page-hero,
   .blog-hero,
   .intel-page-hero,
@@ -798,9 +893,12 @@ textarea:focus {
   .page-hero .hero-inner > :first-child,
   section#hero:not(.hero-section):not(.page-hero) .hero-content,
   section[data-hero]:not(.hero-section):not(.page-hero) .hero-content {
+    width: 100% !important;
+    max-width: 100% !important;
     padding-top: 0 !important;
     text-align: left !important;
     margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 
   .hero-section .hero-media {
@@ -843,6 +941,7 @@ textarea:focus {
     line-height: 1.65 !important;
     max-width: none !important;
     margin-bottom: 22px !important;
+    overflow-wrap: break-word !important;
   }
 
   .hero-eyebrow,
@@ -865,6 +964,7 @@ textarea:focus {
     gap: 8px !important;
     margin-bottom: 16px !important;
     margin-top: 18px !important;
+    padding-bottom: 0 !important;
   }
 
   .form-card,
@@ -988,6 +1088,54 @@ textarea:focus {
 }
 
 @media (max-width: 480px) {
+  .nav-inner {
+    height: 76px !important;
+    padding-left: 20px !important;
+    padding-right: 18px !important;
+  }
+
+  .brand-mark,
+  .nav-logo img {
+    width: min(64vw, 270px) !important;
+    height: auto !important;
+    max-height: 25px !important;
+    object-fit: contain !important;
+  }
+
+  .hamburger {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .pill-line,
+  .pill-body {
+    width: 26px !important;
+  }
+
+  body.home .hero-section {
+    padding-top: 76px !important;
+    padding-bottom: 30px !important;
+  }
+
+  body.home .hero-content {
+    padding: 22px 20px 16px !important;
+  }
+
+  body.home .hero-h1 {
+    max-width: 11ch !important;
+    font-size: clamp(36px, 10.4vw, 42px) !important;
+  }
+
+  body.home .hero-sub {
+    max-width: 33ch !important;
+    font-size: 15.5px !important;
+  }
+
+  body.home .hero-media {
+    height: clamp(170px, 46vw, 210px) !important;
+    border-radius: 20px !important;
+  }
+
   .btn-primary,
   .btn-secondary,
   .btn-outline,

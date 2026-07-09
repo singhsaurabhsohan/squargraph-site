@@ -216,6 +216,39 @@ window.SQ.initMobileDiscoveryPill = function () {
   syncCompanions();
 };
 
+window.SQ.initHeroFloatingControls = function () {
+  var hero = document.querySelector('[data-hero]');
+  if (!hero || !('IntersectionObserver' in window)) return;
+
+  var mobileMq = window.matchMedia('(max-width: 768px)');
+  var heroVisible = false;
+
+  function sync() {
+    var active = mobileMq.matches && heroVisible;
+    ['mobile-wa', 'back-to-top'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.classList.toggle('sg-hero-hidden', active);
+    });
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      heroVisible = entry.isIntersecting;
+    });
+    sync();
+  }, { rootMargin: '0px 0px -30% 0px', threshold: 0 });
+
+  observer.observe(hero);
+
+  if (mobileMq.addEventListener) {
+    mobileMq.addEventListener('change', sync);
+  } else if (mobileMq.addListener) {
+    mobileMq.addListener(sync);
+  }
+
+  sync();
+};
+
 window.SQ.openRazorpay = function (productKey) {
   var cfg     = window.SQ.config;
   var product = cfg.razorpayProducts[productKey];
@@ -253,6 +286,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.SQ.initAIChat();
   window.SQ.initFloatingFooterGuard();
   window.SQ.initMobileDiscoveryPill();
+  window.SQ.initHeroFloatingControls();
   window.SQ.addDrag(document.getElementById('films-strip'));
   window.SQ.addDrag(document.getElementById('reels-strip'));
 });
