@@ -189,66 +189,6 @@ window.SQ.initFloatingFooterGuard = function () {
   observer.observe(footer);
 };
 
-window.SQ.initMobileDiscoveryPill = function () {
-  var pill = document.getElementById('mobile-book-wrap');
-  if (!pill) return;
-
-  function syncCompanions() {
-    var active = window.matchMedia('(max-width: 768px)').matches &&
-      pill.classList.contains('sg-show') &&
-      !pill.classList.contains('sg-contact-hidden') &&
-      !pill.classList.contains('sg-dismissed');
-
-    ['mobile-wa', 'back-to-top'].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) el.classList.toggle('sg-mobile-cta-hidden', active);
-    });
-  }
-
-  if ('MutationObserver' in window) {
-    new MutationObserver(syncCompanions).observe(pill, {
-      attributes: true,
-      attributeFilter: ['class']
-    });
-  }
-
-  window.addEventListener('resize', syncCompanions, { passive: true });
-  syncCompanions();
-};
-
-window.SQ.initHeroFloatingControls = function () {
-  var hero = document.querySelector('[data-hero]');
-  if (!hero || !('IntersectionObserver' in window)) return;
-
-  var mobileMq = window.matchMedia('(max-width: 768px)');
-  var heroVisible = false;
-
-  function sync() {
-    var active = mobileMq.matches && heroVisible;
-    ['mobile-wa', 'back-to-top'].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) el.classList.toggle('sg-hero-hidden', active);
-    });
-  }
-
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      heroVisible = entry.isIntersecting;
-    });
-    sync();
-  }, { rootMargin: '0px 0px -30% 0px', threshold: 0 });
-
-  observer.observe(hero);
-
-  if (mobileMq.addEventListener) {
-    mobileMq.addEventListener('change', sync);
-  } else if (mobileMq.addListener) {
-    mobileMq.addListener(sync);
-  }
-
-  sync();
-};
-
 window.SQ.openRazorpay = function (productKey) {
   var cfg     = window.SQ.config;
   var product = cfg.razorpayProducts[productKey];
@@ -285,8 +225,6 @@ document.addEventListener('DOMContentLoaded', function () {
   window.SQ.initVideoPosters();
   window.SQ.initAIChat();
   window.SQ.initFloatingFooterGuard();
-  window.SQ.initMobileDiscoveryPill();
-  window.SQ.initHeroFloatingControls();
   window.SQ.addDrag(document.getElementById('films-strip'));
   window.SQ.addDrag(document.getElementById('reels-strip'));
 });
