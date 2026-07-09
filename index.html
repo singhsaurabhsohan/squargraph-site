@@ -49,7 +49,7 @@
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/animations.css">
   <link rel="stylesheet" href="/assets/css/pages/home.css?v=20260708-footer-unified2">
-  <link rel="stylesheet" href="/assets/css/site-refresh.css?v=20260708-footer-unified2" />
+  <link rel="stylesheet" href="/assets/css/site-refresh.css?v=20260709-mobile-cta1" />
 </head>
 <body class="home">
 <svg class="sg-icon-sprite" aria-hidden="true" focusable="false">
@@ -1002,6 +1002,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (banner && !banner.classList.contains('sg-dismissed')) {
         banner.classList.toggle('sg-show', pastTrigger);
       }
+      mobileBar = mobileBar || document.getElementById('mobile-book-wrap');
       if (mobileBar && !mobileBar.classList.contains('sg-dismissed')) {
         mobileBar.classList.toggle('sg-show', pastTrigger);
       }
@@ -1076,7 +1077,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span id="mobile-book-sub">30 minutes. A clear strategic direction.</span>
   </div>
   <button id="mobile-book" type="button" onclick="window.location.href='/discovery'">Book Discovery →</button>
-  <button id="mobile-book-close" type="button" aria-label="Dismiss" onclick="document.getElementById('mobile-book-wrap').style.display='none'">✕</button>
+  <button id="mobile-book-close" type="button" aria-label="Dismiss" onclick="var b=document.getElementById('mobile-book-wrap');if(b){b.classList.add('sg-dismissed');b.classList.remove('sg-show');}">✕</button>
 </div>
 <button id="mobile-wa" type="button" aria-label="Chat with SQUARGRAPH AI">
 <svg width="24" height="24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -1114,7 +1115,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="/assets/js/config.js"></script>
 <script src="/assets/js/core.js"></script>
 <script src="/assets/js/animations.js"></script>
-<script src="/assets/js/interactions.js"></script>
+<script src="/assets/js/interactions.js?v=20260709-mobile-cta1"></script>
 <script src="/assets/js/forms.js"></script>
 </body>
 </html>

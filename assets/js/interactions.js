@@ -168,6 +168,27 @@ window.SQ.initAIChat = function () {
   if (waBtn) waBtn.addEventListener('click', window.toggleAIChat);
 };
 
+window.SQ.initFloatingFooterGuard = function () {
+  var footer = document.querySelector('.site-footer');
+  if (!footer || !('IntersectionObserver' in window)) return;
+
+  function setHidden(hidden) {
+    ['sticky-banner', 'mobile-book-wrap', 'mobile-wa', 'back-to-top'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el || el.classList.contains('sg-dismissed')) return;
+      el.classList.toggle('sg-contact-hidden', hidden);
+    });
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      setHidden(entry.isIntersecting);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+
+  observer.observe(footer);
+};
+
 window.SQ.openRazorpay = function (productKey) {
   var cfg     = window.SQ.config;
   var product = cfg.razorpayProducts[productKey];
@@ -203,6 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.SQ.initModals();
   window.SQ.initVideoPosters();
   window.SQ.initAIChat();
+  window.SQ.initFloatingFooterGuard();
   window.SQ.addDrag(document.getElementById('films-strip'));
   window.SQ.addDrag(document.getElementById('reels-strip'));
 });
