@@ -131,6 +131,15 @@ nav:not(.scrolled) .pill-body {
   padding: clamp(72px, 10vw, 136px) clamp(20px, 4vw, 64px);
 }
 
+body.home #capabilities,
+body.home #growth-ecosystem,
+body.home #operating-model,
+body.home #work,
+body.home #studio,
+body.home #contact {
+  scroll-margin-top: 124px;
+}
+
 .section-inner {
   width: min(100%, 1440px);
 }
@@ -867,6 +876,27 @@ nav:not(.scrolled) .pill-body {
   letter-spacing: .12em;
   text-transform: uppercase;
   margin-bottom: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px .58em;
+  max-width: 620px;
+}
+
+.hero-eyebrow::before {
+  content: none;
+  display: none;
+}
+
+.hero-eyebrow span {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.hero-eyebrow span:not(:last-child)::after {
+  content: "\00B7";
+  margin-left: .58em;
+  opacity: .78;
 }
 
 .hero-h1 {
@@ -982,6 +1012,14 @@ nav:not(.scrolled) .pill-body {
   padding-top: clamp(56px, 7vw, 96px);
 }
 
+.section-anchor {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  position: relative;
+  top: -96px;
+}
+
 .service-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1054,37 +1092,38 @@ nav:not(.scrolled) .pill-body {
 
 .capability-group-card {
   justify-content: flex-start;
-  gap: 18px;
+  gap: 16px;
 }
 
 .capability-group-card h3 {
-  margin: 18px 0 0;
+  margin: 14px 0 0;
 }
 
-.service-list {
-  display: grid;
-  gap: 9px;
+.capability-group-card p {
+  min-height: 72px;
+}
+
+.capability-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   padding-top: 16px;
   border-top: 1px solid rgba(26, 23, 20, .08);
 }
 
-.service-list li {
-  position: relative;
-  padding-left: 16px;
-  color: var(--textsecondary);
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.service-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: .65em;
-  width: 5px;
-  height: 5px;
+.capability-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 6px 10px;
   border-radius: 999px;
-  background: var(--home-gold);
+  background: rgba(57, 69, 54, .07);
+  color: var(--home-forest);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 
 .ecosystem-section {
@@ -1128,6 +1167,55 @@ nav:not(.scrolled) .pill-body {
   font-size: 18px;
   font-weight: 600;
   line-height: 1.45;
+}
+
+.ecosystem-symbol {
+  position: relative;
+  width: 118px;
+  height: 62px;
+  margin: 0 0 28px;
+}
+
+.ecosystem-symbol span {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--home-forest);
+  box-shadow: 0 0 0 8px rgba(57, 69, 54, .07);
+}
+
+.ecosystem-symbol span:nth-child(1) { left: 3px; top: 24px; }
+.ecosystem-symbol span:nth-child(2) { left: 48px; top: 4px; background: var(--home-gold); }
+.ecosystem-symbol span:nth-child(3) { right: 3px; top: 24px; }
+.ecosystem-symbol span:nth-child(4) { left: 48px; bottom: 2px; background: var(--home-moss); }
+
+.ecosystem-symbol i {
+  position: absolute;
+  height: 1px;
+  background: rgba(57, 69, 54, .22);
+  transform-origin: left center;
+}
+
+.ecosystem-symbol i:nth-of-type(1) {
+  left: 17px;
+  top: 30px;
+  width: 45px;
+  transform: rotate(-24deg);
+}
+
+.ecosystem-symbol i:nth-of-type(2) {
+  left: 61px;
+  top: 13px;
+  width: 45px;
+  transform: rotate(24deg);
+}
+
+.ecosystem-symbol i:nth-of-type(3) {
+  left: 55px;
+  top: 20px;
+  width: 34px;
+  transform: rotate(90deg);
 }
 
 .engagements-section,
@@ -1654,6 +1742,42 @@ nav:not(.scrolled) .pill-body {
   width: 6px;
   height: 6px;
   border-radius: 999px;
+}
+
+.operating-model-section {
+  background: #fff;
+}
+
+.operating-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.operating-grid .cap-card {
+  grid-template-columns: 1fr;
+  min-height: 300px;
+  padding: 28px;
+}
+
+.operating-grid .cap-card-top,
+.operating-grid .cap-name,
+.operating-grid .cap-def {
+  grid-column: 1;
+}
+
+.operating-grid .cap-card-top {
+  grid-row: auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: auto;
+}
+
+.operating-grid .cap-name {
+  margin-top: 52px;
+}
+
+.operating-grid .cap-def {
+  margin-bottom: 0;
 }
 
 .built-for {
@@ -2578,6 +2702,14 @@ nav:not(.scrolled) .pill-body {
     justify-content: flex-start;
   }
 
+  .capability-group-card p {
+    min-height: 0;
+  }
+
+  .capability-tags {
+    gap: 7px;
+  }
+
   .ecosystem-panel {
     padding: 28px;
   }
@@ -2606,6 +2738,14 @@ nav:not(.scrolled) .pill-body {
   .cap-card .cap-def,
   .cap-card .cap-outputs {
     grid-column: 1;
+  }
+
+  .operating-grid .cap-card {
+    min-height: auto;
+  }
+
+  .operating-grid .cap-name {
+    margin-top: 20px;
   }
 
   .service-card h3 {
@@ -2652,6 +2792,15 @@ nav:not(.scrolled) .pill-body {
   .hero-media {
     height: 30svh;
     min-height: 230px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    gap: 4px .42em;
+  }
+
+  .hero-eyebrow span:not(:last-child)::after {
+    margin-left: .42em;
   }
 
   .hero-system-panel--command {
