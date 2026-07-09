@@ -189,6 +189,33 @@ window.SQ.initFloatingFooterGuard = function () {
   observer.observe(footer);
 };
 
+window.SQ.initMobileDiscoveryPill = function () {
+  var pill = document.getElementById('mobile-book-wrap');
+  if (!pill) return;
+
+  function syncCompanions() {
+    var active = window.matchMedia('(max-width: 768px)').matches &&
+      pill.classList.contains('sg-show') &&
+      !pill.classList.contains('sg-contact-hidden') &&
+      !pill.classList.contains('sg-dismissed');
+
+    ['mobile-wa', 'back-to-top'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.classList.toggle('sg-mobile-cta-hidden', active);
+    });
+  }
+
+  if ('MutationObserver' in window) {
+    new MutationObserver(syncCompanions).observe(pill, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+  }
+
+  window.addEventListener('resize', syncCompanions, { passive: true });
+  syncCompanions();
+};
+
 window.SQ.openRazorpay = function (productKey) {
   var cfg     = window.SQ.config;
   var product = cfg.razorpayProducts[productKey];
@@ -225,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.SQ.initVideoPosters();
   window.SQ.initAIChat();
   window.SQ.initFloatingFooterGuard();
+  window.SQ.initMobileDiscoveryPill();
   window.SQ.addDrag(document.getElementById('films-strip'));
   window.SQ.addDrag(document.getElementById('reels-strip'));
 });
