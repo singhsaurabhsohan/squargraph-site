@@ -1026,7 +1026,7 @@ body.home #contact {
   gap: 16px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1600px) {
   .service-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 12px;
