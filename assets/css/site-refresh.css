@@ -744,6 +744,14 @@ textarea:focus {
     padding-left: var(--sg-page-x) !important;
     padding-right: var(--sg-page-x) !important;
   }
+
+  body.home .hero-section .hero-content {
+    max-width: 640px !important;
+  }
+
+  body.home .hero-section .hero-sub {
+    max-width: 540px !important;
+  }
 }
 
 @media (max-width: 900px) {
@@ -804,6 +812,9 @@ textarea:focus {
   }
 
   .hero-section .hero-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
     padding: 26px 20px 22px !important;
   }
 
@@ -815,8 +826,20 @@ textarea:focus {
     color: var(--sg-ink) !important;
   }
 
+  body.home .hero-section .hero-h1 {
+    max-width: 100% !important;
+    font-size: 34px !important;
+    line-height: 1.08 !important;
+    overflow-wrap: break-word !important;
+  }
+
   .hero-section .hero-sub {
     color: var(--textsecondary) !important;
+  }
+
+  body.home .hero-section .hero-sub {
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
   }
 
   .hero-h1,
@@ -859,6 +882,20 @@ textarea:focus {
     gap: 8px !important;
     margin-bottom: 16px !important;
     margin-top: 18px !important;
+  }
+
+  body.home .hero-ctas {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    align-items: stretch !important;
+  }
+
+  body.home .hero-section .hero-ctas .btn-primary,
+  body.home .hero-section .hero-ctas .btn-outline {
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
   }
 
   .form-card,
