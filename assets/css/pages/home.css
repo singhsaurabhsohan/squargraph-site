@@ -1026,6 +1026,44 @@ body.home #contact {
   gap: 16px;
 }
 
+@media (min-width: 1200px) {
+  .service-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .capability-group-card {
+    min-height: 360px;
+    padding: 24px 20px;
+  }
+
+  .capability-group-card .sg-card-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .capability-group-card h3 {
+    font-size: 18px;
+  }
+
+  .capability-group-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 126px;
+  }
+
+  .capability-tags {
+    gap: 6px;
+  }
+
+  .capability-tags span {
+    min-height: 24px;
+    padding: 5px 8px;
+    font-size: 9px;
+    letter-spacing: .04em;
+  }
+}
+
 .service-card,
 .engagement-card,
 .cap-card,
