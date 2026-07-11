@@ -2,6 +2,12 @@
 
 window.SQ = window.SQ || {};
 
+window.SQ.trackEvent = function (name, params) {
+  if (!name) return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(Object.assign({ event: name }, params || {}));
+};
+
 window.__sb = {
   from: function (table) {
     return {
@@ -22,6 +28,54 @@ window.__sb = {
       }
     };
   }
+};
+
+window.SQ.initEventTracking = function () {
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('a, button, [role="button"]');
+    if (!el) return;
+
+    var eventName = el.getAttribute('data-sq-event') || '';
+    var href = el.getAttribute('href') || '';
+    var onclick = el.getAttribute('onclick') || '';
+    var text = (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+    var url = null;
+
+    if (href) {
+      try { url = new URL(href, window.location.origin); } catch (err) { url = null; }
+    }
+
+    if (!eventName && url) {
+      var host = url.hostname.toLowerCase();
+      var path = url.pathname.replace(/\/+$/, '') || '/';
+      var hash = url.hash.toLowerCase();
+
+      if (url.protocol === 'mailto:') eventName = 'email_click';
+      else if (host === 'wa.me' || host.indexOf('whatsapp.com') !== -1) eventName = 'whatsapp_click';
+      else if ((path === '/audit' || path === '/audit.html') && text.indexOf('audit') !== -1) eventName = 'audit_start_click';
+      else if ((path === '/discovery' || path === '/discovery.html') && (text.indexOf('discovery') !== -1 || text.indexOf('book') !== -1)) eventName = 'discovery_session_click';
+      else if (hash === '#contact' && (el.classList.contains('nav-cta') || text.indexOf('conversation') !== -1 || text.indexOf("let's talk") !== -1)) eventName = 'cta_start_conversation_click';
+      else if (hash === '#capabilities' && (el.closest('.hero-ctas') || text.indexOf('explore capabilities') !== -1)) eventName = 'cta_explore_capabilities_click';
+    }
+
+    if (!eventName && onclick) {
+      if (/audit\.html|\/audit/.test(onclick)) eventName = 'audit_start_click';
+      else if (/\/discovery/.test(onclick)) eventName = 'discovery_session_click';
+    }
+
+    if (!eventName) {
+      if (text.indexOf('explore capabilities') !== -1) eventName = 'cta_explore_capabilities_click';
+      else if (text.indexOf('start a conversation') !== -1 || text.indexOf('start the conversation') !== -1) eventName = 'cta_start_conversation_click';
+    }
+
+    if (!eventName) return;
+
+    window.SQ.trackEvent(eventName, {
+      link_text: text || undefined,
+      link_url: href || undefined,
+      page_path: window.location.pathname
+    });
+  });
 };
 
 window.SQ.initNav = function () {
@@ -146,6 +200,7 @@ window.SQ.initEscapeKey = function () {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
+  window.SQ.initEventTracking();
   window.SQ.initNav();
   window.SQ.initEscapeKey();
 });

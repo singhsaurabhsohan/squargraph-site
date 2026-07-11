@@ -131,8 +131,7 @@ window.SQ.initContactForm = function () {
     try {
       await window.__sb.from(window.SQ.config.supabaseTable).insert([getPayload()]);
       setState('success');
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'form_submission_success' });
+      window.SQ.trackEvent('form_contact_submit', { form_id: 'contact-form' });
       form.reset();
     } catch (err) {
       setState('error', 'Submission failed, please try WhatsApp or email directly.');

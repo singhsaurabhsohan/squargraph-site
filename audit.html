@@ -1070,7 +1070,6 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
     return;
   }
   document.getElementById('audit-captcha-error').style.display = 'none';
-  trackEvent('audit_completed');
   
     const payload = {
       name: document.getElementById('contact-name').value,
@@ -1114,6 +1113,7 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
       await window.__sb
     .from('leads')
     .insert([payload]);
+  trackEvent('form_audit_submit');
   
   // Store audit inputs for scoring on preview page
   sessionStorage.setItem('sq_audit_payload', JSON.stringify(payload));

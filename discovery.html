@@ -461,8 +461,7 @@
         await window.__sb.from('leads').insert([payload]);
         submitBtn.innerHTML = 'Opening payment…';
         window.SQ.openRazorpay('discovery');
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event:'discovery_payment_success' });
+        window.SQ.trackEvent('discovery_session_click', { form_id:'discovery-form' });
         submitBtn.innerHTML = '✓ Payment confirmed';
         submitBtn.disabled = true;
       } catch(err){
