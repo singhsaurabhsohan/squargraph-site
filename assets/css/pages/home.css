@@ -1259,6 +1259,10 @@ body.home #contact {
   background: var(--home-cream);
 }
 
+.founder-section .section-inner {
+  width: 100%;
+}
+
 .engagement-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1808,7 +1812,7 @@ body.home #contact {
 }
 
 .founder-copy {
-  max-width: 760px;
+  max-width: 1040px;
 }
 
 .founder-copy h2 {
