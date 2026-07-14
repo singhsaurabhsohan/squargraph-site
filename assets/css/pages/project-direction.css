@@ -471,6 +471,27 @@ body.finder-page {
   margin: 10px 0 0;
 }
 
+.error-whatsapp {
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+  color: var(--finder-forest);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(57, 69, 54, .28);
+  padding-bottom: 4px;
+  margin-top: 10px;
+}
+
+.error-whatsapp[hidden] {
+  display: none !important;
+}
+
+.error-whatsapp:hover {
+  border-color: var(--finder-forest);
+}
+
 .step-actions {
   display: flex;
   justify-content: flex-end;

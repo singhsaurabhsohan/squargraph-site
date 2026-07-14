@@ -83,7 +83,7 @@
           <div class="requirement-grid" id="requirement-grid"></div>
           <p id="requirement-error" class="form-error" aria-live="polite"></p>
           <div class="step-actions">
-            <button type="button" class="finder-primary finder-next" data-next="2">Build My Requirement</button>
+            <button type="button" class="finder-primary finder-next" data-next="2">Show Recommended Capabilities</button>
           </div>
         </section>
 
@@ -152,9 +152,9 @@
             <span class="field-error">Enter your name.</span>
           </div>
           <div class="form-field">
-            <label for="work-email">Work email</label>
+            <label for="work-email">Email address</label>
             <input id="work-email" name="work_email" type="email" placeholder="name@company.com" autocomplete="email" required />
-            <span class="field-error">Enter a valid work email.</span>
+            <span class="field-error">Enter a valid email address.</span>
           </div>
           <div class="form-field">
             <label for="phone">WhatsApp number</label>
@@ -174,6 +174,7 @@
           <button type="submit" id="finder-submit" class="finder-submit">Submit My Requirement</button>
           <p class="form-assurance">No generic proposal. We review the requirement before recommending an engagement.</p>
           <p id="finder-form-error" class="form-error" aria-live="polite"></p>
+          <a id="finder-error-whatsapp" href="https://wa.me/918588897488" target="_blank" rel="noopener noreferrer" class="error-whatsapp" hidden>Continue on WhatsApp instead</a>
           <div class="step-actions step-actions-back">
             <button type="button" class="finder-secondary" data-prev="3">Back</button>
           </div>
@@ -222,7 +223,7 @@
       <h2>A guided requirement, not a list of things to buy.</h2>
     </div>
     <div>
-      <p>Most businesses do not know whether the issue is positioning, conversion, campaign architecture, reputation, or content logic. They know what feels stuck.</p>
+      <p>Most businesses do not know whether the issue is positioning, digital experience, campaign architecture, reputation, or content logic. They know what feels stuck.</p>
       <p class="strong-line">SQUARGRAPH translates an unclear business requirement into a connected strategic, creative, and digital engagement.</p>
     </div>
   </section>
@@ -233,7 +234,7 @@
       <h2>The strategic direction behind connected brands.</h2>
     </div>
     <div>
-      <p>SQUARGRAPH™ is a strategy-led creative and growth studio helping businesses align how they position, communicate, appear, launch, and grow across every important touchpoint.</p>
+      <p>SQUARGRAPH™ is a brand strategy, creative and digital studio helping businesses align how they position, communicate, appear, launch, and grow across every important touchpoint.</p>
       <div class="about-links">
         <a href="/">Explore SQUARGRAPH</a>
         <a href="/#capabilities">View our capabilities</a>
@@ -304,6 +305,7 @@
   var submitBtn = document.getElementById('finder-submit');
   var successEl = document.getElementById('finder-success');
   var whatsappEl = document.getElementById('finder-whatsapp');
+  var errorWhatsappEl = document.getElementById('finder-error-whatsapp');
   var phoneInput = document.getElementById('phone');
 
   function pushEvent(name, params) {
@@ -580,10 +582,12 @@
       var err = field.closest('.finder-step') ? field.closest('.finder-step').querySelector('.form-error') : null;
       if (err) err.textContent = '';
       if (formError) formError.textContent = '';
+      if (errorWhatsappEl) errorWhatsappEl.hidden = true;
     });
     field.addEventListener('change', function () {
       showFieldError(field, false);
       if (formError) formError.textContent = '';
+      if (errorWhatsappEl) errorWhatsappEl.hidden = true;
     });
   });
 
@@ -599,6 +603,7 @@
     var data = buildPayload();
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting...';
+    if (errorWhatsappEl) errorWhatsappEl.hidden = true;
 
     try {
       await window.__sb.from(window.SQ.config.supabaseTable).insert([data]);
@@ -624,8 +629,21 @@
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit My Requirement';
       formError.textContent = 'Submission failed. Please try again or continue on WhatsApp.';
+      if (errorWhatsappEl) {
+        var fallbackMsg = "Hi, I tried submitting a requirement through SQUARGRAPH Project Direction for " + data.company + ". My priorities are " + requirementLabels().join(', ') + ".";
+        errorWhatsappEl.href = 'https://wa.me/' + window.SQ.config.whatsappNumber + '?text=' + encodeURIComponent(fallbackMsg);
+        errorWhatsappEl.hidden = false;
+      }
     }
   });
+
+  if (errorWhatsappEl) {
+    errorWhatsappEl.addEventListener('click', function () {
+      pushEvent('WhatsAppClicked', {
+        source: 'project_direction_error'
+      });
+    });
+  }
 
   whatsappEl.addEventListener('click', function () {
     pushEvent('WhatsAppClicked', {
