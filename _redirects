@@ -1,3 +1,5 @@
 /home    https://squargraph.com/    301
-/brand-misread-scan    /brand-misread-scan.html    200
-/misread    https://squargraph.com/brand-misread-scan    301
+/project-direction    /project-direction.html    200
+/brand-misread-scan    https://squargraph.com/project-direction    301
+/brand-misread-scan.html    https://squargraph.com/project-direction    301
+/misread    https://squargraph.com/project-direction    301

@@ -4,19 +4,19 @@
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="/fonts/fonts.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Direction Finder | SQUARGRAPH&trade;</title>
-  <meta name="description" content="Use the SQUARGRAPH&trade; Project Direction Finder to share your website or Instagram, select what needs to change, and receive a focused capability recommendation." />
-  <meta name="keywords" content="SQUARGRAPH Project Direction Finder, brand requirement builder, brand strategy recommendation, creative and digital capabilities, project brief" />
-  <link rel="canonical" href="https://squargraph.com/brand-misread-scan" />
+  <title>Project Direction | SQUARGRAPH&trade;</title>
+  <meta name="description" content="Use SQUARGRAPH&trade; Project Direction to share your website or Instagram, select what needs to change, and receive a focused capability recommendation." />
+  <meta name="keywords" content="SQUARGRAPH Project Direction, brand requirement builder, brand strategy recommendation, creative and digital capabilities, project brief" />
+  <link rel="canonical" href="https://squargraph.com/project-direction" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Project Direction Finder | SQUARGRAPH&trade;" />
+  <meta property="og:title" content="Project Direction | SQUARGRAPH&trade;" />
   <meta property="og:description" content="Tell us what needs to move. Add your website or Instagram profile and we will map the right strategic, creative, and digital capabilities." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://squargraph.com/brand-misread-scan" />
+  <meta property="og:url" content="https://squargraph.com/project-direction" />
   <meta property="og:site_name" content="SQUARGRAPH&trade;" />
   <meta property="og:image" content="https://squargraph.com/squargraph-brand-image.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Project Direction Finder | SQUARGRAPH&trade;" />
+  <meta name="twitter:title" content="Project Direction | SQUARGRAPH&trade;" />
   <meta name="twitter:description" content="Tell us what needs to move. Add your website or Instagram profile and we will map the right strategic, creative, and digital capabilities." />
   <meta name="twitter:image" content="https://squargraph.com/squargraph-brand-image.webp" />
   <meta name="theme-color" content="#F8F6F1" />
@@ -29,7 +29,7 @@
   <script src="/assets/vendor/intl-tel-input/js/intlTelInput.min.js" defer></script>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/base.css">
-  <link rel="stylesheet" href="/assets/css/pages/brand-misread-scan.css?v=20260714-finder1">
+  <link rel="stylesheet" href="/assets/css/pages/project-direction.css?v=20260714-direction1">
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');
   </script>
@@ -37,26 +37,26 @@
 <body class="finder-page">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<header class="finder-header" aria-label="Project Direction Finder header">
+<header class="finder-header" aria-label="Project Direction header">
   <a href="/" class="finder-logo" aria-label="SQUARGRAPH homepage">
     <img src="/logo.webp" alt="SQUARGRAPH&trade;" width="120" height="28" decoding="sync" fetchpriority="high" />
   </a>
-  <a href="/#capabilities" class="finder-header-link">View capabilities</a>
+  <a href="#direction-finder" class="finder-header-link">Start a Project</a>
 </header>
 
 <main>
   <section class="finder-hero">
     <div class="finder-copy">
-      <p class="finder-eyebrow">SQUARGRAPH Project Direction Finder</p>
+      <p class="finder-eyebrow">Project Direction</p>
       <h1>Tell us what needs to move.</h1>
       <p class="finder-lead">Your brand is being interpreted before it is understood. Add your website or Instagram profile and tell us what you want to improve. We will map the right strategic, creative, and digital capabilities.</p>
       <p class="finder-note">One focused recommendation. Reviewed by a brand strategist.</p>
-      <a href="#direction-finder" class="finder-primary">Build My Requirement</a>
+      <a href="#direction-finder" class="finder-primary">Start a Project</a>
     </div>
 
     <aside class="finder-card" id="direction-finder" aria-labelledby="finder-title">
       <div class="finder-card-head">
-        <p class="finder-eyebrow">Guided brief builder</p>
+        <p class="finder-eyebrow">Guided requirement selection</p>
         <h2 id="finder-title">Build your requirement.</h2>
         <p>Select what your brand is trying to achieve. We will identify the right combination of strategy, creative, and digital capabilities.</p>
       </div>
@@ -474,7 +474,7 @@
       'Selected capabilities: ' + selectedCaps.join(', '),
       'Project context: ' + document.getElementById('project-goal').value.trim(),
       'Preferred contact method: ' + document.getElementById('preferred-contact').value,
-      'Lead source: brand-misread-scan',
+      'Lead source: project-direction',
       'Campaign name: ' + utm.campaign_name,
       'UTM source: ' + utm.utm_source,
       'UTM medium: ' + utm.utm_medium,
@@ -486,7 +486,7 @@
       company: document.getElementById('brand-name').value.trim(),
       email: document.getElementById('work-email').value.trim(),
       phone: iti ? iti.getNumber() : phoneInput.value.trim(),
-      service: 'Project Direction Finder',
+      service: 'Project Direction',
       status: 'New',
       reference: document.getElementById('touchpoint').value.trim(),
       budget: investment,
@@ -499,7 +499,7 @@
 
   function finishSuccess(data) {
     var requirements = requirementLabels().join(', ');
-    var msg = "Hi, I've submitted a requirement through the SQUARGRAPH Project Direction Finder for " + data.company + ". My priorities are " + requirements + ".";
+    var msg = "Hi, I've submitted a requirement through SQUARGRAPH Project Direction for " + data.company + ". My priorities are " + requirements + ".";
     whatsappEl.href = 'https://wa.me/' + window.SQ.config.whatsappNumber + '?text=' + encodeURIComponent(msg);
     form.hidden = true;
     successEl.hidden = false;
@@ -508,7 +508,7 @@
 
   renderRequirements();
   renderCapabilities();
-  pushEvent('LandingPageView', { page_name: 'Project Direction Finder' });
+  pushEvent('LandingPageView', { page_name: 'Project Direction' });
 
   if (window.SQ && window.SQ.initITI) {
     window.SQ.initITI('phone').then(function (instance) {
@@ -610,12 +610,12 @@
         timeline: data.timeline,
         investment_range: data.budget,
         preferred_contact_method: document.getElementById('preferred-contact').value,
-        lead_source: 'brand-misread-scan',
+        lead_source: 'project-direction',
         campaign_name: getUtmData().campaign_name
       });
       if (typeof window.fbq === 'function') {
         window.fbq('track', 'Lead', {
-          content_name: 'Project Direction Finder',
+          content_name: 'Project Direction',
           content_category: 'Lead Form'
         });
       }
@@ -629,7 +629,7 @@
 
   whatsappEl.addEventListener('click', function () {
     pushEvent('WhatsAppClicked', {
-      source: 'project_direction_finder_success'
+      source: 'project_direction_success'
     });
   });
 })();

@@ -54,6 +54,7 @@ window.SQ.initEventTracking = function () {
       else if (host === 'wa.me' || host.indexOf('whatsapp.com') !== -1) eventName = 'whatsapp_click';
       else if ((path === '/audit' || path === '/audit.html') && text.indexOf('audit') !== -1) eventName = 'audit_start_click';
       else if ((path === '/discovery' || path === '/discovery.html') && (text.indexOf('discovery') !== -1 || text.indexOf('book') !== -1)) eventName = 'discovery_session_click';
+      else if ((path === '/project-direction' || path === '/project-direction.html') && (el.classList.contains('nav-cta') || text.indexOf('start a project') !== -1)) eventName = 'cta_start_conversation_click';
       else if (hash === '#contact' && (el.classList.contains('nav-cta') || text.indexOf('conversation') !== -1 || text.indexOf("let's talk") !== -1)) eventName = 'cta_start_conversation_click';
       else if (hash === '#capabilities' && (el.closest('.hero-ctas') || text.indexOf('explore capabilities') !== -1)) eventName = 'cta_explore_capabilities_click';
     }
@@ -65,7 +66,7 @@ window.SQ.initEventTracking = function () {
 
     if (!eventName) {
       if (text.indexOf('explore capabilities') !== -1) eventName = 'cta_explore_capabilities_click';
-      else if (text.indexOf('start a conversation') !== -1 || text.indexOf('start the conversation') !== -1) eventName = 'cta_start_conversation_click';
+      else if (text.indexOf('start a project') !== -1 || text.indexOf('start a conversation') !== -1 || text.indexOf('start the conversation') !== -1) eventName = 'cta_start_conversation_click';
     }
 
     if (!eventName) return;
