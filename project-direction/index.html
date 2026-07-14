@@ -202,54 +202,32 @@
 
           <div id="project-captcha-wrap" class="captcha-panel">
             <div class="g-recaptcha" data-sitekey="6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB"></div>
-            <p id="project-captcha-error" class="captcha-error">Please complete the captcha before requesting verification.</p>
+            <p id="project-captcha-error" class="captcha-error">Please complete the captcha before submitting.</p>
           </div>
 
-          <div class="verification-card" id="mobile-verification-card">
+          <div class="verification-card" id="mobile-contact-card">
             <div class="verification-title">
               <span>01</span>
-              <strong>Mobile number</strong>
+              <strong>WhatsApp number</strong>
             </div>
-            <div class="verification-row">
-              <div class="form-field">
-                <label for="phone">WhatsApp number</label>
-                <input id="phone" name="phone" type="tel" placeholder="98765 43210" autocomplete="tel" required />
-                <span class="field-error">Enter a valid mobile number.</span>
-              </div>
-              <button type="button" class="verify-send" id="send-mobile-otp">Send mobile OTP</button>
+            <p class="locked-note">We will use this for WhatsApp follow-up after your requirement is received.</p>
+            <div class="form-field">
+              <label for="phone">Mobile number</label>
+              <input id="phone" name="phone" type="tel" placeholder="98765 43210" autocomplete="tel" required />
+              <span class="field-error">Enter a valid mobile number.</span>
             </div>
-            <div class="otp-panel" id="mobile-otp-panel" hidden>
-              <p class="otp-sent" id="mobile-otp-sent"></p>
-              <div class="otp-code" data-otp-type="mobile" aria-label="Mobile OTP code">
-                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Mobile OTP digit 1" />
-                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Mobile OTP digit 2" />
-                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Mobile OTP digit 3" />
-                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Mobile OTP digit 4" />
-                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Mobile OTP digit 5" />
-                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Mobile OTP digit 6" />
-              </div>
-              <div class="otp-actions">
-                <button type="button" class="verify-code" id="verify-mobile-otp">Verify mobile code</button>
-                <button type="button" class="link-button" id="resend-mobile-otp" disabled>Resend code in 45s</button>
-                <button type="button" class="link-button" id="change-mobile">Change mobile number</button>
-              </div>
-            </div>
-            <p class="verification-status" id="mobile-status" aria-live="polite"></p>
           </div>
 
-          <div class="verification-card locked" id="email-verification-card">
+          <div class="verification-card" id="email-verification-card">
             <div class="verification-title">
               <span>02</span>
-              <strong>Email address</strong>
+              <strong>Email verification</strong>
             </div>
-            <p class="locked-note">Verify mobile first, then confirm your email address.</p>
-            <div class="verification-row">
-              <div class="form-field">
-                <label for="work-email">Email address</label>
-                <input id="work-email" name="work_email" type="email" placeholder="name@company.com" autocomplete="email" required disabled />
-                <span class="field-error">Enter a valid email address.</span>
-              </div>
-              <button type="button" class="verify-send" id="send-email-otp" disabled>Send email OTP</button>
+            <p class="locked-note">Enter a valid email address. We will automatically send a six-digit verification code.</p>
+            <div class="form-field">
+              <label for="work-email">Email address</label>
+              <input id="work-email" name="work_email" type="email" placeholder="name@company.com" autocomplete="email" required />
+              <span class="field-error">Enter a valid email address.</span>
             </div>
             <div class="otp-panel" id="email-otp-panel" hidden>
               <p class="otp-sent" id="email-otp-sent"></p>
@@ -479,9 +457,9 @@
   var captchaLoaded = false;
 
   var verification = {
-    mobile: { sent: false, verified: false, value: '', verifiedAt: '', resendCount: 0, timer: null, result: null },
-    email: { sent: false, verified: false, value: '', verifiedAt: '', resendCount: 0, timer: null, result: null }
+    email: { sent: false, sending: false, verified: false, value: '', verifiedAt: '', resendCount: 0, timer: null, result: null }
   };
+  var emailOtpTimer = null;
 
   var form = document.getElementById('project-direction-form');
   var priorityGrid = document.getElementById('priority-grid');
@@ -552,7 +530,7 @@
       return false;
     }
     if (!getCaptchaToken()) {
-      err.textContent = 'Please complete the captcha before requesting verification.';
+      err.textContent = 'Please complete the captcha before submitting.';
       err.style.display = 'block';
       return false;
     }
@@ -718,8 +696,8 @@
       showFieldError(emailInput, !emailOk);
       if (!emailOk) ok = false;
 
-      if (!verification.mobile.verified || !verification.email.verified) {
-        formError.textContent = 'Please verify mobile and email before submitting.';
+      if (!verification.email.verified) {
+        formError.textContent = 'Please verify your email before submitting.';
         ok = false;
       }
 
@@ -732,14 +710,6 @@
   function getPhoneValue() {
     if (iti && typeof iti.getNumber === 'function') return iti.getNumber();
     return phoneInput.value.trim();
-  }
-
-  function maskPhone(value) {
-    var digits = String(value).replace(/\D/g, '');
-    if (digits.length <= 4) return value;
-    var last = digits.slice(-3);
-    var first = digits.slice(0, Math.min(4, digits.length - 3));
-    return '+' + first + '•••••' + last;
   }
 
   function maskEmail(value) {
@@ -783,9 +753,9 @@
     otpInputs(type).forEach(function (input) { input.disabled = disabled; });
   }
 
-  function startResendTimer(type) {
-    var state = verification[type];
-    var btn = document.getElementById(type === 'mobile' ? 'resend-mobile-otp' : 'resend-email-otp');
+  function startResendTimer() {
+    var state = verification.email;
+    var btn = document.getElementById('resend-email-otp');
     var seconds = 45;
     clearInterval(state.timer);
     btn.disabled = true;
@@ -808,145 +778,133 @@
   }
 
   function updateSubmitState() {
-    submitBtn.disabled = !(verification.mobile.verified && verification.email.verified);
+    submitBtn.disabled = !verification.email.verified;
   }
 
-  function setVerificationStatus(type, message, mode) {
-    var status = document.getElementById(type === 'mobile' ? 'mobile-status' : 'email-status');
+  function setEmailStatus(message, mode) {
+    var status = document.getElementById('email-status');
     status.textContent = message || '';
     status.classList.toggle('verified', mode === 'verified');
     status.classList.toggle('error', mode === 'error');
   }
 
-  function resetVerification(type, keepValue) {
-    var state = verification[type];
+  function resetEmailVerification(keepValue) {
+    var state = verification.email;
     state.sent = false;
+    state.sending = false;
     state.verified = false;
     state.verifiedAt = '';
     state.result = null;
     state.resendCount = 0;
+    state.value = '';
+    clearTimeout(emailOtpTimer);
     clearInterval(state.timer);
-    clearOtpInputs(type);
-    setOtpInputsDisabled(type, false);
-    document.getElementById(type === 'mobile' ? 'mobile-otp-panel' : 'email-otp-panel').hidden = true;
-    setVerificationStatus(type, '', '');
-
-    if (type === 'mobile') {
-      phoneInput.readOnly = false;
-      document.getElementById('send-mobile-otp').disabled = false;
-      document.getElementById('send-mobile-otp').textContent = 'Send mobile OTP';
-      resetVerification('email', false);
-      document.getElementById('email-verification-card').classList.add('locked');
-      emailInput.disabled = true;
-      document.getElementById('send-email-otp').disabled = true;
-      if (!keepValue) phoneInput.value = '';
-    } else {
-      emailInput.readOnly = false;
-      document.getElementById('send-email-otp').textContent = 'Send email OTP';
-      emailInput.disabled = !verification.mobile.verified;
-      document.getElementById('send-email-otp').disabled = !verification.mobile.verified;
-      if (!keepValue) emailInput.value = '';
-    }
-
+    clearOtpInputs('email');
+    setOtpInputsDisabled('email', false);
+    document.getElementById('email-otp-panel').hidden = true;
+    setEmailStatus('', '');
+    emailInput.readOnly = false;
+    if (!keepValue) emailInput.value = '';
     updateSubmitState();
   }
 
-  function enableEmailVerification() {
-    document.getElementById('email-verification-card').classList.remove('locked');
-    emailInput.disabled = false;
-    document.getElementById('send-email-otp').disabled = false;
-  }
-
-  async function sendOtp(type, isResend) {
-    var state = verification[type];
-    var isMobile = type === 'mobile';
-    var input = isMobile ? phoneInput : emailInput;
-    var sendBtn = document.getElementById(isMobile ? 'send-mobile-otp' : 'send-email-otp');
-    var panel = document.getElementById(isMobile ? 'mobile-otp-panel' : 'email-otp-panel');
-    var sentLine = document.getElementById(isMobile ? 'mobile-otp-sent' : 'email-otp-sent');
-
-    if (!ensureCaptcha()) return;
+  async function sendEmailOtp(isResend) {
+    var state = verification.email;
+    var panel = document.getElementById('email-otp-panel');
+    var sentLine = document.getElementById('email-otp-sent');
 
     if (isResend && state.resendCount >= 3) {
-      setVerificationStatus(type, 'Maximum resend attempts reached. Change the ' + (isMobile ? 'mobile number' : 'email address') + ' or continue on WhatsApp.', 'error');
+      setEmailStatus('Maximum resend attempts reached. Change the email address or continue on WhatsApp.', 'error');
       return;
     }
 
-    var value = isMobile ? getPhoneValue() : input.value.trim();
-    var valid = value.length > 0;
-    if (isMobile && iti && typeof iti.isValidNumber === 'function') valid = iti.isValidNumber();
-    if (!isMobile) valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-    showFieldError(input, !valid);
+    var value = emailInput.value.trim();
+    var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    showFieldError(emailInput, !valid);
     if (!valid) return;
+    if (!isResend && state.sent && state.value === value) return;
+    if (state.sending) return;
 
     if (isResend) state.resendCount += 1;
 
-    sendBtn.disabled = true;
-    sendBtn.textContent = isResend ? 'Resending...' : 'Sending...';
-    setVerificationStatus(type, '', '');
+    state.sending = true;
+    setEmailStatus(isResend ? 'Resending verification code...' : 'Sending verification code...', '');
 
     try {
-      var payload = isMobile
-        ? { phone: value, channel: 'whatsapp', create_user: true }
-        : { email: value, create_user: true };
-      await sbAuthRequest('/auth/v1/otp', payload);
+      await sbAuthRequest('/auth/v1/otp', { email: value, create_user: true });
       state.sent = true;
       state.value = value;
       panel.hidden = false;
-      sentLine.textContent = 'OTP sent to ' + (isMobile ? maskPhone(value) : maskEmail(value));
-      sendBtn.textContent = isMobile ? 'OTP sent' : 'Email OTP sent';
-      input.readOnly = true;
-      clearOtpInputs(type);
-      startResendTimer(type);
+      sentLine.textContent = 'OTP sent to ' + maskEmail(value);
+      emailInput.readOnly = true;
+      clearOtpInputs('email');
+      startResendTimer();
+      setEmailStatus('Enter the six-digit code from your email.', '');
       setTimeout(function () {
-        var first = otpInputs(type)[0];
+        var first = otpInputs('email')[0];
         if (first) first.focus();
       }, 80);
       pushEvent('project_direction_otp_request', {
-        method: type,
+        method: 'email',
         resend: Boolean(isResend)
       });
     } catch (err) {
-      sendBtn.disabled = false;
-      sendBtn.textContent = isMobile ? 'Send mobile OTP' : 'Send email OTP';
-      setVerificationStatus(type, err.message || 'OTP could not be sent. Please try again.', 'error');
+      setEmailStatus(err.message || 'OTP could not be sent. Please try again.', 'error');
+    } finally {
+      state.sending = false;
     }
   }
 
-  async function verifyOtp(type) {
-    var state = verification[type];
-    var isMobile = type === 'mobile';
-    var token = collectOtp(type);
-    var btn = document.getElementById(isMobile ? 'verify-mobile-otp' : 'verify-email-otp');
+  async function verifyEmailOtp() {
+    var state = verification.email;
+    var token = collectOtp('email');
+    var btn = document.getElementById('verify-email-otp');
 
     if (!/^\d{6}$/.test(token)) {
-      setVerificationStatus(type, 'Enter the six-digit OTP.', 'error');
+      setEmailStatus('Enter the six-digit OTP.', 'error');
       return;
     }
 
     btn.disabled = true;
     btn.textContent = 'Verifying...';
-    setVerificationStatus(type, '', '');
+    setEmailStatus('', '');
 
     try {
-      var payload = isMobile
-        ? { type: 'sms', phone: state.value, token: token }
-        : { type: 'email', email: state.value, token: token };
-      var result = await sbAuthRequest('/auth/v1/verify', payload);
+      var result = await sbAuthRequest('/auth/v1/verify', { type: 'email', email: state.value, token: token });
       state.verified = true;
       state.verifiedAt = new Date().toISOString();
       state.result = result;
-      setOtpInputsDisabled(type, true);
-      btn.textContent = isMobile ? 'Mobile verified' : 'Email verified';
-      setVerificationStatus(type, (isMobile ? '✓ Mobile verified' : '✓ Email verified'), 'verified');
-      if (isMobile) enableEmailVerification();
+      clearInterval(state.timer);
+      setOtpInputsDisabled('email', true);
+      btn.textContent = 'Email verified';
+      document.getElementById('resend-email-otp').disabled = true;
+      document.getElementById('resend-email-otp').textContent = 'Verified';
+      setEmailStatus('✓ Email verified', 'verified');
       updateSubmitState();
-      pushEvent('project_direction_otp_verify', { method: type });
+      pushEvent('project_direction_otp_verify', { method: 'email' });
     } catch (err) {
       btn.disabled = false;
-      btn.textContent = isMobile ? 'Verify mobile code' : 'Verify email code';
-      setVerificationStatus(type, err.message || 'OTP verification failed. Please check the code.', 'error');
+      btn.textContent = 'Verify email code';
+      setEmailStatus(err.message || 'OTP verification failed. Please check the code.', 'error');
     }
+  }
+
+  function scheduleEmailOtp(delay) {
+    var value = emailInput.value.trim();
+    clearTimeout(emailOtpTimer);
+
+    if (!value || emailInput.readOnly) return;
+    if (verification.email.verified && verification.email.value === value) return;
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      if (value.length > 5) setEmailStatus('Enter a valid email address to receive the OTP.', 'error');
+      return;
+    }
+
+    setEmailStatus('', '');
+    emailOtpTimer = setTimeout(function () {
+      sendEmailOtp(false);
+    }, delay || 650);
   }
 
   function setupOtpInputHandlers(type) {
@@ -1019,7 +977,6 @@
       'Direction mode: ' + (decideMode ? 'Let SQUARGRAPH decide' : 'User confirmed capability map'),
       'Project context: ' + document.getElementById('project-goal').value.trim(),
       'Industry/category: ' + document.getElementById('industry-category').value.trim(),
-      'Mobile verified at: ' + verification.mobile.verifiedAt,
       'Email verified at: ' + verification.email.verifiedAt,
       'Lead source: project-direction',
       'Campaign name: ' + utm.campaign_name,
@@ -1057,7 +1014,6 @@
   renderStageCards();
   renderProfileStatusCards();
   renderDirections();
-  setupOtpInputHandlers('mobile');
   setupOtpInputHandlers('email');
   pushEvent('project_direction_view', { page_name: 'Project Direction' });
 
@@ -1168,22 +1124,20 @@
     });
   });
 
-  phoneInput.addEventListener('input', function () {
-    if (verification.mobile.verified || verification.mobile.sent) resetVerification('mobile', true);
-  });
-
   emailInput.addEventListener('input', function () {
-    if (verification.email.verified || verification.email.sent) resetVerification('email', true);
+    if ((verification.email.verified || verification.email.sent) && emailInput.value.trim() !== verification.email.value) {
+      resetEmailVerification(true);
+    }
+    scheduleEmailOtp(750);
   });
 
-  document.getElementById('send-mobile-otp').addEventListener('click', function () { sendOtp('mobile', false); });
-  document.getElementById('send-email-otp').addEventListener('click', function () { sendOtp('email', false); });
-  document.getElementById('resend-mobile-otp').addEventListener('click', function () { sendOtp('mobile', true); });
-  document.getElementById('resend-email-otp').addEventListener('click', function () { sendOtp('email', true); });
-  document.getElementById('verify-mobile-otp').addEventListener('click', function () { verifyOtp('mobile'); });
-  document.getElementById('verify-email-otp').addEventListener('click', function () { verifyOtp('email'); });
-  document.getElementById('change-mobile').addEventListener('click', function () { resetVerification('mobile', true); phoneInput.focus(); });
-  document.getElementById('change-email').addEventListener('click', function () { resetVerification('email', true); emailInput.focus(); });
+  emailInput.addEventListener('blur', function () {
+    scheduleEmailOtp(0);
+  });
+
+  document.getElementById('resend-email-otp').addEventListener('click', function () { sendEmailOtp(true); });
+  document.getElementById('verify-email-otp').addEventListener('click', verifyEmailOtp);
+  document.getElementById('change-email').addEventListener('click', function () { resetEmailVerification(false); emailInput.focus(); });
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
