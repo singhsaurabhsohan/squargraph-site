@@ -5,19 +5,19 @@
   <link rel="stylesheet" href="/fonts/fonts.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Direction | SQUARGRAPH™</title>
-  <meta name="description" content="Use SQUARGRAPH™ Project Direction to share your website or Instagram, select what needs to change, and receive a focused capability recommendation." />
-  <meta name="keywords" content="SQUARGRAPH Project Direction, brand requirement builder, brand strategy recommendation, creative and digital capabilities, project brief" />
+  <meta name="description" content="Use SQUARGRAPH™ Project Direction to tell us what you are building, changing, launching or trying to grow. We will map the right brand strategy, creative and digital capabilities." />
+  <meta name="keywords" content="SQUARGRAPH Project Direction, start a project, brand strategy direction, creative and digital studio, campaign direction, project requirement" />
   <link rel="canonical" href="https://squargraph.com/project-direction" />
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Project Direction | SQUARGRAPH™" />
-  <meta property="og:description" content="Tell us what needs to move. Add your website or Instagram profile and we will map the right strategic, creative, and digital capabilities." />
+  <meta property="og:description" content="Tell us what needs to move. We will map the right combination of brand strategy, creative and digital capabilities." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://squargraph.com/project-direction" />
   <meta property="og:site_name" content="SQUARGRAPH™" />
   <meta property="og:image" content="https://squargraph.com/squargraph-brand-image.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Project Direction | SQUARGRAPH™" />
-  <meta name="twitter:description" content="Tell us what needs to move. Add your website or Instagram profile and we will map the right strategic, creative, and digital capabilities." />
+  <meta name="twitter:description" content="Tell us what needs to move. We will map the right combination of brand strategy, creative and digital capabilities." />
   <meta name="twitter:image" content="https://squargraph.com/squargraph-brand-image.webp" />
   <meta name="theme-color" content="#F8F6F1" />
   <link rel="icon" type="image/png" href="/favicon.png" />
@@ -29,7 +29,7 @@
   <script src="/assets/vendor/intl-tel-input/js/intlTelInput.min.js" defer></script>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/base.css">
-  <link rel="stylesheet" href="/assets/css/pages/project-direction.css?v=20260714-direction1">
+  <link rel="stylesheet" href="/assets/css/pages/project-direction.css?v=20260714-direction2">
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');
   </script>
@@ -41,7 +41,7 @@
   <a href="/" class="finder-logo" aria-label="SQUARGRAPH homepage">
     <img src="/logo.webp" alt="SQUARGRAPH™" width="120" height="28" decoding="sync" fetchpriority="high" />
   </a>
-  <a href="#direction-finder" class="finder-header-link">Start a Project</a>
+  <a href="#direction-finder" class="finder-header-link" data-sq-event="cta_start_conversation_click">Start a Project</a>
 </header>
 
 <main>
@@ -49,23 +49,24 @@
     <div class="finder-copy">
       <p class="finder-eyebrow">Project Direction</p>
       <h1>Tell us what needs to move.</h1>
-      <p class="finder-lead">Your brand is being interpreted before it is understood. Add your website or Instagram profile and tell us what you want to improve. We will map the right strategic, creative, and digital capabilities.</p>
-      <p class="finder-note">One focused recommendation. Reviewed by a brand strategist.</p>
-      <a href="#direction-finder" class="finder-primary">Start a Project</a>
+      <p class="finder-lead">Tell us what you are building, changing or trying to grow. We'll map the right combination of brand strategy, creative and digital capabilities.</p>
+      <p class="finder-note">A focused capability direction. Human-reviewed before we respond.</p>
+      <a href="#direction-finder" class="finder-primary" data-sq-event="cta_start_conversation_click">Start a Project</a>
     </div>
 
     <aside class="finder-card" id="direction-finder" aria-labelledby="finder-title">
       <div class="finder-card-head">
         <p class="finder-eyebrow">Guided requirement selection</p>
-        <h2 id="finder-title">Build your requirement.</h2>
-        <p>Select what your brand is trying to achieve. We will identify the right combination of strategy, creative, and digital capabilities.</p>
+        <h2 id="finder-title">Shape your project direction.</h2>
+        <p>Start with the outcome or challenge, not the service. We'll recommend the capabilities most relevant to what you are trying to achieve.</p>
       </div>
 
-      <div class="finder-progress" aria-label="Finder progress">
+      <div class="finder-progress" aria-label="Project Direction progress">
         <span class="progress-dot active" data-progress="1"></span>
         <span class="progress-dot" data-progress="2"></span>
         <span class="progress-dot" data-progress="3"></span>
         <span class="progress-dot" data-progress="4"></span>
+        <span class="progress-dot" data-progress="5"></span>
       </div>
 
       <form id="project-direction-form" novalidate>
@@ -73,15 +74,10 @@
 
         <section class="finder-step active" data-step="1">
           <p class="step-label">Step 1</p>
-          <h3>What are you trying to solve?</h3>
-          <div class="form-field">
-            <label for="touchpoint">Website or Instagram profile</label>
-            <input id="touchpoint" name="touchpoint" type="text" placeholder="https:// or @brand" autocomplete="url" required />
-            <span class="field-error">Share a website or Instagram profile.</span>
-          </div>
-          <p class="helper-line">Choose up to 3. Start with the problem, not the service.</p>
-          <div class="requirement-grid" id="requirement-grid"></div>
-          <p id="requirement-error" class="form-error" aria-live="polite"></p>
+          <h3>What are you trying to move?</h3>
+          <p class="helper-line">Choose up to 3 priorities. You do not need to know which service you need.</p>
+          <div class="requirement-grid" id="priority-grid"></div>
+          <p id="priority-error" class="form-error" aria-live="polite"></p>
           <div class="step-actions">
             <button type="button" class="finder-primary finder-next" data-next="2">Show Recommended Capabilities</button>
           </div>
@@ -89,32 +85,80 @@
 
         <section class="finder-step" data-step="2" hidden>
           <p class="step-label">Step 2</p>
-          <h3>Recommended capabilities</h3>
-          <p class="helper-line">Based on your selections, this is the starting capability map. Remove what is not relevant or add what is missing.</p>
-          <div id="selected-capabilities" class="capability-stack" aria-label="Selected capabilities"></div>
-          <div class="capability-add">
-            <p class="mini-label">Add if relevant</p>
-            <div id="capability-pool" class="capability-pool"></div>
+          <h3>Where are you currently?</h3>
+          <p class="helper-line">This context helps us make the capability direction sharper.</p>
+
+          <div class="form-block">
+            <p class="mini-label">Current stage</p>
+            <div class="choice-grid" id="stage-grid"></div>
+            <p id="stage-error" class="form-error" aria-live="polite"></p>
           </div>
-          <p id="capability-error" class="form-error" aria-live="polite"></p>
+
+          <div class="form-block">
+            <p class="mini-label">Live touchpoint</p>
+            <p class="helper-line compact">Do you currently have a live website or social profile?</p>
+            <div class="choice-grid three" id="profile-status-grid"></div>
+          </div>
+
+          <div class="form-field conditional-field" id="touchpoint-wrap" hidden>
+            <label for="touchpoint">Website, Instagram or relevant link <span>Optional</span></label>
+            <input id="touchpoint" name="touchpoint" type="text" placeholder="https:// or @brand" autocomplete="url" />
+          </div>
+
+          <p id="profile-status-error" class="form-error" aria-live="polite"></p>
           <div class="step-actions step-actions-split">
             <button type="button" class="finder-secondary" data-prev="1">Back</button>
-            <button type="button" class="finder-primary finder-next" data-next="3">Confirm Capabilities</button>
+            <button type="button" class="finder-primary finder-next" data-next="3">Review Direction</button>
           </div>
         </section>
 
         <section class="finder-step" data-step="3" hidden>
           <p class="step-label">Step 3</p>
+          <h3>Recommended direction</h3>
+          <p class="helper-line">Keep the recommended capability groups, remove what is not relevant, add what is missing, or let SQUARGRAPH decide.</p>
+
+          <label class="decide-box" for="let-squargraph-decide">
+            <input id="let-squargraph-decide" type="checkbox" />
+            <span>
+              <strong>Let SQUARGRAPH decide</strong>
+              <small>Use the context to define the final capability map before we respond.</small>
+            </span>
+          </label>
+
+          <div class="direction-section">
+            <p class="mini-label">Recommended for your requirement</p>
+            <div id="selected-directions" class="direction-stack"></div>
+          </div>
+
+          <div class="direction-section">
+            <p class="mini-label">Add if relevant</p>
+            <div id="direction-pool" class="direction-pool"></div>
+          </div>
+
+          <p id="direction-error" class="form-error" aria-live="polite"></p>
+          <div class="step-actions step-actions-split">
+            <button type="button" class="finder-secondary" data-prev="2">Back</button>
+            <button type="button" class="finder-primary finder-next" data-next="4">Confirm Direction</button>
+          </div>
+        </section>
+
+        <section class="finder-step" data-step="4" hidden>
+          <p class="step-label">Step 4</p>
           <h3>Project context</h3>
           <div class="form-field">
-            <label for="brand-name">Business or brand name</label>
-            <input id="brand-name" name="brand_name" type="text" placeholder="Your brand name" autocomplete="organization" required />
-            <span class="field-error">Enter the brand or business name.</span>
+            <label for="brand-name">Business, brand or project name</label>
+            <input id="brand-name" name="brand_name" type="text" placeholder="Your brand or project name" autocomplete="organization" required />
+            <span class="field-error">Enter the brand, business or project name.</span>
           </div>
           <div class="form-field">
-            <label for="project-goal">What are you currently trying to achieve?</label>
-            <textarea id="project-goal" name="project_goal" placeholder="Tell us the outcome you want, the problem you see, or what feels unclear." required></textarea>
+            <label for="project-goal">Briefly describe what you are building or trying to change</label>
+            <textarea id="project-goal" name="project_goal" placeholder="Tell us the outcome, challenge, launch, shift or opportunity." required></textarea>
             <span class="field-error">Share a little project context.</span>
+          </div>
+          <div class="form-field">
+            <label for="industry-category">Industry/category</label>
+            <input id="industry-category" name="industry_category" type="text" placeholder="Automotive, D2C, hospitality, education, personal brand..." required />
+            <span class="field-error">Enter the industry or category.</span>
           </div>
           <div class="form-field">
             <label for="timeline">When would you like to begin?</label>
@@ -123,60 +167,115 @@
               <option>Immediately</option>
               <option>Within 30 days</option>
               <option>Within 1-3 months</option>
-              <option>Exploring for later</option>
+              <option>3+ months</option>
+              <option>Not sure yet</option>
             </select>
             <span class="field-error">Select a timeline.</span>
           </div>
           <div class="form-field">
-            <label for="investment-range">Indicative investment range</label>
+            <label for="investment-range">Indicative investment range <span>Optional</span></label>
             <select id="investment-range" name="investment_range">
-              <option value="" selected>Not decided yet</option>
-              <option>Below Rs 50,000</option>
+              <option selected>Not decided yet</option>
+              <option>Under Rs 50,000</option>
               <option>Rs 50,000-Rs 1.5 lakh</option>
               <option>Rs 1.5-Rs 5 lakh</option>
-              <option>Rs 5 lakh+</option>
+              <option>Rs 5-Rs 15 lakh</option>
+              <option>Rs 15 lakh+</option>
             </select>
           </div>
           <div class="step-actions step-actions-split">
-            <button type="button" class="finder-secondary" data-prev="2">Back</button>
-            <button type="button" class="finder-primary finder-next" data-next="4">Continue</button>
+            <button type="button" class="finder-secondary" data-prev="3">Back</button>
+            <button type="button" class="finder-primary finder-next" data-next="5">Verify Contact</button>
           </div>
         </section>
 
-        <section class="finder-step" data-step="4" hidden>
-          <p class="step-label">Step 4</p>
-          <h3>Contact details</h3>
+        <section class="finder-step" data-step="5" hidden>
+          <p class="step-label">Step 5</p>
+          <h3>Verified contact</h3>
+          <p class="helper-line">Verification keeps the requirement contactable and protects the form from low-quality submissions.</p>
+
           <div class="form-field">
             <label for="full-name">Full name</label>
             <input id="full-name" name="full_name" type="text" placeholder="Full name" autocomplete="name" required />
             <span class="field-error">Enter your name.</span>
           </div>
-          <div class="form-field">
-            <label for="work-email">Email address</label>
-            <input id="work-email" name="work_email" type="email" placeholder="name@company.com" autocomplete="email" required />
-            <span class="field-error">Enter a valid email address.</span>
+
+          <div id="project-captcha-wrap" class="captcha-panel">
+            <div class="g-recaptcha" data-sitekey="6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB"></div>
+            <p id="project-captcha-error" class="captcha-error">Please complete the captcha before requesting verification.</p>
           </div>
-          <div class="form-field">
-            <label for="phone">WhatsApp number</label>
-            <input id="phone" name="phone" type="tel" placeholder="98765 43210" autocomplete="tel" required />
-            <span class="field-error">Enter a valid WhatsApp number.</span>
+
+          <div class="verification-card" id="mobile-verification-card">
+            <div class="verification-title">
+              <span>01</span>
+              <strong>Mobile number</strong>
+            </div>
+            <div class="verification-row">
+              <div class="form-field">
+                <label for="phone">WhatsApp number</label>
+                <input id="phone" name="phone" type="tel" placeholder="98765 43210" autocomplete="tel" required />
+                <span class="field-error">Enter a valid mobile number.</span>
+              </div>
+              <button type="button" class="verify-send" id="send-mobile-otp">Send mobile OTP</button>
+            </div>
+            <div class="otp-panel" id="mobile-otp-panel" hidden>
+              <p class="otp-sent" id="mobile-otp-sent"></p>
+              <div class="otp-code" data-otp-type="mobile" aria-label="Mobile OTP code">
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Mobile OTP digit 1" />
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Mobile OTP digit 2" />
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Mobile OTP digit 3" />
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Mobile OTP digit 4" />
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Mobile OTP digit 5" />
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Mobile OTP digit 6" />
+              </div>
+              <div class="otp-actions">
+                <button type="button" class="verify-code" id="verify-mobile-otp">Verify mobile code</button>
+                <button type="button" class="link-button" id="resend-mobile-otp" disabled>Resend code in 45s</button>
+                <button type="button" class="link-button" id="change-mobile">Change mobile number</button>
+              </div>
+            </div>
+            <p class="verification-status" id="mobile-status" aria-live="polite"></p>
           </div>
-          <div class="form-field">
-            <label for="preferred-contact">Preferred contact method</label>
-            <select id="preferred-contact" name="preferred_contact_method" required>
-              <option value="" disabled selected>Select method</option>
-              <option>WhatsApp</option>
-              <option>Phone</option>
-              <option>Email</option>
-            </select>
-            <span class="field-error">Select a contact method.</span>
+
+          <div class="verification-card locked" id="email-verification-card">
+            <div class="verification-title">
+              <span>02</span>
+              <strong>Email address</strong>
+            </div>
+            <p class="locked-note">Verify mobile first, then confirm your email address.</p>
+            <div class="verification-row">
+              <div class="form-field">
+                <label for="work-email">Email address</label>
+                <input id="work-email" name="work_email" type="email" placeholder="name@company.com" autocomplete="email" required disabled />
+                <span class="field-error">Enter a valid email address.</span>
+              </div>
+              <button type="button" class="verify-send" id="send-email-otp" disabled>Send email OTP</button>
+            </div>
+            <div class="otp-panel" id="email-otp-panel" hidden>
+              <p class="otp-sent" id="email-otp-sent"></p>
+              <div class="otp-code" data-otp-type="email" aria-label="Email OTP code">
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Email OTP digit 1" />
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Email OTP digit 2" />
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Email OTP digit 3" />
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Email OTP digit 4" />
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Email OTP digit 5" />
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Email OTP digit 6" />
+              </div>
+              <div class="otp-actions">
+                <button type="button" class="verify-code" id="verify-email-otp">Verify email code</button>
+                <button type="button" class="link-button" id="resend-email-otp" disabled>Resend code in 45s</button>
+                <button type="button" class="link-button" id="change-email">Change email address</button>
+              </div>
+            </div>
+            <p class="verification-status" id="email-status" aria-live="polite"></p>
           </div>
-          <button type="submit" id="finder-submit" class="finder-submit">Submit My Requirement</button>
-          <p class="form-assurance">No generic proposal. We review the requirement before recommending an engagement.</p>
+
+          <button type="submit" id="finder-submit" class="finder-submit" disabled>Submit My Requirement</button>
+          <p class="form-assurance">No generic report. No long pitch deck. We review the requirement before recommending the next move.</p>
           <p id="finder-form-error" class="form-error" aria-live="polite"></p>
           <a id="finder-error-whatsapp" href="https://wa.me/918588897488" target="_blank" rel="noopener noreferrer" class="error-whatsapp" hidden>Continue on WhatsApp instead</a>
           <div class="step-actions step-actions-back">
-            <button type="button" class="finder-secondary" data-prev="3">Back</button>
+            <button type="button" class="finder-secondary" data-prev="4">Back</button>
           </div>
         </section>
       </form>
@@ -187,7 +286,7 @@
         </div>
         <p class="finder-eyebrow">Requirement received</p>
         <h2>Your requirement has been received.</h2>
-        <p>We will review your selections and identify the most relevant next step.</p>
+        <p>We will review your context and map the most relevant next direction.</p>
         <a id="finder-whatsapp" href="https://wa.me/918588897488" target="_blank" rel="noopener noreferrer" class="finder-primary">Continue on WhatsApp</a>
       </div>
     </aside>
@@ -196,23 +295,23 @@
   <section class="finder-explain">
     <div>
       <p class="finder-eyebrow">How it works</p>
-      <h2>Tell us what needs to change. We assemble the right solution.</h2>
+      <h2>Start with the ambition. We map what should move next.</h2>
     </div>
     <div class="explain-grid">
       <article>
         <span>01</span>
-        <h3>Share the touchpoint</h3>
-        <p>Send your website or Instagram profile so the direction is grounded in what buyers already see.</p>
+        <h3>Select the priority</h3>
+        <p>Tell us what you are building, fixing, launching or trying to grow.</p>
       </article>
       <article>
         <span>02</span>
-        <h3>Select the problem</h3>
-        <p>Choose the business problem first. The page recommends capabilities from there.</p>
+        <h3>Add the context</h3>
+        <p>Share your current stage, project goals and any existing touchpoints.</p>
       </article>
       <article>
         <span>03</span>
-        <h3>Confirm the direction</h3>
-        <p>Remove, add, and submit the capability map so the next conversation starts sharper.</p>
+        <h3>Review the direction</h3>
+        <p>Confirm the recommended capability map and submit a verified requirement.</p>
       </article>
     </div>
   </section>
@@ -220,11 +319,11 @@
   <section class="finder-positioning">
     <div>
       <p class="finder-eyebrow">Not a service menu</p>
-      <h2>A guided requirement, not a list of things to buy.</h2>
+      <h2>You bring the requirement. We connect the capabilities.</h2>
     </div>
     <div>
-      <p>Most businesses do not know whether the issue is positioning, digital experience, campaign architecture, reputation, or content logic. They know what feels stuck.</p>
-      <p class="strong-line">SQUARGRAPH translates an unclear business requirement into a connected strategic, creative, and digital engagement.</p>
+      <p>You do not need to diagnose which individual service to buy. Start with the business outcome, challenge or opportunity.</p>
+      <p class="strong-line">SQUARGRAPH translates that context into a connected direction across brand strategy, creative and digital.</p>
     </div>
   </section>
 
@@ -234,7 +333,7 @@
       <h2>The strategic direction behind connected brands.</h2>
     </div>
     <div>
-      <p>SQUARGRAPH™ is a brand strategy, creative and digital studio helping businesses align how they position, communicate, appear, launch, and grow across every important touchpoint.</p>
+      <p>SQUARGRAPH™ is a brand strategy, creative and digital studio helping businesses align how they position, communicate, appear, launch and grow across every important touchpoint.</p>
       <div class="about-links">
         <a href="/">Explore SQUARGRAPH</a>
         <a href="/#capabilities">View our capabilities</a>
@@ -249,64 +348,156 @@
 (function () {
   'use strict';
 
-  var requirementMap = {
-    brand: {
-      label: 'Clarify or strengthen the brand',
-      description: 'Our positioning, identity, or communication feels unclear, inconsistent, or outdated.',
-      capabilities: ['Brand research and diagnosis', 'Positioning and brand strategy', 'Naming and messaging', 'Visual identity', 'Brand guidelines', 'Communication systems']
+  var priorityMap = {
+    newBrand: {
+      label: 'Build a new brand',
+      description: 'Create the strategic foundation before the brand appears in market.',
+      directions: ['brandFoundation', 'digitalExperience', 'launchCommunication']
+    },
+    reposition: {
+      label: 'Clarify or reposition an existing brand',
+      description: 'Make the brand easier to understand, trust and choose.',
+      directions: ['brandFoundation', 'growthDiagnosis', 'influenceReputation']
     },
     digital: {
-      label: 'Build or improve our digital presence',
-      description: 'We need a website, e-commerce experience, landing page, or stronger digital journey.',
-      capabilities: ['Website strategy', 'UX and information architecture', 'UI design', 'Website development', 'E-commerce', 'Landing pages', 'Analytics and optimisation']
+      label: 'Create or improve a website or digital experience',
+      description: 'Build a stronger digital presence, journey or conversion surface.',
+      directions: ['digitalExperience', 'brandFoundation', 'demandGrowth']
     },
     launch: {
-      label: 'Launch something new',
-      description: 'We are launching a brand, product, service, campaign, or entering a new market.',
-      capabilities: ['Launch strategy', 'Campaign architecture', 'Launch messaging', 'Landing pages', 'Content rollout planning', 'Media and measurement']
+      label: 'Launch a product, service or campaign',
+      description: 'Shape the idea, message, content and rollout around one direction.',
+      directions: ['launchCommunication', 'contentCampaigns', 'digitalExperience']
     },
     content: {
-      label: 'Create better content and campaigns',
-      description: 'We need stronger ideas, social content, films, campaigns, podcast, or production.',
-      capabilities: ['Campaign strategy and ideas', 'Social content systems', 'Ad films, TVC and DVC', 'Short-form content', 'Long-form content', 'Podcast', 'Photography and production']
+      label: 'Create stronger content and campaigns',
+      description: 'Turn creative activity into a connected communication system.',
+      directions: ['contentCampaigns', 'launchCommunication', 'brandFoundation']
     },
     demand: {
       label: 'Generate demand and enquiries',
-      description: 'We need paid media, performance marketing, lead generation, or conversion improvement.',
-      capabilities: ['Paid media', 'Performance marketing', 'Lead-generation funnels', 'Campaign landing pages', 'Search and social advertising', 'Analytics and measurement', 'Conversion journey improvement']
+      description: 'Improve how attention becomes trust, action and qualified demand.',
+      directions: ['demandGrowth', 'digitalExperience', 'contentCampaigns']
     },
     influence: {
-      label: 'Build influence and reputation',
-      description: 'We need PR, creators, personal branding, community, or reputation support.',
-      capabilities: ['Public relations', 'Creator and influencer programmes', 'Personal branding', 'Reputation strategy', 'Community management', 'Partnerships and collaborations']
+      label: 'Build influence, reputation or personal brand',
+      description: 'Create trust signals across founders, creators, PR and public perception.',
+      directions: ['influenceReputation', 'contentCampaigns', 'brandFoundation']
     },
     activation: {
-      label: 'Create an experience or activation',
-      description: 'We need events, launches, retail experiences, OOH, partnerships, or activations.',
-      capabilities: ['Experience strategy', 'Launch events', 'Retail experiences', 'OOH', 'Partnerships', 'Activation planning']
+      label: 'Create an experience, event or activation',
+      description: 'Connect physical visibility, launch moments and experiential touchpoints.',
+      directions: ['experienceVisibility', 'launchCommunication', 'contentCampaigns']
     },
-    diagnose: {
+    unsure: {
       label: 'Not sure what we need',
-      description: 'We want SQUARGRAPH to diagnose the problem first.',
-      capabilities: ['Brand research and diagnosis', 'Positioning and brand strategy', 'Website strategy', 'Communication systems', 'Analytics and measurement']
+      description: 'Let the requirement be diagnosed before execution is defined.',
+      directions: ['growthDiagnosis', 'brandFoundation', 'digitalExperience']
     }
   };
 
-  var selectedRequirements = [];
-  var selectedCapabilities = [];
+  var stageMap = {
+    idea: {
+      label: 'Idea or early planning',
+      directions: ['brandFoundation', 'growthDiagnosis']
+    },
+    preparing: {
+      label: 'Preparing to launch',
+      directions: ['launchCommunication', 'digitalExperience']
+    },
+    operating: {
+      label: 'Already operating',
+      directions: ['growthDiagnosis', 'demandGrowth']
+    },
+    growing: {
+      label: 'Growing or expanding',
+      directions: ['demandGrowth', 'influenceReputation']
+    },
+    rebuilding: {
+      label: 'Repositioning or rebuilding',
+      directions: ['brandFoundation', 'digitalExperience', 'influenceReputation']
+    }
+  };
+
+  var profileStatusMap = {
+    yes: 'Yes',
+    no: 'No',
+    development: 'In development'
+  };
+
+  var directionGroups = {
+    brandFoundation: {
+      title: 'Brand Foundation',
+      detail: 'Research, positioning, messaging and identity direction.',
+      chips: ['Research', 'Positioning', 'Messaging', 'Identity']
+    },
+    digitalExperience: {
+      title: 'Digital Experience',
+      detail: 'Website strategy, UX, design and development.',
+      chips: ['Website', 'UX', 'Design', 'Development']
+    },
+    launchCommunication: {
+      title: 'Launch & Communication',
+      detail: 'Campaign idea, content system and rollout planning.',
+      chips: ['Launch', 'Campaign', 'Rollout', 'Messaging']
+    },
+    contentCampaigns: {
+      title: 'Content & Campaigns',
+      detail: 'Content systems, ad films, podcasts, short-form, long-form and campaign communication.',
+      chips: ['Content', 'Film', 'Podcast', 'Campaigns']
+    },
+    demandGrowth: {
+      title: 'Demand & Growth',
+      detail: 'Media logic, funnels, paid acquisition and conversion feedback.',
+      chips: ['Media', 'Funnels', 'Ads', 'Feedback']
+    },
+    influenceReputation: {
+      title: 'Influence & Reputation',
+      detail: 'PR, creator ecosystems, personal brand and trust-building visibility.',
+      chips: ['PR', 'Creators', 'Reputation', 'Trust']
+    },
+    experienceVisibility: {
+      title: 'Experience & Visibility',
+      detail: 'OOH, experiential activations, physical touchpoints and high-visibility presence.',
+      chips: ['OOH', 'Activations', 'Touchpoints', 'Visibility']
+    },
+    growthDiagnosis: {
+      title: 'Growth Diagnosis',
+      detail: 'A focused diagnosis of what should move before execution begins.',
+      chips: ['Diagnosis', 'Friction', 'Signals', 'Next move']
+    }
+  };
+
+  var selectedPriorities = [];
+  var selectedStage = '';
+  var profileStatus = '';
+  var recommendedDirections = [];
+  var selectedDirections = [];
+  var decideMode = false;
   var iti = null;
   var formStarted = false;
+  var captchaLoaded = false;
+
+  var verification = {
+    mobile: { sent: false, verified: false, value: '', verifiedAt: '', resendCount: 0, timer: null, result: null },
+    email: { sent: false, verified: false, value: '', verifiedAt: '', resendCount: 0, timer: null, result: null }
+  };
 
   var form = document.getElementById('project-direction-form');
-  var requirementGrid = document.getElementById('requirement-grid');
-  var selectedCapabilitiesEl = document.getElementById('selected-capabilities');
-  var capabilityPoolEl = document.getElementById('capability-pool');
+  var priorityGrid = document.getElementById('priority-grid');
+  var stageGrid = document.getElementById('stage-grid');
+  var profileStatusGrid = document.getElementById('profile-status-grid');
+  var touchpointWrap = document.getElementById('touchpoint-wrap');
+  var selectedDirectionsEl = document.getElementById('selected-directions');
+  var directionPoolEl = document.getElementById('direction-pool');
+  var decideInput = document.getElementById('let-squargraph-decide');
   var formError = document.getElementById('finder-form-error');
   var submitBtn = document.getElementById('finder-submit');
   var successEl = document.getElementById('finder-success');
   var whatsappEl = document.getElementById('finder-whatsapp');
   var errorWhatsappEl = document.getElementById('finder-error-whatsapp');
   var phoneInput = document.getElementById('phone');
+  var emailInput = document.getElementById('work-email');
 
   function pushEvent(name, params) {
     if (window.SQ && typeof window.SQ.trackEvent === 'function') {
@@ -320,68 +511,143 @@
   function trackFormStart() {
     if (formStarted) return;
     formStarted = true;
-    pushEvent('FormStarted', { form_id: 'project-direction-form' });
+    pushEvent('project_direction_start', { form_id: 'project-direction-form' });
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, function (char) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char];
+    });
   }
 
   function unique(list) {
     return Array.from(new Set(list));
   }
 
-  function requirementLabels() {
-    return selectedRequirements.map(function (key) { return requirementMap[key].label; });
-  }
-
-  function recommendedCapabilities() {
-    var caps = [];
-    selectedRequirements.forEach(function (key) {
-      caps = caps.concat(requirementMap[key].capabilities);
-    });
-    return unique(caps);
-  }
-
-  function allCapabilities() {
-    var caps = [];
-    Object.keys(requirementMap).forEach(function (key) {
-      caps = caps.concat(requirementMap[key].capabilities);
-    });
-    return unique(caps);
-  }
-
-  function renderRequirements() {
-    requirementGrid.innerHTML = Object.keys(requirementMap).map(function (key) {
-      var item = requirementMap[key];
-      var active = selectedRequirements.indexOf(key) !== -1;
-      return '<button type="button" class="requirement-card' + (active ? ' selected' : '') + '" data-requirement="' + key + '" aria-pressed="' + active + '">' +
-        '<span>' + item.label + '</span>' +
-        '<small>' + item.description + '</small>' +
-      '</button>';
-    }).join('');
-  }
-
-  function syncCapabilities(reset) {
-    var recommended = recommendedCapabilities();
-    if (reset || selectedCapabilities.length === 0) {
-      selectedCapabilities = recommended.slice();
-    } else {
-      selectedCapabilities = unique(selectedCapabilities.concat(recommended));
+  function loadRecaptcha() {
+    if (captchaLoaded || typeof grecaptcha !== 'undefined') {
+      captchaLoaded = true;
+      return;
     }
-    renderCapabilities();
+    var script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js';
+    script.async = true;
+    script.defer = true;
+    script.onload = function () { captchaLoaded = true; };
+    document.head.appendChild(script);
+    captchaLoaded = true;
   }
 
-  function renderCapabilities() {
-    var selected = selectedCapabilities.slice();
-    selectedCapabilitiesEl.innerHTML = selected.length ? selected.map(function (cap) {
-      return '<button type="button" class="capability-chip selected" data-remove-capability="' + cap.replace(/"/g, '&quot;') + '">' +
-        '<span>' + cap + '</span><b aria-hidden="true">x</b>' +
-      '</button>';
-    }).join('') : '<p class="empty-note">Select a requirement to generate recommendations.</p>';
+  function getCaptchaToken() {
+    if (typeof grecaptcha === 'undefined' || typeof grecaptcha.getResponse !== 'function') return '';
+    return grecaptcha.getResponse();
+  }
 
-    var available = allCapabilities().filter(function (cap) {
-      return selectedCapabilities.indexOf(cap) === -1;
-    });
-    capabilityPoolEl.innerHTML = available.map(function (cap) {
-      return '<button type="button" class="capability-chip" data-add-capability="' + cap.replace(/"/g, '&quot;') + '">' + cap + '</button>';
+  function ensureCaptcha() {
+    var err = document.getElementById('project-captcha-error');
+    if (typeof grecaptcha === 'undefined') {
+      loadRecaptcha();
+      err.textContent = 'Captcha is loading. Please try again in a moment.';
+      err.style.display = 'block';
+      return false;
+    }
+    if (!getCaptchaToken()) {
+      err.textContent = 'Please complete the captcha before requesting verification.';
+      err.style.display = 'block';
+      return false;
+    }
+    err.style.display = 'none';
+    return true;
+  }
+
+  function renderPriorityCards() {
+    priorityGrid.innerHTML = Object.keys(priorityMap).map(function (key) {
+      var item = priorityMap[key];
+      var active = selectedPriorities.indexOf(key) !== -1;
+      return '<button type="button" class="requirement-card' + (active ? ' selected' : '') + '" data-priority="' + key + '" aria-pressed="' + active + '">' +
+        '<span>' + escapeHtml(item.label) + '</span>' +
+        '<small>' + escapeHtml(item.description) + '</small>' +
+      '</button>';
     }).join('');
+  }
+
+  function renderStageCards() {
+    stageGrid.innerHTML = Object.keys(stageMap).map(function (key) {
+      var item = stageMap[key];
+      var active = selectedStage === key;
+      return '<button type="button" class="choice-card' + (active ? ' selected' : '') + '" data-stage="' + key + '" aria-pressed="' + active + '">' + escapeHtml(item.label) + '</button>';
+    }).join('');
+  }
+
+  function renderProfileStatusCards() {
+    profileStatusGrid.innerHTML = Object.keys(profileStatusMap).map(function (key) {
+      var active = profileStatus === key;
+      return '<button type="button" class="choice-card' + (active ? ' selected' : '') + '" data-profile-status="' + key + '" aria-pressed="' + active + '">' + escapeHtml(profileStatusMap[key]) + '</button>';
+    }).join('');
+    touchpointWrap.hidden = profileStatus !== 'yes';
+    if (profileStatus !== 'yes') document.getElementById('touchpoint').value = '';
+  }
+
+  function calculateRecommendations() {
+    var scores = {};
+
+    function addScore(key, value) {
+      scores[key] = (scores[key] || 0) + value;
+    }
+
+    selectedPriorities.forEach(function (priorityKey, priorityIndex) {
+      priorityMap[priorityKey].directions.forEach(function (directionKey, directionIndex) {
+        addScore(directionKey, 8 - priorityIndex - directionIndex);
+      });
+    });
+
+    if (selectedStage && stageMap[selectedStage]) {
+      stageMap[selectedStage].directions.forEach(function (directionKey, directionIndex) {
+        addScore(directionKey, 4 - directionIndex);
+      });
+    }
+
+    if (!Object.keys(scores).length) addScore('growthDiagnosis', 1);
+
+    return Object.keys(scores)
+      .sort(function (a, b) { return scores[b] - scores[a]; })
+      .slice(0, 4);
+  }
+
+  function syncDirections() {
+    recommendedDirections = calculateRecommendations();
+    selectedDirections = recommendedDirections.slice();
+    renderDirections();
+    pushEvent('project_direction_recommendation_view', {
+      recommended_directions: recommendedDirections.map(function (key) { return directionGroups[key].title; })
+    });
+  }
+
+  function renderDirectionCard(key, selected) {
+    var item = directionGroups[key];
+    var chips = item.chips.map(function (chip) { return '<span>' + escapeHtml(chip) + '</span>'; }).join('');
+    var action = selected
+      ? '<button type="button" class="direction-action" data-remove-direction="' + key + '" aria-label="Remove ' + escapeHtml(item.title) + '">Remove</button>'
+      : '<button type="button" class="direction-action" data-add-direction="' + key + '">Add</button>';
+    return '<article class="direction-card">' +
+      '<div><h4>' + escapeHtml(item.title) + '</h4><p>' + escapeHtml(item.detail) + '</p></div>' +
+      '<div class="direction-chips">' + chips + '</div>' +
+      action +
+    '</article>';
+  }
+
+  function renderDirections() {
+    selectedDirectionsEl.classList.toggle('is-disabled', decideMode);
+    directionPoolEl.classList.toggle('is-disabled', decideMode);
+
+    selectedDirectionsEl.innerHTML = selectedDirections.length
+      ? selectedDirections.map(function (key) { return renderDirectionCard(key, true); }).join('')
+      : '<p class="empty-note">No capability groups selected yet.</p>';
+
+    var available = Object.keys(directionGroups).filter(function (key) {
+      return selectedDirections.indexOf(key) === -1;
+    });
+    directionPoolEl.innerHTML = available.map(function (key) { return renderDirectionCard(key, false); }).join('');
   }
 
   function setStep(nextStep) {
@@ -393,6 +659,7 @@
     document.querySelectorAll('.progress-dot').forEach(function (dot) {
       dot.classList.toggle('active', Number(dot.dataset.progress) <= Number(nextStep));
     });
+    if (Number(nextStep) === 5) loadRecaptcha();
     document.getElementById('direction-finder').scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
@@ -406,24 +673,29 @@
     var ok = true;
     document.querySelectorAll('.form-error').forEach(function (el) { el.textContent = ''; });
 
-    if (step === 1) {
-      var touchpoint = document.getElementById('touchpoint');
-      var hasTouchpoint = touchpoint.value.trim().length > 0;
-      showFieldError(touchpoint, !hasTouchpoint);
-      if (!hasTouchpoint) ok = false;
-      if (selectedRequirements.length === 0) {
-        document.getElementById('requirement-error').textContent = 'Select at least one business problem.';
+    if (step === 1 && selectedPriorities.length === 0) {
+      document.getElementById('priority-error').textContent = 'Select at least one priority.';
+      ok = false;
+    }
+
+    if (step === 2) {
+      if (!selectedStage) {
+        document.getElementById('stage-error').textContent = 'Select your current stage.';
+        ok = false;
+      }
+      if (!profileStatus) {
+        document.getElementById('profile-status-error').textContent = 'Select whether you have a live website or social profile.';
         ok = false;
       }
     }
 
-    if (step === 2 && selectedCapabilities.length === 0) {
-      document.getElementById('capability-error').textContent = 'Keep at least one recommended capability.';
+    if (step === 3 && !decideMode && selectedDirections.length === 0) {
+      document.getElementById('direction-error').textContent = 'Keep at least one direction or select Let SQUARGRAPH decide.';
       ok = false;
     }
 
-    if (step === 3) {
-      ['brand-name', 'project-goal', 'timeline'].forEach(function (id) {
+    if (step === 4) {
+      ['brand-name', 'project-goal', 'industry-category', 'timeline'].forEach(function (id) {
         var field = document.getElementById(id);
         var filled = field.value.trim().length > 0;
         showFieldError(field, !filled);
@@ -431,25 +703,290 @@
       });
     }
 
-    if (step === 4) {
-      ['full-name', 'preferred-contact'].forEach(function (id) {
-        var field = document.getElementById(id);
-        var filled = field.value.trim().length > 0;
-        showFieldError(field, !filled);
-        if (!filled) ok = false;
-      });
-      var email = document.getElementById('work-email');
-      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
-      showFieldError(email, !emailOk);
-      if (!emailOk) ok = false;
+    if (step === 5) {
+      var name = document.getElementById('full-name');
+      var nameOk = name.value.trim().length > 0;
+      showFieldError(name, !nameOk);
+      if (!nameOk) ok = false;
 
       var phoneOk = phoneInput.value.trim().length > 0;
       if (iti && typeof iti.isValidNumber === 'function') phoneOk = phoneOk && iti.isValidNumber();
       showFieldError(phoneInput, !phoneOk);
       if (!phoneOk) ok = false;
+
+      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+      showFieldError(emailInput, !emailOk);
+      if (!emailOk) ok = false;
+
+      if (!verification.mobile.verified || !verification.email.verified) {
+        formError.textContent = 'Please verify mobile and email before submitting.';
+        ok = false;
+      }
+
+      if (!ensureCaptcha()) ok = false;
     }
 
     return ok;
+  }
+
+  function getPhoneValue() {
+    if (iti && typeof iti.getNumber === 'function') return iti.getNumber();
+    return phoneInput.value.trim();
+  }
+
+  function maskPhone(value) {
+    var digits = String(value).replace(/\D/g, '');
+    if (digits.length <= 4) return value;
+    var last = digits.slice(-3);
+    var first = digits.slice(0, Math.min(4, digits.length - 3));
+    return '+' + first + '•••••' + last;
+  }
+
+  function maskEmail(value) {
+    var parts = String(value).split('@');
+    if (parts.length !== 2) return value;
+    var local = parts[0];
+    return local.slice(0, 2) + '•••@' + parts[1];
+  }
+
+  function sbAuthRequest(path, payload) {
+    var cfg = window.SQ.config;
+    return fetch(cfg.supabaseUrl + path, {
+      method: 'POST',
+      headers: {
+        apikey: cfg.supabaseKey,
+        Authorization: 'Bearer ' + cfg.supabaseKey,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (body) {
+        if (!res.ok) throw new Error(body.error_description || body.msg || body.message || 'Verification request failed.');
+        return body;
+      });
+    });
+  }
+
+  function otpInputs(type) {
+    return Array.from(document.querySelectorAll('.otp-code[data-otp-type="' + type + '"] input'));
+  }
+
+  function clearOtpInputs(type) {
+    otpInputs(type).forEach(function (input) { input.value = ''; });
+  }
+
+  function collectOtp(type) {
+    return otpInputs(type).map(function (input) { return input.value; }).join('');
+  }
+
+  function setOtpInputsDisabled(type, disabled) {
+    otpInputs(type).forEach(function (input) { input.disabled = disabled; });
+  }
+
+  function startResendTimer(type) {
+    var state = verification[type];
+    var btn = document.getElementById(type === 'mobile' ? 'resend-mobile-otp' : 'resend-email-otp');
+    var seconds = 45;
+    clearInterval(state.timer);
+    btn.disabled = true;
+    btn.textContent = 'Resend code in ' + seconds + 's';
+    state.timer = setInterval(function () {
+      seconds -= 1;
+      if (seconds <= 0) {
+        clearInterval(state.timer);
+        if (state.resendCount >= 3) {
+          btn.disabled = true;
+          btn.textContent = 'Resend limit reached';
+          return;
+        }
+        btn.disabled = false;
+        btn.textContent = 'Resend code';
+        return;
+      }
+      btn.textContent = 'Resend code in ' + seconds + 's';
+    }, 1000);
+  }
+
+  function updateSubmitState() {
+    submitBtn.disabled = !(verification.mobile.verified && verification.email.verified);
+  }
+
+  function setVerificationStatus(type, message, mode) {
+    var status = document.getElementById(type === 'mobile' ? 'mobile-status' : 'email-status');
+    status.textContent = message || '';
+    status.classList.toggle('verified', mode === 'verified');
+    status.classList.toggle('error', mode === 'error');
+  }
+
+  function resetVerification(type, keepValue) {
+    var state = verification[type];
+    state.sent = false;
+    state.verified = false;
+    state.verifiedAt = '';
+    state.result = null;
+    state.resendCount = 0;
+    clearInterval(state.timer);
+    clearOtpInputs(type);
+    setOtpInputsDisabled(type, false);
+    document.getElementById(type === 'mobile' ? 'mobile-otp-panel' : 'email-otp-panel').hidden = true;
+    setVerificationStatus(type, '', '');
+
+    if (type === 'mobile') {
+      phoneInput.readOnly = false;
+      document.getElementById('send-mobile-otp').disabled = false;
+      document.getElementById('send-mobile-otp').textContent = 'Send mobile OTP';
+      resetVerification('email', false);
+      document.getElementById('email-verification-card').classList.add('locked');
+      emailInput.disabled = true;
+      document.getElementById('send-email-otp').disabled = true;
+      if (!keepValue) phoneInput.value = '';
+    } else {
+      emailInput.readOnly = false;
+      document.getElementById('send-email-otp').textContent = 'Send email OTP';
+      emailInput.disabled = !verification.mobile.verified;
+      document.getElementById('send-email-otp').disabled = !verification.mobile.verified;
+      if (!keepValue) emailInput.value = '';
+    }
+
+    updateSubmitState();
+  }
+
+  function enableEmailVerification() {
+    document.getElementById('email-verification-card').classList.remove('locked');
+    emailInput.disabled = false;
+    document.getElementById('send-email-otp').disabled = false;
+  }
+
+  async function sendOtp(type, isResend) {
+    var state = verification[type];
+    var isMobile = type === 'mobile';
+    var input = isMobile ? phoneInput : emailInput;
+    var sendBtn = document.getElementById(isMobile ? 'send-mobile-otp' : 'send-email-otp');
+    var panel = document.getElementById(isMobile ? 'mobile-otp-panel' : 'email-otp-panel');
+    var sentLine = document.getElementById(isMobile ? 'mobile-otp-sent' : 'email-otp-sent');
+
+    if (!ensureCaptcha()) return;
+
+    if (isResend && state.resendCount >= 3) {
+      setVerificationStatus(type, 'Maximum resend attempts reached. Change the ' + (isMobile ? 'mobile number' : 'email address') + ' or continue on WhatsApp.', 'error');
+      return;
+    }
+
+    var value = isMobile ? getPhoneValue() : input.value.trim();
+    var valid = value.length > 0;
+    if (isMobile && iti && typeof iti.isValidNumber === 'function') valid = iti.isValidNumber();
+    if (!isMobile) valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    showFieldError(input, !valid);
+    if (!valid) return;
+
+    if (isResend) state.resendCount += 1;
+
+    sendBtn.disabled = true;
+    sendBtn.textContent = isResend ? 'Resending...' : 'Sending...';
+    setVerificationStatus(type, '', '');
+
+    try {
+      var payload = isMobile
+        ? { phone: value, channel: 'whatsapp', create_user: true }
+        : { email: value, create_user: true };
+      await sbAuthRequest('/auth/v1/otp', payload);
+      state.sent = true;
+      state.value = value;
+      panel.hidden = false;
+      sentLine.textContent = 'OTP sent to ' + (isMobile ? maskPhone(value) : maskEmail(value));
+      sendBtn.textContent = isMobile ? 'OTP sent' : 'Email OTP sent';
+      input.readOnly = true;
+      clearOtpInputs(type);
+      startResendTimer(type);
+      setTimeout(function () {
+        var first = otpInputs(type)[0];
+        if (first) first.focus();
+      }, 80);
+      pushEvent('project_direction_otp_request', {
+        method: type,
+        resend: Boolean(isResend)
+      });
+    } catch (err) {
+      sendBtn.disabled = false;
+      sendBtn.textContent = isMobile ? 'Send mobile OTP' : 'Send email OTP';
+      setVerificationStatus(type, err.message || 'OTP could not be sent. Please try again.', 'error');
+    }
+  }
+
+  async function verifyOtp(type) {
+    var state = verification[type];
+    var isMobile = type === 'mobile';
+    var token = collectOtp(type);
+    var btn = document.getElementById(isMobile ? 'verify-mobile-otp' : 'verify-email-otp');
+
+    if (!/^\d{6}$/.test(token)) {
+      setVerificationStatus(type, 'Enter the six-digit OTP.', 'error');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Verifying...';
+    setVerificationStatus(type, '', '');
+
+    try {
+      var payload = isMobile
+        ? { type: 'sms', phone: state.value, token: token }
+        : { type: 'email', email: state.value, token: token };
+      var result = await sbAuthRequest('/auth/v1/verify', payload);
+      state.verified = true;
+      state.verifiedAt = new Date().toISOString();
+      state.result = result;
+      setOtpInputsDisabled(type, true);
+      btn.textContent = isMobile ? 'Mobile verified' : 'Email verified';
+      setVerificationStatus(type, (isMobile ? '✓ Mobile verified' : '✓ Email verified'), 'verified');
+      if (isMobile) enableEmailVerification();
+      updateSubmitState();
+      pushEvent('project_direction_otp_verify', { method: type });
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = isMobile ? 'Verify mobile code' : 'Verify email code';
+      setVerificationStatus(type, err.message || 'OTP verification failed. Please check the code.', 'error');
+    }
+  }
+
+  function setupOtpInputHandlers(type) {
+    var inputs = otpInputs(type);
+    inputs.forEach(function (input, index) {
+      input.addEventListener('input', function () {
+        var digits = input.value.replace(/\D/g, '');
+        if (digits.length > 1) {
+          digits.slice(0, inputs.length).split('').forEach(function (digit, offset) {
+            var target = inputs[index + offset];
+            if (target) target.value = digit;
+          });
+        } else {
+          input.value = digits;
+        }
+        if (input.value && inputs[index + 1]) inputs[index + 1].focus();
+      });
+
+      input.addEventListener('keydown', function (event) {
+        if (event.key === 'Backspace' && !input.value && inputs[index - 1]) inputs[index - 1].focus();
+      });
+
+      input.addEventListener('paste', function (event) {
+        event.preventDefault();
+        var digits = (event.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
+        digits.split('').forEach(function (digit, digitIndex) {
+          if (inputs[digitIndex]) inputs[digitIndex].value = digit;
+        });
+        var target = inputs[Math.min(digits.length, inputs.length) - 1];
+        if (target) target.focus();
+      });
+    });
+  }
+
+  function priorityLabels() {
+    return selectedPriorities.map(function (key) { return priorityMap[key].label; });
+  }
+
+  function directionTitles(keys) {
+    return keys.map(function (key) { return directionGroups[key].title; });
   }
 
   function getUtmData() {
@@ -464,18 +1001,26 @@
 
   function buildPayload() {
     var utm = getUtmData();
-    var leadId = 'PDF-' + Date.now().toString(36).toUpperCase();
-    var requirements = requirementLabels();
-    var selectedCaps = selectedCapabilities.slice();
+    var leadId = 'PD-' + Date.now().toString(36).toUpperCase();
+    var selectedDirectionTitles = decideMode ? ['Let SQUARGRAPH decide'] : directionTitles(selectedDirections);
+    var recommendedDirectionTitles = directionTitles(recommendedDirections);
+    var touchpoint = document.getElementById('touchpoint').value.trim() || 'Not provided';
     var investment = document.getElementById('investment-range').value || 'Not decided yet';
+    var phone = getPhoneValue();
+    var email = emailInput.value.trim();
     var message = [
       'Lead ID: ' + leadId,
-      'Website or Instagram: ' + document.getElementById('touchpoint').value.trim(),
-      'Primary requirements: ' + requirements.join(', '),
-      'Recommended capabilities: ' + recommendedCapabilities().join(', '),
-      'Selected capabilities: ' + selectedCaps.join(', '),
+      'Project Direction priorities: ' + priorityLabels().join(', '),
+      'Current stage: ' + (stageMap[selectedStage] ? stageMap[selectedStage].label : ''),
+      'Live website/social profile: ' + (profileStatusMap[profileStatus] || ''),
+      'Website, Instagram or relevant link: ' + touchpoint,
+      'Recommended direction: ' + recommendedDirectionTitles.join(', '),
+      'Selected direction: ' + selectedDirectionTitles.join(', '),
+      'Direction mode: ' + (decideMode ? 'Let SQUARGRAPH decide' : 'User confirmed capability map'),
       'Project context: ' + document.getElementById('project-goal').value.trim(),
-      'Preferred contact method: ' + document.getElementById('preferred-contact').value,
+      'Industry/category: ' + document.getElementById('industry-category').value.trim(),
+      'Mobile verified at: ' + verification.mobile.verifiedAt,
+      'Email verified at: ' + verification.email.verifiedAt,
       'Lead source: project-direction',
       'Campaign name: ' + utm.campaign_name,
       'UTM source: ' + utm.utm_source,
@@ -486,31 +1031,35 @@
     return {
       name: document.getElementById('full-name').value.trim(),
       company: document.getElementById('brand-name').value.trim(),
-      email: document.getElementById('work-email').value.trim(),
-      phone: iti ? iti.getNumber() : phoneInput.value.trim(),
+      email: email,
+      phone: phone,
       service: 'Project Direction',
       status: 'New',
-      reference: document.getElementById('touchpoint').value.trim(),
+      reference: touchpoint === 'Not provided' ? '' : touchpoint,
       budget: investment,
       timeline: document.getElementById('timeline').value,
       message: message,
       source_url: window.location.href,
+      industry: document.getElementById('industry-category').value.trim(),
       created_at: new Date().toISOString()
     };
   }
 
   function finishSuccess(data) {
-    var requirements = requirementLabels().join(', ');
-    var msg = "Hi, I've submitted a requirement through SQUARGRAPH Project Direction for " + data.company + ". My priorities are " + requirements + ".";
+    var msg = "Hi, I've submitted a Project Direction requirement for " + data.company + ". I'd like to share some additional context.";
     whatsappEl.href = 'https://wa.me/' + window.SQ.config.whatsappNumber + '?text=' + encodeURIComponent(msg);
     form.hidden = true;
     successEl.hidden = false;
     successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  renderRequirements();
-  renderCapabilities();
-  pushEvent('LandingPageView', { page_name: 'Project Direction' });
+  renderPriorityCards();
+  renderStageCards();
+  renderProfileStatusCards();
+  renderDirections();
+  setupOtpInputHandlers('mobile');
+  setupOtpInputHandlers('email');
+  pushEvent('project_direction_view', { page_name: 'Project Direction' });
 
   if (window.SQ && window.SQ.initITI) {
     window.SQ.initITI('phone').then(function (instance) {
@@ -518,54 +1067,84 @@
     }).catch(function () {});
   }
 
+  var captchaObserver = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) {
+      loadRecaptcha();
+      captchaObserver.disconnect();
+    }
+  }, { rootMargin: '200px' });
+  captchaObserver.observe(document.getElementById('project-captcha-wrap'));
+
   form.addEventListener('input', trackFormStart, { once: true });
   form.addEventListener('click', trackFormStart, { once: true });
 
-  requirementGrid.addEventListener('click', function (e) {
-    var btn = e.target.closest('[data-requirement]');
+  priorityGrid.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-priority]');
     if (!btn) return;
-    var key = btn.dataset.requirement;
-    var exists = selectedRequirements.indexOf(key) !== -1;
-    document.getElementById('requirement-error').textContent = '';
+    var key = btn.dataset.priority;
+    var exists = selectedPriorities.indexOf(key) !== -1;
+    document.getElementById('priority-error').textContent = '';
 
     if (exists) {
-      selectedRequirements = selectedRequirements.filter(function (item) { return item !== key; });
+      selectedPriorities = selectedPriorities.filter(function (item) { return item !== key; });
     } else {
-      if (selectedRequirements.length >= 3) {
-        document.getElementById('requirement-error').textContent = 'Choose up to 3 priorities for a sharper recommendation.';
+      if (selectedPriorities.length >= 3) {
+        document.getElementById('priority-error').textContent = 'Choose up to 3 priorities for a sharper recommendation.';
         return;
       }
-      selectedRequirements.push(key);
-      pushEvent('RequirementSelected', {
-        requirement: requirementMap[key].label,
-        selected_count: selectedRequirements.length
+      selectedPriorities.push(key);
+      pushEvent('project_direction_priority_select', {
+        priority: priorityMap[key].label,
+        selected_count: selectedPriorities.length
       });
     }
 
-    renderRequirements();
-    syncCapabilities(true);
+    renderPriorityCards();
   });
 
-  selectedCapabilitiesEl.addEventListener('click', function (e) {
-    var btn = e.target.closest('[data-remove-capability]');
+  stageGrid.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-stage]');
     if (!btn) return;
-    var cap = btn.dataset.removeCapability;
-    selectedCapabilities = selectedCapabilities.filter(function (item) { return item !== cap; });
-    renderCapabilities();
+    selectedStage = btn.dataset.stage;
+    document.getElementById('stage-error').textContent = '';
+    renderStageCards();
   });
 
-  capabilityPoolEl.addEventListener('click', function (e) {
-    var btn = e.target.closest('[data-add-capability]');
+  profileStatusGrid.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-profile-status]');
     if (!btn) return;
-    selectedCapabilities = unique(selectedCapabilities.concat([btn.dataset.addCapability]));
-    renderCapabilities();
+    profileStatus = btn.dataset.profileStatus;
+    document.getElementById('profile-status-error').textContent = '';
+    renderProfileStatusCards();
+  });
+
+  decideInput.addEventListener('change', function () {
+    decideMode = decideInput.checked;
+    document.getElementById('direction-error').textContent = '';
+    renderDirections();
+  });
+
+  selectedDirectionsEl.addEventListener('click', function (e) {
+    if (decideMode) return;
+    var btn = e.target.closest('[data-remove-direction]');
+    if (!btn) return;
+    selectedDirections = selectedDirections.filter(function (item) { return item !== btn.dataset.removeDirection; });
+    renderDirections();
+  });
+
+  directionPoolEl.addEventListener('click', function (e) {
+    if (decideMode) return;
+    var btn = e.target.closest('[data-add-direction]');
+    if (!btn) return;
+    selectedDirections = unique(selectedDirections.concat([btn.dataset.addDirection]));
+    renderDirections();
   });
 
   document.querySelectorAll('[data-next]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var current = Number(btn.closest('.finder-step').dataset.step);
       if (!validateStep(current)) return;
-      if (current === 1) syncCapabilities(false);
+      if (current === 2) syncDirections();
       setStep(btn.dataset.next);
     });
   });
@@ -579,8 +1158,6 @@
   form.querySelectorAll('input, textarea, select').forEach(function (field) {
     field.addEventListener('input', function () {
       showFieldError(field, false);
-      var err = field.closest('.finder-step') ? field.closest('.finder-step').querySelector('.form-error') : null;
-      if (err) err.textContent = '';
       if (formError) formError.textContent = '';
       if (errorWhatsappEl) errorWhatsappEl.hidden = true;
     });
@@ -591,14 +1168,28 @@
     });
   });
 
+  phoneInput.addEventListener('input', function () {
+    if (verification.mobile.verified || verification.mobile.sent) resetVerification('mobile', true);
+  });
+
+  emailInput.addEventListener('input', function () {
+    if (verification.email.verified || verification.email.sent) resetVerification('email', true);
+  });
+
+  document.getElementById('send-mobile-otp').addEventListener('click', function () { sendOtp('mobile', false); });
+  document.getElementById('send-email-otp').addEventListener('click', function () { sendOtp('email', false); });
+  document.getElementById('resend-mobile-otp').addEventListener('click', function () { sendOtp('mobile', true); });
+  document.getElementById('resend-email-otp').addEventListener('click', function () { sendOtp('email', true); });
+  document.getElementById('verify-mobile-otp').addEventListener('click', function () { verifyOtp('mobile'); });
+  document.getElementById('verify-email-otp').addEventListener('click', function () { verifyOtp('email'); });
+  document.getElementById('change-mobile').addEventListener('click', function () { resetVerification('mobile', true); phoneInput.focus(); });
+  document.getElementById('change-email').addEventListener('click', function () { resetVerification('email', true); emailInput.focus(); });
+
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     if (document.getElementById('finder-website').value) return;
     formError.textContent = '';
-    if (!validateStep(4)) {
-      formError.textContent = 'Please complete the required fields.';
-      return;
-    }
+    if (!validateStep(5)) return;
 
     var data = buildPayload();
     submitBtn.disabled = true;
@@ -607,15 +1198,14 @@
 
     try {
       await window.__sb.from(window.SQ.config.supabaseTable).insert([data]);
-      pushEvent('LeadSubmitted', {
+      pushEvent('form_contact_submit', {
         form_id: 'project-direction-form',
-        primary_requirements: requirementLabels(),
-        recommended_capabilities: recommendedCapabilities(),
-        selected_capabilities: selectedCapabilities,
+        lead_source: 'project-direction',
+        priorities: priorityLabels(),
+        recommended_directions: directionTitles(recommendedDirections),
+        selected_directions: decideMode ? ['Let SQUARGRAPH decide'] : directionTitles(selectedDirections),
         timeline: data.timeline,
         investment_range: data.budget,
-        preferred_contact_method: document.getElementById('preferred-contact').value,
-        lead_source: 'project-direction',
         campaign_name: getUtmData().campaign_name
       });
       if (typeof window.fbq === 'function') {
@@ -630,7 +1220,7 @@
       submitBtn.textContent = 'Submit My Requirement';
       formError.textContent = 'Submission failed. Please try again or continue on WhatsApp.';
       if (errorWhatsappEl) {
-        var fallbackMsg = "Hi, I tried submitting a requirement through SQUARGRAPH Project Direction for " + data.company + ". My priorities are " + requirementLabels().join(', ') + ".";
+        var fallbackMsg = "Hi, I tried submitting a Project Direction requirement for " + data.company + ". My priorities are " + priorityLabels().join(', ') + ".";
         errorWhatsappEl.href = 'https://wa.me/' + window.SQ.config.whatsappNumber + '?text=' + encodeURIComponent(fallbackMsg);
         errorWhatsappEl.hidden = false;
       }
@@ -639,14 +1229,14 @@
 
   if (errorWhatsappEl) {
     errorWhatsappEl.addEventListener('click', function () {
-      pushEvent('WhatsAppClicked', {
+      pushEvent('whatsapp_click', {
         source: 'project_direction_error'
       });
     });
   }
 
   whatsappEl.addEventListener('click', function () {
-    pushEvent('WhatsAppClicked', {
+    pushEvent('whatsapp_click', {
       source: 'project_direction_success'
     });
   });
