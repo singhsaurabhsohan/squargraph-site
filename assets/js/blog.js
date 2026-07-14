@@ -32,6 +32,10 @@
         return;
       }
       emailEl.style.borderColor = '';
+      if (window.SQOtp && !window.SQOtp.isEmailVerified(emailEl.value.trim())) {
+        window.SQOtp.verifyEmail(emailEl.value.trim());
+        return;
+      }
       var btn = nlForm.querySelector('.newsletter-btn');
       btn.textContent = 'Subscribed ✓';
       btn.style.background = '#1fad4e';
