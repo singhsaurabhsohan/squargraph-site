@@ -1487,6 +1487,58 @@ body.home #contact {
   width: 100%;
   height: 100%;
   border: 0;
+  pointer-events: none;
+}
+
+.brand-film-audio {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 50%;
+  background: rgba(17, 19, 15, .84);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .22);
+  color: #fff;
+  cursor: pointer;
+  opacity: .72;
+  transition: background-color .2s ease, border-color .2s ease, opacity .2s ease;
+}
+
+.brand-film-audio.is-ready {
+  opacity: 1;
+}
+
+.brand-film-audio:disabled {
+  cursor: wait;
+}
+
+.brand-film-audio:hover,
+.brand-film-audio:focus-visible {
+  background: rgba(17, 19, 15, .96);
+  border-color: rgba(255, 255, 255, .5);
+}
+
+.brand-film-audio:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.brand-film-audio-playing {
+  display: none;
+}
+
+.brand-film-audio[aria-pressed="true"] .brand-film-audio-muted {
+  display: none;
+}
+
+.brand-film-audio[aria-pressed="true"] .brand-film-audio-playing {
+  display: block;
 }
 
 .work-strip-group + .work-strip-group {
