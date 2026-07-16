@@ -1484,16 +1484,8 @@ body.home #contact {
   box-shadow: 0 8px 24px rgba(0, 0, 0, .22);
   color: #fff;
   cursor: pointer;
-  opacity: .72;
-  transition: background-color .2s ease, border-color .2s ease, opacity .2s ease;
-}
-
-.brand-film-audio.is-ready {
   opacity: 1;
-}
-
-.brand-film-audio:disabled {
-  cursor: wait;
+  transition: background-color .2s ease, border-color .2s ease, opacity .2s ease;
 }
 
 .brand-film-audio:hover,
