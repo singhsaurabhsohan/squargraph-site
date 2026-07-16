@@ -1428,6 +1428,67 @@ body.home #contact {
   line-height: 1.65;
 }
 
+.brand-film-feature {
+  display: grid;
+  grid-template-columns: minmax(260px, .62fr) minmax(0, 1.38fr);
+  gap: clamp(22px, 3vw, 44px);
+  align-items: center;
+  margin-top: clamp(34px, 5vw, 72px);
+  padding: clamp(18px, 2.4vw, 34px);
+  background: #11130F;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 8px;
+  box-shadow: 0 22px 58px rgba(26, 23, 20, .16);
+  color: #F8F6F1;
+}
+
+.brand-film-copy {
+  max-width: 440px;
+}
+
+.brand-film-kicker {
+  color: rgba(248, 246, 241, .6);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  margin: 0 0 18px;
+  text-transform: uppercase;
+}
+
+.brand-film-copy h3 {
+  color: #fff;
+  font-size: clamp(24px, 2.45vw, 42px);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.08;
+  margin: 0;
+}
+
+.brand-film-copy p:not(.brand-film-kicker) {
+  color: rgba(248, 246, 241, .68);
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 18px 0 0;
+}
+
+.brand-film-player {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #050605;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 8px;
+}
+
+.brand-film-player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .work-strip-group + .work-strip-group {
   margin-top: 42px;
 }
@@ -2734,6 +2795,14 @@ body.home #contact {
   .section-lead {
     margin-top: -24px;
   }
+
+  .brand-film-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-film-copy {
+    max-width: 620px;
+  }
 }
 
 @media (max-width: 720px) {
@@ -2868,6 +2937,25 @@ body.home #contact {
 
   .service-card h3 {
     margin: 16px 0 4px;
+  }
+
+  .brand-film-feature {
+    gap: 20px;
+    margin-top: 28px;
+    padding: 18px;
+  }
+
+  .brand-film-kicker {
+    margin-bottom: 14px;
+  }
+
+  .brand-film-copy h3 {
+    font-size: 26px;
+  }
+
+  .brand-film-copy p:not(.brand-film-kicker) {
+    font-size: 14px;
+    margin-top: 14px;
   }
 
   .film-card {
