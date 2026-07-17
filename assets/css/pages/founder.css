@@ -84,15 +84,19 @@
 
 .founder-profile-portrait {
   margin: 0;
+  width: 100%;
+  max-width: 520px;
+  justify-self: end;
 }
 
 .founder-profile-portrait img {
   display: block;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  object-position: center top;
-  border-radius: 8px;
+  object-position: center;
+  border-radius: 50%;
 }
 
 .founder-profile-portrait figcaption {
@@ -350,7 +354,8 @@
   }
 
   .founder-profile-portrait {
-    max-width: 620px;
+    max-width: 520px;
+    justify-self: start;
   }
 
   .founder-section-grid {
