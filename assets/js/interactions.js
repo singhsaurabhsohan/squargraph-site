@@ -118,7 +118,7 @@ window.SQ.initAIChat = function () {
     panel.setAttribute('aria-hidden', open ? 'false' : 'true');
     if (open && !opened) {
       opened = true;
-      addMsg('bot', 'This is the SQUARGRAPH™ intelligence layer. Ask me about our work, our process, or which engagement is right for your situation.');
+      addMsg('bot', 'Ask me about SQUARGRAPH™, Saurabh, our capabilities, engagements, process, policies, or partner network.');
     }
   };
 
@@ -146,7 +146,13 @@ window.SQ.initAIChat = function () {
       var res = await fetch(window.SQ.config.aiChatEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history })
+        body: JSON.stringify({
+          messages: history,
+          page: {
+            path: window.location.pathname,
+            title: document.title
+          }
+        })
       });
       var data = await res.json();
       if (loadEl) loadEl.remove();
