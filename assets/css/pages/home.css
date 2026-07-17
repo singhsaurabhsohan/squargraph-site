@@ -1283,6 +1283,10 @@ body.home #contact {
   width: 100%;
 }
 
+.founder-section {
+  background: #F9F5F0;
+}
+
 .engagement-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1903,8 +1907,8 @@ body.home #contact {
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 50%;
-  background: #fff;
-  box-shadow: var(--home-shadow);
+  background: transparent;
+  box-shadow: none;
 }
 
 .founder-portrait img {
