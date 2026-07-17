@@ -229,22 +229,50 @@
     return base + '.' + extension;
   }
 
+  function storageAccessToken() {
+    if (!window.SQOtp || typeof window.SQOtp.getAccessToken !== 'function') return '';
+    return window.SQOtp.getAccessToken() || '';
+  }
+
+  async function createDeckReviewUrl(objectPath, accessToken) {
+    if (!objectPath || !accessToken) return null;
+    var cfg = window.SQ.config;
+    var response = await fetch(cfg.supabaseUrl + '/storage/v1/object/sign/partner-capability-decks/' + encodeURI(objectPath), {
+      method: 'POST',
+      headers: {
+        apikey: cfg.supabaseKey,
+        Authorization: 'Bearer ' + accessToken,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ expiresIn: 31536000 })
+    });
+    if (!response.ok) return null;
+    var data = await response.json().catch(function () { return {}; });
+    var signedPath = data.signedURL || data.signedUrl || '';
+    if (!signedPath) return null;
+    if (signedPath.indexOf('http') === 0) return signedPath;
+    if (signedPath.indexOf('/storage/v1/') === 0) return cfg.supabaseUrl + signedPath;
+    return cfg.supabaseUrl + '/storage/v1' + (signedPath.charAt(0) === '/' ? signedPath : '/' + signedPath);
+  }
+
   async function uploadDeck(file) {
     if (!file) return null;
     var cfg = window.SQ.config;
+    var accessToken = storageAccessToken();
     var objectPath = new Date().toISOString().slice(0, 10) + '/' + uniqueId() + '-' + safeFileName(file.name);
     var response = await fetch(cfg.supabaseUrl + '/storage/v1/object/partner-capability-decks/' + encodeURI(objectPath), {
       method: 'POST',
       headers: {
         apikey: cfg.supabaseKey,
-        Authorization: 'Bearer ' + cfg.supabaseKey,
+        Authorization: 'Bearer ' + (accessToken || cfg.supabaseKey),
         'Content-Type': file.type || 'application/octet-stream',
         'x-upsert': 'false'
       },
       body: file
     });
     if (!response.ok) throw new Error('deck_upload_unavailable');
-    return 'partner-capability-decks/' + objectPath;
+    var reviewUrl = await createDeckReviewUrl(objectPath, accessToken);
+    return reviewUrl || 'partner-capability-decks/' + objectPath;
   }
 
   async function insertPartnerApplication(payload) {
@@ -283,7 +311,8 @@
       showreel_url: payload.showreel_url,
       case_study_url: payload.case_study_url,
       additional_notes: payload.additional_notes,
-      capability_deck_file: deckFileName || null
+      capability_deck_file: deckFileName || null,
+      capability_deck_url: payload.capability_deck_url || null
     };
     return {
       name: payload.full_name,

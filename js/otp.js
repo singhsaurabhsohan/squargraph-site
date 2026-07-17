@@ -16,6 +16,7 @@
     sending: false,
     verified: false,
     verifiedAt: '',
+    accessToken: '',
     resendCount: 0,
     timer: null,
     debounce: null,
@@ -168,6 +169,7 @@
     state.sending = false;
     state.verified = false;
     state.verifiedAt = '';
+    state.accessToken = '';
     state.resendCount = 0;
     if (!input) input = state.input;
     if (input) {
@@ -253,9 +255,10 @@
     setStatus(panel, '', '');
 
     try {
-      await verifyEmailOtp(state.email || input.value.trim(), token);
+      var verification = await verifyEmailOtp(state.email || input.value.trim(), token);
       state.verified = true;
       state.verifiedAt = new Date().toISOString();
+      state.accessToken = verification.access_token || (verification.session && verification.session.access_token) || '';
       clearInterval(state.timer);
       otpInputs(panel).forEach(function (otpInput) { otpInput.disabled = true; });
       input.classList.add('sq-inline-otp-field-verified');
@@ -376,6 +379,9 @@
     },
     isBothVerified: function () {
       return this.isEmailVerified();
+    },
+    getAccessToken: function () {
+      return state.verified ? state.accessToken : '';
     },
     verifyEmail: function (email) {
       var input = findInput(email);

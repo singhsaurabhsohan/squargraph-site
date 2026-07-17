@@ -88,20 +88,27 @@ set public = excluded.public,
     file_size_limit = excluded.file_size_limit,
     allowed_mime_types = excluded.allowed_mime_types;
 
-do $$
-begin
-  if not exists (
-    select 1
-    from pg_policies
-    where schemaname = 'storage'
-      and tablename = 'objects'
-      and policyname = 'Public partner capability decks can be uploaded'
-  ) then
-    create policy "Public partner capability decks can be uploaded"
-      on storage.objects
-      for insert
-      to anon, authenticated
-      with check (bucket_id = 'partner-capability-decks');
-  end if;
-end
-$$;
+drop policy if exists "Public partner capability decks can be uploaded" on storage.objects;
+drop policy if exists "Verified partner capability decks can be uploaded" on storage.objects;
+drop policy if exists "Verified partners can review their capability decks" on storage.objects;
+
+create policy "Verified partner capability decks can be uploaded"
+  on storage.objects
+  for insert
+  to authenticated
+  with check (
+    bucket_id = 'partner-capability-decks'
+    and owner_id = (select auth.uid()::text)
+  );
+
+create policy "Verified partners can review their capability decks"
+  on storage.objects
+  for select
+  to authenticated
+  using (
+    bucket_id = 'partner-capability-decks'
+    and owner_id = (select auth.uid()::text)
+  );
+
+comment on column public.partner_applications.capability_deck_url is
+  'One-year signed review URL for the private capability deck object.';
