@@ -72,10 +72,11 @@
 </script>
     <link rel="stylesheet" href="/assets/vendor/intl-tel-input/css/intlTelInput.css"/>
     <script src="/assets/vendor/intl-tel-input/js/intlTelInput.min.js" defer></script>
-    <link rel="stylesheet" href="/assets/css/pages/audit.css?v=20260717-forest1">
-  <link rel="stylesheet" href="/assets/css/site-refresh.css?v=20260717-forest1" />
+    <link rel="stylesheet" href="/assets/css/pages/audit.css?v=20260717-forms1">
+  <link rel="stylesheet" href="/assets/css/site-refresh.css?v=20260717-forms1" />
+  <link rel="stylesheet" href="/assets/css/pages/audit-redesign.css?v=20260717-forms1" />
 </head>
-  <body>
+  <body class="audit-page">
   
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -244,7 +245,7 @@
               </div>
               <div class="field">
     <label>Country &amp; City</label>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;">
+    <div class="audit-location-grid">
       <div>
         <select id="audit-country" aria-label="Country" name="country" autocomplete="country" class="audit-select">
           <option value="" disabled selected>Country</option>
@@ -261,7 +262,7 @@
           <option value="Other">Other</option>
         </select>
       </div>
-      <div style="position:relative;">
+      <div class="audit-city-field">
         <select id="audit-city" aria-label="City" name="city" class="audit-select" style="display:none;">
           <option value="" disabled selected>Select city</option>
         </select>
@@ -801,6 +802,7 @@
       const btnSubmit     = document.getElementById('btn-submit');
       const formCard      = document.getElementById('form-card');
       const successScreen = document.getElementById('success-screen');
+      const privacyNote   = document.querySelector('.privacy-note');
   
       /* ── BUILD DOTS ── */
       function buildDots() {
@@ -833,15 +835,17 @@
         btnPrev.disabled = currentStep === 1;
   
         // Show/hide next vs submit
-        if (currentStep === TOTAL_STEPS) {
+  if (currentStep === TOTAL_STEPS) {
     btnNext.style.display = 'none';
     btnSubmit.style.display = 'inline-flex';
     document.getElementById('audit-captcha-wrap').style.display = 'block';
+    privacyNote.style.display = 'block';
     renderRecaptcha();
   } else {
     btnNext.style.display = 'inline-flex';
     btnSubmit.style.display = 'none';
     document.getElementById('audit-captcha-wrap').style.display = 'none';
+    privacyNote.style.display = 'none';
   }
       }
   

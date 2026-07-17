@@ -876,7 +876,9 @@ body.finder-page {
 }
 
 .finder-submit {
-  width: 100%;
+  width: fit-content;
+  min-width: 210px;
+  max-width: 100%;
   margin-top: 4px;
 }
 
@@ -1076,9 +1078,15 @@ body.finder-page {
   }
 
   .finder-primary,
-  .finder-secondary,
-  .finder-submit {
+  .finder-secondary {
     width: 100%;
+  }
+
+  .finder-submit {
+    width: fit-content;
+    min-width: 0;
+    max-width: 100%;
+    padding-inline: 24px;
   }
 
   .step-actions,

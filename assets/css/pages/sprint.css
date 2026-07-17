@@ -138,11 +138,11 @@
     .iti input#sprint-phone { border:none !important; background:transparent !important; height:48px; width:100% !important; padding-left:86px !important; font-family:'Satoshi',sans-serif; font-size:14px; color:var(--textprimary); outline:none; box-shadow:none !important; }
     .iti input#sprint-phone:-webkit-autofill,
     .iti input#sprint-phone:-webkit-autofill:hover,
-    .iti input#sprint-phone-webkit-autofill:focus,
+    .iti input#sprint-phone:-webkit-autofill:focus,
     .iti input#sprint-phone:-webkit-autofill:active {
       -webkit-box-shadow: 0 0 0 1000px var(--warmgray) inset !important;
-      -webkit-border-radius: 0 999px 999px 0 !important;
-      border-radius: 0 999px 999px 0 !important;
+      -webkit-border-radius: 999px !important;
+      border-radius: 999px !important;
       -webkit-text-fill-color: var(--textprimary) !important;
     }
     .iti { overflow: visible; }

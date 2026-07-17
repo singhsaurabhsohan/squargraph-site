@@ -1517,3 +1517,20 @@ html body *::before,
 html body *::after {
   letter-spacing: 0 !important;
 }
+
+/* Keep form submit actions compact and visually subordinate to the form itself. */
+.submit-btn {
+  width: fit-content !important;
+  min-width: 168px;
+  max-width: 100%;
+  align-self: flex-start !important;
+  justify-self: start !important;
+  padding-inline: 24px !important;
+}
+
+@media (max-width: 480px) {
+  .submit-btn {
+    width: fit-content !important;
+    min-width: 0;
+  }
+}

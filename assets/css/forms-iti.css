@@ -46,8 +46,8 @@
 .iti > input:-webkit-autofill:focus,
 .iti > input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px var(--warmgray) inset !important;
-  -webkit-border-radius: 0 999px 999px 0 !important;
-  border-radius: 0 999px 999px 0 !important;
+  -webkit-border-radius: 999px !important;
+  border-radius: 999px !important;
   -webkit-text-fill-color: var(--textprimary) !important;
 }
 

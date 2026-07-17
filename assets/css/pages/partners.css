@@ -905,6 +905,11 @@ body[data-page="partners"] {
 }
 
 .partner-submit {
+  width: fit-content;
+  min-width: 190px;
+  max-width: 100%;
+  justify-self: start;
+  padding: 0 28px;
   min-height: 54px;
   border: 1px solid var(--partner-ink);
   border-radius: 999px;
