@@ -1021,14 +1021,6 @@ body[data-page="partners"] {
 .partner-form .sq-inline-otp {
   grid-column: 1 / -1;
   margin-top: -14px;
-  padding: 16px;
-  border-radius: 24px;
-  border-color: var(--partner-line);
-  background: var(--partner-paper);
-}
-
-.partner-form .sq-inline-otp-code input {
-  border-radius: 999px;
 }
 
 .partner-final-cta {

@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=20260717-forest1">
   <link rel="stylesheet" href="/assets/css/base.css?v=20260717-forest1">
   <link rel="stylesheet" href="/assets/css/pages/project-direction.css?v=20260714-direction3">
+  <link rel="stylesheet" href="/assets/css/otp.css?v=20260717-compact1">
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');
   </script>
@@ -229,9 +230,9 @@
               <input id="work-email" name="work_email" type="email" placeholder="name@company.com" autocomplete="email" required />
               <span class="field-error">Enter a valid email address.</span>
             </div>
-            <div class="otp-panel" id="email-otp-panel" hidden>
-              <p class="otp-sent" id="email-otp-sent"></p>
-              <div class="otp-code" data-otp-type="email" aria-label="Email OTP code">
+            <div class="otp-panel sq-inline-otp" id="email-otp-panel" hidden>
+              <p class="otp-sent sq-inline-otp-sent" id="email-otp-sent"></p>
+              <div class="otp-code sq-inline-otp-code" data-otp-type="email" aria-label="Email OTP code">
                 <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Email OTP digit 1" />
                 <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Email OTP digit 2" />
                 <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Email OTP digit 3" />
@@ -239,13 +240,13 @@
                 <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Email OTP digit 5" />
                 <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Email OTP digit 6" />
               </div>
-              <div class="otp-actions">
-                <button type="button" class="verify-code" id="verify-email-otp">Verify email code</button>
-                <button type="button" class="link-button" id="resend-email-otp" disabled>Resend code in 45s</button>
-                <button type="button" class="link-button" id="change-email">Change email address</button>
+              <div class="otp-actions sq-inline-otp-actions">
+                <button type="button" class="verify-code sq-inline-otp-verify" id="verify-email-otp">Verify email code</button>
+                <button type="button" class="link-button sq-inline-otp-link" id="resend-email-otp" disabled>Resend code in 45s</button>
+                <button type="button" class="link-button sq-inline-otp-link" id="change-email">Change email address</button>
               </div>
+              <p class="verification-status sq-inline-otp-status" id="email-status" aria-live="polite"></p>
             </div>
-            <p class="verification-status" id="email-status" aria-live="polite"></p>
           </div>
 
           <button type="submit" id="finder-submit" class="finder-submit" disabled>Submit My Requirement</button>
@@ -828,13 +829,13 @@
     if (isResend) state.resendCount += 1;
 
     state.sending = true;
+    panel.hidden = false;
     setEmailStatus(isResend ? 'Resending verification code...' : 'Sending verification code...', '');
 
     try {
       await sbAuthRequest('/auth/v1/otp', { email: value, create_user: true });
       state.sent = true;
       state.value = value;
-      panel.hidden = false;
       sentLine.textContent = 'OTP sent to ' + maskEmail(value);
       emailInput.readOnly = true;
       clearOtpInputs('email');
@@ -897,10 +898,14 @@
     if (verification.email.verified && verification.email.value === value) return;
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-      if (value.length > 5) setEmailStatus('Enter a valid email address to receive the OTP.', 'error');
+      if (value.length > 5) {
+        showFieldError(emailInput, true);
+        setEmailStatus('Enter a valid email address to receive the OTP.', 'error');
+      }
       return;
     }
 
+    showFieldError(emailInput, false);
     setEmailStatus('', '');
     emailOtpTimer = setTimeout(function () {
       sendEmailOtp(false);

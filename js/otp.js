@@ -49,27 +49,11 @@
 
   function injectStyles() {
     if (document.getElementById('sq-inline-otp-styles')) return;
-    var style = document.createElement('style');
-    style.id = 'sq-inline-otp-styles';
-    style.textContent = [
-      '.sq-inline-otp{display:grid;gap:10px;width:100%;margin:10px 0 0;padding:12px;border:1px solid rgba(26,23,20,.1);border-radius:8px;background:rgba(248,246,241,.72);}',
-      '.sq-inline-otp[hidden]{display:none!important;}',
-      '.sq-inline-otp-sent{color:#3D3935;font-size:12px;line-height:1.45;margin:0;}',
-      '.sq-inline-otp-code{display:grid;grid-template-columns:repeat(6,48px);gap:7px;justify-content:start;}',
-      '.sq-inline-otp-code input{width:48px;height:44px;border:1px solid #D8D3CA;border-radius:7px;background:#fff;color:#151411;font-family:inherit;font-size:18px;font-weight:800;text-align:center;outline:none;transition:border-color .2s,box-shadow .2s;}',
-      '.sq-inline-otp-code input:focus{border-color:#394536;box-shadow:0 0 0 3px rgba(57,69,54,.12);}',
-      '.sq-inline-otp-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;}',
-      '.sq-inline-otp-verify{min-height:42px;border:1px solid #151411;border-radius:999px;background:#151411;color:#fff;font-family:inherit;font-size:12.5px;font-weight:800;padding:0 17px;cursor:pointer;white-space:nowrap;}',
-      '.sq-inline-otp-link{min-height:30px;border:0;background:transparent;color:#394536;font-family:inherit;font-size:11.5px;font-weight:800;padding:0;cursor:pointer;}',
-      '.sq-inline-otp-link:disabled,.sq-inline-otp-verify:disabled{opacity:.58;cursor:not-allowed;}',
-      '.sq-inline-otp-status{min-height:18px;color:#3D3935;font-size:12px;line-height:1.45;margin:0;}',
-      '.sq-inline-otp-status.error{color:#B42318;font-weight:700;}',
-      '.sq-inline-otp-status.verified{color:#16733F;font-weight:800;}',
-      '.sq-inline-otp-field-verified{opacity:.72!important;}',
-      '@media(max-width:760px){.sq-inline-otp-code{grid-template-columns:repeat(6,42px);gap:6px}.sq-inline-otp-code input{width:42px;height:42px;font-size:17px}.sq-inline-otp-verify{width:auto;min-width:154px}}',
-      '@media(max-width:380px){.sq-inline-otp{padding:10px}.sq-inline-otp-code{grid-template-columns:repeat(6,38px);gap:5px}.sq-inline-otp-code input{width:38px;height:40px;font-size:16px}}'
-    ].join('\n');
-    document.head.appendChild(style);
+    var stylesheet = document.createElement('link');
+    stylesheet.id = 'sq-inline-otp-styles';
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = '/assets/css/otp.css?v=20260717-compact1';
+    document.head.appendChild(stylesheet);
   }
 
   function maskEmail(value) {
