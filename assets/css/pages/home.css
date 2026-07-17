@@ -1204,6 +1204,26 @@ body.home #contact {
   line-height: 1.45;
 }
 
+.ecosystem-partner-link {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 9px;
+  margin-top: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(26, 23, 20, .24);
+  color: var(--home-ink);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: border-color .2s ease, color .2s ease;
+}
+
+.ecosystem-partner-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .ecosystem-symbol {
   position: relative;
   width: 118px;

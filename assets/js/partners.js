@@ -176,7 +176,7 @@
       additional_notes: cleanLongText(raw.additional_notes, 1800) || null,
       capability_deck_url: null,
       status: 'new',
-      source_page: '/partners-preview',
+      source_page: '/partners',
       created_at: new Date().toISOString()
     };
   }

@@ -1,5 +1,5 @@
 -- Run once in the SQUARGRAPH Supabase SQL editor before publishing /partners.
--- The preview form temporarily falls back to the existing leads table until this is applied.
+-- The form falls back to the existing leads table until this migration is applied.
 
 create extension if not exists pgcrypto;
 
@@ -26,10 +26,13 @@ create table if not exists public.partner_applications (
   additional_notes text,
   capability_deck_url text,
   status text not null default 'new' check (status in ('new', 'reviewing', 'aligned', 'not_now', 'archived')),
-  source_page text not null default '/partners-preview',
+  source_page text not null default '/partners',
   constraint partner_applications_email_length check (char_length(email) <= 180),
   constraint partner_applications_intro_length check (char_length(introduction) between 40 and 1800)
 );
+
+alter table public.partner_applications
+  alter column source_page set default '/partners';
 
 create index if not exists partner_applications_created_at_idx
   on public.partner_applications (created_at desc);
