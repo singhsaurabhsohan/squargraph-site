@@ -198,7 +198,7 @@ window.SQ.openRazorpay = function (productKey) {
     key: cfg.razorpayKey, amount: product.amount, currency: 'INR',
     name: 'SQUARGRAPH™', description: product.description,
     image: '/logo.webp', prefill: {}, notes: { product: product.name },
-    theme: { color: '#8B7EC8' }, modal: { ondismiss: function () {}, animation: true },
+    theme: { color: '#394536' }, modal: { ondismiss: function () {}, animation: true },
     handler: function (response) {
       var overlay = document.getElementById('payment-success-overlay');
       var pidEl   = document.getElementById('success-payment-id');

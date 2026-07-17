@@ -8,9 +8,9 @@
       --textmuted: #2A2623;
       --textsecondary: #3D3935;
       --textprimary: #1A1714;
-      --accent: #6B5DB8;
-      --accentmuted: #7B6FB8;
-      --accentlight: #EEECf7;
+      --accent: #394536;
+      --accentmuted: #657158;
+      --accentlight: #EDF0EA;
     }
 
     /* ─── Reset ─── */
@@ -27,7 +27,7 @@
       font-weight: 400;
     }
 
-    ::selection { background: rgba(139,126,200,.18); color: var(--textprimary); }
+    ::selection { background: rgba(57,69,54,.18); color: var(--textprimary); }
     * { -webkit-tap-highlight-color: transparent; }
 
     img { display: block; max-width: 100%; }
@@ -813,7 +813,7 @@
     .intel-tag {
       font-size: 10px; letter-spacing: .07em; text-transform: uppercase;
       color: var(--accent);
-      background: rgba(139,126,200,.06);
+      background: rgba(57,69,54,.06);
       padding: 4px 10px; border-radius: 999px;
     }
     .intel-brand-label {
@@ -860,7 +860,7 @@
     }
     .modal-p { font-size: 15px; line-height: 1.82; color: rgba(245,243,240,.6); margin-bottom: 24px; }
     .modal-quote {
-      background: rgba(139,126,200,.08);
+      background: rgba(57,69,54,.08);
       border-left: 2px solid var(--accent);
       padding: 28px 28px;
       margin: 32px 0;
@@ -1249,7 +1249,7 @@
         height: 52px;
         border-radius: 50%;
         background: var(--accent);
-        box-shadow: 0 4px 16px rgba(107,93,184,.35);
+        box-shadow: 0 4px 16px rgba(57,69,54,.35);
         border: none;
         cursor: pointer;
         transition: transform .2s, background .2s;
@@ -1264,7 +1264,7 @@
         z-index: 9997;
         border-radius: 999px;
         overflow: visible;
-        box-shadow: 0 4px 16px rgba(107,93,184,.35);
+        box-shadow: 0 4px 16px rgba(57,69,54,.35);
         height: 52px;
       }
     }
@@ -1327,7 +1327,7 @@
         transform: translateX(-50%);
         z-index: 9997;
         gap: 0;
-        box-shadow: 0 4px 16px rgba(107,93,184,.35);
+        box-shadow: 0 4px 16px rgba(57,69,54,.35);
         border-radius: 999px;
         overflow: visible;
       }
@@ -1378,7 +1378,7 @@
         height: 52px;
         border-radius: 50%;
         background: var(--accent);
-        box-shadow: 0 4px 16px rgba(107,93,184,.35);
+        box-shadow: 0 4px 16px rgba(57,69,54,.35);
         border: none;
         cursor: pointer;
         transition: transform .2s, background .2s;
@@ -1410,7 +1410,7 @@
 
 /* Engagement dark card */
 .engagement-card--dark {
-  box-shadow: 0 8px 32px rgba(107,93,184,0.18) !important;
+  box-shadow: 0 8px 32px rgba(57,69,54,0.18) !important;
 }
 
 /* Gap between cards → slight breathing room */
@@ -1504,7 +1504,7 @@
 .iti__search-input:focus {
   border-color: var(--accentmuted);
   outline: none;
-  box-shadow: 0 0 0 2px rgba(107,93,184,.2);
+  box-shadow: 0 0 0 2px rgba(57,69,54,.2);
 }
 /* Force country list styling for phone input */
 .iti--container .iti__country-list,
@@ -1524,7 +1524,7 @@
   transition: background 0.2s !important;
 }
 .iti__country.iti__highlight {
-  background: var(--accentlight, #EEECf7) !important;
+  background: var(--accentlight, #EDF0EA) !important;
 }
 .iti__country-name {
   font-weight: 500 !important;

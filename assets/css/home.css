@@ -193,7 +193,7 @@
 .intel-card:hover .intel-arrow { color: var(--accent); transform: translate(2px,-2px); }
 .intel-thesis { font-size: 16px; line-height: 1.5; color: var(--textprimary); font-weight: 400; margin-bottom: 24px; flex: 1; padding-right: 24px; }
 .intel-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.intel-tag { font-size: 10px; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); background: rgba(139,126,200,.06); padding: 4px 10px; border-radius: 999px; }
+.intel-tag { font-size: 10px; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); background: rgba(57,69,54,.06); padding: 4px 10px; border-radius: 999px; }
 .intel-brand-label { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--textsecondary); margin-bottom: 20px; }
 
 .contact-section { padding: clamp(80px, 12vw, 160px) clamp(24px, 4vw, 64px); }

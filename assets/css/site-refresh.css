@@ -4,7 +4,6 @@
   --sg-moss: #657158;
   --sg-gold: #B48A4A;
   --sg-blue: #335E76;
-  --sg-violet: #6B5DB8;
   --sg-cream: #F8F6F1;
   --sg-dark: #0A0A0A;
   --sg-dark-muted: rgba(255, 255, 255, .66);
@@ -26,11 +25,11 @@
   --muted: #3D3935;
   --surface: #F5F2EA;
   --border: rgba(26, 23, 20, .14);
-  --accent: var(--sg-violet);
-  --accentmuted: #7B6FB8;
-  --accentlight: rgba(107, 93, 184, .12);
-  --accent-light: rgba(107, 93, 184, .12);
-  --accent-mid: #7B6FB8;
+  --accent: var(--sg-forest);
+  --accentmuted: var(--sg-moss);
+  --accentlight: rgba(57, 69, 54, .12);
+  --accent-light: rgba(57, 69, 54, .12);
+  --accent-mid: var(--sg-moss);
   --radius-card: var(--sg-radius);
   --shadow-sm: 0 2px 8px rgba(26, 23, 20, .05);
   --shadow-md: 0 8px 24px rgba(26, 23, 20, .08);
@@ -567,7 +566,7 @@ textarea:focus {
 .footer-col-label {
   display: block !important;
   margin-bottom: 18px !important;
-  color: #a99ce2 !important;
+  color: rgba(255, 255, 255, .58) !important;
   font-size: 11px !important;
   letter-spacing: 0 !important;
   text-transform: uppercase !important;
@@ -587,7 +586,7 @@ textarea:focus {
 }
 
 .site-footer a:focus-visible {
-  outline: 2px solid #a99ce2 !important;
+  outline: 2px solid rgba(255, 255, 255, .78) !important;
   outline-offset: 4px !important;
 }
 
@@ -1187,7 +1186,7 @@ form[id*="contact-form"],
 
 .social-link:hover {
   color: #fff !important;
-  background: var(--sg-violet) !important;
+  background: var(--sg-forest) !important;
 }
 
 .footer-bar--stack {

@@ -29,18 +29,18 @@
     :root {
       --offwhite: #FAFAF9; --warmgray: #F5F5F3; --coolgray: #F0EFED;
       --bordergray: #E5E3DF; --textmuted: #2A2623; --textsecondary: #3D3935;
-      --textprimary: #1A1714; --accent: #6B5DB8; --accentmuted: #7B6FB8;
-      --accentlight: #EEECf7;
+      --textprimary: #1A1714; --accent: #394536; --accentmuted: #657158;
+      --accentlight: #EDF0EA;
       --text: #1A1714; --muted: #3D3935; --border: #E5E3DF;
       --surface: #F5F5F3; --bg: #FAFAF9;
-      --accent-dim: rgba(107,93,184,.1); --accent-glow: rgba(107,93,184,.18);
-      --accent-light: #EEECf7;
+      --accent-dim: rgba(57,69,54,.1); --accent-glow: rgba(57,69,54,.18);
+      --accent-light: #EDF0EA;
       --font: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
       --pill: 999px; --ease: cubic-bezier(.4,0,.2,1);
     }
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-weight: 400; }
     body { font-family: var(--font); color: var(--textprimary); background: #fff; line-height: 1.5; letter-spacing: -0.01em; overflow-x: hidden; font-weight: 400; }
-    ::selection { background: rgba(139,126,200,.18); color: var(--textprimary); }
+    ::selection { background: rgba(57,69,54,.18); color: var(--textprimary); }
     * { -webkit-tap-highlight-color: transparent; }
     img { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
@@ -79,7 +79,7 @@
     /* ── PAGE ── */
     .page-wrap { min-height: 100vh; background: var(--warmgray); padding-top: 84px; }
     .results-section { padding: clamp(48px,8vw,80px) clamp(24px,4vw,64px); max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
-    .results-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--accentlight); border: 1px solid rgba(107,93,184,.18); border-radius: var(--pill); padding: 4px 12px; margin-bottom: 20px; }
+    .results-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--accentlight); border: 1px solid rgba(57,69,54,.18); border-radius: var(--pill); padding: 4px 12px; margin-bottom: 20px; }
     .results-heading { font-size: clamp(28px,4vw,44px); font-weight: 500; letter-spacing: -0.03em; color: var(--textprimary); text-align: center; line-height: 1.1; margin-bottom: 12px; }
     .results-heading em { font-style: normal; color: var(--accent); }
     .results-subhead { font-size: 15px; color: var(--textsecondary); text-align: center; max-width: 44ch; line-height: 1.7; margin-bottom: 48px; }
@@ -99,7 +99,7 @@
     }
 
     /* ── SHARED INNER COMPONENTS ── */
-    .bq-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--accentlight); border: 1px solid rgba(107,93,184,.18); border-radius: var(--pill); padding: 4px 12px; margin-bottom: 20px; }
+    .bq-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--accentlight); border: 1px solid rgba(57,69,54,.18); border-radius: var(--pill); padding: 4px 12px; margin-bottom: 20px; }
     .score-row { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; }
     .ring-wrap { position: relative; width: 88px; height: 88px; flex-shrink: 0; }
     .ring-wrap svg { transform: rotate(-90deg); width: 88px; height: 88px; }
@@ -117,12 +117,12 @@
     .metric { display: flex; align-items: center; gap: 10px; }
     .metric-label { font-size: 12px; font-weight: 500; color: #8A8580; width: 150px; flex-shrink: 0; }
     .metric-bar-wrap { flex: 1; height: 4px; background: var(--accent-dim); border-radius: var(--pill); overflow: hidden; }
-    .metric-bar { height: 100%; border-radius: var(--pill); background: linear-gradient(90deg, var(--accent), #9B8AE0); width: 0; transition: width 1.2s cubic-bezier(.2,.8,.2,1); }
+    .metric-bar { height: 100%; border-radius: var(--pill); background: linear-gradient(90deg, var(--accent), #8A967F); width: 0; transition: width 1.2s cubic-bezier(.2,.8,.2,1); }
     .metric-val { font-size: 12px; font-weight: 600; color: var(--textprimary); letter-spacing: -0.02em; width: 36px; text-align: right; flex-shrink: 0; }
     @media (max-width: 480px) { .metric-label { width: 120px; } }
     .data-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; background: var(--warmgray); border: 1px solid var(--bordergray); border-radius: 8px; margin-bottom: 8px; }
     .data-label { font-size: 12px; font-weight: 500; color: #8A8580; }
-    .data-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accentlight); border: 1px solid rgba(107,93,184,.18); border-radius: var(--pill); padding: 3px 10px; letter-spacing: 0.01em; }
+    .data-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accentlight); border: 1px solid rgba(57,69,54,.18); border-radius: var(--pill); padding: 3px 10px; letter-spacing: 0.01em; }
     .results-disclaimer { margin: 12px 0 0; padding: 10px 12px; background: var(--warmgray); border: 1px solid var(--bordergray); border-radius: 8px; font-size: 11px; line-height: 1.6; color: #8A8580; }
     .insights-block { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--bordergray); border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
     .insight-row { padding: 11px 14px; border-bottom: 1px solid var(--bordergray); }
@@ -203,7 +203,7 @@
 
     @keyframes spin { to { transform: rotate(360deg); } }
 </style>
-  <link rel="stylesheet" href="/assets/css/site-refresh.css?v=20260717-ecosystem1" />
+  <link rel="stylesheet" href="/assets/css/site-refresh.css?v=20260717-forest1" />
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBN4JXZD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -251,7 +251,7 @@
         <svg width="0" height="0" style="position:absolute" aria-hidden="true">
           <defs>
             <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#6B5DB8"/><stop offset="100%" stop-color="#9B8AE0"/>
+              <stop offset="0%" stop-color="#394536"/><stop offset="100%" stop-color="#8A967F"/>
             </linearGradient>
           </defs>
         </svg>
@@ -259,8 +259,8 @@
         <!-- JS renders into modal-content; loading state shown first -->
         <div id="modal-content">
           <div class="card-loading">
-            <div style="width:48px;height:48px;border:3px solid rgba(107,93,184,.15);border-top-color:#6B5DB8;border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 24px;"></div>
-            <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#6B5DB8;margin-bottom:10px;">Analysing your brand</div>
+            <div style="width:48px;height:48px;border:3px solid rgba(57,69,54,.15);border-top-color:#394536;border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 24px;"></div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#394536;margin-bottom:10px;">Analysing your brand</div>
             <div style="font-size:14px;color:#8A8580;line-height:1.6;max-width:28ch;margin:0 auto;">Reviewing your digital presence, communication, and competitive positioning.</div>
           </div>
         </div>
@@ -408,7 +408,7 @@
 
   /* ── LEFT column HTML (shared by summary & scores) ── */
   function leftLoading() {
-    return '<div class="card-left"><div style="padding:40px 0;text-align:center;"><div style="width:40px;height:40px;border:3px solid rgba(107,93,184,.15);border-top-color:#6B5DB8;border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 20px;"></div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#6B5DB8;">Analysing your brand</div></div></div>';
+    return '<div class="card-left"><div style="padding:40px 0;text-align:center;"><div style="width:40px;height:40px;border:3px solid rgba(57,69,54,.15);border-top-color:#394536;border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 20px;"></div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#394536;">Analysing your brand</div></div></div>';
   }
 
   function leftSummary(scores, companyName) {
@@ -468,7 +468,7 @@
       '<div class="card-right">',
       '<div class="cta-headline">Commission your complete<br />Brand Growth Audit™.</div>',
       '<div class="cta-sub">Go beyond the preliminary assessment with a comprehensive executive report covering strategic analysis, competitive review, growth opportunities, and a practical 90-Day Action Roadmap.</div>',
-      '<div style="margin-bottom:16px;padding:14px;border:1px solid var(--bordergray);border-radius:10px;background:rgba(107,93,184,.04);font-size:12px;line-height:1.65;color:#8A8580;">The full Brand Growth Audit™ includes deeper strategic analysis, recommendations, and a 90-Day Action Roadmap prepared using proprietary frameworks, AI-assisted research, and strategic review methodologies.</div>',
+      '<div style="margin-bottom:16px;padding:14px;border:1px solid var(--bordergray);border-radius:10px;background:rgba(57,69,54,.04);font-size:12px;line-height:1.65;color:#8A8580;">The full Brand Growth Audit™ includes deeper strategic analysis, recommendations, and a 90-Day Action Roadmap prepared using proprietary frameworks, AI-assisted research, and strategic review methodologies.</div>',
       '<div class="cta-spacer"></div>',
       '<div class="price-row"><div class="price-label">Brand Growth Audit™<span>Delivered within 24 hours · PDF report</span></div><div class="price-amount">₹9,999</div></div>',
       '<button class="btn-unlock" onclick="unlockScores()">Unlock My Strategic Report →</button>',
@@ -606,12 +606,12 @@
     var options = {
       key:'rzp_live_SvayEzczzvrE7f', amount:999900, currency:'INR',
       name:'SQUARGRAPH™', description:'Brand Growth Audit™',
-      image:'/logo.webp', notes:{product:'Brand Growth Audit™'}, theme:{color:'#6B5DB8'},
+      image:'/logo.webp', notes:{product:'Brand Growth Audit™'}, theme:{color:'#394536'},
       handler: function(response) {
         trackEvent('payment_success',{payment_id:response.razorpay_payment_id});
         document.getElementById('modal-content').style.display='none';
         var ps=document.getElementById('payment-success'); ps.classList.add('visible');
-        var pidEl=document.getElementById('success-pid'); if(pidEl)pidEl.innerHTML='Payment ID: '+response.razorpay_payment_id+'<br><span style="font-size:12px;color:#6B5DB8;">Your results link: <a href="/audit-results?id='+response.razorpay_payment_id+'" style="color:#6B5DB8;text-decoration:underline;">/audit-results?id='+response.razorpay_payment_id+'</a></span>';
+        var pidEl=document.getElementById('success-pid'); if(pidEl)pidEl.innerHTML='Payment ID: '+response.razorpay_payment_id+'<br><span style="font-size:12px;color:#394536;">Your results link: <a href="/audit-results?id='+response.razorpay_payment_id+'" style="color:#394536;text-decoration:underline;">/audit-results?id='+response.razorpay_payment_id+'</a></span>';
         window.scrollTo({top:0,behavior:'smooth'});
         try {
           var np=JSON.parse(sessionStorage.getItem('sq_audit_payload')||'{}');

@@ -10,7 +10,7 @@
 }
 .iti:focus-within {
   border-color: var(--accentmuted);
-  box-shadow: 0 0 0 3px rgba(107,93,184,.1);
+  box-shadow: 0 0 0 3px rgba(57,69,54,.1);
 }
 
 .iti__selected-flag {
@@ -120,7 +120,7 @@
 .iti__search-input:focus {
   border-color: var(--accentmuted);
   outline: none;
-  box-shadow: 0 0 0 2px rgba(107,93,184,.2);
+  box-shadow: 0 0 0 2px rgba(57,69,54,.2);
 }
 
 .iti__flag {

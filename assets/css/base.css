@@ -19,7 +19,7 @@ body {
 }
 
 ::selection {
-  background: rgba(139,126,200,.18);
+  background: rgba(57,69,54,.18);
   color: var(--textprimary);
 }
 

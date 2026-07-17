@@ -36,12 +36,12 @@
 .btn-ghost:disabled { opacity: 0; pointer-events: none; }
 
 .btn-generate {
-  background: linear-gradient(135deg, var(--accent) 0%, #9B8AE0 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, #8A967F 100%);
   color: #fff; font-size: 13px; padding: 13px 18px;
-  box-shadow: 0 4px 20px rgba(107,93,184,.4);
+  box-shadow: 0 4px 20px rgba(57,69,54,.28);
   flex-shrink: 1; min-width: 0; white-space: nowrap;
 }
-.btn-generate:hover { box-shadow: 0 6px 28px rgba(107,93,184,.5); transform: translateY(-1px); }
+.btn-generate:hover { box-shadow: 0 6px 28px rgba(57,69,54,.36); transform: translateY(-1px); }
 
 @media (max-width: 400px) {
   .btn-generate { font-size: 12px; padding: 12px 14px; }
@@ -67,7 +67,7 @@
   box-shadow: 0 2px 12px rgba(26,23,20,0.06);
 }
 .engagement-card--dark {
-  box-shadow: 0 8px 32px rgba(107,93,184,0.18) !important;
+  box-shadow: 0 8px 32px rgba(57,69,54,0.18) !important;
 }
 .film-card,
 .reel-wrap {
@@ -152,7 +152,7 @@ textarea.form-input:focus {
   overflow: visible;
   transition: border-color var(--transition), box-shadow var(--transition);
 }
-.iti:focus-within { border-color: var(--accentmuted); box-shadow: 0 0 0 3px rgba(107,93,184,.12); }
+.iti:focus-within { border-color: var(--accentmuted); box-shadow: 0 0 0 3px rgba(57,69,54,.12); }
 .iti__flag-container { position: absolute; top: 0; left: 0; bottom: 0; }
 .iti__selected-flag {
   height: 48px !important; background: transparent !important;
@@ -187,7 +187,7 @@ textarea.form-input:focus {
   margin: 8px 12px; width: calc(100% - 24px);
   background: var(--warmgray); color: var(--textprimary);
 }
-.iti__search-input:focus { border-color: var(--accentmuted); outline: none; box-shadow: 0 0 0 2px rgba(107,93,184,.2); }
+.iti__search-input:focus { border-color: var(--accentmuted); outline: none; box-shadow: 0 0 0 2px rgba(57,69,54,.2); }
 .iti__flag {
   background-image: url("/assets/vendor/intl-tel-input/img/flags.png") !important;
 }
@@ -247,7 +247,7 @@ textarea.form-input:focus {
 }
 .modal-p { font-size: 15px; line-height: 1.82; color: rgba(245,243,240,.6); margin-bottom: 24px; }
 .modal-quote {
-  background: rgba(139,126,200,.08); border-left: 2px solid var(--accent);
+  background: rgba(57,69,54,.08); border-left: 2px solid var(--accent);
   padding: 28px; margin: 32px 0;
   font-style: normal; font-weight: 500; font-size: 19px;
   color: #F5F3F0; line-height: 1.55;
@@ -325,7 +325,7 @@ textarea.form-input:focus {
   display: flex; align-items: center; justify-content: center;
   position: fixed; bottom: 32px; right: 20px; z-index: 9996;
   width: 52px; height: 52px; border-radius: 50%;
-  background: var(--accent); box-shadow: 0 4px 16px rgba(107,93,184,.35);
+  background: var(--accent); box-shadow: 0 4px 16px rgba(57,69,54,.28);
   border: none; cursor: pointer; transition: transform .2s, background .2s;
 }
 #mobile-wa:hover { transform: scale(1.08); }
