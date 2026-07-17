@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="/assets/css/components.css" />
   <link rel="stylesheet" href="/assets/css/animations.css" />
   <link rel="stylesheet" href="/assets/css/site-refresh.css?v=20260709-positioning5" />
-  <link rel="stylesheet" href="/assets/css/pages/partners.css?v=20260717-partners2" />
+  <link rel="stylesheet" href="/assets/css/pages/partners.css?v=20260717-partners3" />
   <script src="/assets/vendor/intl-tel-input/js/intlTelInput.min.js" defer></script>
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBN4JXZD');
@@ -317,6 +317,7 @@
             <div class="partner-field">
               <label for="partner-email">Email address <span aria-hidden="true">*</span></label>
               <input id="partner-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="180" />
+              <p class="partner-verification-note">A verification code is sent automatically after you enter a valid email.</p>
               <p class="partner-field-error" id="partner-email-error">Enter a valid email address.</p>
             </div>
             <div class="partner-field">
@@ -325,11 +326,23 @@
               <p class="partner-field-error" id="partner-phone-error">Enter a valid phone number.</p>
             </div>
             <div class="partner-field">
-              <label for="partner-location">City / country <span aria-hidden="true">*</span></label>
-              <input id="partner-location" name="city_country" type="text" autocomplete="address-level2" required maxlength="160" placeholder="New Delhi, India" />
-              <p class="partner-field-error" id="partner-location-error">Enter your city and country.</p>
+              <label for="partner-country">Country <span aria-hidden="true">*</span></label>
+              <select id="partner-country" name="country" required autocomplete="country-name">
+                <option value="">Select country</option>
+                <option>India</option><option>UAE</option><option>USA</option><option>UK</option><option>Singapore</option><option>Australia</option><option>Canada</option><option>Germany</option><option>France</option><option>Japan</option><option value="Other">Other country</option>
+              </select>
+              <p class="partner-field-error" id="partner-country-error">Select your country.</p>
             </div>
             <div class="partner-field">
+              <label for="partner-city">City <span aria-hidden="true">*</span></label>
+              <select id="partner-city" name="city" disabled autocomplete="address-level2">
+                <option value="">Select country first</option>
+              </select>
+              <input id="partner-city-text" class="partner-city-text" name="city_text" type="text" autocomplete="address-level2" maxlength="120" placeholder="Enter city" />
+              <p class="partner-field-error" id="partner-city-error">Select your city.</p>
+              <p class="partner-field-error" id="partner-city-text-error">Enter your city.</p>
+            </div>
+            <div class="partner-field partner-field-wide">
               <label for="partner-website">Website <span aria-hidden="true">*</span></label>
               <input id="partner-website" name="website" type="url" autocomplete="url" required maxlength="500" placeholder="https://" />
               <p class="partner-field-error" id="partner-website-error">Enter a complete website URL.</p>
@@ -482,6 +495,6 @@
   <script src="/js/otp.js?v=20260714-inline-email"></script>
   <script src="/assets/js/animations.js"></script>
   <script src="/assets/js/interactions.js?v=20260709-positioning5"></script>
-  <script src="/assets/js/partners.js?v=20260717-partners2"></script>
+  <script src="/assets/js/partners.js?v=20260717-partners3"></script>
 </body>
 </html>

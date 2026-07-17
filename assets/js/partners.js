@@ -7,8 +7,12 @@
   var fallbackLink = document.getElementById('partner-form-fallback');
   var successPanel = document.getElementById('partner-form-success');
   var captchaWrap = document.getElementById('partner-captcha-wrap');
+  var emailInput = document.getElementById('partner-email');
   var phoneInput = document.getElementById('partner-phone');
   var deckInput = document.getElementById('partner-deck');
+  var countryInput = document.getElementById('partner-country');
+  var cityInput = document.getElementById('partner-city');
+  var cityTextInput = document.getElementById('partner-city-text');
   var phoneInstance = null;
   var submitting = false;
   var captchaRequested = false;
@@ -19,6 +23,23 @@
   var MAX_DECK_SIZE = 10 * 1024 * 1024;
 
   if (!form || !submitButton) return;
+
+  if (window.SQOtp && typeof window.SQOtp.init === 'function') {
+    window.SQOtp.init({ emailInputId: 'partner-email' });
+    var emailOtpPanel = emailInput && emailInput._sqOtpPanel;
+    var phoneField = phoneInput && phoneInput.closest('.partner-field');
+    if (emailOtpPanel && phoneField) phoneField.insertAdjacentElement('afterend', emailOtpPanel);
+  }
+
+  if (window.SQ && typeof window.SQ.initCountryCity === 'function' && countryInput && cityInput) {
+    window.SQ.initCountryCity('partner-country', 'partner-city');
+    countryInput.addEventListener('change', function () {
+      var hasPresetCities = Boolean(window.SQ.config.cityData[countryInput.value]);
+      cityInput.disabled = !hasPresetCities;
+      fieldError(cityInput, false);
+      fieldError(cityTextInput, false);
+    });
+  }
 
   function loadRecaptcha() {
     if (captchaRequested || typeof window.grecaptcha !== 'undefined') return;
@@ -134,6 +155,15 @@
       }
     });
 
+    var needsCityText = cityInput && (cityInput.style.display === 'none' || cityInput.value === 'Other');
+    var activeCityInput = needsCityText ? cityTextInput : cityInput;
+    var cityValid = Boolean(activeCityInput && String(activeCityInput.value || '').trim());
+    if (activeCityInput) fieldError(activeCityInput, !cityValid);
+    if (!cityValid) {
+      valid = false;
+      if (!firstInvalid) firstInvalid = activeCityInput || countryInput;
+    }
+
     var consent = document.getElementById('partner-consent');
     var consentError = document.getElementById('partner-consent-error');
     var consentValid = Boolean(consent && consent.checked);
@@ -155,12 +185,14 @@
 
   function getFormValues() {
     var raw = Object.fromEntries(new FormData(form).entries());
+    var country = cleanText(raw.country, 80);
+    var city = cleanText(raw.city === 'Other' || !raw.city ? raw.city_text : raw.city, 120);
     return {
       full_name: cleanText(raw.full_name, 120),
       company_name: cleanText(raw.company_name, 160),
       email: cleanText(raw.email, 180).toLowerCase(),
       phone: cleanText(phoneInstance ? phoneInstance.getNumber() : raw.phone, 60),
-      city_country: cleanText(raw.city_country, 160),
+      city_country: cleanText([city, country].filter(Boolean).join(', '), 160),
       website: cleanUrl(raw.website),
       primary_capability: cleanText(raw.primary_capability, 120),
       collaboration_type: cleanText(raw.collaboration_type, 160),
@@ -237,6 +269,9 @@
   }
 
   function fallbackLeadPayload(payload, deckFileName) {
+    var locationParts = payload.city_country.split(',').map(function (part) { return part.trim(); }).filter(Boolean);
+    var fallbackCountry = locationParts.length > 1 ? locationParts.pop() : '';
+    var fallbackCity = locationParts.join(', ');
     var context = {
       application_type: 'partner_capability',
       collaboration_type: payload.collaboration_type,
@@ -262,8 +297,8 @@
       reference: payload.portfolio_url,
       created_at: payload.created_at,
       source_url: window.location.href,
-      country: payload.city_country,
-      city: null,
+      country: fallbackCountry,
+      city: fallbackCity,
       industry: payload.primary_capability
     };
   }
