@@ -6,11 +6,13 @@ The production website calls:
 
 ## Update The Existing Worker
 
-1. Open the existing `squargraph-chat` Worker in Cloudflare.
-2. Replace its code with `workers/squargraph-chat.js`.
-3. Keep the existing `OPENROUTER_API_KEY` secret.
-4. Keep the existing `RATE_LIMIT_KV` binding.
-5. Deploy the Worker.
+The repository includes a dedicated Worker configuration that preserves the existing `RATE_LIMIT_KV` binding. The `OPENROUTER_API_KEY` remains an encrypted Cloudflare secret.
+
+```powershell
+npx --yes wrangler@latest deploy --config workers/wrangler.chat.jsonc --keep-vars
+```
+
+Do not deploy the chat script through the root `wrangler.jsonc`; that file configures static site assets.
 
 Optional Worker variables:
 

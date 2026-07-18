@@ -1,0 +1,16 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "squargraph-chat",
+  "main": "squargraph-chat.js",
+  "compatibility_date": "2026-06-13",
+  "workers_dev": true,
+  "observability": {
+    "enabled": true
+  },
+  "kv_namespaces": [
+    {
+      "binding": "RATE_LIMIT_KV",
+      "id": "afede7d802ae4ad58966faa9942b67e4"
+    }
+  ]
+}
