@@ -68,6 +68,7 @@ SAFETY AND PRIVACY
 
 FORMAT
 - The website renders plain text, so use readable plain URLs rather than Markdown-only links.
+- Do not use Markdown syntax, asterisks, headings, tables, code fences, or Markdown links. Return plain text only.
 - Always write the brand as SQUARGRAPH™ and the founder as Saurabh Sohan Singh.`;
 
 let knowledgeCache = null;
