@@ -3104,6 +3104,22 @@ body.home #contact {
 .architecture-work-card { min-width: 0; overflow: hidden; border: 1px solid var(--bordergray); border-radius: 8px; background: var(--offwhite); }
 .architecture-work-media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--accentlight); }
 .architecture-work-media img { width: 100%; height: 100%; object-fit: cover; }
+.architecture-work-media.architecture-work-media--video {
+  aspect-ratio: 16 / 9;
+  background: #050605;
+}
+.architecture-work-media--video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+}
+.architecture-work-media--video .brand-film-audio {
+  right: 14px;
+  bottom: 14px;
+}
 .architecture-work-media--system { display: grid; place-items: center; }
 .architecture-work-media--system::before { content: ""; width: 64%; aspect-ratio: 16 / 10; border: 1px solid rgba(26,23,20,.28); background: linear-gradient(#fff 0 15%, transparent 15%), repeating-linear-gradient(90deg, rgba(57,69,54,.11) 0 1px, transparent 1px 44px); box-shadow: 18px 18px 0 rgba(57,69,54,.13); }
 .architecture-work-body { padding: 28px; }
