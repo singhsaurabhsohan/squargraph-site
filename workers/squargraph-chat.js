@@ -41,8 +41,8 @@ const SYSTEM_RULES = `You are the official SQUARGRAPH™ website assistant.
 
 VOICE
 - Sound like a senior, thoughtful studio representative: warm, direct, composed, useful.
-- Match the visitor's language. Reply in English, Hindi, or natural Hinglish based on how they write.
-- Keep normal replies between 50 and 140 words. Give more detail only when the visitor asks for it.
+- Match the visitor's language and script. If they write Hinglish in Latin characters, reply in natural Latin-character Hinglish without switching scripts.
+- Keep normal replies between 35 and 90 words. Give more detail only when the visitor asks for it.
 - Use short paragraphs or concise bullets. Do not use em dashes. Do not use hype, filler, or excessive praise.
 
 FACTUAL AUTHORITY
@@ -54,10 +54,11 @@ FACTUAL AUTHORITY
 - Never invent prices, timelines, services, clients, campaigns, biographies, outcomes, awards, policies, or availability.
 
 RECOMMENDATIONS
-- Ask at most one focused question when the visitor's need is unclear.
+- Ask at most one focused question only when neither Project Direction nor Discovery Session can be selected from the visitor's message.
 - If they know the problem but not the service, recommend Project Direction.
-- If the problem itself is still unclear and the visitor wants live founder-led diagnosis, recommend the Discovery Session.
+- If they say the problem itself is unclear, the brand simply feels weak, or they do not know where to start, recommend the Discovery Session directly without asking a diagnostic follow-up question.
 - If they ask how to hire SQUARGRAPH, recommend the most relevant route and include its full canonical URL.
+- Recommend one primary next step. Do not add a second service unless the visitor asks for alternatives.
 - For custom work, say "custom scope" and do not guess a price.
 - Do not pressure visitors. Explain fit and tradeoffs honestly.
 
@@ -152,12 +153,36 @@ function cleanModelReply(value) {
   if (draftTail >= 0) text = text.slice(0, draftTail).trim();
 
   text = text.replace(/^["'“”]+|["'“”]+$/g, "").trim();
+  text = text
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/__([^_]+)__/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/^[ \t]*#{1,6}[ \t]+/gm, "")
+    .replace(/[—–]/g, "-");
 
   if (/^(?:we need to respond|we should respond|the visitor says|the user says|according to (?:the )?(?:rules|instructions)|let'?s (?:craft|analy[sz]e)|analysis\s*:|reasoning\s*:)/i.test(text)) {
     return "";
   }
 
   return text;
+}
+
+function getSafeFallbackReply(messages) {
+  const latestMessage = messages[messages.length - 1]?.content || "";
+  const needsDiagnosis = /(?:actual\s+problem|problem\s+(?:is\s+)?(?:unclear|clear\s+nahi)|brand\s+(?:simply\s+)?(?:feels|lag|weak)|(?:do\s+not|don'?t)\s+know\s+where\s+to\s+start|not\s+sure\s+where\s+to\s+start|kahan\s+se\s+start|samajh\s+nahi\s+aa\s+raha\s+kahan)/i.test(latestMessage);
+  const usesLatinHinglish = /\b(?:mujhe|nahi|kaunsi|chahiye|kahan|samajh|shuruaat)\b|lag\s+raha/i.test(latestMessage);
+
+  if (needsDiagnosis) {
+    if (usesLatinHinglish) {
+      return "Aapki underlying problem abhi clear nahi hai, isliye best starting point Discovery Session hai. Yeh founder-led diagnosis sabse important gap identify karke clear next move define karta hai. Yahan se start karein: https://squargraph.com/discovery";
+    }
+    return "Your underlying problem is still unclear, so the best starting point is the Discovery Session. It is a founder-led diagnosis designed to identify the most important gap and define a clear next move. Start here: https://squargraph.com/discovery";
+  }
+
+  if (usesLatinHinglish) {
+    return "Aapko pata hai kis area par attention chahiye, lekin right capability clear nahi hai. Project Direction aapki requirement ke basis par guided recommendation deta hai. Yahan se start karein: https://squargraph.com/project-direction";
+  }
+  return "You know what needs attention but are not yet sure which capability fits. Use Project Direction for a guided recommendation based on your current requirement. Start here: https://squargraph.com/project-direction";
 }
 
 async function loadKnowledge(env) {
@@ -248,36 +273,58 @@ export default {
         : "";
       const systemContent = `${SYSTEM_RULES}${pageContext}\n\nCURRENT SQUARGRAPH KNOWLEDGE (JSON)\n${JSON.stringify(knowledge)}`;
 
-      const upstream = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${env.OPENROUTER_API_KEY}`,
-          "HTTP-Referer": "https://squargraph.com",
-          "X-Title": "SQUARGRAPH™ Website Assistant"
-        },
-        body: JSON.stringify({
-          model: env.OPENROUTER_MODEL || "nvidia/nemotron-3-nano-30b-a3b:free",
-          messages: [
-            { role: "system", content: systemContent },
-            ...messages
-          ],
-          max_tokens: 500,
-          temperature: 0.25
-        })
-      });
+      const modelCandidates = [
+        env.OPENROUTER_MODEL,
+        "qwen/qwen3-next-80b-a3b-instruct:free",
+        "google/gemma-4-31b-it:free",
+        "meta-llama/llama-3.2-3b-instruct:free",
+        "openrouter/free"
+      ].filter((model, index, models) => model && models.indexOf(model) === index);
+      let data = null;
 
-      if (!upstream.ok) {
-        const detail = await upstream.text();
-        return jsonResponse({ error: "Upstream error", detail: detail.slice(0, 500) }, 502, corsHeaders);
+      for (const model of modelCandidates) {
+        const upstream = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${env.OPENROUTER_API_KEY}`,
+            "HTTP-Referer": "https://squargraph.com",
+            "X-Title": "SQUARGRAPH™ Website Assistant"
+          },
+          body: JSON.stringify({
+            model,
+            messages: [
+              { role: "system", content: systemContent },
+              ...messages
+            ],
+            max_tokens: 500,
+            temperature: 0.25
+          })
+        });
+
+        if (upstream.ok) {
+          data = await upstream.json();
+          break;
+        }
+
+        if (![429, 500, 502, 503, 504].includes(upstream.status)) {
+          const detail = await upstream.text();
+          return jsonResponse({ error: "Upstream error", detail: detail.slice(0, 500) }, 502, corsHeaders);
+        }
       }
 
-      const data = await upstream.json();
+      if (!data) {
+        return jsonResponse({
+          reply: getSafeFallbackReply(messages),
+          context_version: knowledge.version || "unknown"
+        }, 200, corsHeaders);
+      }
+
       const reply = cleanModelReply(data?.choices?.[0]?.message?.content);
 
       if (!reply) {
         return jsonResponse({
-          reply: "I could not generate a reliable answer just now. Use Project Direction for a guided recommendation: https://squargraph.com/project-direction or contact hello@squargraph.com.",
+          reply: getSafeFallbackReply(messages),
           context_version: knowledge.version || "unknown"
         }, 200, corsHeaders);
       }
