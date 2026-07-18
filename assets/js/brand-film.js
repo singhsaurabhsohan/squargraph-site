@@ -1,52 +1,46 @@
 (function () {
-  var iframe = document.getElementById('brand-film-iframe');
-  var audioButton = document.getElementById('brand-film-audio');
+  function init(root) {
+    if (!window.playerjs || !window.playerjs.Player) return;
 
-  if (!iframe || !audioButton) return;
+    (root || document).querySelectorAll('[data-gumlet-loop]').forEach(function (container) {
+      if (container.dataset.gumletReady === 'true') return;
 
-  var playerOrigin = new URL(iframe.src).origin;
-  var isMuted = true;
+      var iframe = container.querySelector('iframe');
+      var audioButton = container.querySelector('[data-gumlet-audio]');
+      if (!iframe || !audioButton) return;
 
-  function sendPlayerCommand(method, value) {
-    if (!iframe.contentWindow) return;
+      container.dataset.gumletReady = 'true';
+      var player = new window.playerjs.Player(iframe);
+      var isMuted = true;
 
-    var message = {
-      context: 'player.js',
-      version: '3.0',
-      method: method
-    };
+      function updateButton() {
+        audioButton.setAttribute('aria-pressed', String(!isMuted));
+        audioButton.setAttribute('aria-label', isMuted ? 'Unmute brand film' : 'Mute brand film');
+        audioButton.setAttribute('title', isMuted ? 'Unmute brand film' : 'Mute brand film');
+      }
 
-    if (typeof value !== 'undefined') message.value = value;
-    iframe.contentWindow.postMessage(JSON.stringify(message), playerOrigin);
+      player.on('ready', function () {
+        player.setLoop(true).catch(function () {});
+        player.mute().catch(function () {});
+        player.play().catch(function () {});
+      });
+
+      audioButton.addEventListener('click', function () {
+        isMuted = !isMuted;
+        updateButton();
+
+        if (isMuted) {
+          player.mute().catch(function () {});
+        } else {
+          player.unmute().catch(function () {});
+          player.setVolume(100).catch(function () {});
+        }
+      });
+
+      updateButton();
+    });
   }
 
-  function updateAudioButton() {
-    audioButton.setAttribute('aria-pressed', String(!isMuted));
-    audioButton.setAttribute('aria-label', isMuted ? 'Unmute brand film' : 'Mute brand film');
-    audioButton.setAttribute('title', isMuted ? 'Unmute brand film' : 'Mute brand film');
-  }
-
-  audioButton.addEventListener('click', function () {
-    if (isMuted) {
-      sendPlayerCommand('setVolume', 100);
-      sendPlayerCommand('unmute');
-      isMuted = false;
-    } else {
-      sendPlayerCommand('mute');
-      isMuted = true;
-    }
-
-    updateAudioButton();
-  });
-
-  iframe.addEventListener('load', function () {
-    sendPlayerCommand('setLoop', true);
-    if (isMuted) {
-      sendPlayerCommand('mute');
-    } else {
-      sendPlayerCommand('setVolume', 100);
-      sendPlayerCommand('unmute');
-    }
-    sendPlayerCommand('play');
-  });
+  document.addEventListener('DOMContentLoaded', function () { init(document); });
+  document.addEventListener('sq:work-rendered', function () { init(document); });
 })();

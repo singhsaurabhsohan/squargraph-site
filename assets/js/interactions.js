@@ -86,6 +86,7 @@ window.SQ.initVideoPosters = function () {
     poster.parentNode.appendChild(loading);
     var iframe = document.createElement('iframe');
     iframe.src = src;
+    iframe.title = poster.getAttribute('data-title') || 'Video';
     iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;display:block;';
     iframe.allow = 'accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen';
     iframe.referrerPolicy = 'origin';

@@ -21,16 +21,18 @@ The approved final structural implementation is complete. The website now has tr
 | Missing published intelligence images | 0 |
 | Repeated blog covers | 0 |
 | Duplicate footer links | 0 across 23 shared footers |
-| Gumlet embeds without a poster | 0 of 11 |
+| Campaign-film and reel embeds without a poster | 0 of 11 |
+| Inline SQUARGRAPH brand film | Muted autoplay loop, no native controls, custom audio toggle passed |
 
 ## Visual QA
 
-- Desktop: homepage selected work, work page, previous experience, blog grid, published article, and policy footer inspected.
+- Desktop: homepage selected work, inline brand film, campaign films and reels, redesigned previous experience, blog grid, published article, and policy footer inspected.
 - Mobile: homepage selected work and blog grid inspected at a 390 px iframe viewport.
 - Tablet: homepage selected work and blog grid inspected at a 768 px iframe viewport.
 - New media uses stable intrinsic dimensions and `object-fit` behavior.
 - New below-fold media uses lazy loading. The published article cover uses high-priority loading.
 - No new text or control overflow was observed in the affected sections.
+- Work-page responsive verification passed at 390 px, 768 px, and desktop widths with zero page-level horizontal overflow.
 
 ## Integration Safety
 
@@ -72,7 +74,10 @@ Core media and rendering:
 - `assets/data/work.json`
 - `assets/data/intelligence.json`
 - `assets/js/work.js`
+- `assets/js/brand-film.js`
+- `assets/js/interactions.js`
 - `assets/js/home-previews.js`
+- `assets/css/pages/work.css`
 - `assets/css/pages/blog.css`
 - `index.html`
 - `work/index.html`

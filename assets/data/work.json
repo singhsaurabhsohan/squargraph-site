@@ -30,11 +30,12 @@
       "outcome": null,
       "image": "/assets/images/work/perception-in-motion.webp",
       "imageAlt": "Still from the SQUARGRAPH brand film Perception, in Motion",
+      "videoEmbed": "https://play.gumlet.io/embed/6a5880b4a756a01e635ebc4f?autoplay=true&muted=true&loop=true&disable_player_controls=true&playsinline=true",
+      "videoTitle": "SQUARGRAPH brand film, Perception, in Motion",
       "featured": true,
       "published": true,
-      "url": "https://gumlet.tv/watch/6a5880b4a756a01e635ebc4f/",
-      "linkLabel": "Watch film",
-      "external": true
+      "url": "/work#work-squargraph-brand-film",
+      "linkLabel": "View film"
     },
     {
       "id": "project-direction",

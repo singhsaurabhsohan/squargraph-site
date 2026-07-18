@@ -7,8 +7,8 @@ Updated: 2026-07-18
 | Location | Before | Final destination |
 | --- | --- | --- |
 | AI Disclosure | Discovery Session linked to `/engagements` | `/discovery` |
-| Homepage work | Perception film linked back to the work grid | Approved Gumlet watch page |
-| Work page | Perception film used a self-loop | Approved Gumlet watch page with `Watch film` label |
+| Homepage work | Perception film opened an external watch page | Embedded film card at `/work#work-squargraph-brand-film` |
+| Work page | Perception film rendered as a poster link | Inline muted Gumlet loop with one custom mute/unmute control |
 | Creative agency page | `/websites-digital-experiences.html` | `/websites-digital-experiences` |
 | Blog featured article | Clickable `div` with inline navigation | Semantic anchor to `/blog/why-execution-matters` |
 | Blog draft cards | Looked published but had no destination | Clearly marked `In development` |
@@ -25,8 +25,8 @@ Updated: 2026-07-18
 
 ## External Media
 
-- Approved SQUARGRAPH brand film: `https://gumlet.tv/watch/6a5880b4a756a01e635ebc4f/`
-- Eleven existing Gumlet embeds retain local poster assets.
+- Approved SQUARGRAPH brand film remains Gumlet-hosted and plays inline on `/work`.
+- The existing two campaign films and nine reels are restored under `Campaign films & reels` with local poster assets.
 - No unrelated YouTube destination remains in production content.
 
 Automated command: `node tools/audit-final-architecture.mjs`

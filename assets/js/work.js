@@ -19,6 +19,79 @@
     return node;
   }
 
+  var motionFilms = [
+    { title: 'Campaign film one', poster: '/film1.webp', id: '6a08955d0ed6988dba1990e6' },
+    { title: 'Campaign film two', poster: '/film2.webp', id: '6a08955d0ed6988dba1990e1' }
+  ];
+
+  var motionReels = [
+    { title: 'Reel one', poster: '/reel1.webp', id: '6a0896763a5246215d47a7fd' },
+    { title: 'Reel two', poster: '/reel2.webp', id: '6a08955d3a5246215d479670' },
+    { title: 'Reel three', poster: '/reel3.webp', id: '6a08955d0143a2000b232aad' },
+    { title: 'Reel four', poster: '/reel4.webp', id: '6a0896160ed6988dba199c1a' },
+    { title: 'Reel five', poster: '/reel5.webp', id: '6a0896760143a2000b233c09' },
+    { title: 'Reel six', poster: '/reel6.webp', id: '6a20aee640fe2ab62837d2c7' },
+    { title: 'Reel seven', poster: '/reel7.webp', id: '6a20b11240fe2ab62837f6ce' },
+    { title: 'Reel eight', poster: '/reel8.webp', id: '6a20b4f340fe2ab628383a81' },
+    { title: 'Reel nine', poster: '/reel9.webp', id: '6a20ba6b40fe2ab6283896e4' }
+  ];
+
+  function motionCard(item, isReel) {
+    var card = make('div', 'work-motion-card ' + (isReel ? 'work-motion-card--reel' : 'work-motion-card--film'));
+    var poster = make('button', 'reel-poster work-motion-poster');
+    poster.type = 'button';
+    poster.dataset.title = item.title;
+    poster.dataset.src = 'https://play.gumlet.io/embed/' + item.id + '?autoplay=true&muted=true&loop=true&disable_player_controls=true';
+    poster.style.backgroundImage = 'url("' + item.poster + '")';
+    poster.setAttribute('aria-label', 'Play ' + item.title.toLowerCase());
+    poster.innerHTML = '<span class="work-motion-play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 11 7-11 7V5Z"></path></svg></span>';
+    card.appendChild(poster);
+    return card;
+  }
+
+  function motionGroup(label, count, items, isReel) {
+    var group = make('div', 'work-motion-group');
+    var meta = make('p', 'work-motion-label');
+    meta.appendChild(make('span', '', label));
+    meta.appendChild(make('span', '', count));
+    group.appendChild(meta);
+    var collection = make('div', isReel ? 'work-motion-reels' : 'work-motion-films');
+    collection.id = isReel ? 'reels-strip' : 'films-strip';
+    items.forEach(function (item) { collection.appendChild(motionCard(item, isReel)); });
+    group.appendChild(collection);
+    return group;
+  }
+
+  function renderMotionShowcase() {
+    if (document.getElementById('motion-work')) return;
+    var previousSection = document.getElementById('previous-experience');
+    if (!previousSection || !previousSection.parentNode) return;
+
+    var section = make('section', 'destination-section destination-section--white');
+    section.id = 'motion-work';
+    var shell = make('div', 'destination-shell');
+    var head = make('div', 'work-motion-head');
+    var title = make('div');
+    title.appendChild(make('p', 'destination-kicker', 'Campaign films & reels'));
+    title.appendChild(make('h2', '', 'Systems in motion.'));
+    head.appendChild(title);
+    head.appendChild(make('p', '', 'Selected campaign films and short-form content shaped across production, narrative and digital surfaces.'));
+    shell.appendChild(head);
+    shell.appendChild(motionGroup('Campaign films', '02 films', motionFilms, false));
+    var reels = motionGroup('Reels', '09 reels', motionReels, true);
+    var credit = make('p', 'work-motion-credit', 'Created in collaboration with ');
+    var creditLink = make('a', '', 'Films By Jones');
+    creditLink.href = 'https://www.instagram.com/filmsbyjones/';
+    creditLink.target = '_blank';
+    creditLink.rel = 'noopener noreferrer';
+    credit.appendChild(creditLink);
+    credit.appendChild(document.createTextNode('.'));
+    reels.appendChild(credit);
+    shell.appendChild(reels);
+    section.appendChild(shell);
+    previousSection.parentNode.insertBefore(section, previousSection);
+  }
+
   function render(entry) {
     var card = make('article', 'work-entry');
     if (entry.id) card.id = 'work-' + entry.id;
@@ -26,7 +99,28 @@
     card.dataset.relationship = entry.relationship;
 
     var media = make('div', 'work-entry-media');
-    if (entry.image) {
+    if (entry.videoEmbed) {
+      media.classList.add('work-entry-media--video');
+      media.dataset.gumletLoop = '';
+
+      var iframe = document.createElement('iframe');
+      iframe.src = entry.videoEmbed;
+      iframe.title = entry.videoTitle || entry.imageAlt || entry.title;
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.referrerPolicy = 'origin';
+      iframe.loading = 'eager';
+      iframe.setAttribute('allowfullscreen', '');
+      media.appendChild(iframe);
+
+      var audioButton = make('button', 'work-video-audio');
+      audioButton.type = 'button';
+      audioButton.dataset.gumletAudio = '';
+      audioButton.setAttribute('aria-pressed', 'false');
+      audioButton.setAttribute('aria-label', 'Unmute brand film');
+      audioButton.setAttribute('title', 'Unmute brand film');
+      audioButton.innerHTML = '<svg class="work-video-audio-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"></path><path d="m22 9-6 6"></path><path d="m16 9 6 6"></path></svg><svg class="work-video-audio-playing" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 5a10 10 0 0 1 0 14"></path></svg>';
+      media.appendChild(audioButton);
+    } else if (entry.image) {
       var image = document.createElement('img');
       image.src = entry.image;
       image.alt = entry.imageAlt || '';
@@ -59,7 +153,7 @@
     details.appendChild(outputs);
     body.appendChild(details);
 
-    if (entry.url) {
+    if (entry.url && !entry.videoEmbed) {
       var link = make('a', 'work-entry-link', entry.linkLabel || 'View context');
       link.href = entry.url;
       link.setAttribute('data-sq-event', 'work_card_click');
@@ -101,6 +195,8 @@
     button.addEventListener('click', function () { applyFilter(button.dataset.workFilter); });
   });
 
+  renderMotionShowcase();
+
   fetch('/assets/data/work.json')
     .then(function (response) { if (!response.ok) throw new Error('Work data unavailable'); return response.json(); })
     .then(function (data) {
@@ -121,6 +217,7 @@
         var anchor = document.getElementById(window.location.hash.slice(1));
         if (anchor) window.requestAnimationFrame(function () { anchor.scrollIntoView({ block: 'start' }); });
       }
+      document.dispatchEvent(new CustomEvent('sq:work-rendered'));
     })
     .catch(function () {
       applyFilter('all');
