@@ -28,11 +28,13 @@
       "role": "Creative direction, narrative system and brand communication.",
       "outputs": ["Brand film", "Narrative direction", "Motion system"],
       "outcome": null,
-      "image": "",
-      "imageAlt": "",
+      "image": "/assets/images/work/perception-in-motion.webp",
+      "imageAlt": "Still from the SQUARGRAPH brand film Perception, in Motion",
       "featured": true,
       "published": true,
-      "url": "/work#squargraph-work"
+      "url": "https://gumlet.tv/watch/6a5880b4a756a01e635ebc4f/",
+      "linkLabel": "Watch film",
+      "external": true
     },
     {
       "id": "project-direction",
@@ -44,8 +46,8 @@
       "role": "Product strategy, UX architecture, interface design, recommendation logic and implementation.",
       "outputs": ["Guided requirement flow", "Capability recommendation system", "Verified lead journey"],
       "outcome": null,
-      "image": "",
-      "imageAlt": "",
+      "image": "/assets/images/work/project-direction.webp",
+      "imageAlt": "Browser-framed view of the SQUARGRAPH Project Direction experience",
       "featured": true,
       "published": true,
       "url": "/project-direction"
@@ -76,8 +78,8 @@
       "role": "Led or contributed while working with INNOCEAN Worldwide India on the Hyundai India mandate.",
       "outputs": ["Campaign thinking", "Content systems", "Creator and reputation coordination"],
       "outcome": null,
-      "image": "",
-      "imageAlt": "",
+      "image": "/assets/images/work/integrated-automotive-mandate.webp",
+      "imageAlt": "Editorial campaign system board representing integrated automotive work from the founder's previous experience",
       "featured": false,
       "published": true,
       "url": "/saurabh-sohan-singh"
@@ -92,8 +94,8 @@
       "role": "Led or contributed before the establishment of SQUARGRAPH™.",
       "outputs": ["Integrated campaign planning", "Creator-led communication", "Launch coordination"],
       "outcome": null,
-      "image": "",
-      "imageAlt": "",
+      "image": "/assets/images/work/national-campaign-systems.webp",
+      "imageAlt": "Editorial operating board representing national-scale campaign systems from the founder's previous experience",
       "featured": false,
       "published": true,
       "url": "/saurabh-sohan-singh"

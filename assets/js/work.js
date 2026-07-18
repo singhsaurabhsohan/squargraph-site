@@ -21,6 +21,7 @@
 
   function render(entry) {
     var card = make('article', 'work-entry');
+    if (entry.id) card.id = 'work-' + entry.id;
     card.dataset.categories = (entry.category || []).map(function (item) { return item.toLowerCase(); }).join(' ');
     card.dataset.relationship = entry.relationship;
 
@@ -59,9 +60,13 @@
     body.appendChild(details);
 
     if (entry.url) {
-      var link = make('a', 'work-entry-link', 'View context');
+      var link = make('a', 'work-entry-link', entry.linkLabel || 'View context');
       link.href = entry.url;
       link.setAttribute('data-sq-event', 'work_card_click');
+      if (entry.external === true) {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+      }
       body.appendChild(link);
     }
 
@@ -112,6 +117,10 @@
           .forEach(function (entry) { previousGrid.appendChild(render(entry)); });
       }
       applyFilter('all');
+      if (window.location.hash) {
+        var anchor = document.getElementById(window.location.hash.slice(1));
+        if (anchor) window.requestAnimationFrame(function () { anchor.scrollIntoView({ block: 'start' }); });
+      }
     })
     .catch(function () {
       applyFilter('all');

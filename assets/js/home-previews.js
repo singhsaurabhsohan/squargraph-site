@@ -39,9 +39,13 @@
           body.appendChild(make('p', 'architecture-card-meta', (entry.category || []).join(' · ')));
           body.appendChild(make('h3', '', entry.title));
           body.appendChild(make('p', '', entry.summary));
-          var link = make('a', 'text-link', 'View context');
+          var link = make('a', 'text-link', entry.linkLabel || 'View context');
           link.href = entry.url || '/work';
           link.setAttribute('data-sq-event', 'work_card_click');
+          if (entry.external === true) {
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+          }
           body.appendChild(link);
           article.appendChild(media);
           article.appendChild(body);
