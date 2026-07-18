@@ -220,8 +220,55 @@
 
     /* ── APPLY / FORM SECTION ── */
     .apply-section { background:var(--warmgray); padding:clamp(90px,12vw,160px) clamp(24px,4vw,64px); }
-    .apply-inner { max-width:640px; margin:0 auto; }
-    .apply-head { text-align:center; margin-bottom:clamp(40px,5vw,56px); }
+    #apply.apply-section .apply-inner {
+      width:min(100%,1440px) !important;
+      max-width:1440px !important;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:minmax(300px,.78fr) minmax(560px,1.22fr);
+      column-gap:clamp(48px,6vw,104px);
+      align-items:start;
+    }
+    .apply-head {
+      position:sticky;
+      top:128px;
+      max-width:520px;
+      margin:0;
+      text-align:left;
+    }
+    .apply-head .section-h2 {
+      max-width:12ch;
+      margin:0 0 18px;
+    }
+    .apply-head .section-sub {
+      max-width:48ch;
+      margin:0;
+    }
+    #apply #gp-form-card,
+    #apply #gp-success {
+      grid-column:2;
+      width:100%;
+      max-width:760px;
+      margin:0 0 0 auto;
+    }
+    @media (max-width:980px) {
+      #apply.apply-section .apply-inner {
+        grid-template-columns:1fr;
+        row-gap:32px;
+      }
+      .apply-head {
+        position:static;
+        max-width:680px;
+      }
+      .apply-head .section-h2 {
+        max-width:15ch;
+      }
+      #apply #gp-form-card,
+      #apply #gp-success {
+        grid-column:1;
+        margin:0;
+      }
+    }
     .form-card {
       background: #fff; border: 1px solid var(--bordergray);
       border-radius: 20px;
