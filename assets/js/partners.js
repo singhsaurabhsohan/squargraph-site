@@ -375,6 +375,9 @@
 
     if (!validateForm()) {
       showError('Please review the highlighted fields.');
+      if (window.SQ && typeof window.SQ.trackEvent === 'function') {
+        window.SQ.trackEvent('form_error', { form_id: 'partner-form', error_type: 'validation' });
+      }
       return;
     }
 
@@ -382,6 +385,9 @@
     if (window.SQOtp && !window.SQOtp.isEmailVerified(emailValue)) {
       window.SQOtp.verifyEmail(emailValue);
       showError('Verify the email code sent to your inbox before submitting.');
+      if (window.SQ && typeof window.SQ.trackEvent === 'function') {
+        window.SQ.trackEvent('form_error', { form_id: 'partner-form', error_type: 'email_verification' });
+      }
       fallbackLink.hidden = true;
       return;
     }
@@ -391,6 +397,9 @@
     if (!captchaToken) {
       if (captchaError) captchaError.classList.add('visible');
       loadRecaptcha();
+      if (window.SQ && typeof window.SQ.trackEvent === 'function') {
+        window.SQ.trackEvent('form_error', { form_id: 'partner-form', error_type: 'captcha' });
+      }
       return;
     }
     if (captchaError) captchaError.classList.remove('visible');
@@ -442,6 +451,9 @@
     } catch (error) {
       setSubmitting(false);
       showError('Submission failed. Please try again or continue on WhatsApp.', true);
+      if (window.SQ && typeof window.SQ.trackEvent === 'function') {
+        window.SQ.trackEvent('form_error', { form_id: 'partner-form', error_type: 'submission' });
+      }
     }
   });
 })();

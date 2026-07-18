@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Direction | SQUARGRAPH™</title>
   <meta name="description" content="Use SQUARGRAPH™ Project Direction to tell us what you are building, changing, launching or trying to grow. We will map the right brand strategy, creative and digital capabilities." />
-  <meta name="keywords" content="SQUARGRAPH Project Direction, start a project, brand strategy direction, creative and digital studio, campaign direction, project requirement" />
   <link rel="canonical" href="https://squargraph.com/project-direction" />
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Project Direction | SQUARGRAPH™" />
@@ -315,7 +314,7 @@
       <p>SQUARGRAPH™ is a brand strategy, creative and digital studio helping businesses align how they position, communicate, appear, launch and grow across every important touchpoint.</p>
       <div class="about-links">
         <a href="/">Explore SQUARGRAPH</a>
-        <a href="/#capabilities">View our capabilities</a>
+        <a href="/capabilities">View our capabilities</a>
       </div>
     </div>
   </section>
@@ -1148,7 +1147,10 @@
     e.preventDefault();
     if (document.getElementById('finder-website').value) return;
     formError.textContent = '';
-    if (!validateStep(5)) return;
+    if (!validateStep(5)) {
+      pushEvent('form_error', { form_id: 'project-direction-form', error_type: 'validation', step: 5 });
+      return;
+    }
 
     var data = buildPayload();
     submitBtn.disabled = true;
@@ -1167,6 +1169,12 @@
         investment_range: data.budget,
         campaign_name: getUtmData().campaign_name
       });
+      pushEvent('project_direction_complete', {
+        form_id: 'project-direction-form',
+        priority_count: selectedPriorities.length,
+        selected_direction_count: decideMode ? 0 : selectedDirections.length,
+        decision_mode: decideMode ? 'squargraph-decides' : 'visitor-confirmed'
+      });
       if (typeof window.fbq === 'function') {
         window.fbq('track', 'Lead', {
           content_name: 'Project Direction',
@@ -1178,6 +1186,7 @@
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit My Requirement';
       formError.textContent = 'Submission failed. Please try again or continue on WhatsApp.';
+      pushEvent('form_error', { form_id: 'project-direction-form', error_type: 'submission' });
       if (errorWhatsappEl) {
         var fallbackMsg = "Hi, I tried submitting a Project Direction requirement for " + data.company + ". My priorities are " + priorityLabels().join(', ') + ".";
         errorWhatsappEl.href = 'https://wa.me/' + window.SQ.config.whatsappNumber + '?text=' + encodeURIComponent(fallbackMsg);

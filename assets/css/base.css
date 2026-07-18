@@ -18,6 +18,11 @@ body {
   font-weight: 400;
 }
 
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 ::selection {
   background: rgba(57,69,54,.18);
   color: var(--textprimary);

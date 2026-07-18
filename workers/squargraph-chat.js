@@ -18,10 +18,10 @@ const ALLOWED_ORIGINS = new Set([
 ]);
 
 const FALLBACK_KNOWLEDGE = {
-  version: "fallback-2026-07-17",
+  version: "fallback-2026-07-18",
   brand: {
     name: "SQUARGRAPH™",
-    descriptor: "A strategy-led creative and growth studio",
+    descriptor: "A brand strategy, creative and digital studio",
     location: "New Delhi, India",
     founder: "Saurabh Sohan Singh",
     purpose: "One strategic direction across brand, creative, media, and growth."

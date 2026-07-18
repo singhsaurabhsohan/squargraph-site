@@ -1,135 +1,128 @@
-# SQUARGRAPH™ Legal & Trust Layer — Implementation Instructions
+# SQUARGRAPH™ Architecture Implementation
 
-Four HTML files are ready to deploy. Below are the exact find-and-replace patches for `index.html` and `audit.html`.
+Implementation date: 2026-07-18
 
----
+## Executive Summary
 
-## STEP 1 — Deploy the four new pages
+The static website now has a durable multi-page architecture without changing its underlying platform or integrations. The homepage has been reduced to nine focused sections. Work, Capabilities, Engagements and Studio now have standalone destination pages. Navigation, footer, metadata, structured data, work content and validation rules have clear sources of truth.
 
-Copy these files to your Cloudflare Pages root:
+No framework, package manager, database migration or external UI dependency was introduced.
 
-- `privacy-policy.html`  → served at `/privacy-policy`
-- `terms-of-use.html`    → served at `/terms-of-use`
-- `refund-policy.html`   → served at `/refund-policy`
-- `ai-disclosure.html`   → served at `/ai-disclosure`
+## Final Architecture
 
-No routing config needed — Cloudflare Pages serves `.html` files directly at the slug path.
+- `/` positions the studio and routes visitors onward.
+- `/work` separates verified SQUARGRAPH work from the founder's previous professional experience.
+- `/capabilities` explains six connected capability territories and the Growth Ecosystem.
+- `/engagements` compares five ways to work with SQUARGRAPH.
+- `/intelligence` remains the knowledge destination.
+- `/studio` holds philosophy, operating approach, founder context and ecosystem logic.
+- `/project-direction` remains the focused acquisition and requirement-mapping flow.
 
----
+The homepage sequence is Hero, Strategic Trust, Selected Work, Capability System, How We Work, Ways to Work, Founder, Intelligence, Contact and Footer.
 
-## STEP 2 — Update footer links in `index.html`
+## Created Files
 
-### Find (existing footer legal links):
-```html
-        <a href="#" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Terms & Conditions</a>
-        <a href="#" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Privacy Policy</a>
-        <a href="#" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Refund Policy</a>
+- `work/index.html`
+- `capabilities/index.html`
+- `engagements/index.html`
+- `studio/index.html`
+- `assets/data/work.json`
+- `assets/js/work.js`
+- `assets/js/home-previews.js`
+- `assets/css/pages/destination.css`
+- `assets/css/pages/work.css`
+- `assets/css/pages/capabilities.css`
+- `assets/css/pages/engagements.css`
+- `assets/css/pages/studio.css`
+- `components/navigation.html.reference`
+- `components/footer.html.reference`
+- `tools/build-destination-pages.mjs`
+- `tools/restructure-home.mjs`
+- `tools/sync-site-chrome.mjs`
+- `tools/validate-site.mjs`
+- `tools/compare-form-contracts.mjs`
+- `SITE_ARCHITECTURE.md`
+- `CONTENT_UPDATE_GUIDE.md`
+- `DESIGN_GUARDRAILS.md`
+- `ANALYTICS_EVENT_MAP.md`
+- `QA_REPORT.md`
+
+## Modified Systems
+
+- `index.html` was shortened and reorganised while preserving the contact form and integrations.
+- Shared navigation and footer markup was standardised across public pages.
+- `_redirects` includes canonical redirects for the four new routes.
+- `_headers` preserves existing security policy and adds JSON cache headers.
+- `sitemap.xml` contains all current public indexable routes with the actual implementation date.
+- `ai-context.json` reflects the new architecture and truthful work attribution.
+- `assets/js/core.js` adds consistent route events and accessible mobile-menu focus management.
+- `assets/js/partners.js` adds non-PII form error events without changing submission behaviour.
+- `project-direction/index.html` adds completion and error events without changing payload fields.
+
+No files were removed. Legacy CSS and existing reports remain available until a separate, evidence-based cleanup is approved.
+
+## CSS Decision
+
+`assets/css/pages/home.css` is the active homepage stylesheet. `assets/css/home.css` is legacy and is not loaded by any public HTML page. It remains in the repository because deleting it was outside the safe scope of this architecture pass. New destination pages share `assets/css/pages/destination.css` and add one route-specific stylesheet each.
+
+The current production palette uses ink, off-white, forest, moss and muted gold. Purple was not reintroduced because it had been explicitly removed from the live visual system.
+
+## Data And JavaScript
+
+`assets/data/work.json` is the source for repeatable work entries. Static fallback cards remain in the HTML for crawling and no-JavaScript resilience. `assets/js/work.js` progressively enhances both relationship sections and never mixes them. `assets/js/home-previews.js` progressively enhances featured work and Intelligence cards.
+
+## Compatibility Status
+
+- Form ids and field names match `backup/pre-architecture-20260718` across nine integration pages.
+- Supabase table names and payload construction were not changed.
+- OTP, international telephone, reCAPTCHA, payment and success/error implementations were preserved.
+- No SQL migration is required.
+- Existing GTM and GA4-compatible events remain available; new events contain no submitted personal values.
+
+Live OTP delivery, reCAPTCHA solving, payment and database writes were intentionally not executed during local QA to avoid creating production records. Their source contracts and loading states were verified.
+
+## Performance Summary
+
+Homepage HTML decreased from 68,305 bytes to 54,778 bytes, a reduction of 13,527 bytes. Section count decreased from 11 to 9. One small deferred script was added for progressive previews. No render-blocking third-party dependency was added.
+
+## Security Observations
+
+- Existing CSP, HSTS, frame, MIME, referrer and permissions headers remain intact.
+- External new-tab links are validated for `rel="noopener noreferrer"`.
+- Supabase publishable configuration remains client-side by design; no new secret was added.
+- AI chat secrets and rate limiting remain in Cloudflare Worker bindings.
+
+## Missing Verified Content
+
+The Work collection currently uses verified SQUARGRAPH-owned systems and broad previous-experience descriptions. Add named external case studies, campaign metrics, client logos or outcomes only after founder and client approval. Do not infer outcomes from public search results.
+
+## Commands
+
+```powershell
+python -m http.server 4188
+node tools/build-destination-pages.mjs
+node tools/sync-site-chrome.mjs
+node tools/validate-site.mjs
+node tools/compare-form-contracts.mjs backup/pre-architecture-20260718
+git diff --check
 ```
 
-### Replace with:
-```html
-        <a href="/terms-of-use" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Terms of Use</a>
-        <a href="/privacy-policy" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Privacy Policy</a>
-        <a href="/refund-policy" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">Refund Policy</a>
-        <a href="/ai-disclosure" style="font-size:11px;color:var(--textmuted);transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--textmuted)'">AI Disclosure</a>
+## Deployment
+
+1. Run the build and validation commands above.
+2. Review `git diff --stat` and `git diff --check`.
+3. Commit the verified files.
+4. Push `main` to the production GitHub repository.
+5. Confirm the hosting deployment serves `/work`, `/capabilities`, `/engagements` and `/studio`.
+6. Submit `https://squargraph.com/sitemap.xml` in Search Console if the deployment does not trigger a recrawl.
+7. Deploy `workers/squargraph-chat.js` to the existing `squargraph-chat` Worker while retaining `OPENROUTER_API_KEY` and `RATE_LIMIT_KV`.
+
+## Rollback
+
+The pre-change snapshot is `backup/pre-architecture-20260718`. To restore without destructive reset:
+
+```powershell
+git switch backup/pre-architecture-20260718
 ```
 
----
-
-## STEP 3 — Update audit consent block in `audit.html`
-
-### Find (existing privacy note):
-```html
-    <p class="privacy-note">🔒 Your data is kept private and never shared. By submitting, you agree to our terms.</p>
-```
-
-### Replace with:
-```html
-    <div class="privacy-note" style="font-size:12px;color:var(--muted);text-align:left;padding:0 32px 20px;line-height:1.65;">
-
-      <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:14px;">
-        <input type="checkbox" id="audit-consent" style="margin-top:3px;accent-color:var(--accent);flex-shrink:0;" />
-        <span style="font-size:13px;color:var(--text);font-weight:500;line-height:1.6;">
-          I consent to SQUARGRAPH™ Studios collecting, storing, and processing the information submitted in this assessment.
-        </span>
-      </label>
-
-      <p style="margin-bottom:8px;">🔒 Your information is securely stored and never sold to third parties.</p>
-
-      <p style="margin-bottom:8px;">Brand Quotient™ uses proprietary frameworks, website analysis, automated systems, and AI-assisted evaluation to generate preliminary insights.</p>
-
-      <p style="margin-bottom:8px;">AI-generated analysis is based on available information and analytical models and may not capture every aspect of your business. Recommendations should be considered directional guidance and not professional, legal, financial, or investment advice.</p>
-
-      <p style="margin-bottom:8px;">Human review, strategic validation, and additional analysis may be required before implementing recommendations or making business decisions.</p>
-
-      <p>By submitting this assessment, you agree to our
-        <a href="/privacy-policy" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-mid);">Privacy Policy</a>,
-        <a href="/terms-of-use" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-mid);">Terms of Use</a>,
-        <a href="/refund-policy" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-mid);">Refund Policy</a>, and
-        <a href="/ai-disclosure" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-mid);">AI Disclosure</a>.
-      </p>
-
-    </div>
-```
-
----
-
-## STEP 4 — Add consent validation in `audit.html`
-
-### Find (inside the btnSubmit click handler, the first line after the click event opens):
-```javascript
-  if (!validateStep(TOTAL_STEPS)) return;
-```
-
-### Replace with:
-```javascript
-  if (!validateStep(TOTAL_STEPS)) return;
-
-  const consentEl = document.getElementById('audit-consent');
-  if (consentEl && !consentEl.checked) {
-    consentEl.closest('label').style.outline = '2px solid #E53E3E';
-    consentEl.closest('label').style.borderRadius = '6px';
-    consentEl.closest('label').style.padding = '4px';
-    consentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    setTimeout(function() {
-      consentEl.closest('label').style.outline = '';
-      consentEl.closest('label').style.padding = '';
-    }, 3000);
-    return;
-  }
-```
-
----
-
-## STEP 5 — Update footer in `audit.html`
-
-The `audit.html` page doesn't have a footer. Add this just before `</body>`:
-
-```html
-<footer style="border-top:1px solid var(--border);padding:28px 32px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;margin-top:auto;">
-  <p style="font-size:12px;color:var(--muted);">© 2026 SQUARGRAPH™ Studios. All rights reserved.</p>
-  <div style="display:flex;gap:20px;flex-wrap:wrap;">
-    <a href="/privacy-policy" style="font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--muted)'">Privacy Policy</a>
-    <a href="/terms-of-use" style="font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--muted)'">Terms of Use</a>
-    <a href="/refund-policy" style="font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--muted)'">Refund Policy</a>
-    <a href="/ai-disclosure" style="font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--muted)'">AI Disclosure</a>
-  </div>
-</footer>
-```
-
-Place this just before the closing `</body>` tag, after all existing `<script>` blocks.
-
----
-
-## Summary
-
-| File | Action |
-|---|---|
-| `privacy-policy.html` | Deploy to root |
-| `terms-of-use.html` | Deploy to root |
-| `refund-policy.html` | Deploy to root |
-| `ai-disclosure.html` | Deploy to root |
-| `index.html` | Step 2: update footer links (4 lines) |
-| `audit.html` | Step 3: replace privacy-note with full consent block |
-| `audit.html` | Step 4: add consent check at top of submit handler |
-| `audit.html` | Step 5: add legal footer before `</body>` |
+For production rollback, redeploy the last known-good commit from the hosting dashboard or revert the architecture commit with `git revert <commit-sha>`.

@@ -51,10 +51,16 @@ window.SQ.initEventTracking = function () {
       var hash = url.hash.toLowerCase();
 
       if (url.protocol === 'mailto:') eventName = 'email_click';
+      else if (url.protocol === 'tel:') eventName = 'phone_click';
       else if (host === 'wa.me' || host.indexOf('whatsapp.com') !== -1) eventName = 'whatsapp_click';
       else if ((path === '/audit' || path === '/audit.html') && text.indexOf('audit') !== -1) eventName = 'audit_start_click';
       else if ((path === '/discovery' || path === '/discovery.html') && (text.indexOf('discovery') !== -1 || text.indexOf('book') !== -1)) eventName = 'discovery_session_click';
-      else if ((path === '/project-direction' || path === '/project-direction.html') && (el.classList.contains('nav-cta') || text.indexOf('start a project') !== -1)) eventName = 'cta_start_conversation_click';
+      else if ((path === '/project-direction' || path === '/project-direction.html') && (el.classList.contains('nav-cta') || text.indexOf('start a project') !== -1)) eventName = 'project_direction_start';
+      else if (path === '/work' || path === '/work/index.html') eventName = 'work_card_click';
+      else if (path === '/capabilities' || path === '/capabilities/index.html' || path.indexOf('/capabilities/') === 0) eventName = 'capability_click';
+      else if (path === '/engagements' || path === '/engagements/index.html') eventName = 'engagement_click';
+      else if (path === '/intelligence' || path === '/intelligence.html' || path.indexOf('/blog/') === 0) eventName = 'intelligence_article_click';
+      else if (path === '/saurabh-sohan-singh' || path === '/saurabh-sohan-singh.html') eventName = 'founder_profile_click';
       else if (hash === '#contact' && (el.classList.contains('nav-cta') || text.indexOf('conversation') !== -1 || text.indexOf("let's talk") !== -1)) eventName = 'cta_start_conversation_click';
       else if (hash === '#capabilities' && (el.closest('.hero-ctas') || text.indexOf('explore capabilities') !== -1)) eventName = 'cta_explore_capabilities_click';
     }
@@ -84,6 +90,7 @@ window.SQ.initNav = function () {
   var mobToggle = document.getElementById('mob-toggle');
   var mobMenu = document.getElementById('mob-menu');
   var menuOpen = false;
+  var lastFocused = null;
 
   if (!nav || !mobToggle || !mobMenu) return;
 
@@ -93,25 +100,52 @@ window.SQ.initNav = function () {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  mobToggle.addEventListener('click', function () {
-    menuOpen = !menuOpen;
+  function focusableItems() {
+    return Array.prototype.slice.call(mobMenu.querySelectorAll('a[href], button:not([disabled])'));
+  }
+
+  function setMenu(open, restoreFocus) {
+    menuOpen = open;
     mobToggle.classList.toggle('open', menuOpen);
     mobToggle.setAttribute('aria-expanded', String(menuOpen));
     mobToggle.setAttribute('aria-label', menuOpen ? 'Close navigation menu' : 'Open navigation menu');
     mobMenu.classList.toggle('open', menuOpen);
-    if (menuOpen) { mobMenu.removeAttribute('inert'); } else { mobMenu.setAttribute('inert', ''); }
+    mobMenu.setAttribute('aria-hidden', String(!menuOpen));
+    if (menuOpen) {
+      lastFocused = document.activeElement;
+      mobMenu.removeAttribute('inert');
+      var first = focusableItems()[0];
+      if (first) window.setTimeout(function () { first.focus(); }, 0);
+    } else {
+      mobMenu.setAttribute('inert', '');
+      if (restoreFocus !== false && lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    }
     document.body.style.overflow = menuOpen ? 'hidden' : '';
+  }
+
+  mobToggle.addEventListener('click', function () {
+    setMenu(!menuOpen, true);
   });
 
-  window.closeMob = function () {
-    menuOpen = false;
-    mobToggle.classList.remove('open');
-    mobToggle.setAttribute('aria-expanded', 'false');
-    mobToggle.setAttribute('aria-label', 'Open navigation menu');
-    mobMenu.classList.remove('open');
-    mobMenu.setAttribute('inert', '');
-    document.body.style.overflow = '';
+  window.closeMob = function (restoreFocus) {
+    setMenu(false, restoreFocus);
   };
+
+  mobMenu.addEventListener('keydown', function (e) {
+    if (!menuOpen) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      window.closeMob(true);
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    var items = focusableItems();
+    if (!items.length) return;
+    var first = items[0];
+    var last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
 
   mobMenu.addEventListener('touchmove', function (e) {
     var touch = e.touches[0];
@@ -194,6 +228,7 @@ window.SQ.initITI = function (inputId) {
 window.SQ.initEscapeKey = function () {
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
+    if (typeof window.closeMob === 'function') window.closeMob(true);
     if (typeof window.closeModal === 'function') window.closeModal();
     var overlay = document.getElementById('payment-success-overlay');
     if (overlay) { overlay.style.display = 'none'; document.body.style.overflow = ''; }

@@ -1,12 +1,15 @@
 {
-  "version": "2026-07-17.1",
-  "last_updated": "2026-07-17",
+  "version": "2026-07-18.1",
+  "last_updated": "2026-07-18",
   "canonical_site": "https://squargraph.com",
   "source_urls": {
     "official_home": "https://squargraph.com/",
     "official_founder_profile": "https://squargraph.com/saurabh-sohan-singh",
-    "official_capabilities": "https://squargraph.com/#capabilities",
-    "official_engagements": "https://squargraph.com/#Engagements",
+    "official_work": "https://squargraph.com/work",
+    "official_capabilities": "https://squargraph.com/capabilities",
+    "official_engagements": "https://squargraph.com/engagements",
+    "official_intelligence": "https://squargraph.com/intelligence",
+    "official_studio": "https://squargraph.com/studio",
     "founder_linkedin": "https://linkedin.com/in/saurabhsohansingh",
     "company_linkedin": "https://linkedin.com/company/squargraph"
   },
@@ -18,7 +21,7 @@
   ],
   "brand": {
     "name": "SQUARGRAPH™",
-    "descriptor": "A strategy-led creative and growth studio",
+    "descriptor": "A brand strategy, creative and digital studio",
     "location": "New Delhi, India",
     "founded": "2026",
     "founder": "Saurabh Sohan Singh",
@@ -38,6 +41,22 @@
       "Lifestyle",
       "Emerging brands and cross-category businesses"
     ]
+  },
+  "site_architecture": {
+    "work": "https://squargraph.com/work",
+    "capabilities": "https://squargraph.com/capabilities",
+    "engagements": "https://squargraph.com/engagements",
+    "intelligence": "https://squargraph.com/intelligence",
+    "studio": "https://squargraph.com/studio",
+    "start_a_project": "https://squargraph.com/project-direction",
+    "navigation_rule": "Recommend the narrowest relevant page. Use Project Direction when the visitor knows the problem or outcome but does not know the capability or engagement."
+  },
+  "work_transparency": {
+    "source": "https://squargraph.com/assets/data/work.json",
+    "rule": "Never mix SQUARGRAPH work with the founder's previous professional experience without the permanent relationship label.",
+    "squargraph_work": ["SQUARGRAPH Brand System", "Perception, in Motion", "Project Direction", "Growth Ecosystem Partner Experience"],
+    "founder_previous_experience": "Saurabh led or contributed to integrated automotive and national-scale campaign systems before the establishment of SQUARGRAPH. His experience includes work with INNOCEAN Worldwide India on the Hyundai India mandate. This is not SQUARGRAPH client work.",
+    "outcome_rule": "Do not invent outcomes, metrics, client approvals or case-study detail."
   },
   "capabilities": [
     {
@@ -146,7 +165,7 @@
     "official_profile": "https://squargraph.com/saurabh-sohan-singh",
     "linkedin": "https://linkedin.com/in/saurabhsohansingh",
     "email": "saurabh@squargraph.com",
-    "official_summary": "Saurabh has more than eight years of experience close to the moving parts of modern brand growth, including social media, branded content, creators, PR, production, community, reputation, go-to-market communication, and public-facing brand narratives.",
+    "official_summary": "Saurabh has more than eight years of experience close to the moving parts of modern brand growth, including work with INNOCEAN Worldwide India on the Hyundai India mandate, social media, branded content, creators, PR, production, community, reputation, go-to-market communication, and public-facing brand narratives.",
     "experience_areas": ["Automotive and product launches", "National-scale digital campaigns", "Sports partnership campaigns", "Creator-led content ecosystems", "PR and reputation communication", "Live activations and production", "Multi-stakeholder campaign delivery"],
     "expertise": ["Brand Direction", "Campaign Thinking", "Go-to-Market Communication", "Content & Media Logic", "Digital Experience", "Perception-Led Growth"],
     "leadership": "He leads the studio with a focus on strategic clarity, creative discipline, market perception, and long-term brand value.",
@@ -213,6 +232,10 @@
     }
   },
   "routing": {
+    "selected_work": "https://squargraph.com/work",
+    "capability_overview": "https://squargraph.com/capabilities",
+    "engagement_comparison": "https://squargraph.com/engagements",
+    "studio_approach": "https://squargraph.com/studio#approach",
     "unsure_what_is_needed": "https://squargraph.com/project-direction",
     "quick_strategic_direction": "https://squargraph.com/discovery",
     "structured_diagnosis": "https://squargraph.com/audit",

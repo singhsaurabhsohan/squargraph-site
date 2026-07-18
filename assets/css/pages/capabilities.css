@@ -1,0 +1,23 @@
+.capability-stack { display: grid; gap: 0; }
+.capability-detail { padding: 100px 0; border-bottom: 1px solid var(--bordergray); scroll-margin-top: 136px; }
+.capability-detail:nth-child(even) { background: #fff; }
+.capability-detail-grid { display: grid; grid-template-columns: minmax(220px, .55fr) minmax(0, 1.45fr); gap: 72px; }
+.capability-number { display: block; color: var(--accent); font-size: 13px; font-weight: 700; margin-bottom: 24px; }
+.capability-detail h2 { margin: 0 0 20px; max-width: 11ch; font-size: 48px; line-height: 1.08; font-weight: 500; }
+.capability-situation { margin: 0; max-width: 32ch; color: var(--textsecondary); font-size: 18px; line-height: 1.65; }
+.capability-ownership { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 36px; }
+.capability-block { padding-top: 18px; border-top: 1px solid var(--bordergray); }
+.capability-block h3 { margin: 0 0 14px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
+.capability-block p { margin: 0; color: var(--textsecondary); line-height: 1.65; }
+.capability-output-list { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: 24px; }
+.capability-output-list li { break-inside: avoid; padding: 8px 0; color: var(--textsecondary); }
+.capability-links { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
+.ecosystem-diagram { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 28px; margin-top: 52px; }
+.ecosystem-core, .ecosystem-depth { min-height: 260px; padding: 34px; border: 1px solid rgba(255,255,255,.16); border-radius: 8px; }
+.ecosystem-core h3, .ecosystem-depth h3 { margin: 0 0 18px; font-size: 24px; font-weight: 500; }
+.ecosystem-core p, .ecosystem-depth p { color: rgba(255,255,255,.68); line-height: 1.65; }
+.ecosystem-join { width: 70px; height: 1px; background: rgba(255,255,255,.35); position: relative; }
+.ecosystem-join::after { content: ""; position: absolute; right: 0; top: -4px; width: 9px; height: 9px; border-radius: 50%; background: #b7c0af; }
+@media (max-width: 900px) { .capability-detail-grid { grid-template-columns: 1fr; gap: 42px; } .capability-detail h2 { font-size: 42px; } }
+@media (max-width: 700px) { .capability-detail { padding: 72px 0; } .capability-ownership { grid-template-columns: 1fr; } .capability-output-list { columns: 1; } .ecosystem-diagram { grid-template-columns: 1fr; } .ecosystem-join { width: 1px; height: 48px; justify-self: center; } .ecosystem-join::after { right: -4px; top: auto; bottom: 0; } }
+@media (max-width: 420px) { .capability-detail h2 { font-size: 36px; } }

@@ -605,6 +605,42 @@ textarea:focus {
   }
 }
 
+.footer-inner.footer-inner--expanded {
+  grid-template-columns: minmax(240px, 1.55fr) repeat(4, minmax(130px, .8fr)) !important;
+  gap: clamp(28px, 3vw, 52px) !important;
+}
+
+@media (max-width: 1180px) {
+  .footer-inner.footer-inner--expanded {
+    grid-template-columns: 1.4fr repeat(2, 1fr) !important;
+  }
+
+  .footer-inner.footer-inner--expanded .footer-brand {
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .footer-inner.footer-inner--expanded {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .footer-inner.footer-inner--expanded .footer-brand {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 540px) {
+  .footer-inner.footer-inner--expanded {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-inner.footer-inner--expanded .footer-brand {
+    grid-column: auto;
+  }
+}
+
 .nav-inner,
 .footer-inner,
 .footer-bar,
@@ -831,6 +867,10 @@ textarea:focus {
     max-width: 100% !important;
     overflow: hidden !important;
     padding: 26px 20px 22px !important;
+  }
+
+  body.home .hero-section {
+    min-height: auto !important;
   }
 
   .hero-section .hero-eyebrow {
