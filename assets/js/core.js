@@ -117,11 +117,20 @@ window.SQ.initNav = function () {
       var first = focusableItems()[0];
       if (first) window.setTimeout(function () { first.focus(); }, 0);
     } else {
+      mobMenu.classList.remove('pointer-open');
       mobMenu.setAttribute('inert', '');
       if (restoreFocus !== false && lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
     }
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   }
+
+  mobToggle.addEventListener('pointerdown', function () {
+    mobMenu.classList.add('pointer-open');
+  });
+
+  mobToggle.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') mobMenu.classList.remove('pointer-open');
+  });
 
   mobToggle.addEventListener('click', function () {
     setMenu(!menuOpen, true);

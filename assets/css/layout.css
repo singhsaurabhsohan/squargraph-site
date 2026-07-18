@@ -112,6 +112,10 @@ nav a { text-decoration: none; }
 #mob-menu a:hover { color: var(--accent); }
 #mob-menu a:active { color: var(--accent); }
 #mob-menu a.finger-active { color: var(--accent); }
+#mob-menu.pointer-open a:focus,
+#mob-menu.pointer-open a:focus-visible {
+  outline: none;
+}
 #mob-menu a[aria-current="page"] {
   color: var(--textprimary);
   padding-left: 18px;
