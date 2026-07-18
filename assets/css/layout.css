@@ -148,7 +148,7 @@ nav a { text-decoration: none; }
   gap: 48px; padding-bottom: 48px;
 }
 .footer-inner--expanded {
-  grid-template-columns: minmax(240px, 1.55fr) repeat(4, minmax(130px, .8fr));
+  grid-template-columns: minmax(220px, 1.55fr) repeat(5, minmax(108px, .72fr));
   gap: clamp(28px, 3vw, 52px);
 }
 @media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; } }

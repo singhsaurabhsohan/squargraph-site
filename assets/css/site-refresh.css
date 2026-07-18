@@ -606,7 +606,7 @@ textarea:focus {
 }
 
 .footer-inner.footer-inner--expanded {
-  grid-template-columns: minmax(240px, 1.55fr) repeat(4, minmax(130px, .8fr)) !important;
+  grid-template-columns: minmax(220px, 1.55fr) repeat(5, minmax(108px, .72fr)) !important;
   gap: clamp(28px, 3vw, 52px) !important;
 }
 

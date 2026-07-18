@@ -92,6 +92,24 @@
     previousSection.parentNode.insertBefore(section, previousSection);
   }
 
+  function renderExperienceVisual(media, visualType) {
+    if (visualType === 'mandate-system') {
+      media.classList.add('work-experience-visual', 'work-experience-visual--mandate');
+      media.setAttribute('role', 'img');
+      media.setAttribute('aria-label', 'Campaign system board showing launch, content, creators, public relations and experience aligned around brand intent');
+      media.innerHTML = '<span class="work-system-caption">Connected mandate</span><span class="work-system-line work-system-line--launch"></span><span class="work-system-line work-system-line--content"></span><span class="work-system-line work-system-line--creators"></span><span class="work-system-line work-system-line--pr"></span><span class="work-system-line work-system-line--experience"></span><span class="work-system-core">Brand<br>intent</span><span class="work-system-node work-system-node--launch">Launch</span><span class="work-system-node work-system-node--content">Content</span><span class="work-system-node work-system-node--creators">Creators</span><span class="work-system-node work-system-node--pr">PR</span><span class="work-system-node work-system-node--experience">Experience</span>';
+      return true;
+    }
+    if (visualType === 'campaign-timeline') {
+      media.classList.add('work-experience-visual', 'work-experience-visual--timeline');
+      media.setAttribute('role', 'img');
+      media.setAttribute('aria-label', 'Operating board showing strategy, content, creators, public relations, production and reporting moving in one coordinated rhythm');
+      media.innerHTML = '<span class="work-system-caption">Integrated operating rhythm</span><div class="work-timeline-rows"><div class="work-timeline-row"><span>Strategy</span><span class="work-timeline-track"><i></i><i></i><i></i><i></i></span></div><div class="work-timeline-row"><span>Content</span><span class="work-timeline-track work-timeline-track--shift"><i></i><i></i><i></i><i></i></span></div><div class="work-timeline-row"><span>Creators</span><span class="work-timeline-track"><i></i><i></i><i></i><i></i></span></div><div class="work-timeline-row"><span>PR</span><span class="work-timeline-track work-timeline-track--shift"><i></i><i></i><i></i><i></i></span></div><div class="work-timeline-row"><span>Production</span><span class="work-timeline-track"><i></i><i></i><i></i><i></i></span></div><div class="work-timeline-row"><span>Reporting</span><span class="work-timeline-track work-timeline-track--shift"><i></i><i></i><i></i><i></i></span></div></div><span class="work-system-note">One direction across every workstream.</span>';
+      return true;
+    }
+    return false;
+  }
+
   function render(entry) {
     var card = make('article', 'work-entry');
     if (entry.id) card.id = 'work-' + entry.id;
@@ -99,7 +117,9 @@
     card.dataset.relationship = entry.relationship;
 
     var media = make('div', 'work-entry-media');
-    if (entry.videoEmbed) {
+    if (renderExperienceVisual(media, entry.visualType)) {
+      // The system board is rendered from verified, non-client-specific information.
+    } else if (entry.videoEmbed) {
       media.classList.add('work-entry-media--video');
       media.dataset.gumletLoop = '';
 
@@ -144,11 +164,11 @@
 
     var details = make('div', 'work-entry-details');
     var role = make('div');
-    role.appendChild(make('span', '', 'Role'));
+    role.appendChild(make('span', '', entry.relationship === 'founder-previous-experience' ? 'Relationship' : 'Role'));
     role.appendChild(make('p', '', entry.role));
     details.appendChild(role);
     var outputs = make('div');
-    outputs.appendChild(make('span', '', 'Selected outputs'));
+    outputs.appendChild(make('span', '', entry.relationship === 'founder-previous-experience' ? 'Scope' : 'Selected outputs'));
     outputs.appendChild(make('p', '', (entry.outputs || []).join(', ')));
     details.appendChild(outputs);
     body.appendChild(details);
