@@ -1,0 +1,237 @@
+/* SQUARGRAPH shared form geometry.
+   Page styles own layout and narrative; this layer owns control sizing and rhythm. */
+:root {
+  --sq-form-control-height: 48px;
+  --sq-form-action-height: 46px;
+  --sq-form-control-radius: 999px;
+  --sq-form-textarea-radius: 18px;
+  --sq-form-control-pad: 18px;
+  --sq-form-field-gap: 7px;
+  --sq-form-row-gap: 14px;
+  --sq-form-surface-pad: 28px;
+}
+
+.sq-form,
+.sq-form-surface,
+.sq-form *,
+.sq-form-surface * {
+  box-sizing: border-box;
+}
+
+.sq-form .form-label,
+.sq-form .form-field > label,
+.sq-form .partner-field > label,
+.sq-form .partner-file-field > label,
+.sq-form-surface .form-label,
+.sq-form-surface .field > label {
+  display: block;
+  margin-bottom: 0;
+  color: var(--textmuted, #68635e);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0 !important;
+  text-transform: uppercase;
+}
+
+.sq-form .field,
+.sq-form .form-field,
+.sq-form-surface .field {
+  gap: var(--sq-form-field-gap);
+}
+
+.sq-form :where(input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], select),
+.sq-form-surface :where(input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], select) {
+  width: 100%;
+  height: var(--sq-form-control-height) !important;
+  min-height: var(--sq-form-control-height) !important;
+  padding: 0 var(--sq-form-control-pad) !important;
+  border-radius: var(--sq-form-control-radius) !important;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px !important;
+  line-height: 1.35;
+}
+
+/* Win over legacy page-height rules without relying on source-order alone. */
+.sq-form.sq-form :where(input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], select):not(.sq-inline-otp-code input):not(.otp-code input),
+.sq-form-surface.sq-form-surface :where(input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], select):not(.sq-inline-otp-code input):not(.otp-code input) {
+  height: var(--sq-form-control-height) !important;
+  min-height: var(--sq-form-control-height) !important;
+}
+
+.sq-form :where(textarea),
+.sq-form-surface :where(textarea) {
+  width: 100%;
+  height: auto !important;
+  min-height: 112px !important;
+  padding: 14px var(--sq-form-control-pad) !important;
+  border-radius: var(--sq-form-textarea-radius) !important;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px !important;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+.sq-form.sq-form :where(textarea),
+.sq-form-surface.sq-form-surface :where(textarea) {
+  height: auto !important;
+  min-height: 112px !important;
+}
+
+.sq-form :where(select),
+.sq-form-surface :where(select) {
+  padding-right: 44px !important;
+  background-position: right 18px center !important;
+}
+
+.sq-form :where(.form-row, .location-grid),
+.sq-form-surface :where(.field-row, .audit-location-grid) {
+  column-gap: var(--sq-form-row-gap) !important;
+  row-gap: var(--sq-form-row-gap) !important;
+}
+
+.sq-form :where(.form-stack, .step-fields) {
+  gap: var(--sq-form-row-gap) !important;
+}
+
+.sq-form.partner-form {
+  column-gap: var(--sq-form-row-gap) !important;
+  row-gap: 18px !important;
+}
+
+.form-card:has(> .sq-form) {
+  width: min(100%, 760px);
+  margin-inline: auto;
+  padding: var(--sq-form-surface-pad) !important;
+}
+
+.contact-form.sq-form,
+.partner-form-panel:has(> .sq-form) {
+  padding: var(--sq-form-surface-pad) !important;
+}
+
+.sq-form .iti,
+.sq-form-surface .iti {
+  width: 100%;
+  height: var(--sq-form-control-height) !important;
+  min-height: var(--sq-form-control-height) !important;
+  border-radius: var(--sq-form-control-radius) !important;
+  overflow: visible !important;
+}
+
+.sq-form .iti input[type="tel"],
+.sq-form-surface .iti input[type="tel"] {
+  height: calc(var(--sq-form-control-height) - 2px) !important;
+  min-height: calc(var(--sq-form-control-height) - 2px) !important;
+  padding-left: 104px !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.sq-form .iti__selected-flag,
+.sq-form-surface .iti__selected-flag {
+  height: calc(var(--sq-form-control-height) - 2px) !important;
+  min-height: calc(var(--sq-form-control-height) - 2px) !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.sq-form :where(.submit-btn, .partner-submit, .finder-submit, button[type="submit"]),
+.sq-form-surface :where(.btn-generate, .step-next) {
+  width: fit-content !important;
+  min-width: 160px;
+  max-width: 100%;
+  min-height: var(--sq-form-action-height) !important;
+  height: auto !important;
+  padding: 0 24px !important;
+  border-radius: var(--sq-form-control-radius) !important;
+  font-size: 13px !important;
+  line-height: 1.2;
+  align-self: flex-start !important;
+  justify-self: start !important;
+}
+
+.sq-form-surface .form-footer .btn {
+  min-height: var(--sq-form-action-height) !important;
+}
+
+.sq-form .step-actions :where(.finder-primary, .finder-secondary) {
+  min-height: var(--sq-form-action-height) !important;
+  padding: 0 22px !important;
+  font-size: 13px !important;
+}
+
+.sq-form :where(.captcha-wrap, .captcha-panel, .partner-captcha),
+.sq-form-surface :where(.captcha-wrap, .captcha-panel, #audit-captcha-wrap) {
+  height: auto;
+  min-height: 0;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.sq-form .g-recaptcha,
+.sq-form-surface .g-recaptcha {
+  transform-origin: left top !important;
+}
+
+/* OTP controls retain their compact six-cell layout inside the shared form system. */
+.sq-form :where(.sq-inline-otp, .otp-panel),
+.sq-form-surface :where(.sq-inline-otp, .otp-panel) {
+  width: max-content;
+  max-width: 100%;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.sq-form :where(.sq-inline-otp-code, .otp-code) input,
+.sq-form-surface :where(.sq-inline-otp-code, .otp-code) input {
+  width: 48px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 0 !important;
+}
+
+.sq-form--compact {
+  max-width: 560px;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --sq-form-surface-pad: 18px;
+  }
+
+  .sq-form :where(.form-row, .location-grid),
+  .sq-form-surface :where(.field-row, .audit-location-grid),
+  .sq-form.partner-form {
+    grid-template-columns: 1fr !important;
+  }
+
+  .sq-form .partner-field-wide {
+    grid-column: 1;
+  }
+
+  .sq-form :where(.submit-btn, .partner-submit, .finder-submit, button[type="submit"]),
+  .sq-form-surface :where(.btn-generate, .step-next) {
+    min-width: 0;
+  }
+
+  .sq-form :where(.sq-inline-otp-code, .otp-code) input,
+  .sq-form-surface :where(.sq-inline-otp-code, .otp-code) input {
+    width: 42px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .sq-form :where(.sq-inline-otp-code, .otp-code) input,
+  .sq-form-surface :where(.sq-inline-otp-code, .otp-code) input {
+    width: 38px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+  }
+}
