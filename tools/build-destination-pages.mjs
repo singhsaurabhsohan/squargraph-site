@@ -23,7 +23,7 @@ function navigation(current) {
   return html;
 }
 
-function pageShell({ route, current, title, description, css, body, schemaType = 'WebPage', script = '' }) {
+function pageShell({ route, current, title, description, css, body, socialImage, socialAlt, schemaType = 'WebPage', script = '' }) {
   const canonical = `https://squargraph.com/${route}`;
   const name = title.split(' | ')[0];
   const breadcrumb = {
@@ -52,13 +52,16 @@ function pageShell({ route, current, title, description, css, body, schemaType =
   <meta property="og:type" content="website" />
   <meta property="og:url" content="${canonical}" />
   <meta property="og:site_name" content="SQUARGRAPH™" />
-  <meta property="og:image" content="https://squargraph.com/squargraph-brand-image.webp" />
+  <meta property="og:image" content="https://squargraph.com/assets/images/social/og-v20260720/${socialImage}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/webp" />
+  <meta property="og:image:alt" content="${socialAlt}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${title}" />
   <meta name="twitter:description" content="${description}" />
-  <meta name="twitter:image" content="https://squargraph.com/squargraph-brand-image.webp" />
+  <meta name="twitter:image" content="https://squargraph.com/assets/images/social/og-v20260720/${socialImage}" />
+  <meta name="twitter:image:alt" content="${socialAlt}" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="preload" href="/fonts/Satoshi-Regular.woff" as="font" type="font/woff" crossorigin />
@@ -149,10 +152,10 @@ const studioBody = `
 <section class="destination-final"><div class="destination-shell destination-final-grid"><h2>Clarity before execution becomes expensive.</h2><div><p>Use Project Direction to turn the current business problem into a focused next move.</p><a class="destination-button destination-button--light" href="/project-direction/" data-sq-event="project_direction_start">Start a Project</a></div></div></section>`;
 
 const pages = [
-  { route: 'work', current: 'work', title: 'Selected Work | SQUARGRAPH™', description: 'Explore selected SQUARGRAPH™ work across brand systems, campaigns, digital experiences, content and integrated communication.', css: 'work', body: workBody, schemaType: 'CollectionPage', script: '<script src="/assets/js/work.js?v=20260718-architecture2"></script>' },
-  { route: 'capabilities', current: 'capabilities', title: 'Brand, Creative, Digital & Growth Capabilities | SQUARGRAPH™', description: 'Explore SQUARGRAPH™ capabilities across brand strategy, identity, websites, content, campaigns, media, influence, reputation and experiential marketing.', css: 'capabilities', body: capabilitiesBody },
-  { route: 'engagements', current: 'engagements', title: 'Brand Strategy & Creative Engagements | SQUARGRAPH™', description: 'Choose the right way to work with SQUARGRAPH™, from discovery and brand audits to foundation sprints, websites and integrated growth partnerships.', css: 'engagements', body: engagementsBody },
-  { route: 'studio', current: 'studio', title: 'About SQUARGRAPH™ | Strategy-Led Creative Studio', description: 'Learn how SQUARGRAPH™ combines brand intelligence, creative direction, digital systems and specialist capability to build stronger brand perception.', css: 'studio', body: studioBody }
+  { route: 'work', current: 'work', title: 'Selected Work | SQUARGRAPH™', description: 'Explore selected SQUARGRAPH™ work across brand systems, campaigns, digital experiences, content and integrated communication.', css: 'work', body: workBody, socialImage: 'og-work-v20260720.webp', socialAlt: 'Selected SQUARGRAPH brand, campaign, digital, and film work', schemaType: 'CollectionPage', script: '<script src="/assets/js/work.js?v=20260718-architecture2"></script>' },
+  { route: 'capabilities', current: 'capabilities', title: 'Brand, Creative, Digital & Growth Capabilities | SQUARGRAPH™', description: 'Explore SQUARGRAPH™ capabilities across brand strategy, identity, websites, content, campaigns, media, influence, reputation and experiential marketing.', css: 'capabilities', body: capabilitiesBody, socialImage: 'og-capabilities-v20260720.webp', socialAlt: 'SQUARGRAPH connected capability system across brand, digital, content, media, influence, and visibility' },
+  { route: 'engagements', current: 'engagements', title: 'Brand Strategy & Creative Engagements | SQUARGRAPH™', description: 'Choose the right way to work with SQUARGRAPH™, from discovery and brand audits to foundation sprints, websites and integrated growth partnerships.', css: 'engagements', body: engagementsBody, socialImage: 'og-engagements-v20260720.webp', socialAlt: 'SQUARGRAPH engagement pathways for discovery, audit, foundation, digital experience, and growth' },
+  { route: 'studio', current: 'studio', title: 'About SQUARGRAPH™ | Strategy-Led Creative Studio', description: 'Learn how SQUARGRAPH™ combines brand intelligence, creative direction, digital systems and specialist capability to build stronger brand perception.', css: 'studio', body: studioBody, socialImage: 'og-studio-v20260720.webp', socialAlt: 'Founder-led SQUARGRAPH studio aligning brand decisions and execution' }
 ];
 
 for (const page of pages) {

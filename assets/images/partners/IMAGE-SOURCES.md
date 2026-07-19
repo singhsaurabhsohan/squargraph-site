@@ -8,7 +8,7 @@ Generated on 2026-07-17 with the built-in OpenAI image-generation workflow. All 
 | --- | ---: | --- |
 | `partner-hero-strategy-table.webp` | 1672 x 941 | Partner hero, desktop and tablet |
 | `partner-hero-strategy-table-mobile.webp` | 752 x 940 | Partner hero, mobile art direction |
-| `partner-og-collaboration.webp` | 1200 x 630 | Partner Open Graph and social sharing |
+| `/assets/images/social/og-v20260720/og-partners-v20260720.webp` | 1200 x 630 | Versioned Partner Open Graph and social sharing |
 | `partner-specialist-depth.webp` | 1774 x 887 | Collaboration Index |
 | `partner-collaboration-routes.webp` | 1536 x 1024 | Collaboration Routes |
 | `partner-scenario-brand-launch.webp` | 1200 x 900 | Scenario 01: Brand Launch |
@@ -52,4 +52,4 @@ One first-pass Digital Transformation visual was rejected before implementation 
 
 ## Optimization
 
-Selected source PNGs were converted to WebP at quality 84 with high-effort encoding. Scenario assets were normalized to 1200 x 900. Dedicated 752 x 940 mobile and 1200 x 630 social crops were produced from the hero source. All website images use explicit dimensions; the hero is eagerly loaded and below-the-fold images are lazy-loaded.
+Selected source PNGs were converted to WebP at quality 84 with high-effort encoding. Scenario assets were normalized to 1200 x 900. The dedicated 752 x 940 mobile hero remains in this collection. Social previews now use the shared, versioned 1200 x 630 system in `/assets/images/social/og-v20260720/`. All website images use explicit dimensions; the hero is eagerly loaded and below-the-fold images are lazy-loaded.
