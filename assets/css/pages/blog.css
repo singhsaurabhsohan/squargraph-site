@@ -61,14 +61,14 @@
 }
 @media (max-width: 768px) { .featured-card { grid-template-columns: 1fr; } }
 .featured-img {
-  aspect-ratio: 4/3; overflow: hidden;
+  aspect-ratio: 16/10; overflow: hidden;
   background: var(--warmgray); position: relative;
 }
 .featured-img-inner {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform .8s cubic-bezier(.25,.1,.25,1);
+  width: 100%; height: 100%; object-fit: contain;
+  transition: opacity .25s ease;
 }
-.featured-card:hover .featured-img-inner { transform: scale(1.04); }
+.featured-card:hover .featured-img-inner { opacity: .94; }
 .featured-content { padding: 8px 0; }
 .post-meta {
   display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
@@ -178,7 +178,11 @@
 }
 .newsletter-h2 em { font-style: normal; color: var(--accent); }
 .newsletter-desc { font-size: 14px; color: var(--textsecondary); line-height: 1.75; }
-.newsletter-form { display: flex; flex-direction: column; gap: 12px; }
+.newsletter-form {
+  display: flex; flex-direction: column; gap: 12px;
+  width: 100%; max-width: 560px; justify-self: end;
+  padding: 0; border: 0; background: transparent; box-shadow: none;
+}
 .newsletter-input {
   width: 100%; background: #fff;
   border: 1px solid var(--bordergray);
@@ -197,6 +201,30 @@
   transition: background .25s; align-self: flex-start;
 }
 .newsletter-btn:hover { background: var(--accent); }
-.newsletter-note { font-size: 11px; color: var(--textmuted); margin-top: 4px; }
+.newsletter-note { font-size: 11px; color: var(--textmuted); line-height: 1.5; margin-top: 2px; }
+.newsletter-captcha {
+  width: min(304px, 100%);
+  height: 66px;
+  margin: 0;
+  overflow: visible;
+  background: transparent;
+  transform: scale(.85);
+  transform-origin: left top;
+}
+
+@media (max-width: 600px) {
+  .posts-wrap { padding-left: 24px; padding-right: 24px; }
+  .post-card { min-width: 0; }
+  .post-card-footer { flex-wrap: wrap; gap: 12px; }
+  .post-card-read { margin-left: auto; }
+  .newsletter-inner { padding: 32px 24px; }
+}
+
+@media (max-width: 340px) {
+  .newsletter-captcha {
+    height: 58px;
+    transform: scale(.72);
+  }
+}
 
 .placeholder-art { width: 100%; height: 100%; position: relative; overflow: hidden; }

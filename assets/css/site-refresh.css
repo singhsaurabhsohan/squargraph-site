@@ -1150,7 +1150,6 @@ body:not(.home) .audit-card:hover {
 body:not(.home) .form-card,
 body:not(.home) .contact-form,
 body:not(.home) form[id*="contact-form"],
-body:not(.home) .newsletter-form,
 body:not(.home) #gp-success,
 body:not(.home) .success-card {
   box-shadow: 0 14px 38px rgba(26, 23, 20, .08) !important;
@@ -1158,8 +1157,7 @@ body:not(.home) .success-card {
 
 .form-card,
 .contact-form,
-form[id*="contact-form"],
-.newsletter-form {
+form[id*="contact-form"] {
   border-radius: 8px !important;
 }
 
