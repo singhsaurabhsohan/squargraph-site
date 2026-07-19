@@ -24,12 +24,12 @@ const architectureSections = `
   <div class="architecture-shell">
     <div class="architecture-heading fade-up"><div><p class="section-eyebrow">Selected Work</p><h2>Strategy made visible.</h2></div><p>Selected work across brand systems, campaigns, digital experiences and communication.</p></div>
     <div class="architecture-work-grid" data-home-work-grid>
-      <article class="architecture-work-card"><div class="architecture-work-media"><img src="/squargraph-brand-image.webp" alt="SQUARGRAPH brand system and visual identity" width="720" height="450" loading="lazy" decoding="async" /></div><div class="architecture-work-body"><p class="architecture-card-meta">Brand · Digital</p><h3>SQUARGRAPH™ Brand System</h3><p>A self-initiated identity and digital system designed to hold one strategic idea across the studio's public touchpoints.</p><a class="text-link" href="/studio" data-sq-event="work_card_click">View context</a></div></article>
-      <article class="architecture-work-card"><div class="architecture-work-media architecture-work-media--system" aria-hidden="true"></div><div class="architecture-work-body"><p class="architecture-card-meta">Campaigns · Content</p><h3>Perception, in Motion</h3><p>A studio brand film that turns the idea of deliberate perception into a concise moving narrative.</p><a class="text-link" href="/work#squargraph-work" data-sq-event="work_card_click">View context</a></div></article>
-      <article class="architecture-work-card"><div class="architecture-work-media architecture-work-media--system" aria-hidden="true"></div><div class="architecture-work-body"><p class="architecture-card-meta">Digital · Brand</p><h3>Project Direction</h3><p>A guided experience that translates unclear business problems into connected capability direction.</p><a class="text-link" href="/project-direction" data-sq-event="work_card_click">View context</a></div></article>
-      <article class="architecture-work-card"><div class="architecture-work-media"><img src="/assets/images/partners/partner-specialist-depth.webp" alt="Connected specialist teams working within a shared growth system" width="720" height="450" loading="lazy" decoding="async" /></div><div class="architecture-work-body"><p class="architecture-card-meta">Digital · Experience</p><h3>Growth Ecosystem Partner Experience</h3><p>A focused application journey for specialists and studios joining a controlled delivery ecosystem.</p><a class="text-link" href="/partners" data-sq-event="work_card_click">View context</a></div></article>
+      <article class="architecture-work-card"><div class="architecture-work-media"><img src="/squargraph-brand-image.webp" alt="SQUARGRAPH brand system and visual identity" width="720" height="450" loading="lazy" decoding="async" /></div><div class="architecture-work-body"><p class="architecture-card-meta">Brand · Digital</p><h3>SQUARGRAPH™ Brand System</h3><p>A self-initiated identity and digital system designed to hold one strategic idea across the studio's public touchpoints.</p><a class="text-link" href="/studio/" data-sq-event="work_card_click">View context</a></div></article>
+      <article class="architecture-work-card"><div class="architecture-work-media architecture-work-media--system" aria-hidden="true"></div><div class="architecture-work-body"><p class="architecture-card-meta">Campaigns · Content</p><h3>Perception, in Motion</h3><p>A studio brand film that turns the idea of deliberate perception into a concise moving narrative.</p><a class="text-link" href="/work/#squargraph-work" data-sq-event="work_card_click">View context</a></div></article>
+      <article class="architecture-work-card"><div class="architecture-work-media architecture-work-media--system" aria-hidden="true"></div><div class="architecture-work-body"><p class="architecture-card-meta">Digital · Brand</p><h3>Project Direction</h3><p>A guided experience that translates unclear business problems into connected capability direction.</p><a class="text-link" href="/project-direction/" data-sq-event="work_card_click">View context</a></div></article>
+      <article class="architecture-work-card"><div class="architecture-work-media"><img src="/assets/images/partners/partner-specialist-depth.webp" alt="Connected specialist teams working within a shared growth system" width="720" height="450" loading="lazy" decoding="async" /></div><div class="architecture-work-body"><p class="architecture-card-meta">Digital · Experience</p><h3>Growth Ecosystem Partner Experience</h3><p>A focused application journey for specialists and studios joining a controlled delivery ecosystem.</p><a class="text-link" href="/partners/" data-sq-event="work_card_click">View context</a></div></article>
     </div>
-    <div class="architecture-section-action"><a class="text-link" href="/work" data-sq-event="work_card_click">Explore Selected Work</a></div>
+    <div class="architecture-section-action"><a class="text-link" href="/work/" data-sq-event="work_card_click">Explore Selected Work</a></div>
   </div>
 </section>
 
@@ -37,14 +37,14 @@ const architectureSections = `
   <div class="architecture-shell">
     <div class="architecture-heading fade-up"><div><p class="section-eyebrow">Capability System</p><h2>The connected surfaces where brands are built.</h2></div><p>Six capability territories, each shaped to strengthen the same perception and business objective.</p></div>
     <div class="architecture-capability-list">
-      <a href="/capabilities#brand-direction" data-sq-event="capability_click"><span>01</span><h3>Brand Direction</h3><p>Positioning, messaging, identity logic and founder-led narrative systems.</p><b aria-hidden="true">→</b></a>
-      <a href="/capabilities#digital-presence" data-sq-event="capability_click"><span>02</span><h3>Digital Presence</h3><p>Websites, landing pages, UX and conversion-focused digital experiences.</p><b aria-hidden="true">→</b></a>
-      <a href="/capabilities#content-campaigns" data-sq-event="capability_click"><span>03</span><h3>Content &amp; Campaigns</h3><p>Campaign ideas and content formats shaped by one creative direction.</p><b aria-hidden="true">→</b></a>
-      <a href="/capabilities#media-performance" data-sq-event="capability_click"><span>04</span><h3>Media &amp; Performance</h3><p>Channel planning, audience logic, funnels and performance learning.</p><b aria-hidden="true">→</b></a>
-      <a href="/capabilities#influence-reputation" data-sq-event="capability_click"><span>05</span><h3>Influence &amp; Reputation</h3><p>PR, influence, podcasts and reputation systems that build trust.</p><b aria-hidden="true">→</b></a>
-      <a href="/capabilities#experience-visibility" data-sq-event="capability_click"><span>06</span><h3>Experience &amp; Visibility</h3><p>OOH, activations, physical touchpoints and high-visibility presence.</p><b aria-hidden="true">→</b></a>
+      <a href="/capabilities/#brand-direction" data-sq-event="capability_click"><span>01</span><h3>Brand Direction</h3><p>Positioning, messaging, identity logic and founder-led narrative systems.</p><b aria-hidden="true">→</b></a>
+      <a href="/capabilities/#digital-presence" data-sq-event="capability_click"><span>02</span><h3>Digital Presence</h3><p>Websites, landing pages, UX and conversion-focused digital experiences.</p><b aria-hidden="true">→</b></a>
+      <a href="/capabilities/#content-campaigns" data-sq-event="capability_click"><span>03</span><h3>Content &amp; Campaigns</h3><p>Campaign ideas and content formats shaped by one creative direction.</p><b aria-hidden="true">→</b></a>
+      <a href="/capabilities/#media-performance" data-sq-event="capability_click"><span>04</span><h3>Media &amp; Performance</h3><p>Channel planning, audience logic, funnels and performance learning.</p><b aria-hidden="true">→</b></a>
+      <a href="/capabilities/#influence-reputation" data-sq-event="capability_click"><span>05</span><h3>Influence &amp; Reputation</h3><p>PR, influence, podcasts and reputation systems that build trust.</p><b aria-hidden="true">→</b></a>
+      <a href="/capabilities/#experience-visibility" data-sq-event="capability_click"><span>06</span><h3>Experience &amp; Visibility</h3><p>OOH, activations, physical touchpoints and high-visibility presence.</p><b aria-hidden="true">→</b></a>
     </div>
-    <div class="architecture-section-action"><a class="text-link" href="/capabilities" data-sq-event="capability_click">Explore All Capabilities</a></div>
+    <div class="architecture-section-action"><a class="text-link" href="/capabilities/" data-sq-event="capability_click">Explore All Capabilities</a></div>
   </div>
 </section>
 
@@ -55,7 +55,7 @@ const architectureSections = `
       <div class="architecture-method-column"><p class="architecture-card-meta">What breaks</p><article><span>01</span><div><h3>Fragmentation</h3><p>Separate teams solve separate tasks without a shared view of the brand.</p></div></article><article><span>02</span><div><h3>Noise</h3><p>More activity creates visibility without a clearer reason to choose.</p></div></article><article><span>03</span><div><h3>Drift</h3><p>Short-term execution slowly changes what the brand means.</p></div></article></div>
       <div class="architecture-method-column"><p class="architecture-card-meta">How we work</p><article><span>01</span><div><h3>Read</h3><p>Identify perception gaps and communication breaks.</p></div></article><article><span>02</span><div><h3>Define</h3><p>Set the strategy, message and creative standard.</p></div></article><article><span>03</span><div><h3>Align</h3><p>Bring the necessary capabilities into one system.</p></div></article><article><span>04</span><div><h3>Sharpen</h3><p>Use market response to improve the next decision.</p></div></article></div>
     </div>
-    <div class="architecture-section-action"><a class="text-link text-link--light" href="/studio#approach">See Our Operating Approach</a></div>
+    <div class="architecture-section-action"><a class="text-link text-link--light" href="/studio/#approach">See Our Operating Approach</a></div>
   </div>
 </section>
 
@@ -69,7 +69,7 @@ const architectureSections = `
       <a href="/websites-digital-experiences" data-sq-event="engagement_click"><span>04</span><div><h3>Website &amp; Digital Experience™</h3><p>When the digital experience weakens perception or action.</p></div><strong>Strategy to launch</strong><b aria-hidden="true">→</b></a>
       <a href="/growth-partner" data-sq-event="engagement_click"><span>05</span><div><h3>Integrated Growth Partnership</h3><p>When multiple touchpoints need an ongoing operating rhythm.</p></div><strong>Ongoing</strong><b aria-hidden="true">→</b></a>
     </div>
-    <div class="architecture-section-action"><a class="text-link" href="/engagements" data-sq-event="engagement_click">Compare Engagements</a></div>
+    <div class="architecture-section-action"><a class="text-link" href="/engagements/" data-sq-event="engagement_click">Compare Engagements</a></div>
   </div>
 </section>
 
@@ -96,8 +96,8 @@ const architectureSections = `
 
 html = html.replace(/\s*<meta name="keywords"[^>]*>\s*/i, '\n');
 html = html.replace(/<nav id="nav"[\s\S]*?<\/nav>\s*<div id="mob-menu"[\s\S]*?<\/div>/, resolvedNav.trim());
-html = html.replace('<a href="#contact" class="btn-primary">Start a Conversation</a>', '<a href="/project-direction" class="btn-primary" data-sq-event="project_direction_start">Start a Project</a>');
-html = html.replace('<a href="#capabilities" class="btn-outline">Explore Capabilities</a>', '<a href="/work" class="btn-outline" data-sq-event="work_card_click">Explore Our Work</a>');
+html = html.replace('<a href="#contact" class="btn-primary">Start a Conversation</a>', '<a href="/project-direction/" class="btn-primary" data-sq-event="project_direction_start">Start a Project</a>');
+html = html.replace('<a href="#capabilities" class="btn-outline">Explore Capabilities</a>', '<a href="/work/" class="btn-outline" data-sq-event="work_card_click">Explore Our Work</a>');
 html = html.replace(/<section id="capabilities"[\s\S]*?(?=<section id="contact")/, architectureSections);
 html = html.replace(/<footer class="site-footer"[\s\S]*?<\/footer>/, footer.trim());
 if (!html.includes('/assets/js/home-previews.js')) {

@@ -38,12 +38,12 @@ function renderNav(current) {
 }
 
 const replacements = [
-  [/href="\/#work"/g, 'href="/work"'],
-  [/href="\/#capabilities"/g, 'href="/capabilities"'],
-  [/href="\/#growth-ecosystem"/g, 'href="/capabilities#growth-ecosystem"'],
-  [/href="\/#studio"/g, 'href="/studio"'],
-  [/href="\/#approach"/g, 'href="/studio#approach"'],
-  [/href="\/#Engagements"/g, 'href="/engagements"']
+  [/href="\/#work"/g, 'href="/work/"'],
+  [/href="\/#capabilities"/g, 'href="/capabilities/"'],
+  [/href="\/#growth-ecosystem"/g, 'href="/capabilities/#growth-ecosystem"'],
+  [/href="\/#studio"/g, 'href="/studio/"'],
+  [/href="\/#approach"/g, 'href="/studio/#approach"'],
+  [/href="\/#Engagements"/g, 'href="/engagements/"']
 ];
 
 let changed = 0;

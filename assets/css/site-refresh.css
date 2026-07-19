@@ -223,6 +223,10 @@ section[data-hero]:not(.hero-section) [class*="hero-anim"],
   color: rgba(255, 255, 255, .74) !important;
 }
 
+.architecture-section--dark .section-eyebrow {
+  color: rgba(255, 255, 255, .72) !important;
+}
+
 .hero-section .hero-h1 {
   color: #fff !important;
 }

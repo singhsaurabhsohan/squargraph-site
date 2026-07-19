@@ -1,15 +1,15 @@
 <nav id="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="SQUARGRAPH™ homepage">
-      <img src="/logo.webp" alt="SQUARGRAPH™" width="120" height="28" class="brand-mark" fetchpriority="high" decoding="sync" />
+      <img src="/logo.webp?v=20260719-optimized1" alt="SQUARGRAPH™" width="236" height="28" class="brand-mark" fetchpriority="high" decoding="sync" />
     </a>
     <div class="nav-links">
-      <a href="/work"{{WORK_CURRENT}}>Work</a>
-      <a href="/capabilities"{{CAPABILITIES_CURRENT}}>Capabilities</a>
-      <a href="/engagements"{{ENGAGEMENTS_CURRENT}}>Engagements</a>
+      <a href="/work/"{{WORK_CURRENT}}>Work</a>
+      <a href="/capabilities/"{{CAPABILITIES_CURRENT}}>Capabilities</a>
+      <a href="/engagements/"{{ENGAGEMENTS_CURRENT}}>Engagements</a>
       <a href="/intelligence"{{INTELLIGENCE_CURRENT}}>Intelligence</a>
-      <a href="/studio"{{STUDIO_CURRENT}}>Studio</a>
-      <a href="/project-direction" class="nav-cta"{{PROJECT_CURRENT}}>Start a Project</a>
+      <a href="/studio/"{{STUDIO_CURRENT}}>Studio</a>
+      <a href="/project-direction/" class="nav-cta"{{PROJECT_CURRENT}}>Start a Project</a>
     </div>
     <button type="button" class="hamburger" id="mob-toggle" aria-label="Open navigation menu" aria-expanded="false">
       <span class="pill-menu"><span class="pill-line"></span><span class="pill-body"></span></span>
@@ -18,11 +18,11 @@
 </nav>
 
 <div id="mob-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true" inert>
-  <a href="/work"{{WORK_CURRENT}} onclick="closeMob()">Work</a>
-  <a href="/capabilities"{{CAPABILITIES_CURRENT}} onclick="closeMob()">Capabilities</a>
-  <a href="/engagements"{{ENGAGEMENTS_CURRENT}} onclick="closeMob()">Engagements</a>
+  <a href="/work/"{{WORK_CURRENT}} onclick="closeMob()">Work</a>
+  <a href="/capabilities/"{{CAPABILITIES_CURRENT}} onclick="closeMob()">Capabilities</a>
+  <a href="/engagements/"{{ENGAGEMENTS_CURRENT}} onclick="closeMob()">Engagements</a>
   <a href="/intelligence"{{INTELLIGENCE_CURRENT}} onclick="closeMob()">Intelligence</a>
-  <a href="/studio"{{STUDIO_CURRENT}} onclick="closeMob()">Studio</a>
-  <a href="/project-direction"{{PROJECT_CURRENT}} onclick="closeMob()">Start a Project</a>
+  <a href="/studio/"{{STUDIO_CURRENT}} onclick="closeMob()">Studio</a>
+  <a href="/project-direction/"{{PROJECT_CURRENT}} onclick="closeMob()">Start a Project</a>
   <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
 </div>

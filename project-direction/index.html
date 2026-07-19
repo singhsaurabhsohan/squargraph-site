@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Direction | SQUARGRAPH™</title>
   <meta name="description" content="Use SQUARGRAPH™ Project Direction to tell us what you are building, changing, launching or trying to grow. We will map the right brand strategy, creative and digital capabilities." />
-  <link rel="canonical" href="https://squargraph.com/project-direction" />
+  <link rel="canonical" href="https://squargraph.com/project-direction/" />
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Project Direction | SQUARGRAPH™" />
   <meta property="og:description" content="Tell us what needs to move. We will map the right combination of brand strategy, creative and digital capabilities." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://squargraph.com/project-direction" />
+  <meta property="og:url" content="https://squargraph.com/project-direction/" />
   <meta property="og:site_name" content="SQUARGRAPH™" />
   <meta property="og:image" content="https://squargraph.com/squargraph-brand-image.webp" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -40,7 +40,7 @@
 
 <header class="finder-header" aria-label="Project Direction header">
   <a href="/" class="finder-logo" aria-label="SQUARGRAPH homepage">
-    <img src="/logo.webp" alt="SQUARGRAPH™" width="120" height="28" decoding="sync" fetchpriority="high" />
+    <img src="/logo.webp?v=20260719-optimized1" alt="SQUARGRAPH™" width="120" height="28" decoding="sync" fetchpriority="high" />
   </a>
   <a href="#direction-finder" class="finder-header-link" data-sq-event="cta_start_conversation_click">Start a Project</a>
 </header>
@@ -315,7 +315,7 @@
       <p>SQUARGRAPH™ is a brand strategy, creative and digital studio helping businesses align how they position, communicate, appear, launch and grow across every important touchpoint.</p>
       <div class="about-links">
         <a href="/">Explore SQUARGRAPH</a>
-        <a href="/capabilities">View our capabilities</a>
+        <a href="/capabilities/">View our capabilities</a>
       </div>
     </div>
   </section>
@@ -933,13 +933,15 @@
       });
 
       input.addEventListener('paste', function (event) {
-        event.preventDefault();
         var digits = (event.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
-        digits.split('').forEach(function (digit, digitIndex) {
-          if (inputs[digitIndex]) inputs[digitIndex].value = digit;
-        });
-        var target = inputs[Math.min(digits.length, inputs.length) - 1];
-        if (target) target.focus();
+        if (!digits) return;
+        setTimeout(function () {
+          digits.split('').forEach(function (digit, digitIndex) {
+            if (inputs[digitIndex]) inputs[digitIndex].value = digit;
+          });
+          var target = inputs[Math.min(digits.length, inputs.length) - 1];
+          if (target) target.focus();
+        }, 0);
       });
     });
   }

@@ -22,7 +22,7 @@
   function renderWork() {
     var grid = document.querySelector('[data-home-work-grid]');
     if (!grid) return;
-    fetch('/assets/data/work.json?v=20260718-background1')
+    fetch('/assets/data/work.json?v=20260719-performance1')
       .then(function (response) { if (!response.ok) throw new Error('Work data unavailable'); return response.json(); })
       .then(function (data) {
         var entries = (data.entries || []).filter(function (entry) {
@@ -36,8 +36,20 @@
           if (entry.videoEmbed) {
             media.classList.add('architecture-work-media--video');
             media.dataset.gumletLoop = '';
+            if (entry.image) {
+              var poster = document.createElement('img');
+              poster.className = 'brand-film-poster';
+              poster.src = entry.image;
+              poster.alt = '';
+              poster.setAttribute('aria-hidden', 'true');
+              poster.loading = 'lazy';
+              poster.decoding = 'async';
+              poster.width = 720;
+              poster.height = 405;
+              media.appendChild(poster);
+            }
             var iframe = document.createElement('iframe');
-            iframe.src = entry.videoEmbed;
+            iframe.dataset.src = entry.videoEmbed;
             iframe.title = entry.videoTitle || entry.imageAlt || entry.title;
             iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
             iframe.referrerPolicy = 'origin';
@@ -46,7 +58,7 @@
             media.appendChild(makeVideoAudioButton());
           } else if (entry.image) {
             var image = document.createElement('img');
-            image.src = entry.image;
+            image.src = entry.previewImage || entry.image;
             image.alt = entry.imageAlt || '';
             image.loading = 'lazy';
             image.decoding = 'async';

@@ -133,11 +133,11 @@ textarea.form-input:focus {
 
 .wa-btn {
   display: inline-flex; align-items: center; gap: 10px;
-  background: #1fad4e; color: #fff; padding: 13px 28px;
+  background: #147a3b; color: #fff; padding: 13px 28px;
   font-size: 13px; font-weight: 500; letter-spacing: -0.01em;
   border-radius: 999px; transition: opacity .2s, transform .2s; border: none;
 }
-.wa-btn:hover { background: #1a9e45; transform: translateY(-2px); }
+.wa-btn:hover { background: #126b34; transform: translateY(-2px); }
 .wa-note { font-size: 11px; color: var(--textmuted); margin-top: 8px; }
 .phone-link {
   display: inline-flex; align-items: center; gap: 8px;

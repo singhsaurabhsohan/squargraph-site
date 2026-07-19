@@ -13,10 +13,11 @@
       "outputs": ["Brand system", "Messaging architecture", "Website system"],
       "outcome": null,
       "image": "/squargraph-brand-image.webp",
+      "previewImage": "/assets/images/work/squargraph-brand-system-preview.webp",
       "imageAlt": "SQUARGRAPH brand system and visual identity",
       "featured": true,
       "published": true,
-      "url": "/studio"
+      "url": "/studio/"
     },
     {
       "id": "squargraph-brand-film",
@@ -34,7 +35,7 @@
       "videoTitle": "SQUARGRAPH brand film, Perception, in Motion",
       "featured": true,
       "published": true,
-      "url": "/work#work-squargraph-brand-film",
+      "url": "/work/#work-squargraph-brand-film",
       "linkLabel": "View film"
     },
     {
@@ -48,10 +49,11 @@
       "outputs": ["Guided requirement flow", "Capability recommendation system", "Verified lead journey"],
       "outcome": null,
       "image": "/assets/images/work/project-direction.webp",
+      "previewImage": "/assets/images/work/project-direction-preview.webp",
       "imageAlt": "Browser-framed view of the SQUARGRAPH Project Direction experience",
       "featured": true,
       "published": true,
-      "url": "/project-direction"
+      "url": "/project-direction/"
     },
     {
       "id": "partner-experience",
@@ -64,10 +66,11 @@
       "outputs": ["Partner proposition", "Application experience", "Verified data capture"],
       "outcome": null,
       "image": "/assets/images/partners/partner-specialist-depth.webp",
+      "previewImage": "/assets/images/partners/partner-specialist-depth-preview.webp",
       "imageAlt": "Connected specialist teams working within a shared growth system",
       "featured": true,
       "published": true,
-      "url": "/partners"
+      "url": "/partners/"
     },
     {
       "id": "hyundai-integrated-mandate",

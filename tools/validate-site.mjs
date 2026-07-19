@@ -41,8 +41,8 @@ async function routeExists(href) {
 
 const htmlFiles = await collect(root, '.html');
 const publicHtml = htmlFiles.filter((file) => !file.includes(`${path.sep}components${path.sep}`));
-const requiredNavLinks = ['/work', '/capabilities', '/engagements', '/intelligence', '/studio', '/project-direction'];
-const requiredFooterLinks = ['/work', '/capabilities', '/engagements', '/intelligence', '/studio', '/partners', '/saurabh-sohan-singh', '/sitemap', '/ai-disclosure', '/feedback', '/privacy-policy', '/terms-of-use', '/refund-policy'];
+const requiredNavLinks = ['/work/', '/capabilities/', '/engagements/', '/intelligence', '/studio/', '/project-direction/'];
+const requiredFooterLinks = ['/work/', '/capabilities/', '/engagements/', '/intelligence', '/studio/', '/partners/', '/saurabh-sohan-singh', '/sitemap/', '/ai-disclosure', '/feedback', '/privacy-policy', '/terms-of-use', '/refund-policy'];
 
 for (const file of publicHtml) {
   const relative = path.relative(root, file).replaceAll('\\', '/');
@@ -132,7 +132,7 @@ const contactForm = homepage.match(/<form\b[^>]*id="contact-form"[\s\S]*?<\/form
 });
 
 const sitemap = await readFile(path.join(root, 'sitemap.xml'), 'utf8');
-['/work','/capabilities','/engagements','/intelligence','/studio','/project-direction'].forEach((route) => {
+['/work/','/capabilities/','/engagements/','/intelligence','/studio/','/project-direction/'].forEach((route) => {
   if (!sitemap.includes(`https://squargraph.com${route}<`)) errors.push(`sitemap.xml: ${route} missing`);
 });
 

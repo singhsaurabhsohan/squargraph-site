@@ -123,12 +123,25 @@
       media.classList.add('work-entry-media--video');
       media.dataset.gumletLoop = '';
 
+      if (entry.image) {
+        var poster = document.createElement('img');
+        poster.className = 'brand-film-poster';
+        poster.src = entry.image;
+        poster.alt = '';
+        poster.setAttribute('aria-hidden', 'true');
+        poster.loading = 'lazy';
+        poster.decoding = 'async';
+        poster.width = 800;
+        poster.height = 450;
+        media.appendChild(poster);
+      }
+
       var iframe = document.createElement('iframe');
-      iframe.src = entry.videoEmbed;
+      iframe.dataset.src = entry.videoEmbed;
       iframe.title = entry.videoTitle || entry.imageAlt || entry.title;
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
       iframe.referrerPolicy = 'origin';
-      iframe.loading = 'eager';
+      iframe.loading = 'lazy';
       iframe.setAttribute('allowfullscreen', '');
       media.appendChild(iframe);
 

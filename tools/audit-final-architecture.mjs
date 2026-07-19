@@ -102,7 +102,7 @@ for (const [file, html] of htmlCache) {
   const prohibited = [
     ['dQw4w9WgXcQ', 'unrelated dormant YouTube reference'],
     ['href="/websites-digital-experiences.html"', 'non-canonical website engagement link'],
-    ['href="/work#squargraph-work"', 'work self-loop link'],
+    ['href="/work/#squargraph-work"', 'work self-loop link'],
     ['featured-img-placeholder', 'featured placeholder media'],
     ['post-thumb-placeholder', 'blog placeholder media'],
     ['work-entry-media work-entry-media--system', 'blank work media'],

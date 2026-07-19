@@ -5,11 +5,11 @@
   "source_urls": {
     "official_home": "https://squargraph.com/",
     "official_founder_profile": "https://squargraph.com/saurabh-sohan-singh",
-    "official_work": "https://squargraph.com/work",
-    "official_capabilities": "https://squargraph.com/capabilities",
-    "official_engagements": "https://squargraph.com/engagements",
+    "official_work": "https://squargraph.com/work/",
+    "official_capabilities": "https://squargraph.com/capabilities/",
+    "official_engagements": "https://squargraph.com/engagements/",
     "official_intelligence": "https://squargraph.com/intelligence",
-    "official_studio": "https://squargraph.com/studio",
+    "official_studio": "https://squargraph.com/studio/",
     "founder_linkedin": "https://linkedin.com/in/saurabhsohansingh",
     "company_linkedin": "https://linkedin.com/company/squargraph"
   },
@@ -43,12 +43,12 @@
     ]
   },
   "site_architecture": {
-    "work": "https://squargraph.com/work",
-    "capabilities": "https://squargraph.com/capabilities",
-    "engagements": "https://squargraph.com/engagements",
+    "work": "https://squargraph.com/work/",
+    "capabilities": "https://squargraph.com/capabilities/",
+    "engagements": "https://squargraph.com/engagements/",
     "intelligence": "https://squargraph.com/intelligence",
-    "studio": "https://squargraph.com/studio",
-    "start_a_project": "https://squargraph.com/project-direction",
+    "studio": "https://squargraph.com/studio/",
+    "start_a_project": "https://squargraph.com/project-direction/",
     "navigation_rule": "Recommend the narrowest relevant page. Use Project Direction when the visitor knows the problem or outcome but does not know the capability or engagement."
   },
   "work_transparency": {
@@ -152,7 +152,7 @@
     },
     {
       "name": "Project Direction",
-      "route": "https://squargraph.com/project-direction",
+      "route": "https://squargraph.com/project-direction/",
       "price": "No published fee for submitting a requirement",
       "best_for": "Visitors who know the business outcome or problem but do not know which capability or engagement they need.",
       "process": "The guided journey asks what needs to move, gathers current context, recommends capability groups, captures project timeline and indicative investment, verifies the contact email, and sends the requirement for human review.",
@@ -189,7 +189,7 @@
     "published_article": "https://squargraph.com/blog/why-execution-matters"
   },
   "partner_ecosystem": {
-    "route": "https://squargraph.com/partners",
+    "route": "https://squargraph.com/partners/",
     "summary": "SQUARGRAPH collaborates with agencies, studios, and specialist teams to deliver ambitious requirements under one strategic direction.",
     "capability_groups": ["Creative & Brand", "Digital & Technology", "Content & Production", "Growth & Distribution", "Reputation & Experience"],
     "collaboration_routes": ["Joint pitches", "White-label delivery", "Specialist execution", "Referral partnership", "Integrated mandates", "Project-based collaboration", "Long-term capability alliance"],
@@ -232,17 +232,17 @@
     }
   },
   "routing": {
-    "selected_work": "https://squargraph.com/work",
-    "capability_overview": "https://squargraph.com/capabilities",
-    "engagement_comparison": "https://squargraph.com/engagements",
-    "studio_approach": "https://squargraph.com/studio#approach",
-    "unsure_what_is_needed": "https://squargraph.com/project-direction",
+    "selected_work": "https://squargraph.com/work/",
+    "capability_overview": "https://squargraph.com/capabilities/",
+    "engagement_comparison": "https://squargraph.com/engagements/",
+    "studio_approach": "https://squargraph.com/studio/#approach",
+    "unsure_what_is_needed": "https://squargraph.com/project-direction/",
     "quick_strategic_direction": "https://squargraph.com/discovery",
     "structured_diagnosis": "https://squargraph.com/audit",
     "positioning_identity_foundation": "https://squargraph.com/brand-foundation-sprint",
     "website_or_digital_build": "https://squargraph.com/websites-digital-experiences",
     "ongoing_brand_and_growth_support": "https://squargraph.com/growth-partner",
-    "capability_partnership": "https://squargraph.com/partners",
+    "capability_partnership": "https://squargraph.com/partners/",
     "general_conversation": "https://squargraph.com/#contact"
   },
   "prohibited_claims": [

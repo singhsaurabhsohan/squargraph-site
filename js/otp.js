@@ -296,13 +296,15 @@
       });
 
       otpInput.addEventListener('paste', function (event) {
-        event.preventDefault();
         var digits = (event.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
-        digits.split('').forEach(function (digit, digitIndex) {
-          if (inputs[digitIndex]) inputs[digitIndex].value = digit;
-        });
-        var target = inputs[Math.min(digits.length, inputs.length) - 1];
-        if (target) target.focus();
+        if (!digits) return;
+        setTimeout(function () {
+          digits.split('').forEach(function (digit, digitIndex) {
+            if (inputs[digitIndex]) inputs[digitIndex].value = digit;
+          });
+          var target = inputs[Math.min(digits.length, inputs.length) - 1];
+          if (target) target.focus();
+        }, 0);
       });
     });
 
