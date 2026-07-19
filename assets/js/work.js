@@ -20,33 +20,74 @@
   }
 
   var motionFilms = [
-    { title: 'Campaign film one', poster: '/film1.webp', id: '6a08955d0ed6988dba1990e6' },
-    { title: 'Campaign film two', poster: '/film2.webp', id: '6a08955d0ed6988dba1990e1' }
+    { title: 'Sony campaign film one', brand: 'Sony', poster: '/film1.webp', id: '6a08955d0ed6988dba1990e6', logos: [{ src: '/assets/images/brand-marks/sony.svg', alt: 'Sony' }] },
+    { title: 'Sony campaign film two', brand: 'Sony', poster: '/film2.webp', id: '6a08955d0ed6988dba1990e1', logos: [{ src: '/assets/images/brand-marks/sony.svg', alt: 'Sony' }] }
   ];
 
   var motionReels = [
-    { title: 'Reel one', poster: '/reel1.webp', id: '6a0896763a5246215d47a7fd' },
-    { title: 'Reel two', poster: '/reel2.webp', id: '6a08955d3a5246215d479670' },
-    { title: 'Reel three', poster: '/reel3.webp', id: '6a08955d0143a2000b232aad' },
-    { title: 'Reel four', poster: '/reel4.webp', id: '6a0896160ed6988dba199c1a' },
-    { title: 'Reel five', poster: '/reel5.webp', id: '6a0896760143a2000b233c09' },
-    { title: 'Reel six', poster: '/reel6.webp', id: '6a20aee640fe2ab62837d2c7' },
-    { title: 'Reel seven', poster: '/reel7.webp', id: '6a20b11240fe2ab62837f6ce' },
-    { title: 'Reel eight', poster: '/reel8.webp', id: '6a20b4f340fe2ab628383a81' },
-    { title: 'Reel nine', poster: '/reel9.webp', id: '6a20ba6b40fe2ab6283896e4' }
+    { title: 'Tata Motors commercial reel one', brand: 'Tata Motors', poster: '/reel1.webp', id: '6a0896763a5246215d47a7fd', logos: [{ src: '/assets/images/brand-marks/tata-motors.svg', alt: 'Tata Motors' }] },
+    { title: 'Audi and Booking.com reel', brand: 'Audi and Booking.com', poster: '/reel2.webp', id: '6a08955d3a5246215d479670', logos: [{ src: '/assets/images/brand-marks/audi.svg', alt: 'Audi' }, { src: '/assets/images/brand-marks/booking-com.svg', alt: 'Booking.com' }] },
+    { title: 'Mahindra 3XO reel', brand: 'Mahindra', poster: '/reel3.webp', id: '6a08955d0143a2000b232aad', logos: [{ src: '/assets/images/brand-marks/mahindra.svg', alt: 'Mahindra' }] },
+    { title: 'vivo X Fold3 Pro reel', brand: 'vivo', poster: '/reel4.webp', id: '6a0896160ed6988dba199c1a', logos: [{ src: '/assets/images/brand-marks/vivo.svg', alt: 'vivo' }] },
+    { title: 'Tata Motors commercial reel two', brand: 'Tata Motors', poster: '/reel5.webp', id: '6a0896760143a2000b233c09', logos: [{ src: '/assets/images/brand-marks/tata-motors.svg', alt: 'Tata Motors' }] },
+    { title: 'MG Windsor cinematic reel', brand: 'MG Motor', poster: '/reel6.webp', id: '6a20aee640fe2ab62837d2c7', logos: [{ src: '/assets/images/brand-marks/mg-motor.svg', alt: 'MG Motor' }] },
+    { title: 'YASHICA reel', brand: 'YASHICA', poster: '/reel7.webp', id: '6a20b11240fe2ab62837f6ce', logos: [{ src: '/assets/images/brand-marks/yashica.png', alt: 'YASHICA' }] },
+    { title: 'Angelbird reel', brand: 'Angelbird', poster: '/reel8.webp', id: '6a20b4f340fe2ab628383a81', logos: [{ src: '/assets/images/brand-marks/angelbird.svg', alt: 'Angelbird' }] },
+    { title: 'Lowepro reel', brand: 'Lowepro', poster: '/reel9.webp', id: '6a20ba6b40fe2ab6283896e4', logos: [{ src: '/assets/images/brand-marks/lowepro.png', alt: 'Lowepro' }] }
   ];
 
   function motionCard(item, isReel) {
+    var itemShell = make('article', 'work-motion-item');
     var card = make('div', 'work-motion-card ' + (isReel ? 'work-motion-card--reel' : 'work-motion-card--film'));
-    var poster = make('button', 'reel-poster work-motion-poster');
-    poster.type = 'button';
-    poster.dataset.title = item.title;
-    poster.dataset.src = 'https://play.gumlet.io/embed/' + item.id + '?autoplay=true&muted=true&loop=true&disable_player_controls=true';
-    poster.style.backgroundImage = 'url("' + item.poster + '")';
-    poster.setAttribute('aria-label', 'Play ' + item.title.toLowerCase());
-    poster.innerHTML = '<span class="work-motion-play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 11 7-11 7V5Z"></path></svg></span>';
+    card.dataset.gumletLoop = '';
+    card.dataset.gumletLabel = item.title;
+
+    var poster = document.createElement('img');
+    poster.className = 'work-motion-poster-image';
+    poster.src = item.poster;
+    poster.alt = '';
+    poster.setAttribute('aria-hidden', 'true');
+    poster.loading = 'lazy';
+    poster.decoding = 'async';
+    poster.width = isReel ? 450 : 1600;
+    poster.height = isReel ? 800 : 900;
     card.appendChild(poster);
-    return card;
+
+    var iframe = document.createElement('iframe');
+    iframe.dataset.src = 'https://play.gumlet.io/embed/' + item.id + '?background=true&autoplay=true&muted=true&loop=true&disable_player_controls=true&playsinline=true';
+    iframe.title = item.title;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.referrerPolicy = 'origin';
+    iframe.loading = 'lazy';
+    iframe.setAttribute('allowfullscreen', '');
+    card.appendChild(iframe);
+
+    var audioButton = make('button', 'work-motion-audio');
+    audioButton.type = 'button';
+    audioButton.dataset.gumletAudio = '';
+    audioButton.setAttribute('aria-pressed', 'false');
+    audioButton.setAttribute('aria-label', 'Unmute ' + item.title);
+    audioButton.setAttribute('title', 'Unmute ' + item.title);
+    audioButton.innerHTML = '<svg class="work-motion-audio-muted" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"></path><path d="m22 9-6 6"></path><path d="m16 9 6 6"></path></svg><svg class="work-motion-audio-playing" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 5a10 10 0 0 1 0 14"></path></svg>';
+    card.appendChild(audioButton);
+
+    var brandRow = make('div', 'work-motion-brand');
+    brandRow.setAttribute('aria-label', 'Featured brand: ' + item.brand);
+    item.logos.forEach(function (logoData, index) {
+      if (index > 0) brandRow.appendChild(make('span', 'work-motion-brand-separator', '×'));
+      var logo = document.createElement('img');
+      logo.src = logoData.src;
+      logo.alt = logoData.alt;
+      logo.loading = 'lazy';
+      logo.decoding = 'async';
+      logo.width = 120;
+      logo.height = 28;
+      brandRow.appendChild(logo);
+    });
+
+    itemShell.appendChild(card);
+    itemShell.appendChild(brandRow);
+    return itemShell;
   }
 
   function motionGroup(label, count, items, isReel) {
@@ -90,6 +131,7 @@
     shell.appendChild(reels);
     section.appendChild(shell);
     previousSection.parentNode.insertBefore(section, previousSection);
+    document.dispatchEvent(new CustomEvent('sq:work-rendered'));
   }
 
   function renderExperienceVisual(media, visualType) {

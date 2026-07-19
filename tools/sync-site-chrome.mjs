@@ -25,6 +25,7 @@ async function collect(directory) {
 
 function currentFor(relative) {
   const normalized = relative.replaceAll('\\', '/').toLowerCase();
+  if (normalized === 'project-direction/index.html') return 'PROJECT_CURRENT';
   if (normalized === 'work/index.html') return 'WORK_CURRENT';
   if (normalized === 'capabilities/index.html') return 'CAPABILITIES_CURRENT';
   if (normalized === 'engagements/index.html' || /^(discovery|audit|audit-results|brand-foundation-sprint|websites-digital-experiences|growth-partner)\.html$/.test(normalized)) return 'ENGAGEMENTS_CURRENT';
@@ -49,9 +50,16 @@ const replacements = [
 let changed = 0;
 for (const file of await collect(root)) {
   const relative = path.relative(root, file);
-  if (relative.replaceAll('\\', '/').toLowerCase() === 'project-direction/index.html') continue;
+  const normalized = relative.replaceAll('\\', '/').toLowerCase();
   let html = await readFile(file, 'utf8');
   const original = html;
+
+  if (normalized === 'project-direction/index.html') {
+    html = html.replace(/<header\b[^>]*class="finder-header"[^>]*>[\s\S]*?<\/header>/i, renderNav('PROJECT_CURRENT').trim());
+    if (!/<footer\b[^>]*class="[^"]*site-footer/i.test(html)) {
+      html = html.replace('</main>', `</main>\n\n${footerReference.trim()}`);
+    }
+  }
 
   if (/<nav\b[^>]*id="nav"/i.test(html) && /<div\b[^>]*id="mob-menu"/i.test(html)) {
     html = html.replace(/<nav\b[^>]*id="nav"[^>]*>[\s\S]*?<\/nav>\s*(?:<!--[\s\S]*?-->\s*)?<div\b[^>]*id="mob-menu"[^>]*>[\s\S]*?<\/div>/i, renderNav(currentFor(relative)).trim());

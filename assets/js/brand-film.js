@@ -30,6 +30,7 @@
 
     var iframe = container.querySelector('iframe');
     var audioButton = container.querySelector('[data-gumlet-audio]');
+    var audioLabel = container.dataset.gumletLabel || 'brand film';
     if (!iframe || !audioButton) return;
 
     container.dataset.gumletLoading = 'true';
@@ -46,8 +47,8 @@
 
       function updateButton() {
         audioButton.setAttribute('aria-pressed', String(!isMuted));
-        audioButton.setAttribute('aria-label', isMuted ? 'Unmute brand film' : 'Mute brand film');
-        audioButton.setAttribute('title', isMuted ? 'Unmute brand film' : 'Mute brand film');
+        audioButton.setAttribute('aria-label', (isMuted ? 'Unmute ' : 'Mute ') + audioLabel);
+        audioButton.setAttribute('title', (isMuted ? 'Unmute ' : 'Mute ') + audioLabel);
       }
 
       player.on('ready', function () {
@@ -74,7 +75,7 @@
     }).catch(function () {
       delete container.dataset.gumletLoading;
       audioButton.disabled = true;
-      audioButton.setAttribute('aria-label', 'Brand film audio unavailable');
+      audioButton.setAttribute('aria-label', audioLabel + ' audio unavailable');
     });
   }
 

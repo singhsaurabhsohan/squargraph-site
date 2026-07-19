@@ -1198,3 +1198,143 @@ body.finder-page {
     font-size: 16px;
   }
 }
+
+/* Shared site composition */
+body.finder-page #nav {
+  background: rgba(255, 255, 255, .96);
+}
+
+.finder-hero {
+  display: block;
+  min-height: 0;
+  padding: 0;
+  overflow: visible;
+  background: var(--finder-cream);
+  color: var(--finder-ink);
+}
+
+.finder-hero::before {
+  display: none;
+}
+
+.finder-hero-inner {
+  width: min(calc(100% - 96px), 1660px);
+  margin: 0 auto;
+  padding: clamp(142px, 12vw, 182px) 0 clamp(76px, 7vw, 112px);
+  display: grid;
+  grid-template-columns: minmax(320px, .78fr) minmax(540px, 1fr);
+  gap: clamp(54px, 7vw, 116px);
+  align-items: start;
+}
+
+.finder-copy {
+  max-width: 670px;
+  padding-top: 34px;
+}
+
+.finder-copy h1 {
+  max-width: 660px;
+  margin-bottom: 24px;
+  color: var(--finder-ink);
+  font-size: clamp(52px, 5.2vw, 78px);
+  line-height: 1;
+}
+
+.finder-copy p:not(.finder-eyebrow),
+.finder-copy .finder-lead,
+.finder-copy .finder-note {
+  color: var(--finder-muted) !important;
+}
+
+.finder-copy .finder-lead {
+  max-width: 620px;
+  font-size: clamp(17px, 1.25vw, 20px);
+}
+
+.finder-copy .finder-note {
+  max-width: 520px;
+}
+
+.finder-copy .finder-primary {
+  width: fit-content;
+  background: var(--finder-ink);
+  border-color: var(--finder-ink);
+  color: #fff;
+}
+
+.finder-copy .finder-primary:hover {
+  background: var(--finder-forest);
+  border-color: var(--finder-forest);
+}
+
+.finder-card {
+  max-width: 760px;
+  justify-self: end;
+  border-color: #ded9cf;
+  background: #fff;
+  box-shadow: 0 20px 54px rgba(21, 20, 17, .08);
+  padding: clamp(26px, 2.7vw, 38px);
+  scroll-margin-top: 104px;
+}
+
+.captcha-panel {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.finder-explain,
+.finder-positioning,
+.finder-about {
+  width: min(calc(100% - 96px), 1660px);
+  padding: clamp(80px, 8vw, 124px) 0;
+}
+
+@media (max-width: 1080px) {
+  .finder-hero-inner {
+    grid-template-columns: 1fr;
+    width: min(calc(100% - 64px), 920px);
+    gap: 42px;
+    padding-top: 132px;
+  }
+
+  .finder-copy {
+    max-width: 760px;
+    padding-top: 0;
+  }
+
+  .finder-card {
+    width: 100%;
+    max-width: 820px;
+    justify-self: start;
+  }
+
+  .finder-explain,
+  .finder-positioning,
+  .finder-about {
+    width: min(calc(100% - 64px), 920px);
+  }
+}
+
+@media (max-width: 760px) {
+  .finder-hero-inner {
+    width: calc(100% - 32px);
+    gap: 30px;
+    padding: 108px 0 56px;
+  }
+
+  .finder-copy h1 {
+    font-size: clamp(42px, 12vw, 58px);
+  }
+
+  .finder-card {
+    padding: 22px 18px;
+  }
+
+  .finder-explain,
+  .finder-positioning,
+  .finder-about {
+    width: calc(100% - 32px);
+    padding: 64px 0;
+  }
+}
