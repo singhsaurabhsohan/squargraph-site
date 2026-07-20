@@ -145,6 +145,27 @@ textarea.form-input:focus {
 }
 .phone-link:hover { color: var(--accent); }
 
+@keyframes sq-disclosure-reveal {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+details[open] > :not(summary) {
+  animation: sq-disclosure-reveal .18s ease both;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  details:not([open]):hover > :not(summary) {
+    display: block;
+    animation: sq-disclosure-reveal .18s ease both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  details[open] > :not(summary) { animation: none; }
+  details:not([open]):hover > :not(summary) { animation: none; }
+}
+
 .iti {
   display: block; width: 100%; position: relative;
   border-radius: 999px; background: var(--warmgray);

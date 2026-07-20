@@ -342,6 +342,10 @@
 
 .careers-field { min-width: 0; }
 .careers-field-wide { grid-column: 1 / -1; }
+.careers-phone-field {
+  grid-column: 1 / -1;
+  width: calc(50% - 7px);
+}
 
 .careers-field > label,
 .careers-file-field > label {
@@ -539,6 +543,10 @@
 .careers-faq-list details[open] summary::after { content: "−"; }
 .careers-faq-list details p { max-width: 720px; margin: -4px 0 24px; color: var(--textsecondary); line-height: 1.65; }
 
+@media (hover: hover) and (pointer: fine) {
+  .careers-faq-list details:hover summary::after { content: "−"; }
+}
+
 .careers-page :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 @media (max-width: 1024px) {
@@ -562,7 +570,9 @@
   .careers-form-panel { padding: 22px 18px; }
   .careers-form { grid-template-columns: 1fr; }
   .careers-field-wide,
+  .careers-phone-field,
   .careers-form .sq-inline-otp { grid-column: 1; }
+  .careers-phone-field { width: 100%; }
 }
 
 @media (max-width: 540px) {
