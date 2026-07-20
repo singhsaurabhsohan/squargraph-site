@@ -81,6 +81,7 @@
 .work-motion-brand img { display: block; width: auto; max-width: min(150px, 72%); height: 22px; object-fit: contain; object-position: center; }
 .work-motion-reels .work-motion-brand img { width: auto; max-width: 104px; height: 19px; }
 .work-motion-reels .work-motion-brand:has(.work-motion-brand-separator) img { max-width: 78px; }
+.work-motion-brand-logo--light-on-transparent { filter: invert(1); }
 .work-motion-brand-separator { color: var(--textmuted); font-size: 13px; }
 .work-motion-credit { margin: 20px 0 0; color: var(--textmuted); font-size: 12px; }
 .work-motion-credit a { color: inherit; }

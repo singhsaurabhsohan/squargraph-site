@@ -31,7 +31,7 @@
     { title: 'vivo X Fold3 Pro reel', brand: 'vivo', poster: '/reel4.webp', id: '6a0896160ed6988dba199c1a', logos: [{ src: '/assets/images/brand-marks/vivo.svg', alt: 'vivo' }] },
     { title: 'Tata Motors commercial reel two', brand: 'Tata Motors', poster: '/reel5.webp', id: '6a0896760143a2000b233c09', logos: [{ src: '/assets/images/brand-marks/tata-motors.svg', alt: 'Tata Motors' }] },
     { title: 'MG Windsor cinematic reel', brand: 'MG Motor', poster: '/reel6.webp', id: '6a20aee640fe2ab62837d2c7', logos: [{ src: '/assets/images/brand-marks/mg-motor.svg', alt: 'MG Motor' }] },
-    { title: 'YASHICA reel', brand: 'YASHICA', poster: '/reel7.webp', id: '6a20b11240fe2ab62837f6ce', logos: [{ src: '/assets/images/brand-marks/yashica.png', alt: 'YASHICA' }] },
+    { title: 'YASHICA camera reel', brand: 'YASHICA', poster: '/reel7.webp', id: '6a20b11240fe2ab62837f6ce', logos: [{ src: '/assets/images/brand-marks/yashica.png', alt: 'YASHICA', variant: 'light-on-transparent' }] },
     { title: 'Angelbird reel', brand: 'Angelbird', poster: '/reel8.webp', id: '6a20b4f340fe2ab628383a81', logos: [{ src: '/assets/images/brand-marks/angelbird.svg', alt: 'Angelbird' }] },
     { title: 'Lowepro reel', brand: 'Lowepro', poster: '/reel9.webp', id: '6a20ba6b40fe2ab6283896e4', logos: [{ src: '/assets/images/brand-marks/lowepro.png', alt: 'Lowepro' }] }
   ];
@@ -78,6 +78,7 @@
       var logo = document.createElement('img');
       logo.src = logoData.src;
       logo.alt = logoData.alt;
+      if (logoData.variant) logo.classList.add('work-motion-brand-logo--' + logoData.variant);
       logo.loading = 'lazy';
       logo.decoding = 'async';
       logo.width = 120;
