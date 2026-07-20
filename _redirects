@@ -6,7 +6,15 @@
 /reset-password    /auth/index.html    200
 /logout    /auth/index.html    200
 /app    /app/index.html    200
-/app/*    /app/index.html    200
+/app/dashboard    /app/index.html    200
+/app/opportunities    /app/index.html    200
+/app/companies    /app/index.html    200
+/app/contacts    /app/index.html    200
+/app/outreach    /app/index.html    200
+/app/proposals    /app/index.html    200
+/app/pipeline    /app/index.html    200
+/app/calendar    /app/index.html    200
+/app/settings    /app/index.html    200
 /home    https://squargraph.com/    301
 /project-direction.html    https://squargraph.com/project-direction/    301
 /brand-misread-scan    https://squargraph.com/project-direction/    301
