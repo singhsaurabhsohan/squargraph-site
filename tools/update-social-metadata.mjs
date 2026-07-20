@@ -8,6 +8,7 @@ const imageRoot = 'https://squargraph.com/assets/images/social/og-v20260720';
 const pages = {
   'index.html': ['og-home-v20260720.webp', 'Connected brand, campaign, digital, film, and performance system by SQUARGRAPH'],
   'work/index.html': ['og-work-v20260720.webp', 'Selected SQUARGRAPH brand, campaign, digital, and film work'],
+  'work/zucero/index.html': ['og-zucero-v20260720.webp', 'ZUCERO editorial website experience presented by SQUARGRAPH'],
   'capabilities/index.html': ['og-capabilities-v20260720.webp', 'SQUARGRAPH connected capability system across brand, digital, content, media, influence, and visibility'],
   'engagements/index.html': ['og-engagements-v20260720.webp', 'SQUARGRAPH engagement pathways for discovery, audit, foundation, digital experience, and growth'],
   'intelligence.html': ['og-intelligence-v20260720.webp', 'SQUARGRAPH brand intelligence system for perception-led decisions'],

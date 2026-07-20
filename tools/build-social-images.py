@@ -152,6 +152,13 @@ SPECS = [
     },
 ]
 
+SPECIAL_SOURCES = [
+    {
+        "slug": "zucero",
+        "path": ROOT / "assets" / "images" / "work" / "zucero" / "zucero-hero-v20260720.webp",
+    },
+]
+
 
 def load_font(path: Path, size: int) -> ImageFont.FreeTypeFont:
     fallback = FONT_REGULAR if FONT_REGULAR.exists() else Path("C:/Windows/Fonts/arial.ttf")
@@ -260,11 +267,30 @@ def build(spec: dict[str, str]) -> Path:
     return output
 
 
+def build_special(spec: dict[str, object]) -> Path:
+    source = Image.open(spec["path"]).convert("RGB")
+    image = ImageOps.fit(
+        source,
+        (WIDTH, HEIGHT),
+        method=Image.Resampling.LANCZOS,
+        centering=(0.5, 0.5),
+    )
+    output = OUT / f"og-{spec['slug']}-{VERSION}.webp"
+    image.save(output, "WEBP", quality=84, method=6)
+    return output
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     SOURCES.mkdir(parents=True, exist_ok=True)
     for spec in SPECS:
         output = build(spec)
+        with Image.open(output) as rendered:
+            if rendered.size != (WIDTH, HEIGHT):
+                raise ValueError(f"Unexpected size for {output}: {rendered.size}")
+        print(output.relative_to(ROOT))
+    for spec in SPECIAL_SOURCES:
+        output = build_special(spec)
         with Image.open(output) as rendered:
             if rendered.size != (WIDTH, HEIGHT):
                 raise ValueError(f"Unexpected size for {output}: {rendered.size}")

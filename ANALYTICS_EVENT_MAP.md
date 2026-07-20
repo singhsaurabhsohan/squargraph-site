@@ -12,6 +12,11 @@ The site uses the existing `dataLayer` and `window.SQ.trackEvent`. No analytics 
 | `project_direction_recommendation_view` | Recommendation step becomes visible | Counts and selected taxonomy only |
 | `project_direction_complete` | Successful Project Direction submission | Counts and decision mode only |
 | `work_card_click` | Work preview/card or Work destination link | `link_text`, `link_url`, `page_path` |
+| `zucero_work_card_click` | ZUCERO card on the homepage or Work page | `link_text`, `link_url`, `page_path` |
+| `zucero_case_study_view` | ZUCERO case-study page loads | `page_path` |
+| `zucero_live_site_click` | Visitor opens the approved ZUCERO live website | `link_text`, `link_url`, `page_path` |
+| `zucero_related_capability_click` | Related capability link on the ZUCERO case study | `link_text`, `link_url`, `page_path` |
+| `zucero_start_project_click` | Start a Project CTA on the ZUCERO case study | `link_text`, `link_url`, `page_path` |
 | `capability_click` | Capability route or section link | `link_text`, `link_url`, `page_path` |
 | `engagement_click` | Engagement route or card link | `link_text`, `link_url`, `page_path` |
 | `intelligence_article_click` | Intelligence or article link | `link_text`, `link_url`, `page_path` |

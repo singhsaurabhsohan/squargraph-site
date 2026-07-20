@@ -8,6 +8,7 @@ Updated: 2026-07-20
 | --- | --- | --- | --- | --- | --- |
 | `/` | Position SQUARGRAPH and route qualified visitors | Start a Project | Founder | `index.html`, `work.json`, `intelligence.json` | All primary destinations |
 | `/work` | Prove capability with transparent attribution | Start a Project | Founder | `assets/data/work.json` | Capabilities, Founder |
+| `/work/zucero` | Present the verified ZUCERO website and digital experience engagement | Visit Live Website / Start a Project | Founder | Rendered HTML and approved live-site captures | Work, Capabilities, Project Direction |
 | `/capabilities` | Explain what SQUARGRAPH can own | Start a Project | Founder | Rendered HTML | Work, Engagements |
 | `/engagements` | Help visitors choose an entry point | Start a Project | Founder | Rendered HTML | Five engagement pages |
 | `/intelligence` | Publish studies, signals and observations | Explore Intelligence | Founder/editor | `assets/data/intelligence.json` | Capabilities, Engagements |

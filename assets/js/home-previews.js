@@ -22,7 +22,7 @@
   function renderWork() {
     var grid = document.querySelector('[data-home-work-grid]');
     if (!grid) return;
-    fetch('/assets/data/work.json?v=20260719-performance1')
+    fetch('/assets/data/work.json?v=20260720-zucero1')
       .then(function (response) { if (!response.ok) throw new Error('Work data unavailable'); return response.json(); })
       .then(function (data) {
         var entries = (data.entries || []).filter(function (entry) {
@@ -75,7 +75,7 @@
           body.appendChild(make('p', '', entry.summary));
           var link = make('a', 'text-link', entry.linkLabel || 'View context');
           link.href = entry.url || '/work';
-          link.setAttribute('data-sq-event', 'work_card_click');
+          link.setAttribute('data-sq-event', entry.analyticsEvent || 'work_card_click');
           if (entry.external === true) {
             link.target = '_blank';
             link.rel = 'noopener noreferrer';

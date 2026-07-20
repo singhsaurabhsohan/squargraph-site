@@ -1,7 +1,29 @@
 {
   "schemaVersion": "1.0",
-  "updated": "2026-07-18",
+  "updated": "2026-07-20",
   "entries": [
+    {
+      "id": "zucero-digital-experience",
+      "title": "ZUCERO",
+      "client": "ZUCERO",
+      "relationship": "squargraph",
+      "category": ["Digital", "Brand"],
+      "summary": "A heritage-led sweetener brand translated into a cohesive editorial website and responsive digital experience.",
+      "role": "Information architecture, narrative structure, editorial interface design, responsive front-end development and video integration.",
+      "outputs": ["Brand website", "Narrative architecture", "Responsive digital experience"],
+      "outcome": null,
+      "status": "live",
+      "image": "/assets/images/work/zucero/zucero-work-card-v20260720.webp",
+      "previewImage": "/assets/images/work/zucero/zucero-work-card-v20260720.webp",
+      "imageAlt": "ZUCERO website hero presenting sweetness as a ritual through an immersive editorial experience",
+      "featured": true,
+      "published": true,
+      "url": "/work/zucero/",
+      "caseStudyUrl": "/work/zucero/",
+      "liveUrl": "https://thegoodsugar.in/",
+      "analyticsEvent": "zucero_work_card_click",
+      "linkLabel": "View case study"
+    },
     {
       "id": "squargraph-brand-system",
       "title": "SQUARGRAPH™ Brand System",
@@ -68,7 +90,7 @@
       "image": "/assets/images/partners/partner-specialist-depth.webp",
       "previewImage": "/assets/images/partners/partner-specialist-depth-preview.webp",
       "imageAlt": "Connected specialist teams working within a shared growth system",
-      "featured": true,
+      "featured": false,
       "published": true,
       "url": "/partners/"
     },

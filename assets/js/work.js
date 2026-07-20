@@ -232,7 +232,7 @@
     if (entry.url && !entry.videoEmbed) {
       var link = make('a', 'work-entry-link', entry.linkLabel || 'View context');
       link.href = entry.url;
-      link.setAttribute('data-sq-event', 'work_card_click');
+      link.setAttribute('data-sq-event', entry.analyticsEvent || 'work_card_click');
       if (entry.external === true) {
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
@@ -273,7 +273,7 @@
 
   renderMotionShowcase();
 
-  fetch('/assets/data/work.json')
+  fetch('/assets/data/work.json?v=20260720-zucero2')
     .then(function (response) { if (!response.ok) throw new Error('Work data unavailable'); return response.json(); })
     .then(function (data) {
       var entries = (data.entries || []).filter(function (entry) { return entry.published === true; });

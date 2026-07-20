@@ -1,6 +1,6 @@
 # Architecture Freeze QA Report
 
-Updated: 2026-07-18
+Updated: 2026-07-20
 
 ## Result
 
@@ -12,7 +12,8 @@ The approved final structural implementation is complete. The website now has tr
 
 | Check | Result |
 | --- | --- |
-| `node tools/validate-site.mjs` | 24 HTML files, 0 errors, 0 warnings |
+| `node tools/validate-site.mjs` | 27 HTML files, 0 errors, 0 warnings |
+| `node tools/audit-social-metadata.mjs` | 27 pages and 19 versioned social images passed |
 | `node tools/audit-final-architecture.mjs` | Passed |
 | `node tools/compare-form-contracts.mjs` | Nine integration page contracts match the pre-architecture backup |
 | `git diff --check` | Passed |
@@ -20,7 +21,7 @@ The approved final structural implementation is complete. The website now has tr
 | Blank published work media | 0 |
 | Missing published intelligence images | 0 |
 | Repeated blog covers | 0 |
-| Duplicate footer links | 0 across 23 shared footers |
+| Duplicate footer links | 0 across 26 shared footers |
 | Campaign-film and reel embeds without a poster | 0 of 11 |
 | Inline SQUARGRAPH brand film | Muted autoplay loop, no native controls, custom audio toggle passed |
 
@@ -33,6 +34,8 @@ The approved final structural implementation is complete. The website now has tr
 - New below-fold media uses lazy loading. The published article cover uses high-priority loading.
 - No new text or control overflow was observed in the affected sections.
 - Work-page responsive verification passed at 390 px, 768 px, and desktop widths with zero page-level horizontal overflow.
+- Homepage, Work, and ZUCERO case-study verification passed at 320, 360, 390, 768, 1024, 1440, and 1920 px with one H1, one shared footer, no broken loaded images, and zero page-level horizontal overflow.
+- The ZUCERO case study uses real, optimized live-site captures with descriptive alt text, intrinsic dimensions, lazy loading below the hero, and no iframe or local video payload.
 
 ## Integration Safety
 
@@ -41,11 +44,13 @@ This pass did not modify:
 - Contact, discovery, audit, sprint, growth partner, website, partner, feedback, or Project Direction form logic
 - OTP implementation or OTP styles
 - Supabase migrations, queries, storage behavior, or credentials
-- Analytics event map or tracking layer
+- Existing analytics libraries or tracking transport
 - reCAPTCHA integration
 - Chat worker source or deployment configuration
 
 The 23 form-bearing and policy pages changed only because their shared footer copy was synchronized.
+
+This ZUCERO addition introduces only dedicated, non-PII event names for the case-study view and related clicks. Form, OTP, reCAPTCHA, Supabase, and existing analytics behavior remain unchanged.
 
 ## Screenshot Evidence
 
@@ -66,6 +71,23 @@ Final:
 - `screenshots/after-shared-footer.png`
 - `screenshots/after-responsive-home-work.png`
 - `screenshots/after-responsive-blog.png`
+- `screenshots/after-zucero-homepage.png`
+- `screenshots/after-zucero-work.png`
+- `screenshots/after-zucero-case-study-desktop.png`
+- `screenshots/after-zucero-case-study-mobile.png`
+- `screenshots/after-zucero-case-study-journey.png`
+
+## ZUCERO Case Study Addendum
+
+The approved 2026-07-20 content addition includes:
+
+- `work/zucero/index.html`
+- `assets/css/pages/work-case-study.css`
+- Six versioned WebP files under `assets/images/work/zucero` and `assets/images/social/og-v20260720`
+- Homepage and Work index updates through `assets/data/work.json`, rendered fallbacks, and their existing progressive-enhancement scripts
+- XML and human sitemap entries, case-study structured data, canonical metadata, and dedicated Open Graph/Twitter media
+- Reproducible chrome and social-image tooling updates
+- Analytics, architecture, media, link, and QA documentation updates
 
 ## Modified Files
 

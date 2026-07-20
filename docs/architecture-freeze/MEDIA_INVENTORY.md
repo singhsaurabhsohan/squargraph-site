@@ -1,8 +1,8 @@
 # Final Media Inventory
 
-Updated: 2026-07-18
+Updated: 2026-07-20
 
-All new website media is WebP, 1600 x 1000, and below 100 KB. No client results, metrics, dashboards, or unverified campaign outcomes are depicted.
+All new website media is optimized WebP and below 100 KB. Dimensions follow the display context rather than a single fixed canvas. No client results, metrics, dashboards, or unverified campaign outcomes are depicted.
 
 ## Work Media
 
@@ -12,6 +12,12 @@ All new website media is WebP, 1600 x 1000, and below 100 KB. No client results,
 | `/assets/images/work/project-direction.webp` | Browser-framed view of Project Direction | Local capture of the live empty-state experience, with no personal data | 38.6 KB |
 | `/assets/images/work/integrated-automotive-mandate.webp` | Truthful campaign-system representation | Original editorial strategy board, labelled Founder's Previous Experience | 37.3 KB |
 | `/assets/images/work/national-campaign-systems.webp` | Truthful multi-workstream representation | Original editorial operating board, labelled Founder's Previous Experience | 30.8 KB |
+| `/assets/images/work/zucero/zucero-hero-v20260720.webp` | ZUCERO case-study hero | Capture of the approved live ZUCERO website, with no personal data | 52.5 KB |
+| `/assets/images/work/zucero/zucero-work-card-v20260720.webp` | Homepage and Work card preview | Responsive crop of the approved live ZUCERO website capture | 41.2 KB |
+| `/assets/images/work/zucero/zucero-collection-desktop-v20260720.webp` | ZUCERO collection chapter | Capture of the approved live ZUCERO website, with no personal data | 23.6 KB |
+| `/assets/images/work/zucero/zucero-craft-desktop-v20260720.webp` | ZUCERO craft chapter | Capture of the approved live ZUCERO website, with no personal data | 24.3 KB |
+| `/assets/images/work/zucero/zucero-collection-mobile-v20260720.webp` | ZUCERO responsive collection chapter | Mobile capture of the approved live ZUCERO website, with no personal data | 21.5 KB |
+| `/assets/images/social/og-v20260720/og-zucero-v20260720.webp` | ZUCERO case-study social preview | Responsive crop of the approved live ZUCERO website capture | 38.1 KB |
 
 ## Intelligence Media
 
@@ -53,6 +59,8 @@ No local MP4 implementation was added. All playable video remains Gumlet-hosted.
 | Reel 9 | `6a20ba6b40fe2ab6283896e4` | `/reel9.webp` |
 
 The dormant, unrelated YouTube ID was removed from the intelligence data source.
+
+The ZUCERO case study uses static, optimized captures and a live-site CTA. It adds no iframe, local MP4, fabricated result, or personal data.
 
 ## Founder Approval
 

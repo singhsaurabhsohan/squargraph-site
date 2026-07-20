@@ -26,7 +26,7 @@ async function collect(directory) {
 function currentFor(relative) {
   const normalized = relative.replaceAll('\\', '/').toLowerCase();
   if (normalized === 'project-direction/index.html') return 'PROJECT_CURRENT';
-  if (normalized === 'work/index.html') return 'WORK_CURRENT';
+  if (normalized.startsWith('work/')) return 'WORK_CURRENT';
   if (normalized === 'capabilities/index.html') return 'CAPABILITIES_CURRENT';
   if (normalized === 'engagements/index.html' || /^(discovery|audit|audit-results|brand-foundation-sprint|websites-digital-experiences|growth-partner)\.html$/.test(normalized)) return 'ENGAGEMENTS_CURRENT';
   if (normalized === 'intelligence.html' || normalized === 'blog.html' || normalized.startsWith('blog/')) return 'INTELLIGENCE_CURRENT';

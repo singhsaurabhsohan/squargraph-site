@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://squargraph.com/</loc><lastmod>2026-07-19</lastmod><priority>1.00</priority></url>
-  <url><loc>https://squargraph.com/work/</loc><lastmod>2026-07-19</lastmod><priority>0.90</priority></url>
+  <url><loc>https://squargraph.com/</loc><lastmod>2026-07-20</lastmod><priority>1.00</priority></url>
+  <url><loc>https://squargraph.com/work/</loc><lastmod>2026-07-20</lastmod><priority>0.90</priority></url>
+  <url><loc>https://squargraph.com/work/zucero/</loc><lastmod>2026-07-20</lastmod><priority>0.80</priority></url>
   <url><loc>https://squargraph.com/capabilities/</loc><lastmod>2026-07-19</lastmod><priority>0.90</priority></url>
   <url><loc>https://squargraph.com/engagements/</loc><lastmod>2026-07-19</lastmod><priority>0.90</priority></url>
   <url><loc>https://squargraph.com/intelligence</loc><lastmod>2026-07-19</lastmod><priority>0.80</priority></url>
