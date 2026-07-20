@@ -57,8 +57,9 @@ const runtimeAnchors = new Set(
 const footerHashes = new Map();
 for (const [file, html] of htmlCache) {
   const rel = relative(file);
+  const isPrivateWorkspace = rel.startsWith('app/') || rel.startsWith('auth/');
   const footer = html.match(/<footer\b[^>]*class="[^"]*site-footer[^"]*"[^>]*>[\s\S]*?<\/footer>/i)?.[0] || '';
-  if (rel !== 'project-direction/index.html') {
+  if (rel !== 'project-direction/index.html' && !isPrivateWorkspace) {
     if (!footer) errors.push(`${rel}: shared footer is missing`);
     else {
       const hash = crypto.createHash('sha256').update(footer).digest('hex');
@@ -72,6 +73,8 @@ for (const [file, html] of htmlCache) {
   for (const match of html.matchAll(/href="([^"]+)"/g)) {
     const href = match[1];
     if (/^(?:https?:|mailto:|tel:|#|javascript:)/i.test(href)) continue;
+    const cleanRoute = href.split('#')[0].split('?')[0].replace(/\/$/, '') || '/';
+    if (['/login', '/register', '/forgot-password', '/reset-password', '/logout'].includes(cleanRoute) || /^\/app(?:\/|$)/.test(cleanRoute)) continue;
     const candidates = localTarget(href);
     if (!candidates) continue;
     const target = await Promise.all(candidates.map(exists));

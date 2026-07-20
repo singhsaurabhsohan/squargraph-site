@@ -26,17 +26,37 @@
   ];
 
   var VIEW_META = {
-    dashboard: ['OPERATING VIEW', 'Pipeline dashboard'],
-    pipeline: ['CRM PIPELINE', 'Opportunities by stage'],
-    leads: ['OPPORTUNITY INBOX', 'Lead list'],
-    followups: ['ACTION QUEUE', 'Follow-ups']
+    dashboard: ['OPERATING VIEW', 'Workspace dashboard'],
+    opportunities: ['GROWTH OS', 'Opportunities'],
+    companies: ['GROWTH OS', 'Companies'],
+    contacts: ['GROWTH OS', 'Contacts'],
+    outreach: ['GROWTH OS', 'Outreach'],
+    proposals: ['GROWTH OS', 'Proposals'],
+    pipeline: ['GROWTH OS', 'Pipeline'],
+    calendar: ['GROWTH OS', 'Calendar'],
+    settings: ['WORKSPACE', 'Settings']
+  };
+
+  var ROUTE_TO_VIEW = {
+    '/app': 'dashboard', '/app/': 'dashboard', '/app/dashboard': 'dashboard',
+    '/app/opportunities': 'opportunities', '/app/companies': 'companies',
+    '/app/contacts': 'contacts', '/app/outreach': 'outreach',
+    '/app/proposals': 'proposals', '/app/pipeline': 'pipeline',
+    '/app/calendar': 'calendar', '/app/settings': 'settings'
   };
 
   var state = {
     client: null,
     session: null,
     member: null,
+    profile: null,
+    permissions: new Set(),
+    roles: [],
     opportunities: [],
+    messagesAll: [],
+    proposals: [],
+    audit: [],
+    directoryProfiles: [],
     currentId: null,
     activities: [],
     messages: [],
@@ -49,15 +69,20 @@
 
   function cacheElements() {
     [
-      'auth-shell', 'workspace', 'login-form', 'login-email', 'send-code-button',
-      'otp-form', 'otp-inputs', 'otp-caption', 'verify-code-button', 'change-email-button',
-      'auth-message', 'sidebar', 'sidebar-toggle', 'member-name', 'member-role',
+      'app-loading', 'workspace', 'sidebar', 'sidebar-toggle', 'member-name', 'member-role',
       'sign-out-button', 'view-eyebrow', 'view-title', 'global-search',
-      'add-opportunity-button', 'system-banner', 'nav-due-count', 'metric-active',
-      'metric-due', 'metric-overdue', 'metric-priority', 'metric-won', 'priority-list',
+      'add-opportunity-button', 'system-banner', 'nav-due-count', 'metric-new',
+      'metric-due', 'metric-overdue', 'metric-research', 'metric-emails', 'metric-calls',
+      'metric-proposals', 'metric-pipeline', 'metric-win-rate', 'priority-list',
       'dashboard-due-list', 'stage-summary', 'pipeline-board', 'pipeline-priority-filter',
       'lead-status-filter', 'lead-priority-filter', 'lead-count', 'lead-table-body',
-      'followup-groups', 'opportunity-modal', 'opportunity-form', 'opportunity-form-message',
+      'followup-groups', 'company-count', 'company-grid', 'contact-count',
+      'contact-table-body', 'outreach-count', 'outreach-grid', 'proposal-count',
+      'proposal-table-body', 'profile-form', 'profile-name', 'profile-phone',
+      'profile-avatar', 'profile-timezone', 'profile-notifications', 'settings-role', 'settings-email',
+      'permission-list', 'invite-panel', 'invite-form', 'invite-name', 'invite-email',
+      'invite-role', 'sign-out-all-button', 'session-detail', 'workspace-audit-list',
+      'opportunity-modal', 'opportunity-form', 'opportunity-form-message',
       'record-panel', 'close-record-button', 'record-source', 'record-title',
       'record-requirement', 'record-summary', 'record-overview-form', 'record-status',
       'record-value', 'record-next-action', 'record-follow-up', 'record-probability',
@@ -185,7 +210,11 @@
   }
 
   function isWriteMember() {
-    return state.member && ['owner', 'admin', 'member'].indexOf(state.member.role) !== -1;
+    return state.permissions.has('opportunities.edit');
+  }
+
+  function can(permission) {
+    return state.permissions.has(permission);
   }
 
   function currentOpportunity() {
@@ -219,8 +248,9 @@
         auth: {
           persistSession: true,
           autoRefreshToken: true,
-          detectSessionInUrl: false,
-          storageKey: 'sq-growth-os-auth'
+          detectSessionInUrl: true,
+          flowType: 'pkce',
+          storageKey: 'sq-os-auth'
         }
       }
     );
@@ -230,155 +260,101 @@
     var result = await state.client.auth.getSession();
     if (result.error) throw result.error;
     if (result.data.session) await authoriseSession(result.data.session);
-    else showAuth();
+    else redirectToLogin();
 
     state.client.auth.onAuthStateChange(function (event, session) {
-      if (event === 'SIGNED_OUT') showAuth();
+      if (event === 'SIGNED_OUT') redirectToLogin();
       if (event === 'TOKEN_REFRESHED' && session) state.session = session;
     });
   }
 
-  function showAuth() {
-    state.session = null;
-    state.member = null;
-    els.workspace.hidden = true;
-    els['auth-shell'].hidden = false;
-    document.body.classList.remove('modal-open');
-    window.setTimeout(function () { els['login-email'].focus(); }, 0);
+  function redirectToLogin(reason) {
+    var next = window.location.pathname.indexOf('/app') === 0 ? window.location.pathname : '/app/dashboard';
+    window.location.replace('/login?next=' + encodeURIComponent(next) + (reason ? '&error=' + encodeURIComponent(reason) : ''));
   }
 
   async function authoriseSession(session) {
     state.session = session;
     var membership = await state.client
-      .from('growth_members')
-      .select('user_id,email,display_name,role,active')
+      .from('os_members')
+      .select('user_id,email,status,role_id,role:os_roles(role_key,name,rank)')
       .eq('user_id', session.user.id)
-      .eq('active', true)
+      .eq('status', 'active')
       .maybeSingle();
 
     if (membership.error || !membership.data) {
       await state.client.auth.signOut({ scope: 'local' });
-      var missingTable = membership.error && (membership.error.code === '42P01' || membership.error.code === 'PGRST205');
-      setMessage(
-        els['auth-message'],
-        missingTable
-          ? 'Growth OS is not provisioned yet. Run supabase/growth_os.sql before signing in.'
-          : 'This email is authenticated but is not authorised for Growth OS.',
-        false
-      );
-      showAuth();
+      redirectToLogin('This account does not have active workspace access.');
       return;
     }
 
     state.member = membership.data;
-    els['member-name'].textContent = state.member.display_name || state.member.email;
-    els['member-role'].textContent = state.member.role;
-    els['auth-shell'].hidden = true;
+    var profileResult = await state.client.from('os_profiles').select('*').eq('user_id', session.user.id).maybeSingle();
+    state.profile = profileResult.data || { user_id: session.user.id, full_name: '', phone: '', timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, notifications: { email: true } };
+    var permissionResult = await state.client.rpc('os_my_permissions');
+    if (permissionResult.error) throw permissionResult.error;
+    state.permissions = new Set((permissionResult.data || []).map(function (item) { return item.permission_key; }));
+    els['member-name'].textContent = state.profile.full_name || state.member.email;
+    els['member-role'].textContent = (state.member.role && state.member.role.name) || 'Workspace member';
+    els['app-loading'].hidden = true;
     els.workspace.hidden = false;
     if (!isWriteMember()) {
       els['add-opportunity-button'].hidden = true;
-      showBanner('Viewer access is read-only. Ask an owner to change your Growth OS role before editing.');
+      showBanner('Your workspace access is read-only for opportunities.');
     }
-    await loadOpportunities();
+    await recordLoginHistory();
+    await loadWorkspace();
+    setView(viewFromPath(), false);
   }
 
-  async function handleLogin(event) {
-    event.preventDefault();
-    var email = els['login-email'].value.trim().toLowerCase();
-    if (!/^\S+@\S+\.\S+$/.test(email)) {
-      setMessage(els['auth-message'], 'Enter a valid authorised email address.', false);
-      return;
-    }
-    setBusy(els['send-code-button'], true, 'Sending...');
-    setMessage(els['auth-message'], '', false);
-    var result = await state.client.auth.signInWithOtp({
-      email: email,
-      options: { shouldCreateUser: false }
+  async function recordLoginHistory() {
+    var key = 'sq-os-login-' + state.session.user.id + '-' + String(state.session.access_token || '').slice(-10);
+    if (window.sessionStorage.getItem(key)) return;
+    await state.client.from('os_login_history').insert({
+      user_id: state.session.user.id,
+      event_type: 'sign_in',
+      user_agent: navigator.userAgent,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      path: window.location.pathname
     });
-    setBusy(els['send-code-button'], false);
-    if (result.error) {
-      setMessage(els['auth-message'], result.error.message || 'The access code could not be sent.', false);
-      return;
-    }
-    els['login-form'].hidden = true;
-    els['otp-form'].hidden = false;
-    els['otp-caption'].textContent = 'Access code sent to ' + maskEmail(email) + '.';
-    els['otp-form'].dataset.email = email;
-    var first = els['otp-inputs'].querySelector('input');
-    if (first) first.focus();
-    setMessage(els['auth-message'], 'Check your inbox for the six-digit access code.', true);
+    window.sessionStorage.setItem(key, '1');
   }
 
-  function maskEmail(email) {
-    var parts = email.split('@');
-    var name = parts[0] || '';
-    return (name.slice(0, 2) || '*') + '***@' + (parts[1] || '');
-  }
-
-  async function handleOtp(event) {
-    event.preventDefault();
-    var inputs = Array.prototype.slice.call(els['otp-inputs'].querySelectorAll('input'));
-    var token = inputs.map(function (input) { return input.value; }).join('');
-    var email = els['otp-form'].dataset.email || '';
-    if (!/^\d{6}$/.test(token)) {
-      setMessage(els['auth-message'], 'Enter the complete six-digit access code.', false);
-      return;
-    }
-    setBusy(els['verify-code-button'], true, 'Verifying...');
-    var result = await state.client.auth.verifyOtp({ email: email, token: token, type: 'email' });
-    setBusy(els['verify-code-button'], false);
-    if (result.error || !result.data.session) {
-      setMessage(els['auth-message'], (result.error && result.error.message) || 'The code could not be verified.', false);
-      return;
-    }
-    await authoriseSession(result.data.session);
-  }
-
-  function resetLogin() {
-    els['login-form'].hidden = false;
-    els['otp-form'].hidden = true;
-    els['otp-form'].dataset.email = '';
-    Array.prototype.forEach.call(els['otp-inputs'].querySelectorAll('input'), function (input) { input.value = ''; });
-    setMessage(els['auth-message'], '', false);
-    els['login-email'].focus();
-  }
-
-  function initOtpInputs() {
-    var inputs = Array.prototype.slice.call(els['otp-inputs'].querySelectorAll('input'));
-    inputs.forEach(function (input, index) {
-      input.addEventListener('input', function () {
-        input.value = input.value.replace(/\D/g, '').slice(-1);
-        if (input.value && inputs[index + 1]) inputs[index + 1].focus();
-        if (inputs.every(function (field) { return field.value; })) els['otp-form'].requestSubmit();
-      });
-      input.addEventListener('keydown', function (event) {
-        if (event.key === 'Backspace' && !input.value && inputs[index - 1]) inputs[index - 1].focus();
-      });
-      input.addEventListener('paste', function (event) {
-        var pasted = (event.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
-        if (pasted.length !== 6) return;
-        event.preventDefault();
-        inputs.forEach(function (field, position) { field.value = pasted[position] || ''; });
-        inputs[5].focus();
-        els['otp-form'].requestSubmit();
-      });
-    });
-  }
-
-  async function loadOpportunities() {
-    showBanner('Loading pipeline...');
-    var result = await state.client
+  async function loadWorkspace() {
+    showBanner('Loading workspace...');
+    var opportunityRequest = state.client
       .from('growth_opportunities')
       .select('*,company:growth_companies(id,name,website,linkedin_url,location),contact:growth_contacts(id,full_name,title,email,phone,linkedin_url,is_decision_maker)')
       .order('updated_at', { ascending: false })
       .limit(500);
-    if (result.error) {
-      showBanner('Pipeline data could not be loaded: ' + result.error.message);
+    var messageRequest = state.client.from('growth_messages').select('*,opportunity:growth_opportunities(id,requirement,company:growth_companies(name))').order('updated_at', { ascending: false }).limit(500);
+    var proposalRequest = state.client.from('growth_proposals').select('*,opportunity:growth_opportunities(id,requirement,company:growth_companies(name))').order('updated_at', { ascending: false }).limit(500);
+    var auditRequest = can('audit.view')
+      ? state.client.from('os_audit_log').select('id,actor_id,action,entity_type,entity_id,metadata,created_at').order('created_at', { ascending: false }).limit(40)
+      : Promise.resolve({ data: [], error: null });
+    var roleRequest = can('users.invite')
+      ? state.client.from('os_roles').select('id,role_key,name,rank').order('rank', { ascending: false })
+      : Promise.resolve({ data: [], error: null });
+    var profileRequest = can('audit.view')
+      ? state.client.from('os_profiles').select('user_id,full_name')
+      : Promise.resolve({ data: [], error: null });
+    var results = await Promise.all([opportunityRequest, messageRequest, proposalRequest, auditRequest, roleRequest, profileRequest]);
+    if (results[0].error) {
+      showBanner('Workspace data could not be loaded: ' + results[0].error.message);
       return;
     }
-    state.opportunities = result.data || [];
+    state.opportunities = results[0].data || [];
+    state.messagesAll = results[1].error ? [] : (results[1].data || []);
+    state.proposals = results[2].error ? [] : (results[2].data || []);
+    state.audit = results[3].error ? [] : (results[3].data || []);
+    state.roles = results[4].error ? [] : (results[4].data || []);
+    state.directoryProfiles = results[5].error ? [] : (results[5].data || []);
     if (isWriteMember()) showBanner('');
     renderAll();
+  }
+
+  async function loadOpportunities() {
+    await loadWorkspace();
   }
 
   function renderAll() {
@@ -389,6 +365,11 @@
     renderPipeline();
     renderLeadTable();
     renderFollowups();
+    renderCompanies();
+    renderContacts();
+    renderOutreach();
+    renderProposals();
+    renderSettings();
     refreshIcons();
   }
 
@@ -411,14 +392,23 @@
     var active = activeItems();
     var due = active.filter(function (item) { return followupState(item) === 'today'; });
     var overdue = active.filter(function (item) { return followupState(item) === 'overdue'; });
-    var priority = active.filter(function (item) { return item.priority === 'Priority A'; });
-    var won = state.opportunities.filter(function (item) { return item.status === 'Won'; })
-      .reduce(function (sum, item) { return sum + Number(item.estimated_value || 0); }, 0);
-    els['metric-active'].textContent = String(active.length);
+    var newItems = state.opportunities.filter(function (item) { return item.status === 'New'; });
+    var research = active.filter(function (item) { return item.status === 'Researching' || !item.company_summary; });
+    var emails = state.messagesAll.filter(function (item) { return item.message_type === 'email' && item.status === 'sent'; });
+    var calls = active.filter(function (item) { return item.status === 'Discovery Scheduled'; });
+    var openProposals = state.proposals.filter(function (item) { return ['accepted', 'declined'].indexOf(item.status) === -1; });
+    var pipeline = active.reduce(function (sum, item) { return sum + Number(item.estimated_value || 0); }, 0);
+    var won = state.opportunities.filter(function (item) { return item.status === 'Won'; }).length;
+    var lost = state.opportunities.filter(function (item) { return item.status === 'Lost'; }).length;
     els['metric-due'].textContent = String(due.length);
     els['metric-overdue'].textContent = overdue.length + ' overdue';
-    els['metric-priority'].textContent = String(priority.length);
-    els['metric-won'].textContent = formatMoney(won).replace('₹', 'INR ');
+    els['metric-new'].textContent = String(newItems.length);
+    els['metric-research'].textContent = String(research.length);
+    els['metric-emails'].textContent = String(emails.length);
+    els['metric-calls'].textContent = String(calls.length);
+    els['metric-proposals'].textContent = String(openProposals.length);
+    els['metric-pipeline'].textContent = formatMoney(pipeline).replace('₹', 'INR ');
+    els['metric-win-rate'].textContent = (won + lost ? Math.round((won / (won + lost)) * 100) : 0) + '%';
     els['nav-due-count'].textContent = String(due.length + overdue.length);
   }
 
@@ -541,7 +531,80 @@
     }).join('');
   }
 
-  function setView(view) {
+  function renderCompanies() {
+    var companies = {};
+    state.opportunities.forEach(function (item) {
+      var company = getCompany(item);
+      if (!company.id) return;
+      if (!companies[company.id]) companies[company.id] = { company: company, opportunities: [] };
+      companies[company.id].opportunities.push(item);
+    });
+    var items = Object.keys(companies).map(function (key) { return companies[key]; });
+    els['company-count'].textContent = items.length + (items.length === 1 ? ' company' : ' companies');
+    els['company-grid'].innerHTML = items.length ? items.map(function (entry) {
+      var active = entry.opportunities.filter(function (item) { return ['Won', 'Lost', 'Dormant'].indexOf(item.status) === -1; });
+      var first = active[0] || entry.opportunities[0];
+      return '<article class="entity-card"><div class="entity-card-header"><div><h3>' + escapeHtml(entry.company.name) + '</h3><p>' + escapeHtml(entry.company.location || 'Location not set') + '</p></div><span class="source-pill">' + entry.opportunities.length + ' opportunities</span></div><p>' + escapeHtml(first.requirement || 'No visible requirement recorded.') + '</p><div class="entity-card-footer"><button class="text-button" type="button" data-open-record="' + escapeHtml(first.id) + '">Open latest record</button>' + (safeUrl(entry.company.website) ? '<a class="text-button" href="' + escapeHtml(safeUrl(entry.company.website)) + '" target="_blank" rel="noopener">Website</a>' : '') + '</div></article>';
+    }).join('') : emptyState('Companies will appear as opportunities are added.');
+  }
+
+  function renderContacts() {
+    var contacts = {};
+    state.opportunities.forEach(function (item) {
+      var contact = getContact(item);
+      if (!contact.id) return;
+      contacts[contact.id] = { contact: contact, company: getCompany(item), opportunity: item };
+    });
+    var items = Object.keys(contacts).map(function (key) { return contacts[key]; });
+    els['contact-count'].textContent = items.length + (items.length === 1 ? ' contact' : ' contacts');
+    els['contact-table-body'].innerHTML = items.length ? items.map(function (entry) {
+      return '<tr tabindex="0" data-open-record="' + escapeHtml(entry.opportunity.id) + '"><td><div class="row-primary"><strong>' + escapeHtml(entry.contact.full_name) + '</strong><span>' + escapeHtml(entry.contact.title || 'Role not set') + '</span></div></td><td>' + escapeHtml(entry.company.name || 'Unassigned') + '</td><td><div class="row-primary"><strong>' + escapeHtml(entry.contact.email || 'No email') + '</strong><span>' + escapeHtml(entry.contact.phone || '') + '</span></div></td><td><span class="stage-pill">' + escapeHtml(entry.opportunity.status) + '</span></td></tr>';
+    }).join('') : '<tr><td colspan="4">' + emptyState('Contacts will appear as opportunities are added.') + '</td></tr>';
+  }
+
+  function renderOutreach() {
+    els['outreach-count'].textContent = state.messagesAll.length + (state.messagesAll.length === 1 ? ' message' : ' messages');
+    els['outreach-grid'].innerHTML = state.messagesAll.length ? state.messagesAll.map(function (message) {
+      var opportunity = message.opportunity || {};
+      var company = opportunity.company || {};
+      return '<article class="outreach-card"><div class="entity-card-header"><div><span class="source-pill">' + escapeHtml(message.message_type.replace(/_/g, ' ')) + '</span><h3>' + escapeHtml(company.name || opportunity.requirement || 'Opportunity outreach') + '</h3></div><span class="stage-pill">' + escapeHtml(message.status) + '</span></div><p>' + escapeHtml(message.body || 'Empty draft') + '</p><div class="outreach-card-footer"><span>' + escapeHtml(formatDate(message.updated_at, true)) + '</span>' + (opportunity.id ? '<button class="text-button" type="button" data-open-record="' + escapeHtml(opportunity.id) + '">Open opportunity</button>' : '') + '</div></article>';
+    }).join('') : emptyState('No outreach drafts or sent records yet.');
+  }
+
+  function renderProposals() {
+    els['proposal-count'].textContent = state.proposals.length + (state.proposals.length === 1 ? ' proposal' : ' proposals');
+    els['proposal-table-body'].innerHTML = state.proposals.length ? state.proposals.map(function (proposal) {
+      var opportunity = proposal.opportunity || {};
+      var company = opportunity.company || {};
+      return '<tr' + (opportunity.id ? ' tabindex="0" data-open-record="' + escapeHtml(opportunity.id) + '"' : '') + '><td><div class="row-primary"><strong>' + escapeHtml(proposal.title) + '</strong><span>' + escapeHtml(company.name || 'Unassigned company') + '</span></div></td><td>' + escapeHtml(opportunity.requirement || 'Not linked') + '</td><td><span class="stage-pill">' + escapeHtml(proposal.status) + '</span></td><td>' + escapeHtml(formatMoney(proposal.estimated_value || 0).replace('₹', 'INR ')) + '</td><td>' + escapeHtml(formatDate(proposal.expected_close_date, false)) + '</td></tr>';
+    }).join('') : '<tr><td colspan="5">' + emptyState('Proposals will appear when they are added to an opportunity.') + '</td></tr>';
+  }
+
+  function renderSettings() {
+    var role = state.member && state.member.role ? state.member.role : {};
+    var notifications = state.profile && state.profile.notifications ? state.profile.notifications : {};
+    els['profile-name'].value = (state.profile && state.profile.full_name) || '';
+    els['profile-phone'].value = (state.profile && state.profile.phone) || '';
+    els['profile-avatar'].value = (state.profile && state.profile.avatar_url) || '';
+    els['profile-timezone'].value = (state.profile && state.profile.timezone) || Intl.DateTimeFormat().resolvedOptions().timeZone;
+    els['profile-notifications'].checked = notifications.email !== false;
+    els['settings-role'].textContent = role.name || 'Workspace member';
+    els['settings-email'].textContent = (state.member && state.member.email) || '';
+    els['permission-list'].innerHTML = Array.from(state.permissions).sort().map(function (permission) { return '<span class="permission-chip">' + escapeHtml(permission.replace(/\./g, ' · ')) + '</span>'; }).join('');
+    els['invite-panel'].hidden = !can('users.invite');
+    els['invite-role'].innerHTML = '<option value="">Select role</option>' + state.roles.filter(function (item) { return Number(item.rank) < Number(role.rank || 0); }).map(function (item) { return '<option value="' + escapeHtml(item.role_key) + '">' + escapeHtml(item.name) + '</option>'; }).join('');
+    els['session-detail'].textContent = 'Signed in as ' + ((state.member && state.member.email) || '') + ' · ' + navigator.userAgent.replace(/\s+/g, ' ').slice(0, 90);
+    els['workspace-audit-list'].innerHTML = state.audit.length ? state.audit.map(function (activity) {
+      var actor = state.directoryProfiles.find(function (profile) { return profile.user_id === activity.actor_id; });
+      return '<article class="activity-item"><span class="activity-icon"><i data-lucide="history" aria-hidden="true"></i></span><div><p>' + escapeHtml(activity.action.replace(/_/g, ' ')) + '</p><div class="activity-meta"><span>' + escapeHtml((actor && actor.full_name) || 'System') + '</span><span>' + escapeHtml(activity.entity_type || 'workspace') + '</span><span>' + escapeHtml(formatDate(activity.created_at, true)) + '</span></div></div></article>';
+    }).join('') : emptyState(can('audit.view') ? 'Workspace activity will appear here.' : 'Audit history is limited by your permissions.');
+  }
+
+  function viewFromPath() {
+    return ROUTE_TO_VIEW[window.location.pathname.replace(/\/+$/, '') || '/app'] || 'dashboard';
+  }
+
+  function setView(view, pushState) {
     if (!VIEW_META[view]) return;
     state.view = view;
     document.querySelectorAll('[data-view-panel]').forEach(function (panel) {
@@ -557,6 +620,10 @@
     });
     els['view-eyebrow'].textContent = VIEW_META[view][0];
     els['view-title'].textContent = VIEW_META[view][1];
+    if (pushState !== false) {
+      var route = view === 'dashboard' ? '/app/dashboard' : '/app/' + view;
+      if (window.location.pathname !== route) window.history.pushState({ view: view }, '', route);
+    }
     els.sidebar.classList.remove('open');
     els['sidebar-toggle'].setAttribute('aria-expanded', 'false');
     refreshIcons();
@@ -1006,6 +1073,63 @@
     await loadActivities(state.currentId);
   }
 
+  async function handleProfileSave(event) {
+    event.preventDefault();
+    var form = event.currentTarget;
+    var submit = form.querySelector('[type="submit"]');
+    var message = form.querySelector('[data-form-message]');
+    var payload = {
+      user_id: state.session.user.id,
+      full_name: els['profile-name'].value.trim() || null,
+      phone: els['profile-phone'].value.trim() || null,
+      avatar_url: safeUrl(els['profile-avatar'].value.trim()) || null,
+      timezone: els['profile-timezone'].value.trim() || Intl.DateTimeFormat().resolvedOptions().timeZone,
+      notifications: { email: els['profile-notifications'].checked }
+    };
+    setBusy(submit, true, 'Saving...');
+    var result = await state.client.from('os_profiles').upsert(payload, { onConflict: 'user_id' }).select().single();
+    setBusy(submit, false);
+    if (result.error) {
+      setMessage(message, result.error.message || 'The profile could not be saved.', false);
+      return;
+    }
+    state.profile = result.data;
+    els['member-name'].textContent = state.profile.full_name || state.member.email;
+    setMessage(message, 'Profile saved.', true);
+  }
+
+  async function handleInvite(event) {
+    event.preventDefault();
+    if (!can('users.invite')) return;
+    var form = event.currentTarget;
+    var submit = form.querySelector('[type="submit"]');
+    var message = form.querySelector('[data-form-message]');
+    var payload = {
+      full_name: els['invite-name'].value.trim(),
+      email: els['invite-email'].value.trim().toLowerCase(),
+      role_key: els['invite-role'].value
+    };
+    if (!payload.full_name || !/^\S+@\S+\.\S+$/.test(payload.email) || !payload.role_key) {
+      setMessage(message, 'Complete the name, email address and workspace role.', false);
+      return;
+    }
+    setBusy(submit, true, 'Sending invitation...');
+    var result = await state.client.functions.invoke('invite-os-user', { body: payload });
+    setBusy(submit, false);
+    if (result.error) {
+      setMessage(message, result.error.message || 'The invitation could not be sent.', false);
+      return;
+    }
+    form.reset();
+    setMessage(message, 'Invitation sent to ' + payload.email + '.', true);
+  }
+
+  async function handleGlobalSignOut() {
+    setBusy(els['sign-out-all-button'], true, 'Signing out...');
+    await state.client.auth.signOut({ scope: 'global' });
+    window.location.replace('/login?signed_out=1');
+  }
+
   function initSelectOptions() {
     var options = STAGES.map(function (stage) { return '<option>' + escapeHtml(stage) + '</option>'; }).join('');
     els['record-status'].innerHTML = options;
@@ -1013,13 +1137,6 @@
   }
 
   function bindEvents() {
-    els['login-form'].addEventListener('submit', handleLogin);
-    els['otp-form'].addEventListener('submit', handleOtp);
-    els['change-email-button'].addEventListener('click', resetLogin);
-    els['sign-out-button'].addEventListener('click', async function () {
-      await state.client.auth.signOut({ scope: 'local' });
-      showAuth();
-    });
     els['sidebar-toggle'].addEventListener('click', function () {
       var open = els.sidebar.classList.toggle('open');
       els['sidebar-toggle'].setAttribute('aria-expanded', String(open));
@@ -1048,6 +1165,10 @@
     els['qualification-form'].addEventListener('submit', handleQualificationSave);
     els['research-form'].addEventListener('submit', handleResearchSave);
     els['note-form'].addEventListener('submit', handleNoteSave);
+    els['profile-form'].addEventListener('submit', handleProfileSave);
+    els['invite-form'].addEventListener('submit', handleInvite);
+    els['sign-out-all-button'].addEventListener('click', handleGlobalSignOut);
+    window.addEventListener('popstate', function () { setView(viewFromPath(), false); });
     document.querySelectorAll('[data-record-tab]').forEach(function (button) {
       button.addEventListener('click', function () { setRecordTab(button.dataset.recordTab); });
     });
@@ -1080,7 +1201,6 @@
   async function init() {
     cacheElements();
     refreshIcons();
-    initOtpInputs();
     initSelectOptions();
     buildScoreGrid();
     bindEvents();
@@ -1088,7 +1208,7 @@
       initClient();
       await initialiseSession();
     } catch (error) {
-      setMessage(els['auth-message'], error.message || 'Growth OS could not be initialised.', false);
+      els['app-loading'].querySelector('p').textContent = error.message || 'SQUARGRAPH OS could not be initialised.';
     }
   }
 

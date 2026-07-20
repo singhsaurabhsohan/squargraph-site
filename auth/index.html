@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="Secure access to the private SQUARGRAPH OS workspace.">
+  <title>Sign in | SQUARGRAPH OS</title>
+  <link rel="canonical" href="https://squargraph.com/login">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="stylesheet" href="/assets/css/pages/squargraph-os.css">
+</head>
+<body class="auth-page">
+  <main class="auth-shell" aria-labelledby="auth-title">
+    <div class="auth-mark" aria-label="SQUARGRAPH">
+      <span>SQUARGRAPH<sup>TM</sup></span>
+      <p>One secure workspace for the systems behind the studio.</p>
+    </div>
+
+    <div class="auth-card">
+      <a class="auth-brand-mobile" href="/" aria-label="SQUARGRAPH home">SQUARGRAPH<sup>TM</sup></a>
+      <p class="eyebrow" id="auth-eyebrow">PRIVATE WORKSPACE</p>
+      <h1 id="auth-title">SQUARGRAPH OS</h1>
+      <p class="auth-intro" id="auth-intro">Sign in with your authorised workspace account. Access remains invite-only.</p>
+
+      <section id="login-panel" class="auth-panel">
+        <div class="auth-tabs" role="tablist" aria-label="Sign in method">
+          <button class="auth-tab active" id="password-tab" type="button" role="tab" aria-selected="true" data-auth-tab="password">Password</button>
+          <button class="auth-tab" id="magic-tab" type="button" role="tab" aria-selected="false" data-auth-tab="magic">Magic link</button>
+        </div>
+
+        <form id="password-login-form" class="auth-form" data-auth-panel="password" novalidate>
+          <div class="field"><label for="login-email">Email address</label><input id="login-email" name="email" type="email" autocomplete="email" placeholder="name@squargraph.com" required></div>
+          <div class="field"><div class="label-row"><label for="login-password">Password</label><a href="/forgot-password">Forgot password?</a></div><div class="password-field"><input id="login-password" name="password" type="password" autocomplete="current-password" required><button class="icon-button password-toggle" type="button" data-password-toggle="login-password" aria-label="Show password"><i data-lucide="eye" aria-hidden="true"></i></button></div></div>
+          <button class="button button-dark auth-submit" type="submit">Sign in</button>
+        </form>
+
+        <form id="magic-login-form" class="auth-form" data-auth-panel="magic" hidden novalidate>
+          <div class="field"><label for="magic-email">Email address</label><input id="magic-email" name="email" type="email" autocomplete="email" placeholder="name@squargraph.com" required></div>
+          <p class="field-help">We will email a secure sign-in link. Unknown accounts are not created.</p>
+          <button class="button button-dark auth-submit" type="submit">Email magic link</button>
+        </form>
+
+        <div class="auth-divider"><span>or</span></div>
+        <button class="button google-button" id="google-login-button" type="button"><span class="google-mark" aria-hidden="true">G</span><span>Continue with Google</span></button>
+        <p class="auth-access-note">Accounts are created by invitation only. Signing in does not grant access unless an active workspace membership exists.</p>
+      </section>
+
+      <section id="forgot-panel" class="auth-panel" hidden>
+        <form id="forgot-form" class="auth-form" novalidate>
+          <div class="field"><label for="forgot-email">Email address</label><input id="forgot-email" name="email" type="email" autocomplete="email" placeholder="name@squargraph.com" required></div>
+          <button class="button button-dark auth-submit" type="submit">Send reset link</button>
+        </form>
+        <a class="auth-back-link" href="/login"><i data-lucide="arrow-left" aria-hidden="true"></i>Back to sign in</a>
+      </section>
+
+      <section id="password-setup-panel" class="auth-panel" hidden>
+        <form id="password-setup-form" class="auth-form" novalidate>
+          <div class="field"><label for="setup-name">Full name</label><input id="setup-name" name="full_name" type="text" autocomplete="name" maxlength="120"></div>
+          <div class="field"><label for="setup-password">New password</label><div class="password-field"><input id="setup-password" name="password" type="password" autocomplete="new-password" minlength="12" required><button class="icon-button password-toggle" type="button" data-password-toggle="setup-password" aria-label="Show password"><i data-lucide="eye" aria-hidden="true"></i></button></div><div class="password-strength" id="password-strength" aria-live="polite"><span></span><p>Use at least 12 characters with upper and lowercase letters, a number and a symbol.</p></div></div>
+          <div class="field"><label for="setup-confirm">Confirm password</label><input id="setup-confirm" name="confirm_password" type="password" autocomplete="new-password" minlength="12" required></div>
+          <button class="button button-dark auth-submit" type="submit">Secure account</button>
+        </form>
+      </section>
+
+      <section id="auth-result-panel" class="auth-panel auth-result" hidden>
+        <span class="result-icon"><i data-lucide="mail-check" aria-hidden="true"></i></span>
+        <h2 id="result-title">Check your email</h2>
+        <p id="result-copy"></p>
+        <a class="button button-quiet" id="result-action" href="/login">Return to sign in</a>
+      </section>
+
+      <p class="status-message" id="auth-message" role="status" aria-live="polite"></p>
+      <p class="auth-note">Authentication is managed by Supabase Auth. Workspace data remains protected by row-level permissions.</p>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/os-auth.js"></script>
+</body>
+</html>

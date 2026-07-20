@@ -34,6 +34,8 @@ async function exists(target) {
 }
 
 async function routeExists(href) {
+  const clean = href.split('#')[0].split('?')[0].replace(/\/$/, '') || '/';
+  if (['/login', '/register', '/forgot-password', '/reset-password', '/logout'].includes(clean) || /^\/app(?:\/|$)/.test(clean)) return true;
   const target = routeTarget(href);
   if (typeof target === 'string') return exists(target);
   return (await exists(target.directoryIndex)) || (await exists(target.htmlPage));
@@ -50,7 +52,7 @@ for (const file of publicHtml) {
   const is404 = relative === '404.html';
   const isFocusedFlow = relative === 'project-direction/index.html';
   const isPrivateResult = relative === 'audit-results.html';
-  const isPrivateAdmin = relative.startsWith('admin/');
+  const isPrivateAdmin = relative.startsWith('admin/') || relative.startsWith('app/') || relative.startsWith('auth/');
 
   if (!/<title>[^<]+<\/title>/i.test(html)) errors.push(`${relative}: missing title`);
   if (!/<meta\s+name="description"\s+content="[^"]+"/i.test(html)) errors.push(`${relative}: missing meta description`);

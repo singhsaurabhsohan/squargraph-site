@@ -6,85 +6,72 @@
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <meta name="referrer" content="no-referrer">
-  <meta name="description" content="Private SQUARGRAPH Growth OS workspace.">
-  <title>SQUARGRAPH Growth OS</title>
-  <link rel="canonical" href="https://squargraph.com/admin/growth/">
+  <meta name="description" content="Private SQUARGRAPH OS workspace.">
+  <title>SQUARGRAPH OS</title>
+  <link rel="canonical" href="https://squargraph.com/app/">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="/fonts/fonts.css">
-  <link rel="stylesheet" href="/assets/css/pages/growth-os.css">
+  <link rel="stylesheet" href="/assets/css/pages/squargraph-os.css">
 </head>
 <body>
-  <a class="skip-link" href="#growth-main">Skip to workspace</a>
+  <a class="skip-link" href="#os-main">Skip to workspace</a>
 
-  <section class="auth-shell" id="auth-shell" aria-labelledby="auth-title">
-    <div class="auth-mark" aria-label="SQUARGRAPH">SQUARGRAPH<sup>TM</sup></div>
-    <div class="auth-card">
-      <p class="eyebrow">PRIVATE WORKSPACE</p>
-      <h1 id="auth-title">Growth OS</h1>
-      <p class="auth-intro">Qualification, outreach drafts, pipeline decisions and follow-ups in one controlled workspace.</p>
-
-      <form id="login-form" novalidate>
-        <label for="login-email">Email address</label>
-        <div class="auth-row">
-          <input id="login-email" name="email" type="email" autocomplete="email" placeholder="name@squargraph.com" required>
-          <button class="button button-dark" id="send-code-button" type="submit">Send access code</button>
-        </div>
-      </form>
-
-      <form id="otp-form" class="otp-form" hidden novalidate>
-        <p class="otp-caption" id="otp-caption">Access code sent.</p>
-        <div class="otp-inputs" id="otp-inputs" aria-label="Six digit email access code">
-          <input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="Digit 1">
-          <input inputmode="numeric" maxlength="1" aria-label="Digit 2">
-          <input inputmode="numeric" maxlength="1" aria-label="Digit 3">
-          <input inputmode="numeric" maxlength="1" aria-label="Digit 4">
-          <input inputmode="numeric" maxlength="1" aria-label="Digit 5">
-          <input inputmode="numeric" maxlength="1" aria-label="Digit 6">
-        </div>
-        <div class="auth-actions">
-          <button class="button button-dark" id="verify-code-button" type="submit">Verify access code</button>
-          <button class="button button-quiet" id="change-email-button" type="button">Change email</button>
-        </div>
-      </form>
-
-      <p class="status-message" id="auth-message" role="status" aria-live="polite"></p>
-      <p class="auth-note">Authorised SQUARGRAPH team members only. Access is enforced by Supabase Auth and row-level security.</p>
-    </div>
-  </section>
+  <div class="app-loading" id="app-loading" role="status" aria-live="polite">
+    <div class="loading-mark">SQUARGRAPH<sup>TM</sup></div>
+    <p>Securing workspace...</p>
+  </div>
 
   <div class="workspace" id="workspace" hidden>
     <aside class="sidebar" id="sidebar">
       <div>
         <div class="sidebar-brand">SQUARGRAPH<sup>TM</sup></div>
-        <p class="sidebar-product">Growth OS</p>
+        <p class="sidebar-product">SQUARGRAPH OS</p>
       </div>
 
-      <nav class="workspace-nav" aria-label="Growth OS views">
+      <nav class="workspace-nav" aria-label="SQUARGRAPH OS modules">
+        <span class="nav-label">Workspace</span>
         <button class="nav-item active" type="button" data-view="dashboard" aria-current="page">
           <i data-lucide="layout-dashboard" aria-hidden="true"></i><span>Dashboard</span>
+        </button>
+        <span class="nav-label">Growth OS</span>
+        <button class="nav-item" type="button" data-view="opportunities">
+          <i data-lucide="radar" aria-hidden="true"></i><span>Opportunities</span>
+        </button>
+        <button class="nav-item" type="button" data-view="companies">
+          <i data-lucide="building-2" aria-hidden="true"></i><span>Companies</span>
+        </button>
+        <button class="nav-item" type="button" data-view="contacts">
+          <i data-lucide="contact-round" aria-hidden="true"></i><span>Contacts</span>
+        </button>
+        <button class="nav-item" type="button" data-view="outreach">
+          <i data-lucide="messages-square" aria-hidden="true"></i><span>Outreach</span>
+        </button>
+        <button class="nav-item" type="button" data-view="proposals">
+          <i data-lucide="file-signature" aria-hidden="true"></i><span>Proposals</span>
         </button>
         <button class="nav-item" type="button" data-view="pipeline">
           <i data-lucide="columns-3" aria-hidden="true"></i><span>Pipeline</span>
         </button>
-        <button class="nav-item" type="button" data-view="leads">
-          <i data-lucide="list-filter" aria-hidden="true"></i><span>Lead list</span>
-        </button>
-        <button class="nav-item" type="button" data-view="followups">
-          <i data-lucide="calendar-clock" aria-hidden="true"></i><span>Follow-ups</span>
+        <button class="nav-item" type="button" data-view="calendar">
+          <i data-lucide="calendar-days" aria-hidden="true"></i><span>Calendar</span>
           <span class="nav-count" id="nav-due-count">0</span>
+        </button>
+        <span class="nav-label">Account</span>
+        <button class="nav-item" type="button" data-view="settings">
+          <i data-lucide="settings-2" aria-hidden="true"></i><span>Settings</span>
         </button>
       </nav>
 
       <div class="sidebar-footer">
         <p id="member-name">Internal member</p>
         <p id="member-role">Member</p>
-        <button class="button button-sidebar" id="sign-out-button" type="button">
+        <a class="button button-sidebar" id="sign-out-button" href="/logout">
           <i data-lucide="log-out" aria-hidden="true"></i><span>Sign out</span>
-        </button>
+        </a>
       </div>
     </aside>
 
-    <main id="growth-main" class="growth-main" tabindex="-1">
+    <main id="os-main" class="growth-main" tabindex="-1">
       <header class="topbar">
         <div class="topbar-title">
           <button class="icon-button menu-button" id="sidebar-toggle" type="button" aria-label="Open workspace navigation" aria-expanded="false">
@@ -92,7 +79,7 @@
           </button>
           <div>
             <p class="eyebrow" id="view-eyebrow">OPERATING VIEW</p>
-            <h2 id="view-title">Pipeline dashboard</h2>
+            <h1 id="view-title">Workspace dashboard</h1>
           </div>
         </div>
         <div class="topbar-actions">
@@ -110,26 +97,46 @@
       <div class="system-banner" id="system-banner" role="status" aria-live="polite" hidden></div>
 
       <section class="app-view active" id="view-dashboard" data-view-panel="dashboard">
-        <div class="metric-grid" aria-label="Pipeline summary">
+        <div class="metric-grid metric-grid-eight" aria-label="Workspace summary">
           <article class="metric-card">
-            <span>Active opportunities</span>
-            <strong id="metric-active">0</strong>
-            <small>Open pipeline</small>
-          </article>
-          <article class="metric-card urgent">
-            <span>Due today</span>
+            <span>Today's follow-ups</span>
             <strong id="metric-due">0</strong>
             <small id="metric-overdue">0 overdue</small>
           </article>
           <article class="metric-card">
-            <span>Priority A</span>
-            <strong id="metric-priority">0</strong>
-            <small>Highest-fit leads</small>
+            <span>New opportunities</span>
+            <strong id="metric-new">0</strong>
+            <small>Current period</small>
           </article>
           <article class="metric-card">
-            <span>Won value</span>
-            <strong id="metric-won">INR 0</strong>
-            <small>Recorded outcomes</small>
+            <span>Pending research</span>
+            <strong id="metric-research">0</strong>
+            <small>Needs context</small>
+          </article>
+          <article class="metric-card">
+            <span>Emails sent</span>
+            <strong id="metric-emails">0</strong>
+            <small>Logged outreach</small>
+          </article>
+          <article class="metric-card">
+            <span>Calls scheduled</span>
+            <strong id="metric-calls">0</strong>
+            <small>Discovery pipeline</small>
+          </article>
+          <article class="metric-card">
+            <span>Proposals</span>
+            <strong id="metric-proposals">0</strong>
+            <small>Open proposals</small>
+          </article>
+          <article class="metric-card">
+            <span>Pipeline value</span>
+            <strong id="metric-pipeline">INR 0</strong>
+            <small>Active estimated value</small>
+          </article>
+          <article class="metric-card">
+            <span>Win rate</span>
+            <strong id="metric-win-rate">0%</strong>
+            <small>Won against closed</small>
           </article>
         </div>
 
@@ -140,7 +147,7 @@
                 <p class="eyebrow">DECISION QUEUE</p>
                 <h3 id="priority-heading">Priority opportunities</h3>
               </div>
-              <button class="text-button" type="button" data-open-view="leads">View all</button>
+              <button class="text-button" type="button" data-open-view="opportunities">View all</button>
             </div>
             <div class="opportunity-list" id="priority-list"></div>
           </section>
@@ -151,7 +158,7 @@
                 <p class="eyebrow">NEXT ACTIONS</p>
                 <h3 id="due-heading">Due and overdue</h3>
               </div>
-              <button class="text-button" type="button" data-open-view="followups">Open queue</button>
+              <button class="text-button" type="button" data-open-view="calendar">Open queue</button>
             </div>
             <div class="due-list" id="dashboard-due-list"></div>
           </section>
@@ -182,7 +189,7 @@
         <div class="pipeline-board" id="pipeline-board" aria-label="Opportunity pipeline"></div>
       </section>
 
-      <section class="app-view" id="view-leads" data-view-panel="leads" hidden>
+      <section class="app-view" id="view-opportunities" data-view-panel="opportunities" hidden>
         <div class="view-tools">
           <div class="filter-row">
             <select id="lead-status-filter" aria-label="Filter leads by status">
@@ -215,8 +222,38 @@
         </div>
       </section>
 
-      <section class="app-view" id="view-followups" data-view-panel="followups" hidden>
+      <section class="app-view" id="view-companies" data-view-panel="companies" hidden>
+        <div class="module-heading"><p>Companies connected to active and historical opportunities.</p><span id="company-count">0 companies</span></div>
+        <div class="entity-grid" id="company-grid"></div>
+      </section>
+
+      <section class="app-view" id="view-contacts" data-view-panel="contacts" hidden>
+        <div class="module-heading"><p>Decision-makers and working contacts across the pipeline.</p><span id="contact-count">0 contacts</span></div>
+        <div class="table-shell"><table class="lead-table"><thead><tr><th scope="col">Contact</th><th scope="col">Company</th><th scope="col">Details</th><th scope="col">Active opportunity</th></tr></thead><tbody id="contact-table-body"></tbody></table></div>
+      </section>
+
+      <section class="app-view" id="view-outreach" data-view-panel="outreach" hidden>
+        <div class="module-heading"><p>Human-approved outreach drafts and sent-message records.</p><span id="outreach-count">0 drafts</span></div>
+        <div class="outreach-grid" id="outreach-grid"></div>
+      </section>
+
+      <section class="app-view" id="view-proposals" data-view-panel="proposals" hidden>
+        <div class="module-heading"><p>Proposal value, probability and expected close dates.</p><span id="proposal-count">0 proposals</span></div>
+        <div class="table-shell"><table class="lead-table"><thead><tr><th scope="col">Proposal</th><th scope="col">Opportunity</th><th scope="col">Status</th><th scope="col">Value</th><th scope="col">Expected close</th></tr></thead><tbody id="proposal-table-body"></tbody></table></div>
+      </section>
+
+      <section class="app-view" id="view-calendar" data-view-panel="calendar" hidden>
         <div class="followup-groups" id="followup-groups"></div>
+      </section>
+
+      <section class="app-view" id="view-settings" data-view-panel="settings" hidden>
+        <div class="settings-grid">
+          <section class="panel" aria-labelledby="profile-heading"><div class="panel-heading"><div><p class="eyebrow">USER PROFILE</p><h3 id="profile-heading">Profile and notifications</h3></div></div><form id="profile-form" class="profile-form"><div class="field"><label for="profile-name">Full name</label><input id="profile-name" name="full_name" type="text" autocomplete="name"></div><div class="field"><label for="profile-phone">Phone</label><input id="profile-phone" name="phone" type="tel" autocomplete="tel"></div><div class="field field-full"><label for="profile-avatar">Avatar URL</label><input id="profile-avatar" name="avatar_url" type="url" placeholder="https://" inputmode="url"></div><div class="field"><label for="profile-timezone">Timezone</label><input id="profile-timezone" name="timezone" type="text" placeholder="Asia/Kolkata"></div><label class="toggle-row"><input id="profile-notifications" name="notifications" type="checkbox"><span>Email notifications</span></label><p class="form-message" data-form-message></p><button class="button button-dark" type="submit">Save profile</button></form></section>
+          <section class="panel" aria-labelledby="permissions-heading"><div class="panel-heading"><div><p class="eyebrow">ACCESS</p><h3 id="permissions-heading">Role and permissions</h3></div></div><div class="permission-summary"><strong id="settings-role">Member</strong><p id="settings-email"></p><div id="permission-list" class="permission-list"></div></div></section>
+          <section class="panel" id="invite-panel" aria-labelledby="invite-heading" hidden><div class="panel-heading"><div><p class="eyebrow">TEAM ACCESS</p><h3 id="invite-heading">Invite user</h3></div></div><form id="invite-form" class="profile-form"><div class="field"><label for="invite-name">Full name</label><input id="invite-name" name="full_name" type="text" required></div><div class="field"><label for="invite-email">Email address</label><input id="invite-email" name="email" type="email" required></div><div class="field"><label for="invite-role">Workspace role</label><select id="invite-role" name="role_key" required></select></div><p class="form-message" data-form-message></p><button class="button button-dark" type="submit">Send invitation</button></form></section>
+          <section class="panel" aria-labelledby="session-heading"><div class="panel-heading"><div><p class="eyebrow">SECURITY</p><h3 id="session-heading">Current session</h3></div></div><div class="session-card"><p id="session-detail">Authenticated session</p><button class="button button-quiet" id="sign-out-all-button" type="button">Sign out all devices</button></div></section>
+          <section class="panel settings-span" aria-labelledby="audit-heading"><div class="panel-heading"><div><p class="eyebrow">AUDIT LOG</p><h3 id="audit-heading">Recent workspace activity</h3></div></div><div class="activity-list" id="workspace-audit-list"></div></section>
+        </div>
       </section>
     </main>
   </div>
@@ -427,6 +464,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script src="/assets/js/config.js"></script>
-  <script src="/assets/js/growth-os.js"></script>
+  <script src="/assets/js/squargraph-os.js"></script>
 </body>
 </html>

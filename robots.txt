@@ -2,4 +2,10 @@ User-agent: *
 Allow: /
 Disallow: /audit-results
 Disallow: /admin/
+Disallow: /app/
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /logout
 Sitemap: https://squargraph.com/sitemap.xml

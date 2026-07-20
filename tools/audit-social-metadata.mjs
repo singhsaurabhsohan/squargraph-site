@@ -46,6 +46,7 @@ const referenced = new Set();
 
 for (const absolute of files) {
   const relative = path.relative(root, absolute).replaceAll('\\', '/');
+  if (relative.startsWith('app/') || relative.startsWith('auth/')) continue;
   const html = await readFile(absolute, 'utf8');
   const ogImage = exactlyOne(html, 'property', 'og:image', relative, failures);
   const twitterImage = exactlyOne(html, 'name', 'twitter:image', relative, failures);

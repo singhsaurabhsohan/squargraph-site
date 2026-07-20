@@ -1,3 +1,12 @@
+/admin/growth    /app/opportunities    301
+/admin/growth/*    /app/opportunities    301
+/login    /auth/index.html    200
+/register    /auth/index.html    200
+/forgot-password    /auth/index.html    200
+/reset-password    /auth/index.html    200
+/logout    /auth/index.html    200
+/app    /app/index.html    200
+/app/*    /app/index.html    200
 /home    https://squargraph.com/    301
 /project-direction.html    https://squargraph.com/project-direction/    301
 /brand-misread-scan    https://squargraph.com/project-direction/    301
