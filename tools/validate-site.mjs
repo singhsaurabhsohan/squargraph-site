@@ -50,11 +50,12 @@ for (const file of publicHtml) {
   const is404 = relative === '404.html';
   const isFocusedFlow = relative === 'project-direction/index.html';
   const isPrivateResult = relative === 'audit-results.html';
+  const isPrivateAdmin = relative.startsWith('admin/');
 
   if (!/<title>[^<]+<\/title>/i.test(html)) errors.push(`${relative}: missing title`);
   if (!/<meta\s+name="description"\s+content="[^"]+"/i.test(html)) errors.push(`${relative}: missing meta description`);
   if (!is404 && !/<link\s+rel="canonical"\s+href="https:\/\/squargraph\.com\/[^"]*"/i.test(html)) errors.push(`${relative}: missing absolute canonical`);
-  if (!isPrivateResult) {
+  if (!isPrivateResult && !isPrivateAdmin) {
     ['og:title', 'og:description', 'og:image'].forEach((property) => {
       if (!new RegExp(`<meta\\s+property="${property}"\\s+content="[^"]+"`, 'i').test(html)) errors.push(`${relative}: missing ${property}`);
     });
@@ -76,7 +77,7 @@ for (const file of publicHtml) {
   const h1Count = (html.match(/<h1\b/gi) || []).length;
   if (!isPrivateResult && h1Count !== 1) warnings.push(`${relative}: expected one H1, found ${h1Count}`);
 
-  if (!isFocusedFlow) {
+  if (!isFocusedFlow && !isPrivateAdmin) {
     if (!/<nav\b[^>]*id="nav"/i.test(html)) errors.push(`${relative}: shared navigation missing`);
     if (!/<footer\b[^>]*site-footer/i.test(html)) errors.push(`${relative}: shared footer missing`);
     requiredNavLinks.forEach((href) => {

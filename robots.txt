@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /audit-results
+Disallow: /admin/
 Sitemap: https://squargraph.com/sitemap.xml

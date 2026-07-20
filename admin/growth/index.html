@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="Private SQUARGRAPH Growth OS workspace.">
+  <title>SQUARGRAPH Growth OS</title>
+  <link rel="canonical" href="https://squargraph.com/admin/growth/">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="stylesheet" href="/assets/css/pages/growth-os.css">
+</head>
+<body>
+  <a class="skip-link" href="#growth-main">Skip to workspace</a>
+
+  <section class="auth-shell" id="auth-shell" aria-labelledby="auth-title">
+    <div class="auth-mark" aria-label="SQUARGRAPH">SQUARGRAPH<sup>TM</sup></div>
+    <div class="auth-card">
+      <p class="eyebrow">PRIVATE WORKSPACE</p>
+      <h1 id="auth-title">Growth OS</h1>
+      <p class="auth-intro">Qualification, outreach drafts, pipeline decisions and follow-ups in one controlled workspace.</p>
+
+      <form id="login-form" novalidate>
+        <label for="login-email">Email address</label>
+        <div class="auth-row">
+          <input id="login-email" name="email" type="email" autocomplete="email" placeholder="name@squargraph.com" required>
+          <button class="button button-dark" id="send-code-button" type="submit">Send access code</button>
+        </div>
+      </form>
+
+      <form id="otp-form" class="otp-form" hidden novalidate>
+        <p class="otp-caption" id="otp-caption">Access code sent.</p>
+        <div class="otp-inputs" id="otp-inputs" aria-label="Six digit email access code">
+          <input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="Digit 1">
+          <input inputmode="numeric" maxlength="1" aria-label="Digit 2">
+          <input inputmode="numeric" maxlength="1" aria-label="Digit 3">
+          <input inputmode="numeric" maxlength="1" aria-label="Digit 4">
+          <input inputmode="numeric" maxlength="1" aria-label="Digit 5">
+          <input inputmode="numeric" maxlength="1" aria-label="Digit 6">
+        </div>
+        <div class="auth-actions">
+          <button class="button button-dark" id="verify-code-button" type="submit">Verify access code</button>
+          <button class="button button-quiet" id="change-email-button" type="button">Change email</button>
+        </div>
+      </form>
+
+      <p class="status-message" id="auth-message" role="status" aria-live="polite"></p>
+      <p class="auth-note">Authorised SQUARGRAPH team members only. Access is enforced by Supabase Auth and row-level security.</p>
+    </div>
+  </section>
+
+  <div class="workspace" id="workspace" hidden>
+    <aside class="sidebar" id="sidebar">
+      <div>
+        <div class="sidebar-brand">SQUARGRAPH<sup>TM</sup></div>
+        <p class="sidebar-product">Growth OS</p>
+      </div>
+
+      <nav class="workspace-nav" aria-label="Growth OS views">
+        <button class="nav-item active" type="button" data-view="dashboard" aria-current="page">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i><span>Dashboard</span>
+        </button>
+        <button class="nav-item" type="button" data-view="pipeline">
+          <i data-lucide="columns-3" aria-hidden="true"></i><span>Pipeline</span>
+        </button>
+        <button class="nav-item" type="button" data-view="leads">
+          <i data-lucide="list-filter" aria-hidden="true"></i><span>Lead list</span>
+        </button>
+        <button class="nav-item" type="button" data-view="followups">
+          <i data-lucide="calendar-clock" aria-hidden="true"></i><span>Follow-ups</span>
+          <span class="nav-count" id="nav-due-count">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p id="member-name">Internal member</p>
+        <p id="member-role">Member</p>
+        <button class="button button-sidebar" id="sign-out-button" type="button">
+          <i data-lucide="log-out" aria-hidden="true"></i><span>Sign out</span>
+        </button>
+      </div>
+    </aside>
+
+    <main id="growth-main" class="growth-main" tabindex="-1">
+      <header class="topbar">
+        <div class="topbar-title">
+          <button class="icon-button menu-button" id="sidebar-toggle" type="button" aria-label="Open workspace navigation" aria-expanded="false">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+          <div>
+            <p class="eyebrow" id="view-eyebrow">OPERATING VIEW</p>
+            <h2 id="view-title">Pipeline dashboard</h2>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <label class="search-field" for="global-search">
+            <i data-lucide="search" aria-hidden="true"></i>
+            <span class="sr-only">Search opportunities</span>
+            <input id="global-search" type="search" placeholder="Search company, contact or requirement">
+          </label>
+          <button class="button button-dark" id="add-opportunity-button" type="button">
+            <i data-lucide="plus" aria-hidden="true"></i><span>Add opportunity</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="system-banner" id="system-banner" role="status" aria-live="polite" hidden></div>
+
+      <section class="app-view active" id="view-dashboard" data-view-panel="dashboard">
+        <div class="metric-grid" aria-label="Pipeline summary">
+          <article class="metric-card">
+            <span>Active opportunities</span>
+            <strong id="metric-active">0</strong>
+            <small>Open pipeline</small>
+          </article>
+          <article class="metric-card urgent">
+            <span>Due today</span>
+            <strong id="metric-due">0</strong>
+            <small id="metric-overdue">0 overdue</small>
+          </article>
+          <article class="metric-card">
+            <span>Priority A</span>
+            <strong id="metric-priority">0</strong>
+            <small>Highest-fit leads</small>
+          </article>
+          <article class="metric-card">
+            <span>Won value</span>
+            <strong id="metric-won">INR 0</strong>
+            <small>Recorded outcomes</small>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="panel panel-wide" aria-labelledby="priority-heading">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">DECISION QUEUE</p>
+                <h3 id="priority-heading">Priority opportunities</h3>
+              </div>
+              <button class="text-button" type="button" data-open-view="leads">View all</button>
+            </div>
+            <div class="opportunity-list" id="priority-list"></div>
+          </section>
+
+          <section class="panel" aria-labelledby="due-heading">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">NEXT ACTIONS</p>
+                <h3 id="due-heading">Due and overdue</h3>
+              </div>
+              <button class="text-button" type="button" data-open-view="followups">Open queue</button>
+            </div>
+            <div class="due-list" id="dashboard-due-list"></div>
+          </section>
+
+          <section class="panel" aria-labelledby="stage-heading">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">PIPELINE HEALTH</p>
+                <h3 id="stage-heading">Stage distribution</h3>
+              </div>
+            </div>
+            <div class="stage-summary" id="stage-summary"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="app-view" id="view-pipeline" data-view-panel="pipeline" hidden>
+        <div class="view-tools">
+          <p>Move opportunities with the stage control inside each record. The board reflects the latest saved status.</p>
+          <select id="pipeline-priority-filter" aria-label="Filter pipeline by priority">
+            <option value="">All priorities</option>
+            <option>Priority A</option>
+            <option>Priority B</option>
+            <option>Priority C</option>
+            <option>Skip</option>
+          </select>
+        </div>
+        <div class="pipeline-board" id="pipeline-board" aria-label="Opportunity pipeline"></div>
+      </section>
+
+      <section class="app-view" id="view-leads" data-view-panel="leads" hidden>
+        <div class="view-tools">
+          <div class="filter-row">
+            <select id="lead-status-filter" aria-label="Filter leads by status">
+              <option value="">All stages</option>
+            </select>
+            <select id="lead-priority-filter" aria-label="Filter leads by priority">
+              <option value="">All priorities</option>
+              <option>Priority A</option>
+              <option>Priority B</option>
+              <option>Priority C</option>
+              <option>Skip</option>
+            </select>
+          </div>
+          <p id="lead-count">0 opportunities</p>
+        </div>
+        <div class="table-shell">
+          <table class="lead-table">
+            <thead>
+              <tr>
+                <th scope="col">Company / requirement</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Stage</th>
+                <th scope="col">Next action</th>
+                <th scope="col"><span class="sr-only">Open</span></th>
+              </tr>
+            </thead>
+            <tbody id="lead-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="app-view" id="view-followups" data-view-panel="followups" hidden>
+        <div class="followup-groups" id="followup-groups"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="opportunity-modal" hidden>
+    <section class="modal-card opportunity-modal-card" role="dialog" aria-modal="true" aria-labelledby="opportunity-modal-title">
+      <header class="modal-header">
+        <div>
+          <p class="eyebrow">OPPORTUNITY INBOX</p>
+          <h2 id="opportunity-modal-title">Add opportunity</h2>
+        </div>
+        <button class="icon-button" type="button" data-close-modal aria-label="Close add opportunity dialog">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </header>
+      <form id="opportunity-form" class="opportunity-form" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="opp-source">Source</label>
+            <select id="opp-source" name="source" required>
+              <option value="">Select source</option>
+              <option>LinkedIn</option><option>WhatsApp group</option><option>Referral</option>
+              <option>Email</option><option>Founder community</option><option>Website inbound</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="opp-date">Date found</label>
+            <input id="opp-date" name="date_posted" type="date">
+          </div>
+          <div class="field field-full">
+            <label for="opp-source-url">Source or post URL</label>
+            <input id="opp-source-url" name="source_url" type="url" placeholder="https://">
+          </div>
+          <div class="field">
+            <label for="opp-company">Company</label>
+            <input id="opp-company" name="company_name" type="text" maxlength="180" placeholder="Company name" required>
+          </div>
+          <div class="field">
+            <label for="opp-company-site">Company website</label>
+            <input id="opp-company-site" name="company_website" type="url" placeholder="https://">
+          </div>
+          <div class="field">
+            <label for="opp-contact">Contact name</label>
+            <input id="opp-contact" name="contact_name" type="text" maxlength="180" placeholder="Full name" required>
+          </div>
+          <div class="field">
+            <label for="opp-contact-title">Contact role</label>
+            <input id="opp-contact-title" name="contact_title" type="text" placeholder="Founder, CMO, Brand Lead">
+          </div>
+          <div class="field">
+            <label for="opp-contact-email">Contact email</label>
+            <input id="opp-contact-email" name="contact_email" type="email" placeholder="name@company.com">
+          </div>
+          <div class="field">
+            <label for="opp-contact-phone">Contact phone</label>
+            <input id="opp-contact-phone" name="contact_phone" type="tel" placeholder="+91">
+          </div>
+          <div class="field">
+            <label for="opp-type">Opportunity type</label>
+            <input id="opp-type" name="opportunity_type" type="text" placeholder="Brand, website, campaign, growth">
+          </div>
+          <div class="field">
+            <label for="opp-location">Location</label>
+            <input id="opp-location" name="location" type="text" placeholder="City, country or remote">
+          </div>
+          <div class="field field-full">
+            <label for="opp-requirement">Visible requirement</label>
+            <textarea id="opp-requirement" name="requirement" rows="4" maxlength="2000" placeholder="What appears to be needed?" required></textarea>
+          </div>
+          <div class="field field-full">
+            <label for="opp-notes">Capture notes</label>
+            <textarea id="opp-notes" name="internal_notes" rows="3" placeholder="Context, screenshot notes or first observations"></textarea>
+          </div>
+        </div>
+        <p class="form-message" id="opportunity-form-message" role="status" aria-live="polite"></p>
+        <div class="modal-actions">
+          <button class="button button-quiet" type="button" data-close-modal>Cancel</button>
+          <button class="button button-dark" type="submit">Add to pipeline</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div class="record-backdrop" id="record-panel" hidden>
+    <section class="record-drawer" role="dialog" aria-modal="true" aria-labelledby="record-title">
+      <header class="record-header">
+        <div>
+          <p class="eyebrow" id="record-source">OPPORTUNITY</p>
+          <h2 id="record-title">Lead detail</h2>
+          <p id="record-requirement"></p>
+        </div>
+        <button class="icon-button" type="button" id="close-record-button" aria-label="Close opportunity detail">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </header>
+
+      <div class="record-summary" id="record-summary"></div>
+
+      <div class="record-tabs" role="tablist" aria-label="Opportunity details">
+        <button class="record-tab active" type="button" role="tab" aria-selected="true" data-record-tab="overview">Overview</button>
+        <button class="record-tab" type="button" role="tab" aria-selected="false" data-record-tab="qualification">Qualification</button>
+        <button class="record-tab" type="button" role="tab" aria-selected="false" data-record-tab="research">Research</button>
+        <button class="record-tab" type="button" role="tab" aria-selected="false" data-record-tab="drafts">Drafts</button>
+        <button class="record-tab" type="button" role="tab" aria-selected="false" data-record-tab="activity">Activity</button>
+      </div>
+
+      <div class="record-content">
+        <form class="record-tab-panel active" id="record-overview-form" data-record-panel="overview">
+          <div class="record-field-grid">
+            <div class="field">
+              <label for="record-status">Pipeline stage</label>
+              <select id="record-status" name="status"></select>
+            </div>
+            <div class="field">
+              <label for="record-value">Estimated value</label>
+              <input id="record-value" name="estimated_value" type="number" min="0" step="1000" placeholder="0">
+            </div>
+            <div class="field field-full">
+              <label for="record-next-action">Next action</label>
+              <input id="record-next-action" name="next_action" type="text" placeholder="What needs to happen next?">
+            </div>
+            <div class="field">
+              <label for="record-follow-up">Follow-up date and time</label>
+              <input id="record-follow-up" name="follow_up_date" type="datetime-local">
+            </div>
+            <div class="field">
+              <label for="record-probability">Close probability</label>
+              <input id="record-probability" name="probability" type="number" min="0" max="100" step="5" placeholder="0 to 100">
+            </div>
+            <div class="field field-full">
+              <label for="record-notes">Working notes</label>
+              <textarea id="record-notes" name="internal_notes" rows="5" placeholder="Current context and decisions"></textarea>
+            </div>
+            <div class="field field-full outcome-field" id="outcome-field" hidden>
+              <label for="record-outcome">Outcome or loss reason</label>
+              <textarea id="record-outcome" name="outcome_notes" rows="3" placeholder="Record what was won, lost or learned"></textarea>
+            </div>
+          </div>
+          <div class="record-save-row">
+            <p class="form-message" data-form-message></p>
+            <button class="button button-dark" type="submit">Save overview</button>
+          </div>
+        </form>
+
+        <form class="record-tab-panel" id="qualification-form" data-record-panel="qualification" hidden>
+          <div class="score-heading">
+            <div>
+              <p class="eyebrow">FIT SCORE</p>
+              <strong id="qualification-score">0</strong><span>/100</span>
+            </div>
+            <span class="priority-pill" id="qualification-priority">Skip</span>
+          </div>
+          <div class="score-grid" id="score-grid"></div>
+          <div class="record-save-row">
+            <p class="form-message" data-form-message></p>
+            <button class="button button-dark" type="submit">Save qualification</button>
+          </div>
+        </form>
+
+        <form class="record-tab-panel" id="research-form" data-record-panel="research" hidden>
+          <div class="research-grid">
+            <div class="field field-full"><label for="research-summary">Company summary</label><textarea id="research-summary" name="company_summary" rows="3"></textarea></div>
+            <div class="field"><label for="research-founder">Founder profile</label><textarea id="research-founder" name="founder_profile" rows="4"></textarea></div>
+            <div class="field"><label for="research-positioning">Current positioning</label><textarea id="research-positioning" name="current_positioning" rows="4"></textarea></div>
+            <div class="field"><label for="research-website">Website observations</label><textarea id="research-website" name="website_observations" rows="4"></textarea></div>
+            <div class="field"><label for="research-gaps">Visible gaps</label><textarea id="research-gaps" name="visible_gaps" rows="4"></textarea></div>
+            <div class="field"><label for="research-requirement">Probable requirement</label><textarea id="research-requirement" name="probable_requirement" rows="4"></textarea></div>
+            <div class="field"><label for="research-capability">Relevant capability</label><textarea id="research-capability" name="relevant_capability" rows="4"></textarea></div>
+            <div class="field"><label for="research-proof">Relevant proof</label><textarea id="research-proof" name="relevant_proof" rows="4"></textarea></div>
+            <div class="field"><label for="research-objection">Potential objection</label><textarea id="research-objection" name="potential_objection" rows="4"></textarea></div>
+          </div>
+          <div class="record-save-row">
+            <p class="form-message" data-form-message></p>
+            <button class="button button-dark" type="submit">Save research</button>
+          </div>
+        </form>
+
+        <div class="record-tab-panel" data-record-panel="drafts" hidden>
+          <div class="draft-notice">
+            <i data-lucide="shield-check" aria-hidden="true"></i>
+            <p>Drafting only. Growth OS never sends outreach automatically.</p>
+          </div>
+          <div class="draft-list" id="draft-list"></div>
+        </div>
+
+        <div class="record-tab-panel" data-record-panel="activity" hidden>
+          <form class="note-composer" id="note-form">
+            <label for="activity-note">Add activity note</label>
+            <textarea id="activity-note" rows="3" placeholder="Call summary, objection, commitment or decision" required></textarea>
+            <div class="record-save-row">
+              <p class="form-message" data-form-message></p>
+              <button class="button button-dark" type="submit">Add note</button>
+            </div>
+          </form>
+          <div class="activity-list" id="activity-list"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <template id="empty-state-template">
+    <div class="empty-state">
+      <i data-lucide="circle-dashed" aria-hidden="true"></i>
+      <p>No opportunities here yet.</p>
+    </div>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/growth-os.js"></script>
+</body>
+</html>
