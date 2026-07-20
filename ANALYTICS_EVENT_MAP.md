@@ -1,6 +1,6 @@
 # Analytics Event Map
 
-Updated: 2026-07-18
+Updated: 2026-07-20
 
 The site uses the existing `dataLayer` and `window.SQ.trackEvent`. No analytics library was added.
 
@@ -27,6 +27,16 @@ The site uses the existing `dataLayer` and `window.SQ.trackEvent`. No analytics 
 | `whatsapp_click` | WhatsApp route | `source`, `link_url`, `page_path` |
 | `email_click` | Mailto route | `link_url`, `page_path` |
 | `phone_click` | Telephone route | `link_url`, `page_path` |
+| `careers_page_view` | Careers page loads | `page_path` |
+| `careers_view_opportunities` | Opportunities anchor CTA | Link context only |
+| `careers_role_click` | Published role detail link | `role_id`, `page_path` |
+| `careers_apply_click` | Published role apply action | `role_id`, `page_path` |
+| `careers_introduce_yourself_start` | Future-opportunity CTA or first form interaction | `form_id`, interaction type, `page_path` |
+| `careers_application_submit` | Successful Careers application | Discipline, opportunity type, storage destination |
+| `careers_application_error` | Careers validation, verification, CAPTCHA, upload or submission error | `form_id`, `error_type`, `page_path` |
+| `careers_partner_redirect` | Careers visitor follows the company/studio redirect | Link context only |
+| `careers_linkedin_click` | Applicant starts the LinkedIn field | `form_id`, `page_path` |
+| `careers_portfolio_click` | Applicant starts the portfolio field | `form_id`, `page_path` |
 
 Existing engagement-specific success events such as `sprint_brief_submitted`, `web_brief_submitted` and `growth_partner_applied` remain available for backward compatibility.
 

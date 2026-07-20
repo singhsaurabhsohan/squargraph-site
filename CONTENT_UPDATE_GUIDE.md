@@ -1,6 +1,6 @@
 # Content Update Guide
 
-Updated: 2026-07-18
+Updated: 2026-07-20
 
 Run `node tools/validate-site.mjs` after every content change.
 
@@ -103,11 +103,28 @@ Edit `sitemap.xml` only after a meaningful page update. Use `YYYY-MM-DD` and the
 
 Use a truthful 1200 x 630 WebP or PNG. The shared fallback is `/squargraph-brand-image.webp`. A page-specific image must represent the actual page and remain readable at social-preview sizes.
 
+## 14. Careers
+
+Edit `assets/data/careers.json`, then run:
+
+```powershell
+node tools/render-careers.mjs
+```
+
+Each published role needs a unique `id`, title, discipline, location, working model, engagement type, experience range, summary and valid status. Use `open`, `reviewing`, `paused` or `closed`. Open and reviewing roles render first; closed roles do not render. Set `featured: true` only for an approved priority role.
+
+To pause a role, set `status` to `paused`. To close it, set `status` to `closed`. To change order within the same status, update `featured` or `postedDate`. Do not publish a fake role, leave expired dates live or describe commission-based, project-based, internship or contract work as salaried employment.
+
+Workplace policy currently reads `Hybrid` with `Flexible` time on-site. Update the Careers page and role records together when that policy changes. Edit FAQs and page copy in `careers/index.html`, form behaviour in `assets/js/careers.js`, metadata in the page head, and database/storage definitions in `supabase/careers_applications.sql` only through backward-compatible changes.
+
+Application statuses are internal: `New`, `Reviewing`, `Shortlisted`, `Interview`, `Hold`, `Rejected` and `Hired`. See `CAREERS_OPERATIONS.md` for review and privacy procedures.
+
 ## Release Checklist
 
 ```powershell
 node tools/build-destination-pages.mjs
 node tools/sync-site-chrome.mjs
+node tools/render-careers.mjs
 node tools/validate-site.mjs
 git diff --check
 ```

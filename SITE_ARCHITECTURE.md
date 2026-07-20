@@ -1,6 +1,6 @@
 # Site Architecture
 
-Updated: 2026-07-18
+Updated: 2026-07-20
 
 ## Page Map
 
@@ -19,6 +19,7 @@ Updated: 2026-07-18
 | `/websites-digital-experiences` | Capture a digital experience brief | Submit Brief | Founder/operations | Rendered HTML plus Supabase | Engagements, Capabilities |
 | `/growth-partner` | Explain the ongoing integrated partnership | Apply | Founder/operations | Rendered HTML plus Supabase | Engagements, Capabilities |
 | `/partners` | Recruit capability and delivery partners | Submit Application | Founder/operations | Rendered HTML plus Supabase Storage | Studio, Growth Ecosystem |
+| `/careers` | Publish approved roles and collect individual future-opportunity profiles | View Opportunities / Introduce Yourself | Founder/operations | `assets/data/careers.json` plus Supabase | Studio, Partners |
 | `/saurabh-sohan-singh` | Hold the full founder profile | Start a Project | Founder | Rendered HTML | Studio, Work |
 | `/blog` and `/blog/*` | Long-form editorial content | Explore Intelligence | Founder/editor | Rendered HTML | Intelligence |
 | Policy routes | Explain legal, AI and refund terms | Contextual only | Founder/legal reviewer | Rendered HTML | Footer |
@@ -49,6 +50,7 @@ The canonical footer has Studio, Engage, Ecosystem and Legal columns plus brand,
 - Capabilities: capability ownership and connected delivery model.
 - Engagements: buying paths and verified public pricing/timelines.
 - Studio: philosophy, operating approach and ecosystem logic.
+- Careers: truthful individual roles, internships, associates and future opportunities. Role content is generated from `assets/data/careers.json`; no unapproved vacancy may be published.
 - Founder: full biography and previous professional context.
 - Intelligence: repeatable editorial publishing.
 
@@ -59,3 +61,5 @@ The canonical footer has Studio, Engage, Ecosystem and Legal columns plus brand,
 - Do not edit generated destination pages without also updating the generator.
 - Preserve route names and form contracts unless a documented business or technical requirement demands change.
 - Use only approved client names, metrics, testimonials, outcomes and logos.
+- Run `node tools/render-careers.mjs` after every Careers role or status change.
+- The Careers application destination is `careers_applications`, with `leads` as a backward-compatible no-CV fallback until the migration is applied.

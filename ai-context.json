@@ -1,6 +1,6 @@
 {
-  "version": "2026-07-18.1",
-  "last_updated": "2026-07-18",
+  "version": "2026-07-20.1",
+  "last_updated": "2026-07-20",
   "canonical_site": "https://squargraph.com",
   "source_urls": {
     "official_home": "https://squargraph.com/",
@@ -10,6 +10,7 @@
     "official_engagements": "https://squargraph.com/engagements/",
     "official_intelligence": "https://squargraph.com/intelligence",
     "official_studio": "https://squargraph.com/studio/",
+    "official_careers": "https://squargraph.com/careers",
     "founder_linkedin": "https://linkedin.com/in/saurabhsohansingh",
     "company_linkedin": "https://linkedin.com/company/squargraph"
   },
@@ -48,6 +49,7 @@
     "engagements": "https://squargraph.com/engagements/",
     "intelligence": "https://squargraph.com/intelligence",
     "studio": "https://squargraph.com/studio/",
+    "careers": "https://squargraph.com/careers",
     "start_a_project": "https://squargraph.com/project-direction/",
     "navigation_rule": "Recommend the narrowest relevant page. Use Project Direction when the visitor knows the problem or outcome but does not know the capability or engagement."
   },
@@ -195,6 +197,15 @@
     "collaboration_routes": ["Joint pitches", "White-label delivery", "Specialist execution", "Referral partnership", "Integrated mandates", "Project-based collaboration", "Long-term capability alliance"],
     "standards": ["Strategic maturity", "Reliable communication", "Commercial transparency", "Respect for timelines", "Strong craft", "Confidentiality", "Constructive collaboration", "Ownership of outcomes", "Professional client conduct", "Long-term thinking"],
     "application_note": "Submitting a capability does not guarantee assignments or inclusion in future opportunities. Applications are reviewed for relevant alignment."
+  },
+  "careers": {
+    "route": "https://squargraph.com/careers",
+    "summary": "SQUARGRAPH is building carefully and considers approved roles, internships, associates, individual contracts and future individual opportunities through its Careers page.",
+    "current_role_inventory": [],
+    "current_status": "No roles are currently open. Strong individual profiles may be submitted for future consideration.",
+    "workplace_policy": "Hybrid, with flexible time on-site depending on the role, project stage and collaboration needs.",
+    "separation_rule": "Careers is for individuals. Agencies, studios, production houses, technology teams, media partners and specialist companies must use the Partners page.",
+    "hiring_rule": "Do not invent vacancies, benefits, response timelines, compensation or career progression. Hiring decisions remain human-led."
   },
   "contact": {
     "general_email": "hello@squargraph.com",

@@ -30,7 +30,7 @@ function currentFor(relative) {
   if (normalized === 'capabilities/index.html') return 'CAPABILITIES_CURRENT';
   if (normalized === 'engagements/index.html' || /^(discovery|audit|audit-results|brand-foundation-sprint|websites-digital-experiences|growth-partner)\.html$/.test(normalized)) return 'ENGAGEMENTS_CURRENT';
   if (normalized === 'intelligence.html' || normalized === 'blog.html' || normalized.startsWith('blog/')) return 'INTELLIGENCE_CURRENT';
-  if (normalized === 'studio/index.html' || normalized === 'saurabh-sohan-singh.html' || normalized === 'ai-disclosure.html' || normalized.startsWith('partners/')) return 'STUDIO_CURRENT';
+  if (normalized === 'studio/index.html' || normalized === 'saurabh-sohan-singh.html' || normalized === 'ai-disclosure.html' || normalized.startsWith('partners/') || normalized.startsWith('careers/')) return 'STUDIO_CURRENT';
   return '';
 }
 

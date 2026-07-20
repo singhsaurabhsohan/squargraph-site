@@ -1,6 +1,6 @@
 # Design Guardrails
 
-Updated: 2026-07-18
+Updated: 2026-07-20
 
 ## Typography
 
@@ -93,3 +93,10 @@ A new component is justified only when it removes meaningful duplication, suppor
 A structural redesign is justified only when the business model, target customer or primary product changes materially; reliable user data shows a conversion failure; or accessibility/technology requires it.
 
 Boredom, a competitor redesign, a temporary campaign, one stakeholder preference, a new reference or an AI design trend are not reasons to redesign the site.
+
+## Careers
+
+- Careers must remain an editorial studio page, not become a generic job portal.
+- Do not add fake culture claims, stock team imagery, unverified benefits or guaranteed progression.
+- State salaried, commission-based, project-based, contract, internship and part-time models transparently.
+- Role updates must use the existing page structure and `assets/data/careers.json`; they are not a reason for structural redesign.
