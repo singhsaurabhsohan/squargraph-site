@@ -30,7 +30,7 @@
   // Each filter maps to exactly one content type. "all" shows everything.
   var FILTER_TYPE_MAP = {
     all: null,
-    study: ["study"],
+    study: ["study", "article"],
     article: ["article"],
     signal: ["signal"],
     observation: ["observation"]
@@ -290,15 +290,16 @@
   }
 
   function observationRowHTML(item) {
-    return (
-      '<div class="observation-entry fade-up" data-entry-type="observation">' +
-        '<p class="observation-date">' + formatDate(item.date, "long") + "</p>" +
-        '<div>' +
-          '<p class="observation-text">' + esc(item.excerpt) + "</p>" +
-          byline(item, false) +
-        "</div>" +
-      "</div>"
-    );
+    var body =
+      '<p class="observation-date">' + formatDate(item.date, "long") + "</p>" +
+      '<div>' +
+        (item.title ? '<h3 class="observation-title">' + esc(item.title) + "</h3>" : "") +
+        '<p class="observation-text">' + esc(item.excerpt) + "</p>" +
+        byline(item, false) +
+      "</div>";
+    return item.url
+      ? '<a href="' + esc(item.url) + '" class="observation-entry observation-entry--linked fade-up" data-entry-type="observation">' + body + "</a>"
+      : '<div class="observation-entry fade-up" data-entry-type="observation">' + body + "</div>";
   }
 
   /* ============================================================

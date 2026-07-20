@@ -132,7 +132,7 @@
       "response_time": "SQUARGRAPH responds to a submitted brief within 48 hours with a proposed scope."
     },
     {
-      "name": "Website & Digital Experience™",
+      "name": "Websites & Digital Experiences",
       "route": "https://squargraph.com/websites-digital-experiences",
       "price": "Custom project scope",
       "timeline": "Typically four to six weeks, subject to agreed scope",
@@ -144,11 +144,11 @@
       "name": "Integrated Growth Partnership",
       "route": "https://squargraph.com/growth-partner",
       "price": "Custom recurring scope",
-      "best_for": "Businesses that need ongoing senior brand strategy, creative direction, campaigns, digital improvements, content systems, and coordinated execution without building a full internal department.",
+      "best_for": "Businesses that need ongoing direction across brand, creative, campaigns, digital improvements, content systems and coordinated execution.",
       "tiers": [
         {"name": "Growth Foundation", "fit": "Early-stage brands establishing strategic footing."},
-        {"name": "Growth Partner", "fit": "Scaling businesses that need a full brand office operating month to month."},
-        {"name": "Brand Office", "fit": "Companies that need a complete external brand team across functions."}
+        {"name": "Growth Partner", "fit": "Scaling businesses that need connected direction across moving parts."},
+        {"name": "Brand Office", "fit": "Companies that need an accountable operating rhythm across functions."}
       ],
       "response_time": "A submitted application receives a brand review and proposed direction within 48 hours."
     },
@@ -182,13 +182,14 @@
   "intelligence": {
     "route": "https://squargraph.com/intelligence",
     "summary": "SQUARGRAPH publishes intelligence about perception, positioning, communication, execution, and brand growth.",
+    "content_types": ["Studies", "Signals", "Observations"],
     "frameworks": [
-      {"name": "Creative Intelligence", "description": "The integration of market analysis, perception research, and creative thinking before execution."},
+      {"name": "Connected Brand Analysis", "description": "Market context, perception research, and creative judgment read together before execution."},
       {"name": "Brand Quotient Analysis", "description": "A structured way to evaluate how a brand is perceived relative to where it needs to be."},
       {"name": "Perception Architecture", "description": "Mapping intentional and unintentional visual, verbal, digital, and behavioural signals toward one defensible position."}
     ],
-    "blog": "https://squargraph.com/blog",
-    "published_article": "https://squargraph.com/blog/why-execution-matters"
+    "legacy_archive": "https://squargraph.com/blog",
+    "published_observation": "https://squargraph.com/blog/why-execution-matters"
   },
   "partner_ecosystem": {
     "route": "https://squargraph.com/partners/",
