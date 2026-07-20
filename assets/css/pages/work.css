@@ -221,6 +221,16 @@
 .work-role span { color: var(--accent); font-size: 12px; font-weight: 700; }
 .work-role h3 { margin: 32px 0 10px; font-size: 20px; font-weight: 500; }
 .work-role p { margin: 0; color: var(--textsecondary); line-height: 1.6; }
+.work-credentials-button {
+  border: 1px solid rgba(255, 255, 255, .55);
+  background: transparent;
+  color: #fff;
+}
+.work-credentials-button:hover {
+  border-color: #fff;
+  background: #fff;
+  color: var(--textprimary);
+}
 @media (max-width: 900px) {
   .work-role-grid { grid-template-columns: repeat(2, 1fr); }
   .work-motion-head { grid-template-columns: 1fr; gap: 18px; }
