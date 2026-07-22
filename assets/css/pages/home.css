@@ -2144,6 +2144,24 @@ body.home #contact {
   margin-bottom: 30px;
 }
 
+.contact-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.contact-action-row .wa-btn {
+  margin: 0;
+}
+
+.contact-action-row .booking-btn {
+  background: var(--textprimary);
+}
+
+.contact-action-row .booking-btn:hover {
+  background: var(--home-forest);
+}
+
 .contact-links {
   margin-top: 34px;
 }

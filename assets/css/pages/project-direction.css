@@ -168,6 +168,19 @@ body.finder-page {
   transform: translateY(-1px);
 }
 
+.finder-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.finder-hero-actions .finder-primary,
+.finder-hero-actions .finder-secondary {
+  width: fit-content;
+  margin-top: 0;
+}
+
 .finder-primary,
 .finder-submit {
   background: var(--finder-ink);

@@ -326,6 +326,8 @@
       background:#1fad4e; color:#fff; border:none; border-radius:999px;
       padding:13px 24px; font-size:13px; font-weight:500; cursor:pointer; text-decoration:none;
     }
+    .btn-calendar { background:#F5F3F0; color:#1A1714; }
+    .btn-calendar:hover { background:#fff; }
     .btn-close-overlay {
       display:inline-flex; align-items:center;
       background:transparent; color:rgba(245,243,240,.4);
