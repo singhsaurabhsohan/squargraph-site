@@ -9,6 +9,7 @@
       <a href="/engagements/"{{ENGAGEMENTS_CURRENT}}>Engagements</a>
       <a href="/intelligence"{{INTELLIGENCE_CURRENT}}>Intelligence</a>
       <a href="/studio/"{{STUDIO_CURRENT}}>Studio</a>
+      <a href="https://os.squargraph.com">OS</a>
       <a href="/project-direction/" class="nav-cta"{{PROJECT_CURRENT}}>Start a Project</a>
     </div>
     <button type="button" class="hamburger" id="mob-toggle" aria-label="Open navigation menu" aria-expanded="false">
@@ -23,6 +24,7 @@
   <a href="/engagements/"{{ENGAGEMENTS_CURRENT}} onclick="closeMob()">Engagements</a>
   <a href="/intelligence"{{INTELLIGENCE_CURRENT}} onclick="closeMob()">Intelligence</a>
   <a href="/studio/"{{STUDIO_CURRENT}} onclick="closeMob()">Studio</a>
+  <a href="https://os.squargraph.com" onclick="closeMob()">SQUARGRAPH OS</a>
   <a href="/project-direction/"{{PROJECT_CURRENT}} onclick="closeMob()">Start a Project</a>
   <a href="mailto:hello@squargraph.com" class="mob-contact">hello@squargraph.com</a>
 </div>
