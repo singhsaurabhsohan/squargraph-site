@@ -56,7 +56,10 @@ for (const file of publicHtml) {
 
   if (!/<title>[^<]+<\/title>/i.test(html)) errors.push(`${relative}: missing title`);
   if (!/<meta\s+name="description"\s+content="[^"]+"/i.test(html)) errors.push(`${relative}: missing meta description`);
-  if (!is404 && !/<link\s+rel="canonical"\s+href="https:\/\/squargraph\.com\/[^"]*"/i.test(html)) errors.push(`${relative}: missing absolute canonical`);
+  const canonicalPattern = isPrivateAdmin
+    ? /<link\s+rel="canonical"\s+href="https:\/\/(?:os\.)?squargraph\.com\/[^"]*"/i
+    : /<link\s+rel="canonical"\s+href="https:\/\/squargraph\.com\/[^"]*"/i;
+  if (!is404 && !canonicalPattern.test(html)) errors.push(`${relative}: missing absolute canonical`);
   if (!isPrivateResult && !isPrivateAdmin) {
     ['og:title', 'og:description', 'og:image'].forEach((property) => {
       if (!new RegExp(`<meta\\s+property="${property}"\\s+content="[^"]+"`, 'i').test(html)) errors.push(`${relative}: missing ${property}`);
