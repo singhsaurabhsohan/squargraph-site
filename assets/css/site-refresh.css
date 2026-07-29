@@ -1281,6 +1281,11 @@ form[id*="contact-form"] {
   font-size: 12px !important;
 }
 
+.footer-signoff {
+  margin-left: auto !important;
+  text-align: right !important;
+}
+
 .footer-legal-links {
   gap: 20px !important;
 }
