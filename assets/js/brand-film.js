@@ -1,5 +1,13 @@
 (function () {
   var playerApiPromise = null;
+  var controllers = [];
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  function muteOtherPlayers(activeController) {
+    controllers.forEach(function (controller) {
+      if (controller !== activeController) controller.setMuted(true);
+    });
+  }
 
   function loadPlayerApi() {
     if (window.playerjs && window.playerjs.Player) return Promise.resolve();
@@ -44,6 +52,22 @@
       container.dataset.gumletReady = 'true';
       var player = new window.playerjs.Player(iframe);
       var isMuted = true;
+      var controller = {
+        container: container,
+        setMuted: function (nextMuted) {
+          if (isMuted === nextMuted) return;
+          isMuted = nextMuted;
+          updateButton();
+          if (isMuted) {
+            player.mute().catch(function () {});
+          } else {
+            muteOtherPlayers(controller);
+            player.unmute().catch(function () {});
+            player.setVolume(100).catch(function () {});
+          }
+        }
+      };
+      controllers.push(controller);
 
       function updateButton() {
         audioButton.setAttribute('aria-pressed', String(!isMuted));
@@ -60,16 +84,30 @@
       });
 
       audioButton.addEventListener('click', function () {
-        isMuted = !isMuted;
-        updateButton();
-
-        if (isMuted) {
-          player.mute().catch(function () {});
-        } else {
-          player.unmute().catch(function () {});
-          player.setVolume(100).catch(function () {});
-        }
+        controller.setMuted(!isMuted);
       });
+
+      container.addEventListener('pointerenter', function () {
+        if (finePointer.matches) controller.setMuted(false);
+      });
+
+      container.addEventListener('pointerleave', function () {
+        if (finePointer.matches) controller.setMuted(true);
+      });
+
+      container.addEventListener('click', function (event) {
+        if (finePointer.matches || event.target.closest('[data-gumlet-audio]')) return;
+        controller.setMuted(!isMuted);
+      });
+
+      if ('IntersectionObserver' in window) {
+        var soundObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting || entry.intersectionRatio < 0.45) controller.setMuted(true);
+          });
+        }, { threshold: [0, 0.45] });
+        soundObserver.observe(container);
+      }
 
       updateButton();
     }).catch(function () {
@@ -101,6 +139,10 @@
     (root || document).querySelectorAll('[data-gumlet-loop]').forEach(observe);
   }
 
-  document.addEventListener('DOMContentLoaded', function () { init(document); });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { init(document); });
+  } else {
+    init(document);
+  }
   document.addEventListener('sq:work-rendered', function () { init(document); });
 })();
