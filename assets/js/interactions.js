@@ -196,31 +196,79 @@ window.SQ.initFloatingFooterGuard = function () {
   observer.observe(footer);
 };
 
-window.SQ.openRazorpay = function (productKey) {
+window.SQ.ensureRazorpay = function () {
+  if (window.Razorpay) return Promise.resolve(window.Razorpay);
+  if (window.SQ.razorpayReady) return window.SQ.razorpayReady;
+
+  window.SQ.razorpayReady = new Promise(function (resolve, reject) {
+    var script = document.querySelector('script[data-sq-razorpay]');
+
+    function handleLoad() {
+      if (window.Razorpay) {
+        resolve(window.Razorpay);
+        return;
+      }
+      window.SQ.razorpayReady = null;
+      reject(new Error('Razorpay checkout loaded without initializing.'));
+    }
+
+    function handleError() {
+      window.SQ.razorpayReady = null;
+      if (script.parentNode) script.parentNode.removeChild(script);
+      reject(new Error('Razorpay checkout failed to load.'));
+    }
+
+    if (!script) {
+      script = document.createElement('script');
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.async = true;
+      script.setAttribute('data-sq-razorpay', 'true');
+    }
+
+    script.addEventListener('load', handleLoad, { once: true });
+    script.addEventListener('error', handleError, { once: true });
+    if (!script.parentNode) document.head.appendChild(script);
+  });
+
+  return window.SQ.razorpayReady;
+};
+
+window.SQ.openRazorpay = function (productKey, callbacks) {
   var cfg     = window.SQ.config;
   var product = cfg.razorpayProducts[productKey];
-  if (!product) return;
+  callbacks = callbacks || {};
+  if (!product) return Promise.resolve(false);
 
   var options = {
     key: cfg.razorpayKey, amount: product.amount, currency: 'INR',
     name: 'SQUARGRAPH™', description: product.description,
     image: '/logo.webp', prefill: {}, notes: { product: product.name },
-    theme: { color: '#394536' }, modal: { ondismiss: function () {}, animation: true },
+    theme: { color: '#394536' },
+    modal: {
+      ondismiss: function () {
+        if (typeof callbacks.onDismiss === 'function') callbacks.onDismiss();
+      },
+      animation: true
+    },
     handler: function (response) {
       var overlay = document.getElementById('payment-success-overlay');
       var pidEl   = document.getElementById('success-payment-id');
       if (pidEl) pidEl.textContent = 'Payment ID: ' + response.razorpay_payment_id;
       if (overlay) { overlay.style.display = 'flex'; document.body.style.overflow = 'visible'; overlay.scrollTop = 0; }
+      if (typeof callbacks.onSuccess === 'function') callbacks.onSuccess(response);
     }
   };
 
-  function launch() { new Razorpay(options).open(); }
-
-  if (typeof Razorpay !== 'undefined') { launch(); return; }
-  var script = document.createElement('script');
-  script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-  script.onload = launch;
-  document.head.appendChild(script);
+  return window.SQ.ensureRazorpay().then(function () {
+    var checkout = new window.Razorpay(options);
+    checkout.open();
+    if (typeof callbacks.onOpen === 'function') callbacks.onOpen();
+    return true;
+  }).catch(function (error) {
+    console.error('[SQUARGRAPH] Payment checkout error:', error);
+    if (typeof callbacks.onError === 'function') callbacks.onError(error);
+    return false;
+  });
 };
 
 window.openRazorpay = window.SQ.openRazorpay;
@@ -234,4 +282,17 @@ document.addEventListener('DOMContentLoaded', function () {
   window.SQ.initFloatingFooterGuard();
   window.SQ.addDrag(document.getElementById('films-strip'));
   window.SQ.addDrag(document.getElementById('reels-strip'));
+
+  if (document.getElementById('discovery-form') || document.querySelector('[data-razorpay-product]')) {
+    var preloadRazorpay = function () {
+      window.SQ.ensureRazorpay().catch(function (error) {
+        console.warn('[SQUARGRAPH] Payment preload deferred:', error);
+      });
+    };
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(preloadRazorpay, { timeout: 1200 });
+    } else {
+      window.setTimeout(preloadRazorpay, 300);
+    }
+  }
 });

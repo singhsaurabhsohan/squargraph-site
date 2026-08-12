@@ -342,7 +342,7 @@
 <script src="/assets/js/config.js"></script>
 <script src="/assets/js/core.js"></script>
 <script src="/assets/js/animations.js"></script>
-<script src="/assets/js/interactions.js?v=20260717-forest1"></script>
+<script src="/assets/js/interactions.js?v=20260812-payment1"></script>
 <script src="/assets/js/forms.js"></script>
 
 <script>
@@ -398,6 +398,27 @@
   /* ── Submit ── */
   var form = document.getElementById('discovery-form');
   var submitBtn = document.getElementById('discovery-submit');
+  var leadSavePromise = null;
+  var leadSaved = false;
+  var paymentComplete = false;
+
+  function saveDiscoveryLead(payload) {
+    if (leadSaved) return Promise.resolve(true);
+    if (leadSavePromise) return leadSavePromise;
+
+    leadSavePromise = window.__sb.from('leads').insert([payload]).then(function(result){
+      if (result.error) throw result.error;
+      leadSaved = true;
+      return true;
+    }).catch(function(error){
+      leadSavePromise = null;
+      console.error('[SQUARGRAPH] Lead save error:', error);
+      return false;
+    });
+
+    return leadSavePromise;
+  }
+
   if(form){
     form.addEventListener('submit', async function(e){
       e.preventDefault();
@@ -431,12 +452,31 @@
         message: (getVal('d-challenge') + '\n\nGoal: ' + getVal('d-goal')).trim()
       };
       try {
-        await window.__sb.from('leads').insert([payload]);
+        saveDiscoveryLead(payload);
+
         submitBtn.innerHTML = 'Opening payment…';
-        window.SQ.openRazorpay('discovery');
         window.SQ.trackEvent('discovery_session_click', { form_id:'discovery-form' });
-        submitBtn.innerHTML = '✓ Payment confirmed';
-        submitBtn.disabled = true;
+        var opened = await window.SQ.openRazorpay('discovery', {
+          onOpen: function(){
+            submitBtn.innerHTML = 'Complete payment in Razorpay';
+          },
+          onDismiss: function(){
+            if (paymentComplete) return;
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Pay ₹2,999 &amp; Book Session →';
+          },
+          onSuccess: function(){
+            paymentComplete = true;
+            saveDiscoveryLead(payload);
+            submitBtn.innerHTML = '✓ Payment confirmed';
+            submitBtn.disabled = true;
+          },
+          onError: function(){
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Payment unavailable - try again';
+          }
+        });
+        if (!opened) return;
       } catch(err){
         console.error('[SQUARGRAPH] Error:', err);
         submitBtn.disabled = false;

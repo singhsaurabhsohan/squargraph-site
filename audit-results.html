@@ -572,6 +572,33 @@
     requestAnimationFrame(step);
   }
 
+  var razorpayReady = null;
+
+  function ensureRazorpay() {
+    if (window.Razorpay) return Promise.resolve(window.Razorpay);
+    if (razorpayReady) return razorpayReady;
+    razorpayReady = new Promise(function(resolve, reject){
+      var s = document.querySelector('script[data-sq-audit-razorpay]');
+      if (!s) {
+        s = document.createElement('script');
+        s.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        s.async = true;
+        s.setAttribute('data-sq-audit-razorpay', 'true');
+      }
+      s.addEventListener('load', function(){
+        if (window.Razorpay) resolve(window.Razorpay);
+        else { razorpayReady = null; reject(new Error('Razorpay did not initialize.')); }
+      }, { once:true });
+      s.addEventListener('error', function(){
+        razorpayReady = null;
+        if (s.parentNode) s.parentNode.removeChild(s);
+        reject(new Error('Razorpay checkout failed to load.'));
+      }, { once:true });
+      if (!s.parentNode) document.head.appendChild(s);
+    });
+    return razorpayReady;
+  }
+
   function handleUnlock() {
     trackEvent('unlock_clicked');
     var options = {
@@ -590,13 +617,25 @@
         } catch(e){console.error('Notify failed',e);}
       }
     };
-    if(typeof Razorpay!=='undefined'){new Razorpay(options).open();}
-    else{var s=document.createElement('script');s.src='https://checkout.razorpay.com/v1/checkout.js';s.onload=function(){new Razorpay(options).open();};document.head.appendChild(s);}
+    ensureRazorpay().then(function(){
+      new window.Razorpay(options).open();
+    }).catch(function(error){
+      console.error('[SQUARGRAPH] Payment checkout error:', error);
+      window.alert('Secure payment could not load. Please check your connection and try again.');
+    });
   }
 
   function trackEvent(name,params){if(window.dataLayer)window.dataLayer.push(Object.assign({event:name},params||{}));}
 
-  window.addEventListener('load', function() { trackEvent('preview_viewed'); initResults(); });
+  window.addEventListener('load', function() {
+    trackEvent('preview_viewed');
+    initResults();
+    var preloadRazorpay = function(){
+      ensureRazorpay().catch(function(error){ console.warn('[SQUARGRAPH] Payment preload deferred:', error); });
+    };
+    if ('requestIdleCallback' in window) window.requestIdleCallback(preloadRazorpay, { timeout:1200 });
+    else window.setTimeout(preloadRazorpay, 300);
+  });
 </script>
 </body>
 </html>
