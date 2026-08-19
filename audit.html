@@ -537,6 +537,8 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           </button>
         </div>
+
+        <p id="audit-submit-error" role="alert" tabindex="-1" hidden style="margin:0 32px 16px;color:#B42318;font-size:13px;line-height:1.5;">We could not submit your audit. Please check your connection and try again.</p>
   
         <div class="privacy-note" style="font-size:12px;color:var(--muted);text-align:left;padding:0 32px 20px;line-height:1.65;">
 
@@ -1051,6 +1053,9 @@
   
       /* ── SUBMIT ── */
       btnSubmit.addEventListener('click', async () => {
+
+    const submitError = document.getElementById('audit-submit-error');
+    if (submitError) submitError.hidden = true;
   
     if (!validateStep(TOTAL_STEPS)) return;
 
@@ -1119,6 +1124,7 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
       source_url: window.location.href
     };
     try {
+      btnSubmit.disabled = true;
   
       await window.__sb
     .from('leads')
@@ -1133,7 +1139,12 @@ var captchaVal = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : 
     } catch (err) {
   
       console.error(err);
-      alert('Submission failed. Please try again.');
+      btnSubmit.disabled = false;
+      if (submitError) {
+        submitError.hidden = false;
+        submitError.focus({ preventScroll: true });
+        submitError.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
   
     }
   

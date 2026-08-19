@@ -601,6 +601,8 @@
 
   function handleUnlock() {
     trackEvent('unlock_clicked');
+    var checkoutError = document.getElementById('audit-checkout-error');
+    if (checkoutError) checkoutError.remove();
     var options = {
       key:'rzp_live_SvayEzczzvrE7f', amount:999900, currency:'INR',
       name:'SQUARGRAPH™', description:'Brand Growth Audit™',
@@ -621,20 +623,31 @@
       new window.Razorpay(options).open();
     }).catch(function(error){
       console.error('[SQUARGRAPH] Payment checkout error:', error);
-      window.alert('Secure payment could not load. Please check your connection and try again.');
+      var unlockButton = document.querySelector('.btn-unlock');
+      if (unlockButton) {
+        var message = document.createElement('p');
+        message.id = 'audit-checkout-error';
+        message.setAttribute('role', 'alert');
+        message.style.cssText = 'margin:8px 0 4px;color:#B42318;font-size:12px;line-height:1.5;text-align:center;';
+        message.textContent = 'Secure checkout could not load. Check your connection and try again.';
+        unlockButton.insertAdjacentElement('afterend', message);
+        message.scrollIntoView({ behavior:'smooth', block:'nearest' });
+      }
     });
   }
 
   function trackEvent(name,params){if(window.dataLayer)window.dataLayer.push(Object.assign({event:name},params||{}));}
 
+  function preloadAuditCheckout() {
+    ensureRazorpay().catch(function(error){ console.warn('[SQUARGRAPH] Payment preload deferred:', error); });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', preloadAuditCheckout, { once:true });
+  else preloadAuditCheckout();
+
   window.addEventListener('load', function() {
     trackEvent('preview_viewed');
     initResults();
-    var preloadRazorpay = function(){
-      ensureRazorpay().catch(function(error){ console.warn('[SQUARGRAPH] Payment preload deferred:', error); });
-    };
-    if ('requestIdleCallback' in window) window.requestIdleCallback(preloadRazorpay, { timeout:1200 });
-    else window.setTimeout(preloadRazorpay, 300);
   });
 </script>
 </body>

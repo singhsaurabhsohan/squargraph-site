@@ -58,7 +58,7 @@ window.SQ.initModals = function () {
     function open() {
       var id = 'modal-' + card.getAttribute('data-exploration');
       var m = document.getElementById(id);
-      if (m) { m.classList.add('open'); document.body.style.overflow = 'visible'; }
+      if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
     }
     card.addEventListener('click', open);
     card.addEventListener('keydown', function (e) {
@@ -254,7 +254,7 @@ window.SQ.openRazorpay = function (productKey, callbacks) {
       var overlay = document.getElementById('payment-success-overlay');
       var pidEl   = document.getElementById('success-payment-id');
       if (pidEl) pidEl.textContent = 'Payment ID: ' + response.razorpay_payment_id;
-      if (overlay) { overlay.style.display = 'flex'; document.body.style.overflow = 'visible'; overlay.scrollTop = 0; }
+      if (overlay) { overlay.style.display = 'flex'; document.body.style.overflow = 'hidden'; overlay.scrollTop = 0; }
       if (typeof callbacks.onSuccess === 'function') callbacks.onSuccess(response);
     }
   };
@@ -284,15 +284,8 @@ document.addEventListener('DOMContentLoaded', function () {
   window.SQ.addDrag(document.getElementById('reels-strip'));
 
   if (document.getElementById('discovery-form') || document.querySelector('[data-razorpay-product]')) {
-    var preloadRazorpay = function () {
-      window.SQ.ensureRazorpay().catch(function (error) {
-        console.warn('[SQUARGRAPH] Payment preload deferred:', error);
-      });
-    };
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(preloadRazorpay, { timeout: 1200 });
-    } else {
-      window.setTimeout(preloadRazorpay, 300);
-    }
+    window.SQ.ensureRazorpay().catch(function (error) {
+      console.warn('[SQUARGRAPH] Payment preload deferred:', error);
+    });
   }
 });

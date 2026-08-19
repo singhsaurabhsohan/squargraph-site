@@ -342,7 +342,7 @@
 <script src="/assets/js/config.js"></script>
 <script src="/assets/js/core.js"></script>
 <script src="/assets/js/animations.js"></script>
-<script src="/assets/js/interactions.js?v=20260812-payment1"></script>
+<script src="/assets/js/interactions.js?v=20260819-payment2"></script>
 <script src="/assets/js/forms.js"></script>
 
 <script>
@@ -405,6 +405,10 @@
   function saveDiscoveryLead(payload) {
     if (leadSaved) return Promise.resolve(true);
     if (leadSavePromise) return leadSavePromise;
+    if (!window.__sb || typeof window.__sb.from !== 'function') {
+      console.warn('[SQUARGRAPH] Lead storage is unavailable; continuing to secure checkout.');
+      return Promise.resolve(false);
+    }
 
     leadSavePromise = window.__sb.from('leads').insert([payload]).then(function(result){
       if (result.error) throw result.error;
