@@ -3182,7 +3182,8 @@ body.home #contact {
 .architecture-founder h2 { margin: 0 0 6px; font-size: 48px; font-weight: 500; line-height: 1.08; }
 .architecture-founder-role { margin: 0 0 26px; color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .architecture-founder h3 { margin: 0 0 18px; font-size: 22px; font-weight: 500; }
-.architecture-founder div > p:not(.section-eyebrow):not(.architecture-founder-role) { max-width: 760px; color: var(--textsecondary); font-size: 17px; line-height: 1.7; }
+.architecture-founder div > p:not(.section-eyebrow):not(.architecture-founder-role):not(.founder-secondary-role) { max-width: 760px; color: var(--textsecondary); font-size: 17px; line-height: 1.7; }
+.architecture-founder .founder-secondary-role { max-width: 620px; margin: -16px 0 24px; color: var(--textsecondary); font-size: 14px; font-weight: 500; line-height: 1.5; }
 .architecture-founder-links { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 30px; }
 .architecture-intelligence-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--bordergray); border-left: 1px solid var(--bordergray); }
 .architecture-intel-card { min-height: 330px; padding: 30px; border-right: 1px solid var(--bordergray); border-bottom: 1px solid var(--bordergray); }

@@ -53,6 +53,15 @@
   line-height: 1.35;
 }
 
+.founder-profile-intro .founder-secondary-role {
+  max-width: 620px;
+  margin: 8px 0 18px;
+  color: var(--textsecondary);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
 .founder-profile-lead {
   max-width: 700px;
   margin: clamp(34px, 4vw, 58px) 0 0;
