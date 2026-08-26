@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "SQUARGRAPH",
+    "slug": "squargraph",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "scheme": "squargraph",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.squargraph.app"
+    },
+    "android": {
+      "package": "com.squargraph.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#394536"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "name": "SQUARGRAPH App"
+    }
+  }
+}

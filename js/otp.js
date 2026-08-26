@@ -1,5 +1,5 @@
 /**
- * SQUARGRAPH OTP Verification
+ * SQUARGRAPH Studios OTP Verification
  * Inline email OTP via Supabase Auth. No modal, no mobile OTP.
  */
 

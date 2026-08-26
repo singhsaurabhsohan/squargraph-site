@@ -8,7 +8,7 @@
   ];
 
   var SCORE_FIELDS = [
-    { key: 'strategic_fit', label: 'Strategic fit', help: 'How closely the requirement matches SQUARGRAPH direction.' },
+    { key: 'strategic_fit', label: 'Strategic fit', help: 'How closely the requirement matches SQUARGRAPH Studios direction.' },
     { key: 'capability_fit', label: 'Capability fit', help: 'Ability to solve the requirement with credible capability.' },
     { key: 'proof_available', label: 'Proof available', help: 'Strength of relevant work, experience or evidence.' },
     { key: 'budget_potential', label: 'Budget potential', help: 'Likelihood of commercially viable investment.' },

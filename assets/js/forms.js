@@ -37,7 +37,7 @@ window.SQ.initContactForm = function () {
         submitBtn.style.background = '#EF4444';
         submitted = false;
         var formNext = document.querySelector('.form-next');
-        if (formNext) formNext.innerHTML = 'Having trouble? <a href="https://wa.me/' + window.SQ.config.whatsappNumber + '?text=Hi%20SQUARGRAPH%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" style="color:var(--accent);border-bottom:1px solid var(--accentmuted);">Send us a WhatsApp instead →</a>';
+        if (formNext) formNext.innerHTML = 'Having trouble? <a href="https://wa.me/' + window.SQ.config.whatsappNumber + '?text=Hi%20SQUARGRAPH Studios%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" style="color:var(--accent);border-bottom:1px solid var(--accentmuted);">Send us a WhatsApp instead →</a>';
         setTimeout(function () { submitBtn.innerHTML = originalLabel; submitBtn.style.background = ''; }, 5000);
         break;
       default:

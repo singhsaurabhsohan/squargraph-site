@@ -119,7 +119,7 @@ window.SQ.initAIChat = function () {
     panel.setAttribute('aria-hidden', open ? 'false' : 'true');
     if (open && !opened) {
       opened = true;
-      addMsg('bot', 'Ask me about SQUARGRAPH™, Saurabh, our capabilities, engagements, process, policies, or partner network.');
+      addMsg('bot', 'Ask me about SQUARGRAPH Studios™, Saurabh, our capabilities, engagements, process, policies, or partner network.');
     }
   };
 
@@ -241,7 +241,7 @@ window.SQ.openRazorpay = function (productKey, callbacks) {
 
   var options = {
     key: cfg.razorpayKey, amount: product.amount, currency: 'INR',
-    name: 'SQUARGRAPH™', description: product.description,
+    name: 'SQUARGRAPH Studios™', description: product.description,
     image: '/logo.webp', prefill: {}, notes: { product: product.name },
     theme: { color: '#394536' },
     modal: {
@@ -265,7 +265,7 @@ window.SQ.openRazorpay = function (productKey, callbacks) {
     if (typeof callbacks.onOpen === 'function') callbacks.onOpen();
     return true;
   }).catch(function (error) {
-    console.error('[SQUARGRAPH] Payment checkout error:', error);
+    console.error('[SQUARGRAPH Studios] Payment checkout error:', error);
     if (typeof callbacks.onError === 'function') callbacks.onError(error);
     return false;
   });
@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (document.getElementById('discovery-form') || document.querySelector('[data-razorpay-product]')) {
     window.SQ.ensureRazorpay().catch(function (error) {
-      console.warn('[SQUARGRAPH] Payment preload deferred:', error);
+      console.warn('[SQUARGRAPH Studios] Payment preload deferred:', error);
     });
   }
 });
