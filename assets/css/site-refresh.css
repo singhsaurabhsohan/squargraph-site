@@ -78,15 +78,6 @@ img {
   width: auto;
 }
 
-@media (max-width: 520px) {
-  .nav-logo .brand-company-suffix {
-    margin-left: 6px;
-    padding-left: 6px;
-    font-size: 9px;
-    letter-spacing: .06em;
-  }
-}
-
 nav {
   backdrop-filter: blur(16px);
 }

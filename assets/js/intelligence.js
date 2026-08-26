@@ -1,5 +1,5 @@
 /* ============================================================
-   SQUARGRAPH Studios™ Intelligence - Content Engine
+   SQUARGRAPH™ Intelligence - Content Engine
    Fetches assets/data/intelligence.json and renders:
      - Brand Studies      (type: "study")
      - Market Signals     (type: "signal")

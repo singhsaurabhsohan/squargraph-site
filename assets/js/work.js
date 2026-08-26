@@ -9,7 +9,7 @@
   if (!grids.length) return;
 
   function relationshipLabel(value) {
-    return value === 'founder-previous-experience' ? "Founder's Professional Experience" : 'SQUARGRAPH Studios Engagements';
+    return value === 'founder-previous-experience' ? "Founder's Professional Experience" : 'SQUARGRAPH Engagements';
   }
 
   function make(tag, className, text) {

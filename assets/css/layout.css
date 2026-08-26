@@ -23,24 +23,6 @@ nav.scrolled {
   font-size: 19px; font-weight: 600;
   letter-spacing: -0.03em; color: var(--textprimary);
 }
-.brand-company-suffix {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 9px;
-  padding-left: 9px;
-  border-left: 1px solid var(--bordergray);
-  color: var(--textsecondary);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .08em;
-  line-height: 1;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.footer-logo .brand-company-suffix {
-  color: var(--textmuted);
-  font-size: 11px;
-}
 .nav-logo sup { font-size: 9px; color: var(--accent); vertical-align: super; margin-left: 1px; }
 .nav-links { display: flex; align-items: center; gap: 40px; }
 .nav-links a {
