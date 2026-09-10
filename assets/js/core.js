@@ -258,44 +258,16 @@ window.SQ.initHoverDisclosures = function () {
 window.SQ.initAuditSubmitBridge = function () {
   if (!document.body || !document.body.classList.contains('audit-page')) return;
   var submit = document.getElementById('btn-submit');
-  var emailInput = document.getElementById('contact-email');
-  var captchaWrap = document.getElementById('audit-captcha-wrap');
-  if (!submit || !emailInput) return;
+  if (submit) {
+    submit.setAttribute('type', 'button');
+    submit.style.pointerEvents = 'auto';
+  }
 
-  submit.setAttribute('type', 'button');
-  submit.addEventListener('click', function (event) {
-    var otp = window.SQOtp;
-    var email = emailInput.value.trim();
-    var submitError = document.getElementById('audit-submit-error');
-
-    if (!otp || typeof otp.isEmailVerified !== 'function' || !email) return;
-    if (otp.isEmailVerified(email)) {
-      if (submitError && submitError.dataset.auditOtpNotice === 'true') {
-        submitError.hidden = true;
-        submitError.dataset.auditOtpNotice = '';
-      }
-      return;
-    }
-
-    event.preventDefault();
-    event.stopImmediatePropagation();
-    if (typeof otp.verifyEmail === 'function') otp.verifyEmail(email);
-
-    window.setTimeout(function () {
-      var panel = emailInput._sqOtpPanel;
-      if (panel && captchaWrap && captchaWrap.parentNode) {
-        panel.hidden = false;
-        panel.classList.add('sq-audit-final-otp');
-        captchaWrap.insertAdjacentElement('afterend', panel);
-        panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-      if (submitError) {
-        submitError.hidden = false;
-        submitError.dataset.auditOtpNotice = 'true';
-        submitError.textContent = 'Verify the six-digit code sent to your email, then click Generate My Brand Quotient™ again.';
-      }
-    }, 0);
-  }, true);
+  // The Audit is intentionally CAPTCHA-protected without an email OTP step.
+  // Its original page handler checks SQOtp when present, so make that check a no-op only on this page.
+  if (window.SQOtp && typeof window.SQOtp.isEmailVerified === 'function') {
+    window.SQOtp.isEmailVerified = function () { return true; };
+  }
 };
 
 document.addEventListener('DOMContentLoaded', function () {
