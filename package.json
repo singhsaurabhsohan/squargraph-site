@@ -1,0 +1,14 @@
+{
+  "name": "squargraph-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node tools/validate-site.mjs",
+    "architecture": "node tools/audit-final-architecture.mjs",
+    "social": "node tools/audit-social-metadata.mjs",
+    "security": "node tools/security-regression.mjs",
+    "qa": "npm run validate && npm run architecture && npm run social && npm run security",
+    "test": "npm run qa"
+  }
+}
