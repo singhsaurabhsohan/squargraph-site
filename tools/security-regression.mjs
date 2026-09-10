@@ -33,9 +33,11 @@ for (const required of [
   'supabase/config.toml',
   'supabase/production_hardening.sql',
   'supabase/lock_public_form_tables.sql',
+  'supabase/audit_results.sql',
   'supabase/functions/public-form-submit/index.ts',
   'supabase/functions/squargraph-payments/index.ts',
   'supabase/functions/squargraph-payment-webhook/index.ts',
+  'supabase/functions/squargraph-audit/index.ts',
 ]) {
   if (!await exists(path.join(root, required))) errors.push(`Missing hardened production resource: ${required}`);
 }
@@ -64,6 +66,7 @@ for (const file of files) {
 const config = await text('assets/js/config.js');
 requireText(config, 'publicFormEndpoint:', 'assets/js/config.js');
 requireText(config, 'paymentEndpoint:', 'assets/js/config.js');
+requireText(config, 'auditEndpoint:', 'assets/js/config.js');
 
 const core = await text('assets/js/core.js');
 for (const needle of [
@@ -105,6 +108,28 @@ for (const needle of [
 ]) requireText(formGateway, needle, 'public-form-submit');
 if (!/@supabase\/supabase-js@\d+\.\d+\.\d+/.test(formGateway)) errors.push('public-form-submit: supabase-js must be pinned to an exact version');
 
+const audit = await text('supabase/functions/squargraph-audit/index.ts');
+for (const needle of [
+  'OPENROUTER_API_KEY',
+  'OPENROUTER_AUDIT_MODEL',
+  'public_submission_attempts',
+  "action === 'analyse'",
+  "action === 'save_result'",
+  "action === 'get_result'",
+  "paymentOrder.status !== 'captured'",
+  "'audit_results'",
+]) requireText(audit, needle, 'squargraph-audit');
+if (!/@supabase\/supabase-js@\d+\.\d+\.\d+/.test(audit)) errors.push('squargraph-audit: supabase-js must be pinned to an exact version');
+
+const auditResults = await text('audit-results.html');
+requireText(auditResults, 'window.SQ.config.auditEndpoint', 'audit-results.html');
+requireText(auditResults, "auditCall('analyse'", 'audit-results.html');
+requireText(auditResults, "auditCall('save_result'", 'audit-results.html');
+requireText(auditResults, "auditCall('get_result'", 'audit-results.html');
+if (/squargraph-audit-results\.singhsaurabhsohan\.workers\.dev|morning-resonance-0ad8\.singhsaurabhsohan\.workers\.dev/.test(auditResults)) {
+  errors.push('audit-results.html: legacy audit Worker dependency remains');
+}
+
 const feedback = await text('feedback.html');
 requireText(feedback, "window.SQ.submitPublicRows('feedback'", 'feedback.html');
 if (/\/rest\/v1\//.test(feedback)) errors.push('feedback.html: direct Supabase REST write remains');
@@ -118,16 +143,21 @@ requireText(hardening, "member.status = 'active'", 'production_hardening.sql');
 requireText(hardening, "role.role_key in ('client','guest')", 'production_hardening.sql');
 requireText(hardening, 'Partner is an active internal collaborator role', 'production_hardening.sql');
 
+const auditSql = await text('supabase/audit_results.sql');
+for (const needle of ['create table if not exists public.audit_results', 'payment_order_id', 'public_token', 'enable row level security', 'revoke all']) {
+  requireText(auditSql, needle, 'audit_results.sql');
+}
+
 const lockdown = await text('supabase/lock_public_form_tables.sql');
 requireText(lockdown, 'revoke insert on public.leads from anon, authenticated', 'lock_public_form_tables.sql');
 requireText(lockdown, 'revoke insert on public.feedback from anon, authenticated', 'lock_public_form_tables.sql');
 
 const functionConfig = await text('supabase/config.toml');
-for (const functionName of ['public-form-submit', 'squargraph-payments', 'squargraph-payment-webhook']) {
+for (const functionName of ['public-form-submit', 'squargraph-payments', 'squargraph-payment-webhook', 'squargraph-audit']) {
   requireText(functionConfig, `[functions.${functionName}]`, 'supabase/config.toml');
 }
 const verifyJwtOffCount = (functionConfig.match(/verify_jwt\s*=\s*false/g) || []).length;
-if (verifyJwtOffCount < 3) errors.push('supabase/config.toml: all three public/provider endpoints must explicitly set verify_jwt = false');
+if (verifyJwtOffCount < 4) errors.push('supabase/config.toml: all four public/provider endpoints must explicitly set verify_jwt = false');
 
 const headers = await text('_headers');
 for (const header of ['Content-Security-Policy:', 'Strict-Transport-Security:', 'X-Content-Type-Options:', 'Referrer-Policy:', 'Permissions-Policy:']) {
