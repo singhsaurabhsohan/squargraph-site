@@ -21,6 +21,18 @@ function text(value: unknown, max = 200) {
   return String(value ?? '').replace(/[\u0000-\u001f\u007f]/g, '').trim().slice(0, max);
 }
 
+function supabaseAdminKey() {
+  const legacy = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  const single = Deno.env.get('SUPABASE_SECRET_KEY');
+  if (legacy || single) return legacy || single || '';
+  try {
+    const keys = JSON.parse(Deno.env.get('SUPABASE_SECRET_KEYS') || '{}');
+    return String(keys.default || Object.values(keys)[0] || '');
+  } catch {
+    return '';
+  }
+}
+
 async function hmac(secret: string, message: string) {
   const encoder = new TextEncoder();
   const key = await crypto.subtle.importKey('raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
@@ -53,8 +65,7 @@ async function rateLimit(admin: ReturnType<typeof createClient>, request: Reques
     .eq('kind', 'payment_order')
     .eq('fingerprint', fp)
     .gte('created_at', since);
-  if (error) return false;
-  if (Number(count || 0) >= 12) return false;
+  if (error || Number(count || 0) >= 12) return false;
   const { error: insertError } = await admin.from('public_submission_attempts').insert({ kind: 'payment_order', fingerprint: fp });
   return !insertError;
 }
@@ -69,6 +80,25 @@ async function callRazorpay(keyId: string, keySecret: string, path: string, init
   return data;
 }
 
+async function capturedPayment(keyId: string, keySecret: string, paymentId: string, amount: number, currency: string) {
+  let payment = await callRazorpay(keyId, keySecret, `/payments/${encodeURIComponent(paymentId)}`, { method: 'GET' });
+  if (payment.status === 'captured') return payment;
+  if (payment.status !== 'authorized') return payment;
+
+  try {
+    payment = await callRazorpay(keyId, keySecret, `/payments/${encodeURIComponent(paymentId)}/capture`, {
+      method: 'POST',
+      body: JSON.stringify({ amount, currency }),
+    });
+  } catch (captureError) {
+    // Auto-capture can win the race between fetch and manual capture. Re-fetch once before failing.
+    const latest = await callRazorpay(keyId, keySecret, `/payments/${encodeURIComponent(paymentId)}`, { method: 'GET' });
+    if (latest.status === 'captured') return latest;
+    throw captureError;
+  }
+  return payment;
+}
+
 Deno.serve(async (request) => {
   const origin = request.headers.get('origin') || '';
   if (request.method === 'OPTIONS') {
@@ -80,13 +110,13 @@ Deno.serve(async (request) => {
   if (!ALLOWED_ORIGINS.has(origin)) return reply(origin, 403, { ok: false, error: 'Forbidden.' });
 
   const supabaseUrl = Deno.env.get('SUPABASE_URL');
-  const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  const adminKey = supabaseAdminKey();
   const keyId = Deno.env.get('RAZORPAY_KEY_ID');
   const keySecret = Deno.env.get('RAZORPAY_KEY_SECRET');
-  if (!supabaseUrl || !serviceRoleKey || !keyId || !keySecret) {
+  if (!supabaseUrl || !adminKey || !keyId || !keySecret) {
     return reply(origin, 500, { ok: false, error: 'Payment service is not configured.' });
   }
-  const admin = createClient(supabaseUrl, serviceRoleKey, { auth: { persistSession: false } });
+  const admin = createClient(supabaseUrl, adminKey, { auth: { persistSession: false } });
 
   let body: Record<string, unknown>;
   try { body = await request.json(); }
@@ -152,33 +182,38 @@ Deno.serve(async (request) => {
     const { data: order, error } = await admin.from('payment_orders').select('*').eq('order_token', orderToken).maybeSingle();
     if (error || !order) return reply(origin, 404, { ok: false, error: 'Payment order not found.' });
     if (order.provider_order_id !== checkoutOrderId) return reply(origin, 400, { ok: false, error: 'Payment order mismatch.' });
-    if (['verified', 'captured'].includes(order.status) && order.razorpay_payment_id === paymentId) {
-      return reply(origin, 200, { ok: true, verified: true, payment_status: order.status });
+    if (order.status === 'captured' && order.razorpay_payment_id === paymentId) {
+      return reply(origin, 200, { ok: true, verified: true, payment_status: 'captured' });
     }
 
     const expected = await hmac(keySecret, `${order.provider_order_id}|${paymentId}`);
     if (!equal(expected, signature)) return reply(origin, 401, { ok: false, error: 'Payment signature verification failed.' });
 
-    const payment = await callRazorpay(keyId, keySecret, `/payments/${encodeURIComponent(paymentId)}`, { method: 'GET' });
+    let payment;
+    try {
+      payment = await capturedPayment(keyId, keySecret, paymentId, Number(order.amount), String(order.currency));
+    } catch (captureError) {
+      return reply(origin, 409, { ok: false, error: 'Payment is authorised but could not be captured yet. Please contact SQUARGRAPH if the amount was debited.' });
+    }
+
     if (payment.order_id !== order.provider_order_id || Number(payment.amount) !== Number(order.amount) || payment.currency !== order.currency) {
       return reply(origin, 400, { ok: false, error: 'Payment details do not match the order.' });
     }
-    if (!['authorized', 'captured'].includes(payment.status)) {
-      return reply(origin, 409, { ok: false, error: 'Payment is not authorised.' });
+    if (payment.status !== 'captured' || payment.captured === false) {
+      return reply(origin, 409, { ok: false, error: 'Payment has not been captured. No service has been confirmed.' });
     }
 
-    const status = payment.status === 'captured' ? 'captured' : 'verified';
     const { error: updateError } = await admin.from('payment_orders').update({
-      status,
+      status: 'captured',
       razorpay_payment_id: paymentId,
       razorpay_signature: signature,
       provider_payload: payment,
       verified_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     }).eq('id', order.id);
-    if (updateError) return reply(origin, 500, { ok: false, error: 'Payment verified but could not be recorded.' });
+    if (updateError) return reply(origin, 500, { ok: false, error: 'Payment captured but could not be recorded. Contact SQUARGRAPH with the payment ID.' });
 
-    return reply(origin, 200, { ok: true, verified: true, payment_status: status });
+    return reply(origin, 200, { ok: true, verified: true, payment_status: 'captured' });
   }
 
   return reply(origin, 400, { ok: false, error: 'Unsupported payment action.' });
