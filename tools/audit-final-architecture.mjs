@@ -5,6 +5,7 @@ import crypto from 'node:crypto';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const excluded = new Set(['.git', 'node_modules', 'supabase', 'tools', 'components', 'assets', 'docs', 'tmp', 'workers']);
+const specializedFooterPages = new Set(['feedback.html', 'audit-results.html']);
 const errors = [];
 const warnings = [];
 
@@ -20,12 +21,7 @@ async function collectHtml(directory) {
 }
 
 async function exists(absolute) {
-  try {
-    await access(absolute);
-    return true;
-  } catch {
-    return false;
-  }
+  try { await access(absolute); return true; } catch { return false; }
 }
 
 function relative(file) {
@@ -55,18 +51,32 @@ const runtimeAnchors = new Set(
 );
 
 const footerHashes = new Map();
+const requiredSpecialFooterLinks = [
+  '/work/', '/capabilities/', '/engagements/', '/intelligence', '/studio/',
+  '/privacy-policy', '/terms-of-use', '/refund-policy', '/ai-disclosure',
+];
+
 for (const [file, html] of htmlCache) {
   const rel = relative(file);
   const isPrivateWorkspace = rel.startsWith('app/') || rel.startsWith('auth/');
   const footer = html.match(/<footer\b[^>]*class="[^"]*site-footer[^"]*"[^>]*>[\s\S]*?<\/footer>/i)?.[0] || '';
+
   if (rel !== 'project-direction/index.html' && !isPrivateWorkspace) {
-    if (!footer) errors.push(`${rel}: shared footer is missing`);
-    else {
-      const hash = crypto.createHash('sha256').update(footer).digest('hex');
-      footerHashes.set(rel, hash);
+    if (!footer) {
+      errors.push(`${rel}: shared footer is missing`);
+    } else {
       const links = [...footer.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
       const duplicates = [...new Set(links.filter((href, index) => links.indexOf(href) !== index))];
       if (duplicates.length) errors.push(`${rel}: duplicate footer links: ${duplicates.join(', ')}`);
+
+      if (specializedFooterPages.has(rel)) {
+        for (const required of requiredSpecialFooterLinks) {
+          if (!links.includes(required)) errors.push(`${rel}: specialized footer missing ${required}`);
+        }
+      } else {
+        const hash = crypto.createHash('sha256').update(footer).digest('hex');
+        footerHashes.set(rel, hash);
+      }
     }
   }
 
@@ -117,7 +127,7 @@ for (const [file, html] of htmlCache) {
 }
 
 const footerVariants = new Set(footerHashes.values());
-if (footerVariants.size > 1) errors.push(`shared footer mismatch across ${footerHashes.size} pages`);
+if (footerVariants.size > 1) errors.push(`shared standard footer mismatch across ${footerHashes.size} pages`);
 
 const work = JSON.parse(await readFile(path.join(root, 'assets/data/work.json'), 'utf8'));
 for (const entry of (work.entries || []).filter((item) => item.published === true)) {
@@ -155,8 +165,9 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Final architecture audit passed.`);
+console.log('Final architecture audit passed.');
 console.log(`${htmlFiles.length} HTML files checked.`);
-console.log(`${footerHashes.size} shared footers match with no duplicate links.`);
+console.log(`${footerHashes.size} standard shared footers match with no duplicate links.`);
+console.log(`${specializedFooterPages.size} specialized flow footers validated for required navigation/legal links.`);
 console.log(`${blogCovers.length} unique blog covers found.`);
 console.log(`${gumletPosters.length} Gumlet embeds have local poster assets.`);
