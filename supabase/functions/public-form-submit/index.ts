@@ -83,6 +83,29 @@ function normaliseFeedback(input: unknown) {
   return output;
 }
 
+function getAdminKey() {
+  const direct = Deno.env.get('SUPABASE_SECRET_KEY') || Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  if (direct) return direct;
+  const raw = Deno.env.get('SUPABASE_SECRET_KEYS');
+  if (!raw) return '';
+  try {
+    const parsed = JSON.parse(raw);
+    if (typeof parsed === 'string') return parsed;
+    if (Array.isArray(parsed)) {
+      const value = parsed.find((item) => typeof item === 'string' && item);
+      return typeof value === 'string' ? value : '';
+    }
+    if (parsed && typeof parsed === 'object') {
+      for (const value of Object.values(parsed)) {
+        if (typeof value === 'string' && value) return value;
+      }
+    }
+  } catch {
+    return '';
+  }
+  return '';
+}
+
 async function fingerprint(request: Request) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown';
   const ua = request.headers.get('user-agent') || '';
@@ -139,9 +162,9 @@ Deno.serve(async (request) => {
   if (!ALLOWED_ORIGINS.has(origin)) return respond(origin, 403, { ok: false, error: 'Forbidden.' });
 
   const supabaseUrl = Deno.env.get('SUPABASE_URL');
-  const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
-  if (!supabaseUrl || !serviceRoleKey) return respond(origin, 500, { ok: false, error: 'Submission service is not configured.' });
-  const admin = createClient(supabaseUrl, serviceRoleKey, { auth: { persistSession: false } });
+  const adminKey = getAdminKey();
+  if (!supabaseUrl || !adminKey) return respond(origin, 500, { ok: false, error: 'Submission service is not configured.' });
+  const admin = createClient(supabaseUrl, adminKey, { auth: { persistSession: false } });
 
   let body: Record<string, unknown>;
   try { body = await request.json(); }
