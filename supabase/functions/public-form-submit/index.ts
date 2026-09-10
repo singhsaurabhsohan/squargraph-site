@@ -7,12 +7,16 @@ const ALLOWED_ORIGINS = new Set([
   'http://localhost:4177',
 ]);
 
-const CAPTCHA_PATHS = new Set(['/', '/audit', '/audit.html', '/discovery', '/discovery.html', '/project-direction', '/project-direction/']);
+const CAPTCHA_PATHS = new Set(['/', '/audit', '/audit.html', '/discovery', '/discovery.html', '/project-direction', '/feedback']);
 const LEAD_FIELDS = new Set([
   'name','phone','email','company','service','budget','timeline','message','reference','created_at','source_url',
   'country','city','industry','designation','brand_description','revenue','website','instagram','linkedin','facebook',
   'youtube','twitter','competitor1','competitor1_instagram','competitor2','competitor2_instagram','competitor3',
   'competitor3_instagram','challenge','goal','how_heard','source','status'
+]);
+const FEEDBACK_FIELDS = new Set([
+  'name','email','profession','rating','first_impression','positioning_clarity','standout','explored_audit',
+  'audit_experience','improvements','recommend','additional','submitted_at','source'
 ]);
 
 function cors(origin: string) {
@@ -40,9 +44,13 @@ function clean(value: unknown, max = 2000) {
     .slice(0, max);
 }
 
-function normaliseLead(input: unknown) {
+function objectRow(input: unknown) {
   if (!input || typeof input !== 'object' || Array.isArray(input)) throw new Error('Invalid submission.');
-  const row = input as Record<string, unknown>;
+  return input as Record<string, unknown>;
+}
+
+function normaliseLead(input: unknown) {
+  const row = objectRow(input);
   const output: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(row)) {
     if (!LEAD_FIELDS.has(key)) continue;
@@ -55,6 +63,26 @@ function normaliseLead(input: unknown) {
   return output;
 }
 
+function normaliseFeedback(input: unknown) {
+  const row = objectRow(input);
+  const output: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(row)) {
+    if (!FEEDBACK_FIELDS.has(key)) continue;
+    output[key] = clean(value, ['first_impression','standout','audit_experience','improvements','additional'].includes(key) ? 2500 : 500);
+  }
+  const rating = Number(output.rating || 0);
+  const profession = String(output.profession || '');
+  const email = String(output.email || '').toLowerCase();
+  if (!profession || !Number.isInteger(rating) || rating < 1 || rating > 5) throw new Error('Profession and a 1-5 rating are required.');
+  if (email && !/^\S+@\S+\.\S+$/.test(email)) throw new Error('Enter a valid email address.');
+  output.rating = rating;
+  output.email = email || null;
+  output.name = String(output.name || '') || null;
+  output.submitted_at = new Date().toISOString();
+  output.source = 'squargraph-feedback-v2';
+  return output;
+}
+
 async function fingerprint(request: Request) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown';
   const ua = request.headers.get('user-agent') || '';
@@ -62,18 +90,18 @@ async function fingerprint(request: Request) {
   return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
-async function checkRateLimit(admin: ReturnType<typeof createClient>, request: Request) {
+async function checkRateLimit(admin: ReturnType<typeof createClient>, request: Request, kind: string) {
   const fp = await fingerprint(request);
   const since = new Date(Date.now() - 10 * 60 * 1000).toISOString();
-  const { count } = await admin
+  const { count, error } = await admin
     .from('public_submission_attempts')
     .select('id', { count: 'exact', head: true })
-    .eq('kind', 'lead')
+    .eq('kind', kind)
     .eq('fingerprint', fp)
     .gte('created_at', since);
-  if (Number(count || 0) >= 8) return false;
-  await admin.from('public_submission_attempts').insert({ kind: 'lead', fingerprint: fp });
-  return true;
+  if (error || Number(count || 0) >= 8) return false;
+  const { error: insertError } = await admin.from('public_submission_attempts').insert({ kind, fingerprint: fp });
+  return !insertError;
 }
 
 async function verifyRecaptcha(token: string, secret: string) {
@@ -102,13 +130,16 @@ Deno.serve(async (request) => {
   if (!supabaseUrl || !serviceRoleKey) return respond(origin, 500, { ok: false, error: 'Submission service is not configured.' });
   const admin = createClient(supabaseUrl, serviceRoleKey, { auth: { persistSession: false } });
 
-  if (!await checkRateLimit(admin, request)) return respond(origin, 429, { ok: false, error: 'Too many submissions. Please try again later.' });
-
   let body: Record<string, unknown>;
   try { body = await request.json(); }
   catch { return respond(origin, 400, { ok: false, error: 'Invalid request body.' }); }
 
-  if (body.table !== 'leads') return respond(origin, 400, { ok: false, error: 'Unsupported form destination.' });
+  const table = String(body.table || '');
+  if (!['leads', 'feedback'].includes(table)) return respond(origin, 400, { ok: false, error: 'Unsupported form destination.' });
+  if (!await checkRateLimit(admin, request, table === 'feedback' ? 'feedback' : 'lead')) {
+    return respond(origin, 429, { ok: false, error: 'Too many submissions. Please try again later.' });
+  }
+
   const rows = Array.isArray(body.rows) ? body.rows : [];
   if (rows.length !== 1) return respond(origin, 400, { ok: false, error: 'Submit one form at a time.' });
 
@@ -121,11 +152,11 @@ Deno.serve(async (request) => {
     if (!validCaptcha) return respond(origin, 400, { ok: false, error: 'Captcha verification failed.' });
   }
 
-  let lead: Record<string, unknown>;
-  try { lead = normaliseLead(rows[0]); }
+  let record: Record<string, unknown>;
+  try { record = table === 'feedback' ? normaliseFeedback(rows[0]) : normaliseLead(rows[0]); }
   catch (error) { return respond(origin, 400, { ok: false, error: error instanceof Error ? error.message : 'Invalid submission.' }); }
 
-  const { data, error } = await admin.from('leads').insert(lead).select('id').single();
+  const { data, error } = await admin.from(table).insert(record).select('id').single();
   if (error) return respond(origin, 500, { ok: false, error: 'Could not save your submission.' });
   return respond(origin, 200, { ok: true, data: { id: data.id } });
 });
