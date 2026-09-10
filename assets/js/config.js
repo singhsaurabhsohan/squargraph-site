@@ -9,12 +9,13 @@ window.SQ.config = {
 
   publicFormEndpoint: 'https://jzlupkvgizfdwwbofzmu.supabase.co/functions/v1/public-form-submit',
   paymentEndpoint: 'https://jzlupkvgizfdwwbofzmu.supabase.co/functions/v1/squargraph-payments',
+  auditEndpoint: 'https://jzlupkvgizfdwwbofzmu.supabase.co/functions/v1/squargraph-audit',
   aiChatEndpoint: 'https://squargraph-chat.singhsaurabhsohan.workers.dev',
 
   recaptchaSiteKey: '6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB',
 
   // Razorpay Key ID is public by design. The Key Secret must remain server-side only.
-  razorpayKey: 'rzp_live_SvayEzczzvrE7f',
+  razorpayKey: 'rzp_live_TaK02yH9uQF8SV',
 
   whatsappNumber: '918588897488',
 
