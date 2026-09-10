@@ -115,7 +115,8 @@ for (const permission of [
   'outreach.view','outreach.edit','calendar.view','calendar.edit','proposals.view','proposals.create','proposals.edit',
 ]) requireText(hardening, permission, 'production_hardening.sql');
 requireText(hardening, "member.status = 'active'", 'production_hardening.sql');
-requireText(hardening, "role.role_key in ('partner','client','guest')", 'production_hardening.sql');
+requireText(hardening, "role.role_key in ('client','guest')", 'production_hardening.sql');
+requireText(hardening, 'Partner is an active internal collaborator role', 'production_hardening.sql');
 
 const lockdown = await text('supabase/lock_public_form_tables.sql');
 requireText(lockdown, 'revoke insert on public.leads from anon, authenticated', 'lock_public_form_tables.sql');
