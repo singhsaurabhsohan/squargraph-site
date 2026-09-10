@@ -1,8 +1,9 @@
 # Function-specific gateway configuration.
-# These three endpoints are intentionally callable without Supabase gateway JWT validation:
+# These four endpoints are intentionally callable without Supabase gateway JWT validation:
 # - public-form-submit applies origin checks, rate limiting, reCAPTCHA, and lead email-token validation in code.
 # - squargraph-payments creates and verifies provider-backed orders and never trusts browser prices.
 # - squargraph-payment-webhook authenticates Razorpay using the raw-body HMAC signature.
+# - squargraph-audit applies origin checks, rate limiting, paid-result verification, and server-side result storage.
 
 [functions.public-form-submit]
 verify_jwt = false
@@ -11,4 +12,7 @@ verify_jwt = false
 verify_jwt = false
 
 [functions.squargraph-payment-webhook]
+verify_jwt = false
+
+[functions.squargraph-audit]
 verify_jwt = false
