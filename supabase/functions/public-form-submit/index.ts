@@ -6,8 +6,8 @@ const ALLOWED_ORIGINS = new Set([
   'http://127.0.0.1:4177',
   'http://localhost:4177',
 ]);
+const ALLOWED_CAPTCHA_HOSTS = new Set(['squargraph.com', 'www.squargraph.com', 'localhost', '127.0.0.1']);
 
-const CAPTCHA_PATHS = new Set(['/', '/audit', '/audit.html', '/discovery', '/discovery.html', '/project-direction', '/feedback']);
 const LEAD_FIELDS = new Set([
   'name','phone','email','company','service','budget','timeline','message','reference','created_at','source_url',
   'country','city','industry','designation','brand_description','revenue','website','instagram','linkedin','facebook',
@@ -113,7 +113,20 @@ async function verifyRecaptcha(token: string, secret: string) {
     body,
   });
   const data = await result.json().catch(() => ({}));
-  return data.success === true;
+  if (data.success !== true) return false;
+  if (data.hostname && !ALLOWED_CAPTCHA_HOSTS.has(String(data.hostname).toLowerCase())) return false;
+  if (data.challenge_ts) {
+    const age = Date.now() - new Date(data.challenge_ts).getTime();
+    if (!Number.isFinite(age) || age < -60000 || age > 10 * 60 * 1000) return false;
+  }
+  return true;
+}
+
+async function verifyLeadEmail(admin: ReturnType<typeof createClient>, accessToken: string, email: string) {
+  if (!accessToken) return false;
+  const { data, error } = await admin.auth.getUser(accessToken);
+  if (error || !data.user || !data.user.email) return false;
+  return data.user.email.trim().toLowerCase() === email.trim().toLowerCase();
 }
 
 Deno.serve(async (request) => {
@@ -143,18 +156,19 @@ Deno.serve(async (request) => {
   const rows = Array.isArray(body.rows) ? body.rows : [];
   if (rows.length !== 1) return respond(origin, 400, { ok: false, error: 'Submit one form at a time.' });
 
-  const page = body.page && typeof body.page === 'object' ? body.page as Record<string, unknown> : {};
-  const path = String(page.path || '/').replace(/\/+$/, '') || '/';
-  if (CAPTCHA_PATHS.has(path)) {
-    const secret = Deno.env.get('RECAPTCHA_SECRET_KEY');
-    if (!secret) return respond(origin, 500, { ok: false, error: 'Captcha verification is not configured.' });
-    const validCaptcha = await verifyRecaptcha(String(body.captcha_token || ''), secret);
-    if (!validCaptcha) return respond(origin, 400, { ok: false, error: 'Captcha verification failed.' });
-  }
+  const captchaSecret = Deno.env.get('RECAPTCHA_SECRET_KEY');
+  if (!captchaSecret) return respond(origin, 500, { ok: false, error: 'Captcha verification is not configured.' });
+  const validCaptcha = await verifyRecaptcha(String(body.captcha_token || ''), captchaSecret);
+  if (!validCaptcha) return respond(origin, 400, { ok: false, error: 'Captcha verification failed.' });
 
   let record: Record<string, unknown>;
   try { record = table === 'feedback' ? normaliseFeedback(rows[0]) : normaliseLead(rows[0]); }
   catch (error) { return respond(origin, 400, { ok: false, error: error instanceof Error ? error.message : 'Invalid submission.' }); }
+
+  if (table === 'leads') {
+    const verified = await verifyLeadEmail(admin, String(body.email_access_token || ''), String(record.email || ''));
+    if (!verified) return respond(origin, 401, { ok: false, error: 'Verify your email code before submitting.' });
+  }
 
   const { data, error } = await admin.from(table).insert(record).select('id').single();
   if (error) return respond(origin, 500, { ok: false, error: 'Could not save your submission.' });
