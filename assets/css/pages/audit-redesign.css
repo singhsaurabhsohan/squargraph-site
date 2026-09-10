@@ -77,6 +77,7 @@
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
+  scroll-padding-bottom: 110px;
   background: #fff;
 }
 
@@ -128,7 +129,10 @@
 
 .audit-page #audit-captcha-wrap {
   padding: 14px clamp(26px, 3vw, 42px) !important;
-  background: transparent;
+  background: #fff;
+  position: relative;
+  z-index: 5;
+  margin-bottom: 82px;
 }
 
 .audit-page .form-footer {
@@ -257,6 +261,7 @@
     height: auto;
     min-height: 0;
     overflow: visible !important;
+    scroll-padding-bottom: 0;
   }
 
   .audit-page .progress-wrap {
@@ -280,6 +285,7 @@
   .audit-page #audit-captcha-wrap {
     padding: 12px 18px !important;
     overflow: hidden;
+    margin-bottom: 0;
   }
 
   .audit-page #audit-captcha-wrap .g-recaptcha {
