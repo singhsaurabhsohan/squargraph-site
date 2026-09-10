@@ -135,6 +135,14 @@
   margin-bottom: 82px;
 }
 
+.audit-page .sq-audit-final-otp {
+  width: min(430px, calc(100% - 52px));
+  margin: -64px clamp(26px, 3vw, 42px) 18px;
+  position: relative;
+  z-index: 6;
+  background: #fff;
+}
+
 .audit-page .form-footer {
   position: sticky;
   bottom: 0;
@@ -153,6 +161,13 @@
   width: fit-content;
   max-width: 100%;
   background: var(--accent);
+}
+
+.audit-page #btn-submit {
+  position: relative;
+  z-index: 7;
+  pointer-events: auto !important;
+  touch-action: manipulation;
 }
 
 .audit-page .privacy-note {
@@ -286,6 +301,11 @@
     padding: 12px 18px !important;
     overflow: hidden;
     margin-bottom: 0;
+  }
+
+  .audit-page .sq-audit-final-otp {
+    width: auto;
+    margin: 0 18px 18px;
   }
 
   .audit-page #audit-captcha-wrap .g-recaptcha {

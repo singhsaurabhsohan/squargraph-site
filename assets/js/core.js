@@ -255,9 +255,53 @@ window.SQ.initHoverDisclosures = function () {
   });
 };
 
+window.SQ.initAuditSubmitBridge = function () {
+  if (!document.body || !document.body.classList.contains('audit-page')) return;
+  var submit = document.getElementById('btn-submit');
+  var emailInput = document.getElementById('contact-email');
+  var captchaWrap = document.getElementById('audit-captcha-wrap');
+  if (!submit || !emailInput) return;
+
+  submit.setAttribute('type', 'button');
+  submit.addEventListener('click', function (event) {
+    var otp = window.SQOtp;
+    var email = emailInput.value.trim();
+    var submitError = document.getElementById('audit-submit-error');
+
+    if (!otp || typeof otp.isEmailVerified !== 'function' || !email) return;
+    if (otp.isEmailVerified(email)) {
+      if (submitError && submitError.dataset.auditOtpNotice === 'true') {
+        submitError.hidden = true;
+        submitError.dataset.auditOtpNotice = '';
+      }
+      return;
+    }
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    if (typeof otp.verifyEmail === 'function') otp.verifyEmail(email);
+
+    window.setTimeout(function () {
+      var panel = emailInput._sqOtpPanel;
+      if (panel && captchaWrap && captchaWrap.parentNode) {
+        panel.hidden = false;
+        panel.classList.add('sq-audit-final-otp');
+        captchaWrap.insertAdjacentElement('afterend', panel);
+        panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      if (submitError) {
+        submitError.hidden = false;
+        submitError.dataset.auditOtpNotice = 'true';
+        submitError.textContent = 'Verify the six-digit code sent to your email, then click Generate My Brand Quotient™ again.';
+      }
+    }, 0);
+  }, true);
+};
+
 document.addEventListener('DOMContentLoaded', function () {
   window.SQ.initEventTracking();
   window.SQ.initNav();
   window.SQ.initEscapeKey();
   window.SQ.initHoverDisclosures();
+  window.SQ.initAuditSubmitBridge();
 });
