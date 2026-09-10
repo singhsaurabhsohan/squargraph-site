@@ -1,5 +1,7 @@
 -- SQUARGRAPH production hardening
--- Apply after deploying public-form-submit and squargraph-payments Edge Functions.
+-- Apply this migration before deploying the hardened Edge Functions.
+-- It creates their support tables and tightens SQUARGRAPH OS authorization without
+-- disabling the existing website forms during the transition.
 -- This migration is intentionally additive/restrictive and does not delete business data.
 
 create table if not exists public.payment_orders (
@@ -200,12 +202,6 @@ create policy "Opportunity viewers can view Growth OS attachments"
   on storage.objects for select to authenticated
   using (bucket_id = 'growth-os' and (select private.os_has_permission('opportunities.view')));
 
--- Once the public-form-submit Edge Function is deployed, direct browser inserts into
--- the general leads table are no longer necessary. Preserve RLS while removing Data API grants.
-do $$
-begin
-  if to_regclass('public.leads') is not null then
-    execute 'revoke insert on public.leads from anon, authenticated';
-  end if;
-end
-$$;
+-- Direct public Data API writes are intentionally NOT revoked here. Apply
+-- supabase/lock_public_form_tables.sql only after the hardened website and Edge Function
+-- have been deployed and a production submission has been verified end-to-end.
