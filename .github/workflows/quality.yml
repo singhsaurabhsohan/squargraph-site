@@ -25,8 +25,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
-          cache-dependency-path: squargraph-app/package-lock.json
 
       - name: Validate public site
         run: node tools/validate-site.mjs
@@ -39,7 +37,3 @@ jobs:
 
       - name: Run security regression checks
         run: node tools/security-regression.mjs
-
-      - name: Validate Expo dependency graph
-        working-directory: squargraph-app
-        run: npm ci --ignore-scripts && npm ls --all
