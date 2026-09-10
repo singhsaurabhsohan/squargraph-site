@@ -189,8 +189,11 @@ Deno.serve(async (request) => {
   catch (error) { return respond(origin, 400, { ok: false, error: error instanceof Error ? error.message : 'Invalid submission.' }); }
 
   if (table === 'leads') {
-    const verified = await verifyLeadEmail(admin, String(body.email_access_token || ''), String(record.email || ''));
-    if (!verified) return respond(origin, 401, { ok: false, error: 'Verify your email code before submitting.' });
+    const isBrandGrowthAudit = String(record.source || '') === 'Brand Growth Audit™';
+    if (!isBrandGrowthAudit) {
+      const verified = await verifyLeadEmail(admin, String(body.email_access_token || ''), String(record.email || ''));
+      if (!verified) return respond(origin, 401, { ok: false, error: 'Verify your email code before submitting.' });
+    }
   }
 
   const { data, error } = await admin.from(table).insert(record).select('id').single();
