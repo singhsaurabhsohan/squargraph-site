@@ -1,0 +1,45 @@
+name: Production Quality Gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Static, SEO and security checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: squargraph-app/package-lock.json
+
+      - name: Validate public site
+        run: node tools/validate-site.mjs
+
+      - name: Validate architecture
+        run: node tools/audit-final-architecture.mjs
+
+      - name: Validate social metadata
+        run: node tools/audit-social-metadata.mjs
+
+      - name: Run security regression checks
+        run: node tools/security-regression.mjs
+
+      - name: Validate Expo dependency graph
+        working-directory: squargraph-app
+        run: npm ci --ignore-scripts && npm ls --all
