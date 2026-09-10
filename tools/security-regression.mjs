@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const errors = [];
-const warnings = [];
 const ignored = new Set(['.git', 'node_modules', 'dist']);
 
 async function exists(file) {
@@ -45,7 +44,6 @@ for (const file of files) {
   const relative = path.relative(root, file).replaceAll('\\', '/');
   const source = await readFile(file, 'utf8');
 
-  // Actual secret values must never be committed. Environment variable names and documentation are allowed.
   if (/\b(?:sk|sb)_service_role_[A-Za-z0-9._-]{12,}\b/.test(source)) {
     errors.push(`${relative}: possible committed service-role secret`);
   }
@@ -53,14 +51,12 @@ for (const file of files) {
     errors.push(`${relative}: possible committed Razorpay secret`);
   }
 
-  // Payment checkout must not be independently implemented in HTML pages.
   if (relative.endsWith('.html') && /new\s+(?:window\.)?Razorpay\s*\(/.test(source)) {
     errors.push(`${relative}: direct Razorpay Checkout implementation bypasses shared verified payment flow`);
   }
 
-  // General lead submissions must pass through the Edge Function gateway rather than a hard-coded REST path.
-  if (relative !== 'assets/js/core.js' && /\/rest\/v1\/leads\b/.test(source)) {
-    errors.push(`${relative}: direct leads REST endpoint found`);
+  if (relative !== 'assets/js/core.js' && /\/rest\/v1\/(?:leads|feedback)\b/.test(source)) {
+    errors.push(`${relative}: direct public-form REST endpoint found`);
   }
 }
 
@@ -69,8 +65,12 @@ requireText(config, 'publicFormEndpoint:', 'assets/js/config.js');
 requireText(config, 'paymentEndpoint:', 'assets/js/config.js');
 
 const core = await text('assets/js/core.js');
-requireText(core, 'window.SQ.submitPublicRows', 'assets/js/core.js');
-requireText(core, 'captcha_token:', 'assets/js/core.js');
+for (const needle of [
+  'window.SQ.submitPublicRows',
+  'captcha_token:',
+  'email_access_token:',
+  'window.SQ.getVerifiedEmailToken',
+]) requireText(core, needle, 'assets/js/core.js');
 
 const payments = await text('supabase/functions/squargraph-payments/index.ts');
 for (const needle of [
@@ -90,10 +90,21 @@ for (const needle of ['RAZORPAY_WEBHOOK_SECRET', 'x-razorpay-signature', 'paymen
 }
 
 const formGateway = await text('supabase/functions/public-form-submit/index.ts');
-for (const needle of ['RECAPTCHA_SECRET_KEY', 'siteverify', 'public_submission_attempts', "body.table !== 'leads'"]) {
-  requireText(formGateway, needle, 'public-form-submit');
-}
+for (const needle of [
+  'RECAPTCHA_SECRET_KEY',
+  'siteverify',
+  'ALLOWED_CAPTCHA_HOSTS',
+  'public_submission_attempts',
+  "['leads', 'feedback']",
+  'email_access_token',
+  'verifyLeadEmail',
+  'admin.auth.getUser(accessToken)',
+]) requireText(formGateway, needle, 'public-form-submit');
 if (!/@supabase\/supabase-js@\d+\.\d+\.\d+/.test(formGateway)) errors.push('public-form-submit: supabase-js must be pinned to an exact version');
+
+const feedback = await text('feedback.html');
+requireText(feedback, "window.SQ.submitPublicRows('feedback'", 'feedback.html');
+if (/\/rest\/v1\//.test(feedback)) errors.push('feedback.html: direct Supabase REST write remains');
 
 const hardening = await text('supabase/production_hardening.sql');
 for (const permission of [
@@ -103,6 +114,10 @@ for (const permission of [
 requireText(hardening, "member.status = 'active'", 'production_hardening.sql');
 requireText(hardening, "role.role_key in ('partner','client','guest')", 'production_hardening.sql');
 
+const lockdown = await text('supabase/lock_public_form_tables.sql');
+requireText(lockdown, 'revoke insert on public.leads from anon, authenticated', 'lock_public_form_tables.sql');
+requireText(lockdown, 'revoke insert on public.feedback from anon, authenticated', 'lock_public_form_tables.sql');
+
 const headers = await text('_headers');
 for (const header of ['Content-Security-Policy:', 'Strict-Transport-Security:', 'X-Content-Type-Options:', 'Referrer-Policy:', 'Permissions-Policy:']) {
   requireText(headers, header, '_headers');
@@ -110,13 +125,7 @@ for (const header of ['Content-Security-Policy:', 'Strict-Transport-Security:', 
 requireText(headers, "frame-ancestors 'self'", '_headers');
 requireText(headers, "object-src 'none'", '_headers');
 
-const feedback = await text('feedback.html');
-if (/\/rest\/v1\//.test(feedback)) {
-  warnings.push('feedback.html still uses its dedicated feedback-table submission path; keep INSERT-only RLS/rate controls on that table until it is migrated to the shared gateway.');
-}
-
 console.log(`Security regression scan checked ${files.length} text files.`);
-warnings.forEach((message) => console.warn(`WARN ${message}`));
 errors.forEach((message) => console.error(`ERROR ${message}`));
-console.log(`${errors.length} error(s), ${warnings.length} warning(s).`);
+console.log(`${errors.length} error(s).`);
 if (errors.length) process.exit(1);
