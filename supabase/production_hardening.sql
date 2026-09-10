@@ -78,14 +78,14 @@ as $$
   end;
 $$;
 
--- External-facing roles currently have no row-scoped sharing model. Remove broad Growth OS
--- permissions until explicit project/client sharing tables exist. This is safer than exposing
--- the internal pipeline to every client, partner or guest account.
+-- Partner is an active internal collaborator role in the current production workspace and
+-- intentionally retains its existing read-only Growth OS permissions. Client/guest remain
+-- external-facing roles and must not inherit unrestricted access to the internal pipeline.
 delete from public.os_role_permissions role_permission
 using public.os_roles role, public.os_permissions permission
 where role_permission.role_id = role.id
   and role_permission.permission_id = permission.id
-  and role.role_key in ('partner','client','guest')
+  and role.role_key in ('client','guest')
   and permission.permission_key in (
     'opportunities.view','opportunities.edit','companies.view','companies.edit',
     'contacts.view','contacts.edit','outreach.view','outreach.edit','outreach.send',
