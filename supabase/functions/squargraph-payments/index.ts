@@ -35,6 +35,30 @@ function equal(a: string, b: string) {
   return diff === 0;
 }
 
+async function fingerprint(request: Request) {
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+    || request.headers.get('x-real-ip')
+    || 'unknown';
+  const ua = request.headers.get('user-agent') || '';
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`${ip}|${ua.slice(0, 180)}`));
+  return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function rateLimit(admin: ReturnType<typeof createClient>, request: Request) {
+  const fp = await fingerprint(request);
+  const since = new Date(Date.now() - 10 * 60 * 1000).toISOString();
+  const { count, error } = await admin
+    .from('public_submission_attempts')
+    .select('id', { count: 'exact', head: true })
+    .eq('kind', 'payment_order')
+    .eq('fingerprint', fp)
+    .gte('created_at', since);
+  if (error) return false;
+  if (Number(count || 0) >= 12) return false;
+  const { error: insertError } = await admin.from('public_submission_attempts').insert({ kind: 'payment_order', fingerprint: fp });
+  return !insertError;
+}
+
 async function callRazorpay(keyId: string, keySecret: string, path: string, init: RequestInit) {
   const headers = new Headers(init.headers || {});
   headers.set('Authorization', `Basic ${btoa(`${keyId}:${keySecret}`)}`);
@@ -69,6 +93,9 @@ Deno.serve(async (request) => {
   catch { return reply(origin, 400, { ok: false, error: 'Invalid request body.' }); }
 
   if (body.action === 'create_order') {
+    if (!await rateLimit(admin, request)) {
+      return reply(origin, 429, { ok: false, error: 'Too many payment attempts. Please try again shortly.' });
+    }
     const productKey = text(body.product, 40) as ProductKey;
     const product = PRODUCTS[productKey];
     if (!product) return reply(origin, 400, { ok: false, error: 'Unknown product.' });
@@ -125,6 +152,9 @@ Deno.serve(async (request) => {
     const { data: order, error } = await admin.from('payment_orders').select('*').eq('order_token', orderToken).maybeSingle();
     if (error || !order) return reply(origin, 404, { ok: false, error: 'Payment order not found.' });
     if (order.provider_order_id !== checkoutOrderId) return reply(origin, 400, { ok: false, error: 'Payment order mismatch.' });
+    if (['verified', 'captured'].includes(order.status) && order.razorpay_payment_id === paymentId) {
+      return reply(origin, 200, { ok: true, verified: true, payment_status: order.status });
+    }
 
     const expected = await hmac(keySecret, `${order.provider_order_id}|${paymentId}`);
     if (!equal(expected, signature)) return reply(origin, 401, { ok: false, error: 'Payment signature verification failed.' });
@@ -138,7 +168,7 @@ Deno.serve(async (request) => {
     }
 
     const status = payment.status === 'captured' ? 'captured' : 'verified';
-    await admin.from('payment_orders').update({
+    const { error: updateError } = await admin.from('payment_orders').update({
       status,
       razorpay_payment_id: paymentId,
       razorpay_signature: signature,
@@ -146,6 +176,7 @@ Deno.serve(async (request) => {
       verified_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     }).eq('id', order.id);
+    if (updateError) return reply(origin, 500, { ok: false, error: 'Payment verified but could not be recorded.' });
 
     return reply(origin, 200, { ok: true, verified: true, payment_status: status });
   }
