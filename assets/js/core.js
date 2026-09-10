@@ -18,6 +18,16 @@ window.SQ.getCaptchaToken = function () {
   }
 };
 
+window.SQ.getVerifiedEmailToken = function () {
+  try {
+    return window.SQOtp && typeof window.SQOtp.getAccessToken === 'function'
+      ? window.SQOtp.getAccessToken() || ''
+      : '';
+  } catch (error) {
+    return '';
+  }
+};
+
 window.SQ.submitPublicRows = async function (table, rows) {
   var cfg = window.SQ.config || {};
   if (!cfg.publicFormEndpoint) throw new Error('Public form gateway is not configured.');
@@ -28,13 +38,12 @@ window.SQ.submitPublicRows = async function (table, rows) {
       table: table,
       rows: rows,
       captcha_token: window.SQ.getCaptchaToken(),
+      email_access_token: window.SQ.getVerifiedEmailToken(),
       page: { path: window.location.pathname, href: window.location.href }
     })
   });
   var data = await response.json().catch(function () { return {}; });
-  if (!response.ok || data.ok !== true) {
-    throw new Error(data.error || 'Submission failed');
-  }
+  if (!response.ok || data.ok !== true) throw new Error(data.error || 'Submission failed');
   return { error: null, data: data.data || null };
 };
 
@@ -67,22 +76,18 @@ window.SQ.initEventTracking = function () {
   document.addEventListener('click', function (e) {
     var el = e.target.closest('a, button, [role="button"]');
     if (!el) return;
-
     var eventName = el.getAttribute('data-sq-event') || '';
     var href = el.getAttribute('href') || '';
     var onclick = el.getAttribute('onclick') || '';
     var text = (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
     var url = null;
-
     if (href) {
       try { url = new URL(href, window.location.origin); } catch (err) { url = null; }
     }
-
     if (!eventName && url) {
       var host = url.hostname.toLowerCase();
       var path = url.pathname.replace(/\/+$/, '') || '/';
       var hash = url.hash.toLowerCase();
-
       if (url.protocol === 'mailto:') eventName = 'email_click';
       else if (url.protocol === 'tel:') eventName = 'phone_click';
       else if (host === 'wa.me' || host.indexOf('whatsapp.com') !== -1) eventName = 'whatsapp_click';
@@ -97,17 +102,14 @@ window.SQ.initEventTracking = function () {
       else if (hash === '#contact' && (el.classList.contains('nav-cta') || text.indexOf('conversation') !== -1 || text.indexOf("let's talk") !== -1)) eventName = 'cta_start_conversation_click';
       else if (hash === '#capabilities' && (el.closest('.hero-ctas') || text.indexOf('explore capabilities') !== -1)) eventName = 'cta_explore_capabilities_click';
     }
-
     if (!eventName && onclick) {
       if (/audit\.html|\/audit/.test(onclick)) eventName = 'audit_start_click';
       else if (/\/discovery/.test(onclick)) eventName = 'discovery_session_click';
     }
-
     if (!eventName) {
       if (text.indexOf('explore capabilities') !== -1) eventName = 'cta_explore_capabilities_click';
       else if (text.indexOf('start a project') !== -1 || text.indexOf('start a conversation') !== -1 || text.indexOf('start the conversation') !== -1) eventName = 'cta_start_conversation_click';
     }
-
     if (eventName) {
       window.SQ.trackEvent(eventName, {
         link_text: text || undefined,
@@ -129,7 +131,6 @@ window.SQ.initNav = function () {
   function focusableItems() {
     return Array.prototype.slice.call(mobMenu.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
   }
-
   function setMenu(open, restoreFocus) {
     menuOpen = open;
     mobToggle.classList.toggle('open', menuOpen);
@@ -150,25 +151,16 @@ window.SQ.initNav = function () {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   }
 
-  window.addEventListener('scroll', function () {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
-
+  window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
   mobMenu.addEventListener('touchstart', function () {}, { passive: true });
   mobToggle.addEventListener('pointerdown', function () { mobMenu.classList.add('pointer-open'); });
-  mobToggle.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') mobMenu.classList.remove('pointer-open');
-  });
+  mobToggle.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') mobMenu.classList.remove('pointer-open'); });
   mobToggle.addEventListener('click', function () { setMenu(!menuOpen, true); });
   window.closeMob = function (restoreFocus) { setMenu(false, restoreFocus); };
 
   mobMenu.addEventListener('keydown', function (e) {
     if (!menuOpen) return;
-    if (e.key === 'Escape') {
-      e.preventDefault();
-      window.closeMob(true);
-      return;
-    }
+    if (e.key === 'Escape') { e.preventDefault(); window.closeMob(true); return; }
     if (e.key !== 'Tab') return;
     var items = focusableItems();
     if (!items.length) return;
@@ -177,16 +169,13 @@ window.SQ.initNav = function () {
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
-
   mobMenu.addEventListener('touchmove', function (e) {
     var touch = e.touches[0];
     var el = document.elementFromPoint(touch.clientX, touch.clientY);
     mobMenu.querySelectorAll('a').forEach(function (a) { a.classList.remove('finger-active'); });
     if (el && el.tagName === 'A' && mobMenu.contains(el)) el.classList.add('finger-active');
   }, { passive: true });
-  mobMenu.addEventListener('touchend', function () {
-    mobMenu.querySelectorAll('a').forEach(function (a) { a.classList.remove('finger-active'); });
-  }, { passive: true });
+  mobMenu.addEventListener('touchend', function () { mobMenu.querySelectorAll('a').forEach(function (a) { a.classList.remove('finger-active'); }); }, { passive: true });
   document.addEventListener('click', function (e) {
     if (menuOpen && !mobMenu.contains(e.target) && !mobToggle.contains(e.target)) window.closeMob();
   });
@@ -198,7 +187,6 @@ window.SQ.initCountryCity = function (countryId, citySelectId) {
   var textEl = document.getElementById(citySelectId + '-text');
   if (!countryEl || !cityEl) return;
   var cityData = window.SQ.config.cityData;
-
   countryEl.addEventListener('change', function () {
     var cities = cityData[this.value] || [];
     while (cityEl.firstChild) cityEl.removeChild(cityEl.firstChild);
@@ -217,7 +205,6 @@ window.SQ.initCountryCity = function (countryId, citySelectId) {
     cityEl.style.display = 'block';
     if (textEl) { textEl.style.display = 'none'; textEl.value = ''; }
   });
-
   cityEl.addEventListener('change', function () {
     if (!textEl) return;
     if (this.value === 'Other') { textEl.style.display = 'block'; textEl.focus(); }
