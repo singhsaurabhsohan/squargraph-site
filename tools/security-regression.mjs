@@ -30,6 +30,7 @@ function requireText(source, needle, label) {
 }
 
 for (const required of [
+  'supabase/config.toml',
   'supabase/production_hardening.sql',
   'supabase/lock_public_form_tables.sql',
   'supabase/functions/public-form-submit/index.ts',
@@ -39,7 +40,7 @@ for (const required of [
   if (!await exists(path.join(root, required))) errors.push(`Missing hardened production resource: ${required}`);
 }
 
-const files = await collect(root, ['.html', '.js', '.mjs', '.ts', '.sql', '.md', '.json', '.yml', '.yaml']);
+const files = await collect(root, ['.html', '.js', '.mjs', '.ts', '.sql', '.md', '.json', '.yml', '.yaml', '.toml']);
 for (const file of files) {
   const relative = path.relative(root, file).replaceAll('\\', '/');
   const source = await readFile(file, 'utf8');
@@ -78,7 +79,9 @@ for (const needle of [
   'razorpay_signature',
   "`${order.provider_order_id}|${paymentId}`",
   "`/payments/${encodeURIComponent(paymentId)}`",
-  "['authorized', 'captured']",
+  "`/payments/${encodeURIComponent(paymentId)}/capture`",
+  "payment.status !== 'captured'",
+  "status: 'captured'",
   "'payment_orders'",
   "'payment_order'",
 ]) requireText(payments, needle, 'squargraph-payments');
@@ -117,6 +120,13 @@ requireText(hardening, "role.role_key in ('partner','client','guest')", 'product
 const lockdown = await text('supabase/lock_public_form_tables.sql');
 requireText(lockdown, 'revoke insert on public.leads from anon, authenticated', 'lock_public_form_tables.sql');
 requireText(lockdown, 'revoke insert on public.feedback from anon, authenticated', 'lock_public_form_tables.sql');
+
+const functionConfig = await text('supabase/config.toml');
+for (const functionName of ['public-form-submit', 'squargraph-payments', 'squargraph-payment-webhook']) {
+  requireText(functionConfig, `[functions.${functionName}]`, 'supabase/config.toml');
+}
+const verifyJwtOffCount = (functionConfig.match(/verify_jwt\s*=\s*false/g) || []).length;
+if (verifyJwtOffCount < 3) errors.push('supabase/config.toml: all three public/provider endpoints must explicitly set verify_jwt = false');
 
 const headers = await text('_headers');
 for (const header of ['Content-Security-Policy:', 'Strict-Transport-Security:', 'X-Content-Type-Options:', 'Referrer-Policy:', 'Permissions-Policy:']) {
