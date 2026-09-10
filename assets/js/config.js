@@ -7,10 +7,13 @@ window.SQ.config = {
   supabaseKey:  'sb_publishable_IPU4Nh7zQW_OfZr0Tlej6A_gfYhevRl',
   supabaseTable: 'leads',
 
+  publicFormEndpoint: 'https://jzlupkvgizfdwwbofzmu.supabase.co/functions/v1/public-form-submit',
+  paymentEndpoint: 'https://jzlupkvgizfdwwbofzmu.supabase.co/functions/v1/squargraph-payments',
   aiChatEndpoint: 'https://squargraph-chat.singhsaurabhsohan.workers.dev',
 
   recaptchaSiteKey: '6LdWRRYtAAAAAOC7lw8efP1OOmh17sYpkLBZ4YvB',
 
+  // Razorpay Key ID is public by design. The Key Secret must remain server-side only.
   razorpayKey: 'rzp_live_SvayEzczzvrE7f',
 
   whatsappNumber: '918588897488',
@@ -34,6 +37,7 @@ window.SQ.config = {
     'Japan':     ['Osaka','Tokyo','Other']
   },
 
+  // Display metadata only. Server-side payment functions are authoritative for price/currency.
   razorpayProducts: {
     discovery: { name: 'Discovery Session™',        amount: 299900,  description: '30-min founder-led brand strategy session' },
     audit:     { name: 'Brand Growth Audit™',       amount: 999900,  description: 'Full digital brand communication & growth audit' },
