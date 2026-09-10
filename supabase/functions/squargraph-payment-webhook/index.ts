@@ -21,12 +21,35 @@ function response(status: number, body: Record<string, unknown>) {
   });
 }
 
+function getAdminKey() {
+  const direct = Deno.env.get('SUPABASE_SECRET_KEY') || Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  if (direct) return direct;
+  const raw = Deno.env.get('SUPABASE_SECRET_KEYS');
+  if (!raw) return '';
+  try {
+    const parsed = JSON.parse(raw);
+    if (typeof parsed === 'string') return parsed;
+    if (Array.isArray(parsed)) {
+      const value = parsed.find((item) => typeof item === 'string' && item);
+      return typeof value === 'string' ? value : '';
+    }
+    if (parsed && typeof parsed === 'object') {
+      for (const value of Object.values(parsed)) {
+        if (typeof value === 'string' && value) return value;
+      }
+    }
+  } catch {
+    return '';
+  }
+  return '';
+}
+
 Deno.serve(async (request) => {
   if (request.method !== 'POST') return response(405, { ok: false });
   const secret = Deno.env.get('RAZORPAY_WEBHOOK_SECRET');
   const supabaseUrl = Deno.env.get('SUPABASE_URL');
-  const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
-  if (!secret || !supabaseUrl || !serviceRoleKey) return response(500, { ok: false });
+  const adminKey = getAdminKey();
+  if (!secret || !supabaseUrl || !adminKey) return response(500, { ok: false });
 
   const rawBody = await request.text();
   const supplied = request.headers.get('x-razorpay-signature') || '';
@@ -48,7 +71,7 @@ Deno.serve(async (request) => {
   if (event.event === 'refund.processed' || event.event === 'payment.refunded') status = 'refunded';
   if (!status) return response(200, { ok: true, ignored: true });
 
-  const admin = createClient(supabaseUrl, serviceRoleKey, { auth: { persistSession: false } });
+  const admin = createClient(supabaseUrl, adminKey, { auth: { persistSession: false } });
   const { error } = await admin.from('payment_orders').update({
     status,
     razorpay_payment_id: payment?.id || undefined,
