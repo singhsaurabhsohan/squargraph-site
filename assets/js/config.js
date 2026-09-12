@@ -53,20 +53,20 @@ window.SQ.initFooterLocationMap = function () {
   var section = document.createElement('section');
   section.className = 'footer-map-block';
   section.setAttribute('aria-labelledby', 'footer-location-title');
-  section.style.cssText = 'border-top:1px solid rgba(255,255,255,.12);padding:36px 0;';
+  section.style.cssText = 'width:100%;max-width:1440px;margin:0 auto;border-top:1px solid rgba(255,255,255,.12);padding:40px 0;';
 
   var grid = document.createElement('div');
-  grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:28px;align-items:stretch;';
+  grid.style.cssText = 'display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(32px,5vw,72px);align-items:center;';
 
   var info = document.createElement('div');
-  info.style.cssText = 'display:flex;flex-direction:column;justify-content:center;min-height:220px;padding:6px 0;';
+  info.style.cssText = 'display:flex;flex-direction:column;justify-content:center;min-height:250px;';
 
-  var googleLabel = document.createElement('span');
-  googleLabel.textContent = 'Google Business Profile';
-  googleLabel.style.cssText = 'display:block;margin-bottom:14px;color:rgba(255,255,255,.58);font-size:11px;line-height:1.4;text-transform:uppercase;letter-spacing:.08em;';
+  var label = document.createElement('span');
+  label.textContent = 'Business profile';
+  label.style.cssText = 'display:block;margin-bottom:14px;color:rgba(255,255,255,.54);font-size:11px;line-height:1.4;text-transform:uppercase;letter-spacing:.08em;';
 
   var brandLine = document.createElement('div');
-  brandLine.style.cssText = 'display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;';
+  brandLine.style.cssText = 'display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px;';
 
   var logo = document.createElement('img');
   logo.src = '/logo.webp?v=20260719-optimized1';
@@ -74,19 +74,26 @@ window.SQ.initFooterLocationMap = function () {
   logo.width = 236;
   logo.height = 28;
   logo.loading = 'lazy';
-  logo.style.cssText = 'display:block;width:min(190px,60vw);height:auto;object-fit:contain;';
+  logo.style.cssText = 'display:block;width:min(200px,58vw);height:auto;object-fit:contain;filter:brightness(0) invert(1);';
 
-  var onGoogle = document.createElement('span');
-  onGoogle.textContent = 'on Google';
-  onGoogle.style.cssText = 'color:#fff;font:500 18px/1.2 Satoshi,Arial,sans-serif;letter-spacing:-.02em;';
+  var onText = document.createElement('span');
+  onText.textContent = 'on';
+  onText.style.cssText = 'color:rgba(255,255,255,.68);font:500 14px/1 Satoshi,Arial,sans-serif;';
+
+  var googleMark = document.createElement('span');
+  googleMark.setAttribute('aria-label', 'Google');
+  googleMark.title = 'Google';
+  googleMark.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" role="img" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.55-.2-2.27H12v4.51h6.45a5.52 5.52 0 0 1-2.39 3.52v2.93h3.87c2.27-2.09 3.56-5.17 3.56-8.69z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.07 7.93-2.91l-3.87-2.93c-1.07.72-2.44 1.15-4.06 1.15-3.13 0-5.78-2.11-6.73-4.94H1.27v3.03A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.27 14.37A7.23 7.23 0 0 1 4.89 12c0-.82.14-1.61.38-2.37V6.6H1.27A12 12 0 0 0 0 12c0 1.94.46 3.78 1.27 5.4l4-3.03z"/><path fill="#EA4335" d="M12 4.69c1.76 0 3.34.6 4.58 1.79l3.43-3.43A11.52 11.52 0 0 0 12 0 12 12 0 0 0 1.27 6.6l4 3.03C6.22 6.8 8.87 4.69 12 4.69z"/></svg>';
+  googleMark.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex:0 0 auto;';
 
   brandLine.appendChild(logo);
-  brandLine.appendChild(onGoogle);
+  brandLine.appendChild(onText);
+  brandLine.appendChild(googleMark);
 
   var title = document.createElement('h2');
   title.id = 'footer-location-title';
-  title.textContent = 'SQUARGRAPH™ · Hari Nagar Ashram';
-  title.style.cssText = 'margin:0 0 8px;color:#fff;font:500 clamp(22px,2.5vw,30px)/1.2 Satoshi,Arial,sans-serif;letter-spacing:-.02em;';
+  title.textContent = 'Hari Nagar Ashram';
+  title.style.cssText = 'margin:0 0 8px;color:#fff;font:500 clamp(24px,2.5vw,32px)/1.2 Satoshi,Arial,sans-serif;letter-spacing:-.02em;';
 
   var category = document.createElement('p');
   category.textContent = 'Marketing agency · South Delhi';
@@ -101,10 +108,10 @@ window.SQ.initFooterLocationMap = function () {
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
   link.setAttribute('data-sq-event', 'footer_google_business_open');
-  link.textContent = 'View SQUARGRAPH on Google ↗';
+  link.textContent = 'View on Google Maps ↗';
   link.style.cssText = 'width:max-content;color:#fff;font-size:13px;font-weight:500;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.34);padding-bottom:3px;';
 
-  info.appendChild(googleLabel);
+  info.appendChild(label);
   info.appendChild(brandLine);
   info.appendChild(title);
   info.appendChild(category);
@@ -112,7 +119,7 @@ window.SQ.initFooterLocationMap = function () {
   info.appendChild(link);
 
   var mapWrap = document.createElement('div');
-  mapWrap.style.cssText = 'min-height:250px;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:#151515;';
+  mapWrap.style.cssText = 'min-height:280px;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:#151515;';
 
   var iframe = document.createElement('iframe');
   iframe.src = 'https://www.google.com/maps?q=SQUARGRAPH%20Studios%2C%20Hari%20Nagar%20Ashram%2C%20New%20Delhi%20110014&output=embed';
@@ -120,12 +127,16 @@ window.SQ.initFooterLocationMap = function () {
   iframe.loading = 'lazy';
   iframe.referrerPolicy = 'no-referrer-when-downgrade';
   iframe.setAttribute('allowfullscreen', '');
-  iframe.style.cssText = 'display:block;width:100%;height:100%;min-height:250px;border:0;';
+  iframe.style.cssText = 'display:block;width:100%;height:100%;min-height:280px;border:0;';
   mapWrap.appendChild(iframe);
 
   grid.appendChild(info);
   grid.appendChild(mapWrap);
   section.appendChild(grid);
+
+  var mobileStyle = document.createElement('style');
+  mobileStyle.textContent = '@media(max-width:760px){.footer-map-block>div{grid-template-columns:1fr!important}.footer-map-block{padding:32px 0!important}.footer-map-block iframe{min-height:240px!important}}';
+  section.appendChild(mobileStyle);
 
   var marker = footer.querySelector('.footer-bar, .footer-bottom');
   if (marker) footer.insertBefore(section, marker);
