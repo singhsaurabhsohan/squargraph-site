@@ -49,6 +49,29 @@
 .case-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 .case-external-mark { margin-left: 7px; font-size: .84em; }
 
+/* ZUCERO attribution: this case study represents website work only. */
+body[data-page="work-zucero"] .case-actions::after {
+  content: "Scope: Website project only. SQUARGRAPH’s work shown here is limited to the website experience and implementation.";
+  display: block;
+  flex-basis: 100%;
+  margin-top: 8px;
+  max-width: 680px;
+  color: var(--textmuted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+body[data-page="work-zucero"] .case-meta > div:nth-child(3) p {
+  font-size: 0;
+}
+body[data-page="work-zucero"] .case-meta > div:nth-child(3) p::after {
+  content: "Website design & development only";
+  font-size: 16px;
+  line-height: 1.55;
+}
+body[data-page="work-zucero"] .case-related-links a[href="/capabilities/#brand-direction"] {
+  display: none;
+}
+
 .case-hero-media {
   margin: 64px 0 0;
   overflow: hidden;
@@ -181,6 +204,7 @@
   .case-intro { font-size: 16px; }
   .case-actions { display: grid; grid-template-columns: 1fr; }
   .case-actions .destination-button { width: 100%; }
+  body[data-page="work-zucero"] .case-actions::after { margin-top: 4px; }
   .case-hero-media { margin-top: 44px; }
   .case-section { padding: 72px 0; }
   .case-section-head { margin-bottom: 36px; }
