@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
-  "updated": "2026-07-20",
+  "updated": "2026-09-12",
   "entries": [
     {
       "id": "zucero-digital-experience",
       "title": "ZUCERO",
       "client": "ZUCERO",
       "relationship": "squargraph",
-      "category": ["Digital", "Brand"],
-      "summary": "A heritage-led sweetener brand translated into a cohesive editorial website and responsive digital experience.",
-      "role": "Information architecture, narrative structure, editorial interface design, responsive front-end development and video integration.",
-      "outputs": ["Brand website", "Narrative architecture", "Responsive digital experience"],
+      "category": ["Digital"],
+      "summary": "A website-only project for ZUCERO, designed and developed as a responsive editorial-commerce experience around its current product world.",
+      "role": "Information architecture, website UX/UI design, responsive front-end development, video integration and live implementation. Scope limited to the website only.",
+      "outputs": ["Website design", "Responsive front-end development", "Live website implementation"],
       "outcome": null,
       "status": "live",
       "image": "/assets/images/work/zucero/zucero-work-card-v20260720.webp",
       "previewImage": "/assets/images/work/zucero/zucero-work-card-v20260720.webp",
-      "imageAlt": "ZUCERO website hero presenting sweetness as a ritual through an immersive editorial experience",
+      "imageAlt": "ZUCERO website experience for thegoodsugar.in",
       "featured": true,
       "published": true,
       "url": "/work/zucero/",
       "caseStudyUrl": "/work/zucero/",
       "liveUrl": "https://thegoodsugar.in/",
       "analyticsEvent": "zucero_work_card_click",
-      "linkLabel": "View case study"
+      "linkLabel": "View website project"
     },
     {
       "id": "squargraph-brand-system",
