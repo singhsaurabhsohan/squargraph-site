@@ -61,29 +61,53 @@ window.SQ.initFooterLocationMap = function () {
   var info = document.createElement('div');
   info.style.cssText = 'display:flex;flex-direction:column;justify-content:center;min-height:220px;padding:6px 0;';
 
-  var label = document.createElement('span');
-  label.textContent = 'Studio location';
-  label.style.cssText = 'display:block;margin-bottom:12px;color:rgba(255,255,255,.58);font-size:11px;line-height:1.4;text-transform:uppercase;letter-spacing:.08em;';
+  var googleLabel = document.createElement('span');
+  googleLabel.textContent = 'Google Business Profile';
+  googleLabel.style.cssText = 'display:block;margin-bottom:14px;color:rgba(255,255,255,.58);font-size:11px;line-height:1.4;text-transform:uppercase;letter-spacing:.08em;';
+
+  var brandLine = document.createElement('div');
+  brandLine.style.cssText = 'display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;';
+
+  var logo = document.createElement('img');
+  logo.src = '/logo.webp?v=20260719-optimized1';
+  logo.alt = 'SQUARGRAPH™';
+  logo.width = 236;
+  logo.height = 28;
+  logo.loading = 'lazy';
+  logo.style.cssText = 'display:block;width:min(190px,60vw);height:auto;object-fit:contain;';
+
+  var onGoogle = document.createElement('span');
+  onGoogle.textContent = 'on Google';
+  onGoogle.style.cssText = 'color:#fff;font:500 18px/1.2 Satoshi,Arial,sans-serif;letter-spacing:-.02em;';
+
+  brandLine.appendChild(logo);
+  brandLine.appendChild(onGoogle);
 
   var title = document.createElement('h2');
   title.id = 'footer-location-title';
-  title.textContent = 'Hari Nagar Ashram';
-  title.style.cssText = 'margin:0 0 10px;color:#fff;font:500 clamp(24px,3vw,34px)/1.15 Satoshi,Arial,sans-serif;letter-spacing:-.02em;';
+  title.textContent = 'SQUARGRAPH™ · Hari Nagar Ashram';
+  title.style.cssText = 'margin:0 0 8px;color:#fff;font:500 clamp(22px,2.5vw,30px)/1.2 Satoshi,Arial,sans-serif;letter-spacing:-.02em;';
+
+  var category = document.createElement('p');
+  category.textContent = 'Marketing agency · South Delhi';
+  category.style.cssText = 'margin:0 0 4px;color:rgba(255,255,255,.82);font-size:14px;line-height:1.6;';
 
   var address = document.createElement('p');
-  address.textContent = 'South Delhi, New Delhi 110014';
-  address.style.cssText = 'margin:0 0 22px;color:rgba(255,255,255,.68);font-size:14px;line-height:1.7;';
+  address.textContent = 'Hari Nagar Ashram, New Delhi 110014';
+  address.style.cssText = 'margin:0 0 22px;color:rgba(255,255,255,.58);font-size:13px;line-height:1.7;';
 
   var link = document.createElement('a');
-  link.href = 'https://www.google.com/maps/search/?api=1&query=Hari%20Nagar%20Ashram%2C%20South%20Delhi%2C%20New%20Delhi%20110014';
+  link.href = 'https://www.google.com/maps/search/?api=1&query=SQUARGRAPH%20Studios%2C%20Hari%20Nagar%20Ashram%2C%20New%20Delhi%20110014';
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
-  link.setAttribute('data-sq-event', 'footer_map_open');
-  link.textContent = 'Open in Google Maps ↗';
+  link.setAttribute('data-sq-event', 'footer_google_business_open');
+  link.textContent = 'View SQUARGRAPH on Google ↗';
   link.style.cssText = 'width:max-content;color:#fff;font-size:13px;font-weight:500;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.34);padding-bottom:3px;';
 
-  info.appendChild(label);
+  info.appendChild(googleLabel);
+  info.appendChild(brandLine);
   info.appendChild(title);
+  info.appendChild(category);
   info.appendChild(address);
   info.appendChild(link);
 
@@ -91,8 +115,8 @@ window.SQ.initFooterLocationMap = function () {
   mapWrap.style.cssText = 'min-height:250px;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:#151515;';
 
   var iframe = document.createElement('iframe');
-  iframe.src = 'https://www.google.com/maps?q=Hari%20Nagar%20Ashram%2C%20South%20Delhi%2C%20New%20Delhi%20110014&output=embed';
-  iframe.title = 'Map showing Hari Nagar Ashram, South Delhi, New Delhi 110014';
+  iframe.src = 'https://www.google.com/maps?q=SQUARGRAPH%20Studios%2C%20Hari%20Nagar%20Ashram%2C%20New%20Delhi%20110014&output=embed';
+  iframe.title = 'SQUARGRAPH on Google Maps, Hari Nagar Ashram, New Delhi 110014';
   iframe.loading = 'lazy';
   iframe.referrerPolicy = 'no-referrer-when-downgrade';
   iframe.setAttribute('allowfullscreen', '');
