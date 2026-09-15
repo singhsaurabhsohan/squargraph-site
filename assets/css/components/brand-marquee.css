@@ -9,7 +9,7 @@
 .brand-marquee-head {
   width: min(100%, 1440px);
   margin: 0 auto;
-  padding: 30px clamp(20px, 4vw, 64px) 20px;
+  padding: 28px clamp(20px, 4vw, 64px) 18px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -34,10 +34,10 @@
 }
 
 .brand-marquee-mask {
-  --brand-gap: clamp(34px, 3.7vw, 58px);
+  --brand-gap: 56px;
   width: 100%;
   overflow: hidden;
-  padding: 6px 0 30px;
+  padding: 4px 0 28px;
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
 }
@@ -59,7 +59,7 @@
 
 .brand-marquee-item {
   width: max-content;
-  height: 70px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,29 +71,31 @@
   width: auto;
   height: auto;
   max-width: 164px;
-  max-height: 44px;
+  max-height: 42px;
   object-fit: contain;
   filter: none;
   opacity: 1;
 }
 
 .brand-marquee-item--wide img {
-  max-width: 205px;
-  max-height: 40px;
+  max-width: 198px;
+  max-height: 38px;
 }
 
 .brand-marquee-item--compact img {
-  max-width: 138px;
-  max-height: 36px;
-}
-
-.brand-marquee-item--zucero {
-  height: 82px;
+  max-width: 132px;
+  max-height: 34px;
 }
 
 .brand-marquee-item--zucero img {
-  max-width: 118px;
-  max-height: 68px;
+  max-width: 110px;
+  max-height: 64px;
+}
+
+/* YASHICA and Lowepro source marks are light assets. Keep the original mark,
+   but render it in black so it remains visible on the white marquee. */
+.brand-marquee-item--dark-on-light img {
+  filter: brightness(0);
 }
 
 .brand-marquee-fallback {
@@ -117,8 +119,8 @@
 
 @media (max-width: 680px) {
   .brand-marquee-head {
-    padding-top: 24px;
-    padding-bottom: 16px;
+    padding-top: 22px;
+    padding-bottom: 14px;
     display: block;
   }
 
@@ -130,8 +132,8 @@
   }
 
   .brand-marquee-mask {
-    --brand-gap: 30px;
-    padding-bottom: 24px;
+    --brand-gap: 32px;
+    padding-bottom: 22px;
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
     mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
   }
@@ -141,30 +143,26 @@
   }
 
   .brand-marquee-item {
-    height: 60px;
+    height: 62px;
   }
 
   .brand-marquee-item img {
     max-width: 122px;
-    max-height: 36px;
+    max-height: 34px;
   }
 
   .brand-marquee-item--wide img {
-    max-width: 155px;
-    max-height: 32px;
+    max-width: 150px;
+    max-height: 30px;
   }
 
   .brand-marquee-item--compact img {
-    max-width: 116px;
-  }
-
-  .brand-marquee-item--zucero {
-    height: 68px;
+    max-width: 112px;
   }
 
   .brand-marquee-item--zucero img {
-    max-width: 96px;
-    max-height: 56px;
+    max-width: 92px;
+    max-height: 54px;
   }
 
   .brand-marquee-fallback {
