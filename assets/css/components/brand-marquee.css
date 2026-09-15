@@ -88,6 +88,16 @@
   max-height: 36px;
 }
 
+.brand-marquee-fallback {
+  display: block;
+  color: #151411;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  white-space: nowrap;
+}
+
 .brand-marquee-mask:hover .brand-marquee-track {
   animation-play-state: paused;
 }
@@ -141,6 +151,10 @@
 
   .brand-marquee-item--wide img {
     max-height: 32px;
+  }
+
+  .brand-marquee-fallback {
+    font-size: 13px;
   }
 }
 
