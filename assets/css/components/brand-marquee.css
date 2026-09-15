@@ -93,6 +93,7 @@
 .brand-marquee-item--yashica img {
   max-width: 142px;
   max-height: 44px;
+  filter: brightness(0);
 }
 
 .brand-marquee-item--angelbird img {
@@ -164,6 +165,7 @@
   .brand-marquee-item--yashica img {
     max-width: 108px;
     max-height: 36px;
+    filter: brightness(0);
   }
 
   .brand-marquee-item--angelbird img {
