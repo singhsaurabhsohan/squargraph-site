@@ -16,7 +16,7 @@
     { name: 'Mahindra', src: '/assets/images/brand-marks/mahindra.svg' },
     { name: 'vivo', src: '/assets/images/brand-marks/vivo.svg' },
     { name: 'MG Motor', src: '/assets/images/brand-marks/mg-motor.svg', className: 'brand-marquee-item--compact' },
-    { name: 'ZUCERO - The Good Sugar', src: 'https://thegoodsugar.in/assets/images/zucerothegoodsugar-logo.webp', className: 'brand-marquee-item--zucero' },
+    { name: 'ZUCERO - The Good Sugar', src: 'https://raw.githubusercontent.com/singhsaurabhsohan/zucero-website/main/assets/images/zucerothegoodsugar-logo.webp', className: 'brand-marquee-item--zucero' },
     { name: 'YASHICA', src: '/assets/images/brand-marks/yashica.png' },
     { name: 'Angelbird', src: '/assets/images/brand-marks/angelbird.svg' },
     { name: 'Lowepro', src: '/assets/images/brand-marks/lowepro.png' }
