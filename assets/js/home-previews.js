@@ -26,7 +26,7 @@
     if (document.querySelector('link[data-brand-marquee-styles]')) return;
     var link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = '/assets/css/components/brand-marquee.css?v=20260915-2';
+    link.href = '/assets/css/components/brand-marquee.css?v=20260915-3';
     link.dataset.brandMarqueeStyles = '';
     document.head.appendChild(link);
   }
