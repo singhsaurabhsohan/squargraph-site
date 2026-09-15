@@ -2571,10 +2571,6 @@ body.home #contact {
   display: none !important;
 }
 
-#mobile-book-wrap.sg-show {
-  display: flex !important;
-}
-
 #mobile-book-wrap.sg-contact-hidden {
   display: none !important;
 }
