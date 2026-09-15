@@ -17,16 +17,16 @@
     { name: 'vivo', src: '/assets/images/brand-marks/vivo.svg' },
     { name: 'MG Motor', src: '/assets/images/brand-marks/mg-motor.svg', className: 'brand-marquee-item--compact' },
     { name: 'ZUCERO - The Good Sugar', src: 'https://raw.githubusercontent.com/singhsaurabhsohan/zucero-website/main/assets/images/zucerothegoodsugar-logo.webp', className: 'brand-marquee-item--zucero' },
-    { name: 'YASHICA', src: '/assets/images/brand-marks/yashica.png' },
+    { name: 'YASHICA', src: '/assets/images/brand-marks/yashica.png', className: 'brand-marquee-item--dark-on-light' },
     { name: 'Angelbird', src: '/assets/images/brand-marks/angelbird.svg' },
-    { name: 'Lowepro', src: '/assets/images/brand-marks/lowepro.png' }
+    { name: 'Lowepro', src: '/assets/images/brand-marks/lowepro.png', className: 'brand-marquee-item--dark-on-light' }
   ];
 
   function ensureBrandMarqueeStyles() {
     if (document.querySelector('link[data-brand-marquee-styles]')) return;
     var link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = '/assets/css/components/brand-marquee.css?v=20260915-3';
+    link.href = '/assets/css/components/brand-marquee.css?v=20260915-4';
     link.dataset.brandMarqueeStyles = '';
     document.head.appendChild(link);
   }
@@ -58,7 +58,9 @@
 
   function renderBrandMarquee() {
     var hero = document.getElementById('hero');
-    if (!hero || document.querySelector('.brand-marquee-section')) return;
+    var trust = document.querySelector('.architecture-trust');
+    var anchor = trust || hero;
+    if (!anchor || document.querySelector('.brand-marquee-section')) return;
 
     ensureBrandMarqueeStyles();
 
@@ -77,7 +79,7 @@
 
     section.appendChild(head);
     section.appendChild(mask);
-    hero.insertAdjacentElement('afterend', section);
+    anchor.insertAdjacentElement('afterend', section);
   }
 
   function makeVideoAudioButton() {
