@@ -16,7 +16,7 @@
     { name: 'Mahindra', src: '/assets/images/brand-marks/mahindra.svg' },
     { name: 'vivo', src: '/assets/images/brand-marks/vivo.svg' },
     { name: 'MG Motor', src: '/assets/images/brand-marks/mg-motor.svg', className: 'brand-marquee-item--compact' },
-    { name: 'ZUCERO - The Good Sugar', src: 'https://thegoodsugar.in/assets/images/zucerothegoodsugar-logo.webp', className: 'brand-marquee-item--wide' },
+    { name: 'ZUCERO - The Good Sugar', src: 'https://thegoodsugar.in/assets/images/zucerothegoodsugar-logo.webp', className: 'brand-marquee-item--zucero' },
     { name: 'YASHICA', src: '/assets/images/brand-marks/yashica.png' },
     { name: 'Angelbird', src: '/assets/images/brand-marks/angelbird.svg' },
     { name: 'Lowepro', src: '/assets/images/brand-marks/lowepro.png' }
@@ -26,7 +26,7 @@
     if (document.querySelector('link[data-brand-marquee-styles]')) return;
     var link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = '/assets/css/components/brand-marquee.css?v=20260915-1';
+    link.href = '/assets/css/components/brand-marquee.css?v=20260915-2';
     link.dataset.brandMarqueeStyles = '';
     document.head.appendChild(link);
   }
