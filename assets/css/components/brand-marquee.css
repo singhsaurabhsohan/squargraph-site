@@ -34,6 +34,7 @@
 }
 
 .brand-marquee-mask {
+  --brand-gap: clamp(34px, 3.7vw, 58px);
   width: 100%;
   overflow: hidden;
   padding: 6px 0 30px;
@@ -51,13 +52,13 @@
 .brand-marquee-group {
   display: flex;
   align-items: center;
-  gap: clamp(30px, 4.4vw, 72px);
-  padding-right: clamp(30px, 4.4vw, 72px);
+  gap: var(--brand-gap);
+  padding-right: var(--brand-gap);
   flex: 0 0 auto;
 }
 
 .brand-marquee-item {
-  width: clamp(118px, 10vw, 164px);
+  width: max-content;
   height: 70px;
   display: flex;
   align-items: center;
@@ -69,29 +70,25 @@
   display: block;
   width: auto;
   height: auto;
-  max-width: 100%;
+  max-width: 164px;
   max-height: 44px;
   object-fit: contain;
   filter: none;
   opacity: 1;
 }
 
-.brand-marquee-item--wide {
-  width: clamp(150px, 13vw, 205px);
-}
-
 .brand-marquee-item--wide img {
+  max-width: 205px;
   max-height: 40px;
 }
 
 .brand-marquee-item--compact img {
+  max-width: 138px;
   max-height: 36px;
 }
 
 .brand-marquee-item--zucero {
-  width: clamp(118px, 10vw, 150px);
   height: 82px;
-  margin-right: -20px;
 }
 
 .brand-marquee-item--zucero img {
@@ -133,6 +130,7 @@
   }
 
   .brand-marquee-mask {
+    --brand-gap: 30px;
     padding-bottom: 24px;
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
     mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
@@ -142,32 +140,26 @@
     animation-duration: 27s;
   }
 
-  .brand-marquee-group {
-    gap: 30px;
-    padding-right: 30px;
-  }
-
   .brand-marquee-item {
-    width: 122px;
     height: 60px;
   }
 
   .brand-marquee-item img {
+    max-width: 122px;
     max-height: 36px;
   }
 
-  .brand-marquee-item--wide {
-    width: 155px;
-  }
-
   .brand-marquee-item--wide img {
+    max-width: 155px;
     max-height: 32px;
   }
 
+  .brand-marquee-item--compact img {
+    max-width: 116px;
+  }
+
   .brand-marquee-item--zucero {
-    width: 108px;
     height: 68px;
-    margin-right: -14px;
   }
 
   .brand-marquee-item--zucero img {
