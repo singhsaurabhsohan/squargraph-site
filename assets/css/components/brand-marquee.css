@@ -88,6 +88,16 @@
   max-height: 36px;
 }
 
+.brand-marquee-item--zucero {
+  width: clamp(118px, 10vw, 150px);
+  height: 82px;
+}
+
+.brand-marquee-item--zucero img {
+  max-width: 118px;
+  max-height: 68px;
+}
+
 .brand-marquee-fallback {
   display: block;
   color: #151411;
@@ -151,6 +161,16 @@
 
   .brand-marquee-item--wide img {
     max-height: 32px;
+  }
+
+  .brand-marquee-item--zucero {
+    width: 108px;
+    height: 68px;
+  }
+
+  .brand-marquee-item--zucero img {
+    max-width: 96px;
+    max-height: 56px;
   }
 
   .brand-marquee-fallback {
