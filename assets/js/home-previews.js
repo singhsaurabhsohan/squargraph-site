@@ -8,6 +8,78 @@
     return node;
   }
 
+  var brandMarks = [
+    { name: 'Tata Motors', src: '/assets/images/brand-marks/tata-motors.svg', className: 'brand-marquee-item--wide' },
+    { name: 'Audi', src: '/assets/images/brand-marks/audi.svg', className: 'brand-marquee-item--compact' },
+    { name: 'Hyundai India', src: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Hyundai_Motor_Company_logo.svg', className: 'brand-marquee-item--wide' },
+    { name: 'Booking.com', src: '/assets/images/brand-marks/booking-com.svg', className: 'brand-marquee-item--wide' },
+    { name: 'Mahindra', src: '/assets/images/brand-marks/mahindra.svg' },
+    { name: 'vivo', src: '/assets/images/brand-marks/vivo.svg' },
+    { name: 'MG Motor', src: '/assets/images/brand-marks/mg-motor.svg', className: 'brand-marquee-item--compact' },
+    { name: 'ZUCERO - The Good Sugar', src: 'https://thegoodsugar.in/assets/images/zucerothegoodsugar-logo.webp', className: 'brand-marquee-item--wide' },
+    { name: 'YASHICA', src: '/assets/images/brand-marks/yashica.png' },
+    { name: 'Angelbird', src: '/assets/images/brand-marks/angelbird.svg' },
+    { name: 'Lowepro', src: '/assets/images/brand-marks/lowepro.png' }
+  ];
+
+  function ensureBrandMarqueeStyles() {
+    if (document.querySelector('link[data-brand-marquee-styles]')) return;
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/assets/css/components/brand-marquee.css?v=20260915-1';
+    link.dataset.brandMarqueeStyles = '';
+    document.head.appendChild(link);
+  }
+
+  function brandGroup(isDuplicate) {
+    var group = make('div', 'brand-marquee-group');
+    if (isDuplicate) group.setAttribute('aria-hidden', 'true');
+
+    brandMarks.forEach(function (brand) {
+      var item = make('div', 'brand-marquee-item' + (brand.className ? ' ' + brand.className : ''));
+      var image = document.createElement('img');
+      image.src = brand.src;
+      image.alt = isDuplicate ? '' : brand.name;
+      image.decoding = 'async';
+      image.loading = 'lazy';
+      image.referrerPolicy = 'no-referrer';
+      image.addEventListener('error', function () {
+        if (!image.parentNode) return;
+        item.classList.add('brand-marquee-item--fallback');
+        image.remove();
+        item.appendChild(make('span', 'brand-marquee-fallback', brand.name));
+      }, { once: true });
+      item.appendChild(image);
+      group.appendChild(item);
+    });
+
+    return group;
+  }
+
+  function renderBrandMarquee() {
+    var hero = document.getElementById('hero');
+    if (!hero || document.querySelector('.brand-marquee-section')) return;
+
+    ensureBrandMarqueeStyles();
+
+    var section = make('section', 'brand-marquee-section');
+    section.setAttribute('aria-label', "Brands we've worked with");
+
+    var head = make('div', 'brand-marquee-head');
+    head.appendChild(make('p', 'brand-marquee-title', "Brands we've worked with"));
+    head.appendChild(make('p', 'brand-marquee-note', 'Across SQUARGRAPH engagements and founder-led professional experience.'));
+
+    var mask = make('div', 'brand-marquee-mask');
+    var track = make('div', 'brand-marquee-track');
+    track.appendChild(brandGroup(false));
+    track.appendChild(brandGroup(true));
+    mask.appendChild(track);
+
+    section.appendChild(head);
+    section.appendChild(mask);
+    hero.insertAdjacentElement('afterend', section);
+  }
+
   function makeVideoAudioButton() {
     var button = make('button', 'brand-film-audio');
     button.type = 'button';
@@ -22,7 +94,7 @@
   function renderWork() {
     var grid = document.querySelector('[data-home-work-grid]');
     if (!grid) return;
-    fetch('/assets/data/work.json?v=20260720-zucero1')
+    fetch('/assets/data/work.json?v=20260915-zucero-website1')
       .then(function (response) { if (!response.ok) throw new Error('Work data unavailable'); return response.json(); })
       .then(function (data) {
         var entries = (data.entries || []).filter(function (entry) {
@@ -137,6 +209,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    renderBrandMarquee();
     renderWork();
     renderIntelligence();
   });
