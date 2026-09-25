@@ -1,5 +1,7 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
+const CONTROL_CALLBACK_URL = 'https://htuswsvgobgpurnbmjkk.supabase.co/functions/v1/control-billing-callback';
+
 async function hmac(secret: string, message: string) {
   const encoder = new TextEncoder();
   const key = await crypto.subtle.importKey('raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
@@ -72,13 +74,51 @@ Deno.serve(async (request) => {
   if (!status) return response(200, { ok: true, ignored: true });
 
   const admin = createClient(supabaseUrl, adminKey, { auth: { persistSession: false } });
+  const { data: storedOrder, error: lookupError } = await admin
+    .from('payment_orders')
+    .select('*')
+    .eq('provider_order_id', providerOrderId)
+    .maybeSingle();
+
+  if (lookupError || !storedOrder) return response(200, { ok: true, ignored: true });
+
   const { error } = await admin.from('payment_orders').update({
     status,
-    razorpay_payment_id: payment?.id || undefined,
+    razorpay_payment_id: payment?.id || storedOrder.razorpay_payment_id || undefined,
     provider_payload: event,
     updated_at: new Date().toISOString(),
-  }).eq('provider_order_id', providerOrderId);
+  }).eq('id', storedOrder.id);
 
   if (error) return response(500, { ok: false });
+
+  if (
+    status === 'captured' &&
+    storedOrder.product_key === 'control_renewal' &&
+    storedOrder.control_confirmation_token &&
+    (payment?.id || storedOrder.razorpay_payment_id)
+  ) {
+    try {
+      const callback = await fetch(CONTROL_CALLBACK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          order_token: storedOrder.order_token,
+          confirmation_token: storedOrder.control_confirmation_token,
+          provider_order_id: storedOrder.provider_order_id,
+          provider_payment_id: payment?.id || storedOrder.razorpay_payment_id,
+          amount_paise: Number(storedOrder.amount),
+          currency: String(storedOrder.currency),
+          provider_payload: event,
+        }),
+      });
+
+      if (!callback.ok) {
+        console.error('[control-renewal] callback failed', callback.status, await callback.text());
+      }
+    } catch (callbackError) {
+      console.error('[control-renewal] callback exception', callbackError);
+    }
+  }
+
   return response(200, { ok: true });
 });
