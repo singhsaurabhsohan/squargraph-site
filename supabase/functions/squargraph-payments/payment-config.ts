@@ -1,6 +1,7 @@
 export const ALLOWED_ORIGINS = new Set([
   'https://squargraph.com',
   'https://www.squargraph.com',
+  'https://control.squargraph.com',
   'http://127.0.0.1:4177',
   'http://localhost:4177',
 ]);
