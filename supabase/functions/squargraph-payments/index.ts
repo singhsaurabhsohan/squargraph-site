@@ -1,10 +1,32 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 import { ALLOWED_ORIGINS, PRODUCTS, type ProductKey } from './payment-config.ts';
 
+const CONTROL_SUPABASE_URL = 'https://htuswsvgobgpurnbmjkk.supabase.co';
+const CONTROL_PUBLISHABLE_KEY = 'sb_publishable_WBkaADa8PF8gTWEh5vYtKg_HvNWeYNI';
+
+async function controlRpc(name: string, body: Record<string, unknown>, userToken?: string) {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    apikey: CONTROL_PUBLISHABLE_KEY,
+  };
+  if (userToken) headers.Authorization = `Bearer ${userToken}`;
+  const response = await fetch(`${CONTROL_SUPABASE_URL}/rest/v1/rpc/${name}`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(body),
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    const message = typeof data?.message === 'string' ? data.message : 'Control billing request failed.';
+    throw new Error(message);
+  }
+  return data;
+}
+
 function cors(origin: string) {
   return {
     'Access-Control-Allow-Origin': ALLOWED_ORIGINS.has(origin) ? origin : 'https://squargraph.com',
-    'Access-Control-Allow-Headers': 'content-type',
+    'Access-Control-Allow-Headers': 'content-type, authorization',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Vary': 'Origin',
   };
@@ -121,6 +143,226 @@ Deno.serve(async (request) => {
   let body: Record<string, unknown>;
   try { body = await request.json(); }
   catch { return reply(origin, 400, { ok: false, error: 'Invalid request body.' }); }
+
+
+  if (body.action === 'create_control_order') {
+    if (!await rateLimit(admin, request)) {
+      return reply(origin, 429, { ok: false, error: 'Too many payment attempts. Please try again shortly.' });
+    }
+
+    const authorization = request.headers.get('authorization') || '';
+    const tokenMatch = authorization.match(/^Bearer\s+(.+)$/i);
+    const userToken = tokenMatch?.[1]?.trim() || '';
+    if (!userToken) return reply(origin, 401, { ok: false, error: 'Control authentication required.' });
+
+    const orderToken = text(body.order_token, 80);
+    if (!orderToken) return reply(origin, 400, { ok: false, error: 'Billing order token is required.' });
+
+    let intent: Record<string, any>;
+    try {
+      intent = await controlRpc('control_billing_intent_for_payment', { p_order_token: orderToken }, userToken);
+    } catch (error) {
+      return reply(origin, 403, { ok: false, error: error instanceof Error ? error.message : 'Control billing intent could not be verified.' });
+    }
+
+    const amount = Number(intent.amount_paise || 0);
+    const currency = String(intent.currency || '').toUpperCase();
+    const confirmationToken = String(intent.confirmation_token || '');
+    const clientKey = text(intent.client_key, 80);
+    if (!Number.isInteger(amount) || amount <= 0 || currency !== 'INR' || !confirmationToken || !clientKey) {
+      return reply(origin, 409, { ok: false, error: 'Control billing intent is incomplete.' });
+    }
+
+    const providerOrder = await callRazorpay(keyId, keySecret, '/orders', {
+      method: 'POST',
+      body: JSON.stringify({
+        amount,
+        currency,
+        receipt: `ctrl_${Date.now().toString(36)}_${orderToken.slice(0, 8)}`,
+        notes: {
+          product: 'control_renewal',
+          source: 'control.squargraph.com',
+          client_key: clientKey,
+          control_order_token: orderToken,
+        },
+      }),
+    });
+
+    const { error: insertError } = await admin.from('payment_orders').insert({
+      order_token: orderToken,
+      provider_order_id: providerOrder.id,
+      product_key: 'control_renewal',
+      product_name: `SQUARGRAPH Site Control renewal — ${text(intent.client_name, 100) || clientKey}`,
+      amount,
+      currency,
+      status: 'created',
+      customer_email: text(intent.billing_email, 180).toLowerCase() || null,
+      customer_name: text(intent.billing_name, 120) || null,
+      customer_company: text(intent.billing_company, 160) || null,
+      source: 'control.squargraph.com',
+      provider_payload: providerOrder,
+      control_client_key: clientKey,
+      control_service_id: String(intent.service_id || '') || null,
+      control_confirmation_token: confirmationToken,
+      control_callback_url: `${CONTROL_SUPABASE_URL}/functions/v1/control-billing-callback`,
+      billing_period_months: Number(intent.billing_cycle_months || 1),
+      billing_period_start: intent.period_start || null,
+      billing_period_end: intent.period_end || null,
+    });
+
+    if (insertError) {
+      return reply(origin, 500, { ok: false, error: 'Could not initialise the Control renewal payment.' });
+    }
+
+    try {
+      await controlRpc(
+        'control_attach_billing_provider_order',
+        { p_order_token: orderToken, p_provider_order_id: providerOrder.id },
+        userToken
+      );
+    } catch {
+      await admin.from('payment_orders').update({ status: 'failed', updated_at: new Date().toISOString() }).eq('provider_order_id', providerOrder.id);
+      return reply(origin, 500, { ok: false, error: 'Payment order was created but could not be linked to Control. Please retry.' });
+    }
+
+    return reply(origin, 200, {
+      ok: true,
+      order_token: orderToken,
+      order_id: providerOrder.id,
+      key_id: keyId,
+      amount,
+      currency,
+      product_name: `SQUARGRAPH Site Control renewal — ${text(intent.client_name, 100) || clientKey}`,
+      description: `${Number(intent.billing_cycle_months || 1)} month service renewal`,
+      client_name: intent.client_name,
+      period_end: intent.period_end,
+    });
+  }
+
+  if (body.action === 'verify_control_payment') {
+    const orderToken = text(body.order_token, 80);
+    const paymentId = text(body.razorpay_payment_id, 120);
+    const checkoutOrderId = text(body.razorpay_order_id, 120);
+    const signature = text(body.razorpay_signature, 160);
+
+    if (!orderToken || !paymentId || !checkoutOrderId || !signature) {
+      return reply(origin, 400, { ok: false, error: 'Incomplete payment verification payload.' });
+    }
+
+    const { data: order, error } = await admin
+      .from('payment_orders')
+      .select('*')
+      .eq('order_token', orderToken)
+      .eq('product_key', 'control_renewal')
+      .maybeSingle();
+
+    if (error || !order) return reply(origin, 404, { ok: false, error: 'Control renewal payment order not found.' });
+    if (order.provider_order_id !== checkoutOrderId) return reply(origin, 400, { ok: false, error: 'Payment order mismatch.' });
+
+    const finalize = async () => {
+      const response = await fetch(`${CONTROL_SUPABASE_URL}/functions/v1/control-billing-callback`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          order_token: orderToken,
+          confirmation_token: order.control_confirmation_token,
+          provider_order_id: order.provider_order_id,
+          provider_payment_id: paymentId,
+          amount_paise: Number(order.amount),
+          currency: String(order.currency),
+          provider_payload: order.provider_payload || {},
+        }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || data?.ok !== true) {
+        throw new Error(data?.error || 'Control renewal finalisation is pending.');
+      }
+      return data;
+    };
+
+    if (order.status === 'captured' && order.razorpay_payment_id === paymentId) {
+      try {
+        const finalised = await finalize();
+        return reply(origin, 200, {
+          ok: true,
+          verified: true,
+          payment_status: 'captured',
+          invoice_number: finalised.invoice_number,
+          paid_through: finalised.paid_through,
+          email_status: finalised.email_status,
+          whatsapp_status: finalised.whatsapp_status,
+        });
+      } catch {
+        return reply(origin, 200, { ok: true, verified: true, payment_status: 'captured', finalisation_pending: true });
+      }
+    }
+
+    const expected = await hmac(keySecret, `${order.provider_order_id}|${paymentId}`);
+    if (!equal(expected, signature)) return reply(origin, 401, { ok: false, error: 'Payment signature verification failed.' });
+
+    let payment;
+    try {
+      payment = await capturedPayment(keyId, keySecret, paymentId, Number(order.amount), String(order.currency));
+    } catch {
+      return reply(origin, 409, { ok: false, error: 'Payment is authorised but could not be captured yet. Please contact SQUARGRAPH if the amount was debited.' });
+    }
+
+    if (payment.order_id !== order.provider_order_id || Number(payment.amount) !== Number(order.amount) || payment.currency !== order.currency) {
+      return reply(origin, 400, { ok: false, error: 'Payment details do not match the renewal order.' });
+    }
+    if (payment.status !== 'captured' || payment.captured === false) {
+      return reply(origin, 409, { ok: false, error: 'Payment has not been captured. The service renewal has not been applied.' });
+    }
+
+    const { error: updateError } = await admin.from('payment_orders').update({
+      status: 'captured',
+      razorpay_payment_id: paymentId,
+      razorpay_signature: signature,
+      provider_payload: payment,
+      verified_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    }).eq('id', order.id);
+
+    if (updateError) {
+      return reply(origin, 500, { ok: false, error: 'Payment captured but could not be recorded. Contact SQUARGRAPH with the payment ID.' });
+    }
+
+    try {
+      const updatedOrder = { ...order, provider_payload: payment };
+      const response = await fetch(`${CONTROL_SUPABASE_URL}/functions/v1/control-billing-callback`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          order_token: orderToken,
+          confirmation_token: updatedOrder.control_confirmation_token,
+          provider_order_id: updatedOrder.provider_order_id,
+          provider_payment_id: paymentId,
+          amount_paise: Number(updatedOrder.amount),
+          currency: String(updatedOrder.currency),
+          provider_payload: payment,
+        }),
+      });
+      const finalised = await response.json().catch(() => ({}));
+      if (response.ok && finalised?.ok === true) {
+        return reply(origin, 200, {
+          ok: true,
+          verified: true,
+          payment_status: 'captured',
+          invoice_number: finalised.invoice_number,
+          paid_through: finalised.paid_through,
+          email_status: finalised.email_status,
+          whatsapp_status: finalised.whatsapp_status,
+        });
+      }
+    } catch {}
+
+    return reply(origin, 200, {
+      ok: true,
+      verified: true,
+      payment_status: 'captured',
+      finalisation_pending: true,
+    });
+  }
 
   if (body.action === 'create_order') {
     if (!await rateLimit(admin, request)) {
