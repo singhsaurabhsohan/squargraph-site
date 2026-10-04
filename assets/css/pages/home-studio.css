@@ -1,4 +1,33 @@
 /* A distinct editorial direction for the SQUARGRAPH homepage. */
+body.home {
+  --home-rail: clamp(24px, 3.75vw, 76px);
+}
+
+body.home .nav-inner,
+body.home .footer-inner,
+body.home .footer-bar {
+  max-width: calc(1660px + 2 * var(--home-rail)) !important;
+  margin-inline: auto;
+  padding-inline: var(--home-rail) !important;
+}
+
+body.home .architecture-shell {
+  width: min(calc(100% - 2 * var(--home-rail)), 1660px);
+}
+
+body.home .home-section.architecture-section {
+  padding-inline: 0 !important;
+}
+
+body.home #contact {
+  padding-inline: var(--home-rail) !important;
+}
+
+body.home #contact .section-inner {
+  width: min(100%, 1660px);
+  margin-inline: auto;
+}
+
 body.home .hero-section--studio {
   min-height: 100svh !important;
   padding: 0 !important;
@@ -62,10 +91,11 @@ body.home .hero-section--studio {
 body.home .hero-section--studio .hero-inner {
   position: relative;
   z-index: 1;
-  width: min(100%, 1760px);
+  width: min(calc(100% - 2 * var(--home-rail)), 1660px) !important;
+  max-width: 1660px !important;
   min-height: 100svh;
   margin: auto;
-  padding: clamp(130px, 18vh, 190px) clamp(28px, 5.2vw, 92px) 30px !important;
+  padding: clamp(130px, 18vh, 190px) 0 30px !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -73,8 +103,10 @@ body.home .hero-section--studio .hero-inner {
 }
 
 .hero-section--studio .hero-content {
-  width: 100%;
-  max-width: none;
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 !important;
+  overflow: visible !important;
 }
 
 .hero-section--studio .hero-eyebrow {
@@ -103,7 +135,7 @@ body.home .hero-section--studio .hero-inner {
 
 .hero-section--studio .hero-h1 em {
   display: block;
-  margin-left: clamp(0px, 10vw, 170px);
+  margin-left: 0;
   color: #d8e9a1;
   font-family: Georgia, 'Times New Roman', serif;
   font-weight: 400;
@@ -112,7 +144,7 @@ body.home .hero-section--studio .hero-inner {
 
 .hero-section--studio .hero-intro {
   width: min(100%, 470px);
-  margin: clamp(36px, 5vh, 68px) 4vw 0 auto;
+  margin: clamp(36px, 5vh, 68px) 0 0;
 }
 
 .hero-section--studio .hero-intro > p {
@@ -273,12 +305,12 @@ body.home .architecture-founder figure { border-radius: 0; aspect-ratio: 4 / 5; 
 }
 
 @media (max-width: 640px) {
-  body.home .hero-section--studio .hero-inner { min-height: 100svh; padding: 122px 24px 24px !important; gap: 40px; }
+  body.home .hero-section--studio .hero-inner { min-height: 100svh; padding: 122px 0 24px !important; gap: 40px; }
   .hero-section--studio .hero-content { padding: 0; background: transparent; }
   .hero-stage-type { top: 19vh; right: -16vw; font-size: 80vw; }
   .hero-stage-rule, .hero-stage-index { display: none; }
-  .hero-section--studio .hero-eyebrow { margin-bottom: 52px; font-size: 10px; }
-  .hero-section--studio .hero-h1 { font-size: clamp(64px, 15vw, 94px); }
+  .hero-section--studio .hero-eyebrow { margin-bottom: 32px !important; font-size: 10px; }
+  body.home .hero-section--studio .hero-h1 { margin-bottom: 0 !important; font-size: clamp(52px, 13.4vw, 76px) !important; line-height: .94 !important; }
   .hero-section--studio .hero-h1 em { margin-left: 0; }
   .hero-section--studio .hero-intro { margin: 36px 0 0; }
   .hero-section--studio .hero-intro > p { font-size: 18px; }
