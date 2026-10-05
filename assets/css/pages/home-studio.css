@@ -91,11 +91,10 @@ body.home .hero-section--studio {
 body.home .hero-section--studio .hero-inner {
   position: relative;
   z-index: 1;
-  width: min(calc(100% - 2 * var(--home-rail)), 1660px) !important;
-  max-width: 1660px !important;
+  width: min(100%, 1760px);
   min-height: 100svh;
   margin: auto;
-  padding: clamp(130px, 18vh, 190px) 0 30px !important;
+  padding: clamp(130px, 18vh, 190px) clamp(28px, 5.2vw, 92px) 30px !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -103,10 +102,8 @@ body.home .hero-section--studio .hero-inner {
 }
 
 .hero-section--studio .hero-content {
-  width: 100% !important;
-  max-width: none !important;
-  padding: 0 !important;
-  overflow: visible !important;
+  width: 100%;
+  max-width: none;
 }
 
 .hero-section--studio .hero-eyebrow {
@@ -135,7 +132,7 @@ body.home .hero-section--studio .hero-inner {
 
 .hero-section--studio .hero-h1 em {
   display: block;
-  margin-left: 0;
+  margin-left: clamp(0px, 10vw, 170px);
   color: #d8e9a1;
   font-family: Georgia, 'Times New Roman', serif;
   font-weight: 400;
@@ -144,7 +141,7 @@ body.home .hero-section--studio .hero-inner {
 
 .hero-section--studio .hero-intro {
   width: min(100%, 470px);
-  margin: clamp(36px, 5vh, 68px) 0 0;
+  margin: clamp(36px, 5vh, 68px) 4vw 0 auto;
 }
 
 .hero-section--studio .hero-intro > p {
@@ -281,7 +278,8 @@ body.home #work .architecture-work-grid { grid-template-columns: repeat(2, minma
 body.home #work .architecture-work-card { border: 0; border-radius: 0; background: transparent; }
 body.home #work .architecture-work-media { border-radius: 0; }
 body.home #work .architecture-work-card:first-child { grid-column: 1 / -1; display: grid; grid-template-columns: 1.5fr .5fr; align-items: stretch; background: #101a14; }
-body.home #work .architecture-work-card:first-child .architecture-work-media { min-height: 520px; aspect-ratio: auto; }
+body.home #work .architecture-work-card:first-child .architecture-work-media { min-height: 0; aspect-ratio: 16 / 9; }
+body.home #work .architecture-work-card:first-child .architecture-work-media img { object-fit: contain; }
 body.home #work .architecture-work-card:first-child .architecture-work-body { display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(28px, 4vw, 64px); }
 body.home #work .architecture-work-card:first-child .architecture-work-body h3 { color: #f4f2e9; font-size: clamp(52px, 5vw, 90px); line-height: .92; letter-spacing: -.06em; }
 body.home #work .architecture-work-card:first-child .architecture-card-meta,
@@ -290,7 +288,9 @@ body.home #work .architecture-work-card:first-child .text-link { color: #dce7ad;
 body.home #work .architecture-work-card:first-child .text-link { align-self: flex-start; border-color: #dce7ad; }
 body.home #work .architecture-work-card:not(:first-child) .architecture-work-body { padding: 22px 0 0; }
 body.home #work .architecture-work-card:not(:first-child) .architecture-work-body h3 { font-size: clamp(28px, 3vw, 43px); letter-spacing: -.045em; }
-body.home #work .architecture-work-card:not(:first-child) .architecture-work-media { aspect-ratio: 4 / 3; }
+body.home #work .architecture-work-card:not(:first-child) .architecture-work-media { aspect-ratio: 16 / 9; background: #f5f5f2; }
+body.home #work .architecture-work-card:not(:first-child) .architecture-work-media img { object-fit: contain; }
+body.home #work .architecture-work-card:not(:first-child) .architecture-work-media--video { background: #050605; }
 
 body.home .architecture-founder figure { border-radius: 0; aspect-ratio: 4 / 5; }
 
@@ -301,16 +301,16 @@ body.home .architecture-founder figure { border-radius: 0; aspect-ratio: 4 / 5; 
   .studio-positioning { grid-template-columns: 1fr; }
   .studio-positioning-link { grid-column: 1; }
   body.home #work .architecture-work-card:first-child { grid-template-columns: 1fr; }
-  body.home #work .architecture-work-card:first-child .architecture-work-media { min-height: 360px; aspect-ratio: 16 / 10; }
+  body.home #work .architecture-work-card:first-child .architecture-work-media { min-height: 0; aspect-ratio: 16 / 9; }
 }
 
 @media (max-width: 640px) {
-  body.home .hero-section--studio .hero-inner { min-height: 100svh; padding: 122px 0 24px !important; gap: 40px; }
+  body.home .hero-section--studio .hero-inner { min-height: 100svh; padding: 122px 24px 24px !important; gap: 40px; }
   .hero-section--studio .hero-content { padding: 0; background: transparent; }
   .hero-stage-type { top: 19vh; right: -16vw; font-size: 80vw; }
   .hero-stage-rule, .hero-stage-index { display: none; }
-  .hero-section--studio .hero-eyebrow { margin-bottom: 32px !important; font-size: 10px; }
-  body.home .hero-section--studio .hero-h1 { margin-bottom: 0 !important; font-size: clamp(52px, 13.4vw, 76px) !important; line-height: .94 !important; }
+  .hero-section--studio .hero-eyebrow { margin-bottom: 52px; font-size: 10px; }
+  .hero-section--studio .hero-h1 { font-size: clamp(64px, 15vw, 94px); }
   .hero-section--studio .hero-h1 em { margin-left: 0; }
   .hero-section--studio .hero-intro { margin: 36px 0 0; }
   .hero-section--studio .hero-intro > p { font-size: 18px; }
@@ -320,7 +320,7 @@ body.home .architecture-founder figure { border-radius: 0; aspect-ratio: 4 / 5; 
   .studio-positioning-statement { font-size: clamp(38px, 9vw, 58px); }
   body.home #work .architecture-work-grid { grid-template-columns: 1fr; }
   body.home #work .architecture-work-card:first-child { grid-column: auto; }
-  body.home #work .architecture-work-card:first-child .architecture-work-media { min-height: 240px; }
+  body.home #work .architecture-work-card:first-child .architecture-work-media { min-height: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
