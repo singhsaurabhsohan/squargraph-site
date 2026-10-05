@@ -96,7 +96,7 @@
   function renderWork() {
     var grid = document.querySelector('[data-home-work-grid]');
     if (!grid) return;
-    fetch('/assets/data/work.json?v=20260915-zucero-website1')
+    fetch('/assets/data/work.json?v=20261005-zucero-live1')
       .then(function (response) { if (!response.ok) throw new Error('Work data unavailable'); return response.json(); })
       .then(function (data) {
         var entries = (data.entries || []).filter(function (entry) {

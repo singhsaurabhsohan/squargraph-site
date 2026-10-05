@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "updated": "2026-09-12",
+  "updated": "2026-10-05",
   "entries": [
     {
       "id": "zucero-digital-experience",
@@ -8,14 +8,14 @@
       "client": "ZUCERO",
       "relationship": "squargraph",
       "category": ["Digital"],
-      "summary": "A website-only project for ZUCERO, designed and developed as a responsive editorial-commerce experience around its current product world.",
+      "summary": "A website-only project for ZUCERO, connecting its sugarcane story, craft, and shoppable collection in one responsive experience.",
       "role": "Information architecture, website UX/UI design, responsive front-end development, video integration and live implementation. Scope limited to the website only.",
       "outputs": ["Website design", "Responsive front-end development", "Live website implementation"],
       "outcome": null,
       "status": "live",
-      "image": "/assets/images/work/zucero/zucero-work-card-v20260720.webp",
-      "previewImage": "/assets/images/work/zucero/zucero-work-card-v20260720.webp",
-      "imageAlt": "ZUCERO website experience for thegoodsugar.in",
+      "image": "/assets/images/work/zucero/zucero-live-home-v20261005.jpg",
+      "previewImage": "/assets/images/work/zucero/zucero-live-home-v20261005.jpg",
+      "imageAlt": "Current ZUCERO homepage at thegoodsugar.in with story and products navigation, botanical hero, and collection call to action",
       "featured": true,
       "published": true,
       "url": "/work/zucero/",
