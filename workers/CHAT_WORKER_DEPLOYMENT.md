@@ -16,7 +16,7 @@ Do not deploy the chat script through the root `wrangler.jsonc`; that file confi
 
 Optional Worker variables:
 
-- `OPENROUTER_MODEL`: defaults to `nvidia/nemotron-3-nano-30b-a3b:free`.
+- `OPENROUTER_MODEL`: optional preferred model. If it fails, the Worker tries `openrouter/free` and then returns a verified answer from `ai-context.json` when it can.
 - `KNOWLEDGE_URL`: defaults to `https://squargraph.com/ai-context.json`.
 
 ## How Context Updates Work
