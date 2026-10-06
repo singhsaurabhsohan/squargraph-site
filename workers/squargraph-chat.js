@@ -167,8 +167,34 @@ function cleanModelReply(value) {
   return text;
 }
 
-function getSafeFallbackReply(messages) {
+function getSafeFallbackReply(messages, knowledge) {
   const latestMessage = messages[messages.length - 1]?.content || "";
+  const question = latestMessage.toLowerCase();
+  const engagements = Array.isArray(knowledge?.engagements) ? knowledge.engagements : [];
+  const selectedEngagement = engagements.find((item) => {
+    const name = (item.name || "").toLowerCase();
+    return (name.includes("brand growth audit") && /audit|brand quotient/.test(question)) ||
+      (name.includes("discovery session") && /discovery|where to start|not sure/.test(question)) ||
+      (name.includes("project direction") && /project direction|start a project/.test(question));
+  });
+  if (selectedEngagement) {
+    const includes = Array.isArray(selectedEngagement.includes) && selectedEngagement.includes.length
+      ? ` Included: ${selectedEngagement.includes.join(", ")}.`
+      : "";
+    return `${selectedEngagement.name}: ${selectedEngagement.best_for || selectedEngagement.process || ""}${includes} ${selectedEngagement.route}`;
+  }
+  if (/zucero|good sugar/.test(question) && knowledge?.work_transparency?.zucero_scope) {
+    return knowledge.work_transparency.zucero_scope;
+  }
+  if (/founder|saurabh/.test(question) && knowledge?.founder) {
+    return `${knowledge.founder.name} is ${knowledge.founder.role}. Read the official profile: ${knowledge.founder.official_profile}`;
+  }
+  if (/capabilit|service|what do you do/.test(question) && Array.isArray(knowledge?.capabilities)) {
+    return `SQUARGRAPH™ works across ${knowledge.capabilities.map((item) => item.name).join(", ")}. ${knowledge.site_architecture?.capabilities || "https://squargraph.com/capabilities/"}`;
+  }
+  if (/what is squargraph|who is squargraph|about squargraph/.test(question) && knowledge?.brand) {
+    return `SQUARGRAPH™ is ${knowledge.brand.descriptor} based in ${knowledge.brand.location}. ${knowledge.brand.purpose}`;
+  }
   const needsDiagnosis = /(?:actual\s+problem|problem\s+(?:is\s+)?(?:unclear|clear\s+nahi)|brand\s+(?:simply\s+)?(?:feels|lag|weak)|(?:do\s+not|don'?t)\s+know\s+where\s+to\s+start|not\s+sure\s+where\s+to\s+start|kahan\s+se\s+start|samajh\s+nahi\s+aa\s+raha\s+kahan)/i.test(latestMessage);
   const usesLatinHinglish = /\b(?:mujhe|nahi|kaunsi|chahiye|kahan|samajh|shuruaat)\b|lag\s+raha/i.test(latestMessage);
 
@@ -179,10 +205,13 @@ function getSafeFallbackReply(messages) {
     return "Your underlying problem is still unclear, so the best starting point is the Discovery Session. It is a founder-led diagnosis designed to identify the most important gap and define a clear next move. Start here: https://squargraph.com/discovery";
   }
 
-  if (usesLatinHinglish) {
-    return "Aapko pata hai kis area par attention chahiye, lekin right capability clear nahi hai. Project Direction aapki requirement ke basis par guided recommendation deta hai. Yahan se start karein: https://squargraph.com/project-direction";
+  if (/which (?:service|capability)|what (?:service|capability)|don't know (?:which|what) service|kaunsi service/i.test(latestMessage)) {
+    if (usesLatinHinglish) {
+      return "Aapko pata hai kis area par attention chahiye, lekin right capability clear nahi hai. Project Direction aapki requirement ke basis par guided recommendation deta hai. Yahan se start karein: https://squargraph.com/project-direction";
+    }
+    return "You know what needs attention but are not yet sure which capability fits. Use Project Direction for a guided recommendation based on your current requirement. Start here: https://squargraph.com/project-direction";
   }
-  return "You know what needs attention but are not yet sure which capability fits. Use Project Direction for a guided recommendation based on your current requirement. Start here: https://squargraph.com/project-direction";
+  return "I cannot give you a reliable answer to that question right now. Please contact hello@squargraph.com or use https://wa.me/918588897488 and the studio will help directly.";
 }
 
 async function loadKnowledge(env) {
@@ -253,11 +282,6 @@ export default {
       return jsonResponse({ error: "Forbidden" }, 403, corsHeaders);
     }
 
-    const rateLimit = await enforceRateLimit(request, env);
-    if (!rateLimit.ok) {
-      return jsonResponse({ error: rateLimit.error }, rateLimit.status, corsHeaders);
-    }
-
     try {
       const payload = await request.json();
       const messages = sanitizeMessages(payload.messages);
@@ -267,23 +291,24 @@ export default {
         return jsonResponse({ error: "A user message is required." }, 400, corsHeaders);
       }
 
+      const rateLimit = await enforceRateLimit(request, env);
+      if (!rateLimit.ok) {
+        return jsonResponse({ error: rateLimit.error }, rateLimit.status, corsHeaders);
+      }
+
       const knowledge = await loadKnowledge(env);
       const pageContext = page
         ? `\n\nCURRENT VISITOR PAGE\nPath: ${page.path}\nTitle: ${page.title || "Not provided"}`
         : "";
       const systemContent = `${SYSTEM_RULES}${pageContext}\n\nCURRENT SQUARGRAPH KNOWLEDGE (JSON)\n${JSON.stringify(knowledge)}`;
 
-      const modelCandidates = [
-        env.OPENROUTER_MODEL,
-        "qwen/qwen3-next-80b-a3b-instruct:free",
-        "google/gemma-4-31b-it:free",
-        "meta-llama/llama-3.2-3b-instruct:free",
-        "openrouter/free"
-      ].filter((model, index, models) => model && models.indexOf(model) === index);
+      const modelCandidates = [env.OPENROUTER_MODEL, "openrouter/free"]
+        .filter((model, index, models) => model && models.indexOf(model) === index);
       let data = null;
 
-      for (const model of modelCandidates) {
-        const upstream = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      for (const model of env.OPENROUTER_API_KEY ? modelCandidates : []) {
+        try {
+          const upstream = await fetch("https://openrouter.ai/api/v1/chat/completions", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -302,20 +327,19 @@ export default {
           })
         });
 
-        if (upstream.ok) {
-          data = await upstream.json();
-          break;
-        }
-
-        if (![429, 500, 502, 503, 504].includes(upstream.status)) {
-          const detail = await upstream.text();
-          return jsonResponse({ error: "Upstream error", detail: detail.slice(0, 500) }, 502, corsHeaders);
+          if (upstream.ok) {
+            data = await upstream.json();
+            if (cleanModelReply(data?.choices?.[0]?.message?.content)) break;
+          }
+        } catch (error) {
+          // A failed model or network request must not make the website assistant fail.
         }
       }
 
       if (!data) {
         return jsonResponse({
-          reply: getSafeFallbackReply(messages),
+          reply: getSafeFallbackReply(messages, knowledge),
+          degraded: true,
           context_version: knowledge.version || "unknown"
         }, 200, corsHeaders);
       }
@@ -324,7 +348,8 @@ export default {
 
       if (!reply) {
         return jsonResponse({
-          reply: getSafeFallbackReply(messages),
+          reply: getSafeFallbackReply(messages, knowledge),
+          degraded: true,
           context_version: knowledge.version || "unknown"
         }, 200, corsHeaders);
       }

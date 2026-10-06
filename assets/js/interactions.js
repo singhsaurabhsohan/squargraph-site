@@ -167,6 +167,7 @@ window.SQ.initVideoPosters = function () {
 window.SQ.initAIChat = function () {
   var history = [];
   var introduced = false;
+  var sending = false;
   var lastFocus = null;
   var panel = document.getElementById('ai-chat-panel');
   var input = document.getElementById('ai-chat-input');
@@ -205,10 +206,52 @@ window.SQ.initAIChat = function () {
     return div;
   }
 
+  async function verifiedFallback(question) {
+    var intro = 'The live assistant is unavailable right now. Here is what our published site says: ';
+    try {
+      var response = await fetch('/ai-context.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Knowledge unavailable');
+      var knowledge = await response.json();
+      var q = question.toLowerCase();
+      var engagements = Array.isArray(knowledge.engagements) ? knowledge.engagements : [];
+      var engagement = engagements.find(function (item) {
+        var name = (item.name || '').toLowerCase();
+        return name.indexOf('brand growth audit') !== -1 && /audit|brand quotient/.test(q) ||
+          name.indexOf('discovery session') !== -1 && /discovery|where to start|not sure/.test(q) ||
+          name.indexOf('project direction') !== -1 && /project direction|start a project/.test(q);
+      });
+      if (engagement) {
+        var includes = Array.isArray(engagement.includes) && engagement.includes.length
+          ? ' Included: ' + engagement.includes.join(', ') + '.' : '';
+        return intro + engagement.name + ': ' + (engagement.best_for || engagement.process || '') + includes + ' ' + engagement.route;
+      }
+      if (/founder|saurabh/.test(q) && knowledge.founder) {
+        return intro + knowledge.founder.name + ' is ' + knowledge.founder.role + '. ' + knowledge.founder.official_profile;
+      }
+      if (/capabilit|service|what do you do/.test(q) && Array.isArray(knowledge.capabilities)) {
+        return intro + 'SQUARGRAPH™ works across ' + knowledge.capabilities.map(function (item) { return item.name; }).join(', ') + '. ' + knowledge.site_architecture.capabilities;
+      }
+      if (/partner|collaborat/.test(q) && knowledge.partner_ecosystem) {
+        return intro + knowledge.partner_ecosystem.summary + ' ' + knowledge.partner_ecosystem.route;
+      }
+      if (/zucero|good sugar/.test(q) && knowledge.work_transparency && knowledge.work_transparency.zucero_scope) {
+        return intro + knowledge.work_transparency.zucero_scope;
+      }
+      if (/what is squargraph|who is squargraph|about squargraph/.test(q) && knowledge.brand) {
+        return intro + knowledge.brand.descriptor + ' based in ' + knowledge.brand.location + '. ' + knowledge.brand.purpose;
+      }
+    } catch (error) {
+      // The contact route below stays available when the knowledge file cannot load.
+    }
+    return 'The live assistant is unavailable right now. Please send your question to hello@squargraph.com or use the WhatsApp link below.';
+  }
+
   async function send() {
-    if (!input) return;
+    if (!input || sending) return;
     var text = input.value.trim();
     if (!text) return;
+    sending = true;
+    if (sendBtn) sendBtn.disabled = true;
     input.value = '';
     addMsg('user', text);
     history.push({ role: 'user', content: text });
@@ -225,14 +268,20 @@ window.SQ.initAIChat = function () {
       });
       var data = await response.json().catch(function () { return {}; });
       if (loading) loading.remove();
-      if (!response.ok) throw new Error(data.error || 'Assistant unavailable');
-      var reply = data.reply || 'Sorry, something went wrong. Try WhatsApp below.';
+      if (!response.ok || typeof data.reply !== 'string' || !data.reply.trim()) throw new Error(data.error || 'Assistant unavailable');
+      var reply = data.reply.trim();
       addMsg('bot', reply);
       history.push({ role: 'assistant', content: reply });
       history = history.slice(-12);
     } catch (error) {
       if (loading) loading.remove();
-      addMsg('bot', 'Connection error. Try WhatsApp below.');
+      var fallback = await verifiedFallback(text);
+      addMsg('bot', fallback);
+      history.push({ role: 'assistant', content: fallback });
+      history = history.slice(-12);
+    } finally {
+      sending = false;
+      if (sendBtn) sendBtn.disabled = false;
     }
   }
 
