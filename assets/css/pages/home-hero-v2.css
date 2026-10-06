@@ -1,0 +1,205 @@
+/* Homepage hero: a clear editorial opening with a distinct strategic frame. */
+body.home .hero-section--studio {
+  min-height: 100svh !important;
+  background: radial-gradient(circle at 82% 34%, #243629 0, #101a14 48%, #0b130e 100%);
+  overflow: clip;
+}
+
+body.home .hero-section--studio::after {
+  right: -17vw;
+  bottom: -30vw;
+  width: min(72vw, 1050px);
+  border-color: rgba(216, 233, 161, .2);
+}
+
+body.home .hero-section--studio .hero-inner {
+  width: min(100%, 1760px);
+  min-height: 100svh;
+  padding: clamp(128px, 16vh, 185px) var(--home-rail) 26px !important;
+  gap: clamp(58px, 9vh, 112px);
+}
+
+.hero-section--studio .hero-stage-type {
+  top: 11vh;
+  right: 2vw;
+  font-size: clamp(260px, 36vw, 610px);
+  letter-spacing: -.14em;
+  opacity: .045;
+}
+
+.hero-section--studio .hero-stage-rule {
+  left: var(--home-rail);
+  top: 35vh;
+  height: 25vh;
+  background: linear-gradient(#d8e9a1, rgba(216, 233, 161, .05));
+}
+
+.hero-section--studio .hero-stage-index {
+  right: var(--home-rail);
+  top: 17vh;
+}
+
+body.home .hero-section--studio .hero-content {
+  display: grid;
+  width: 100% !important;
+  max-width: none !important;
+  grid-template-columns: minmax(0, 1fr) minmax(270px, 380px);
+  column-gap: clamp(30px, 5vw, 95px);
+  align-items: end;
+}
+
+.hero-section--studio .hero-eyebrow {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 clamp(38px, 6vh, 72px);
+  font-size: 11px;
+  letter-spacing: .16em !important;
+}
+
+.hero-section--studio .hero-eyebrow .hero-eyebrow-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: #d8e9a1 !important;
+  box-shadow: 0 0 0 5px rgba(216, 233, 161, .12);
+}
+
+body.home .hero-section--studio .hero-h1 {
+  max-width: none;
+  font-size: clamp(76px, 9.5vw, 168px);
+  line-height: .79;
+  letter-spacing: -.078em !important;
+  text-wrap: nowrap;
+}
+
+.hero-section--studio .hero-h1 span,
+.hero-section--studio .hero-h1 em {
+  display: block;
+}
+
+.hero-section--studio .hero-h1 span:nth-child(2) {
+  margin-left: clamp(16px, 3.8vw, 70px);
+}
+
+.hero-section--studio .hero-h1 em {
+  width: max-content;
+  max-width: 100%;
+  margin: .07em 0 0 clamp(12px, 2.1vw, 38px);
+  font-size: .78em;
+  font-style: italic;
+  line-height: .95;
+  letter-spacing: -.08em;
+}
+
+.hero-section--studio .hero-intro {
+  width: auto;
+  max-width: 380px;
+  margin: 0 0 clamp(7px, 1.6vw, 30px);
+  padding: 22px 0 0;
+  border-top: 1px solid rgba(216, 233, 161, .48);
+}
+
+.hero-section--studio .hero-intro-label {
+  display: block;
+  margin-bottom: 22px;
+  color: #d8e9a1;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.hero-section--studio .hero-intro > p {
+  max-width: 29ch;
+  font-size: clamp(19px, 1.6vw, 23px);
+  line-height: 1.42;
+}
+
+.hero-section--studio .hero-ctas {
+  margin-top: 36px;
+  gap: 16px 30px;
+}
+
+.hero-section--studio .hero-signal-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  border-top-color: rgba(245, 243, 233, .26);
+}
+
+.hero-section--studio .hero-signal-grid > div {
+  padding-top: 22px;
+}
+
+@media (max-width: 1050px) {
+  .hero-section--studio .hero-content {
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 310px);
+  }
+  body.home .hero-section--studio .hero-h1 {
+    font-size: clamp(70px, 9.2vw, 116px);
+  }
+  .hero-section--studio .hero-h1 em { font-size: .76em; }
+}
+
+@media (max-width: 760px) {
+  body.home .hero-section--studio .hero-inner {
+    min-height: 100svh;
+    padding: 120px 24px 24px !important;
+    gap: 66px;
+  }
+  body.home .hero-section--studio .hero-content {
+    grid-template-columns: 1fr;
+  }
+  .hero-section--studio .hero-eyebrow {
+    grid-column: 1;
+    margin-bottom: 54px;
+    font-size: 10px;
+  }
+  body.home .hero-section--studio .hero-h1 {
+    font-size: clamp(64px, 12.3vw, 98px) !important;
+    line-height: .84 !important;
+  }
+  .hero-section--studio .hero-h1 span:nth-child(2) { margin-left: 5vw; }
+  .hero-section--studio .hero-h1 em {
+    margin-left: 2vw;
+    font-size: .8em;
+  }
+  .hero-section--studio .hero-intro {
+    max-width: 470px;
+    margin: 56px 0 0;
+  }
+  .hero-section--studio .hero-intro > p { max-width: 36ch; }
+  .hero-section--studio .hero-stage-type {
+    top: 19vh;
+    right: -8vw;
+    font-size: 75vw;
+  }
+  .hero-section--studio .hero-signal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  body.home .hero-section--studio .hero-inner {
+    padding: 110px 22px 22px !important;
+    gap: 50px;
+  }
+  .hero-section--studio .hero-eyebrow {
+    margin-bottom: 48px;
+    letter-spacing: .11em !important;
+  }
+  body.home .hero-section--studio .hero-h1 {
+    font-size: clamp(55px, 14vw, 70px) !important;
+  }
+  .hero-section--studio .hero-h1 em {
+    font-size: .76em;
+    margin-left: 0;
+  }
+  .hero-section--studio .hero-intro { margin-top: 48px; }
+  .hero-section--studio .hero-intro > p { font-size: 18px; }
+  .hero-section--studio .hero-signal-grid strong { font-size: 13px; }
+  .hero-scroll { justify-content: flex-start; }
+}
