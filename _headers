@@ -10,6 +10,8 @@
   Content-Type: application/json; charset=utf-8
   Cache-Control: public, max-age=300
   X-Robots-Tag: noindex
+/assets/js/interactions.js
+  Cache-Control: no-cache
 /assets/data/*.json
   Content-Type: application/json; charset=utf-8
   Cache-Control: public, max-age=300
