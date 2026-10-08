@@ -66,3 +66,88 @@ body.home #work .architecture-work-card:first-child .text-link {
   border-color: var(--sg-gold);
 }
 
+/* Give all projects the same media frame, typography and row alignment. */
+.hero-generated-visual,
+.hero-visual-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+body.home #nav.scrolled .nav-logo img { filter: none !important; }
+.hero-generated-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero-visual-shade {
+  background: linear-gradient(90deg, rgba(16,26,20,.45), rgba(16,26,20,.2) 45%, rgba(16,26,20,.68));
+}
+body.home .hero-section--studio .hero-stage-type { display: none; }
+body.home .hero-section--studio::after { display: none; }
+@media (max-width: 760px) {
+  .hero-generated-visual img { object-position: 65% center; }
+  .hero-visual-shade { background: rgba(16,26,20,.78); }
+}
+body.home #work .architecture-work-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px 24px;
+  align-items: stretch;
+}
+body.home #work .architecture-work-card,
+body.home #work .architecture-work-card:first-child {
+  grid-column: auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: transparent;
+}
+body.home #work .architecture-work-card .architecture-work-media {
+  width: 100%;
+  min-height: 0;
+  flex: 0 0 auto;
+  aspect-ratio: 16 / 9;
+  background: var(--surface);
+}
+body.home #work .architecture-work-card .architecture-work-media--video {
+  background: #050605;
+}
+body.home #work .architecture-work-card .architecture-work-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+body.home #work .architecture-work-card .architecture-work-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start !important;
+  padding: 22px 0 0 !important;
+}
+body.home #work .architecture-work-card .architecture-work-body h3 {
+  margin: 14px 0 10px;
+  font-size: clamp(25px, 2.3vw, 34px) !important;
+  line-height: 1.18 !important;
+  letter-spacing: -.035em !important;
+  color: var(--textprimary) !important;
+}
+body.home #work .architecture-work-card .architecture-card-meta {
+  margin: 0;
+  color: var(--accent) !important;
+}
+body.home #work .architecture-work-card .architecture-work-body > p:not(.architecture-card-meta) {
+  color: var(--textsecondary) !important;
+}
+body.home #work .architecture-work-card .text-link {
+  align-self: flex-start;
+  margin-top: auto;
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+@media (max-width: 640px) {
+  body.home #work .architecture-work-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+  }
+}
+
