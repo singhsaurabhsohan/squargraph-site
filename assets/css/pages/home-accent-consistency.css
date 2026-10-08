@@ -52,6 +52,18 @@ body.home .studio-positioning-link {
   color: var(--sg-forest);
 }
 body.home .studio-positioning-link { border-color: var(--sg-forest); }
+.studio-location-copy {
+  grid-column: 2;
+  max-width: 65ch;
+  margin: 12px 0 0;
+  color: var(--textsecondary);
+  font-size: 17px;
+  line-height: 1.7;
+}
+.studio-location-copy a { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 900px) {
+  .studio-location-copy { grid-column: 1; }
+}
 body.home #work { background: var(--sg-cream); }
 body.home #work .architecture-work-card:first-child {
   background: var(--sg-forest);
