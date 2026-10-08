@@ -1,4 +1,32 @@
 /* Use the existing site palette; preserve the live homepage composition. */
+body.home #nav {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+body.home #nav:not(.scrolled):not(.menu-open) {
+  background: transparent;
+  border-bottom: 1px solid transparent;
+}
+body.home #nav:not(.scrolled):not(.menu-open) .nav-logo img {
+  filter: brightness(0) invert(1) !important;
+}
+body.home #nav:not(.scrolled):not(.menu-open) .pill-line {
+  background: var(--sg-cream) !important;
+}
+body.home #nav:not(.scrolled):not(.menu-open) .pill-body {
+  border-color: var(--sg-cream) !important;
+}
+body.home #nav.scrolled,
+body.home #nav.menu-open {
+  background: rgba(255, 255, 255, .9);
+  border-bottom: 1px solid rgba(26, 23, 20, .08);
+}
+body.home #nav.scrolled .nav-logo img,
+body.home #nav.menu-open .nav-logo img { filter: none !important; }
+body.home #nav.scrolled .pill-line,
+body.home #nav.menu-open .pill-line { background: var(--sg-ink) !important; }
+body.home #nav.scrolled .pill-body,
+body.home #nav.menu-open .pill-body { border-color: var(--sg-ink) !important; }
 body.home .hero-section--studio {
   background: var(--sg-forest);
   color: var(--sg-cream);

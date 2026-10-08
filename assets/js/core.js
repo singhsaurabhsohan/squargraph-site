@@ -133,6 +133,7 @@ window.SQ.initNav = function () {
   }
   function setMenu(open, restoreFocus) {
     menuOpen = open;
+    nav.classList.toggle('menu-open', menuOpen);
     mobToggle.classList.toggle('open', menuOpen);
     mobToggle.setAttribute('aria-expanded', String(menuOpen));
     mobToggle.setAttribute('aria-label', menuOpen ? 'Close navigation menu' : 'Open navigation menu');
@@ -151,7 +152,10 @@ window.SQ.initNav = function () {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   }
 
-  window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+  function syncNavBackground() { nav.classList.toggle('scrolled', window.scrollY > 60); }
+  syncNavBackground();
+  window.addEventListener('scroll', syncNavBackground, { passive: true });
+  window.addEventListener('pageshow', syncNavBackground);
   mobMenu.addEventListener('touchstart', function () {}, { passive: true });
   mobToggle.addEventListener('pointerdown', function () { mobMenu.classList.add('pointer-open'); });
   mobToggle.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') mobMenu.classList.remove('pointer-open'); });
