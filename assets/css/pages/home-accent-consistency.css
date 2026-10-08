@@ -1,0 +1,68 @@
+/* Use the existing site palette; preserve the live homepage composition. */
+body.home .hero-section--studio {
+  background: var(--sg-forest);
+  color: var(--sg-cream);
+}
+body.home .hero-section--studio::after {
+  border-color: var(--sg-gold);
+  opacity: .25;
+}
+body.home .hero-section--studio .hero-stage-type,
+body.home .hero-section--studio .hero-stage-index {
+  color: var(--sg-gold);
+}
+body.home .hero-section--studio .hero-stage-rule {
+  background: var(--sg-gold);
+}
+body.home .hero-section--studio .hero-eyebrow,
+body.home .hero-section--studio .hero-intro-label,
+body.home .hero-section--studio .hero-signal-grid > div span,
+body.home .hero-section--studio .hero-scroll {
+  color: var(--sg-cream) !important;
+}
+body.home .hero-section--studio .hero-eyebrow .hero-eyebrow-dot {
+  background: var(--sg-gold) !important;
+  box-shadow: none;
+}
+body.home .hero-section--studio .hero-h1,
+body.home .hero-section--studio .hero-h1 em,
+body.home .hero-section--studio .hero-intro > p,
+body.home .hero-section--studio .hero-link,
+body.home .hero-section--studio .hero-signal-grid strong {
+  color: var(--sg-cream) !important;
+}
+body.home .hero-section--studio .hero-intro,
+body.home .hero-section--studio .hero-link--primary {
+  border-color: var(--sg-gold);
+}
+body.home .hero-section--studio .hero-link:hover,
+body.home .hero-section--studio .hero-link:focus-visible {
+  color: var(--sg-cream) !important;
+  border-color: var(--sg-gold);
+}
+body.home .hero-section--studio .hero-h1 {
+  text-wrap: initial;
+}
+body.home .architecture-trust {
+  background: var(--accentlight);
+}
+body.home .studio-positioning-label,
+body.home .studio-positioning-statement,
+body.home .studio-positioning-link {
+  color: var(--sg-forest);
+}
+body.home .studio-positioning-link { border-color: var(--sg-forest); }
+body.home #work { background: var(--sg-cream); }
+body.home #work .architecture-work-card:first-child {
+  background: var(--sg-forest);
+}
+body.home #work .architecture-work-card:first-child .architecture-work-body h3,
+body.home #work .architecture-work-card:first-child .architecture-card-meta,
+body.home #work .architecture-work-card:first-child .architecture-work-body > p,
+body.home #work .architecture-work-card:first-child .text-link {
+  color: var(--sg-cream);
+}
+body.home #work .architecture-work-card:first-child .text-link {
+  border-color: var(--sg-gold);
+}
+
