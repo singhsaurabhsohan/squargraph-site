@@ -68,9 +68,10 @@ window.SQ.initContactForm = function () {
   }
 
   function validateForm() {
-    var required = form.querySelectorAll('[required]');
+    var required = form.querySelectorAll('[required], input[type="email"], input[type="tel"]');
     var valid = true;
     required.forEach(function (field) {
+      if (!field.required && !field.value.trim()) return;
       var errContainer = field.closest('form > div') || field.parentNode;
       var err = errContainer.querySelector('.field-error');
       if (field.id === 'phone' && typeof window.iti !== 'undefined') {
@@ -90,7 +91,7 @@ window.SQ.initContactForm = function () {
         }
         return;
       }
-      if (!field.value.trim()) {
+      if (!field.value.trim() || (field.type === 'email' && !field.validity.valid)) {
         field.classList.add('error');
         if (err) err.classList.add('visible');
         if (valid) field.focus();

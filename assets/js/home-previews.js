@@ -35,7 +35,18 @@
     var group = make('div', 'brand-marquee-group');
     if (isDuplicate) group.setAttribute('aria-hidden', 'true');
 
-    brandMarks.forEach(function (brand) {
+    var approvedRoles = {
+      'Tata Motors': 'Earlier professional experience',
+      'Audi': 'Earlier professional experience',
+      'Hyundai India': 'Earlier experience · INNOCEAN',
+      'Booking.com': 'Earlier professional experience',
+      'Mahindra': 'Earlier professional experience',
+      'MG Motor': 'Earlier professional experience',
+      'ZUCERO - The Good Sugar': 'SQUARGRAPH · Website only',
+      'YASHICA': 'Earlier professional experience',
+      'Lowepro': 'Earlier professional experience'
+    };
+    brandMarks.filter(function (brand) { return approvedRoles[brand.name]; }).forEach(function (brand) {
       var item = make('div', 'brand-marquee-item' + (brand.className ? ' ' + brand.className : ''));
       var image = document.createElement('img');
       image.src = brand.src;
@@ -47,9 +58,10 @@
         if (!image.parentNode) return;
         item.classList.add('brand-marquee-item--fallback');
         image.remove();
-        item.appendChild(make('span', 'brand-marquee-fallback', brand.name));
+        item.insertBefore(make('span', 'brand-marquee-fallback', brand.name), item.firstChild);
       }, { once: true });
       item.appendChild(image);
+      item.appendChild(make('span', 'brand-credit-role', approvedRoles[brand.name]));
       group.appendChild(item);
     });
 
@@ -144,9 +156,13 @@
             media.setAttribute('aria-hidden', 'true');
           }
           var body = make('div', 'architecture-work-body');
-          body.appendChild(make('p', 'architecture-card-meta', (entry.category || []).join(' · ')));
+          var roleLabel = entry.client && entry.client.indexOf('SQUARGRAPH') === 0 ? 'Studio initiative' : 'Client engagement';
+          body.appendChild(make('p', 'architecture-card-meta', roleLabel + ' · ' + (entry.category || []).join(' · ')));
           body.appendChild(make('h3', '', entry.title));
           body.appendChild(make('p', '', entry.summary));
+          if (entry.outputs && entry.outputs.length) {
+            body.appendChild(make('p', 'architecture-work-scope', 'Scope: ' + entry.outputs.join(' · ')));
+          }
           var link = make('a', 'text-link', entry.linkLabel || 'View context');
           link.href = entry.url || '/work';
           link.setAttribute('data-sq-event', entry.analyticsEvent || 'work_card_click');
