@@ -249,12 +249,12 @@ window.SQ.initHoverDisclosures = function () {
   if (!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   document.addEventListener('mouseover', function (event) {
     var disclosure = event.target.closest && event.target.closest('details');
-    if (!disclosure || disclosure.classList.contains('contact-extra-details') || (event.relatedTarget && disclosure.contains(event.relatedTarget))) return;
+    if (!disclosure || (event.relatedTarget && disclosure.contains(event.relatedTarget))) return;
     disclosure.open = true;
   });
   document.addEventListener('mouseout', function (event) {
     var disclosure = event.target.closest && event.target.closest('details');
-    if (!disclosure || disclosure.classList.contains('contact-extra-details') || (event.relatedTarget && disclosure.contains(event.relatedTarget))) return;
+    if (!disclosure || (event.relatedTarget && disclosure.contains(event.relatedTarget))) return;
     disclosure.open = false;
   });
 };
