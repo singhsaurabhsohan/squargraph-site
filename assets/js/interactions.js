@@ -243,7 +243,7 @@ window.SQ.initAIChat = function () {
     } catch (error) {
       // The contact route below stays available when the knowledge file cannot load.
     }
-    return 'The live assistant is unavailable right now. Please send your question to hello@squargraph.com or use the WhatsApp link below.';
+    return 'The live assistant is unavailable right now. Please send your question to squargraph@gmail.com or use the WhatsApp link below.';
   }
 
   async function send() {

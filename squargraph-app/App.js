@@ -223,7 +223,7 @@ function Contact() {
       </View>
       <View style={styles.contactLinks}>
         {[
-          ['mail', 'Email the studio', 'hello@squargraph.com', 'mailto:hello@squargraph.com'],
+          ['mail', 'Email the studio', 'squargraph@gmail.com', 'mailto:squargraph@gmail.com'],
           ['phone', 'Call SQUARGRAPH', '+91 85888 97488', 'tel:+918588897488'],
           ['calendar', 'Schedule a conversation', 'Choose a convenient time', 'https://os.squargraph.com/book'],
           ['linkedin', 'Follow on LinkedIn', 'Studio updates and intelligence', 'https://linkedin.com/company/squargraph'],

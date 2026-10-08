@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-Please report security issues privately to `hello@squargraph.com`. Do not include live secrets, payment credentials, customer data, or exploit payloads in public GitHub issues.
+Please report security issues privately to `squargraph@gmail.com`. Do not include live secrets, payment credentials, customer data, or exploit payloads in public GitHub issues.
 
 ## Production security boundaries
 

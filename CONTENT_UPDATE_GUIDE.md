@@ -68,7 +68,7 @@ The canonical optimised asset is `saurabh-sohan-singh-founder-squargraph.webp`. 
 Search for the existing value before editing:
 
 ```powershell
-rg -n "hello@squargraph.com|saurabh@squargraph.com|85888 97488|918588897488" .
+rg -n "squargraph@gmail.com|singhsaurabhsohan@gmail.com|85888 97488|918588897488" .
 ```
 
 Update `components/footer.html.reference`, `assets/js/config.js`, `ai-context.json`, relevant form success/fallback links and policy pages. Run the chrome synchronizer afterward.

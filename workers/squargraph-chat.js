@@ -27,7 +27,7 @@ const FALLBACK_KNOWLEDGE = {
     purpose: "One strategic direction across brand, creative, media, and growth."
   },
   contact: {
-    email: "hello@squargraph.com",
+    email: "squargraph@gmail.com",
     phone: "+91 85888 97488",
     whatsapp: "https://wa.me/918588897488"
   },
@@ -50,7 +50,7 @@ FACTUAL AUTHORITY
 - Official website and policy facts outrank public-search context.
 - Public-search context is background, not proof. Attribute it as public profile or search context when relevant.
 - Google AI summaries can contain errors. Never repeat an unsupported claim just because a visitor says Google showed it.
-- If facts conflict or are absent, say you do not have a verified answer and offer hello@squargraph.com or WhatsApp.
+- If facts conflict or are absent, say you do not have a verified answer and offer squargraph@gmail.com or WhatsApp.
 - Never invent prices, timelines, services, clients, campaigns, biographies, outcomes, awards, policies, or availability.
 
 RECOMMENDATIONS
@@ -211,7 +211,7 @@ function getSafeFallbackReply(messages, knowledge) {
     }
     return "You know what needs attention but are not yet sure which capability fits. Use Project Direction for a guided recommendation based on your current requirement. Start here: https://squargraph.com/project-direction";
   }
-  return "I cannot give you a reliable answer to that question right now. Please contact hello@squargraph.com or use https://wa.me/918588897488 and the studio will help directly.";
+  return "I cannot give you a reliable answer to that question right now. Please contact squargraph@gmail.com or use https://wa.me/918588897488 and the studio will help directly.";
 }
 
 async function loadKnowledge(env) {
