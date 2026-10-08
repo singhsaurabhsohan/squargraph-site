@@ -1,3 +1,6 @@
 @font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Regular.woff') format('woff'); font-weight: 400; font-display: swap; }
 @font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Medium.woff') format('woff'); font-weight: 500; font-display: swap; }
 @font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Bold.woff') format('woff'); font-weight: 700; font-display: swap; }
+
+/* Use the locally hosted brand typeface for browser-default text controls too. */
+html, body, button, input, select, textarea { font-family: 'Satoshi', sans-serif; }

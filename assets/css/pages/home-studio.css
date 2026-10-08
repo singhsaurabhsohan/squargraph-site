@@ -134,7 +134,7 @@ body.home .hero-section--studio .hero-inner {
   display: block;
   margin-left: clamp(0px, 10vw, 170px);
   color: #d8e9a1;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font);
   font-weight: 400;
   letter-spacing: -.085em;
 }
@@ -255,7 +255,7 @@ body.home .architecture-trust {
 }
 
 .studio-positioning-statement em {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font);
   font-weight: 400;
 }
 

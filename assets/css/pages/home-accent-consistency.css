@@ -191,3 +191,41 @@ body.home #work .architecture-work-card .text-link {
   }
 }
 
+
+/* Feathered scrims follow the text blocks, leaving the collage visible. */
+body.home .hero-section--studio :is(.hero-h1, .hero-intro, .hero-eyebrow, .hero-signal-grid) {
+  position: relative;
+  isolation: isolate;
+  text-shadow: 0 1px 8px rgba(5, 12, 8, .32);
+}
+body.home .hero-section--studio :is(.hero-h1, .hero-intro)::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  inset: -28px -34px;
+  background: radial-gradient(ellipse at center, rgba(9, 19, 13, .7) 0%, rgba(9, 19, 13, .5) 48%, transparent 76%);
+}
+body.home .hero-section--studio .hero-intro::before {
+  inset: -42px -48px;
+  background: radial-gradient(ellipse at center, rgba(9, 19, 13, .88) 0%, rgba(9, 19, 13, .76) 48%, transparent 76%);
+}
+body.home .hero-section--studio .hero-eyebrow::before,
+body.home .hero-section--studio .hero-signal-grid::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  inset: -20px -24px;
+  background: linear-gradient(0deg, rgba(9, 19, 13, .66), rgba(9, 19, 13, .4));
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  border-radius: 24px;
+  filter: blur(12px);
+}
+body.home #nav:not(.scrolled):not(.menu-open) {
+  background: linear-gradient(180deg, rgba(9, 19, 13, .56), rgba(9, 19, 13, .16));
+}
+@media (max-width: 760px) {
+  body.home .hero-section--studio .hero-intro::before { inset: -26px -24px; }
+  body.home .hero-section--studio .hero-h1::before { inset: -24px; }
+}
