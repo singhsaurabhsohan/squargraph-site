@@ -1581,3 +1581,13 @@ html body *::after {
     min-width: 0;
   }
 }
+
+/* Shared ownership notice; readable without competing with footer navigation. */
+.site-footer .footer-trademark-notice {
+  max-width: 100%;
+  margin: 18px 0 0;
+  color: var(--sg-dark-muted, #b7beb2);
+  font-size: 11px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
