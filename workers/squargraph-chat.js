@@ -3,7 +3,6 @@
 // - OPENROUTER_API_KEY: secret
 // - RATE_LIMIT_KV: KV namespace
 // Optional variables:
-// - OPENROUTER_MODEL
 // - KNOWLEDGE_URL
 
 const KNOWLEDGE_URL = "https://squargraph.com/ai-context.json";
@@ -311,7 +310,7 @@ export default {
       const systemContent = `${SYSTEM_RULES}${pageContext}\n\nCURRENT SQUARGRAPH KNOWLEDGE (JSON)\n${JSON.stringify(knowledge)}`;
 
       // Use conversational models: the general free router can select safety classifiers.
-      const modelCandidates = ["google/gemma-4-26b-a4b-it:free", "nvidia/nemotron-3.5-lightning:free"]
+      const modelCandidates = ["liquid/lfm-2.5-2.6b:free", "google/gemma-4-26b-a4b-it:free"]
         .filter((model, index, models) => model && models.indexOf(model) === index);
       let data = null;
 
@@ -332,7 +331,7 @@ export default {
               ...messages
             ],
             max_tokens: 500,
-            reasoning: { effort: "none", exclude: true },
+            reasoning: { exclude: true },
             temperature: 0.25
           })
         }, 10000);

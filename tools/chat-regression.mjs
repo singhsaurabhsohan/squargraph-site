@@ -28,7 +28,7 @@ try {
   let response = await worker.fetch(request(), env);
   assert.equal(response.status, 200);
   assert.equal((await response.json()).reply, 'We can help with brand strategy and creative.');
-  assert.equal(models[0], 'google/gemma-4-26b-a4b-it:free');
+  assert.equal(models[0], 'liquid/lfm-2.5-2.6b:free');
   for (mode of ['unavailable', 'abort']) {
     response = await worker.fetch(request(), env);
     const data = await response.json();
