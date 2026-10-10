@@ -307,7 +307,7 @@ export default {
       const pageContext = page
         ? `\n\nCURRENT VISITOR PAGE\nPath: ${page.path}\nTitle: ${page.title || "Not provided"}`
         : "";
-      const systemContent = `${SYSTEM_RULES}${pageContext}\n\nCURRENT SQUARGRAPH KNOWLEDGE (JSON)\n${JSON.stringify(knowledge)}`;
+      const systemContent = `${SYSTEM_RULES}${pageContext}\n\nCURRENT SQUARGRAPH KNOWLEDGE (JSON)\n${JSON.stringify(knowledge)}\n\nREPLY REQUIREMENTS: Reply as SQUARGRAPH™ in 2 to 4 complete sentences, at most 100 words, plain text. Recommend only one relevant next step with its full URL. If the visitor has a clear project need, use Project Direction; use Discovery only when the underlying problem is unclear.`;
 
       // Use conversational models: the general free router can select safety classifiers.
       const modelCandidates = ["liquid/lfm-2.5-2.6b:free", "google/gemma-4-26b-a4b-it:free"]
@@ -330,7 +330,7 @@ export default {
               { role: "system", content: systemContent },
               ...messages
             ],
-            max_tokens: 500,
+            max_tokens: 800,
             reasoning: { exclude: true },
             temperature: 0.25
           })
