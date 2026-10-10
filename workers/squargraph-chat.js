@@ -145,6 +145,7 @@ function sanitizePage(page) {
 function cleanModelReply(value) {
   if (typeof value !== "string") return "";
   let text = value.trim();
+  if (/^(?:user|assistant|content)\s+safety\s*:/i.test(text)) return "";
 
   text = text
     .replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, "")
@@ -309,8 +310,8 @@ export default {
         : "";
       const systemContent = `${SYSTEM_RULES}${pageContext}\n\nCURRENT SQUARGRAPH KNOWLEDGE (JSON)\n${JSON.stringify(knowledge)}`;
 
-      // The free router selects available models instead of relying on a retired slug.
-      const modelCandidates = ["openrouter/free", env.OPENROUTER_MODEL]
+      // Use conversational models: the general free router can select safety classifiers.
+      const modelCandidates = ["google/gemma-4-26b-a4b-it:free", "nvidia/nemotron-3.5-lightning:free"]
         .filter((model, index, models) => model && models.indexOf(model) === index);
       let data = null;
 
