@@ -78,6 +78,20 @@ FORMAT
 let knowledgeCache = null;
 let knowledgeCachedAt = 0;
 
+async function fetchJsonWithTimeout(url, options, timeoutMs) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(url, { ...options, signal: controller.signal });
+    if (!response.ok) throw new Error(`upstream_http_${response.status}`);
+    const text = await response.text();
+    if (text.length > 100000) throw new Error("response_too_large");
+    return JSON.parse(text);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 function jsonResponse(payload, status, corsHeaders) {
   return new Response(JSON.stringify(payload), {
     status,
@@ -221,17 +235,10 @@ async function loadKnowledge(env) {
   }
 
   try {
-    const response = await fetch(env.KNOWLEDGE_URL || KNOWLEDGE_URL, {
+    const parsed = await fetchJsonWithTimeout(env.KNOWLEDGE_URL || KNOWLEDGE_URL, {
       headers: { "Accept": "application/json" },
       cf: { cacheEverything: true, cacheTtl: 300 }
-    });
-
-    if (!response.ok) throw new Error(`knowledge_http_${response.status}`);
-
-    const text = await response.text();
-    if (text.length > 100000) throw new Error("knowledge_too_large");
-
-    const parsed = JSON.parse(text);
+    }, 3000);
     knowledgeCache = parsed;
     knowledgeCachedAt = now;
     return parsed;
@@ -302,13 +309,14 @@ export default {
         : "";
       const systemContent = `${SYSTEM_RULES}${pageContext}\n\nCURRENT SQUARGRAPH KNOWLEDGE (JSON)\n${JSON.stringify(knowledge)}`;
 
-      const modelCandidates = [env.OPENROUTER_MODEL, "openrouter/free"]
+      // The free router selects available models instead of relying on a retired slug.
+      const modelCandidates = ["openrouter/free", env.OPENROUTER_MODEL]
         .filter((model, index, models) => model && models.indexOf(model) === index);
       let data = null;
 
       for (const model of env.OPENROUTER_API_KEY ? modelCandidates : []) {
         try {
-          const upstream = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+          const candidate = await fetchJsonWithTimeout("https://openrouter.ai/api/v1/chat/completions", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -323,13 +331,14 @@ export default {
               ...messages
             ],
             max_tokens: 500,
+            reasoning: { effort: "none", exclude: true },
             temperature: 0.25
           })
-        });
+        }, 10000);
 
-          if (upstream.ok) {
-            data = await upstream.json();
-            if (cleanModelReply(data?.choices?.[0]?.message?.content)) break;
+          if (cleanModelReply(candidate?.choices?.[0]?.message?.content)) {
+            data = candidate;
+            break;
           }
         } catch (error) {
           // A failed model or network request must not make the website assistant fail.

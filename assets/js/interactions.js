@@ -209,7 +209,7 @@ window.SQ.initAIChat = function () {
   async function verifiedFallback(question) {
     var intro = 'The live assistant is unavailable right now. Here is what our published site says: ';
     try {
-      var response = await fetch('/ai-context.json', { cache: 'no-store' });
+      var response = await fetch('/ai-context.json', { cache: 'no-store', signal: AbortSignal.timeout(4000) });
       if (!response.ok) throw new Error('Knowledge unavailable');
       var knowledge = await response.json();
       var q = question.toLowerCase();
@@ -260,6 +260,7 @@ window.SQ.initAIChat = function () {
     try {
       var response = await fetch(window.SQ.config.aiChatEndpoint, {
         method: 'POST',
+        signal: AbortSignal.timeout(28000),
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: history,

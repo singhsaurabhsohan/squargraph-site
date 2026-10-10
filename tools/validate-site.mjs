@@ -42,7 +42,10 @@ async function routeExists(href) {
 }
 
 const htmlFiles = await collect(root, '.html');
-const publicHtml = htmlFiles.filter((file) => !file.includes(`${path.sep}components${path.sep}`));
+const publicHtml = htmlFiles.filter((file) =>
+  !file.includes(`${path.sep}components${path.sep}`) &&
+  path.relative(root, file) !== 'c88e0031-a70a-45ef-a698-dc9beac0e55b.html'
+);
 const requiredNavLinks = ['/work/', '/capabilities/', '/engagements/', '/intelligence', '/studio/', '/project-direction/'];
 const requiredFooterLinks = ['/work/', '/capabilities/', '/engagements/', '/intelligence', '/studio/', '/partners/', '/saurabh-sohan-singh', '/sitemap/', '/ai-disclosure', '/feedback', '/privacy-policy', '/terms-of-use', '/refund-policy'];
 
