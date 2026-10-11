@@ -62,8 +62,8 @@ function pageShell({ route, current, title, description, css, body, socialImage,
   <meta name="twitter:description" content="${description}" />
   <meta name="twitter:image" content="https://squargraph.com/assets/images/social/og-v20260720/${socialImage}" />
   <meta name="twitter:image:alt" content="${socialAlt}" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" type="image/png" href="/favicon-g.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preload" href="/fonts/Satoshi-Regular.woff" as="font" type="font/woff" crossorigin />
   <link rel="preload" href="/fonts/Satoshi-Medium.woff" as="font" type="font/woff" crossorigin />
   <link rel="stylesheet" href="/fonts/fonts.css" />

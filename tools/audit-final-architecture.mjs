@@ -5,6 +5,7 @@ import crypto from 'node:crypto';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const excluded = new Set(['.git', 'node_modules', 'supabase', 'tools', 'components', 'assets', 'docs', 'tmp', 'workers']);
+const verificationFile = 'c88e0031-a70a-45ef-a698-dc9beac0e55b.html';
 const specializedFooterPages = new Set(['feedback.html', 'audit-results.html']);
 const errors = [];
 const warnings = [];
@@ -12,7 +13,7 @@ const warnings = [];
 async function collectHtml(directory) {
   const files = [];
   for (const entry of await readdir(directory, { withFileTypes: true })) {
-    if (entry.name.startsWith('.') || excluded.has(entry.name)) continue;
+    if (entry.name.startsWith('.') || excluded.has(entry.name) || entry.name === verificationFile) continue;
     const absolute = path.join(directory, entry.name);
     if (entry.isDirectory()) files.push(...await collectHtml(absolute));
     if (entry.isFile() && entry.name.endsWith('.html')) files.push(absolute);

@@ -209,7 +209,7 @@ def draw_tracking_text(draw: ImageDraw.ImageDraw, xy: tuple[int, int], text: str
 
 
 def prepare_logo(dark: bool) -> Image.Image:
-    logo = Image.open(ROOT / "logo.webp").convert("RGBA")
+    logo = Image.open(ROOT / "logo-g.webp").convert("RGBA")
     target_width = 310
     target_height = round(logo.height * target_width / logo.width)
     logo = logo.resize((target_width, target_height), Image.Resampling.LANCZOS)

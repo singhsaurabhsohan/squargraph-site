@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const socialPrefix = 'https://squargraph.com/assets/images/social/og-v20260720/';
 const expectedVersion = '-v20260720.webp';
+const verificationFile = 'c88e0031-a70a-45ef-a698-dc9beac0e55b.html';
 const deprecatedMetadataUrls = [
   'https://squargraph.com/squargraph-brand-image.webp',
   'https://squargraph.com/assets/images/partners/partner-og-collaboration.webp',
@@ -15,7 +16,7 @@ async function htmlFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
   const files = [];
   for (const entry of entries) {
-    if (entry.name === '.git' || entry.name === 'node_modules') continue;
+    if (entry.name === '.git' || entry.name === 'node_modules' || entry.name === verificationFile) continue;
     const absolute = path.join(directory, entry.name);
     if (entry.isDirectory()) files.push(...await htmlFiles(absolute));
     if (entry.isFile() && entry.name.endsWith('.html')) files.push(absolute);
