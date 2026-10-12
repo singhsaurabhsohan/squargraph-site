@@ -114,3 +114,12 @@ body.home .hero-section--studio .hero-inner { position: relative; z-index: 2; }
 .hero-film-tile--11 { left:58%; top:58%; }
 .hero-film-tile--12 { left:80%; top:66%; }
 .hero-film-tile--13 { left:22%; top:80%; }
+
+body.home .hero-section--studio .hero-content,
+body.home .hero-section--studio .hero-signal-grid { background:transparent !important; }
+@media(min-width:761px) and (max-width:1050px) {
+ body.home .hero-section--studio .hero-content { grid-template-columns:1fr; }
+ body.home .hero-section--studio .hero-intro { max-width:600px; margin:30px 0 0; }
+ body.home .hero-section--studio .hero-h1--next-chapter { font-size:64px !important; }
+ body.home .hero-section--studio .hero-eyebrow { margin-bottom:30px; }
+}
