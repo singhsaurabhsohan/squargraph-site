@@ -54,3 +54,24 @@ body.home .hero-section--studio .hero-inner { position: relative; z-index: 2; }
   .hero-film-tile { animation: none; opacity: 1; }
   .hero-section--studio [class*="hero-anim"] { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
+
+/* Expanded montage: film posters, Reel posters and previous hero artwork. */
+.hero-film-collage { inset: 9% -3% -4% 24%; }
+.hero-film-tile { width: 25%; height: 24%; }
+.hero-film-tile--1 { left: -3%; top: -1%; --angle: -7deg; --x: -35vw; --y: -35vh; --delay: 0.08s; }
+.hero-film-tile--2 { left: 22%; top: -1%; --angle: 5deg; --x: -45vw; --y: -35vh; --delay: 0.145s; }
+.hero-film-tile--3 { left: 47%; top: -1%; --angle: -4deg; --x: 55vw; --y: -35vh; --delay: 0.21s; }
+.hero-film-tile--4 { left: 72%; top: -1%; --angle: 8deg; --x: 65vw; --y: -35vh; --delay: 0.275s; }
+.hero-film-tile--5 { left: 0%; top: 24%; --angle: 5deg; --x: -35vw; --y: -50vh; --delay: 0.34s; }
+.hero-film-tile--6 { left: 25%; top: 24%; --angle: -4deg; --x: -45vw; --y: -50vh; --delay: 0.405s; }
+.hero-film-tile--7 { left: 50%; top: 24%; --angle: 8deg; --x: 55vw; --y: -50vh; --delay: 0.47s; }
+.hero-film-tile--8 { left: 75%; top: 24%; --angle: -7deg; --x: 65vw; --y: -50vh; --delay: 0.535s; }
+.hero-film-tile--9 { left: -3%; top: 49%; --angle: -4deg; --x: -35vw; --y: 65vh; --delay: 0.6s; }
+.hero-film-tile--10 { left: 22%; top: 49%; --angle: 8deg; --x: -45vw; --y: 65vh; --delay: 0.665s; }
+.hero-film-tile--11 { left: 47%; top: 49%; --angle: -7deg; --x: 55vw; --y: 65vh; --delay: 0.73s; }
+.hero-film-tile--12 { left: 72%; top: 49%; --angle: 5deg; --x: 65vw; --y: 65vh; --delay: 0.795s; }
+.hero-film-tile--13 { left: 0%; top: 74%; --angle: 8deg; --x: -35vw; --y: 80vh; --delay: 0.86s; }
+.hero-film-tile--14 { left: 25%; top: 74%; --angle: -7deg; --x: -45vw; --y: 80vh; --delay: 0.925s; }
+.hero-film-tile--15 { left: 50%; top: 74%; --angle: 5deg; --x: 55vw; --y: 80vh; --delay: 0.99s; }
+.hero-film-tile--16 { left: 75%; top: 74%; --angle: -4deg; --x: 65vw; --y: 80vh; --delay: 1.055s; }
+@media (max-width: 760px) { .hero-film-collage { inset: 8% -28% 0 -8%; } .hero-film-tile { height: 24%; } }
