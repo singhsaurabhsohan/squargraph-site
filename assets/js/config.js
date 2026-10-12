@@ -69,7 +69,7 @@ window.SQ.initFooterLocationMap = function () {
   brandLine.style.cssText = 'display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px;';
 
   var logo = document.createElement('img');
-  logo.src = '/logo-g.webp?v=20261012';
+  logo.src = '/logo-g-v2.webp?v=20261012';
   logo.alt = 'SQUARGRAPH™';
   logo.width = 247;
   logo.height = 28;

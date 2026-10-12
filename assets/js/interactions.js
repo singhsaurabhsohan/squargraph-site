@@ -382,7 +382,7 @@ window.SQ.openRazorpay = async function (productKey, callbacks) {
       currency: serverOrder.currency,
       name: 'SQUARGRAPH™',
       description: serverOrder.description,
-      image: '/logo-g.webp',
+      image: '/logo-g-v2.webp',
       prefill: callbacks.prefill || {},
       notes: { product: serverOrder.product_name },
       theme: { color: '#394536' },

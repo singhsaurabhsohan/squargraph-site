@@ -1,7 +1,7 @@
 <nav id="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="SQUARGRAPH™ homepage">
-      <img src="/logo-g.webp?v=20261012" alt="SQUARGRAPH™" width="247" height="28" class="brand-mark" fetchpriority="high" decoding="sync" />
+      <img src="/logo-g-v2.webp?v=20261012" alt="SQUARGRAPH™" width="247" height="28" class="brand-mark" fetchpriority="high" decoding="sync" />
     </a>
     <div class="nav-links">
       <a href="/work/"{{WORK_CURRENT}}>Work</a>
