@@ -71,6 +71,9 @@ body.home .hero-section--studio .hero-link:focus-visible {
 body.home .hero-section--studio .hero-h1 {
   text-wrap: initial;
 }
+body.home .hero-section--studio .hero-stage-rule {
+  left: calc(var(--home-rail) - 28px);
+}
 body.home .hero-section--studio .hero-h1--next-chapter {
   font-size: clamp(52px, 6.4vw, 112px) !important;
   line-height: 1.02;
