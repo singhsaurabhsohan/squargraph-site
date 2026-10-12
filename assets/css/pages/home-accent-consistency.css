@@ -71,6 +71,20 @@ body.home .hero-section--studio .hero-link:focus-visible {
 body.home .hero-section--studio .hero-h1 {
   text-wrap: initial;
 }
+body.home .hero-section--studio .hero-h1--next-chapter {
+  font-size: clamp(52px, 6.4vw, 112px);
+  line-height: 1.02;
+  letter-spacing: -.055em !important;
+}
+body.home .hero-section--studio .hero-h1--next-chapter span:nth-child(2),
+body.home .hero-section--studio .hero-h1--next-chapter em {
+  margin-left: 0;
+}
+@media (max-width: 760px) {
+  body.home .hero-section--studio .hero-h1--next-chapter {
+    font-size: clamp(40px, 10.5vw, 72px);
+  }
+}
 body.home .architecture-trust {
   background: var(--accentlight);
 }
