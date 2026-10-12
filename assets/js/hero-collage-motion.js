@@ -17,5 +17,7 @@
  toggle.addEventListener('click',()=>{paused=!paused;hero.classList.toggle('hero-motion-paused',paused);toggle.textContent=paused?'Resume motion':'Pause motion';toggle.setAttribute('aria-pressed',String(paused));paused?stop():start();});
  document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
  reduce.addEventListener('change',()=>reduce.matches?stop():start());
+ // Start before the rest of the page and its scripts finish loading.
+ start();
  const observer=new IntersectionObserver(entries=>{entries[0].isIntersecting?start():stop();},{threshold:.05});observer.observe(hero);
 })();
