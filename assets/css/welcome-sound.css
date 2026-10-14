@@ -1,0 +1,5 @@
+.welcome-sound { position:fixed; left:24px; bottom:24px; z-index:40; }
+.welcome-sound-button { display:flex; align-items:center; gap:9px; min-height:44px; padding:10px 16px; border:1px solid rgba(180,138,74,.55); border-radius:24px; background:#1e2f25; color:#f8f6f1; font:500 12px/1.3 'Satoshi',sans-serif; cursor:pointer; }
+.welcome-sound-button:hover { background:#394536; }
+.welcome-sound-button:focus-visible { outline:2px solid #b48a4a; outline-offset:4px; }
+@media(max-width:600px) { .welcome-sound { left:16px; bottom:16px; } }
