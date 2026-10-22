@@ -10,3 +10,4 @@ Disallow: /forgot-password
 Disallow: /reset-password
 Disallow: /logout
 Sitemap: https://squargraph.com/sitemap.xml
+Sitemap: https://axischronicle.squargraph.com/sitemap.xml
