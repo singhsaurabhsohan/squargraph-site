@@ -19,13 +19,23 @@ body.home .brand-marquee-head { width: min(calc(100% - 2 * var(--home-rail)), 16
 body.home .brand-marquee-title { font-size: 10px; letter-spacing: .13em; }
 body.home .brand-marquee-note { max-width: 54ch; }
 body.home #work { background: var(--sg-cream); }
-body.home #work .architecture-work-grid { gap: 44px 28px; }
-body.home #work .architecture-work-card { overflow: visible; }
-body.home #work .architecture-work-media { border: 1px solid rgba(57,69,54,.12); border-radius: 4px; }
-body.home #work .architecture-work-card .architecture-work-body { padding-top: 20px !important; }
-body.home #work .architecture-work-body h3 { max-width: 25ch; font-size: clamp(23px, 2.2vw, 32px) !important; }
-body.home #work .architecture-work-body > p:not(.architecture-card-meta) { max-width: 57ch; font-size: 15px; line-height: 1.65; }
-body.home #work .architecture-work-card .text-link { margin-top: auto; padding-top: 10px; }
+body.home #work .architecture-work-grid { grid-template-columns: minmax(0, 1fr); gap: 0; counter-reset: project; border-top: 1px solid rgba(57,69,54,.2); }
+body.home #work .architecture-work-card,
+body.home #work .architecture-work-card:first-child {
+  display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: clamp(28px, 5vw, 72px); padding: 30px 0; border-bottom: 1px solid rgba(57,69,54,.2);
+  overflow: visible; align-items: center; counter-increment: project;
+}
+body.home #work .architecture-work-card .architecture-work-media {
+  width: 100%; aspect-ratio: 16 / 9; max-height: 240px;
+  border: 1px solid rgba(57,69,54,.1); border-radius: 3px; background: #fff;
+}
+body.home #work .architecture-work-card .architecture-work-body { position: relative; padding: 0 40px 0 0 !important; }
+body.home #work .architecture-work-body::after { content: counter(project, decimal-leading-zero); position: absolute; top: 0; right: 0; color: var(--accentmuted); font-size: 11px; font-variant-numeric: tabular-nums; }
+body.home #work .architecture-work-body h3 { max-width: 25ch; margin-block: 12px !important; font-size: clamp(24px, 2.5vw, 38px) !important; line-height: 1.15 !important; }
+body.home #work .architecture-work-body > p:not(.architecture-card-meta) { max-width: 55ch; margin-bottom: 16px; font-size: 15px; line-height: 1.65; }
+body.home #work .architecture-work-card .text-link { margin-top: 0; padding-top: 4px; }
+body.home #work .architecture-work-card:focus-within { outline: 1px solid var(--accentmuted); outline-offset: 8px; }
 body.home #capabilities { background: #fff; }
 body.home .architecture-capability-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 0; gap: 0 40px; }
 body.home .architecture-capability-list > a { position: relative; grid-template-columns: 28px minmax(0, 1fr) 24px; gap: 14px; padding: 26px 0; min-height: 160px; border-top: 1px solid var(--bordergray); border-bottom: 0; align-content: start; align-items: baseline; transition: background .2s; }
@@ -80,7 +90,11 @@ body.home .architecture-section a:focus-visible { outline: 2px solid var(--accen
   body.home .architecture-section-action { justify-content: flex-start; }
   body.home .brand-marquee-head { flex-direction: column; gap: 10px; }
   body.home .brand-marquee-note { text-align: left; }
-  body.home #work .architecture-work-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  body.home #work .architecture-work-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  body.home #work .architecture-work-card,
+  body.home #work .architecture-work-card:first-child { grid-template-columns: minmax(0, 1fr); gap: 22px; padding-block: 28px; }
+  body.home #work .architecture-work-card .architecture-work-media { max-height: none; }
+  body.home #work .architecture-work-card .architecture-work-body { padding-right: 28px !important; }
   body.home .architecture-capability-list { grid-template-columns: minmax(0, 1fr); }
   body.home .architecture-capability-list > a { min-height: auto; padding-block: 24px; }
   body.home .architecture-method-grid, body.home .architecture-founder-grid { grid-template-columns: minmax(0, 1fr); }
