@@ -19,7 +19,7 @@ body.home .brand-marquee-head { width: min(calc(100% - 2 * var(--home-rail)), 16
 body.home .brand-marquee-title { font-size: 10px; letter-spacing: .13em; }
 body.home .brand-marquee-note { max-width: 54ch; }
 body.home #work { background: var(--sg-cream); }
-.home-motion-grid { display: grid; grid-template-columns: minmax(0, 256fr) repeat(2, minmax(0, 81fr)); gap: 24px; width: min(100%, 860px); margin-inline: auto; }
+.home-motion-grid { display: grid; grid-template-columns: minmax(0, 256fr) repeat(4, minmax(0, 81fr)); gap: clamp(12px, 1.4vw, 22px); width: 100%; }
 .home-motion-item { display: block; min-width: 0; color: var(--textprimary); text-decoration: none; }
 .home-motion-frame { aspect-ratio: 9 / 16; position: relative; overflow: hidden; border-radius: 3px; background: var(--sg-forest); }
 .home-motion-item--film .home-motion-frame { aspect-ratio: 16 / 9; }
@@ -29,11 +29,19 @@ body.home #work { background: var(--sg-cream); }
 .home-motion-audio { position: absolute; z-index: 2; right: 12px; bottom: 12px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; background: rgba(15,23,17,.85); color: #fff; cursor: pointer; }
 .home-motion-audio:disabled { opacity: .5; cursor: wait; }
 .home-motion-audio:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+body.home #work .home-motion-audio { top: 12px; bottom: auto; }
 .home-motion-audio .motion-sound-on, .home-motion-audio[aria-pressed="true"] .motion-sound-off { display: none; }
 .home-motion-audio[aria-pressed="true"] .motion-sound-on { display: block; }
 .home-motion-footer { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 18px; margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--bordergray); }
 .home-motion-footer p { margin: 0; font-size: 12px; color: var(--textsecondary); }
 .home-motion-footer p a { color: inherit; text-underline-offset: 3px; }
+body.home #work { padding-block: clamp(56px, 6vw, 88px); }
+body.home #work .architecture-heading { margin-bottom: 32px; }
+body.home #work .home-motion-footer { margin-top: 24px; padding-top: 18px; }
+@media (max-width: 1000px) {
+  .home-motion-grid { grid-template-columns: minmax(0, 256fr) repeat(2, minmax(0, 81fr)); }
+  .home-motion-extra { display: none; }
+}
 @media (max-width: 640px) {
   .home-motion-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
   .home-motion-item--film { grid-column: 1 / -1; }
