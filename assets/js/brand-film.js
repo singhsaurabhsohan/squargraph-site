@@ -39,6 +39,7 @@
     var iframe = container.querySelector('iframe');
     var audioButton = container.querySelector('[data-gumlet-audio]');
     var audioLabel = container.dataset.gumletLabel || 'brand film';
+    var manualAudio = container.hasAttribute('data-manual-audio');
     if (!iframe || !audioButton) return;
 
     container.dataset.gumletLoading = 'true';
@@ -88,15 +89,15 @@
       });
 
       container.addEventListener('pointerenter', function () {
-        if (finePointer.matches) controller.setMuted(false);
+        if (!manualAudio && finePointer.matches) controller.setMuted(false);
       });
 
       container.addEventListener('pointerleave', function () {
-        if (finePointer.matches) controller.setMuted(true);
+        if (!manualAudio && finePointer.matches) controller.setMuted(true);
       });
 
       container.addEventListener('click', function (event) {
-        if (finePointer.matches || event.target.closest('[data-gumlet-audio]')) return;
+        if (manualAudio || finePointer.matches || event.target.closest('[data-gumlet-audio]')) return;
         controller.setMuted(!isMuted);
       });
 
