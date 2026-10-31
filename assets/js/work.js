@@ -105,7 +105,8 @@
   }
 
   function renderMotionShowcase() {
-    if (document.getElementById('motion-work')) return;
+    var placeholder = document.querySelector('[data-motion-work-placeholder]');
+    if (document.getElementById('motion-work') && !placeholder) return;
     var previousSection = document.getElementById('previous-experience');
     if (!previousSection || !previousSection.parentNode) return;
 
@@ -131,7 +132,8 @@
     reels.appendChild(credit);
     shell.appendChild(reels);
     section.appendChild(shell);
-    previousSection.parentNode.insertBefore(section, previousSection);
+    if (placeholder) placeholder.replaceWith(section);
+    else previousSection.parentNode.insertBefore(section, previousSection);
     document.dispatchEvent(new CustomEvent('sq:work-rendered'));
   }
 
