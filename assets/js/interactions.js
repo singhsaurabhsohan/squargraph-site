@@ -171,11 +171,39 @@ window.SQ.initAIChat = function () {
   var lastFocus = null;
   var panel = document.getElementById('ai-chat-panel');
   var input = document.getElementById('ai-chat-input');
+  var knowledgePromise;
+  async function requestJson(url, options, timeout) {
+    var controller = new AbortController();
+    var timer = window.setTimeout(function () { controller.abort(); }, timeout);
+    try {
+      var response = await fetch(url, Object.assign({}, options, { signal: controller.signal }));
+      var data = await response.json().catch(function () { return {}; });
+      if (!response.ok) {
+        var error = new Error('Assistant unavailable');
+        error.status = response.status;
+        throw error;
+      }
+      return data;
+    } finally { window.clearTimeout(timer); }
+  }
+  function publishedAnswer(messages) {
+    if (!knowledgePromise) {
+      knowledgePromise = Promise.all([
+        import('/assets/js/ai-knowledge.mjs?v=20261031-1'),
+        requestJson('/ai-context.json', { cache: 'no-cache' }, 4000)
+      ]).catch(function (error) { knowledgePromise = null; throw error; });
+    }
+    return knowledgePromise.then(function (results) { return results[0].getVerifiedReply(messages, results[1]); });
+  }
 
   if (panel) {
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('aria-modal', 'false');
     panel.setAttribute('aria-label', panel.getAttribute('aria-label') || 'SQUARGRAPH AI assistant');
+    panel.inert = !panel.classList.contains('open');
+    if (input) input.maxLength = 2000;
+    var messageLog = document.getElementById('ai-chat-messages');
+    if (messageLog) { messageLog.setAttribute('role', 'log'); messageLog.setAttribute('aria-live', 'polite'); }
   }
 
   window.toggleAIChat = function (forceOpen) {
@@ -183,11 +211,12 @@ window.SQ.initAIChat = function () {
     var open = typeof forceOpen === 'boolean' ? forceOpen : !panel.classList.contains('open');
     panel.classList.toggle('open', open);
     panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    panel.inert = !open;
     if (open) {
       lastFocus = document.activeElement;
       if (!introduced) {
         introduced = true;
-        addMsg('bot', 'Ask me about SQUARGRAPH™, Saurabh, our capabilities, engagements, process, policies, or partner network.');
+        addMsg('bot', 'I can help with SQUARGRAPH™ services, projects and engagements using our published information. For questions that need the live AI service, I will connect when it is available.');
       }
       if (input) window.setTimeout(function () { input.focus(); }, 0);
     } else if (lastFocus && typeof lastFocus.focus === 'function') {
@@ -200,50 +229,23 @@ window.SQ.initAIChat = function () {
     if (!wrap) return null;
     var div = document.createElement('div');
     div.className = 'ai-msg ' + role;
-    div.textContent = text;
+    div.style.whiteSpace = 'pre-wrap';
+    var parts = role === 'bot' ? text.split(/(https?:\/\/[^\s<>]+)/g) : [text];
+    parts.forEach(function (part) {
+      if (/^https?:\/\//.test(part) && role === 'bot') {
+        var url = part.replace(/[.,;!?)]*$/, '');
+        var link = document.createElement('a');
+        link.href = url;
+        link.textContent = url;
+        link.style.cssText = 'color:inherit;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere';
+        link.rel = 'noopener noreferrer';
+        div.appendChild(link);
+        div.appendChild(document.createTextNode(part.slice(url.length)));
+      } else div.appendChild(document.createTextNode(part));
+    });
     wrap.appendChild(div);
     wrap.scrollTop = wrap.scrollHeight;
     return div;
-  }
-
-  async function verifiedFallback(question) {
-    var intro = 'The live assistant is unavailable right now. Here is what our published site says: ';
-    try {
-      var response = await fetch('/ai-context.json', { cache: 'no-store', signal: AbortSignal.timeout(4000) });
-      if (!response.ok) throw new Error('Knowledge unavailable');
-      var knowledge = await response.json();
-      var q = question.toLowerCase();
-      var engagements = Array.isArray(knowledge.engagements) ? knowledge.engagements : [];
-      var engagement = engagements.find(function (item) {
-        var name = (item.name || '').toLowerCase();
-        return name.indexOf('brand growth audit') !== -1 && /audit|brand quotient/.test(q) ||
-          name.indexOf('discovery session') !== -1 && /discovery|where to start|not sure/.test(q) ||
-          name.indexOf('project direction') !== -1 && /project direction|start a project/.test(q);
-      });
-      if (engagement) {
-        var includes = Array.isArray(engagement.includes) && engagement.includes.length
-          ? ' Included: ' + engagement.includes.join(', ') + '.' : '';
-        return intro + engagement.name + ': ' + (engagement.best_for || engagement.process || '') + includes + ' ' + engagement.route;
-      }
-      if (/founder|saurabh/.test(q) && knowledge.founder) {
-        return intro + knowledge.founder.name + ' is ' + knowledge.founder.role + '. ' + knowledge.founder.official_profile;
-      }
-      if (/capabilit|service|what do you do/.test(q) && Array.isArray(knowledge.capabilities)) {
-        return intro + 'SQUARGRAPH™ works across ' + knowledge.capabilities.map(function (item) { return item.name; }).join(', ') + '. ' + knowledge.site_architecture.capabilities;
-      }
-      if (/partner|collaborat/.test(q) && knowledge.partner_ecosystem) {
-        return intro + knowledge.partner_ecosystem.summary + ' ' + knowledge.partner_ecosystem.route;
-      }
-      if (/zucero|good sugar/.test(q) && knowledge.work_transparency && knowledge.work_transparency.zucero_scope) {
-        return intro + knowledge.work_transparency.zucero_scope;
-      }
-      if (/what is squargraph|who is squargraph|about squargraph/.test(q) && knowledge.brand) {
-        return intro + knowledge.brand.descriptor + ' based in ' + knowledge.brand.location + '. ' + knowledge.brand.purpose;
-      }
-    } catch (error) {
-      // The contact route below stays available when the knowledge file cannot load.
-    }
-    return 'The live assistant is unavailable right now. Please send your question to squargraph@gmail.com or use the WhatsApp link below.';
   }
 
   async function send() {
@@ -258,29 +260,37 @@ window.SQ.initAIChat = function () {
     history = history.slice(-12);
     var loading = addMsg('bot loading', 'Typing…');
     try {
-      var response = await fetch(window.SQ.config.aiChatEndpoint, {
+      var published = await publishedAnswer(history).catch(function () { return null; });
+      if (published) {
+        if (loading) loading.remove();
+        addMsg('bot', published);
+        history.push({ role: 'assistant', content: published });
+        return;
+      }
+      var data = await requestJson(window.SQ.config.aiChatEndpoint, {
         method: 'POST',
-        signal: AbortSignal.timeout(28000),
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: history,
           page: { path: window.location.pathname, title: document.title }
         })
-      });
-      var data = await response.json().catch(function () { return {}; });
+      }, 25000);
       if (loading) loading.remove();
-      if (!response.ok || typeof data.reply !== 'string' || !data.reply.trim()) throw new Error(data.error || 'Assistant unavailable');
+      if (typeof data.reply !== 'string' || !data.reply.trim()) throw new Error('Assistant unavailable');
       var reply = data.reply.trim();
       addMsg('bot', reply);
       history.push({ role: 'assistant', content: reply });
       history = history.slice(-12);
     } catch (error) {
       if (loading) loading.remove();
-      var fallback = await verifiedFallback(text);
+      var fallback = error.status === 429
+        ? 'You have reached the live assistant limit. Please try again later, or contact the studio on WhatsApp: https://wa.me/918588897488'
+        : await publishedAnswer(history).catch(function () { return null; }) || 'The live AI service is unavailable right now. Please contact squargraph@gmail.com or use WhatsApp: https://wa.me/918588897488';
       addMsg('bot', fallback);
       history.push({ role: 'assistant', content: fallback });
       history = history.slice(-12);
     } finally {
+      history = history.slice(-12);
       sending = false;
       if (sendBtn) sendBtn.disabled = false;
     }
@@ -289,7 +299,7 @@ window.SQ.initAIChat = function () {
   var sendBtn = document.getElementById('ai-chat-send');
   var waBtn = document.getElementById('mobile-wa');
   if (sendBtn) sendBtn.addEventListener('click', send);
-  if (input) input.addEventListener('keydown', function (e) { if (e.key === 'Enter') send(); });
+  if (input) input.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); send(); } });
   if (waBtn) waBtn.addEventListener('click', function () { window.toggleAIChat(); });
   if (panel) panel.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') { e.preventDefault(); window.toggleAIChat(false); }

@@ -1,0 +1,91 @@
+/* Below-the-hero refinements. Hero, navigation and shared footer are intentionally unscoped. */
+body.home .architecture-section { padding-block: clamp(64px, 7.5vw, 112px); }
+body.home .architecture-section :is(h2, h3, p, a) { overflow-wrap: break-word; }
+body.home .architecture-section :is(.architecture-heading, .architecture-work-body, .architecture-founder-grid) > * { min-width: 0; }
+body.home .architecture-heading { grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(24px, 5vw, 80px); margin-bottom: 44px; align-items: end; }
+body.home .architecture-heading h2,
+body.home #work .architecture-heading h2 { max-width: 19ch; font-size: clamp(34px, 4.2vw, 64px); line-height: 1.08; font-weight: 500; text-wrap: balance; }
+body.home .architecture-heading > p { max-width: 39ch; font-size: 16px; line-height: 1.7; }
+body.home .architecture-section .section-eyebrow { margin-bottom: 20px; color: var(--accent); font-size: 10px; letter-spacing: .15em; }
+body.home .architecture-section-action { display: flex; justify-content: flex-end; margin-top: 32px; }
+body.home .architecture-section .text-link { padding-block: 8px; font-size: 13px; }
+body.home .architecture-trust { padding-block: clamp(56px, 6vw, 88px); background: var(--accentlight); }
+body.home .studio-positioning { grid-template-columns: minmax(150px, .36fr) minmax(0, 1fr); gap: 20px 6vw; }
+body.home .studio-positioning-label { margin-top: 8px; line-height: 1.6; }
+body.home .studio-positioning-statement { max-width: 23ch; font-size: clamp(32px, 4vw, 60px); line-height: 1.14; letter-spacing: -.045em; text-wrap: balance; }
+body.home .studio-positioning-link { margin-top: 4px; }
+body.home .studio-location-copy { max-width: 64ch; margin-top: 0; font-size: 15px; }
+body.home .brand-marquee-head { width: min(calc(100% - 2 * var(--home-rail)), 1660px); padding: 28px 0 18px; }
+body.home .brand-marquee-title { font-size: 10px; letter-spacing: .13em; }
+body.home .brand-marquee-note { max-width: 54ch; }
+body.home #work { background: var(--sg-cream); }
+body.home #work .architecture-work-grid { gap: 44px 28px; }
+body.home #work .architecture-work-card { overflow: visible; }
+body.home #work .architecture-work-media { border: 1px solid rgba(57,69,54,.12); border-radius: 4px; }
+body.home #work .architecture-work-card .architecture-work-body { padding-top: 20px !important; }
+body.home #work .architecture-work-body h3 { max-width: 25ch; font-size: clamp(23px, 2.2vw, 32px) !important; }
+body.home #work .architecture-work-body > p:not(.architecture-card-meta) { max-width: 57ch; font-size: 15px; line-height: 1.65; }
+body.home #work .architecture-work-card .text-link { margin-top: auto; padding-top: 10px; }
+body.home #capabilities { background: #fff; }
+body.home .architecture-capability-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 0; gap: 0 40px; }
+body.home .architecture-capability-list > a { position: relative; grid-template-columns: 28px minmax(0, 1fr) 24px; gap: 14px; padding: 26px 0; min-height: 160px; border-top: 1px solid var(--bordergray); border-bottom: 0; align-content: start; align-items: baseline; transition: background .2s; }
+body.home .architecture-capability-list > a p { grid-column: 2; margin-top: 0; font-size: 14px; line-height: 1.65; }
+body.home .architecture-capability-list > a b { grid-column: 3; grid-row: 1; }
+body.home .architecture-capability-list h3 { font-size: clamp(21px, 2vw, 27px); letter-spacing: -.025em; }
+body.home .architecture-capability-list > a:hover { background: var(--accentlight); }
+body.home #approach { background: var(--sg-forest); }
+body.home #approach .section-eyebrow,
+body.home #approach .architecture-card-meta,
+body.home #approach .architecture-method-column article > span { color: #d7c4a7; }
+body.home #approach .architecture-heading h2 { color: var(--sg-cream); }
+body.home #approach .architecture-heading > p,
+body.home #approach .architecture-method-column p { color: rgba(248,246,241,.78); }
+body.home .architecture-method-grid { gap: clamp(30px, 6vw, 88px); }
+body.home .architecture-method-column article { padding-block: 22px; }
+body.home .architecture-method-column h3 { font-size: 22px; }
+body.home #Engagements { background: #fff; }
+body.home .architecture-engagement-list > a { grid-template-columns: 32px minmax(0, 1fr) minmax(100px, .2fr) 24px; gap: 20px; padding: 26px 4px; }
+body.home .architecture-engagement-list h3 { font-size: clamp(21px, 2vw, 28px); letter-spacing: -.025em; }
+body.home .architecture-engagement-list p { max-width: 62ch; font-size: 14px; }
+body.home .architecture-engagement-list strong { justify-self: start; padding: 6px 12px; background: var(--accentlight); border-radius: 30px; font-size: 11px; white-space: nowrap; }
+body.home .architecture-founder { background: var(--sg-cream); }
+body.home .architecture-founder-grid { grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: clamp(32px, 6vw, 88px); }
+body.home .architecture-founder figure { width: min(100%, 400px); aspect-ratio: 4 / 5; justify-self: start; }
+body.home .architecture-founder h2 { font-size: clamp(32px, 3.5vw, 52px); letter-spacing: -.04em; }
+body.home .architecture-founder div > p:not(.section-eyebrow):not(.architecture-founder-role):not(.founder-secondary-role) { font-size: 15px; line-height: 1.8; }
+body.home #intelligence { background: #fff; }
+body.home .architecture-intelligence-grid { gap: 28px; border: 0; }
+body.home .architecture-intel-card { display: flex; flex-direction: column; min-height: 320px; padding: 24px 0 0; border: 0; border-top: 2px solid var(--accent); }
+body.home .architecture-intel-card h3 { margin-top: 38px; font-size: clamp(23px, 2.3vw, 32px); letter-spacing: -.03em; }
+body.home .architecture-intel-card > p:not(.architecture-card-meta) { font-size: 15px; line-height: 1.7; }
+body.home .architecture-intel-card .text-link { align-self: start; margin-top: auto; }
+body.home #contact { background: var(--accentlight); padding-block: clamp(64px, 7.5vw, 112px); }
+body.home #contact .contact-grid { gap: clamp(32px, 6vw, 88px); grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); }
+body.home #contact .contact-grid > * { min-width: 0; }
+body.home #contact #contact-form { padding: clamp(24px, 3vw, 40px); background: #fff; border: 1px solid var(--bordergray); border-radius: 6px; }
+body.home .architecture-section a:focus-visible { outline: 2px solid var(--accentmuted); outline-offset: 5px; }
+@media (max-width: 900px) {
+  body.home .architecture-heading { grid-template-columns: 1fr; gap: 20px; }
+  body.home .architecture-heading > p { max-width: 58ch; justify-self: start; }
+  body.home .studio-positioning { grid-template-columns: 1fr; gap: 22px; }
+  body.home .studio-positioning :is(.studio-positioning-link, .studio-location-copy) { grid-column: 1; }
+  body.home .architecture-capability-list { gap: 0 28px; }
+  body.home .architecture-intelligence-grid { grid-template-columns: 1fr; gap: 32px; }
+  body.home .architecture-intel-card { min-height: auto; }
+  body.home .architecture-intel-card h3 { margin-top: 24px; }
+  body.home #contact .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  body.home .architecture-heading { margin-bottom: 32px; }
+  body.home .architecture-section-action { justify-content: flex-start; }
+  body.home .brand-marquee-head { flex-direction: column; gap: 10px; }
+  body.home .brand-marquee-note { text-align: left; }
+  body.home #work .architecture-work-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  body.home .architecture-capability-list { grid-template-columns: minmax(0, 1fr); }
+  body.home .architecture-capability-list > a { min-height: auto; padding-block: 24px; }
+  body.home .architecture-method-grid, body.home .architecture-founder-grid { grid-template-columns: minmax(0, 1fr); }
+  body.home .architecture-engagement-list > a { grid-template-columns: 24px minmax(0, 1fr) 20px; gap: 12px; padding-block: 22px; }
+  body.home .architecture-engagement-list > a strong { grid-column: 2; }
+  body.home .architecture-engagement-list > a b { grid-column: 3; grid-row: 1 / span 2; }
+  body.home .architecture-founder figure { width: min(100%, 320px); }
+}

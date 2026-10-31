@@ -302,6 +302,7 @@ details[open] > :not(summary) {
 .ai-msg.bot.loading { color: #888; font-style: normal; }
 #ai-chat-input-row { display: flex; border-top: 1px solid rgba(255,255,255,.06); }
 #ai-chat-input {
+  min-width: 0;
   flex: 1; background: #1a1a1a; border: none; color: #fff;
   padding: 12px; font-size: 13px; outline: none;
 }
@@ -309,10 +310,14 @@ details[open] > :not(summary) {
 #ai-chat-send:hover { background: var(--accentmuted); }
 #ai-chat-wa-fallback {
   display: block; text-align: center; padding: 8px;
-  font-size: 11px; color: var(--accentmuted); text-decoration: none;
+  font-size: 12px; color: #d4dfca; text-decoration: none;
   border-top: 1px solid rgba(255,255,255,.06);
 }
 @media (max-width: 768px) { #ai-chat-panel { bottom: 84px; right: 12px; left: 12px; width: auto; } }
+@supports (height: 100dvh) { #ai-chat-panel { max-height: calc(100dvh - 120px); } }
+#ai-chat-send:disabled { opacity: .55; cursor: wait; }
+#ai-chat-input:focus-visible { outline: 2px solid #b7c0af; outline-offset: -3px; }
+#ai-chat-close { min-width: 32px; min-height: 32px; }
 
 #sticky-banner {
   position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);

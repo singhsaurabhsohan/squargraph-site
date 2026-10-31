@@ -1,4 +1,5 @@
 // SQUARGRAPH chat Worker
+import { getVerifiedReply } from '../assets/js/ai-knowledge.mjs';
 // Required bindings:
 // - OPENROUTER_API_KEY: secret
 // - RATE_LIMIT_KV: KV namespace
@@ -290,7 +291,9 @@ export default {
     }
 
     try {
-      const payload = await request.json();
+      let payload;
+      try { payload = await request.json(); } catch { return jsonResponse({ error: "Invalid JSON." }, 400, corsHeaders); }
+      if (!payload || typeof payload !== 'object') return jsonResponse({ error: "A user message is required." }, 400, corsHeaders);
       const messages = sanitizeMessages(payload.messages);
       const page = sanitizePage(payload.page);
 
@@ -304,6 +307,8 @@ export default {
       }
 
       const knowledge = await loadKnowledge(env);
+      const verifiedReply = getVerifiedReply(messages, knowledge);
+      if (verifiedReply) return jsonResponse({ reply: verifiedReply, source: 'published', context_version: knowledge.version || 'unknown' }, 200, corsHeaders);
       const pageContext = page
         ? `\n\nCURRENT VISITOR PAGE\nPath: ${page.path}\nTitle: ${page.title || "Not provided"}`
         : "";
@@ -341,6 +346,7 @@ export default {
             break;
           }
         } catch (error) {
+          console.warn('chat_provider_unavailable', model, error.name === 'AbortError' ? 'timeout' : error.message);
           // A failed model or network request must not make the website assistant fail.
         }
       }
