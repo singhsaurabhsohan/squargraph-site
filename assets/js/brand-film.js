@@ -63,8 +63,12 @@
             player.mute().catch(function () {});
           } else {
             muteOtherPlayers(controller);
-            player.unmute().catch(function () {});
-            player.setVolume(100).catch(function () {});
+            player.setVolume(100).then(function () {
+              if (!isMuted) return player.unmute();
+            }).catch(function () {
+              isMuted = true;
+              updateButton();
+            });
           }
         }
       };
@@ -88,8 +92,12 @@
         controller.setMuted(!isMuted);
       });
 
-      container.addEventListener('pointerenter', function () {
-        if (!manualAudio && finePointer.matches) controller.setMuted(false);
+      container.addEventListener('pointerenter', function (event) {
+        if (!manualAudio && finePointer.matches && event.pointerType !== 'touch') controller.setMuted(false);
+      });
+
+      container.addEventListener('pointermove', function (event) {
+        if (!manualAudio && finePointer.matches && event.pointerType !== 'touch') controller.setMuted(false);
       });
 
       container.addEventListener('pointerleave', function () {
@@ -97,7 +105,7 @@
       });
 
       container.addEventListener('click', function (event) {
-        if (manualAudio || finePointer.matches || event.target.closest('[data-gumlet-audio]')) return;
+        if (manualAudio || (finePointer.matches && event.pointerType !== 'touch') || event.target.closest('[data-gumlet-audio]')) return;
         controller.setMuted(!isMuted);
       });
 
