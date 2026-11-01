@@ -63,9 +63,10 @@
             player.mute().catch(function () {});
           } else {
             muteOtherPlayers(controller);
-            player.setVolume(100).then(function () {
-              if (!isMuted) return player.unmute();
-            }).catch(function () {
+            // Some embedded players do not acknowledge volume setters.
+            // Unmute must not wait for that acknowledgement.
+            player.setVolume(100).catch(function () {});
+            player.unmute().catch(function () {
               isMuted = true;
               updateButton();
             });

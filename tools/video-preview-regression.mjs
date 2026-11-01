@@ -19,7 +19,7 @@ async function check(finePointer) {
     play(){this.playing=true;return Promise.resolve()}
     mute(){this.muted=true;return Promise.resolve()}
     unmute(){this.muted=false;return Promise.resolve()}
-    setVolume(){return Promise.resolve()}
+    setVolume(){return new Promise(()=>{})}
   }
   class Observer {
     constructor(fn){this.fn=fn;observers.push(this)}
