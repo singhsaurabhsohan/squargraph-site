@@ -23,15 +23,8 @@ body.home #work { background: var(--sg-cream); }
 .home-motion-item { display: block; min-width: 0; color: var(--textprimary); text-decoration: none; }
 .home-motion-frame { aspect-ratio: 9 / 16; position: relative; overflow: hidden; border-radius: 3px; background: var(--sg-forest); }
 .home-motion-item--film .home-motion-frame { aspect-ratio: 16 / 9; }
-.home-motion-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .2s ease; }
-.home-motion-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
-.home-motion-frame.is-player-ready img { opacity: 0; }
-.home-motion-audio { position: absolute; z-index: 2; right: 12px; bottom: 12px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; background: rgba(15,23,17,.85); color: #fff; cursor: pointer; }
-.home-motion-audio:disabled { opacity: .5; cursor: wait; }
-.home-motion-audio:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-body.home #work .home-motion-audio { top: 12px; bottom: auto; }
-.home-motion-audio .motion-sound-on, .home-motion-audio[aria-pressed="true"] .motion-sound-off { display: none; }
-.home-motion-audio[aria-pressed="true"] .motion-sound-on { display: block; }
+.home-motion-frame video { display: block; width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; }
+.home-motion-frame:focus-visible { outline: 2px solid var(--accentmuted); outline-offset: 5px; }
 .home-motion-footer { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 18px; margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--bordergray); }
 .home-motion-footer p { margin: 0; font-size: 12px; color: var(--textsecondary); }
 .home-motion-footer p a { color: inherit; text-underline-offset: 3px; }
@@ -49,7 +42,6 @@ body.home #work .home-motion-footer { margin-top: 24px; padding-top: 18px; }
   .home-motion-item--film .home-motion-frame { aspect-ratio: 16 / 9; }
   .home-motion-footer { align-items: flex-start; flex-direction: column; }
 }
-@media (prefers-reduced-motion: reduce) { .home-motion-frame img { transition: none; } .home-motion-item:hover img { transform: none; } }
 body.home #capabilities { background: #fff; }
 body.home .architecture-capability-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 0; gap: 0 40px; }
 body.home .architecture-capability-list > a { position: relative; grid-template-columns: 28px minmax(0, 1fr) 24px; gap: 14px; padding: 26px 0; min-height: 160px; border-top: 1px solid var(--bordergray); border-bottom: 0; align-content: start; align-items: baseline; transition: background .2s; }

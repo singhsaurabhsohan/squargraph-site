@@ -37,3 +37,6 @@ jobs:
 
       - name: Run security regression checks
         run: node tools/security-regression.mjs
+
+      - name: Verify preview autoplay and audio recovery
+        run: node tools/native-preview-regression.mjs
