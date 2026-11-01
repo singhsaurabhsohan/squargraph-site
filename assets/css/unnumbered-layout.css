@@ -1,0 +1,25 @@
+/* Decorative indices are removed in markup; reclaim their former grid tracks. */
+body.home .architecture-capability-list > a { grid-template-columns: minmax(0, 1fr) 24px; }
+body.home .architecture-capability-list > a p { grid-column: 1; }
+body.home .architecture-capability-list > a b { grid-column: 2; }
+body.home .architecture-method-column article,
+body .founder-expertise-item,
+body .careers-opportunity-heading,
+body .careers-process li { grid-template-columns: minmax(0, 1fr); }
+body.home .architecture-engagement-list > a { grid-template-columns: minmax(0, 1fr) minmax(100px, .2fr) 24px; }
+body .engagement-row { grid-template-columns: minmax(190px, .75fr) minmax(0, 1.25fr) auto; }
+body .partner-capability-group { grid-template-columns: minmax(240px, .48fr) minmax(0, 1fr); }
+body .partner-route { grid-template-columns: minmax(280px, .72fr) minmax(280px, .48fr); }
+body .work-role h3 { margin-top: 0; }
+@media (max-width: 1050px) {
+  body .engagement-row { grid-template-columns: minmax(0, 1fr); }
+  body .engagement-row-copy, body .engagement-row .destination-button { grid-column: 1; }
+}
+@media (max-width: 900px) {
+  body .partner-capability-group, body .partner-route { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  body.home .architecture-engagement-list > a { grid-template-columns: minmax(0, 1fr) 20px; }
+  body.home .architecture-engagement-list > a strong { grid-column: 1; }
+  body.home .architecture-engagement-list > a b { grid-column: 2; }
+}
