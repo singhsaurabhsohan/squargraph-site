@@ -40,3 +40,6 @@ jobs:
 
       - name: Verify preview autoplay and audio recovery
         run: node tools/native-preview-regression.mjs
+
+      - name: Verify hero autoplay
+        run: node tools/hero-autoplay-regression.mjs
