@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 const source=await readFile(new URL('../assets/js/brand-film.js',import.meta.url),'utf8');
-async function check(finePointer) {
+async function check(finePointer, withButtons=true) {
   const frames=[];
   const players=[];
   const observers=[];
@@ -10,12 +10,13 @@ async function check(finePointer) {
     const listeners={}; const attrs={'aria-pressed':'false'};
     const button={disabled:false,setAttribute:(k,v)=>attrs[k]=v,addEventListener:(k,v)=>listeners['button:'+k]=v};
     const iframe={dataset:{src:'https://player.example/?autoplay=true&muted=true'},getAttribute:()=>null};
-    frames.push({dataset:{},hasAttribute:()=>false,querySelector:q=>q==='iframe'?iframe:button,classList:{add(){}},addEventListener:(k,v)=>listeners[k]=v,listeners,attrs});
+    frames.push({dataset:{},hasAttribute:()=>false,querySelector:q=>q==='iframe'?iframe:withButtons?button:null,classList:{add(){}},addEventListener:(k,v)=>listeners[k]=v,listeners,attrs});
   }
   class Player {
-    constructor(){this.muted=true;this.playing=false;players.push(this)}
+    constructor(){this.muted=true;this.playing=false;this.rate=0;players.push(this)}
     on(event,fn){if(event==='ready')fn()}
     setLoop(){return Promise.resolve()}
+    setPlaybackRate(value){this.rate=value;return new Promise(()=>{})}
     play(){this.playing=true;return Promise.resolve()}
     mute(){this.muted=true;return Promise.resolve()}
     unmute(){this.muted=false;return Promise.resolve()}
@@ -31,6 +32,7 @@ async function check(finePointer) {
   vm.runInNewContext(source,{window:win,document:doc,IntersectionObserver:Observer});
   await new Promise(resolve=>setImmediate(resolve));
   assert.ok(players.every(p=>p.playing&&p.muted),'Videos must autoplay muted before any interaction');
+  assert.ok(players.every(p=>p.rate===1),'Frozen zero-speed playback must be reset without waiting for acknowledgement');
   if(finePointer) {
     frames[0].listeners.pointermove({pointerType:'mouse'});
     await new Promise(resolve=>setImmediate(resolve));
@@ -53,4 +55,6 @@ async function check(finePointer) {
 }
 await check(true);
 await check(false);
+await check(true,false);
+await check(false,false);
 console.log('Video preview checks passed: muted autoplay, mouse movement, exclusive sound, hover leave, mobile tap and touch scroll.');

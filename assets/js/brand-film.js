@@ -40,10 +40,10 @@
     var audioButton = container.querySelector('[data-gumlet-audio]');
     var audioLabel = container.dataset.gumletLabel || 'brand film';
     var manualAudio = container.hasAttribute('data-manual-audio');
-    if (!iframe || !audioButton) return;
+    if (!iframe) return;
 
     container.dataset.gumletLoading = 'true';
-    audioButton.disabled = true;
+    if (audioButton) audioButton.disabled = true;
     if (!iframe.getAttribute('src') && iframe.dataset.src) iframe.src = iframe.dataset.src;
 
     loadPlayerApi().then(function () {
@@ -53,6 +53,7 @@
       container.dataset.gumletReady = 'true';
       var player = new window.playerjs.Player(iframe);
       var isMuted = true;
+      var playerReady = false;
       var controller = {
         container: container,
         setMuted: function (nextMuted) {
@@ -76,20 +77,23 @@
       controllers.push(controller);
 
       function updateButton() {
+        if (!audioButton) return;
         audioButton.setAttribute('aria-pressed', String(!isMuted));
         audioButton.setAttribute('aria-label', (isMuted ? 'Unmute ' : 'Mute ') + audioLabel);
         audioButton.setAttribute('title', (isMuted ? 'Unmute ' : 'Mute ') + audioLabel);
       }
 
       player.on('ready', function () {
+        playerReady = true;
         player.setLoop(true).catch(function () {});
         player.mute().catch(function () {});
+        player.setPlaybackRate(1).catch(function () {});
         player.play().catch(function () {});
-        audioButton.disabled = false;
+        if (audioButton) audioButton.disabled = false;
         container.classList.add('is-player-ready');
       });
 
-      audioButton.addEventListener('click', function () {
+      if (audioButton) audioButton.addEventListener('click', function () {
         controller.setMuted(!isMuted);
       });
 
@@ -114,6 +118,10 @@
         var soundObserver = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             if (!entry.isIntersecting || entry.intersectionRatio < 0.45) controller.setMuted(true);
+            else if (playerReady) {
+              player.setPlaybackRate(1).catch(function () {});
+              player.play().catch(function () {});
+            }
           });
         }, { threshold: [0, 0.45] });
         soundObserver.observe(container);
@@ -122,8 +130,10 @@
       updateButton();
     }).catch(function () {
       delete container.dataset.gumletLoading;
-      audioButton.disabled = true;
-      audioButton.setAttribute('aria-label', audioLabel + ' audio unavailable');
+      if (audioButton) {
+        audioButton.disabled = true;
+        audioButton.setAttribute('aria-label', audioLabel + ' audio unavailable');
+      }
     });
   }
 
