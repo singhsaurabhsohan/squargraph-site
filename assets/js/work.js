@@ -91,12 +91,8 @@
     return itemShell;
   }
 
-  function motionGroup(label, count, items, isReel) {
+  function motionGroup(items, isReel) {
     var group = make('div', 'work-motion-group');
-    var meta = make('p', 'work-motion-label');
-    meta.appendChild(make('span', '', label));
-    meta.appendChild(make('span', '', count));
-    group.appendChild(meta);
     var collection = make('div', isReel ? 'work-motion-reels' : 'work-motion-films');
     collection.id = isReel ? 'reels-strip' : 'films-strip';
     items.forEach(function (item) { collection.appendChild(motionCard(item, isReel)); });
@@ -115,13 +111,13 @@
     var shell = make('div', 'destination-shell');
     var head = make('div', 'work-motion-head');
     var title = make('div');
-    title.appendChild(make('p', 'destination-kicker', 'Campaign films & reels'));
+    title.appendChild(make('p', 'destination-kicker', 'Selected Work'));
     title.appendChild(make('h2', '', 'Systems in motion.'));
     head.appendChild(title);
     head.appendChild(make('p', '', 'Selected campaign films and short-form content shaped across production, narrative and digital surfaces.'));
     shell.appendChild(head);
-    shell.appendChild(motionGroup('Campaign films', '02 films', motionFilms, false));
-    var reels = motionGroup('Reels', '09 reels', motionReels, true);
+    shell.appendChild(motionGroup(motionFilms, false));
+    var reels = motionGroup(motionReels, true);
     var credit = make('p', 'work-motion-credit', 'Created in collaboration with ');
     var creditLink = make('a', '', 'Films By Jones');
     creditLink.href = 'https://www.instagram.com/filmsbyjones/';
