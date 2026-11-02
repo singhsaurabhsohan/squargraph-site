@@ -10,3 +10,5 @@ body.home .home-directories .architecture-heading { margin-bottom:32px; }
 @media(max-width:800px) { .home-directory-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:480px) { .home-directory-link { min-height:132px; padding:20px 0; gap:22px; } .home-directory-link img { height:34px; } }
 @media(prefers-reduced-motion:reduce) { .home-directory-link { transition:none; transform:none; } }
+
+.home-directory-link .home-directory-rating { color:var(--textprimary); font-size:13px; font-weight:600; }

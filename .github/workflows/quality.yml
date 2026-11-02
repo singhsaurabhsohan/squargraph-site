@@ -46,3 +46,6 @@ jobs:
 
       - name: Verify Safari media byte ranges
         run: node tools/media-range-regression.mjs
+
+      - name: Verify conditional ratings
+        run: node tools/ratings-regression.mjs

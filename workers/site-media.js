@@ -1,3 +1,4 @@
+import { ratingsResponse } from './site-ratings.js';
 function validatorMatches(value, headers) {
   if (!value) return true;
   if (value.startsWith('"')) return value === headers.get('etag');
@@ -10,6 +11,7 @@ function validatorMatches(value, headers) {
 export default {
   async fetch(request, env) {
     const path = new URL(request.url).pathname;
+    if (path === '/api/ratings') return ratingsResponse(request, env);
     if (!path.startsWith('/assets/videos/') || !path.endsWith('.mp4') || !['GET', 'HEAD'].includes(request.method)) return env.ASSETS.fetch(request);
     const range = request.headers.get('range');
     const forwarded = new Headers(request.headers);
