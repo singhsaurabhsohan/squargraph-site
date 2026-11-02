@@ -12,3 +12,7 @@ body.home .home-directories .architecture-heading { margin-bottom:32px; }
 @media(prefers-reduced-motion:reduce) { .home-directory-link { transition:none; transform:none; } }
 
 .home-directory-link .home-directory-rating { color:var(--textprimary); font-size:13px; font-weight:600; }
+
+.home-directory-brand { display:block; width:100%; }
+.home-directory-trustpilot .trustpilot-widget { width:100%; min-height:52px; }
+.home-directory-trustpilot { gap:14px; }

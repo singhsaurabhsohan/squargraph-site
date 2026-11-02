@@ -1,3 +1,10 @@
+## Current free-plan integration
+
+The homepage uses the official Review Collector TrustBox obtained from the
+SQUARGRAPH dashboard (business ID 6ac905dcca514bb722fef8d2). It collects reviews
+and does not display scores. No subscription, API key or paid widget is used.
+The custom API rating code below is dormant; its browser script is not loaded.
+
 # Homepage ratings
 
 Ratings are omitted completely unless the official source returns at least one
