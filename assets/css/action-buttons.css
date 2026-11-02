@@ -1,0 +1,16 @@
+/* Rounded green section actions; content and artwork remain unchanged. */
+body.home .architecture-section .text-link,
+body.home .studio-positioning-link,
+body .destination-text-link {
+ display:inline-flex; align-items:center; justify-content:center; gap:14px; min-height:46px; padding:12px 22px; width:fit-content; max-width:100%; border:1px solid #394536; border-radius:999px; background:#394536; color:#f8f6f1; text-decoration:none; font-size:13px; font-weight:650; line-height:1.4; text-align:center; transition:background .2s,transform .2s,box-shadow .2s;
+}
+body.home .architecture-section .text-link::after { content:'↗'; font-size:16px; }
+body.home .architecture-section .text-link:hover,
+body.home .studio-positioning-link:hover,
+body .destination-text-link:hover { background:#26372a; color:#fff; transform:translateY(-2px); box-shadow:0 8px 20px #1d30221a; }
+body.home .architecture-section .text-link:focus-visible,
+body.home .studio-positioning-link:focus-visible,
+body .destination-text-link:focus-visible { outline:2px solid #b48a4a; outline-offset:4px; }
+@media(prefers-reduced-motion:reduce) {
+ body.home .architecture-section .text-link, body.home .studio-positioning-link, body .destination-text-link { transition:none; transform:none; }
+}
