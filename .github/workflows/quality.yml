@@ -43,3 +43,6 @@ jobs:
 
       - name: Verify hero autoplay
         run: node tools/hero-autoplay-regression.mjs
+
+      - name: Verify Safari media byte ranges
+        run: node tools/media-range-regression.mjs

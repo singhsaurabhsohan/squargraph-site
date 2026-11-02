@@ -126,3 +126,10 @@ body.home .hero-section--studio .hero-signal-grid { background:transparent !impo
 
 /* Native clips preserve the approved collage crop and frame geometry. */
 .hero-tile-video video { display:block; width:100%; height:100%; object-fit:cover; }
+/* Phones/tablets decode one silent montage instead of twelve separate streams. */
+.hero-mobile-video { display:none; position:absolute; inset:0; width:100%; height:100%; object-fit:fill; pointer-events:none; }
+.hero-compact-motion .hero-mobile-video { display:block; opacity:0; transition:opacity .25s; }
+.hero-mobile-playing .hero-mobile-video { opacity:1; }
+.hero-mobile-playing .hero-film-tile { visibility:hidden; }
+.home-motion-sound-note { display:block; margin-bottom:8px; }
+@media(prefers-reduced-motion:reduce) { .hero-mobile-video { display:none !important; } }
