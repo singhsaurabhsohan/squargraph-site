@@ -1,0 +1,63 @@
+/* Layered editorial scenes blend with headings and detail surfaces. */
+:root { --section-scene: url('/assets/images/sections/approach-immersive-v20261101.svg'); }
+[data-visual-theme="digital"] { --section-scene: url('/assets/images/sections/digital-immersive-v20261101.svg'); }
+[data-visual-theme="work"], #work { --section-scene: url('/assets/images/sections/work-immersive-v20261101.svg'); }
+[data-visual-theme="capabilities"], #capabilities, .capability-detail { --section-scene: url('/assets/images/sections/capabilities-immersive-v20261101.svg'); }
+[data-visual-theme="intelligence"], #intelligence { --section-scene: url('/assets/images/sections/intelligence-immersive-v20261101.svg'); }
+[data-visual-theme="founder"] { --section-scene: url('/assets/images/sections/founder-immersive-v20261101.svg'); }
+[data-visual-theme="brands"] { --section-scene: url('/assets/images/sections/brands-immersive-v20261101.svg'); }
+[data-visual-theme="contact"], #contact { --section-scene: url('/assets/images/sections/contact-immersive-v20261101.svg'); }
+[data-visual-theme="engagements"], #Engagements { --section-scene: url('/assets/images/sections/engagements-immersive-v20261101.svg'); }
+h2[data-visual-theme] { position: relative; isolation: isolate; padding-block: 42px 24px; }
+h2 > .sg-title-art { position: absolute; z-index: -1; pointer-events: none; right: -12px; top: 50%; transform: translateY(-50%); width: min(100%, 430px); height: 250px; background: var(--section-scene) center / contain no-repeat; opacity: .23; mask-image: linear-gradient(90deg, transparent, #000 55%); }
+/* Visual detail remains behind the copy and never intercepts links. */
+:is(.architecture-capability-list > a, .architecture-method-column article, .architecture-engagement-list > a, .architecture-intel-card, .work-role, .studio-principle, .studio-approach-step, .partner-model-grid article, .careers-principles article, .how-card, .method-card, .cap-card, .problem-item, .why-item, .destination-meta-item, .capability-block, .partner-capability-group, .partner-route, .careers-process li, .case-sequence article, .founder-expertise-item) { position: relative; isolation: isolate; }
+:is(.architecture-capability-list > a, .architecture-method-column article, .architecture-engagement-list > a, .architecture-intel-card, .work-role, .studio-principle, .studio-approach-step, .partner-model-grid article, .careers-principles article, .how-card, .method-card, .cap-card, .problem-item, .why-item, .destination-meta-item, .capability-block, .partner-capability-group, .partner-route, .careers-process li, .case-sequence article, .founder-expertise-item)::after { content: ''; position: absolute; z-index: -1; pointer-events: none; right: 0; bottom: 0; width: min(70%, 270px); height: min(100%, 180px); background: var(--section-scene) right center / contain no-repeat; opacity: .12; mask-image: linear-gradient(90deg, transparent, #000); }
+body.home .architecture-heading { position: relative; isolation: isolate; align-items: center; grid-template-columns: minmax(0, 1.15fr) minmax(0, .9fr); gap: clamp(24px, 4vw, 64px); }
+body.home .architecture-heading::before { content: ''; position: absolute; z-index: -1; pointer-events: none; inset: -40px 32% -20px -40px; background: var(--section-scene) left center / contain no-repeat; opacity: .085; mask-image: linear-gradient(90deg, #000, transparent 85%); }
+body.home .section-heading-aside { display: block; max-width: none; }
+body.home .section-heading-aside .section-art { width: min(100%, 440px); max-width: 440px; margin: -32px auto -18px; }
+body.home .section-heading-aside p { max-width: 42ch; margin: 0 auto; font-size: 16px; line-height: 1.7; }
+body.home .studio-positioning-intro .section-art { width: 290px; margin: 12px -20px 0; max-width: calc(100% + 20px); }
+body.home .section-art-label .section-art { width: 230px; }
+body.home .contact-copy > .section-art { width: 360px; max-width: 100%; margin: 0 0 8px; }
+body.home .brand-section-art { width: 112px; height: 70px; }
+body.home #approach .architecture-heading::before { opacity: .17; }
+body.home #approach .architecture-method-column article::after { opacity: .22; }
+.architecture-capability-list > a:nth-child(2), #digital-presence { --section-scene: url('/assets/images/sections/digital-immersive-v20261101.svg'); }
+.architecture-capability-list > a:nth-child(3), #content-campaigns { --section-scene: url('/assets/images/sections/work-immersive-v20261101.svg'); }
+.architecture-capability-list > a:nth-child(4), #media-performance { --section-scene: url('/assets/images/sections/intelligence-immersive-v20261101.svg'); }
+.architecture-capability-list > a:nth-child(5), #influence-reputation { --section-scene: url('/assets/images/sections/brands-immersive-v20261101.svg'); }
+.architecture-capability-list > a:nth-child(6), #experience-visibility { --section-scene: url('/assets/images/sections/engagements-immersive-v20261101.svg'); }
+.capability-detail h2[data-visual-theme] { --section-scene: inherit; }
+.destination-section-head:has([data-visual-theme="work"]) { --section-scene: url('/assets/images/sections/work-immersive-v20261101.svg'); }
+.destination-section-head:has([data-visual-theme="digital"]) { --section-scene: url('/assets/images/sections/digital-immersive-v20261101.svg'); }
+.destination-section-head:has([data-visual-theme="capabilities"]) { --section-scene: url('/assets/images/sections/capabilities-immersive-v20261101.svg'); }
+.destination-section-head:has([data-visual-theme="intelligence"]) { --section-scene: url('/assets/images/sections/intelligence-immersive-v20261101.svg'); }
+.destination-section-head:has([data-visual-theme="brands"]) { --section-scene: url('/assets/images/sections/brands-immersive-v20261101.svg'); }
+.destination-section-head:has([data-visual-theme="founder"]) { --section-scene: url('/assets/images/sections/founder-immersive-v20261101.svg'); }
+.destination-section-head:has([data-visual-theme="engagements"]) { --section-scene: url('/assets/images/sections/engagements-immersive-v20261101.svg'); }
+.destination-section-head > .destination-kicker::after { content: ''; display: block; width: 100%; max-width: 300px; height: 180px; margin-top: 20px; background: var(--section-scene) center / contain no-repeat; }
+/* Reading and transactional pages keep a quieter visual treatment. */
+body:has(.policy-content) h2 > .sg-title-art { opacity: .1; }
+@media (max-width: 900px) {
+  body.home .architecture-heading { grid-template-columns: minmax(0, 1fr); }
+  body.home .section-heading-aside { display: grid; grid-template-columns: minmax(180px, .8fr) minmax(0, 1fr); align-items: center; gap: 24px; }
+  body.home .section-heading-aside .section-art { width: 100%; margin: -18px 0; }
+  body.home .section-heading-aside p { margin: 0; }
+  body.home .studio-positioning-intro .section-art { width: 240px; margin: -20px 0; }
+}
+@media (max-width: 640px) {
+  h2[data-visual-theme] { padding-block: 32px 18px; }
+  h2 > .sg-title-art { right: 0; width: 100%; height: 210px; opacity: .18; }
+  body.home .section-heading-aside { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
+  body.home .section-heading-aside .section-art { width: min(100%, 310px); align-self: center; margin: -24px 0 -14px; }
+  body.home .section-heading-aside p { font-size: 15px; max-width: none; }
+  body.home .architecture-heading::before { inset: -30px 0 40% -16px; opacity: .08; }
+  body.home .studio-positioning-intro .section-art { width: 170px; margin: -8px 0; }
+  body.home .studio-positioning-label { max-width: 14ch; }
+  body.home .section-art-label .section-art { width: 160px; }
+  body.home .contact-copy > .section-art { width: min(100%, 300px); }
+  body.home .brand-marquee-head { grid-template-columns: 80px minmax(0, 1fr); }
+  body.home .brand-section-art { width: 80px; height: 52px; grid-row: 1 / span 2; }
+}

@@ -69,7 +69,7 @@
 
     var head = make('div', 'brand-marquee-head');
     var mark = document.createElement('img');
-    mark.className = 'brand-section-art'; mark.src = '/assets/images/sections/brands-v20261101.svg';
+    mark.className = 'brand-section-art'; mark.src = '/assets/images/sections/brands-immersive-v20261101.svg';
     mark.alt = ''; mark.width = 68; mark.height = 42; mark.loading = 'lazy';
     head.appendChild(mark);
     head.appendChild(make('p', 'brand-marquee-title', "Brands we've worked with"));
