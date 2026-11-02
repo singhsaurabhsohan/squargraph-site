@@ -118,7 +118,9 @@
         if (!picked.length) return;
         grid.replaceChildren();
         picked.slice(0, 3).forEach(function (entry) {
-          var article = make('article', 'architecture-intel-card');
+          var article = make('article', 'architecture-intel-card sg-detail-visual');
+          var artByType = {study: '911287e694', signal: '86525cbf5a', observation: '5a70fe422b'};
+          article.setAttribute('data-detail-art', artByType[entry.type] || '911287e694');
           article.appendChild(make('p', 'architecture-card-meta', entry.type));
           article.appendChild(make('h3', '', entry.title || entry.category || 'Intelligence signal'));
           article.appendChild(make('p', '', entryDescription(entry)));
