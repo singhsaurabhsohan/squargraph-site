@@ -37,3 +37,7 @@ https://help.clutch.co/en/knowledge/add-clutch-widget-to-site
 The homepage uses the official type 7 Feedback Widget for company 2688540,
 obtained from the signed-in SQUARGRAPH Free Profile dashboard. It collects
 reviews without displaying scores. No paid customization or subscription used.
+
+DesignRush was rechecked on 2026-11-03. Its public company page is the
+publication confirmed by the owner; no separate article or authorized free
+widget was supplied. Retain the original logo/profile link without any score.
