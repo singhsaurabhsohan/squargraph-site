@@ -1,30 +1,26 @@
 body.home .home-directories { background:var(--sg-cream, #f8f6f1); padding-block:64px; }
 body.home .home-directories .architecture-heading { margin-bottom:32px; }
-.home-directory-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
-.home-directory-link { display:flex; min-width:0; min-height:150px; padding:24px 0; flex-direction:column; align-items:flex-start; justify-content:space-between; gap:28px; background:transparent; border:0; border-radius:0; color:var(--textprimary); text-decoration:none; transition:transform .2s; }
+.home-directory-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:32px; }
+.home-directory-link { display:grid; grid-template-rows:44px 65px; align-items:center; justify-items:start; min-width:0; padding:24px 0; gap:24px; background:transparent; border:0; color:var(--textprimary); text-decoration:none; }
+.home-directory-brand { display:block; width:100%; }
 .home-directory-link img { display:block; width:min(100%,180px); height:44px; object-fit:contain; object-position:left center; }
 .home-directory-link span { font-size:12px; font-weight:600; }
 .home-directory-link b { margin-left:12px; font-weight:400; }
-.home-directory-link:hover { transform:translateY(-2px); }
-.home-directory-link:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
-@media(max-width:800px) { .home-directory-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media(max-width:480px) { .home-directory-link { min-height:132px; padding:20px 0; gap:22px; } .home-directory-link img { height:34px; } }
-@media(prefers-reduced-motion:reduce) { .home-directory-link { transition:none; transform:none; } }
-
+.home-directory-link:focus-visible, .home-directory-brand:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
 .home-directory-link .home-directory-rating { color:var(--textprimary); font-size:13px; font-weight:600; }
-
-.home-directory-brand { display:block; width:100%; }
-.home-directory-trustpilot .trustpilot-widget { width:100%; min-height:52px; }
-.home-directory-trustpilot { gap:14px; }
-
-.home-directory-clutch { gap:14px; }
-.home-directory-clutch .clutch-widget { width:100%; min-height:65px; }
-.home-directory-clutch iframe { max-width:100%; border:0; }
-
+.home-directory-trustpilot, .home-directory-clutch { container-type:inline-size; }
+.home-directory-trustpilot .trustpilot-widget { width:215px; height:52px; overflow:hidden; transform-origin:left center; }
+.home-directory-clutch .clutch-widget { width:270px; height:65px; transform-origin:left center; }
+.home-directory-clutch iframe { width:270px !important; max-width:none; border:0; transform:translateY(10px); }
 .home-directory-clutch .clutch-widget:has(iframe) > a { display:none; }
-.home-directory-clutch { container-type:inline-size; }
-.home-directory-clutch .clutch-widget iframe { width:270px !important; max-width:none; transform-origin:left top; }
-@container(max-width:269px) { .clutch-widget iframe { transform:scale(.75); } }
-@container(max-width:210px) { .clutch-widget iframe { transform:scale(.6); } }
-@container(max-width:165px) { .clutch-widget iframe { transform:scale(.5); } }
-@container(max-width:136px) { .clutch-widget iframe { transform:scale(.4); } }
+@container(max-width:269px) { .clutch-widget { transform:scale(.75); } }
+@container(max-width:215px) { .trustpilot-widget { transform:scale(.85); } }
+@container(max-width:210px) { .clutch-widget { transform:scale(.6); } }
+@container(max-width:185px) { .trustpilot-widget { transform:scale(.7); } }
+@container(max-width:165px) { .clutch-widget { transform:scale(.5); } }
+@container(max-width:152px) { .trustpilot-widget { transform:scale(.6); } }
+@container(max-width:136px) { .clutch-widget { transform:scale(.4); } .trustpilot-widget { transform:scale(.5); } }
+@media(max-width:800px) { .home-directory-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 24px; } }
+@media(max-width:480px) { .home-directory-link { grid-template-rows:34px 65px; padding:16px 0; gap:20px; } .home-directory-link img { height:34px; } }
+
+.home-directory-trustpilot .trustpilot-widget iframe { width:400px !important; max-width:none; transform:translateX(-92.5px); }
