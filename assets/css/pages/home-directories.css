@@ -16,3 +16,7 @@ body.home .home-directories .architecture-heading { margin-bottom:32px; }
 .home-directory-brand { display:block; width:100%; }
 .home-directory-trustpilot .trustpilot-widget { width:100%; min-height:52px; }
 .home-directory-trustpilot { gap:14px; }
+
+.home-directory-clutch { gap:14px; }
+.home-directory-clutch .clutch-widget { width:100%; min-height:65px; }
+.home-directory-clutch iframe { max-width:100%; border:0; }

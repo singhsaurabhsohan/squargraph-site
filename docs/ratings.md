@@ -31,3 +31,9 @@ The Org is a company directory, not a rating source.
 
 Docs: https://developers.trustpilot.com/business-units-api-(public)
 https://help.clutch.co/en/knowledge/add-clutch-widget-to-site
+
+## Free Clutch Feedback Widget
+
+The homepage uses the official type 7 Feedback Widget for company 2688540,
+obtained from the signed-in SQUARGRAPH Free Profile dashboard. It collects
+reviews without displaying scores. No paid customization or subscription used.
