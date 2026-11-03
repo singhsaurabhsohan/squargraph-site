@@ -22,5 +22,9 @@ body.home .home-directories .architecture-heading { margin-bottom:32px; }
 .home-directory-clutch iframe { max-width:100%; border:0; }
 
 .home-directory-clutch .clutch-widget:has(iframe) > a { display:none; }
-@media(max-width:600px) { .home-directory-clutch .clutch-widget iframe { width:270px !important; max-width:none; transform:scale(.5); transform-origin:left top; } }
-@media(max-width:360px) { .home-directory-clutch .clutch-widget iframe { transform:scale(.4); } }
+.home-directory-clutch { container-type:inline-size; }
+.home-directory-clutch .clutch-widget iframe { width:270px !important; max-width:none; transform-origin:left top; }
+@container(max-width:269px) { .clutch-widget iframe { transform:scale(.75); } }
+@container(max-width:210px) { .clutch-widget iframe { transform:scale(.6); } }
+@container(max-width:165px) { .clutch-widget iframe { transform:scale(.5); } }
+@container(max-width:136px) { .clutch-widget iframe { transform:scale(.4); } }
