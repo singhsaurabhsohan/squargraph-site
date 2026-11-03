@@ -20,7 +20,9 @@ body.home .home-directories .architecture-heading { margin-bottom:32px; }
 @container(max-width:165px) { .clutch-widget { transform:scale(.5); } }
 @container(max-width:152px) { .trustpilot-widget { transform:scale(.6); } }
 @container(max-width:136px) { .clutch-widget { transform:scale(.4); } .trustpilot-widget { transform:scale(.5); } }
-@media(max-width:800px) { .home-directory-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 24px; } }
+@media(max-width:1100px) { .home-directory-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 24px; } }
 @media(max-width:480px) { .home-directory-link { grid-template-rows:34px 65px; padding:16px 0; gap:20px; } .home-directory-link img { height:34px; } }
 
 .home-directory-trustpilot .trustpilot-widget iframe { width:400px !important; max-width:none; transform:translateX(-92.5px); }
+
+@media(max-width:560px) { .home-directory-grid { grid-template-columns:minmax(0,1fr); row-gap:8px; } .home-directory-link { padding:16px 0; gap:16px; } }
