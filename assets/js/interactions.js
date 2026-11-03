@@ -199,7 +199,7 @@ window.SQ.initAIChat = function () {
   if (panel) {
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('aria-modal', 'false');
-    panel.setAttribute('aria-label', panel.getAttribute('aria-label') || 'SQUARGRAPH AI assistant');
+    panel.setAttribute('aria-label', panel.getAttribute('aria-label') || 'SQUARGRAPH™ AI assistant');
     panel.inert = !panel.classList.contains('open');
     if (input) input.maxLength = 2000;
     var messageLog = document.getElementById('ai-chat-messages');
@@ -423,7 +423,7 @@ window.SQ.openRazorpay = async function (productKey, callbacks) {
           });
           if (typeof callbacks.onSuccess === 'function') callbacks.onSuccess(response, verification);
         } catch (error) {
-          console.error('[SQUARGRAPH] Payment verification error:', error);
+          console.error('[SQUARGRAPH™] Payment verification error:', error);
           if (typeof callbacks.onError === 'function') callbacks.onError(error);
         }
       }
@@ -437,7 +437,7 @@ window.SQ.openRazorpay = async function (productKey, callbacks) {
     if (typeof callbacks.onOpen === 'function') callbacks.onOpen(serverOrder);
     return true;
   } catch (error) {
-    console.error('[SQUARGRAPH] Payment checkout error:', error);
+    console.error('[SQUARGRAPH™] Payment checkout error:', error);
     if (typeof callbacks.onError === 'function') callbacks.onError(error);
     return false;
   }

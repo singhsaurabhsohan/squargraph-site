@@ -72,7 +72,7 @@
 
   function configureRoute() {
     if (path === '/forgot-password') {
-      document.title = 'Reset password | SQUARGRAPH OS';
+      document.title = 'Reset password | SQUARGRAPH™ OS';
       els['auth-eyebrow'].textContent = 'ACCOUNT RECOVERY';
       els['auth-title'].textContent = 'Reset your password';
       els['auth-intro'].textContent = 'Enter your authorised workspace email. We will send a secure recovery link.';
@@ -81,17 +81,17 @@
     }
     if (path === '/register' || path === '/reset-password') {
       var invited = path === '/register';
-      document.title = (invited ? 'Accept invitation' : 'Choose a new password') + ' | SQUARGRAPH OS';
+      document.title = (invited ? 'Accept invitation' : 'Choose a new password') + ' | SQUARGRAPH™ OS';
       els['auth-eyebrow'].textContent = invited ? 'INVITED ACCESS' : 'ACCOUNT RECOVERY';
       els['auth-title'].textContent = invited ? 'Secure your workspace account' : 'Choose a new password';
       els['auth-intro'].textContent = invited
-        ? 'Complete your invited profile and set a strong password to enter SQUARGRAPH OS.'
+        ? 'Complete your invited profile and set a strong password to enter SQUARGRAPH™ OS.'
         : 'Set a strong password for your authorised workspace account.';
       showOnly('password-setup-panel');
       return;
     }
     if (path === '/logout') {
-      document.title = 'Signing out | SQUARGRAPH OS';
+      document.title = 'Signing out | SQUARGRAPH™ OS';
       els['auth-title'].textContent = 'Signing out securely';
       els['auth-intro'].textContent = 'Your local workspace session is being closed.';
       showOnly('auth-result-panel');

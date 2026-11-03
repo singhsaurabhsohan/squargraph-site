@@ -123,7 +123,7 @@ window.SQ.initFooterLocationMap = function () {
 
   var iframe = document.createElement('iframe');
   iframe.src = 'https://www.google.com/maps?q=SQUARGRAPH%20Studios%2C%20Hari%20Nagar%20Ashram%2C%20New%20Delhi%20110014&output=embed';
-  iframe.title = 'SQUARGRAPH on Google Maps, Hari Nagar Ashram, New Delhi 110014';
+  iframe.title = 'SQUARGRAPH™ on Google Maps, Hari Nagar Ashram, New Delhi 110014';
   iframe.loading = 'lazy';
   iframe.referrerPolicy = 'no-referrer-when-downgrade';
   iframe.setAttribute('allowfullscreen', '');

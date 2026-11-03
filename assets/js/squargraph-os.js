@@ -8,7 +8,7 @@
   ];
 
   var SCORE_FIELDS = [
-    { key: 'strategic_fit', label: 'Strategic fit', help: 'How closely the requirement matches SQUARGRAPH direction.' },
+    { key: 'strategic_fit', label: 'Strategic fit', help: 'How closely the requirement matches SQUARGRAPH™ direction.' },
     { key: 'capability_fit', label: 'Capability fit', help: 'Ability to solve the requirement with credible capability.' },
     { key: 'proof_available', label: 'Proof available', help: 'Strength of relevant work, experience or evidence.' },
     { key: 'budget_potential', label: 'Budget potential', help: 'Likelihood of commercially viable investment.' },
@@ -1208,7 +1208,7 @@
       initClient();
       await initialiseSession();
     } catch (error) {
-      els['app-loading'].querySelector('p').textContent = error.message || 'SQUARGRAPH OS could not be initialised.';
+      els['app-loading'].querySelector('p').textContent = error.message || 'SQUARGRAPH™ OS could not be initialised.';
     }
   }
 

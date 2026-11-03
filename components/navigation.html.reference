@@ -24,7 +24,7 @@
   <a href="/engagements/"{{ENGAGEMENTS_CURRENT}} onclick="closeMob()">Engagements</a>
   <a href="/intelligence"{{INTELLIGENCE_CURRENT}} onclick="closeMob()">Intelligence</a>
   <a href="/studio/"{{STUDIO_CURRENT}} onclick="closeMob()">Studio</a>
-  <a href="https://os.squargraph.com" onclick="closeMob()">SQUARGRAPH OS</a>
+  <a href="https://os.squargraph.com" onclick="closeMob()">SQUARGRAPH™ OS</a>
   <a href="/project-direction/"{{PROJECT_CURRENT}} onclick="closeMob()">Start a Project</a>
   <a href="mailto:squargraph@gmail.com" class="mob-contact">squargraph@gmail.com</a>
 </div>

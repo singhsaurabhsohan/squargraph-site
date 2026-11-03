@@ -73,7 +73,7 @@
     mark.alt = ''; mark.width = 68; mark.height = 42; mark.loading = 'lazy';
     head.appendChild(mark);
     head.appendChild(make('p', 'brand-marquee-title', "Brands we've worked with"));
-    head.appendChild(make('p', 'brand-marquee-note', 'Across SQUARGRAPH engagements and founder-led professional experience.'));
+    head.appendChild(make('p', 'brand-marquee-note', 'Across SQUARGRAPH™ engagements and founder-led professional experience.'));
 
     var mask = make('div', 'brand-marquee-mask');
     var track = make('div', 'brand-marquee-track');
