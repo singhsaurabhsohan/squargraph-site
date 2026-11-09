@@ -1,0 +1,9 @@
+/* Illustration is part of the existing footer, beneath its information. */
+.site-footer.site-footer--illustrated { --footer-rail:clamp(24px,4vw,64px); position:relative; isolation:isolate; background:#14231c !important; padding:48px var(--footer-rail) 72px !important; color:#fff; }
+.site-footer--illustrated::before { content:''; position:absolute; inset:0; z-index:-1; pointer-events:none; background:linear-gradient(180deg,#14231c 0%,rgba(20,35,28,.85) 30%,rgba(20,35,28,.65) 65%,rgba(20,35,28,.5)),url('/assets/images/footer-community.webp') center bottom / 100% auto no-repeat; }
+.site-footer.site-footer--illustrated .footer-inner,.site-footer--illustrated .footer-grid { width:100% !important; max-width:1440px !important; margin:0 auto !important; padding:0 0 40px !important; }
+.site-footer.site-footer--illustrated .footer-bar,.site-footer--illustrated .footer-bottom { width:100% !important; max-width:1440px !important; margin:0 auto !important; padding:24px 0 0 !important; }
+.site-footer.site-footer--illustrated .footer-inner>div,.site-footer--illustrated .footer-grid>div {min-width:0;}
+.site-footer--illustrated .footer-link,.site-footer--illustrated .footer-grid a {overflow-wrap:anywhere;}
+@media(max-width:640px){.site-footer.site-footer--illustrated {padding-top:36px !important;padding-bottom:80px !important;} .site-footer--illustrated::before {background-size:auto,auto 480px;} .site-footer.site-footer.site-footer--illustrated .footer-inner.footer-inner--expanded,.site-footer.site-footer--illustrated .footer-grid {grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:32px 24px !important;} .site-footer.site-footer--illustrated .footer-brand {grid-column:1 / -1 !important;}}
+
