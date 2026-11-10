@@ -2,11 +2,11 @@
 .site-footer.site-footer--illustrated {
  --footer-rail:clamp(24px,4vw,64px);
  background:#14231c !important;
- padding:56px var(--footer-rail) 28px !important; color:#fff;
+ padding:56px var(--footer-rail) 0 !important; color:#fff;
 }
 .site-footer--illustrated .footer-art {
   height: clamp(240px, 23vw, 440px);
-  margin-inline: calc(-1 * var(--footer-rail));
+  margin: 24px calc(-1 * var(--footer-rail)) 0;
   background:
     linear-gradient(to bottom, #14231c, transparent 30%),
     url('/assets/images/footer-campaign-frames.webp') center bottom / max(100%, 1000px) auto no-repeat;
