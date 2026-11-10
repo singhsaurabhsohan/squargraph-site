@@ -5,9 +5,12 @@
  padding:56px var(--footer-rail) 0 !important; color:#fff;
 }
 .site-footer--illustrated .footer-finish {
-  --footer-art-space: clamp(150px, 17vw, 300px);
   position: relative;
   isolation: isolate;
+  display: grid;
+  align-content: end;
+  /* The source is 3:1. Reserve its full height at every viewport width. */
+  min-height: calc(100vw / 3);
   margin-inline: calc(-1 * var(--footer-rail));
   padding-inline: var(--footer-rail);
 }
@@ -18,13 +21,12 @@
   pointer-events: none;
   background:
     linear-gradient(
-      to bottom,
-      #14231c,
-      rgba(20,35,28,.08) calc(var(--footer-art-space) - 76px),
-      rgba(20,35,28,.76) var(--footer-art-space),
-      rgba(20,35,28,.86)
+      to top,
+      rgba(20,35,28,.82),
+      rgba(20,35,28,.68) 145px,
+      transparent 220px
     ),
-    url('/assets/images/footer-campaign-floor.webp') center bottom / max(100%, 1060px) auto no-repeat;
+    url('/assets/images/footer-campaign-floor.webp') center bottom / 100% auto no-repeat;
 }
 .site-footer.site-footer--illustrated .footer-inner,
 .site-footer.site-footer--illustrated .footer-grid {
@@ -36,7 +38,7 @@
 .site-footer.site-footer--illustrated .footer-bar,
 .site-footer.site-footer--illustrated .footer-bottom {
  width:100% !important; max-width:1440px !important; margin:0 auto !important;
- display:grid !important; grid-template-columns:minmax(0,1fr); padding:var(--footer-art-space) 0 28px !important; gap:12px; border-top:0;
+ display:grid !important; grid-template-columns:minmax(0,1fr); padding:20px 0 24px !important; gap:8px !important; border-top:0;
 }
 .site-footer--illustrated .footer-map-block {width:100% !important;max-width:1440px !important;margin:0 auto !important;}
 .site-footer--illustrated .footer-map-block>div {align-items:center !important;gap:40px !important;}
@@ -70,6 +72,9 @@
   color: #f8f6f1;
   font-size: 12px;
 }
+.site-footer.site-footer--illustrated :is(.payment-label, .footer-trademark-notice) {
+  color: #f8f6f1 !important;
+}
 .site-footer--illustrated .footer-policy-links {
   display: flex;
   flex-wrap: wrap;
@@ -102,6 +107,14 @@
   .site-footer--illustrated .footer-strip-row {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .site-footer--illustrated .footer-policy-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+  .site-footer--illustrated .footer-trademark-notice {
+    padding-inline-end: 56px;
   }
 }
 
