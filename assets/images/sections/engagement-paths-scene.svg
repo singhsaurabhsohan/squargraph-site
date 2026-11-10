@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
+  <title id="title">Five paths lead from a starting brief to different outcomes</title>
+  <g transform="translate(64 224)"><path d="M0 25 117 0l106 24-118 31Z" fill="#395b4b"/><path d="M0 25v13l105 31 118-31V24L105 55Z" fill="#223b30"/></g>
+  <g transform="translate(112 197)"><rect x="0" y="0" width="92" height="60" rx="6" fill="#f4e3bf"/><path d="m2 5 44 29L90 5" fill="none" stroke="#c89655" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="46" cy="34" r="5" fill="#ac614e"/></g>
+  <path d="M216 228h74l-22-12 14-8 41 22-41 22-14-8 22-12h-74Z" fill="#c89655"/>
+  <path d="M318 230Q350 74 407 74" fill="none" stroke="#c89655" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="407" y="52" width="114" height="43" rx="10" fill="#395b4b"/>
+  <circle cx="430" cy="74" r="7" fill="#f4e3bf"/>
+  <path d="M448 71h52m-52 8h34" fill="none" stroke="#f4e3bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M318 230Q350 126 450 126" fill="none" stroke="#c89655" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="450" y="104" width="114" height="43" rx="10" fill="#ac614e"/>
+  <circle cx="473" cy="126" r="7" fill="#f4e3bf"/>
+  <path d="M491 123h52m-52 8h34" fill="none" stroke="#f4e3bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M318 230Q350 178 407 178" fill="none" stroke="#c89655" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="407" y="156" width="114" height="43" rx="10" fill="#8ba28c"/>
+  <circle cx="430" cy="178" r="7" fill="#f4e3bf"/>
+  <path d="M448 175h52m-52 8h34" fill="none" stroke="#f4e3bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M318 230Q350 230 450 230" fill="none" stroke="#c89655" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="450" y="208" width="114" height="43" rx="10" fill="#795367"/>
+  <circle cx="473" cy="230" r="7" fill="#f4e3bf"/>
+  <path d="M491 227h52m-52 8h34" fill="none" stroke="#f4e3bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M318 230Q350 282 407 282" fill="none" stroke="#c89655" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="407" y="260" width="114" height="43" rx="10" fill="#223b30"/>
+  <circle cx="430" cy="282" r="7" fill="#f4e3bf"/>
+  <path d="M448 279h52m-52 8h34" fill="none" stroke="#f4e3bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M177 121h18m-9-9v18" fill="none" stroke="#c89655" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

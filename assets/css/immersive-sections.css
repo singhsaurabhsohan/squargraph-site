@@ -92,6 +92,13 @@ body.home .section-heading-aside--scene .section-art {
   margin: 0 auto;
   animation: none;
 }
+body.home .section-art--new {
+  animation: none;
+}
+body.home :is(.studio-positioning-intro, .section-art-label) .section-art--new {
+  width: min(48%, 250px);
+  margin: 0;
+}
 @media (min-width: 641px) and (max-width: 900px) {
   body.home .section-heading-aside--scene {
     grid-template-columns: minmax(0, .8fr) minmax(0, 1fr);
