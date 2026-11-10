@@ -6,8 +6,8 @@
   --partner-secondary: #514d48;
   --partner-muted: #79736c;
   --partner-line: rgba(21, 20, 17, .14);
-  --partner-accent: #394536;
-  --partner-accent-soft: rgba(57, 69, 54, .1);
+  --partner-accent: #14231c;
+  --partner-accent-soft: rgba(20,35,28, .1);
 }
 
 html {
@@ -951,7 +951,7 @@ body[data-page="partners"] {
   font-size: 12px;
   font-weight: 800;
   text-decoration: none;
-  border-bottom: 1px solid rgba(57, 69, 54, .35);
+  border-bottom: 1px solid rgba(20,35,28, .35);
   padding-bottom: 4px;
 }
 
@@ -974,7 +974,7 @@ body[data-page="partners"] {
   align-items: center;
   justify-content: center;
   margin-bottom: 34px;
-  border: 1px solid rgba(57, 69, 54, .28);
+  border: 1px solid rgba(20,35,28, .28);
   border-radius: 999px;
   background: var(--partner-accent-soft);
   color: var(--partner-accent);
@@ -1079,7 +1079,7 @@ body[data-page="partners"] {
 .partner-page input:focus-visible,
 .partner-page select:focus-visible,
 .partner-page textarea:focus-visible {
-  outline: 3px solid rgba(57, 69, 54, .35);
+  outline: 3px solid rgba(20,35,28, .35);
   outline-offset: 3px;
 }
 

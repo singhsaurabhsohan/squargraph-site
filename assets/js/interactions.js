@@ -395,7 +395,7 @@ window.SQ.openRazorpay = async function (productKey, callbacks) {
       image: '/logo-g-v2.webp',
       prefill: callbacks.prefill || {},
       notes: { product: serverOrder.product_name },
-      theme: { color: '#394536' },
+      theme: { color: '#14231c' },
       modal: {
         ondismiss: function () {
           if (typeof callbacks.onDismiss === 'function') callbacks.onDismiss();

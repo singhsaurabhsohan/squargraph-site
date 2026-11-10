@@ -42,7 +42,7 @@
 .work-video-audio[aria-pressed="true"] .work-video-audio-muted { display: none; }
 .work-video-audio[aria-pressed="true"] .work-video-audio-playing { display: block; }
 .work-entry-media--system { display: grid; place-items: center; padding: 32px; }
-.work-entry-media--system::before { content: ""; width: min(78%, 360px); aspect-ratio: 16 / 10; border: 1px solid rgba(26,23,20,.3); background: linear-gradient(#fff 0 14%, transparent 14%), repeating-linear-gradient(90deg, rgba(57,69,54,.1) 0 1px, transparent 1px 48px); box-shadow: 18px 18px 0 rgba(57,69,54,.14); }
+.work-entry-media--system::before { content: ""; width: min(78%, 360px); aspect-ratio: 16 / 10; border: 1px solid rgba(26,23,20,.3); background: linear-gradient(#fff 0 14%, transparent 14%), repeating-linear-gradient(90deg, rgba(20,35,28,.1) 0 1px, transparent 1px 48px); box-shadow: 18px 18px 0 rgba(20,35,28,.14); }
 .work-entry-body { padding: 30px; }
 .work-entry-topline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
 .work-relationship { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
@@ -93,12 +93,12 @@
 [data-work-grid="founder-previous-experience"] .work-entry:nth-child(even) .work-entry-media { order: 2; }
 .work-experience-visual {
   --work-gold: #b57d2c;
-  --work-forest: #394536;
+  --work-forest: #14231c;
   position: relative;
   isolation: isolate;
   background:
-    linear-gradient(rgba(57,69,54,.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(57,69,54,.055) 1px, transparent 1px),
+    linear-gradient(rgba(20,35,28,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20,35,28,.055) 1px, transparent 1px),
     #f4f2ed;
   background-size: 48px 48px;
 }
@@ -155,7 +155,7 @@
   min-width: clamp(76px, 13vw, 138px);
   min-height: clamp(34px, 4.2vw, 48px);
   padding: 8px 12px;
-  border: 1px solid rgba(57,69,54,.55);
+  border: 1px solid rgba(20,35,28,.55);
   border-radius: 4px;
   background: rgba(255,255,255,.9);
   color: var(--work-forest);
@@ -191,7 +191,7 @@
   position: relative;
   display: block;
   height: 1px;
-  background: rgba(57,69,54,.22);
+  background: rgba(20,35,28,.22);
 }
 .work-timeline-track i {
   position: absolute;

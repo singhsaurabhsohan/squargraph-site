@@ -12,7 +12,7 @@ VERSION = "v20260720"
 
 COLORS = {
     "ink": "#11110f",
-    "forest": "#394536",
+    "forest": "#14231c",
     "warm": "#f5f2ec",
     "brass": "#bd8427",
     "muted_dark": "#c9cec5",

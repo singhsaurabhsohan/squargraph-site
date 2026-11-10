@@ -1,6 +1,6 @@
 :root {
   --sg-ink: #151411;
-  --sg-forest: #394536;
+  --sg-forest: #14231c;
   --sg-moss: #657158;
   --sg-gold: #B48A4A;
   --sg-blue: #335E76;
@@ -27,8 +27,8 @@
   --border: rgba(26, 23, 20, .14);
   --accent: var(--sg-forest);
   --accentmuted: var(--sg-moss);
-  --accentlight: rgba(57, 69, 54, .12);
-  --accent-light: rgba(57, 69, 54, .12);
+  --accentlight: rgba(20,35,28, .12);
+  --accent-light: rgba(20,35,28, .12);
   --accent-mid: var(--sg-moss);
   --radius-card: var(--sg-radius);
   --shadow-sm: 0 2px 8px rgba(26, 23, 20, .05);
@@ -348,7 +348,7 @@ input[type="text"]:focus,
 select:focus,
 textarea:focus {
   border-color: var(--sg-forest) !important;
-  box-shadow: 0 0 0 3px rgba(57, 69, 54, .12) !important;
+  box-shadow: 0 0 0 3px rgba(20,35,28, .12) !important;
 }
 
 .iti {
@@ -358,8 +358,8 @@ textarea:focus {
 }
 
 .iti:focus-within {
-  border-color: var(--sg-forest, #394536) !important;
-  box-shadow: 0 0 0 2px rgba(57, 69, 54, .12) !important;
+  border-color: var(--sg-forest, #14231c) !important;
+  box-shadow: 0 0 0 2px rgba(20,35,28, .12) !important;
 }
 
 .iti__flag-container {
