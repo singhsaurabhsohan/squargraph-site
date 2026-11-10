@@ -24,7 +24,7 @@
       rgba(20,35,28,.76) var(--footer-art-space),
       rgba(20,35,28,.86)
     ),
-    url('/assets/images/footer-campaign-frames.webp') center bottom / max(100%, 1060px) auto no-repeat;
+    url('/assets/images/footer-campaign-floor.webp') center bottom / max(100%, 1060px) auto no-repeat;
 }
 .site-footer.site-footer--illustrated .footer-inner,
 .site-footer.site-footer--illustrated .footer-grid {
