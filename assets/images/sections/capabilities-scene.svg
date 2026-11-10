@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
+  <title id="title">Capabilities — from a rough idea to a finished form</title>
+  <path d="M65 271C160 325 181 215 294 227S469 301 581 141" fill="none" stroke="#bc8f51" stroke-width="2" stroke-dasharray="3 9" stroke-linecap="round"/>
+  <path d="M64 279 320 318l258-72-242-40Z" fill="#627e69" opacity=".22"/>
+  <path d="M63 253 319 298l259-76-242-42Z" fill="#2d4839" stroke="#dfc59b" stroke-width="2"/>
+  <path d="m63 253 256 45 259-76v13l-259 77-256-45Z" fill="#193026"/>
+  <path d="m100 242 148 25 79-23-150-25Z" fill="#f2dfb9"/>
+  <path d="m132 239 104 17m-83-22 104 17" stroke="#a77b4c" stroke-width="2" stroke-linecap="round"/>
+  <path d="m326 231 98 16 76-22-100-17Z" fill="#b36d55"/>
+  <path d="m333 220 98 16 76-22-100-17Z" fill="#deb47a"/>
+  <path d="m342 209 98 16 76-22-100-17Z" fill="#e9d3ab"/>
+  <path d="M382 189V96a65 65 0 0 1 130 0v126Z" fill="#f5e7ca" stroke="#bf9a63" stroke-width="2"/>
+  <path d="M404 191V99a42 42 0 0 1 84 0v111Z" fill="#375745"/>
+  <path d="M405 155c16-17 43-29 83-24v34l-83 22Z" fill="#81937c"/>
+  <circle cx="455" cy="106" r="16" fill="#dcb26b"/>
+  <path d="m404 177 38-13 46 5v41l-84-19Z" fill="#b97356"/>
+  <path d="m258 133 142 6v32l-151 31Z" fill="#d9ac68" opacity=".25"/>
+  <path d="m118 131 97-37 91 16-99 36Z" fill="#dcb577"/>
+  <path d="m118 131 89 15v61l-89-16Z" fill="#b36c51"/>
+  <path d="m207 146 99-36v61l-99 36Z" fill="#eacda0"/>
+  <path d="m228 157 53-19m-53 30 53-19m-53 30 34-12" stroke="#a67142" stroke-width="2" stroke-linecap="round"/>
+  <path d="m114 225-36-15-26-22 13-18 25 15 36 6 29-4c10-1 14 7 6 11l-17 6 28 3c9 1 9 10 1 12l-45 9Z" fill="#be8564" stroke="#965f43" stroke-width="2" stroke-linejoin="round"/>
+  <path d="m49 188 27 25-24 18-22-24Z" fill="#e6c697"/>
+  <path d="m280 238 47 11 24-6-48-10Z" fill="#192f24"/>
+  <path d="M330 82h22m-11-11v22m209 32h22m-11-11v22" stroke="#bb8e52" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="98" cy="105" r="5" fill="#b66d52"/><circle cx="549" cy="183" r="4" fill="#b66d52"/>
+</svg>

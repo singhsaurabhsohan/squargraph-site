@@ -76,3 +76,32 @@ body:has(.policy-content) h2 > .sg-title-art { opacity: .1; }
  body .sg-detail-visual[data-detail-art]::after { position: static; display: block; width: 100%; height: 112px; margin-top: 18px; background-position: center; opacity: .85; mask-image: none; z-index: auto; grid-column: 1 / -1; }
  body.home #approach .architecture-method-column article.sg-detail-visual::after { opacity: .9; filter: brightness(1.45); }
 }
+
+/* Keep the transparent scenes and their captions in the same layout group. */
+body.home .architecture-heading:has(.section-heading-aside--scene)::before {
+  display: none;
+}
+body.home .section-heading-aside--scene {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+body.home .section-heading-aside--scene .section-art {
+  width: min(100%, 360px);
+  margin: 0 auto;
+  animation: none;
+}
+@media (min-width: 641px) and (max-width: 900px) {
+  body.home .section-heading-aside--scene {
+    grid-template-columns: minmax(0, .8fr) minmax(0, 1fr);
+    gap: 24px;
+  }
+  body.home .section-heading-aside--scene p { margin: 0; }
+}
+@media (max-width: 640px) {
+  body.home .section-heading-aside--scene .section-art {
+    width: min(100%, 310px);
+  }
+  body.home .section-heading-aside--scene p { margin: 0; }
+}

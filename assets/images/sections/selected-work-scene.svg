@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
+  <title id="title">Selected Work — a campaign in three frames</title>
+  <defs>
+    <linearGradient id="light" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#e3b97b"/><stop offset="1" stop-color="#f9ecd1"/>
+    </linearGradient>
+    <clipPath id="land"><rect x="80" y="87" width="217" height="126" rx="11"/></clipPath>
+    <clipPath id="set"><rect x="353" y="130" width="211" height="129" rx="11"/></clipPath>
+  </defs>
+  <path d="M38 261C98 174 171 314 271 265s150-155 311-115" fill="none" stroke="#b68b50" stroke-width="2" stroke-dasharray="3 8" stroke-linecap="round" opacity=".72"/>
+  <path d="M493 43h19m-9-10v20M117 287h21m-10-10v20" stroke="#bd9056" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="590" cy="101" r="5" fill="#b46b52"/><circle cx="61" cy="226" r="5" fill="#cb9c5a"/>
+  <g transform="rotate(-12 193 145)">
+    <rect x="68" y="73" width="241" height="155" rx="16" fill="#30483d" stroke="#f1dfbd" stroke-width="2"/>
+    <g clip-path="url(#land)">
+      <path d="M76 81h228v145H76z" fill="url(#light)"/>
+      <circle cx="225" cy="117" r="19" fill="#c0874f"/>
+      <path d="m73 170 69-52 57 49 44-30 63 36v55H73Z" fill="#839583"/>
+      <path d="m74 195 59-37 39 20 32-11 51 14 55-24v71H74Z" fill="#486454"/>
+      <path d="M143 228c1-36 105-37 98-65l6-2c18 30-73 41-60 67" fill="#f1ddba"/>
+      <path d="M195 192h16l7 5-1 5h-26v-5Z" fill="#b86b50"/>
+      <path d="M193 202h4m14 0h4" stroke="#14231c" stroke-width="3" stroke-linecap="round"/>
+    </g>
+  </g>
+  <g transform="rotate(10 457 201)">
+    <rect x="339" y="116" width="239" height="158" rx="16" fill="#30483d" stroke="#f1dfbd" stroke-width="2"/>
+    <g clip-path="url(#set)">
+      <path d="M350 126h221v138H350z" fill="#b86b50"/>
+      <path d="M360 234c58-12 113-15 205-4v38H350z" fill="#8a4e3c"/>
+      <path d="m558 137-109 30 20 47 97-60Z" fill="#f1d29f"/>
+      <path d="M375 185h49v29h-49z" fill="#162820" stroke="#efdcb8" stroke-width="2"/>
+      <path d="m424 190 19-8v35l-19-8M397 215l-16 38m16-38 16 38" stroke="#162820" stroke-width="6" stroke-linejoin="round"/>
+      <circle cx="487" cy="175" r="11" fill="#8d523b"/>
+      <path d="M478 185h19l15 44h-45z" fill="#e7c486"/>
+      <path d="M485 226v25m13-25v25" stroke="#283d32" stroke-width="6" stroke-linecap="round"/>
+    </g>
+  </g>
+  <g transform="rotate(-4 324 179)">
+    <rect x="239" y="55" width="171" height="243" rx="19" fill="#182e23" stroke="#e3c69a" stroke-width="2"/>
+    <rect x="253" y="72" width="143" height="192" rx="11" fill="#d6ad72"/>
+    <path d="M253 209c50-70 102-93 143-85v140H253Z" fill="#b66a51"/>
+    <path d="M253 94h143v12H253z" fill="#f6e5c2" opacity=".46"/>
+    <circle cx="326" cy="149" r="43" fill="#f0d29d" opacity=".7"/>
+    <path d="M278 263c-2-28 12-49 38-60h36c20 11 32 35 31 60Z" fill="#f8e8c9"/>
+    <path d="M314 195v13l15 12 18-15v-15Z" fill="#a8664b"/>
+    <path d="M313 158c0-19 10-30 26-30s25 12 24 30l-6 24c-5 14-18 21-29 16-12-5-17-19-15-40Z" fill="#b97756"/>
+    <path d="M308 177c-10-20-6-53 16-59 17-5 38 2 42 18-6 3-14 1-24-3-6 15-16 24-30 29Z" fill="#263a2f"/>
+    <circle cx="349" cy="163" r="2" fill="#1d2c23"/>
+    <path d="M335 182q8 4 15-1" fill="none" stroke="#734530" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="316" cy="182" r="5" fill="none" stroke="#f0c376" stroke-width="2"/>
+    <path d="M284 280h81" stroke="#94a38a" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="308" cy="280" r="4" fill="#c49a59"/>
+  </g>
+</svg>
