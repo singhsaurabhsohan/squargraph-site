@@ -4,12 +4,27 @@
  background:#14231c !important;
  padding:56px var(--footer-rail) 0 !important; color:#fff;
 }
+.site-footer--illustrated .footer-finish {
+  --footer-art-space: clamp(150px, 17vw, 300px);
+  position: relative;
+  isolation: isolate;
+  margin-inline: calc(-1 * var(--footer-rail));
+  padding-inline: var(--footer-rail);
+}
 .site-footer--illustrated .footer-art {
-  height: clamp(240px, 23vw, 440px);
-  margin: 24px calc(-1 * var(--footer-rail)) 0;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background:
-    linear-gradient(to bottom, #14231c, transparent 30%),
-    url('/assets/images/footer-campaign-frames.webp') center bottom / max(100%, 1000px) auto no-repeat;
+    linear-gradient(
+      to bottom,
+      #14231c,
+      rgba(20,35,28,.08) calc(var(--footer-art-space) - 76px),
+      rgba(20,35,28,.76) var(--footer-art-space),
+      rgba(20,35,28,.86)
+    ),
+    url('/assets/images/footer-campaign-frames.webp') center bottom / max(100%, 1060px) auto no-repeat;
 }
 .site-footer.site-footer--illustrated .footer-inner,
 .site-footer.site-footer--illustrated .footer-grid {
@@ -21,7 +36,7 @@
 .site-footer.site-footer--illustrated .footer-bar,
 .site-footer.site-footer--illustrated .footer-bottom {
  width:100% !important; max-width:1440px !important; margin:0 auto !important;
- display:grid !important; grid-template-columns:minmax(0,1fr); padding:20px 0 0 !important; gap:12px;
+ display:grid !important; grid-template-columns:minmax(0,1fr); padding:var(--footer-art-space) 0 28px !important; gap:12px; border-top:0;
 }
 .site-footer--illustrated .footer-map-block {width:100% !important;max-width:1440px !important;margin:0 auto !important;}
 .site-footer--illustrated .footer-map-block>div {align-items:center !important;gap:40px !important;}
@@ -51,8 +66,8 @@
   gap: 8px 24px;
   width: 100%;
 }
-.site-footer.site-footer--illustrated :is(.footer-strip-row > p, .footer-signoff) {
-  color: rgba(255,255,255,.75);
+.site-footer.site-footer--illustrated :is(.footer-strip-row > p, .footer-strip-row > span, .footer-signoff) {
+  color: #f8f6f1;
   font-size: 12px;
 }
 .site-footer--illustrated .footer-policy-links {
@@ -65,7 +80,7 @@
   align-items: center;
   min-height: 28px;
   margin: 0;
-  color: rgba(255,255,255,.8);
+  color: #f8f6f1;
   font-size: 12px;
 }
 .site-footer--illustrated .footer-policy-links a:hover {

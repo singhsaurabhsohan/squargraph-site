@@ -138,7 +138,7 @@ window.SQ.initFooterLocationMap = function () {
   mobileStyle.textContent = '@media(max-width:760px){.footer-map-block>div{grid-template-columns:1fr!important}.footer-map-block{padding:32px 0!important}.footer-map-block iframe{min-height:240px!important}}';
   section.appendChild(mobileStyle);
 
-  var marker = footer.querySelector('.footer-art, .footer-bar, .footer-bottom');
+  var marker = footer.querySelector('.footer-finish') || footer.querySelector('.footer-bar, .footer-bottom');
   if (marker) footer.insertBefore(section, marker);
   else footer.appendChild(section);
 };
