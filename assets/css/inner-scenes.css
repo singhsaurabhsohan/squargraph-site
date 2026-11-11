@@ -1,0 +1,35 @@
+/* A transparent scene is an ordinary block, so copy never overlaps the artwork. */
+.inner-scene {
+  display: block;
+  width: min(100%, 230px);
+  height: auto;
+  margin: 12px 0 16px;
+}
+
+.inner-scene--intro {
+  width: min(100%, clamp(150px, 20vw, 255px));
+}
+
+.policy-content .inner-scene,
+.legal-h1 + .inner-scene {
+  width: min(100%, 160px);
+}
+
+h2[data-visual-theme]:has(+ .inner-scene) {
+  padding-block: 0;
+}
+
+.scroll-reveal:has(+ .inner-scene) {
+  transform: none;
+}
+
+.destination-section-head:has(.inner-scene) > .destination-kicker::after {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .inner-scene {
+    width: min(100%, 200px);
+    margin-block: 8px 12px;
+  }
+}

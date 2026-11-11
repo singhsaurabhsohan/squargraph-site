@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
+  <title id="title">A conversation takes flight</title>
+  <defs>
+    <linearGradient id="paper" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#f8edcf"/><stop offset="1" stop-color="#dfc18c"/>
+    </linearGradient>
+  </defs>
+  <path d="M55 264c43 48 133 43 167-1 32-42-12-84-40-58-25 24 17 53 77 22l101-53"
+    fill="none" stroke="#b58a50" stroke-width="2" stroke-dasharray="3 8" stroke-linecap="round"/>
+  <path d="m233 146 285-77-134 202-38-84Z" fill="url(#paper)" stroke="#ab8149" stroke-width="2" stroke-linejoin="round"/>
+  <path d="m233 146 113 41L518 69 370 211l14 60-48-71Z" fill="#668875"/>
+  <path d="m346 187 172-118-148 142 14 60Z" fill="#294b3b"/>
+  <path d="m346 187 24 24 148-142" fill="none" stroke="#ead5aa" stroke-width="2" stroke-linecap="round"/>
+  <path d="m336 200-17 34 51-23Z" fill="#b6bda1" stroke="#294b3b" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="m233 146 62-17m-46 26 34-9" stroke="#fff5dc" stroke-width="2" stroke-linecap="round" opacity=".75"/>
+  <path d="M181 124h22m-11-11v22m339 90h18m-9-9v18M405 42h12m-6-6v12"
+    fill="none" stroke="#b58a50" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="149" cy="290" r="4" fill="#b77456"/>
+  <circle cx="558" cy="156" r="5" fill="#b58a50"/>
+</svg>

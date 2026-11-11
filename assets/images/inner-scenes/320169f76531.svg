@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 280" role="img" aria-labelledby="title">
+  <title id="title">Tell us what needs to move.</title>
+  <path d="M28 204c78 45 117-41 188-20s121 23 188-30" fill="none" stroke="#c79758" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 7"/><path d="M93 70h15m-7.5-7.5v15M337 59h16m-8-8v16" fill="none" stroke="#c79758" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="372" cy="139" r="3" fill="#986447"/>
+  <path d="M51 217q148-40 326-3l-67 29-190 4Z" fill="#466957"/>
+  <g transform="translate(261 75) scale(0.75) rotate(11 60 65)"><path d="M8 126V59a52 52 0 0 1 104 0v67Z" fill="#f6e6c7"/><path d="M19 126V59a41 41 0 0 1 82 0v67Z" fill="#8ca58f"/><circle cx="60" cy="59" r="35" fill="#243d32"/><path d="m74 33-7 37-23 14 7-37Z" fill="#f6e6c7"/><circle cx="60" cy="59" r="4" fill="#c79758"/><path d="M60 12v10m0 75v10M13 59h10m75 0h10" fill="none" stroke="#c79758" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(104 54) scale(1.29) rotate(5 60 65)"><rect x="4" y="27" width="111" height="71" rx="9" fill="#986447"/><path d="m9 33 50 37 52-37" fill="none" stroke="#c79758" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="59" cy="70" r="7" fill="#b97456"/></g>
+</svg>
