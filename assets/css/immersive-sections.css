@@ -88,7 +88,8 @@ body.home .section-heading-aside--scene {
   gap: 12px;
 }
 body.home .section-heading-aside--scene .section-art {
-  width: min(100%, 360px);
+  width: min(100%, 520px);
+  max-width: 100%;
   margin: 0 auto;
   animation: none;
 }
@@ -96,19 +97,30 @@ body.home .section-art--new {
   animation: none;
 }
 body.home :is(.studio-positioning-intro, .section-art-label) .section-art--new {
-  width: min(48%, 250px);
+  width: min(56%, 360px);
   margin: 0;
+}
+body.home .contact-copy > .section-art--new {
+  width: min(100%, 470px);
 }
 @media (min-width: 641px) and (max-width: 900px) {
   body.home .section-heading-aside--scene {
-    grid-template-columns: minmax(0, .8fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     gap: 24px;
   }
   body.home .section-heading-aside--scene p { margin: 0; }
 }
 @media (max-width: 640px) {
+  body.home :is(.studio-positioning-intro, .section-art-label) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  body.home :is(.studio-positioning-intro, .section-art-label) .section-art--new {
+    width: min(100%, 390px);
+  }
   body.home .section-heading-aside--scene .section-art {
-    width: min(100%, 310px);
+    width: min(100%, 420px);
   }
   body.home .section-heading-aside--scene p { margin: 0; }
 }

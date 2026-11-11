@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
   <title id="title">Five paths lead from a starting brief to different outcomes</title>
+  <g aria-hidden="true"><path d="M18 281q80-139 232-148 210-17 372 148Z" fill="#d7b380" opacity=".25"/><path d="M70 281q118-123 247-104 146 20 264 104" fill="none" stroke="#6b917e" stroke-width="3" opacity=".45"/></g>
   <g transform="translate(64 224)"><path d="M0 25 117 0l106 24-118 31Z" fill="#395b4b"/><path d="M0 25v13l105 31 118-31V24L105 55Z" fill="#223b30"/></g>
   <g transform="translate(112 197)"><rect x="0" y="0" width="92" height="60" rx="6" fill="#f4e3bf"/><path d="m2 5 44 29L90 5" fill="none" stroke="#c89655" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="46" cy="34" r="5" fill="#ac614e"/></g>
   <path d="M216 228h74l-22-12 14-8 41 22-41 22-14-8 22-12h-74Z" fill="#c89655"/>

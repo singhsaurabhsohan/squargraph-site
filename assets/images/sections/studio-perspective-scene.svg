@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
   <title id="title">The studio looks at a brief from several angles</title>
+  <g aria-hidden="true"><path d="m11 279 131-107 114 38 139-128 233 93v115H11Z" fill="#8ea592" opacity=".22"/><path d="M12 279 177 224l120 39 126-53 207 64" fill="none" stroke="#bb9057" stroke-width="2" opacity=".6"/></g>
   <path d="M55 251c106 76 180-52 287-13 85 31 160 25 242-44" fill="none" stroke="#c89655" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 9"/>
   <g transform="translate(188 232)"><path d="M0 25 117 0l106 24-118 31Z" fill="#395b4b"/><path d="M0 25v13l105 31 118-31V24L105 55Z" fill="#223b30"/></g>
   <g transform="translate(231 88)"><path d="M0 145V57a57 57 0 0 1 114 0v88Z" fill="#f4e3bf"/><path d="M12 145V57a45 45 0 0 1 90 0v88Z" fill="#395b4b"/></g>

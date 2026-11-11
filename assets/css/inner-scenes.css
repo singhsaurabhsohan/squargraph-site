@@ -1,18 +1,18 @@
 /* A transparent scene is an ordinary block, so copy never overlaps the artwork. */
 .inner-scene {
   display: block;
-  width: min(100%, 230px);
+  width: min(100%, 400px);
   height: auto;
-  margin: 12px 0 16px;
+  margin: 10px 0 18px;
 }
 
 .inner-scene--intro {
-  width: min(100%, clamp(150px, 20vw, 255px));
+  width: min(100%, clamp(280px, 32vw, 460px));
 }
 
 .policy-content .inner-scene,
 .legal-h1 + .inner-scene {
-  width: min(100%, 160px);
+  width: min(100%, 280px);
 }
 
 h2[data-visual-theme]:has(+ .inner-scene) {
@@ -29,7 +29,7 @@ h2[data-visual-theme]:has(+ .inner-scene) {
 
 @media (max-width: 760px) {
   .inner-scene {
-    width: min(100%, 200px);
+    width: min(100%, 360px);
     margin-block: 8px 12px;
   }
 }

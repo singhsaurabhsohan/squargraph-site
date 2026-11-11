@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
   <title id="title">Separate pieces move into one coordinated direction</title>
+  <g aria-hidden="true"><path d="M18 281q80-139 232-148 210-17 372 148Z" fill="#d7b380" opacity=".25"/><path d="M70 281q118-123 247-104 146 20 264 104" fill="none" stroke="#6b917e" stroke-width="3" opacity=".45"/></g>
   <path d="M55 251c106 76 180-52 287-13 85 31 160 25 242-44" fill="none" stroke="#c89655" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 9"/>
   <g transform="translate(218 226)"><path d="M0 25 117 0l106 24-118 31Z" fill="#395b4b"/><path d="M0 25v13l105 31 118-31V24L105 55Z" fill="#223b30"/></g>
   <g transform="translate(272 65)"><path d="M0 145V57a57 57 0 0 1 114 0v88Z" fill="#f4e3bf"/><path d="M12 145V57a45 45 0 0 1 90 0v88Z" fill="#395b4b"/></g>

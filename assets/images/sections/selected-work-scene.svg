@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
   <title id="title">Selected Work — a campaign in three frames</title>
+  <g aria-hidden="true"><path d="M12 275C98 210 134 234 213 184c80-49 155-45 211-91 73-59 163-33 204 17v177H12Z" fill="#88a38f" opacity=".25"/><path d="M12 283q112-46 227-23t389-28v62H12Z" fill="#be9868" opacity=".18"/></g>
   <defs>
     <linearGradient id="light" x2="1" y2="1" gradientUnits="objectBoundingBox">
       <stop stop-color="#e3b97b"/><stop offset="1" stop-color="#f9ecd1"/>

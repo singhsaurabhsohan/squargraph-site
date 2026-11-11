@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
   <title id="title">Capabilities — from a rough idea to a finished form</title>
+  <g aria-hidden="true"><path d="m11 279 131-107 114 38 139-128 233 93v115H11Z" fill="#8ea592" opacity=".22"/><path d="M12 279 177 224l120 39 126-53 207 64" fill="none" stroke="#bb9057" stroke-width="2" opacity=".6"/></g>
   <path d="M65 271C160 325 181 215 294 227S469 301 581 141" fill="none" stroke="#bc8f51" stroke-width="2" stroke-dasharray="3 9" stroke-linecap="round"/>
   <path d="M64 279 320 318l258-72-242-40Z" fill="#627e69" opacity=".22"/>
   <path d="M63 253 319 298l259-76-242-42Z" fill="#2d4839" stroke="#dfc59b" stroke-width="2"/>
