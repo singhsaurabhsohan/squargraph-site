@@ -9,8 +9,8 @@
   isolation: isolate;
   display: grid;
   align-content: end;
-  /* The source is 3:1. Reserve its full height at every viewport width. */
-  min-height: calc(100vw / 3);
+  /* Reserve space for the artwork below its transparent top edge. */
+  min-height: calc(100vw * 654 / 2172);
   margin-inline: calc(-1 * var(--footer-rail));
   padding-inline: var(--footer-rail);
 }
