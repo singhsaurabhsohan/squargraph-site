@@ -1,0 +1,47 @@
+.service-section h2 {
+  margin-bottom: 1.5rem;
+}
+
+.service-section > p {
+  max-width: 68ch;
+  margin: 1rem 0 0;
+  line-height: 1.65;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 1rem;
+}
+
+.service-grid .destination-callout {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.service-grid h3 a,
+.service-section > p a,
+.service-related a {
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+.service-related {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.destination-eyebrow a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+@media (min-width: 769px) and (max-width: 960px) {
+  body[data-page="services"] #nav .nav-links { gap: clamp(12px, 2vw, 20px); }
+  body[data-page="services"] #nav .nav-logo { flex-shrink: 0; }
+  body[data-page="services"] #nav .nav-logo img { width: clamp(150px, 20vw, 192px); height: auto; }
+  body[data-page="services"] #nav .nav-cta { white-space: nowrap; }
+}
