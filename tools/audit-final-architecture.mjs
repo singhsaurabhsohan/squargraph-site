@@ -148,11 +148,13 @@ const blogCovers = [...blogHtml.matchAll(/(?:featured-img-inner|post-thumb-img)[
 if (blogCovers.length !== 7) errors.push(`blog.html: expected 7 editorial covers, found ${blogCovers.length}`);
 if (new Set(blogCovers).size !== blogCovers.length) errors.push('blog.html: repeated editorial cover image');
 
-const legacyHtml = htmlCache.get(path.join(root, 'creative-agency-delhi.html')) || '';
-const gumletPosters = [...legacyHtml.matchAll(/data-src="(https:\/\/play\.gumlet\.io\/embed\/[^"]+)"[^>]+background:url\('([^']+)'\)/g)];
-if (gumletPosters.length !== 11) errors.push(`creative-agency-delhi.html: expected 11 Gumlet poster mappings, found ${gumletPosters.length}`);
-for (const [, , poster] of gumletPosters) {
-  if (!await exists(path.join(root, poster.replace(/^\//, '')))) errors.push(`creative-agency-delhi.html: missing video poster ${poster}`);
+const delhiHtml = htmlCache.get(path.join(root, 'creative-agency-delhi.html')) || '';
+const delhiVideos = [...delhiHtml.matchAll(/<video\b[^>]*\bdata-hero-src="([^"]+)"[^>]*\bposter="([^"]+)"/g)];
+if (!delhiVideos.length) errors.push('creative-agency-delhi.html: missing native hero preview videos');
+for (const [, video, poster] of delhiVideos) {
+  for (const asset of [video, poster]) {
+    if (!await exists(path.join(root, asset.replace(/^\//, '')))) errors.push(`creative-agency-delhi.html: missing hero asset ${asset}`);
+  }
 }
 
 const allSource = [...htmlCache.values()].join('\n') + '\n' + await readFile(path.join(root, 'assets/data/intelligence.json'), 'utf8');
@@ -171,4 +173,4 @@ console.log(`${htmlFiles.length} HTML files checked.`);
 console.log(`${footerHashes.size} standard shared footers match with no duplicate links.`);
 console.log(`${specializedFooterPages.size} specialized flow footers validated for required navigation/legal links.`);
 console.log(`${blogCovers.length} unique blog covers found.`);
-console.log(`${gumletPosters.length} Gumlet embeds have local poster assets.`);
+console.log(`${delhiVideos.length} Delhi hero previews have local video and poster assets.`);
