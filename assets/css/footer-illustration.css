@@ -190,22 +190,24 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 4px 20px;
+  gap: 8px;
   color: #fff;
   line-height: 1.4;
   font-size: .875rem;
 }
+
+.footer-cities strong { flex-basis: 100%; margin-bottom: 4px; }
 
 .footer-cities a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
   color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  padding: 8px 12px;
+  border: 1px solid rgb(255 255 255 / .25);
+  border-radius: 6px;
+  text-decoration: none;
 }
 
-@media (max-width: 600px) {
-  .footer-cities strong { flex-basis: 100%; }
-}
+.footer-cities a:hover, .footer-cities a:focus-visible { text-decoration: underline; }
 .footer-finish > .footer-cities { width: min(100%, 1760px); margin-inline: auto; }
