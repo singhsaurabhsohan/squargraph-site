@@ -79,9 +79,21 @@
       #nav .nav-logo img { width: clamp(150px, 20vw, 192px); height: auto; }
       #nav .nav-cta { white-space: nowrap; }
     }
+    .delhi-service-area {
+      max-width: 75ch;
+      margin-top: clamp(28px, 4vw, 56px);
+      padding: clamp(22px, 3vw, 36px);
+      scroll-margin-top: 112px;
+      border-left: 3px solid #14231c;
+      background: #f5f3ee;
+    }
+    .delhi-service-area h3 { font-size: clamp(22px, 2.2vw, 32px); line-height: 1.2; }
+    .delhi-service-area p { margin-top: 12px; line-height: 1.65; }
+    .delhi-service-area-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 12px; }
+    .delhi-service-area-links a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
   </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://squargraph.com/creative-agency-delhi#page","url":"https://squargraph.com/creative-agency-delhi","name":"Creative & Advertising Agency in Delhi NCR | SQUARGRAPH™","description":"Brand strategy, identity, advertising campaigns, films, content and digital experiences from SQUARGRAPH™ in New Delhi, India.","isPartOf":{"@id":"https://squargraph.com/#website"},"about":{"@id":"https://squargraph.com/#organization"},"inLanguage":"en-IN"}</script>
-  <link rel="stylesheet" href="/assets/css/pages/services.css?v=1" />
+
 </head>
 <body class="home">
 <svg class="sg-icon-sprite" aria-hidden="true" focusable="false">
@@ -272,11 +284,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><strong>Agree on scope and accountability.</strong> Compare deliverables, decision makers, timelines and review stages. Our <a href="/engagements/">engagement options</a> range from a focused Discovery Session to an ongoing Integrated Growth Partnership.</li>
         <li><strong>Ask how success will be evaluated.</strong> Establish the objective and available baseline before execution. Measures should fit the project, whether that means clearer communication, useful website journeys or campaign learning.</li>
       </ol>
-      <h3 id="areas-served">Working with brands across Delhi NCR</h3>
-      <p style="max-width:75ch;line-height:1.75;">Our studio is based in Hari Nagar Ashram, South Delhi. We work with teams across Delhi NCR, including Gurugram, Noida, Faridabad and Ghaziabad, and with brands elsewhere in India.</p>
-      <p style="max-width:75ch;line-height:1.75;">Explore our <a href="/services/">advertising, creative and marketing services</a>. Planning a launch or production in NCR? <a href="/project-direction/">Share your brief</a> with the target audience, launch date and any shoot or activation locations. We can use those details to scope creative, production and rollout together.</p>
-<nav aria-label="Service areas"><ul class="service-related"><li><a href="#south-delhi">South Delhi</a></li><li><a href="#gurugram">Gurugram</a></li><li><a href="#noida">Noida</a></li><li><a href="#faridabad">Faridabad</a></li><li><a href="#ghaziabad">Ghaziabad</a></li><li><a href="#india">Elsewhere in India</a></li></ul></nav>
-<div class="service-grid"><article class="destination-callout" id="south-delhi"><h3>South Delhi</h3><p>Our studio is based in Hari Nagar Ashram. For a brand refresh or a new launch, share the audience, decision makers and what needs to be ready on launch day.</p><p><a href="/services/brand-strategy/">Brand strategy</a></p></article><article class="destination-callout" id="gurugram"><h3>Gurugram</h3><p>For campaigns that span several teams, share the channels, approval owners and launch milestones so we can plan asset versions and handoffs.</p><p><a href="/services/advertising/">Integrated campaigns</a></p></article><article class="destination-callout" id="noida"><h3>Noida</h3><p>For a film brief, tell us where the video will run and whether you need a main film, cutdowns or vertical edits. Those choices shape the shoot and post-production plan.</p><p><a href="/services/film-production/">Ad film and video production</a></p></article><article class="destination-callout" id="faridabad"><h3>Faridabad</h3><p>If a campaign needs to generate enquiries, share the current landing page and how your team handles leads. That helps us plan the media and the next step after someone clicks.</p><p><a href="/services/digital-marketing/">Digital marketing strategy</a></p></article><article class="destination-callout" id="ghaziabad"><h3>Ghaziabad</h3><p>For an on-ground activation, share the venue, expected audience and what visitors should do after the event. We can scope signage, content capture and the follow-up around that journey.</p><p><a href="/services/brand-activations/">Brand activations</a></p></article><article class="destination-callout" id="india"><h3>Elsewhere in India</h3><p>Share the markets, languages and delivery requirements in the brief. We can identify where the campaign needs local adaptations and coordinate production requirements by location.</p><p><a href="/services/creative/">Creative direction</a></p></article></div>
+      <aside id="areas-served" class="delhi-service-area" aria-labelledby="delhi-service-area-title">
+        <h3 id="delhi-service-area-title">Based in South Delhi. Working across Delhi NCR.</h3>
+        <p>Our studio is in Hari Nagar Ashram. We work with teams in Delhi, Gurugram, Noida, Faridabad, Ghaziabad and elsewhere in India.</p>
+        <div class="delhi-service-area-links">
+          <a href="/services/">Explore our services</a>
+          <a href="/project-direction/">Share your brief</a>
+        </div>
+      </aside>
     </div>
   </section>
 
