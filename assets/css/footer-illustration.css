@@ -185,3 +185,27 @@
 }
 
 #sticky-banner.sg-footer-hidden { display: none !important; }
+
+.footer-cities {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 20px;
+  color: #fff;
+  line-height: 1.4;
+  font-size: .875rem;
+}
+
+.footer-cities a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .footer-cities strong { flex-basis: 100%; }
+}
+.footer-finish > .footer-cities { width: min(100%, 1760px); margin-inline: auto; }

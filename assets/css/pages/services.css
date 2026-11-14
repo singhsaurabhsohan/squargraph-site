@@ -16,8 +16,55 @@
 
 .service-grid .destination-callout {
   padding: clamp(1.25rem, 3vw, 2rem);
+  background: #f5f3ee;
+  border: 1px solid #dedfd6;
+  border-top: 3px solid #355446;
+  border-radius: 10px;
 }
 
+.service-grid .destination-callout h3 { color: #14231c; }
+
+.city-guide { max-width: 76ch; }
+.city-guide h2 {
+  font-size: clamp(30px, 4.5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -.035em;
+  max-width: 18ch;
+}
+.city-guide > p { margin: 16px 0 24px; line-height: 1.65; }
+.city-guide dl { border-top: 1px solid #dedfd6; margin: 24px 0 0; }
+.city-guide dt { font-weight: 700; margin-top: 18px; }
+.city-guide dt a { color: #14231c; text-decoration: underline; text-underline-offset: 4px; }
+.city-guide dd {
+  margin: 6px 0 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #dedfd6;
+  line-height: 1.65;
+}
+
+.delhi-service-area {
+  max-width: 76ch;
+  margin-top: clamp(28px, 4vw, 56px);
+  padding: clamp(22px, 3vw, 36px);
+  scroll-margin-top: 112px;
+  border-radius: 10px;
+  background: #14231c;
+  color: #fafaf9;
+}
+.delhi-service-area h3 { font-size: clamp(22px, 2.2vw, 32px); line-height: 1.2; }
+.delhi-service-area p { margin-top: 12px; line-height: 1.65; }
+.delhi-service-area-links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; }
+.delhi-service-area-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.location-links { list-style: none; padding: 10px 0 0; border-top: 1px solid #53655a; }
+.location-links a { padding-inline: 10px; }
 .service-grid h3 a,
 .service-section > p a,
 .service-related a {
