@@ -8,6 +8,9 @@ function validatorMatches(value, headers) {
 }
 
 const studioRedirects = {
+  '/os': 'https://os.squargraph.com/',
+  '/os/dashboard': 'https://os.squargraph.com/dashboard',
+  '/enterprise': 'https://os.squargraph.com/',
   '/studio/app': 'https://studio.squargraph.com/',
   '/studio-app': 'https://studio.squargraph.com/',
   '/create': 'https://studio.squargraph.com/',

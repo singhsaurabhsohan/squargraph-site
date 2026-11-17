@@ -11,6 +11,8 @@
     "run_worker_first": [
       "/assets/videos/*",
       "/api/ratings",
+      "/os*",
+      "/enterprise*",
       "/studio-app*",
       "/studio/app*",
       "/create*",
