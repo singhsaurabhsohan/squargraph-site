@@ -7,10 +7,27 @@ function validatorMatches(value, headers) {
   return Number.isFinite(requested) && Number.isFinite(modified) && modified <= requested;
 }
 
+const studioRedirects = {
+  '/studio/app': 'https://studio.squargraph.com/',
+  '/studio-app': 'https://studio.squargraph.com/',
+  '/create': 'https://studio.squargraph.com/',
+  '/design': 'https://studio.squargraph.com/design',
+  '/photo': 'https://studio.squargraph.com/photo',
+  '/motion': 'https://studio.squargraph.com/motion',
+  '/cinema': 'https://studio.squargraph.com/cinema',
+  '/cgi': 'https://studio.squargraph.com/cgi',
+  '/watermark': 'https://studio.squargraph.com/watermark',
+  '/cloud': 'https://studio.squargraph.com/cloud'
+};
+
 /** Safari probes MP4s with bytes=0-1; Workers Static Assets otherwise returns 200. */
 export default {
   async fetch(request, env) {
-    const path = new URL(request.url).pathname;
+    const url = new URL(request.url);
+    const path = url.pathname.replace(/\/$/, '') || '/';
+    if (studioRedirects[path]) {
+      return Response.redirect(studioRedirects[path] + url.search + url.hash, 301);
+    }
     if (path === '/api/ratings') return ratingsResponse(request, env);
     if (!path.startsWith('/assets/videos/') || !path.endsWith('.mp4') || !['GET', 'HEAD'].includes(request.method)) return env.ASSETS.fetch(request);
     const range = request.headers.get('range');

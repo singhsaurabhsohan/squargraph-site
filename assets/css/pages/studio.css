@@ -31,3 +31,22 @@
 @media (max-width: 960px) { .studio-manifesto, .studio-founder { grid-template-columns: 1fr; } .studio-principles, .studio-approach, .studio-facts { grid-template-columns: repeat(2,1fr); } .studio-manifesto blockquote { font-size: 42px; } }
 @media (max-width: 720px) { .studio-thesis-grid { grid-template-columns: 1fr; } .studio-thesis-item { min-height: 240px; } }
 @media (max-width: 520px) { .studio-manifesto blockquote { font-size: 36px; } .studio-principles, .studio-approach, .studio-facts { grid-template-columns: 1fr; } .studio-founder-copy h2 { font-size: 36px; } }
+
+/* SQUARGRAPH Studio Suite Creative Software Showcase */
+.studio-suite-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+.studio-suite-card { padding: 32px; border-radius: 12px; background: var(--warmgray); border: 1px solid var(--bordergray); display: flex; flex-direction: column; justify-content: space-between; min-height: 260px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.studio-suite-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 12px 30px rgba(20, 35, 28, 0.08); }
+.studio-suite-card--featured { grid-column: span 3; background: linear-gradient(135deg, rgba(20, 35, 28, 0.04) 0%, rgba(20, 35, 28, 0.01) 100%), var(--warmgray); border-color: rgba(20, 35, 28, 0.2); }
+.studio-suite-tag { color: var(--accent); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.studio-suite-card h3 { margin: 18px 0 10px; font-size: 22px; font-weight: 500; color: var(--textprimary); }
+.studio-suite-card p { margin: 0 0 20px; color: var(--textsecondary); font-size: 14.5px; line-height: 1.6; flex: 1 0 auto; }
+.studio-suite-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; transition: gap .2s ease, color .2s ease; }
+.studio-suite-link:hover { color: var(--textprimary); gap: 10px; }
+@media (max-width: 960px) {
+  .studio-suite-grid { grid-template-columns: repeat(2, 1fr); }
+  .studio-suite-card--featured { grid-column: span 2; }
+}
+@media (max-width: 640px) {
+  .studio-suite-grid { grid-template-columns: 1fr; }
+  .studio-suite-card--featured { grid-column: span 1; }
+}

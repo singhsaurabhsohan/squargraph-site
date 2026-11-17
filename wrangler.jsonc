@@ -10,7 +10,17 @@
     "binding": "ASSETS",
     "run_worker_first": [
       "/assets/videos/*",
-      "/api/ratings"
+      "/api/ratings",
+      "/studio-app*",
+      "/studio/app*",
+      "/create*",
+      "/design*",
+      "/photo*",
+      "/motion*",
+      "/cinema*",
+      "/cgi*",
+      "/watermark*",
+      "/cloud*"
     ]
   },
   "compatibility_flags": [
